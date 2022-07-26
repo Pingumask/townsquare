@@ -1,0 +1,98 @@
+[
+  {
+    "id": "_meta",
+    "name": "Catfishing",
+    "author": "Emily",
+    "logo": "https://i.imgur.com/tkFhtDn.png"
+  },
+  {
+    "id": "investigator"
+  },
+  {
+    "id": "chef"
+  },
+  {
+    "id": "grandmother"
+  },
+  {
+    "id": "balloonist"
+  },
+  {
+    "id": "dreamer"
+  },
+  {
+    "id": "fortune_teller"
+  },
+  {
+    "id": "snake_charmer"
+  },
+  {
+    "id": "gambler"
+  },
+  {
+    "id": "savant"
+  },
+  {
+    "id": "philosopher"
+  },
+  {
+    "id": "ravenkeeper"
+  },
+  {
+    "id": "amnesiac"
+  },
+  {
+    "id": "cannibal"
+  },
+  {
+    "id": "drunk"
+  },
+  {
+    "id": "recluse"
+  },
+  {
+    "id": "sweetheart"
+  },
+  {
+    "id": "mutant"
+  },
+  {
+    "id": "lunatic"
+  },
+  {
+    "id": "godfather"
+  },
+  {
+    "id": "cerenovus"
+  },
+  {
+    "id": "pit-hag"
+  },
+  {
+    "id": "widow"
+  },
+  {
+    "id": "imp"
+  },
+  {
+    "id": "vigormortis"
+  },
+  {
+    "id": "fang_gu"
+  },
+  {
+    "id": "beggar"
+  },
+  {
+    "id": "barista"
+  },
+  {
+    "id": "apprentice"
+  },
+  {
+    "id": "harlot"
+  },
+  {
+    "id": "bone_collector"
+  }
+]
