@@ -2,30 +2,23 @@
   <div class="intro">
     <img src="static/apple-icon.png" alt="" class="logo" />
     <div>
-      Welcome to the (unofficial)
-      <b>Virtual Town Square and Grimoire</b> for Blood on the Clocktower!
-      Please add more players through the
+      Bienvenue sur la version Française (non officielle) du<br/>
+      <b>Centre-Ville Virtuel</b> pour <strong>Blood on the Clocktower</strong>® !<br/>
+      Veuillez Ajouter des joueurs via le 
       <span class="button" @click="toggleMenu">
         <font-awesome-icon icon="cog" /> Menu
       </span>
-      on the top right or by pressing <b>[A]</b>. You can also join a game
-      session by pressing <b>[J]</b>.<br />
+      en haut à droite ou en appuyant sur <b>[A]</b>. Vous pouvez également rejoindre une partie en tant que joueur en appuyant sur
+      <b>[J]</b>.<br />
       <div class="footer">
-        This project is free and open source and can be found on
-        <a href="https://github.com/bra1n/townsquare" target="_blank">GitHub</a
-        >. It is not affiliated with The Pandemonium Institute. "Blood on the
-        Clocktower" is a trademark of Steven Medway and The Pandemonium
-        Institute.
+        Ce projet est en Sources et License Libres. Le code Source de cette version est disponible sur
+        <a href="https://github.com/pingumask/townsquare" target="_blank">La page GitHub de Pingumask</a>.<br/>
+        La version originale anglaise est disponible sur 
+        <a href="https://github.com/bra1n/townsquare" target="_blank">La page Github de Bra1n</a>.<br/>
+        Ce site n'est d'aucune façon affilié à The Pandemonium Institute.<br/>
+        "Blood on the Clocktower" est une marque déposée de Steven Medway & The Pandemonium Institute.
       </div>
     </div>
-    <a
-      class="redirect"
-      v-if="language === 'zh-CN'"
-      href="https://clocktower.gstonegames.com"
-    >
-      <img src="../assets/gstone.png" class="gstone" alt="" />
-      你想使用中文版魔典吗？
-    </a>
   </div>
 </template>
 

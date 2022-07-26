@@ -4,10 +4,10 @@ import persistence from "./persistence";
 import socket from "./socket";
 import players from "./modules/players";
 import session from "./modules/session";
-import editionJSON from "../editions.json";
-import rolesJSON from "../roles.json";
-import fabledJSON from "../fabled.json";
-import jinxesJSON from "../hatred.json";
+import editionJSON from "../editions_fr.json";
+import rolesJSON from "../roles_fr.json";
+import fabledJSON from "../fabled_fr.json";
+import jinxesJSON from "../hatred_fr.json";
 
 Vue.use(Vuex);
 

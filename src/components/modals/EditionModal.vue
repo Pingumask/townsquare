@@ -1,7 +1,7 @@
 <template>
   <Modal class="editions" v-if="modals.edition" @close="toggleModal('edition')">
     <div v-if="!isCustom">
-      <h3>Select an edition:</h3>
+      <h3>Choisissez un Scénario:</h3>
       <ul class="editions">
         <li
           v-for="edition in editions"
@@ -24,29 +24,27 @@
             backgroundImage: `url(${require('../../assets/editions/custom.png')})`
           }"
         >
-          Custom Script / Characters
+          Scénario Perso / Personnages
         </li>
       </ul>
     </div>
     <div class="custom" v-else>
-      <h3>Load custom script / characters</h3>
-      To play with a custom script, you need to select the characters you want
-      to play with in the official
+      <h3>Charger un Scénario Perso</h3>
+      Pour jouer avec un script personnalisé, vous pouvez sélectionner les personnages de votre choix grace à l'
       <a href="https://script.bloodontheclocktower.com/" target="_blank"
-        >Script Tool</a
+        >outil officiel d'édition de scripts</a
       >
-      and then upload the generated "custom-list.json" either directly here or
-      provide a URL to such a hosted JSON file.<br />
+      puis téléverser le fichier json généré directement ici ou depuis une URL hébergée.<br />
       <br />
-      To play with custom characters, please read
+      Pour plus d'informations, vous pouvez vous réferrer à
       <a
         href="https://github.com/bra1n/townsquare#custom-characters"
         target="_blank"
-        >the documentation</a
+        >la documentation</a
       >
-      on how to write a custom character definition file.
-      <b>Only load custom JSON files from sources that you trust!</b>
-      <h3>Some popular custom scripts:</h3>
+      pour apprendre comment rédiger des fiches de personnages personnalisés.<br/>
+      <b>Ne chargez des fichier JSON qu'à partir de sources de confiance !</b>
+      <h3>Quelques scénarios populaires:</h3>
       <ul class="scripts">
         <li
           v-for="(script, index) in scripts"
@@ -64,16 +62,16 @@
       />
       <div class="button-group">
         <div class="button" @click="openUpload">
-          <font-awesome-icon icon="file-upload" /> Upload JSON
+          <font-awesome-icon icon="file-upload" /> Téléverser un JSON
         </div>
         <div class="button" @click="promptURL">
-          <font-awesome-icon icon="link" /> Enter URL
+          <font-awesome-icon icon="link" /> Entrer une URL
         </div>
         <div class="button" @click="readFromClipboard">
           <font-awesome-icon icon="clipboard" /> Use JSON from Clipboard
         </div>
         <div class="button" @click="isCustom = false">
-          <font-awesome-icon icon="undo" /> Back
+          <font-awesome-icon icon="undo" /> Retour
         </div>
       </div>
     </div>
@@ -81,7 +79,7 @@
 </template>
 
 <script>
-import editionJSON from "../../editions";
+import editionJSON from "../../editions_fr.json";
 import { mapMutations, mapState } from "vuex";
 import Modal from "./Modal";
 
@@ -95,27 +93,27 @@ export default {
       isCustom: false,
       scripts: [
         [
-          "Deadly Penance Day",
+          "Jour de pénitence mortelle",
           "https://gist.githubusercontent.com/bra1n/0337cc44c6fd2c44f7589256ed5486d2/raw/16be38fa3c01aaf49827303ac80577bdb52c0b25/penanceday.json"
         ],
         [
-          "Catfishing 11.1",
+          "Pêche au poisson-chat 11.1",
           "https://gist.githubusercontent.com/bra1n/8a5ec41a7bbf945f6b7dfc1cef72b569/raw/a312ab93c2f302e0ef83c8b65a4e8e82760fda3a/catfishing.json"
         ],
         [
-          "On Thin Ice (Teensyville)",
+          "Marcher sur des oeufs (Miniville)",
           "https://gist.githubusercontent.com/bra1n/8dacd9f2abc6f428331ea1213ab153f5/raw/0cacbcaf8ed9bddae0cca25a9ada97e9958d868b/on-thin-ice.json"
         ],
         [
-          "Race To The Bottom (Teensyville)",
+          "Course vers le bas (Miniville)",
           "https://gist.githubusercontent.com/bra1n/63e1354cb3dc9d4032bcd0623dc48888/raw/5acb0eedcc0a67a64a99c7e0e6271de0b7b2e1b2/race-to-the-bottom.json"
         ],
         [
-          "Frankenstein's Mayor by Ted (Teensyville)",
+          "Le maire de Frankenstein (Miniville)",
           "https://gist.githubusercontent.com/bra1n/32c52b422cc01b934a4291eeb81dbcee/raw/5bf770693bbf7aff5e86601c82ca4af3222f4ba6/Frankensteins_Mayor_by_Ted.json"
         ],
         [
-          "Vigormortis High School (Teensyville)",
+          "Le Collége Vigormortis (Miniville)",
           "https://gist.githubusercontent.com/bra1n/1f65bd4a999524719d5dabe98c3c2d27/raw/22bbec6bf56a51a7459e5ae41ed47e41971c5445/VigormortisHighSchool.json"
         ]
       ]
@@ -143,7 +141,7 @@ export default {
       }
     },
     promptURL() {
-      const url = prompt("Enter URL to a custom-script.json file");
+      const url = prompt("Entrer l'URL du fichier JSON de personnalisation de script");
       if (url) {
         this.handleURL(url);
       }
@@ -155,7 +153,7 @@ export default {
           const script = await res.json();
           this.parseRoles(script);
         } catch (e) {
-          alert("Error loading custom script: " + e.message);
+          alert("Erreur lors du chargement du script: " + e.message);
         }
       }
     },

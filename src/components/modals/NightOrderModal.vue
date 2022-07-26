@@ -11,13 +11,13 @@
       title="Show Character Reference"
     />
     <h3>
-      Night Order
+      Ordre Nocturne
       <font-awesome-icon icon="cloud-moon" />
-      {{ edition.name || "Custom Script" }}
+      {{ edition.name || "Scenario Perso" }}
     </h3>
     <div class="night">
       <ul class="first">
-        <li class="headline">First Night</li>
+        <li class="headline">Première Nuit</li>
         <li
           v-for="role in rolesFirstNight"
           :key="role.name"
@@ -56,7 +56,7 @@
         </li>
       </ul>
       <ul class="other">
-        <li class="headline">Other Nights</li>
+        <li class="headline">Autres Nuits</li>
         <li
           v-for="role in rolesOtherNight"
           :key="role.name"
@@ -109,29 +109,28 @@ export default {
   computed: {
     rolesFirstNight: function() {
       const rolesFirstNight = [];
-      // add minion / demon infos to night order sheet
+      // Ajouter minion / demon infos à l'ordre nocturne
       if (this.players.length > 6) {
         rolesFirstNight.push(
           {
             id: "evil",
-            name: "Minion info",
+            name: "Informations Serviteurs",
             firstNight: 5,
             team: "minion",
             players: this.players.filter(p => p.role.team === "minion"),
             firstNightReminder:
-              "• If more than one Minion, they all make eye contact with each other. " +
-              "• Show the “This is the Demon” card. Point to the Demon."
+              "• S'il y a plusieurs Serviteurs, ils apprennent qui sont les autres Serviteurs. " +
+              "• Indiquez aux Serviteurs qui est le Démon."
           },
           {
             id: "evil",
-            name: "Demon info & bluffs",
+            name: "Info & Bluffs Démon",
             firstNight: 8,
             team: "demon",
             players: this.players.filter(p => p.role.team === "demon"),
             firstNightReminder:
-              "• Show the “These are your minions” card. Point to each Minion. " +
-              "• Show the “These characters are not in play” card. Show 3 character tokens of good " +
-              "characters not in play."
+              "• Indiquez au Démon qui sont ses serviteurs. " +
+              "• Indiquez les rôles de 3 personnages Gentils qui ne sont pas en jeu."
           }
         );
       }

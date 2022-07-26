@@ -4,7 +4,7 @@
     v-if="modals.roles && nonTravelers >= 5"
     @close="toggleModal('roles')"
   >
-    <h3>Select the characters for {{ nonTravelers }} players:</h3>
+    <h3>Selectionner les personnages pour {{ nonTravelers }} joueurs:</h3>
     <ul class="tokens" v-for="(teamRoles, team) in roleSelection" :key="team">
       <li class="count" :class="[team]">
         {{ teamRoles.reduce((a, { selected }) => a + selected, 0) }} /
@@ -31,14 +31,14 @@
     <div class="warning" v-if="hasSelectedSetupRoles">
       <font-awesome-icon icon="exclamation-triangle" />
       <span>
-        Warning: there are characters selected that modify the game setup! The
-        randomizer does not account for these characters.
+        Attention: certains des personnages sélectionnés changent la distribution de début de partie ! 
+        La distribution aléatoire n'effectue pas elle même ces changements, pensez à modifier les attributions en conséquence avant d'envoyer les rôles aux joueurs.
       </span>
     </div>
     <label class="multiple" :class="{ checked: allowMultiple }">
       <font-awesome-icon :icon="allowMultiple ? 'check-square' : 'square'" />
       <input type="checkbox" name="allow-multiple" v-model="allowMultiple" />
-      Allow duplicate characters
+      Permettre les doublons de personnages
     </label>
     <div class="button-group">
       <div
@@ -49,11 +49,11 @@
         }"
       >
         <font-awesome-icon icon="people-arrows" />
-        Assign {{ selectedRoles }} characters randomly
+        Attribuer aléatoirement ces {{ selectedRoles }} rôles 
       </div>
       <div class="button" @click="selectRandomRoles">
         <font-awesome-icon icon="random" />
-        Shuffle characters
+        Tirer les personnages au sort
       </div>
     </div>
   </Modal>
