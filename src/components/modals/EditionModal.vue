@@ -1,7 +1,7 @@
 <template>
   <Modal class="editions" v-if="modals.edition" @close="toggleModal('edition')">
     <div v-if="!isCustom">
-      <h3>Choisissez un Scénario:</h3>
+      <h3>{{ locale.modal.edition.title }}</h3>
       <ul class="editions">
         <li
           v-for="edition in editions"
@@ -24,27 +24,27 @@
             backgroundImage: `url(${require('../../assets/editions/custom.png')})`
           }"
         >
-          Scénario Perso / Personnages
+          {{ locale.modal.edition.custom.button }}
         </li>
       </ul>
     </div>
     <div class="custom" v-else>
-      <h3>Charger un Scénario Perso</h3>
-      Pour jouer avec un script personnalisé, vous pouvez sélectionner les personnages de votre choix grace à l'
+      <h3>{{ locale.modal.edition.custom.title }}</h3>
+      {{ locale.modal.edition.custom.introStart }}
       <a href="https://script.bloodontheclocktower.com/" target="_blank"
-        >outil officiel d'édition de scripts</a
+        >{{ locale.modal.edition.custom.scriptTool }}</a
       >
-      puis téléverser le fichier json généré directement ici ou depuis une URL hébergée.<br />
+      {{ locale.modal.edition.custom.introEnd }}.<br />
       <br />
-      Pour plus d'informations, vous pouvez vous réferrer à
+      {{ locale.modal.edition.custom.instructionsStart }}
       <a
         href="https://github.com/bra1n/townsquare#custom-characters"
         target="_blank"
-        >la documentation</a
+        >{{ locale.modal.edition.custom.documentation }}n</a
       >
-      pour apprendre comment rédiger des fiches de personnages personnalisés.<br/>
-      <b>Ne chargez des fichier JSON qu'à partir de sources de confiance !</b>
-      <h3>Quelques scénarios populaires:</h3>
+      {{ locale.modal.edition.custom.instructionsEnd }}<br/>
+      <b>{{ locale.modal.edition.custom.warning }}</b>
+      <h3>{{ locale.modal.edition.popularScripts }}</h3>
       <ul class="scripts">
         <li
           v-for="(script, index) in scripts"
@@ -62,16 +62,20 @@
       />
       <div class="button-group">
         <div class="button" @click="openUpload">
-          <font-awesome-icon icon="file-upload" /> Téléverser un JSON
+          <font-awesome-icon icon="file-upload" />
+          {{ locale.modal.edition.custom.upload }}
         </div>
         <div class="button" @click="promptURL">
-          <font-awesome-icon icon="link" /> Entrer une URL
+          <font-awesome-icon icon="link" />
+          {{ locale.modal.edition.custom.url }}
         </div>
         <div class="button" @click="readFromClipboard">
-          <font-awesome-icon icon="clipboard" /> Importer du presse-papier
+          <font-awesome-icon icon="clipboard" />
+          {{ locale.modal.edition.custom.clipboard }}
         </div>
         <div class="button" @click="isCustom = false">
-          <font-awesome-icon icon="undo" /> Retour
+          <font-awesome-icon icon="undo" />
+          {{ locale.modal.edition.custom.back }}
         </div>
       </div>
     </div>
@@ -79,7 +83,6 @@
 </template>
 
 <script>
-import editionJSON from "../../editions_fr.json";
 import { mapMutations, mapState } from "vuex";
 import Modal from "./Modal";
 
@@ -89,77 +92,39 @@ export default {
   },
   data: function() {
     return {
-      editions: editionJSON,
+      editions: this.$store.state.editions,
       isCustom: false,
       scripts: [
         [
           "Deadly Penance Day",
-          "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/deadly_penance_day.json"
+          "https://gist.githubusercontent.com/bra1n/0337cc44c6fd2c44f7589256ed5486d2/raw/16be38fa3c01aaf49827303ac80577bdb52c0b25/penanceday.json"
         ],
         [
-          "Catfishing",
-          "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/catfishing.json"
+          "Catfishing 11.1",
+          "https://gist.githubusercontent.com/bra1n/8a5ec41a7bbf945f6b7dfc1cef72b569/raw/a312ab93c2f302e0ef83c8b65a4e8e82760fda3a/catfishing.json"
         ],
         [
-          "On thin ice (Teensyville)",
-          "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/on_thin_ice.json"
+          "On Thin Ice (Teensyville)",
+          "https://gist.githubusercontent.com/bra1n/8dacd9f2abc6f428331ea1213ab153f5/raw/0cacbcaf8ed9bddae0cca25a9ada97e9958d868b/on-thin-ice.json"
         ],
         [
-          "Race to the bottom (Teensyville)",
-          "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/race_to_the_bottom.json"
+          "Race To The Bottom (Teensyville)",
+          "https://gist.githubusercontent.com/bra1n/63e1354cb3dc9d4032bcd0623dc48888/raw/5acb0eedcc0a67a64a99c7e0e6271de0b7b2e1b2/race-to-the-bottom.json"
         ],
         [
-          "Frankenstein's Mayor (Teensyville)",
-          "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/frankensteins_mayor.json"
+          "Frankenstein's Mayor by Ted (Teensyville)",
+          "https://gist.githubusercontent.com/bra1n/32c52b422cc01b934a4291eeb81dbcee/raw/5bf770693bbf7aff5e86601c82ca4af3222f4ba6/Frankensteins_Mayor_by_Ted.json"
         ],
         [
-          "Vigormortis High school (Teensyville)",
-          "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/vigormortis_high_school.json"
-        ],
-        [
-          "Trouble with Violets",
-          "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/trouble_with_violets.json"
-        ],
-        [
-          "Rochambeau",
-          "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/rochambeau.json"
-        ],
-        [
-          "Knowing me, Knowing you",
-          "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/knowing_me_knowing_you.json"
-        ],
-        [
-          "Hide & Seek",
-          "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/hide_and_seek.json"
-        ],
-        [
-          "Poppyganda",
-          "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/poppyganda.json"
-        ],
-        [
-          "Whose Cult is it Anyway",
-          "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/whose_cult_is_it_anyway.json"
-        ],
-        [
-          "Uncertain Death",
-          "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/uncertain_death.json"
-        ],
-        [
-          "Reykjavik's Scheme",
-          "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/reykjaviks_scheme.json"
-        ],
-        [
-          "Pont Saint-Esprit",
-          "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/pont_saint_esprit.json"
-        ],
-        [
-          "Simpletown Village",
-          "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/pont_saint_esprit.json"
+          "Vigormortis High School (Teensyville)",
+          "https://gist.githubusercontent.com/bra1n/1f65bd4a999524719d5dabe98c3c2d27/raw/22bbec6bf56a51a7459e5ae41ed47e41971c5445/VigormortisHighSchool.json"
         ]
       ]
     };
   },
-  computed: mapState(["modals"]),
+  computed: {
+    ...mapState(["modals", "locale", "editions"])
+  },
   methods: {
     openUpload() {
       this.$refs.upload.click();
@@ -181,7 +146,7 @@ export default {
       }
     },
     promptURL() {
-      const url = prompt("Entrer l'URL du fichier JSON de personnalisation de script");
+      const url = prompt(this.locale.prompt.customUrl);
       if (url) {
         this.handleURL(url);
       }
@@ -193,7 +158,7 @@ export default {
           const script = await res.json();
           this.parseRoles(script);
         } catch (e) {
-          alert("Erreur lors du chargement du script: " + e.message);
+          alert(this.locale.prompt.customError + ": " + e.message);
         }
       }
     },

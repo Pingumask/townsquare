@@ -82,12 +82,12 @@ export default {
         }
       });
 
-      reminders.push({ role: "good", name: "Gentil" });
-      reminders.push({ role: "evil", name: "Mauvais" });
-      reminders.push({ role: "custom", name: "Note perso" });
+      reminders.push({ role: "good", name: this.locale.modal.reminder.good });
+      reminders.push({ role: "evil", name: this.locale.modal.reminder.evil });
+      reminders.push({ role: "custom", name: this.locale.modal.reminder.custom });
       return reminders;
     },
-    ...mapState(["modals", "grimoire"]),
+    ...mapState(["modals", "grimoire", "locale"]),
     ...mapState("players", ["players"])
   },
   methods: {
@@ -95,7 +95,7 @@ export default {
       const player = this.$store.state.players.players[this.playerIndex];
       let value;
       if (reminder.role === "custom") {
-        const name = prompt("Ajouter une marque personnalisée");
+        const name = prompt(this.locale.prompt.customNote);
         if (!name) return;
         value = [...player.reminders, { role: "custom", name }];
       } else {

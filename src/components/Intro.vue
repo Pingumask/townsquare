@@ -2,30 +2,32 @@
   <div class="intro">
     <img src="static/apple-icon.png" alt="" class="logo" />
     <div>
-      Bienvenue sur la version Française (non officielle) du<br/>
-      <b>Centre-Ville Virtuel</b> pour <strong>Blood on the Clocktower</strong>® !<br/>
-      Veuillez Ajouter des joueurs via le 
+      {{ locale.intro.header }}
       <span class="button" @click="toggleMenu">
-        <font-awesome-icon icon="cog" /> Menu
+        <font-awesome-icon icon="cog" /> {{ locale.intro.menu }}
       </span>
-      en haut à droite ou en appuyant sur <b>[A]</b>. Vous pouvez également rejoindre une partie en tant que joueur en appuyant sur
-      <b>[J]</b>.<br />
+      {{ locale.intro.body }}
       <div class="footer">
-        Ce projet est en Sources et License Libres. Le code Source de cette version est disponible sur
-        <a href="https://github.com/pingumask/townsquare" target="_blank">La page GitHub de Pingumask</a>.<br/>
-        La version originale anglaise est disponible sur 
-        <a href="https://github.com/bra1n/townsquare" target="_blank">La page Github de Bra1n</a>.<br/>
-        Ce site n'est d'aucune façon affilié à The Pandemonium Institute.<br/>
-        "Blood on the Clocktower" est une marque déposée de Steven Medway & The Pandemonium Institute.
+        {{ locale.intro.footerStart }}
+        <a href="https://github.com/bra1n/townsquare" target="_blank">GitHub</a>
+        {{ locale.intro.footerEnd }}
       </div>
     </div>
+    <a class="redirect" v-if="language === 'zh-CN'" href="https://clocktower.gstonegames.com">
+      <img src="../assets/gstone.png" class="gstone" alt="" />
+      你想使用中文版魔典吗？
+    </a>
   </div>
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapState, mapGetters } from "vuex";
 
 export default {
+  computed: {
+    ...mapState(["locale"]),
+    ...mapGetters({ nightOrder: "players/nightOrder" })
+  },
   data() {
     return {
       language: window.navigator.userLanguage || window.navigator.language

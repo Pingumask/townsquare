@@ -11,13 +11,13 @@
       title="Show Character Reference"
     />
     <h3>
-      Ordre Nocturne
+      {{ locale.modal.nightOrder.title }}
       <font-awesome-icon icon="cloud-moon" />
-      {{ edition.name || "Scenario Perso" }}
+      {{ edition.name || locale.modal.nightOrder.custom }}
     </h3>
     <div class="night">
       <ul class="first">
-        <li class="headline">Première Nuit</li>
+        <li class="headline">{{ locale.modal.nightOrder.firstNight }}</li>
         <li
           v-for="role in rolesFirstNight"
           :key="role.name"
@@ -56,7 +56,7 @@
         </li>
       </ul>
       <ul class="other">
-        <li class="headline">Autres Nuits</li>
+        <li class="headline">{{ locale.modal.nightOrder.otherNights }}</li>
         <li
           v-for="role in rolesOtherNight"
           :key="role.name"
@@ -114,23 +114,19 @@ export default {
         rolesFirstNight.push(
           {
             id: "evil",
-            name: "Informations Serviteurs",
+            name: this.locale.modal.nightOrder.minionInfo,
             firstNight: 5,
             team: "minion",
             players: this.players.filter(p => p.role.team === "minion"),
-            firstNightReminder:
-              "• S'il y a plusieurs Serviteurs, ils apprennent qui sont les autres Serviteurs. " +
-              "• Indiquez aux Serviteurs qui est le Démon."
+            firstNightReminder: this.locale.modal.nightOrder.minionInfoDescription
           },
           {
             id: "evil",
-            name: "Info & Bluffs Démon",
+            name: this.locale.modal.nightOrder.demonInfo,
             firstNight: 8,
             team: "demon",
             players: this.players.filter(p => p.role.team === "demon"),
-            firstNightReminder:
-              "• Indiquez au Démon qui sont ses serviteurs. " +
-              "• Indiquez les rôles de 3 personnages Gentils qui ne sont pas en jeu."
+            firstNightReminder: this.locale.modal.nightOrder.demonInfoDescription
           }
         );
       }
@@ -164,7 +160,7 @@ export default {
       rolesOtherNight.sort((a, b) => a.otherNight - b.otherNight);
       return rolesOtherNight;
     },
-    ...mapState(["roles", "modals", "edition", "grimoire"]),
+    ...mapState(["roles", "modals", "edition", "grimoire", "locale"]),
     ...mapState("players", ["players", "fabled"])
   },
   methods: {

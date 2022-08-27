@@ -12,7 +12,7 @@
       }"
     ></li>
     <li v-if="players.length - teams.traveler < 5">
-      Appuyez sur [A] pour ajouter plus de joueurs !
+      {{ locale.towninfo.addPlayers }}
     </li>
     <li>
       <span class="meta" v-if="!edition.isOfficial">

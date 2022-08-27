@@ -47,38 +47,38 @@
         <font-awesome-icon
           icon="hand-paper"
           class="vote"
-          title="Main levée"
+          :title="locale.player.handUp"
           @click="vote()"
         />
         <font-awesome-icon
           icon="times"
           class="vote"
-          title="Main baissée"
+          :title="locale.player.handDown"
           @click="vote()"
         />
         <font-awesome-icon
           icon="times-circle"
           class="cancel"
-          title="Annuler"
+          :title="locale.player.cancel"
           @click="cancel()"
         />
         <font-awesome-icon
           icon="exchange-alt"
           class="swap"
           @click="swapPlayer(player)"
-          title="Echanger de siège avec ce joueur"
+          :title="locale.player.swap"
         />
         <font-awesome-icon
           icon="redo-alt"
           class="move"
           @click="movePlayer(player)"
-          title="Déplacer le joueur vers ce siège"
+          :title="locale.player.move"
         />
         <font-awesome-icon
           icon="hand-point-right"
           class="nominate"
           @click="nominatePlayer(player)"
-          title="Accuser ce joueur"
+          :title="locale.player.nominate"
         />
       </div>
 
@@ -96,7 +96,7 @@
         class="has-vote"
         v-if="player.isDead && !player.isVoteless"
         @click="updatePlayer('isVoteless', true)"
-        title="Vote fantome"
+        :title="locale.player.ghostVote"
       />
 
       <!-- On block icon -->
@@ -124,35 +124,35 @@
                 (session.isSpectator && player.id === session.playerId)
             "
           >
-            <font-awesome-icon icon="venus-mars" />Changer de Pronom
+            <font-awesome-icon icon="venus-mars" />{{ locale.player.changePronouns }}
           </li>
           <template v-if="!session.isSpectator">
             <li @click="changeName">
-              <font-awesome-icon icon="user-edit" />Renommer
+              <font-awesome-icon icon="user-edit" />{{ locale.player.changeName }}
             </li>
             <li @click="movePlayer()" :class="{ disabled: session.lockedVote }">
               <font-awesome-icon icon="redo-alt" />
-              Déplacer le joueur
+              {{ locale.player.movePlayer }}
             </li>
             <li @click="swapPlayer()" :class="{ disabled: session.lockedVote }">
               <font-awesome-icon icon="exchange-alt" />
-              Echanger les sièges
+              {{ locale.player.swapPlayers }}
             </li>
             <li @click="removePlayer" :class="{ disabled: session.lockedVote }">
               <font-awesome-icon icon="times-circle" />
-              Retirer le joueur
+              {{ locale.player.removePlayer }}
             </li>
             <li
               @click="updatePlayer('id', '', true)"
               v-if="player.id && session.sessionId"
             >
               <font-awesome-icon icon="chair" />
-              Vider le siège
+              {{ locale.player.emptySeat }}
             </li>
             <template v-if="!session.nomination">
               <li @click="nominatePlayer()">
                 <font-awesome-icon icon="hand-point-right" />
-                Accusation
+                {{ locale.player.nomination }}
               </li>
             </template>
           </template>
@@ -163,12 +163,12 @@
           >
             <font-awesome-icon icon="chair" />
             <template v-if="!player.id">
-              S'asseoir ici
+              {{ locale.player.claimSeat }}
             </template>
             <template v-else-if="player.id === session.playerId">
-              Libérer le siège
+              {{ locale.player.vacateSeat }}
             </template>
-            <template v-else> Siège occupé</template>
+            <template v-else> {{ locale.player.occupiedSeat }}</template>
           </li>
         </ul>
       </transition>
@@ -220,7 +220,7 @@ export default {
   },
   computed: {
     ...mapState("players", ["players"]),
-    ...mapState(["grimoire", "session"]),
+    ...mapState(["grimoire", "session", "locale"]),
     ...mapGetters({ nightOrder: "players/nightOrder" }),
     index: function() {
       return this.players.indexOf(this.player);

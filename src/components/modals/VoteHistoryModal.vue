@@ -12,7 +12,7 @@
       v-if="session.isSpectator"
     />
 
-    <h3>Historique de votes</h3>
+    <h3>{{ locale.modal.voteHistory.title }}</h3>
 
     <template v-if="!session.isSpectator">
       <div class="options">
@@ -23,26 +23,26 @@
               session.isVoteHistoryAllowed ? 'check-square' : 'square'
             ]"
           />
-          Accessible aux joueurs
+          {{ locale.modal.voteHistory.accessibility }}
         </div>
         <div class="option" @click="clearVoteHistory">
           <font-awesome-icon icon="trash-alt" />
-          Effacer pour tout le monde
+          {{ locale.modal.voteHistory.clear }}
         </div>
       </div>
     </template>
     <table>
       <thead>
         <tr>
-          <td>Temps</td>
-          <td>Accusateur</td>
-          <td>Accusé</td>
-          <td>Type</td>
-          <td>Votes</td>
-          <td>Majorité</td>
+          <td>{{ locale.modal.voteHistory.time }}</td>
+          <td>{{ locale.modal.voteHistory.nominator }}</td>
+          <td>{{ locale.modal.voteHistory.nominee }}</td>
+          <td>{{ locale.modal.voteHistory.type }}</td>
+          <td>{{ locale.modal.voteHistory.votes }}</td>
+          <td>{{ locale.modal.voteHistory.majority }}</td>
           <td>
             <font-awesome-icon icon="user-friends" />
-            Votants
+            {{ locale.modal.voteHistory.voters }}
           </td>
         </tr>
       </thead>
@@ -95,7 +95,7 @@ export default {
     Modal
   },
   computed: {
-    ...mapState(["session", "modals"])
+    ...mapState(["session", "modals", "locale"])
   },
   methods: {
     clearVoteHistory() {
