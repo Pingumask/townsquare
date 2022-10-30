@@ -598,13 +598,13 @@
   },
   {
     "id": "moonchild",
-    "name": "Lunaire",
+    "name": "Enfant de la lune",
     "edition": "bmr",
     "team": "outsider",
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 49,
-    "otherNightReminder": "Si le Lunaire a désigné un joueur et que ce joueur est bon: le joueur désigné meurt.",
+    "otherNightReminder": "Si l'enfant de la lune a désigné un joueur et que ce joueur est bon: le joueur désigné meurt.",
     "reminders": [
       "Mort"
     ],
@@ -1861,7 +1861,7 @@
       "Mourir"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, Désignez 3 joueurs (tout le monde sait qui a été désigné) : chacun de ces joueurs choisit secrètement s'il veut vivre ou mourir, s'ils choisissent tous les 3 de vivre, ils meurent tous les 3."
+    "ability": "Chaque nuit*, Désignez 3 joueurs vivants ou morts (tout le monde sait qui a été désigné) : chacun de ces joueurs choisit secrètement s'il veut être vivant ou mort, s'ils choisissent tous les 3 d'être vivants, ils seront tous les 3 morts."
   },
   {
     "id": "legion",
