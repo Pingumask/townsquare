@@ -7,7 +7,7 @@
 		"otherNightReminder": "",
 		"reminders": [],
 		"setup": false,
-		"ability": "Si 4 joueurs ou plus sont en vie, chaque joueur vivant peut, une fois par partie, décider qu'un joueur de son propre alignement meurre."
+		"ability": "Si 4 joueurs ou plus sont en vie, chaque joueur vivant peut, une fois par partie, décider qu'un joueur de son propre alignement meure."
   },
   {
     "id": "angel",
@@ -47,7 +47,7 @@
     "setup": false,
     "name": "Révolutionnaire",
     "team": "fabled",
-    "ability": "2 joueurs voisins désignés avant la partie sont obligatoirement du même alignement. Une fois par partie, l'un d'eux peut apparaitre avec un rôle de l'alignement opposé."
+    "ability": "Deux joueurs voisins désignés avant la partie sont obligatoirement du même alignement. Une fois par partie, l'un d'eux peut apparaître avec un rôle de l'alignement opposé."
   },
   {
     "id": "fiddler",
@@ -66,7 +66,7 @@
     "otherNightReminder": "Si le Démon pourrait terminer la partie cette nuit, mais qu'il a toujours son marqueur 'nuit sans attaque', il n'agit pas cette nuit (ne le réveillez pas)",
     "reminders": ["Nuit sans attaque"],
     "setup": false,
-    "name": "Fabricant de Jouet",
+    "name": "Fabricant de jouets",
     "team": "fabled",
     "ability": "Le Démon peut choisir de ne pas attaquer et doit le faire obligatoirement au moins une fois une fois au cours de la partie. Les joueurs Mauvais ont accès aux informations de début de partie normales."
   },
@@ -89,7 +89,7 @@
     "setup": false,
     "name": "Duchesse",
     "team": "fabled",
-    "ability": "Chaque jour, jusqu'à 3 joueurs peuvent choisir de rendre visite au Narrateur. Chaque nuit*, chaque visiteur apprend combien de joueurs étaient Mauvais parmis eux. L'un d'eux apprend une fausse information."
+    "ability": "Chaque jour, jusqu'à 3 joueurs peuvent choisir de rendre visite au Narrateur. Chaque nuit*, chaque visiteur apprend combien de joueurs étaient Mauvais parmi eux. L'un d'eux apprend une fausse information."
   },
   {
     "id": "sentinel",
@@ -129,9 +129,9 @@
     "otherNightReminder": "",
     "reminders": ["Sûr"],
     "setup": false,
-    "name": "Chasse tempête",
+    "name": "Chasseur d’orages",
     "team": "fabled",
-    "ability": "Désignez un rôle de gentil. S'il est en jeu, il ne peut mourrir que par exécution, mais les joueurs mauvais savent qui a ce rôle."
+    "ability": "Désignez un rôle de gentil. S'il est en jeu, il ne peut mourir que par exécution, mais les joueurs mauvais savent qui a ce rôle."
   },
   {
     "id": "deusexfiasco",
