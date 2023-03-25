@@ -598,13 +598,13 @@
   },
   {
     "id": "moonchild",
-    "name": "Lunaire",
+    "name": "Enfant de la lune",
     "edition": "bmr",
     "team": "outsider",
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 49,
-    "otherNightReminder": "Si le Lunaire a désigné un joueur et que ce joueur est bon: le joueur désigné meurt.",
+    "otherNightReminder": "Si l'Enfant de la lune a désigné un joueur et que ce joueur est bon: le joueur désigné meurt.",
     "reminders": [
       "Mort"
     ],
