@@ -461,13 +461,13 @@
   },
   {
     "id": "gambler",
-    "name": "Joueur",
+    "name": "Parieur",
     "edition": "bmr",
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 11,
-    "otherNightReminder": "Le Joueur désigne un joueur, et un rôle. S'ils ne correspondent pas, le Joueur meurt.",
+    "otherNightReminder": "Le Parieur désigne un joueur, et un rôle. S'ils ne correspondent pas, le Parieur meurt.",
     "reminders": [
       "Mort"
     ],
