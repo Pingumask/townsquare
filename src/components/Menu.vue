@@ -101,6 +101,16 @@
                 ]"
             /></em>
           </li>
+          <li @click="organVoteMode">
+            <small>{{ locale.menu.grimoire.organGrinder }}</small>
+            <em
+              ><font-awesome-icon
+                :icon="[
+                  'fas',
+                  grimoire.isOrganVoteMode ? 'check-square' : 'square'
+                ]"
+            /></em>
+          </li>
           <li @click="streamerMode">
             <small>{{ locale.menu.grimoire.streamerMode }}</small>
             <em
@@ -305,6 +315,9 @@ export default {
     streamerMode() {
       this.toggleStreamerMode();
     },
+    organVoteMode() {
+      this.toggleOrganVoteMode();
+    },
     joinSession() {
       if (this.session.sessionId) return this.leaveSession();
       let sessionId = prompt(
@@ -359,6 +372,10 @@ export default {
       this.$store.commit("toggleNight");
       if (this.grimoire.isNight) {
         this.$store.commit("session/setMarkedPlayer", -1);
+      }
+    },
+    toggleOrganVoteMode() {
+      this.$store.commit("toggleOrganVoteMode");
       }
     },
     toggleRinging() {
