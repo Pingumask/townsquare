@@ -46,14 +46,30 @@
       <div class="overlay">
         <font-awesome-icon
           icon="hand-paper"
+          v-if="!(locale.grimoire.isOrganVoteMode) || session.isStoryteller || player.id == session.playerId"
           class="vote"
           :title="locale.player.handUp"
           @click="vote()"
         />
         <font-awesome-icon
           icon="times"
+          v-if="!(locale.grimoire.isOrganVoteMode) || session.isStoryteller || player.id == session.playerId"
           class="vote"
           :title="locale.player.handDown"
+          @click="vote()"
+        />
+        <font-awesome-icon
+          icon="monkey-paper"
+          v-if="locale.grimoire.isOrganVoteMode && !(session.isStoryteller) && player.id != session.playerId"
+          class="vote"
+          :title="locale.player.hidenHandUp"
+          @click="vote()"
+        />
+        <font-awesome-icon
+          icon="monkey-paper"
+          v-if="locale.grimoire.isOrganVoteMode && !(session.isStoryteller) && player.id != session.playerId"
+          class="vote"
+          :title="locale.player.hidenHandDown"
           @click="vote()"
         />
         <font-awesome-icon
