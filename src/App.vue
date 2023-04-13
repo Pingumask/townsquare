@@ -115,7 +115,7 @@ export default {
           this.$store.commit("toggleModal", "nightOrder");
           break;
         case "e":
-          if (this.session.isSpectator) return;
+          if (this.session.isSpectator) redturn;
           this.$store.commit("toggleModal", "edition");
           break;
         case "c":
