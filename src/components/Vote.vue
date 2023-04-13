@@ -10,8 +10,11 @@
       <em>{{ nominee.name }}</em
       >!
       <br />
-      <em class="blue">
+      <em class="blue" vi-if="!(locale.grimoire.isOrganVoteMode) || session.isStoryteller">
         {{ voters.length }} {{ locale.vote.votes }}
+      </em>
+      <em class="blue" v-else>
+        ?? {{ locale.vote.votes }}
       </em>
       {{ locale.vote.inFavor }}
       <em v-if="nominee.role.team !== 'traveler'">
