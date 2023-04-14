@@ -89,7 +89,7 @@
     "setup": false,
     "name": "Duchesse",
     "team": "fabled",
-    "ability": "Chaque jour, jusqu'à 3 joueurs peuvent choisir de rendre visite au Narrateur. Chaque nuit*, chaque visiteur apprend combien de joueurs étaient Mauvais parmis eux. L'un d'eux apprend une fausse information."
+    "ability": "Chaque jour, 3 joueurs peuvent choisir de rendre visite à la Duchesse. Chaque nuit*, chaque visiteur apprend combien de joueurs étaient Mauvais parmi eux. L'un d'eux apprend une fausse information."
   },
   {
     "id": "sentinel",
