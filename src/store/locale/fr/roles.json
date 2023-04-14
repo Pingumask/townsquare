@@ -1274,7 +1274,7 @@
     "firstNightReminder": "",
     "otherNight": 0,
     "otherNightReminder": "",
-    "reminders": [],
+    "reminders": ["Drôle"],
     "setup": false,
     "ability": "Si vous avez été drôle aujourd'hui, vous ne pouvez pas mourir par exil."
   },
