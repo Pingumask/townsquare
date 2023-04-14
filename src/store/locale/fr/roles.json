@@ -461,7 +461,7 @@
   },
   {
     "id": "gambler",
-    "name": "Joueur",
+    "name": "Parieur",
     "edition": "bmr",
     "team": "townsfolk",
     "firstNight": 0,
@@ -598,7 +598,7 @@
   },
   {
     "id": "moonchild",
-    "name": "Lunaire",
+    "name": "Enfant de la lune",
     "edition": "bmr",
     "team": "outsider",
     "firstNight": 0,
