@@ -1153,7 +1153,7 @@
     "firstNightReminder": "",
     "otherNight": 0,
     "otherNightReminder": "",
-    "reminders": [],
+    "reminders": ["Funny"],
     "setup": false,
     "ability": "If you were funny today, you cannot die by exile."
   },
