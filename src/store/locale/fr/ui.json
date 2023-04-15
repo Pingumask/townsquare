@@ -57,13 +57,13 @@
     "background": "Entrez l'URL de l'image de fond",
     "createSession": "Entrez un nom ou numéro de session",
     "sendRoles": "Voulez-vous envoyer les rôles à tous les joueurs ASSIS ?",
-    "imageOptIn": "Etes-vous sûr de vouloir autoriser les images externes ? Un auteur de script mal intentionné pourrait s'en servir pour traquer votre adresse IP.",
+    "imageOptIn": "Êtes-vous sûr de vouloir autoriser les images externes ? Un auteur de script mal intentionné pourrait s'en servir pour traquer votre adresse IP.",
     "joinSession": "Entrez le nom ou numéro de la session que vous souhaitez rejoindre",
-    "leaveSession": "Etes-vous sur de vouloir quitter la partie en cours ?",
+    "leaveSession": "Êtes-vous sur de vouloir quitter la partie en cours ?",
     "addPlayer": "Nom du joueur",
     "randomizeSeatings": "Êtes-vous sur de vouloir mélanger les sièges ?",
-    "clearPlayers": "Etes-vous sur de vouloir supprimer tous les joueurs ?",
-    "clearRoles": "Etes-vous sur de vouloir effacer tous les rôles ?",
+    "clearPlayers": "Êtes-vous sur de vouloir supprimer tous les joueurs ?",
+    "clearRoles": "Êtes-vous sur de vouloir effacer tous les rôles ?",
     "customUrl": "Entrer l'URL du fichier JSON de personnalisation de script",
     "customError": "Erreur lors du chargement du script",
     "customNote": "Ajouter une note personnalisée"
@@ -125,7 +125,7 @@
       },
       "debate": {
         "button": "Débat",
-        "text": "$accusee doit mourrir ?"
+        "text": "Faut-il exécuter $accusee ?"
       }
     }
   },
@@ -168,7 +168,7 @@
         "introStart": "Pour jouer avec un script personnalisé, vous pouvez sélectionner les personnages de votre choix grace à l'",
         "scriptTool": "outil officiel d'édition de scripts",
         "introEnd": "puis téléverser le fichier json généré directement ici ou depuis une URL hébergée.",
-        "instructionsStart": "Pour plus d'informations, vous pouvez vous réferrer à",
+        "instructionsStart": "Pour plus d'informations, vous pouvez vous référer à",
         "documentation": "la documentation",
         "instructionsEnd": "pour apprendre comment rédiger des fiches de personnages personnalisés.",
         "warning": "Ne chargez des fichier JSON qu'à partir de sources de confiance !",
@@ -183,7 +183,7 @@
       "title": "Choisissez un personnage fabuleux à ajouter à la partie"
     },
     "gameState": {
-      "title": "Etat Actuel de la Partie",
+      "title": "État Actuel de la Partie",
       "copy": "Copier JSON",
       "load": "Charger l'état"
     },
