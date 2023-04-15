@@ -200,7 +200,7 @@
       "Maître"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un joueur autre que vous-même : demain, vos votes ne seront comptabilisés que si votre maître a voté aussi."
+    "ability": "Chaque nuit, désignez un joueur autre que vous-même : demain, vous ne pourrez voter que si votre maître a voté aussi."
   },
   {
     "id": "drunk",
@@ -521,7 +521,7 @@
       "Épuisé"
     ],
     "setup": false,
-    "ability": "Une fois par partie, la nuit, désignez un joueur mort : si c'est un villageois, il est rescucité."
+    "ability": "Une fois par partie, la nuit*, désignez un joueur mort : si c'est un villageois, il est ressuscité."
   },
   {
     "id": "minstrel",
@@ -609,7 +609,7 @@
       "Mort"
     ],
     "setup": false,
-    "ability": "Quand vous apprenez votre mort, désignez un joueur vivant. Cette nuit, s'il était bon, il meurt."
+    "ability": "Quand vous apprenez votre mort, désignez publiquement un joueur encore en vie. Cette nuit, s'il était bon, il meurt."
   },
   {
     "id": "goon",
@@ -729,7 +729,7 @@
       "Mort"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un joueur : il est empoisonné. Le joueur précédemment empoisonné meurt et devient sain."
+    "ability": "Chaque nuit, désignez un joueur : il est empoisonné. Le joueur précédemment empoisonné meurt puis devient sain."
   },
   {
     "id": "shabaloth",
@@ -789,7 +789,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Chaque jour, vous pouvez choisir 3 paires de joueurs et échanger leurs sièges. Les joueurs ne peuvent pas quitter leurs sièges pour parler en privé."
+    "ability": "Chaque jour, vous pouvez choisir 3 paires de joueurs et échanger leurs sièges. Les joueurs ne peuvent parler en privé qu'avec leurs voisins directs."
   },
   {
     "id": "judge",
@@ -874,7 +874,7 @@
       "Empoisonné"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un joueur vivant: s'il est le Démon, vous échangez de personnage et d'équipe avec lui, puis il est définitivement empoisonné."
+    "ability": "Chaque nuit, désignez un joueur vivant: s'il est Démon, vous échangez de personnage et d'équipe avec lui, puis il est définitivement empoisonné."
   },
   {
     "id": "mathematician",
@@ -905,7 +905,7 @@
       "Démon Abstenu"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, vous apprenez si le Démon a voté aujourd'hui."
+    "ability": "Chaque nuit*, vous apprenez si un Démon a voté aujourd'hui."
   },
   {
     "id": "towncrier",
@@ -1219,7 +1219,7 @@
       "Pouvoir doublé"
     ],
     "setup": false,
-    "ability": "Chaque nuit désignez un joueur: jusqu'à la nuit suivante : soit il devient sobre et en bonne santé et n'aura que de vraies informations soit il peut utiliser sa capacité deux fois aujourd'hui. Il sait de quel bonus il bénéficie."
+    "ability": "Chaque nuit, un joueur profite d'un bonus jusqu'à la nuit suivante : soit il devient sobre et en bonne santé et n'aura que de vraies informations, soit il peut utiliser sa capacité deux fois aujourd'hui. Il sait de quel bonus il bénéficie."
   },
   {
     "id": "harlot",
@@ -1263,7 +1263,7 @@
       "Pouvoir Dispo"
     ],
     "setup": false,
-    "ability": "Une fois par partie, la nuit, désignez un joueur mort : ce joueur dispose de sa capacité jusqu'à la nuit prochaine."
+    "ability": "Une fois par partie, la nuit*, désignez un joueur mort : ce joueur dispose de sa capacité jusqu'à la nuit prochaine."
   },
   {
     "id": "deviant",
@@ -1306,7 +1306,7 @@
       "Connu"
     ],
     "setup": true,
-    "ability": "Vous commencez la partie en connaissant le personnage d'un joueur de l'équipe des Mauvais. Si le personnage que vous connaissez meurt, vous apprenez le personnage d'un autre joueur de l'équipe des Mauvais. Un des villageois fait partie de l'équipe des Mauvais."
+    "ability": "Vous commencez la partie en sachant qu'un joueur est dans l'équipe des Mauvais. Si le joueur que vous connaissez meurt, vous apprenez un autre joueur de l'équipe des Mauvais. [Un des Villageois fait partie de l'équipe des Mauvais]"
   },
   {
     "id": "pixie",
@@ -1382,7 +1382,7 @@
       "Voyageur vu"
     ],
     "setup": true,
-    "ability": "Chaque nuit, vous apprenez qu'un joueur a un personnage d'un type que vous n'avez pas encore vu (Villageois, Étranger, Serviteur, Démon, Voyageur) jusqu'à ce que vous en connaissiez un de chaque. [+1 Étranger]."
+    "ability": "Chaque nuit, vous apprenez qu'un joueur a un personnage d'un type que vous n'avez pas encore vu (Villageois, Étranger, Serviteur, Démon) jusqu'à ce que vous en connaissiez un de chaque. [+1 Étranger]"
   },
   {
     "id": "cultleader",
@@ -1456,7 +1456,7 @@
       "Épuisé"
     ],
     "setup": false,
-    "ability": "Une fois par partie, la nuit, choisissez quel Démon et quels Serviteurs sont en jeu."
+    "ability": "Une fois par partie, la nuit, choisissez quel Démon ou quels Serviteurs sont en jeu."
   },
   {
     "id": "fisherman",
@@ -1516,7 +1516,7 @@
     "otherNightReminder": "Si le fermier est mort aujourd'hui: Réveillez un villageois et indiquez lui qu'il est devenu le fermier.",
     "reminders": [],
     "setup": false,
-    "ability": "Si vous mourez la nuit, un joueur vivant devient le Fermier."
+    "ability": "Si vous mourez la nuit, un bon joueur vivant devient Fermier."
   },
   {
     "id": "magician",
@@ -1558,7 +1558,7 @@
       "Masqués"
     ],
     "setup": false,
-    "ability": "Le Démon et ses Serviteurs n'apprennent pas qui sont leurs alliés en début de partie. Si vous mourrez, ils l'apprennent la nuit suivante."
+    "ability": "Le Démon et ses Serviteurs n'apprennent pas qui sont leurs alliés en début de partie. Si vous mourez, ils l'apprennent cette nuit."
   },
   {
     "id": "atheist",
@@ -1571,7 +1571,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": true,
-    "ability": "Aucun joueur n'est Mauvais dans la partie. Le Narrateur peut briser les règles du jeu. Si les joueurs exécutent le Narrateur, ils remportent la partie."
+    "ability": "Le Narrateur peut briser les règles du jeu. Si les joueurs exécutent le Narrateur, ils remportent la partie. [Aucun joueur n'est Mauvais]"
   },
   {
     "id": "cannibal",
@@ -1615,7 +1615,7 @@
       "Mort"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, si l'un de vos voisins Villageois est Ivre ou Empoisonné, vous mourez."
+    "ability": "Chaque nuit*, si l'un de vos bons voisins est Ivre ou Empoisonné, vous mourez."
   },
   {
     "id": "puzzlemaster",
@@ -1659,7 +1659,7 @@
       "Épuisé"
     ],
     "setup": false,
-    "ability": "Les Serviteurs savent que votre personnage est en jeu. Une fois par partie, un Serviteur peut tenter d'annoncer publiquement quel joueur est selon lui la demoiselle, s'il voit juste, votre équipe a perdu."
+    "ability": "Les Serviteurs savent que votre personnage est en jeu. Une fois par partie, un Serviteur peut tenter de deviner publiquement quel joueur est selon lui la Demoiselle, s'il voit juste, votre équipe a perdu."
   },
   {
     "id": "golem",
@@ -1748,7 +1748,7 @@
       "Annoncé"
     ],
     "setup": false,
-    "ability": "Si vous annoncez publiquement que vous êtes le Gobelin quand vous êtes accusé et que vous êtes quand même exécuté durant la même journée, votre équipe gagne."
+    "ability": "Si vous dites publiquement que vous êtes le Gobelin quand vous êtes accusé et que vous êtes quand même exécuté durant la même journée, votre équipe gagne."
   },
   {
     "id": "mephit",
@@ -1796,7 +1796,7 @@
       "Marionette"
     ],
     "setup": true,
-    "ability": "Vous pensez avoir un bon rôle, mais vous n'êtes pas ce personnage. Le Démon sait qui vous êtes et il est votre voisin."
+    "ability": "Vous pensez avoir un bon rôle, mais vous n'êtes pas ce personnage. Le Démon sait qui vous êtes. [Le Démon est votre voisin]"
   },
   {
     "id": "boomdandy",
@@ -1861,7 +1861,7 @@
       "Mourir"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, Désignez 3 joueurs (tout le monde sait qui a été désigné) : chacun de ces joueurs choisit secrètement s'il veut vivre ou mourir, s'ils choisissent tous les 3 de vivre, ils meurent tous les 3."
+    "ability": "Chaque nuit*,  désignez 3 joueurs (tout le monde sait qui a été désigné). Chacun de ces joueurs choisit secrètement s'il veut vivre ou mourir, mais, si les 3 vivent, ils meurent tous les 3."
   },
   {
     "id": "legion",
@@ -1877,7 +1877,7 @@
       "Mourant"
     ],
     "setup": true,
-    "ability": "La majorité des joueurs sont Légion. Chaque nuit*, un joueur peut mourir. Les exécutions ratent si seuls des joueurs Mauvais ont voté. Vous apparaissez comme un Serviteur."
+    "ability": "Chaque nuit*, un joueur peut mourir. Les exécutions ratent si seuls des joueurs Mauvais ont voté. Vous apparaissez comme un Serviteur. [La majorité des joueurs sont Légion]"
   },
   {
     "id": "leviathan",
@@ -1897,7 +1897,7 @@
       "Joueur Bon Exécuté"
     ],
     "setup": false,
-    "ability": "Si plus d'un Bon joueur est exécuté, vous gagnez. Tous les joueurs savent que votre personnage est en jeu. Après 5 jours, les Mauvais gagnent."
+    "ability": "Si plus d'un Bon joueur est exécuté, les Mauvais gagnent. Tous les joueurs savent que votre personnage est en jeu. Après 5 jours, les Mauvais gagnent."
   },
   {
     "id": "riot",
@@ -1915,7 +1915,7 @@
       "Jour 3"
     ],
     "setup": true,
-    "ability": "Les joueurs accusés sont exécutés immédiatement sans voter et peuvent accuser à leur tour. Le troisième jour, les joueurs exécutés doivent accuser. À la fin du troisième jour, les Mauvais gagnent. Tous les Serviteurs sont des Émeutes."
+    "ability": "Les joueurs accusés meurent immédiatement sans vote mais peuvent accuser à leur tour. Le troisième jour, les joueurs exécutés doivent accuser. À la fin du troisième jour, les Mauvais gagnent. [Tous les Serviteurs sont des Émeutes]"
   },
   {
     "id": "gangster",
