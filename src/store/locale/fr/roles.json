@@ -1382,7 +1382,7 @@
       "Voyageur vu"
     ],
     "setup": true,
-    "ability": "Chaque nuit, vous apprenez qu'un joueur a un personnage d'un type que vous n'avez pas encore vu (Villageois, Étranger, Serviteur, Démon, Voyageur) jusqu'à ce que vous en connaissiez un de chaque. [+1 Étranger]."
+    "ability": "Chaque nuit, vous apprenez qu'un joueur a un personnage d'un type que vous n'avez pas encore vu (Villageois, Étranger, Serviteur, Démon) jusqu'à ce que vous en connaissiez un de chaque. [+1 Étranger]."
   },
   {
     "id": "cultleader",
