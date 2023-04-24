@@ -360,4 +360,29 @@
       }
     ]
   }
+  {
+    "id": "Organ Grinder",
+    "hatred": [
+      {
+        "id": "Butler",
+        "reason": "Si les votes ont lieu à bulletin secret à cause de l'Organiste, le Majordome peut lever sa main mais son vote ne compte que si son maître la lève aussi."
+      },
+      {
+        "id": "Flowergirl",
+        "reason": "Si les votes ont eu lieu à bulletin secret, la Fleuriste apprend combien de fois le Démon a voté."
+      },
+      {
+        "id": "Lil' Monsta",
+        "reason": "Les votes contre l'Organsite comptent si l'Organiste baby-sitte le Bébé Monstre."
+      },
+      {
+        "id": "Minstrel",
+        "reason": "Un seul personnage maudit peut être en jeu à la fois. Les joueurs Mauvais commencent la partie en sachant de quel joueur et quel rôle il s'agit."
+      },
+      {
+        "id": "Preacher",
+        "reason": "Un seul personnage maudit peut être en jeu à la fois. Les joueurs Mauvais commencent la partie en sachant de quel joueur et quel rôle il s'agit."
+      }
+    ]
+  }
 ]
