@@ -1812,6 +1812,21 @@
     "ability": "Si vous êtes exécuté, tous les joueurs sauf 3 meurent. 1 minute plus tard, le joueur le plus accusé meurt."
   },
   {
+    "id": "organgrinder",
+    "name": "Organiste",
+    "edition": "",
+    "team": "minion",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [
+      "Condamné"
+    ],
+    "setup": false,
+    "ability": "Les votes ont lieu à bulletin secret. Vous ne pouvez être exécuté que si vous levez la main."
+  },
+  {
     "id": "lilmonsta",
     "name": "Bébé monstre",
     "edition": "",
