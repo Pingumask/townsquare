@@ -1821,7 +1821,8 @@
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [
-      "Condamné"
+      "Condamné",
+      "Vote utilisé"
     ],
     "setup": false,
     "ability": "Les votes ont lieu à bulletin secret. Vous ne pouvez être exécuté que si vous levez la main."
