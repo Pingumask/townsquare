@@ -59,19 +59,19 @@
             <em>[S]</em>
           </li>
           <li @click="toggleRinging" v-if="!session.isSpectator">
+            <template>{{ locale.menu.grimoire.ringBell }}</template>
+            <em>[B]</em>
+          </li>
+          <li @click="toggleRinging" v-if="!session.isSpectator">
             {{ locale.menu.grimoire.organGrinder }}
             <em>
               <font-awesome-icon
                 :icon="[
                   'fas',
-                  grimoire.isNightOrder ? 'check-square' : 'square'
+                  grimoire.isOrganVoteMode ? 'check-square' : 'square'
                 ]"
               />
             </em>
-          </li>
-          <li @click="toggleRinging" v-if="!session.isSpectator">
-            <template>{{ locale.menu.grimoire.ringBell }}</template>
-            <em>[B]</em>
           </li>
           <li @click="toggleNightOrder" v-if="players.length">
             {{ locale.menu.grimoire.order }}
