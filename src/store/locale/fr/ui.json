@@ -13,7 +13,8 @@
       "streamerMode": "Mode Streamer",
       "animations": "Effets réduits",
       "mute": "Silencieux",
-      "ringBell": "Sonner Clocher"
+      "ringBell": "Sonner Clocher",
+      "organGrinder": "Vote d'Organiste"
     },
     "session":{
       "title":{
@@ -238,7 +239,8 @@
       "type": "Type",
       "votes": "Voix",
       "majority": "Majorité",
-      "voters": "Votants"
+      "voters": "Votants",
+      "hiddenVote": "Résultats cachés par l'Organiste"
     }
   }
 }
