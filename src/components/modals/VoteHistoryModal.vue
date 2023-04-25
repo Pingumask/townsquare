@@ -65,7 +65,7 @@
           <td>{{ vote.nominee }}</td>
           <td>{{ vote.type }}</td>
           <td>
-            {{ vote.votes.length }}
+            vote.votes == null ? "?" : {{ vote.votes.length }}
             <font-awesome-icon icon="hand-paper" />
           </td>
           <td>
@@ -73,12 +73,12 @@
             <font-awesome-icon
               :icon="[
                 'fas',
-                vote.votes.length >= vote.majority ? 'check-square' : 'minus-square'
+                vote.votes == null ?  'minus-square' : ( vote.votes.length >= vote.majority ? 'check-square' : 'square' )
               ]"
             />
           </td>
           <td>
-            {{ vote.votes.join(", ") }}
+             vote.votes == null ? locale.modal.voteHistory.hiddenVote : {{ vote.votes.join(", ") }}
           </td>
         </tr>
       </tbody>
