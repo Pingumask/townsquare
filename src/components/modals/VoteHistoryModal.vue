@@ -65,7 +65,7 @@
           <td>{{ vote.nominee }}</td>
           <td>{{ vote.type }}</td>
           <td>
-            vote.votes == null ? "?" : {{ vote.votes.length }}
+            {{ vote.votes == null ? "?" : vote.votes.length }}
             <font-awesome-icon icon="hand-paper" />
           </td>
           <td>
@@ -78,7 +78,7 @@
             />
           </td>
           <td>
-             vote.votes == null ? locale.modal.voteHistory.hiddenVote : {{ vote.votes.join(", ") }}
+             {{ vote.votes == null ? locale.modal.voteHistory.hiddenVote : vote.votes.join(", ") }}
           </td>
         </tr>
       </tbody>
