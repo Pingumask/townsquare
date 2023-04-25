@@ -101,16 +101,6 @@
                 ]"
             /></em>
           </li>
-          <li @click=null>
-            <small>{{ locale.menu.grimoire.organGrinder }}</small>
-            <em
-              ><font-awesome-icon
-                :icon="[
-                  'fas',
-                  grimoire.isOrganVoteMode ? 'check-square' : 'square'
-                ]"
-            /></em>
-          </li>
           <li @click="streamerMode">
             <small>{{ locale.menu.grimoire.streamerMode }}</small>
             <em
