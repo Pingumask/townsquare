@@ -111,6 +111,7 @@ export default new Vuex.Store({
       isMuted: false,
       isImageOptIn: false,
       isStreamerMode: false,
+      isOrganVoteMode: false,
       zoom: 0,
       background: "",
       timer: {
@@ -185,6 +186,7 @@ export default new Vuex.Store({
     toggleGrimoire: toggle("isPublic"),
     toggleImageOptIn: toggle("isImageOptIn"),
     toggleStreamerMode: toggle("isStreamerMode"),
+    toggleOrganVoteMode: toggle("isOrganVoteMode"),
     setTimer(state, timer) {
       state.grimoire.timer = timer;
     },
