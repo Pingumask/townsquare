@@ -13,7 +13,8 @@
       "streamerMode": "Streamer Mode",
       "animations": "Disable Animations",
       "mute": "Mute Sounds",
-      "ringBell": "Ring Bell"
+      "ringBell": "Ring Bell",
+      "organGrinder ": "Organ Grinder Vote"
     },
     "session":{
       "title":{
@@ -238,7 +239,8 @@
       "type": "Type",
       "votes": "Votes",
       "majority": "Majority",
-      "voters": "Voters"
+      "voters": "Voters",
+      "hiddenVote": "The result is hidden because of the Organ Grinder"
     }
   }
 }
