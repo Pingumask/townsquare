@@ -73,7 +73,7 @@
             <font-awesome-icon
               :icon="[
                 'fas',
-                vote.votes.length >= vote.majority ? 'check-square' : 'square'
+                vote.votes.length >= vote.majority ? 'check-square' : 'minus-square'
               ]"
             />
           </td>
