@@ -62,7 +62,7 @@
             <template>{{ locale.menu.grimoire.ringBell }}</template>
             <em>[B]</em>
           </li>
-          <li @click="toggleRinging" v-if="!session.isSpectator">
+          <li @click="toggleOrganVoteMode" v-if="!session.isSpectator">
             {{ locale.menu.grimoire.organGrinder }}
             <em>
               <font-awesome-icon
@@ -371,6 +371,9 @@ export default {
       if (this.grimoire.isNight) {
         this.$store.commit("session/setMarkedPlayer", -1);
       }
+    },
+    toggleOrganVoteMode() {
+      this.$store.commit("toggleOrganVoteMode");
     },
     toggleRinging() {
       this.$store.commit("toggleRinging", true);
