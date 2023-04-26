@@ -239,7 +239,7 @@ export default {
     },
     finish() {
       clearInterval(this.voteTimer);
-      this.$store.commit("session/addHistory", this.players, grimoire.isOrganVoteMode);
+      this.$store.commit("session/addHistory", this.players, this.grimoire.isOrganVoteMode);
       this.$store.commit("session/nomination");
     },
     vote(vote) {
