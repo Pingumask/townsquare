@@ -1,3 +1,5 @@
+import grimoire from '..'
+
 /**
  * Handle a vote request.
  * If the vote is from a seat that is already locked, ignore it.
@@ -75,10 +77,11 @@ const mutations = {
    * @param state
    * @param players
    */
-  addHistory(state, players, organGrinder) {
+  addHistory(state, players) {
     if (!state.isVoteHistoryAllowed && state.isSpectator) return;
     if (!state.nomination || state.lockedVote <= players.length) return;
     const isExile = players[state.nomination[1]].role.team === "traveler";
+    const organGrinder = grimoire.isOrganVoteMode;
     state.voteHistory.push({
       timestamp: new Date(),
       nominator: players[state.nomination[0]].name,
@@ -87,11 +90,10 @@ const mutations = {
       majority: Math.ceil(
         players.filter(player => !player.isDead || isExile).length / 2
       ),
-      /*votes: organGrinder ? null : 
+      votes: organGrinder ? null : 
         players
         .filter((player, index) => state.votes[index])
-        .map(({ name }) => name)*/
-      votes : ../grimoire.isOrganVoteMode   
+        .map(({ name }) => name) 
     });
   },
   clearVoteHistory(state) {
