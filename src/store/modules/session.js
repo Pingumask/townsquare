@@ -1,4 +1,4 @@
-import grimoire from '..'
+import grimoire from '../'
 
 /**
  * Handle a vote request.
