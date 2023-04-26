@@ -71,6 +71,7 @@ const mutations = {
   /**
    * Create an entry in the vote history log. Requires current player array because it might change later in the game.
    * Only stores votes that were completed.
+   * Don't save the list of voters if the Organ Grinder's ability is active
    * @param state
    * @param players
    */
@@ -78,6 +79,7 @@ const mutations = {
     if (!state.isVoteHistoryAllowed && state.isSpectator) return;
     if (!state.nomination || state.lockedVote <= players.length) return;
     const isExile = players[state.nomination[1]].role.team === "traveler";
+    const organGrinder = locale.grimoire.isOrganVoteMode;
     state.voteHistory.push({
       timestamp: new Date(),
       nominator: players[state.nomination[0]].name,
@@ -86,7 +88,8 @@ const mutations = {
       majority: Math.ceil(
         players.filter(player => !player.isDead || isExile).length / 2
       ),
-      votes: players
+      votes: organGrinder ? null : 
+        players
         .filter((player, index) => state.votes[index])
         .map(({ name }) => name)
     });
