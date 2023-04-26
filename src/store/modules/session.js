@@ -75,11 +75,11 @@ const mutations = {
    * @param state
    * @param players
    */
-  addHistory(state, players) {
+  addHistory(state, players, organGrinder) {
     if (!state.isVoteHistoryAllowed && state.isSpectator) return;
     if (!state.nomination || state.lockedVote <= players.length) return;
     const isExile = players[state.nomination[1]].role.team === "traveler";
-    const organGrinder = grimoire.isOrganVoteMode;
+    //const organGrinder = grimoire.isOrganVoteMode;
     state.voteHistory.push({
       timestamp: new Date(),
       nominator: players[state.nomination[0]].name,
