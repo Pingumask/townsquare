@@ -1,4 +1,4 @@
-import grimoire from '../index.js'
+import grimoire from '../index.js/state'
 
 /**
  * Handle a vote request.
