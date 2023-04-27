@@ -11,7 +11,7 @@
       >!
       <br />
       <em class="blue">
-        {{ grimoire.isOrganVoteMode }} {{ nominee.role.team == 'traveler' }} {{ session.isSpectator }}
+        {{ voters.length }} {{ locale.vote.votes }}
       </em>
       {{ locale.vote.inFavor }}
       <em v-if="nominee.role.team !== 'traveler'">
