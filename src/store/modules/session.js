@@ -1,4 +1,4 @@
-//import {state as gameInfo} from '../index.js';
+import {state as gameInfo} from '../index.js';
 
 /**
  * Handle a vote request.
@@ -90,11 +90,11 @@ const mutations = {
       majority: Math.ceil(
         players.filter(player => !player.isDead || isExile).length / 2
       ),
-      //votes: organGrinder ? null : 
-      votes: isExile ? null : 
+      votes: gameInfo
+      /*votes: organGrinder ? null : 
         players
         .filter((player, index) => state.votes[index])
-        .map(({ name }) => name) 
+        .map(({ name }) => name) */
     });
   },
   clearVoteHistory(state) {
