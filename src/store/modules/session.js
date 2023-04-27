@@ -90,11 +90,10 @@ const mutations = {
       majority: Math.ceil(
         players.filter(player => !player.isDead || isExile).length / 2
       ),
-      votes: gameInfo
-      /*votes: organGrinder ? null : 
+      votes: organGrinder ? null : 
         players
         .filter((player, index) => state.votes[index])
-        .map(({ name }) => name) */
+        .map(({ name }) => name)
     });
   },
   clearVoteHistory(state) {
