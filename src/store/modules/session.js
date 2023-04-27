@@ -1,4 +1,4 @@
-import grimoire from '../index.js/state'
+import state from '../index.js'
 
 /**
  * Handle a vote request.
@@ -81,7 +81,7 @@ const mutations = {
     if (!state.isVoteHistoryAllowed && state.isSpectator) return;
     if (!state.nomination || state.lockedVote <= players.length) return;
     const isExile = players[state.nomination[1]].role.team === "traveler";
-    const organGrinder = grimoire.isOrganVoteMode;
+    const organGrinder = state.grimoire.isOrganVoteMode;
     state.voteHistory.push({
       timestamp: new Date(),
       nominator: players[state.nomination[0]].name,
