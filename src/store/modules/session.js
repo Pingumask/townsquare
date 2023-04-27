@@ -1,4 +1,4 @@
-import {state as gameInfo} from '../index.js';
+//import {state as gameInfo} from '../index.js';
 
 /**
  * Handle a vote request.
