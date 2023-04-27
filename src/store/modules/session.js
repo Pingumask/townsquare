@@ -88,7 +88,7 @@ const mutations = {
       nominator: players[state.nomination[0]].name,
       nominee: players[state.nomination[1]].name,
       //type: isExile ? "Exile" : "Execution",
-      type: gameInfo,
+      type: gameInfo.state,
       majority: Math.ceil(
         players.filter(player => !player.isDead || isExile).length / 2
       ),
