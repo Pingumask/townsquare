@@ -10,7 +10,7 @@
       <em>{{ nominee.name }}</em
       >!
       <br />
-      <em class="blue" v-if="!grimoire.isOrganVoteMode || nominee.role.team == 'traveler' || !session.isSpectator">
+      <em class="blue" v-if="!grimoire.isOrganVoteMode || nominee.role.team == 'traveler' || session.isToryteller">
         {{ voters.length }} {{ locale.vote.votes }}
       </em>
       <em class="blue" v-else>
