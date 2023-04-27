@@ -82,6 +82,7 @@ const mutations = {
     if (!state.nomination || state.lockedVote <= players.length) return;
     const isExile = players[state.nomination[1]].role.team === "traveler";
     //const organGrinder = gameInfo.grimoire.isOrganVoteMode;
+    const organGrinder = false;
     state.voteHistory.push({
       timestamp: new Date(),
       nominator: players[state.nomination[0]].name,
