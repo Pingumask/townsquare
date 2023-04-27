@@ -86,16 +86,15 @@ const mutations = {
       timestamp: new Date(),
       nominator: players[state.nomination[0]].name,
       nominee: players[state.nomination[1]].name,
-      type: isExile ? "Exile" : "Execution",
+      //type: isExile ? "Exile" : "Execution",
+      type: gameInfo,
       majority: Math.ceil(
         players.filter(player => !player.isDead || isExile).length / 2
       ),
-      votes: gameInfo;
-      /*
       votes: organGrinder ? null : 
         players
         .filter((player, index) => state.votes[index])
-        .map(({ name }) => name)*/
+        .map(({ name }) => name)
     });
   },
   clearVoteHistory(state) {
