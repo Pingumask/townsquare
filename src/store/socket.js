@@ -176,6 +176,10 @@ class LiveSession {
         if (!this._isSpectator) return;
         this._store.commit("toggleNight", params);
         break;
+      case "isOrganVoteMode":
+        if (!this._isSpectator) return;
+        this._store.commit("toggleOrganVoteMode", params);
+        break;
       case "isRinging":
         if (!this._isSpectator) return;
         this._store.commit("toggleRinging", params);
@@ -288,6 +292,7 @@ class LiveSession {
         isRinging: grimoire.isRinging,
         timer: grimoire.timer,
         isVoteHistoryAllowed: session.isVoteHistoryAllowed,
+        isOrganVoteMode: grimoire.isOrganVoteMode,
         nomination: session.nomination,
         votingSpeed: session.votingSpeed,
         lockedVote: session.lockedVote,
@@ -312,6 +317,7 @@ class LiveSession {
       isNight,
       isVoteHistoryAllowed,
       isRinging,
+      isOrganVoteMode,
       timer,
       nomination,
       votingSpeed,
@@ -368,6 +374,7 @@ class LiveSession {
       this._store.commit("toggleRinging", !!isRinging);
       this._store.commit("toggleNight", !!isNight);
       this._store.commit("session/setVoteHistoryAllowed", isVoteHistoryAllowed);
+      this._store.commit("toggleOrganVoteMode", !!isOrganVoteMode);
       this._store.commit("session/nomination", {
         nomination,
         votes,
@@ -724,6 +731,14 @@ class LiveSession {
     if (this._isSpectator) return;
     this._send("isRinging", this._store.state.grimoire.isRinging);
   }
+  
+  /**
+   * Send the isOrganVoteMode status. ST only
+   */
+  setIsOrganVoteMode() {
+    if (this._isSpectator) return;
+    this._send("isOrganVoteMode", this._store.state.grimoire.isOrganVoteMode);
+  }
 
   /**
    * Start or stop a timer
@@ -913,6 +928,9 @@ export default store => {
         break;
       case "toggleNight":
         session.setIsNight();
+        break;
+      case "toggleOrganVoteMode":
+        session.setIsOrganVoteMode();
         break;
       case "toggleRinging":
         session.setIsRinging();
