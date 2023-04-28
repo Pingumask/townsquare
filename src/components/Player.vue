@@ -45,22 +45,13 @@
       <!-- Overlay icons -->
       <div class="overlay">
         <font-awesome-icon
-          v-if="!grimoire.isOrganGrinder || player.id==session.playerId || !session.isSpectator"
           icon="hand-paper"
           class="vote"
           :title="locale.player.handUp"
           @click="vote()"
         />
         <font-awesome-icon
-          v-if="!grimoire.isOrganGrinder || player.id==session.playerId || !session.isSpectator"
           icon="times"
-          class="vote"
-          :title="locale.player.handDown"
-          @click="vote()"
-        />
-        <font-awesome-icon
-          v-if="grimoire.isOrganGrinder && player.id!=session.playerId || session.isSpectator"
-          icon="question"
           class="vote"
           :title="locale.player.handDown"
           @click="vote()"
