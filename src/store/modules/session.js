@@ -73,7 +73,7 @@ const mutations = {
   /**
    * Create an entry in the vote history log. Requires current player array because it might change later in the game.
    * Only stores votes that were completed.
-   * Don't save the list of voters if the Organ Grinder's ability is active
+   * If the Organ Grinder is active, save the votes only for the Story Teller
    * @param state
    * @param players
    */
@@ -86,11 +86,11 @@ const mutations = {
       timestamp: new Date(),
       nominator: players[state.nomination[0]].name,
       nominee: players[state.nomination[1]].name,
-      type: isExile ? "Exile" : "Execution",
+      type: isExile ? "Exile" : ("Execution" + (organGrinder && !state.isSpectator) ? "*"),
       majority: Math.ceil(
         players.filter(player => !player.isDead || isExile).length / 2
       ),
-      votes: organGrinder ? null : 
+      votes: organGrinder && state.isSpectator ? null : 
         players
         .filter((player, index) => state.votes[index])
         .map(({ name }) => name)
