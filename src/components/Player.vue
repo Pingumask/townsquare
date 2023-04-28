@@ -60,7 +60,7 @@
         />
         <font-awesome-icon
           v-if="grimoire.isOrganGrinder && player.id!=session.playerId || session.isSpectator"
-          icon="times"
+          icon="question"
           class="vote"
           :title="locale.player.handDown"
           @click="vote()"
