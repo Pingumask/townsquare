@@ -53,7 +53,7 @@
         />
         <font-awesome-icon
           v-if="grimoire.isOrganVoteMode"
-          icon="question"
+          icon="hand-paper"
           class="vote"
           :title="locale.player.handUp"
           @click="vote()"
@@ -67,7 +67,7 @@
         />
         <font-awesome-icon
           v-if="grimoire.isOrganVoteMode"
-          icon="question"
+          icon="times"
           class="vote"
           :title="locale.player.handDown"
           @click="vote()"
