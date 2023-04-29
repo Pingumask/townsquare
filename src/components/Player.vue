@@ -45,13 +45,29 @@
       <!-- Overlay icons -->
       <div class="overlay">
         <font-awesome-icon
+          v-if="!grimoire.isOrganVoteMode"
           icon="hand-paper"
           class="vote"
           :title="locale.player.handUp"
           @click="vote()"
         />
         <font-awesome-icon
+          v-if="grimoire.isOrganVoteMode"
+          icon="question"
+          class="vote"
+          :title="locale.player.handUp"
+          @click="vote()"
+        />
+        <font-awesome-icon
+          v-if="!grimoire.isOrganVoteMode"
           icon="times"
+          class="vote"
+          :title="locale.player.handDown"
+          @click="vote()"
+        />
+        <font-awesome-icon
+          v-if="grimoire.isOrganVoteMode"
+          icon="question"
           class="vote"
           :title="locale.player.handDown"
           @click="vote()"
