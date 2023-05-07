@@ -45,28 +45,28 @@
       <!-- Overlay icons -->
       <div class="overlay">
         <font-awesome-icon
-          v-if="!grimoire.isOrganVoteMode"
+          v-if="!grimoire.isOrganVoteMode || !session.isSpectator || player.id==session.playerId"
           icon="hand-paper"
           class="vote"
           :title="locale.player.handUp"
           @click="vote()"
         />
         <font-awesome-icon
-          v-if="grimoire.isOrganVoteMode"
+          v-if="grimoire.isOrganVoteMode && session.isSpectator && player.id!==session.playerId"
           icon="question"
           class="vote"
           :title="locale.player.handUp"
           @click="vote()"
         />
         <font-awesome-icon
-          v-if="!grimoire.isOrganVoteMode"
+          v-if="!grimoire.isOrganVoteMode || !session.isSpectator || player.id==session.playerId"
           icon="times"
           class="vote"
           :title="locale.player.handDown"
           @click="vote()"
         />
         <font-awesome-icon
-          v-if="grimoire.isOrganVoteMode"
+          v-if="grimoire.isOrganVoteMode && session.isSpectator && player.id!==session.playerId"
           icon="question"
           class="vote"
           :title="locale.player.handDown"
@@ -572,7 +572,7 @@ export default {
       fill: url(#townsfolk);
     }
     &.fa-question * {
-      fill: url(#demon);
+      fill: url(#minion);
     }
   }
 }
