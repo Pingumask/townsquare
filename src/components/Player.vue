@@ -580,7 +580,7 @@ export default {
 // other player voted yes, but is not locked yet
 #townsquare.vote .player.vote-yes .overlay svg.vote.fa-hand-paper,
 #townsquare.vote .player.vote-yes .overlay svg.vote.fa-question,
-#townsquare.vote .player.vote:not(.vote-yes) .overlay svg.vote.fa-question {
+#townsquare.vote .player:not(.vote-yes) .overlay svg.vote.fa-question {
   opacity: 0.5;
   transform: scale(1);
 }
