@@ -571,6 +571,9 @@ export default {
     &.fa-times * {
       fill: url(#townsfolk);
     }
+    &.fa-question * {
+      fill: url(#demon);
+    }
   }
 }
 
