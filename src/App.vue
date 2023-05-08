@@ -318,17 +318,6 @@ ul {
       color: #008cf7;
     }
   }
-  &.minion {
-    background: radial-gradient(
-          at 0 -15%,
-          rgba(255, 255, 255, 0.07) 70%,
-          rgba(255, 255, 255, 0) 71%
-        )
-        0 0/80% 90% no-repeat content-box,
-      linear-gradient(#ad3200, rgba(5, 0, 0, 0.22)) content-box,
-      linear-gradient(#292929, #441400) border-box;
-    box-shadow: inset 0 1px 1px #9c0000, 0 0 10px #000;
-  }
   &.demon {
     background: radial-gradient(
           at 0 -15%,
