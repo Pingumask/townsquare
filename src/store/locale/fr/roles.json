@@ -1828,6 +1828,19 @@
     "ability": "Les votes ont lieu à bulletin secret. Vous ne pouvez être exécuté que si vous levez la main."
   },
   {
+    "id": "vizier",
+    "name": "Vizir",
+    "edition": "",
+    "team": "minion",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "ability": "Tous les joueurs savent qui vous êtes. Vous ne pouvez pas mourir durant la journée. Si un joueur Bon a levé la main, vous pouvez choisir d’exécuter immédiatement."
+  },
+  {
     "id": "lilmonsta",
     "name": "Bébé monstre",
     "edition": "",
