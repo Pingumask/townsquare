@@ -1376,7 +1376,7 @@
     "name": "Magician",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 5,
+    "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 0,
     "otherNightReminder": "",
