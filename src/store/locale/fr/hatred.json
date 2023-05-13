@@ -384,5 +384,38 @@
         "reason": "Un seul personnage maudit peut être en jeu à la fois. Les joueurs Mauvais commencent la partie en sachant de quel joueur et quel rôle il s'agit."
       }
     ]
+  },
+  {
+    "id": "Vizier",
+    "hatred": [
+      {
+        "id": "Alchemist",
+        "reason": "Un Alchimiste avec la capacité du Vizir ne peut forcer l'exécution que si au moins trois joueurs ont voté."
+      },
+      {
+        "id": "Courtier",
+        "reason": "Si le Vizir perd sa capacité, il l'apprend. Si le Vizir est exécuté alors qu'il a sa capacité, son équipe gagne."
+      },
+      {
+        "id": "Investigator",
+        "reason": "Si l'Enquêteur apprend qu'un Vizir est en jeu, l'existence du Vizir n'est pas annoncée par le Narrateur."
+      },
+      {
+        "id": "Magician",
+        "reason": "Un seul personnage maudit peut être en jeu à la fois. Les joueurs Mauvais commencent la partie en sachant de quel joueur et quel rôle il s'agit."
+      },
+      {
+        "id": "Preacher",
+        "reason": "Si le Vizir perd sa capacité, il l'apprend. Si le Vizir est exécuté alors qu'il a sa capacité, son équipe gagne."
+      },
+      {
+        "id": "Fearmonger",
+        "reason": "Le Vizir se réveille avec le Semeur de peur, apprend qui celui-ci choisit, et ne peut pas exécuter ce joueur."
+      },
+      {
+        "id": "Lil' Monsta",
+        "reason": "Le Vizir peut mourir par exécution s'il baby-sitte le Bébé Monstre."
+      }
+    ]
   }
 ]
