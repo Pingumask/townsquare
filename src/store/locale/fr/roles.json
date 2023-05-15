@@ -1610,12 +1610,12 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 39,
-    "otherNightReminder": "Si l'un de ses voisins Villageois est Ivre ou Empoisonné, l'Accrobate meurt.",
+    "otherNightReminder": "Si l'un de ses bons voisins vivants est Ivre ou Empoisonné, l'Accrobate meurt.",
     "reminders": [
       "Mort"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, si l'un de vos Bons voisins est Ivre ou Empoisonné, vous mourez."
+    "ability": "Chaque nuit*, si l'un de vos bons voisins vivants est ivre ou empoisonné, vous mourez."
   },
   {
     "id": "puzzlemaster",
