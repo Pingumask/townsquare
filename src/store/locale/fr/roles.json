@@ -1931,7 +1931,7 @@
       "Jour 3"
     ],
     "setup": true,
-    "ability": "Les accusés meurent et peuvent accuser immédiatement à la suite. Le troisième jour, les exécutés doivent accuser. À la fin du troisième jour, les Mauvais gagnent. [Tous les Serviteurs sont des Émeutes]"
+    "ability": "Les accusés meurent et peuvent accuser immédiatement à la suite. Le troisième jour, les accusés doivent accuser. À la fin du troisième jour, les Mauvais gagnent. [Tous les Serviteurs sont des Émeutes]"
   },
   {
     "id": "gangster",
