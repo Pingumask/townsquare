@@ -1,5 +1,10 @@
 # Release Notes
 
+### Version 2.17.2
+Correct some french descriptions (Magician, Acrobat, Riot)
+
+---
+
 ### Version 2.16.1
 Updated character night order to be consistent with script tool
 
