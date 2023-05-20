@@ -1,7 +1,7 @@
 # Release Notes
 
 ### Version 2.18.0
-Add Vizie
+Add Vizier
 
 ---
 
