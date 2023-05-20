@@ -1529,7 +1529,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Le Démon croit que vous êtes un Serviteur. Les Serviteurs croient que vous êtes un Démon."
+    "ability": "Le Démon croit que vous êtes un Serviteur. Les Serviteurs croient que vous êtes le Démon."
   },
   {
     "id": "choirboy",
@@ -1610,12 +1610,12 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 39,
-    "otherNightReminder": "Si l'un de ses bons voisins vivants est Ivre ou Empoisonné, l'Accrobate meurt.",
+    "otherNightReminder": "Si l'un de ses voisins Villageois est Ivre ou Empoisonné, l'Accrobate meurt.",
     "reminders": [
       "Mort"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, si l'un de vos bons voisins vivants est ivre ou empoisonné, vous mourez."
+    "ability": "Chaque nuit*, si l'un de vos Bons voisins est Ivre ou Empoisonné, vous mourez."
   },
   {
     "id": "puzzlemaster",
@@ -1931,7 +1931,7 @@
       "Jour 3"
     ],
     "setup": true,
-    "ability": "Les joueurs accusés meurent immédiatement sans vote mais peuvent accuser à leur tour. Le troisième jour, les joueurs accusés doivent accuser. À la fin du troisième jour, les mauvais gagnent. [Tous les Serviteurs sont des Émeutes]"
+    "ability": "Les accusés meurent et peuvent accuser immédiatement à la suite. Le troisième jour, les exécutés doivent accuser. À la fin du troisième jour, les Mauvais gagnent. [Tous les Serviteurs sont des Émeutes]"
   },
   {
     "id": "gangster",
