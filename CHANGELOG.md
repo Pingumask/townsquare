@@ -1,7 +1,7 @@
 # Release Notes
 
-### Version 2.17.2
-Correct some french descriptions (Magician, Acrobat, Riot)
+### Version 2.18.0
+Add Vizier
 
 ---
 
