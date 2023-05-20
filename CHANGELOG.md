@@ -1,5 +1,21 @@
 # Release Notes
 
+### Version 2.17.1
+Correcting Legion's French description
+
+---
+
+### Version 2.17.0
+- Add the Organ Grinder
+- Add new options to hide votes if there is an Organ Grinder
+
+---
+
+### Version 2.16.2
+Some corrections in French version
+
+---
+
 ### Version 2.16.1
 Updated character night order to be consistent with script tool
 
