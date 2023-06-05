@@ -1322,7 +1322,7 @@
       "Pouvoir Dispo"
     ],
     "setup": false,
-    "ability": "Vous commencez la partie en sachant qu'un rôle de villageois en particulier est en jeu. Si vous vous êtes toujours fait passer pour ce personnage, vous gagnez sa capacité quand il meurt."
+    "ability": "Vous commencez la partie en sachant qu'un rôle de Villageois en particulier est en jeu. Si vous vous étiez persuadé d’être ce personnage, vous gagnez sa capacité quand il meurt."
   },
   {
     "id": "general",
