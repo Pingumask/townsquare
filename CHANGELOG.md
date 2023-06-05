@@ -1,7 +1,7 @@
 # Release Notes
 
-### Version 2.17.2
-Correct some french descriptions (Magician, Acrobat, Riot)
+### Version 2.18.2
+Correct Pixie's french description, using official vocabulary
 
 ---
 
