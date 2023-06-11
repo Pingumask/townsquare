@@ -1,7 +1,6 @@
 # Release Notes
 
-=======
----
+======
 
 ### Version 2.18.2
 Correct Pixie's french description, using official vocabulary
@@ -15,6 +14,21 @@ Correct Atheist's french descripion
 
 ### Version 2.17.2
 Correct some french descriptions (Magician, Acrobat, Riot)
+
+---
+
+### Version 2.17.1
+Correct Legion's french description
+
+---
+
+### Version 2.17.0
+- Add the Organ Grinder
+- Add new option to hide votes if there is an Organ Grinder
+
+---
+
+### Version 2.16.2
 
 ---
 
