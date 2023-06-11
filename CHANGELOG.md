@@ -4,6 +4,11 @@
 
 ---
 
+### Version 3.10.2
+Correct Storm catcher's french name
+
+---
+
 ### Version 3.10.1
 Correct some french descriptions (Magician, Acrobat, Riot, Legion, Pixie)
 
