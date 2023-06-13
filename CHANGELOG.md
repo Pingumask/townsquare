@@ -87,6 +87,7 @@ Add Narrator tools panel and timers
 
 ### Version 3.2.0
 Add more scripts to the "Popular custom scripts" tab
+
 ---
 
 ### Version 3.1.0
