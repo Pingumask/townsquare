@@ -4,6 +4,11 @@
 
 ---
 
+### Version 3.10.3
+Correct Minstrel's french descriptions
+
+---
+
 ### Version 3.10.1
 Correct some french descriptions (Magician, Acrobat, Riot, Legion, Pixie)
 
