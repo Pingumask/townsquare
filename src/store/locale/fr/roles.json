@@ -536,7 +536,7 @@
       "Tous Ivres"
     ],
     "setup": false,
-    "ability": "Quand un Serviteur est exécuté, tous les autres joueurs (sauf les Voyageurs) sont Ivres jusqu'à la tombée de la nuit."
+    "ability": "Quand un Serviteur meurt par exécution, tous les autres joueurs (sauf les Voyageurs) sont Ivres jusqu'à la tombée de la nuit."
   },
   {
     "id": "tealady",
