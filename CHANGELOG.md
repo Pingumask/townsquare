@@ -4,8 +4,9 @@
 
 ---
 
-### Version 3.10.3
-Correct Minstrel's french descriptions
+### Version 3.10.2
+- Some corrections in the French version
+- Changing default vote duration (3s -> 1s)
 
 ---
 
