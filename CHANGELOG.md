@@ -5,7 +5,8 @@
 ---
 
 ### Version 3.10.2
-Correct Storm catcher's french name
+- Some corrections in the French version
+- Changing default vote duration (3s -> 1s)
 
 ---
 
