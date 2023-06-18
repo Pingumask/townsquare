@@ -4,6 +4,12 @@
 
 ---
 
+### Version 3.10.2
+- Some corrections in the French version
+- Changing default vote duration (3s -> 1s)
+
+---
+
 ### Version 3.10.1
 Correct some french descriptions (Magician, Acrobat, Riot, Legion, Pixie)
 
