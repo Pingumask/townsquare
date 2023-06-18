@@ -24,7 +24,7 @@ const state = () => ({
   nomination: false,
   votes: [],
   lockedVote: 0,
-  votingSpeed: 1000,
+  votingSpeed: 3000,
   isVoteInProgress: false,
   voteHistory: [],
   markedPlayer: -1,
