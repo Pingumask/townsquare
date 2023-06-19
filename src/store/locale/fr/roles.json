@@ -1124,7 +1124,7 @@
       "Fou"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un joueur et un personnage Bon : il est persuadé d'être ce personnage jusqu'à la tombée de la nuit."
+    "ability": "Chaque nuit, désignez un joueur et un personnage bon : il sera persuadé d'être ce personnage demain, ou pourra être exécuté."
   },
   {
     "id": "pithag",
