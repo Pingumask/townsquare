@@ -226,7 +226,7 @@ export default {
         [
           "Whose Cult is it Anyway",
           "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/whose_cult_is_it_anyway.json"
-        ],
+        ]
       ]
     };
   },
@@ -344,7 +344,7 @@ ul.editions {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 0.5em 1em;
     li {
-      text-align:left;
+      text-align: left;
       list-style-type: none;
       &:hover {
         color: red;
