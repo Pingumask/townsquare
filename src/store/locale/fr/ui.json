@@ -126,7 +126,7 @@
       },
       "debate": {
         "button": "Débat",
-        "text": "Faut-il exécuter $accusee ?"
+        "text": "Faut-il tuer $accusee ?"
       }
     }
   },
@@ -240,6 +240,8 @@
       "votes": "Voix",
       "majority": "Majorité",
       "voters": "Votants",
+      "execution": "Exécution",
+      "exile": "Exil",
       "hiddenVote": "Résultat caché par l'Organiste"
     }
   }

@@ -129,7 +129,7 @@
     "otherNightReminder": "",
     "reminders": ["Sûr"],
     "setup": false,
-    "name": "Chasse tempête",
+    "name": "Chasseur d’orages",
     "team": "fabled",
     "ability": "Désignez un rôle de gentil. S'il est en jeu, il ne peut mourrir que par exécution, mais les joueurs mauvais savent qui a ce rôle."
   },
@@ -141,6 +141,6 @@
     "setup": false,
     "name": "Deus ex Fiasco",
     "team": "fabled",
-    "ability": "Une fois par partie, le Narrateur fait une \"Erreur\", il la corrige et l'admet publiquement."
+    "ability": "Une fois par partie, le Narrateur fera une \"Erreur\", la corrigera et l'admettra publiquement."
   }
 ]
