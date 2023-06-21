@@ -136,7 +136,7 @@ export default {
           "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/knowing_me_knowing_you.json"
         ],
         [
-          "Late night drive by (Teensyville)",
+          "Late night drive by 1.6 (Teensyville)",
           "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/late_night_drive_by.json"
         ],
         [
@@ -148,7 +148,7 @@ export default {
           "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/minion_is_angel_protected_and_the_demon_has_2_bluffs.json"
         ],
         [
-          "No greater joy",
+          "No greater joy (Teensyville)",
           "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/no_greater_joy.json"
         ],
         [
@@ -220,7 +220,7 @@ export default {
           "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/vigormortis_high_school.json"
         ],
         [
-          "Visitors (Teensyville)",
+          "Visitors",
           "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/visitors.json"
         ],
         [
