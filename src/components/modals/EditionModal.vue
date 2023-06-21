@@ -226,7 +226,7 @@ export default {
         [
           "Whose Cult is it Anyway",
           "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/whose_cult_is_it_anyway.json"
-        ],
+        ]
       ]
     };
   },
