@@ -240,6 +240,8 @@
       "votes": "Voix",
       "majority": "Majorité",
       "voters": "Votants",
+      "execution": "Exécution",
+      "exile": "Exile",
       "hiddenVote": "Résultat caché par l'Organiste"
     }
   }
