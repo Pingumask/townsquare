@@ -1659,7 +1659,7 @@
       "Épuisé"
     ],
     "setup": false,
-    "ability": "Les Serviteurs savent que votre personnage est en jeu. Une fois par partie, un Serviteur peut tenter de deviner publiquement quel joueur est selon lui la Demoiselle, s'il voit juste, votre équipe a perdu."
+    "ability": "Les Serviteurs savent que vous êtes en jeu. Si un Serviteur devine publiquement qui vous êtes (un seul essai), votre équipe a perdu."
   },
   {
     "id": "golem",
