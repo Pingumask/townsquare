@@ -698,7 +698,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Si le Démon est exécuté (mettant fin à la partie), jouez une journée de plus. Si un joueur est exécuté durant cette journée, son équipe perd."
+    "ability": "Si le Démon meurt par exécution (mettant fin à la partie), jouez une journée de plus. Si un joueur est exécuté durant cette journée, son équipe perd."
   },
   {
     "id": "zombuul",
