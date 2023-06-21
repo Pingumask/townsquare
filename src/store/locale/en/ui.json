@@ -240,6 +240,8 @@
       "votes": "Votes",
       "majority": "Majority",
       "voters": "Voters",
+      "execution": "Execution",
+      "exile": "Exile",
       "hiddenVote": "The result is hidden because of the Organ Grinder"
     }
   }
