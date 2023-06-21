@@ -1036,7 +1036,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Vous êtes persuadé de ne pas être un Étranger. Si vous n'êtes pas suffisamment convaincant, vous pouvez être exécuté."
+    "ability": "Si vous êtes persuadé d’être un Étranger, vous pouvez être exécuté."
   },
   {
     "id": "sweetheart",
