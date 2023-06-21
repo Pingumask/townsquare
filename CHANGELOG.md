@@ -2,6 +2,11 @@
 
 ======
 
+### Version 3.11.4
+Correcting the print of new scripts' names
+
+---
+
 ### Version 3.11.1
 Small UI tweeks to custom scripts selection
 
