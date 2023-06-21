@@ -7,10 +7,15 @@ Changing default vote duration (3s -> 1s)
 
 ---
 
+### Version 3.11.2
+Various corrections in the french version
+
+---
+
 ### Version 3.11.1
 Small UI tweeks to custom scripts selection
 
-======
+---
 
 ### Version 3.11.0
 Add several included custom scripts

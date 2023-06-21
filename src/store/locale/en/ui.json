@@ -126,7 +126,7 @@
       },
       "debate": {
         "button": "Debate",
-        "text": "Should $accusee be executed ?"
+        "text": "Should we kill $accusee ?"
       }
     }
   },
@@ -240,6 +240,8 @@
       "votes": "Votes",
       "majority": "Majority",
       "voters": "Voters",
+      "execution": "Execution",
+      "exile": "Exile",
       "hiddenVote": "The result is hidden because of the Organ Grinder"
     }
   }

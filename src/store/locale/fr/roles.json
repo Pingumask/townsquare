@@ -698,7 +698,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Si le Démon est exécuté (mettant fin à la partie), jouez une journée de plus. Si un joueur est exécuté durant cette journée, son équipe perd."
+    "ability": "Si le Démon meurt par exécution (mettant fin à la partie), jouez une journée de plus. Si un joueur est exécuté durant cette journée, son équipe perd."
   },
   {
     "id": "zombuul",
@@ -1036,7 +1036,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Vous êtes persuadé de ne pas être un Étranger. Si vous n'êtes pas suffisamment convaincant, vous pouvez être exécuté."
+    "ability": "Si vous êtes persuadé d’être un Étranger, vous pouvez être exécuté."
   },
   {
     "id": "sweetheart",
@@ -1124,7 +1124,7 @@
       "Fou"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un joueur et un personnage Bon : il est persuadé d'être ce personnage jusqu'à la tombée de la nuit."
+    "ability": "Chaque nuit, désignez un joueur et un personnage bon : il sera persuadé d'être ce personnage demain, ou pourra être exécuté."
   },
   {
     "id": "pithag",
@@ -1322,7 +1322,7 @@
       "Pouvoir Dispo"
     ],
     "setup": false,
-    "ability": "Vous commencez la partie en sachant qu'un rôle de Villageois en particulier est en jeu. Si vous vous étiez persuadé d’être ce personnage, vous gagnez sa capacité quand il meurt."
+    "ability": "Vous commencez la partie en connaissant un rôle de Villageois en jeu. Si vous vous étiez persuadé d’être ce personnage, vous gagnez sa capacité quand il meurt."
   },
   {
     "id": "general",
@@ -1659,7 +1659,7 @@
       "Épuisé"
     ],
     "setup": false,
-    "ability": "Les Serviteurs savent que votre personnage est en jeu. Une fois par partie, un Serviteur peut tenter de deviner publiquement quel joueur est selon lui la Demoiselle, s'il voit juste, votre équipe a perdu."
+    "ability": "Les Serviteurs savent que vous êtes en jeu. Si un Serviteur devine publiquement qui vous êtes (un seul essai), votre équipe a perdu."
   },
   {
     "id": "golem",
