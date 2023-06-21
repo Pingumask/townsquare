@@ -88,8 +88,8 @@ const mutations = {
       nominee: players[state.nomination[1]].name,
       type: isExile
         ? gameInfo.state.locale.modal.voteHistory.exile
-        : gameInfo.state.locale.modal.voteHistory.execution
-            + (organGrinder && !state.isSpectator ? "*" : ""),
+        : gameInfo.state.locale.modal.voteHistory.execution +
+          (organGrinder && !state.isSpectator ? "*" : ""),
       majority: Math.ceil(
         players.filter(player => !player.isDead || isExile).length / 2
       ),
