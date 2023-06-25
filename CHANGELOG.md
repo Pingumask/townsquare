@@ -2,10 +2,15 @@
 
 ======
 
+### Version 3.11.6
+Some corrections in the jinxes (in French)
+
+---
+
 ### Version 3.11.4
 Correcting the print of new scripts' names
 
-=======
+---
 
 ### Version 3.11.3
 Changing default vote duration (3s -> 1s)
