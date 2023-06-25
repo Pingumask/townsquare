@@ -13,7 +13,7 @@
     "hatred": [
       {
         "id": "Cannibal",
-        "reason": "Si le Cannibale gagne le pouvoir du Majordome, il l'apprend. "
+        "reason": "Si le Cannibale gagne la capacité du Majordome, il l'apprend. "
       }
     ]
   },
@@ -31,15 +31,15 @@
     "hatred": [
       {
         "id": "Heretic",
-        "reason": "Le chaudronnier ne peut pas créer un Hérétique. "
+        "reason": "Le Chaudronnier ne peut pas créer un Hérétique. "
       },
       {
         "id": "Damsel",
-        "reason": "Si le Chaudronnier crée une Demoiselle, c'est le Narrateur qui choisi quel joueur le devient. "
+        "reason": "Si le Chaudronnier crée une Demoiselle, c'est le Narrateur qui choisit quel joueur le devient. "
       },
       {
         "id": "Politician",
-        "reason": "Un Chaudronnier ne peut pas créer un Politicien Méchant. "
+        "reason": "Un Chaudronnier ne peut pas créer un Politicien mauvais. "
       }
     ]
   },
@@ -48,7 +48,7 @@
     "hatred": [
       {
         "id": "Goblin",
-        "reason": "Le Cerenovus peut choisir de rendre un joueur fou d'être le Gobelin. "
+        "reason": "Le Cerenovus peut choisir de rendre un joueur persuadé d'être le Gobelin. "
       }
     ]
   },
@@ -77,11 +77,11 @@
       },
       {
         "id": "Farmer",
-        "reason": "Si le Léviathan est en jeu et que le Fermier meurt par éxécution, un joueur gentil devient un Fermier cette nuit. "
+        "reason": "Si le Léviathan est en jeu et qu'un Fermier meurt par éxécution, un joueur bon devient un Fermier cette nuit. "
       },
       {
         "id": "Mayor",
-        "reason": "Si le Léviathan est en jeu et qu'il n'y a pas d'exécution le cinquième jour, les méchants remportent la partie. "
+        "reason": "Si le Léviathan est en jeu et qu'il n'y a pas d'exécution le cinquième jour, les bons gagnent. "
       }
     ]
   },
@@ -94,7 +94,7 @@
       },
       {
         "id": "Mastermind",
-        "reason": "Un seul personnage maudit peut être en jeu à la fois. Les joueurs Mauvais commencent la partie en sachant de quel joueur et quel rôle il s'agit. "
+        "reason": "Un seul personnage maudit peut être en jeu à la fois. Les joueurs mauvais commencent la partie en sachant de quel joueur et quel rôle il s'agit. "
       }
     ]
   },
@@ -103,7 +103,7 @@
     "hatred": [
       {
         "id": "Poppy Grower",
-        "reason": "Si le Planteur de pavot est en jeu, Les Serviteurs ne se réveillent pas ensemble. Ils sont réveillés un par un jusqu'à ce que l'un d'entre eux décide d'être babysitter. "
+        "reason": "Si le Planteur de pavot est en jeu, Les Serviteurs ne se réveillent pas ensemble. Ils sont réveillés un par un jusqu'à ce que l'un d'entre eux décide d'être baby-sitter. "
       },
       {
         "id": "Magician",
@@ -111,7 +111,7 @@
       },
       {
         "id": "Scarlet Woman",
-        "reason": "S'il y a 5 joueurs ou plus en vie et que le babysitter du Bébé Monstre se fait exécuter, la Gourgandine récupére le Bébé Monstre cette nuit. "
+        "reason": "S'il y a 5 joueurs ou plus en vie et que le baby-sitter du Bébé Monstre meurt par exécution, la Gourgandine récupére le Bébé Monstre cette nuit. "
       }
     ]
   },
@@ -120,7 +120,7 @@
     "hatred": [
       {
         "id": "Gambler",
-        "reason": "Si le Lycanthrope est en vie et que le Parieur se suicide la nuit, aucun autre joueur ne peut mourir cette nuit. "
+        "reason": "Si le Lycanthrope est en vie et que le Parieur se tue lui-même la nuit, aucun autre joueur ne peut mourir cette nuit. "
       }
     ]
   },
@@ -129,11 +129,11 @@
     "hatred": [
       {
         "id": "Engineer",
-        "reason": "Legion et l'Ingénieur ne peuvent pas être tous les deux en jeu au début de la partie. Si l'Ingénieur crée une Légion, la moité des joueurs (y compris les Mauvais joueurs) deviennent de Mauvaises Légions. "
+        "reason": "La Légion et l'Ingénieur ne peuvent pas être tous les deux en jeu au début de la partie. Si l'Ingénieur crée une Légion, la majorité des joueurs (y compris les joueurs mauvais) deviennent des Légions mauvaises. "
       },
       {
         "id": "Preacher",
-        "reason": "Un seul personnage Maudit peut être en jeu à la fois. "
+        "reason": "Un seul personnage maudit peut être en jeu à la fois. "
       }
     ]
   },
@@ -159,7 +159,7 @@
       },
       {
         "id": "Poppy Grower",
-        "reason": "Si le Planteur de Pavot est en jeu, l'Espion ne peut pas voir le Grimoire avant la mort du Planteur de Pavot. "
+        "reason": "Si le Planteur de pavot est en jeu, l'Espion ne regarde pas le Grimoire avant la mort du Planteur de pavot. "
       },
       {
         "id": "Damsel",
@@ -180,7 +180,7 @@
       },
       {
         "id": "Poppy Grower",
-        "reason": "Si le Planteur de pavot est en jeu, La Veuve ne voit pas le Grimoire avant la mort du Cultivateur de Pavot. "
+        "reason": "Si le Planteur de pavot est en jeu, La Veuve ne regarde pas le Grimoire avant la mort du Planteur de pavot. "
       },
       {
         "id": "Alchemist",
@@ -206,15 +206,24 @@
     ]
   },
   {
+    "id": "Baron",
+    "hatred": [
+      {
+        "id": "Heretic",
+        "reason": "Le Baron peut rajouter un Étranger, mais pas deux. "
+      }
+    ]
+  },
+  {
     "id": "Marionette",
     "hatred": [
       {
         "id": "Lil' Monsta",
-        "reason": "La Marionette est voisine d'un Serviteur, pas du Démon. La Marionette n'est pas réveillée pour décider qui baby-sitte le Bébé Monstre. "
+        "reason": "La Marionette est voisine d'un Serviteur, pas du Démon. La Marionette n'est pas réveillée pour décider qui baby-sitte le Bébé Monstre, et n'apprend pas qu'elle est Marionette si elle devient baby-sitter. "
       },
       {
         "id": "Poppy Grower",
-        "reason": "Quand le Planteur de Pavot meurt, le Démon apprend qui est la Marionette, mais la Marionette n'apprend rien. "
+        "reason": "Quand le Planteur de pavot meurt, le Démon apprend qui est la Marionette, mais la Marionette n'apprend rien. "
       },
       {
         "id": "Snitch",
@@ -222,7 +231,7 @@
       },
       {
         "id": "Balloonist",
-        "reason": "Si la Marionette pense être le Montgolfier, [+1 Etranger]. "
+        "reason": "Si la Marionette pense être le Montgolfier, [+1 Etranger] "
       },
       {
         "id": "Damsel",
@@ -230,7 +239,7 @@
       },
       {
         "id": "Huntsman",
-        "reason": "Si la Marionette croit être un Chasseur, Une Demoiselle est ajoutée au jeu. "
+        "reason": "Si la Marionette pense être le Chasseur, [+ Demoiselle] "
       }
     ]
   },
@@ -239,7 +248,7 @@
     "hatred": [
       {
         "id": "Engineer",
-        "reason": "Émeute et Ingénieur ne peuvent pas être tous les deux en jeu au début de la partie. \nSi l'ingénieur crée une Émeute, tous les joueurs Mauvais deviennent des Émeutes. "
+        "reason": "Les Émeutes et l'Ingénieur ne peuvent pas être tous les deux en jeu au début de la partie. \nSi l'ingénieur crée une Émeute, tous les joueurs mauvais deviennent des Émeutes. "
       },
       {
         "id": "Golem",
@@ -247,55 +256,55 @@
       },
       {
         "id": "Snitch",
-        "reason": "Si la Balance est en jeu, chaque joueur qui a le rôle d'Émeute reçoit 3 bluffs supplémentaires. "
+        "reason": "Si le Cafteur est en jeu, chaque joueur des Émeutes reçoit 3 bluffs supplémentaires. "
       },
       {
         "id": "Saint",
-        "reason": "Si un joueur Gentil accuse et exécute le Saint, l'équipe du Saint perd. "
+        "reason": "Si un joueur bon accuse et tue le Saint, l'équipe du Saint perd. "
       },
       {
         "id": "Butler",
-        "reason": "Le Majordome ne peut pas accuser son Maître. "
+        "reason": "Le Majordome ne peut pas accuser son maître. "
       },
       {
         "id": "Pit-Hag",
-        "reason": "Si le Chaudronnier crée une Émeute, tous les joueurs Mauvais deviennent des Émeutes. \nSi le Chaudronnier crée une Émeute après le jour 3, la partie continue pour un jour de plus. "
+        "reason": "Si le Chaudronnier crée une Émeute, tous les joueurs mauvais deviennent des Émeutes. \nSi le Chaudronnier crée une Émeute après le jour 3, la partie continue pour un jour de plus. "
       },
       {
         "id": "Mayor",
-        "reason": "Si le 3ème jour commence avec seulement 3 joueurs en vie, les joueurs peuvent collectivement décider de ne pas accuser. S'il le font (et que le Maire est en vie) l'équipe du Maire gagne la partie. "
+        "reason": "Si le 3ème jour commence avec seulement 3 joueurs en vie, les joueurs peuvent collectivement décider de ne pas accuser. S'il le font (et si le Maire est en vie) l'équipe du Maire gagne. "
       },
       {
         "id": "Monk",
-        "reason": "Si un joueur d'Émeute accuse un joueur protégé par le Moine, ce joueur ne meurt pas. "
+        "reason": "Si un joueur des Émeutes accuse un joueur protégé par le Moine, ce joueur ne meurt pas. "
       },
       {
         "id": "Farmer",
-        "reason": "Si un joueur d'Émeute accuse et tue un Fermier, le Fermier utilise son Pouvoir cette nuit. "
+        "reason": "Si un joueur des Émeutes accuse et tue un Fermier, le Fermier utilise sa capacité cette nuit. "
       },
       {
         "id": "Innkeeper",
-        "reason": "Si un joueur d'Émeute accuse et tue un joueur protégé par l'Aubergiste, ce joueur ne meurt pas. "
+        "reason": "Si un joueur des Émeutes accuse un joueur protégé par l'Aubergiste, ce joueur ne meurt pas. "
       },
       {
         "id": "Sage",
-        "reason": "Si un joueur d'Émeute accuse et tue le Sage, le Sage utilise son pouvoir cette nuit. "
+        "reason": "Si un joueur des Émeutes accuse et tue le Sage, le Sage utilise son pouvoir cette nuit. "
       },
       {
         "id": "Ravenkeeper",
-        "reason": "Si un Joueur d'Émeute accuse et tue le Corbeau, le Corbeau utilise son pouvoir cette nuit. "
+        "reason": "Si un joueur des Émeutes accuse et tue le Corbeau, le Corbeau utilise son pouvoir cette nuit. "
       },
       {
         "id": "Soldier",
-        "reason": "Si un joueur d'Émeute accuse le Soldat, le Soldat ne meurt pas. "
+        "reason": "Si un joueur des Émeutes accuse le Soldat, le Soldat ne meurt pas. "
       },
       {
         "id": "Grandmother",
-        "reason": "Si un joueur d'Émeute accuse et tue la Grand-mère, le Petit-Fils meurt aussi. "
+        "reason": "Si un joueur des Émeutes accuse et tue le petit-fils, la Grand-mère meurt aussi. "
       },
       {
         "id": "King",
-        "reason": "Si une joueur d'Émeute accuse et tue le Roi, et si l'Enfant de Choeur est en vie, l'Enfant de Choeur utilise son pouvoir cette nuit. "
+        "reason": "Si un joueur des Émeutes accuse et tue le Roi, et si l'Enfant de Choeur est en vie, l'Enfant de Choeur utilise son pouvoir cette nuit. "
       },
       {
         "id": "Exorcist",
@@ -311,39 +320,39 @@
       },
       {
         "id": "Undertaker",
-        "reason": "Les joueurs qui meurent par accusation sont considérés comme exécutés pour le Fossoyeur. "
+        "reason": "Les joueurs qui meurent par accusation apparaîssent comme exécutés pour le Fossoyeur. "
       },
       {
         "id": "Cannibal",
-        "reason": "Les joueurs qui meurent par accusation sont considérés comme exécutés pour le Cannibale. "
+        "reason": "Les joueurs qui meurent par accusation apparaîssent comme exécutés pour le Cannibale. "
       },
       {
         "id": "Pacifist",
-        "reason": "Les joueurs qui meurent par accusation sont considérés comme exécutés pour le Pacifiste. "
+        "reason": "Les joueurs qui meurent par accusation apparaîssent comme exécutés pour le Pacifiste. "
       },
       {
         "id": "Devil's Advocate",
-        "reason": "Les joueurs qui meurent par accusation sont considérés comme exécutés pour l'Avocat du Diable. "
+        "reason": "Les joueurs qui meurent par accusation apparaîssent comme exécutés pour l'Avocat du Diable. "
       },
       {
         "id": "Investigator",
-        "reason": "Émeute est considéré comme un Serviteur pour l'Enquéteur. "
+        "reason": "Les Émeutes apparaîssent comme des Serviteur pour l'Enquéteur. "
       },
       {
         "id": "Clockmaker",
-        "reason": "Émeute est considéré comme un Serviteur pour l'Horloger. "
+        "reason": "Les Émeutes apparaîssent comme des Serviteur pour l'Horloger. "
       },
       {
         "id": "Town Crier",
-        "reason": "Emeute est considéré comme un Serviteur pour le Crieur public. "
+        "reason": "Les Émeutes apparaîssent comme des Serviteur pour le Crieur public. "
       },
       {
         "id": "Damsel",
-        "reason": "Émeute est considéré comme un Serviteur pour la Demoiselle. "
+        "reason": "Les Émeutes apparaîssent comme des Serviteur pour la Demoiselle. "
       },
       {
         "id": "Preacher",
-        "reason": "Emeute est considéré comme un Serviteur pour le Prêcheur. "
+        "reason": "Les Émeutes apparaîssent comme des Serviteur pour le Prêcheur. "
       }
     ]
   },
@@ -352,11 +361,15 @@
     "hatred": [
       {
         "id": "Mastermind",
-        "reason": "Si le Cerveau est en vie et que la Sangsue meurt par execution, la Sangsue survit mais perd son pouvoir. "
+        "reason": "Si le Cerveau est en vie et que l'hôte de la Sangsue meurt par execution, la Sangsue survit mais perd son pouvoir. "
       },
       {
         "id": "Slayer",
         "reason": "Si le Tueur tire sur l'hôte de la Sangsue, l'hôte meurt. "
+      },
+      {
+        "id": "Heretic",
+        "reason": "Si la Sangsue a empoisonné l'Hérétique, et si elle meurt, alors l'Hérétique reste empoisonné. "
       }
     ]
   },
@@ -377,11 +390,11 @@
       },
       {
         "id": "Minstrel",
-        "reason": "Un seul personnage maudit peut être en jeu à la fois. Les joueurs Mauvais commencent la partie en sachant de quel joueur et quel rôle il s'agit."
+        "reason": "Un seul personnage maudit peut être en jeu à la fois. Les joueurs mauvais commencent la partie en sachant de quel joueur et quel rôle il s'agit."
       },
       {
         "id": "Preacher",
-        "reason": "Un seul personnage maudit peut être en jeu à la fois. Les joueurs Mauvais commencent la partie en sachant de quel joueur et quel rôle il s'agit."
+        "reason": "Un seul personnage maudit peut être en jeu à la fois. Les joueurs mauvais commencent la partie en sachant de quel joueur et quel rôle il s'agit."
       }
     ]
   }
