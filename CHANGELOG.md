@@ -2,8 +2,8 @@
 
 ======
 
-### Version 3.11.8
-Changing value of day/night (night by default)
+### Version 3.11.9
+Changing value of night order (unprinted by default)
 
 ---
 
