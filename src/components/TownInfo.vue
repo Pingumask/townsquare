@@ -107,7 +107,7 @@ export default {
       const nonTravelers = this.$store.getters["players/nonTravelers"];
       const alive = players.filter(player => player.isDead !== true).length;
       const aliveNT = players.filter(
-        player => (player.isDead !== true && player.role.team !== "traveler")
+        player => player.isDead !== true && player.role.team !== "traveler"
       ).length;
       return {
         ...gameJSON[nonTravelers - 5],
