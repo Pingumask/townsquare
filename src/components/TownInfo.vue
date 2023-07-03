@@ -111,7 +111,7 @@ export default {
         ...gameJSON[nonTravelers - 5],
         traveler: players.length - nonTravelers,
         alive,
-		    aliveNT,
+        aliveNT,
         votes:
           alive +
           players.filter(
