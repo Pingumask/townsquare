@@ -27,6 +27,7 @@ const faIcons = [
   "HandPaper",
   "HandPointRight",
   "Heartbeat",
+  "HouseUser",
   "Image",
   "Link",
   "MinusCircle",
