@@ -1,7 +1,8 @@
 # Release Notes
 
 ======
-### Unreleased changes
+
+Correcting the print when ST assigns roles (adding spaces)
 
 ---
 ### Version 3.12.0
