@@ -637,7 +637,7 @@ class LiveSession {
     const players = this._store.state.players.players;
     if (players.length > seat && (seat < 0 || !players[seat].id)) {
       this._send("claim", [seat, this._store.state.session.playerId]);
-	    this._store.state.grimoire.isNightOrder = false ;
+      this._store.state.grimoire.isNightOrder = false ;
     }
   }
 
