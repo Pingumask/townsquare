@@ -221,12 +221,12 @@
       "otherTravelers": "Other Travelers"
     },
     "roles": {
-      "titleStart": "Select the characters for",
-      "titleEnd": "players:",
+      "titleStart": "Select the characters for ",
+      "titleEnd": " players:",
       "warning":"Warning: there are characters selected that modify the game setup! The randomizer does not account for these characters.",
       "allowMultiple": "Allow duplicate characters",
       "assignStart": "Assign ",
-      "assignEnd": "characters randomly",
+      "assignEnd": " characters randomly",
       "shuffle": "Shuffle characters"
     },
     "voteHistory":{
