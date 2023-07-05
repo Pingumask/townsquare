@@ -1,6 +1,7 @@
 # Release Notes
 
 ======
+
 Changing the default value of "isNightOrder"
 
 ---
