@@ -7,6 +7,11 @@ Some corrections in the jinxes (in French)
 
 ---
 
+### Version 3.11.5
+Correcting Atheist's french description
+
+---
+
 ### Version 3.11.4
 Correcting the print of new scripts' names
 
