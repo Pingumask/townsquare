@@ -2,7 +2,7 @@
 
 ======
 
-### Version 3.11.10
+### Version
 Printing the number of alive non-Travellers
 
 ---
