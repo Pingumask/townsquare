@@ -103,7 +103,7 @@ export default new Vuex.Store({
   state: {
     grimoire: {
       isNight: false,
-      isNightOrder: true,
+      isNightOrder: false,
       isRinging: false,
       isPublic: true,
       isMenuOpen: false,
