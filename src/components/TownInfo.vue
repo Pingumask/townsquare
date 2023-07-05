@@ -26,6 +26,10 @@
         {{ teams.alive }}
         <font-awesome-icon class="alive" icon="heartbeat" />
       </span>
+      <span v-if="teams.traveler > 0">
+        {{ teams.aliveNT }}
+        <font-awesome-icon class="alive" icon="house-user" />
+      </span>
       <span>
         {{ teams.votes }} <font-awesome-icon class="votes" icon="vote-yea" />
       </span>
@@ -102,10 +106,14 @@ export default {
       const { players } = this.$store.state.players;
       const nonTravelers = this.$store.getters["players/nonTravelers"];
       const alive = players.filter(player => player.isDead !== true).length;
+      const aliveNT = players.filter(
+        player => player.isDead !== true && player.role.team !== "traveler"
+      ).length;
       return {
         ...gameJSON[nonTravelers - 5],
         traveler: players.length - nonTravelers,
         alive,
+        aliveNT,
         votes:
           alive +
           players.filter(
