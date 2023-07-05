@@ -221,12 +221,12 @@
       "otherTravelers": "Autres Voyageurs"
     },
     "roles": {
-      "titleStart": "Selectionner les personnages pour",
-      "titleEnd": "joueurs:",
+      "titleStart": "Selectionner les personnages pour ",
+      "titleEnd": " joueurs :",
       "warning":"Attention: certains des personnages sélectionnés changent la distribution de début de partie ! La distribution aléatoire n'effectue pas elle même ces changements, pensez à modifier les attributions en conséquence avant d'envoyer les rôles aux joueurs.",
       "allowMultiple": "Permettre les doublons de personnages",
       "assignStart": "Attribuer aléatoirement ces ",
-      "assignEnd": "rôles",
+      "assignEnd": " rôles",
       "shuffle": "Tirer les personnages au sort"
     },
     "voteHistory":{
