@@ -9,7 +9,7 @@
         locale.modal.roles.titleStart +
           nonTravelers +
           locale.modal.roles.titleEnd
-      }}:
+      }}
     </h3>
     <ul class="tokens" v-for="(teamRoles, team) in roleSelection" :key="team">
       <li class="count" :class="[team]">
