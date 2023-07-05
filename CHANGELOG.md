@@ -7,6 +7,16 @@ Adding the picture leaf-top6.png
 
 ---
 
+### Version 3.11.6
+Some corrections in the jinxes (in French)
+
+---
+
+### Version 3.11.5
+Correcting Atheist's french description
+
+---
+
 ### Version 3.11.4
 Correcting the print of new scripts' names
 
