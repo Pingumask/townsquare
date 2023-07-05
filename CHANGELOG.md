@@ -2,7 +2,7 @@
 
 ======
 
-### Version 3.11.9
+### Version
 Night order option automatically changed:
 - Automatically printed by default for the Story Teller
 - Automatically unprinted by default for players
