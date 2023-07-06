@@ -1121,7 +1121,7 @@
     "otherNight": 16,
     "otherNightReminder": "Le Cerenovus désigne un joueur et un personnage. Reveillez ce joueur. Informez-le qu'il est persuadé d'être ce personnage. S'il n'est pas convaincant, il peut être exécuté.",
     "reminders": [
-      "Fou"
+      "Persuadé"
     ],
     "setup": false,
     "ability": "Chaque nuit, désignez un joueur et un personnage bon : il sera persuadé d'être ce personnage demain, ou pourra être exécuté."
