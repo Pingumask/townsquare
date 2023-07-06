@@ -1498,10 +1498,7 @@
     "otherNight": 0,
     "otherNightReminder": "Si la capacité de l'alchimiste s'utilise la nuit, réveillez le.",
     "reminders": [],
-    "remindersGlobal": [
-      "Alchimiste",
-      "Bon"
-    ],
+    "remindersGlobal": ["Alchimiste"],
     "setup": false,
     "ability": "Vous avez la capacité d'un Serviteur qui n'est pas en jeu."
   },
