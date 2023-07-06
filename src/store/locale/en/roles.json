@@ -1248,8 +1248,7 @@
     "reminders": ["Seen Townsfolk",
         "Seen Outsider",
         "Seen Minion",
-        "Seen Demon",
-        "Seen Traveller"],
+        "Seen Demon"],
     "setup": true,
     "ability": "Each night, you learn 1 player of each character type, until there are no more types to learn. [+1 Outsider]"
   },
