@@ -1006,7 +1006,7 @@
     "otherNight": 62,
     "otherNightReminder": "Si aujourd'hui était la première journée du jongleur, indiquez-lui combien de ses prédictions étaient juste.",
     "reminders": [
-      "Correcte",
+      "Correct",
       "Faux"
     ],
     "setup": false,
