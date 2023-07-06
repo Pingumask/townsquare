@@ -43,7 +43,7 @@
     "id": "revolutionary",
     "firstNightReminder": "",
     "otherNightReminder": "",
-    "reminders": ["Utilisé"],
+    "reminders": ["Même camp", "Utilisé"],
     "setup": false,
     "name": "Révolutionnaire",
     "team": "fabled",
