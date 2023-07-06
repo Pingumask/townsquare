@@ -43,7 +43,7 @@
     "id": "revolutionary",
     "firstNightReminder": "",
     "otherNightReminder": "",
-    "reminders": ["Same alignment","Used"],
+    "reminders": ["Same alignment", "Used"],
     "setup": false,
     "name": "Revolutionary",
     "team": "fabled",
