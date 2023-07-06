@@ -1090,7 +1090,8 @@
     "firstNightReminder": "Réveillez le Jumeau Maléfique et son Jumeau. Informez-les tous deux du rôle de l'autre.",
     "otherNight": 0,
     "otherNightReminder": "",
-    "reminders": [
+    "reminders": [],
+    "remindersGlobal": [
       "Jumeau"
     ],
     "setup": false,
