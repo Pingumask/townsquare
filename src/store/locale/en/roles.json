@@ -1354,7 +1354,7 @@
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [],
-    "remindersGlobal": ["Is the Alchemist"],
+    "remindersGlobal": ["Alchemist"],
     "setup": false,
     "ability": "You have a not-in-play Minion ability."
   },
