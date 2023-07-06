@@ -1378,8 +1378,7 @@
       "Villageois vu",
       "Étranger vu",
       "Serviteur vu",
-      "Démon vu",
-      "Voyageur vu"
+      "Démon vu"
     ],
     "setup": true,
     "ability": "Chaque nuit, vous apprenez qu'un joueur a un personnage d'un type que vous n'avez pas encore vu jusqu'à ce que vous en connaissiez un de chaque. [+1 Étranger]."
