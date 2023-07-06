@@ -1890,7 +1890,7 @@
     "otherNightReminder": "Vous pouvez choisir un joueur, Ce joueur meurt.",
     "reminders": [
       "Mort",
-      "Mourant"
+      "Condamné"
     ],
     "setup": true,
     "ability": "Chaque nuit*, un joueur peut mourir. Les exécutions ratent si seuls des joueurs Mauvais ont voté. Vous apparaissez également comme un Serviteur. [La majorité des joueurs sont Légion]"
