@@ -309,6 +309,7 @@ export default {
         this.$store.commit("session/setSpectator", false);
         this.$store.commit("session/setSessionId", sessionId);
         this.$store.commit("toggleGrimoire", false);
+        this.$store.state.grimoire.isNightOrder = true;
         this.copySessionUrl();
       }
     },
