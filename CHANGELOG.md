@@ -4,11 +4,10 @@
 
 
 
-### Version 3.13.1
-Some corrections in the reminders tokens:
-- Correcting some french names
-- Putting some tokens in "remindersGlobal"
-- Deleting some useless tokens, or adding some other
+### Version 3.13.2
+Night order option automatically changed:
+- Automatically printed by default for the Story Teller
+- Automatically unprinted by default for players
 
 ---
 ### Version 3.13.0
