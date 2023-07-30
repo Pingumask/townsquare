@@ -129,6 +129,17 @@ export default {
             .dawnDescription1
         }
       );
+      var toymaker = false ;
+      // Ajout des fabuleux
+      this.fabled
+        .forEach(fabled => {
+          if (fabled.firstNight) {
+            rolesFirstNight.push(Object.assign({ players: [] }, fabled));
+          }
+          else if(fabled.id == "toymaker") {
+            toymaker = true ;
+          }
+        });
       // Ajouter minion / demon infos à l'ordre nocturne
       if (this.players.length > 6) {
         rolesFirstNight.push(
@@ -167,11 +178,6 @@ export default {
           rolesFirstNight.push(Object.assign({ players }, player.role));
         }
       });
-      this.fabled
-        .filter(({ firstNight }) => firstNight)
-        .forEach(fabled => {
-          rolesFirstNight.push(Object.assign({ players: [] }, fabled));
-        });
       rolesFirstNight.sort((a, b) => a.firstNight - b.firstNight);
       return rolesFirstNight;
     },
