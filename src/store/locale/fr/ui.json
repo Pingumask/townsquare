@@ -200,7 +200,7 @@
       "minionInfo": "Informations Serviteurs",
       "minionInfoDescription": "S'il y a plusieurs Serviteurs, ils apprennent qui sont les autres Serviteurs. Indiquez aux Serviteurs qui est le Démon.",
       "demonInfo": "Info & Bluffs Démon",
-      "demonInfoDescription": "Indiquez au Démon qui sont ses serviteurs.• Indiquez les rôles de 3 personnages bons qui ne sont pas en jeu.",
+      "demonInfoDescription": "Indiquez au Démon qui sont ses serviteurs. Indiquez les rôles de 3 personnages bons qui ne sont pas en jeu.",
       "dawn": "Matin",
       "dawnDescription1": "Réveillez les joueurs.",
       "dawnDescription2": "Réveillez les joueurs, puis annoncez qui est mort cette nuit",
