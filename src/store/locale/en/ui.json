@@ -198,9 +198,14 @@
       "firstNight": "First Night",
       "otherNights": "Other Nights",
       "minionInfo": "Minion info",
-      "minionInfoDescription": "• If more than one Minion, they all make eye contact with each other. • Show the “This is the Demon” card. Point to the Demon.",
+      "minionInfoDescription": "If more than one Minion, they all make eye contact with each other. Show the “This is the Demon” card. Point to the Demon.",
       "demonInfo": "Demon info & bluffs",
-      "demonInfoDescription": "• Show the “These are your minions” card. Point to each Minion. • Show the “These characters are not in play” card. Show 3 character tokens of good characters not in play."
+      "demonInfoDescription": "Show the “These are your minions” card. Point to each Minion. Show the “These characters are not in play” card. Show 3 character tokens of good characters not in play.",
+      "dawn": "Dawn",
+      "dawnDescription1": "Wake all players.",
+      "dawnDescription2": "Wake all players, then announce who died this night.",
+      "dusk": "Dusk",
+      "duskDescription": "End the day, and put all players to sleep."
     },
     "reference": {
         "title": "Character Reference",
