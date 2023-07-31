@@ -140,8 +140,25 @@ export default {
             toymaker = true ;
           }
         });
+      this.roles.forEach(role => {
+        const players = this.players.filter(p => p.role.id === role.id);
+        if (role.firstNight && role.team !== "traveler") {
+          rolesFirstNight.push(Object.assign({ players }, role));
+        }
+      });
+      // Ajout des Voyageurs, en n'ajoutant qu'une fois ceux en double
+      const seenTravelers = [];
+      this.players.forEach(player => {
+        if (player.role.team == "traveler" && !seenTravelers.includes(player.role.id)) {
+          seenTravelers.push(player.role.id);
+          if(player.role.firstNight) {
+            const players = this.players.filter(p => p.role.id === player.role.id);
+            rolesFirstNight.push(Object.assign({ players }, player.role));
+		      }
+        }
+      });
       // Ajouter minion / demon infos à l'ordre nocturne
-      if (this.players.length > 6) {
+      if (this.players.length-seenTravelers.length > 6 || toymaker) {
         rolesFirstNight.push(
           {
             id: "minion",
@@ -163,21 +180,6 @@ export default {
           }
         );
       }
-      this.roles.forEach(role => {
-        const players = this.players.filter(p => p.role.id === role.id);
-        if (role.firstNight && role.team !== "traveler") {
-          rolesFirstNight.push(Object.assign({ players }, role));
-        }
-      });
-      // Ajout des Voyageurs, en n'ajoutant qu'une fois ceux en double
-      const seenTravelers = [];
-      this.players.forEach(player => {
-        if (player.role.firstNight && player.role.team == "traveler" && !seenTravelers.includes(player.role.id)) {
-          const players = this.players.filter(p => p.role.id === player.role.id);
-          seenTravelers.push(player.role.id);
-          rolesFirstNight.push(Object.assign({ players }, player.role));
-        }
-      });
       rolesFirstNight.sort((a, b) => a.firstNight - b.firstNight);
       return rolesFirstNight;
     },
@@ -353,7 +355,7 @@ ul {
     width: 100%;
     margin-bottom: 3px;
     .icon {
-      width: 4vh;
+      width: 6vh;
       background-size: 100% auto;
       background-position: center center;
       background-repeat: no-repeat;
