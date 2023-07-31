@@ -157,7 +157,7 @@ export default {
       });
       // Ajout des Voyageurs, en n'ajoutant qu'une fois ceux en double
       const seenTravelers = [];
-	    var nbTravelers = 0;
+      var nbTravelers = 0;
       this.players.forEach(player => {
         if (player.role.team == "traveler") {
           nbTravelers++;
@@ -171,7 +171,7 @@ export default {
             }
           }
         }
-	  });
+      });
       // Ajouter minion / demon infos à l'ordre nocturne
       if (this.players.length - nbTravelers > 6 || toymaker) {
         rolesFirstNight.push(
