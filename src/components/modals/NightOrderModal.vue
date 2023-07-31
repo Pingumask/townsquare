@@ -36,7 +36,13 @@
                 }}</small
               >
             </span>
-            <span class="player" v-if="(role.id=='dawn' || role.team=='fabled') && !session.isSpectator">
+            <span
+              class="player"
+              v-if="
+                (role.id=='dawn' || role.team=='fabled') &&
+                !session.isSpectator
+              "
+            >
               <br />
               <small> </small>
             </span>
@@ -92,7 +98,15 @@
                 }}</small
               >
             </span>
-            <span class="player" v-if="(role.id=='dawn' || role.id=='dusk' || role.team=='fabled') && !session.isSpectator">
+            <span
+              class="player"
+              v-if="
+                (role.id=='dawn' ||
+                 role.id=='dusk' ||
+                 role.team=='fabled') &&
+                !session.isSpectator
+              "
+            >
               <br />
               <small> </small>
             </span>
@@ -116,30 +130,27 @@ export default {
   },
   computed: {
     rolesFirstNight: function() {
-      const rolesFirstNight = [];	  
+      const rolesFirstNight = [];
       // Ajouter le matin à l'ordre nocturne
-      rolesFirstNight.push(
-        {
-          id: "dawn",
-          name: this.locale.modal.nightOrder.dawn,
-          firstNight: 57,
-          team: "default",
-          players: [],
-          firstNightReminder: this.locale.modal.nightOrder
-            .dawnDescription1
-        }
-      );
-      var toymaker = false ;
+      rolesFirstNight.push({
+        id: "dawn",
+        name: this.locale.modal.nightOrder.dawn,
+        firstNight: 57,
+        team: "default",
+        players: [],
+        firstNightReminder: this.locale.modal.nightOrder
+          .dawnDescription1
+      });
+      var toymaker = false;
       // Ajout des fabuleux
-      this.fabled
-        .forEach(fabled => {
-          if (fabled.firstNight) {
-            rolesFirstNight.push(Object.assign({ players: [] }, fabled));
-          }
-          else if(fabled.id == "toymaker") {
-            toymaker = true ;
-          }
-        });
+      this.fabled.forEach(fabled => {
+        if (fabled.firstNight) {
+          rolesFirstNight.push(Object.assign({ players: [] }, fabled));
+        }
+        else if(fabled.id == "toymaker") {
+          toymaker = true ;
+        }
+      });
       this.roles.forEach(role => {
         const players = this.players.filter(p => p.role.id === role.id);
         if (role.firstNight && role.team !== "traveler") {
