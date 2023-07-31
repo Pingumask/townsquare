@@ -39,8 +39,8 @@
             <span
               class="player"
               v-if="
-                (role.id=='dawn' || role.team=='fabled') &&
-                !session.isSpectator
+                (role.id == 'dawn' || role.team == 'fabled') &&
+                  !session.isSpectator
               "
             >
               <br />
@@ -101,10 +101,10 @@
             <span
               class="player"
               v-if="
-                (role.id=='dawn' ||
-                 role.id=='dusk' ||
-                 role.team=='fabled') &&
-                !session.isSpectator
+                (role.id == 'dawn' ||
+                 role.id == 'dusk' ||
+                 role.team == 'fabled') &&
+                  !session.isSpectator
               "
             >
               <br />
@@ -138,17 +138,15 @@ export default {
         firstNight: 57,
         team: "default",
         players: [],
-        firstNightReminder: this.locale.modal.nightOrder
-          .dawnDescription1
+        firstNightReminder: this.locale.modal.nightOrder.dawnDescription1
       });
       var toymaker = false;
       // Ajout des fabuleux
       this.fabled.forEach(fabled => {
         if (fabled.firstNight) {
           rolesFirstNight.push(Object.assign({ players: [] }, fabled));
-        }
-        else if(fabled.id == "toymaker") {
-          toymaker = true ;
+        } else if(fabled.id == "toymaker") {
+          toymaker = true;
         }
       });
       this.roles.forEach(role => {
@@ -160,9 +158,11 @@ export default {
       // Ajout des Voyageurs, en n'ajoutant qu'une fois ceux en double
       const seenTravelers = [];
       this.players.forEach(player => {
-        if (player.role.team == "traveler" && !seenTravelers.includes(player.role.id)) {
+        if (player.role.team == "traveler" &&
+            !seenTravelers.includes(player.role.id)
+        ) {
           seenTravelers.push(player.role.id);
-          if(player.role.firstNight) {
+          if (player.role.firstNight) {
             const players = this.players.filter(p => p.role.id === player.role.id);
             rolesFirstNight.push(Object.assign({ players }, player.role));
 		      }
