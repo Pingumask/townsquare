@@ -157,22 +157,23 @@ export default {
       });
       // Ajout des Voyageurs, en n'ajoutant qu'une fois ceux en double
       const seenTravelers = [];
+	    var nbTravelers = 0;
       this.players.forEach(player => {
-        if (
-          player.role.team == "traveler" &&
-          !seenTravelers.includes(player.role.id)
-        ) {
-          seenTravelers.push(player.role.id);
-          if (player.role.firstNight) {
-            const players = this.players.filter(
-              p => p.role.id === player.role.id
-            );
-            rolesFirstNight.push(Object.assign({ players }, player.role));
+        if (player.role.team == "traveler") {
+          nbTravelers++;
+          if (!seenTravelers.includes(player.role.id)) {
+            seenTravelers.push(player.role.id);
+            if (player.role.firstNight) {
+              const players = this.players.filter(
+                p => p.role.id === player.role.id
+              );
+              rolesFirstNight.push(Object.assign({ players }, player.role));
+            }
           }
         }
-      });
+	  });
       // Ajouter minion / demon infos à l'ordre nocturne
-      if (this.players.length - seenTravelers.length > 6 || toymaker) {
+      if (this.players.length - nbTravelers > 6 || toymaker) {
         rolesFirstNight.push(
           {
             id: "minion",
