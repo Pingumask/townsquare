@@ -253,7 +253,7 @@ export default {
       "grimoire",
       "locale",
       "session"
-      ]),
+    ]),
     ...mapState("players", ["players", "fabled"])
   },
   methods: {
