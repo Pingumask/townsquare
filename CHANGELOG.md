@@ -1,8 +1,6 @@
 # Release Notes
 
 ## Upcomming Version
-
-### Version 3.16.0
 Updating night order (and its print)
 
 ### Version 3.15.0
