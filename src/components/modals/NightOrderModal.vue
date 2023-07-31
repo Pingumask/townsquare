@@ -104,7 +104,7 @@
                 (role.id == 'dawn' ||
                   role.id == 'dusk' ||
                   role.team == 'fabled') &&
-                    !session.isSpectator
+                  !session.isSpectator
               "
             >
               <br />
@@ -168,7 +168,7 @@ export default {
               p => p.role.id === player.role.id
             );
             rolesFirstNight.push(Object.assign({ players }, player.role));
-		      }
+          }
         }
       });
       // Ajouter minion / demon infos à l'ordre nocturne
@@ -247,13 +247,13 @@ export default {
       return rolesOtherNight;
     },
     ...mapState([
-                 "roles",
-                 "modals",
-                 "edition",
-                 "grimoire",
-                 "locale",
-                 "session"
-                ]),
+      "roles",
+      "modals",
+      "edition",
+      "grimoire",
+      "locale",
+      "session"
+      ]),
     ...mapState("players", ["players", "fabled"])
   },
   methods: {
