@@ -219,6 +219,11 @@ export default {
             .dawnDescription2
         }
       );
+      this.fabled
+        .filter(({ otherNight }) => otherNight)
+        .forEach(fabled => {
+          rolesOtherNight.push(Object.assign({ players: [] }, fabled));
+        });
       this.roles.forEach(role => {
         const players = this.players.filter(p => p.role.id === role.id);
         if (role.otherNight && role.team !== "traveler") {
@@ -234,11 +239,6 @@ export default {
           rolesOtherNight.push(Object.assign({ players }, player.role));
         }
       });
-      this.fabled
-        .filter(({ otherNight }) => otherNight)
-        .forEach(fabled => {
-          rolesOtherNight.push(Object.assign({ players: [] }, fabled));
-        });
       rolesOtherNight.sort((a, b) => a.otherNight - b.otherNight);
       return rolesOtherNight;
     },
