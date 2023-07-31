@@ -102,9 +102,9 @@
               class="player"
               v-if="
                 (role.id == 'dawn' ||
-                 role.id == 'dusk' ||
-                 role.team == 'fabled') &&
-                  !session.isSpectator
+                  role.id == 'dusk' ||
+                  role.team == 'fabled') &&
+                    !session.isSpectator
               "
             >
               <br />
@@ -145,7 +145,7 @@ export default {
       this.fabled.forEach(fabled => {
         if (fabled.firstNight) {
           rolesFirstNight.push(Object.assign({ players: [] }, fabled));
-        } else if(fabled.id == "toymaker") {
+        } else if (fabled.id == "toymaker") {
           toymaker = true;
         }
       });
@@ -158,18 +158,21 @@ export default {
       // Ajout des Voyageurs, en n'ajoutant qu'une fois ceux en double
       const seenTravelers = [];
       this.players.forEach(player => {
-        if (player.role.team == "traveler" &&
-            !seenTravelers.includes(player.role.id)
+        if (
+          player.role.team == "traveler" &&
+          !seenTravelers.includes(player.role.id)
         ) {
           seenTravelers.push(player.role.id);
           if (player.role.firstNight) {
-            const players = this.players.filter(p => p.role.id === player.role.id);
+            const players = this.players.filter(
+              p => p.role.id === player.role.id
+            );
             rolesFirstNight.push(Object.assign({ players }, player.role));
 		      }
         }
       });
       // Ajouter minion / demon infos à l'ordre nocturne
-      if (this.players.length-seenTravelers.length > 6 || toymaker) {
+      if (this.players.length - seenTravelers.length > 6 || toymaker) {
         rolesFirstNight.push(
           {
             id: "minion",
@@ -203,17 +206,15 @@ export default {
           team: "default",
           otherNight: 1,
           players: [],
-          otherNightReminder: this.locale.modal.nightOrder
-            .duskDescription
+          otherNightReminder: this.locale.modal.nightOrder.duskDescription
         },
-		    {
+        {
           id: "dawn",
           name: this.locale.modal.nightOrder.dawn,
           team: "default",
           otherNight: 75,
           players: [],
-          otherNightReminder: this.locale.modal.nightOrder
-            .dawnDescription2
+          otherNightReminder: this.locale.modal.nightOrder.dawnDescription2
         }
       );
       this.fabled
@@ -230,8 +231,14 @@ export default {
       // Ajout des Voyageurs, en n'ajoutant qu'une fois ceux en double
       const seenTravelers = [];
       this.players.forEach(player => {
-        if (player.role.otherNight && player.role.team == "traveler" && !seenTravelers.includes(player.role.id)) {
-          const players = this.players.filter(p => p.role.id === player.role.id);
+        if (
+          player.role.otherNight &&
+          player.role.team == "traveler" &&
+          !seenTravelers.includes(player.role.id)
+        ) {
+          const players = this.players.filter(
+            p => p.role.id === player.role.id
+          );
           seenTravelers.push(player.role.id);
           rolesOtherNight.push(Object.assign({ players }, player.role));
         }
@@ -239,7 +246,14 @@ export default {
       rolesOtherNight.sort((a, b) => a.otherNight - b.otherNight);
       return rolesOtherNight;
     },
-    ...mapState(["roles", "modals", "edition", "grimoire", "locale","session"]),
+    ...mapState([
+                 "roles",
+                 "modals",
+                 "edition",
+                 "grimoire",
+                 "locale",
+                 "session"
+                ]),
     ...mapState("players", ["players", "fabled"])
   },
   methods: {
