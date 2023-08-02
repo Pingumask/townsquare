@@ -3,7 +3,7 @@
     "id": "doomsayer",
     "firstNightReminder": "",
     "otherNightReminder": "",
-    "reminders": [],
+    "reminders": ["Used"],
     "setup": false,
     "name": "Doomsayer",
     "team": "fabled",
