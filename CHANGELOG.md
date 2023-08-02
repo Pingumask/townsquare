@@ -1,7 +1,7 @@
 # Release Notes
 
 ## Upcomming Version
-Updating night order (and its print)
+Adding a token "Used" to the Doomsayer
 
 ### Version 3.15.0
 - Night order bubbles always on for storyteller
