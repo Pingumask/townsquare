@@ -1,7 +1,7 @@
 # Release Notes
 
 ## Upcomming Version
-Updating night order (and its print)
+Correcting Leviathan's english description
 
 ### Version 3.15.0
 - Night order bubbles always on for storyteller
