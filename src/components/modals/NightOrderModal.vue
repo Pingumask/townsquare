@@ -365,7 +365,7 @@ ul {
     width: 100%;
     margin-bottom: 3px;
     .icon {
-      width: 6vh;
+      width: 5vh;
       background-size: 100% auto;
       background-position: center center;
       background-repeat: no-repeat;
@@ -382,7 +382,7 @@ ul {
     .name {
       flex-grow: 0;
       flex-shrink: 0;
-      width: 15%;
+      width: 5%;
       text-align: right;
       font-size: 110%;
       padding: 5px;
