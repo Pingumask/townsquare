@@ -1,7 +1,7 @@
 # Release Notes
 
 ## Upcomming Version
-Correcting "Late Night Drive By"'s name
+- Correcting "Late Night Drive By"'s name
 
 ### Version 3.15.0
 - Night order bubbles always on for storyteller
