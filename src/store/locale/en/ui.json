@@ -70,7 +70,7 @@
     "customNote": "Add a custom reminder node"
   },
   "vote":{
-    "nominated": "nominated",
+    "nominates": "nominates",
     "callexile": "calls for the exile of",
     "exclam": "!",
     "votes": "votes",
