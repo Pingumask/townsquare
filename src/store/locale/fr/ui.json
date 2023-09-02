@@ -71,6 +71,8 @@
   },
   "vote":{
     "nominated": "accuse",
+    "callexile": "veut exiler",
+    "exclam": " !",
     "votes": "votes",
     "inFavor": "pour",
     "majorityIs": "majorité à",
