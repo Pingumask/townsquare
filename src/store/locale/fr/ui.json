@@ -70,7 +70,7 @@
     "customNote": "Ajouter une note personnalisée"
   },
   "vote":{
-    "nominated": "accuse",
+    "nominates": "accuse",
     "callexile": "veut exiler",
     "exclam": " !",
     "votes": "votes",
