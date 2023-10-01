@@ -214,7 +214,7 @@ h3 {
 
 
 .asterisk {
-    font-size: 60%;
+  font-size: 60%;
 	text-align: right;
 	padding-top: 20px;
 }
