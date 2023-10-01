@@ -84,7 +84,7 @@
         <li></li>
       </ul>
     </div>
-	<div class="asterisk">{{ locale.modal.reference.notfirstnight }}</div>
+    <div class="asterisk">{{ locale.modal.reference.notfirstnight }}</div>
   </Modal>
 </template>
 
@@ -211,7 +211,6 @@ h3 {
     background: linear-gradient(-90deg, $fabled, transparent);
   }
 }
-
 
 .asterisk {
   font-size: 60%;
