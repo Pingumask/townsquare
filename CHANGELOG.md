@@ -1,7 +1,7 @@
 # Release Notes
 
 ## Upcomming Version
-Updating jinxes
+- Updating english jinxes
 
 ### Version 3.15.0
 - Night order bubbles always on for storyteller
