@@ -276,7 +276,7 @@
       },
       {
         "id": "Monk",
-        "reason": "If a Riot player nominates and kills a Monk-protected-player, the protected-player does not die."
+        "reason": "If a Riot player nominates a Monk-protected player, the protected-player does not die."
       },
       {
         "id": "Farmer",
@@ -284,7 +284,7 @@
       },
       {
         "id": "Innkeeper",
-        "reason": "If a Riot player nominates an Innkeeper-protected-player, the protected-player does not die."
+        "reason": "If a Riot player nominates an Innkeeper-protected player, the protected-player does not die."
       },
       {
         "id": "Sage",
