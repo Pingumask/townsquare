@@ -213,7 +213,7 @@ export default {
           id: "dawn",
           name: this.locale.modal.nightOrder.dawn,
           team: "default",
-          otherNight: 75,
+          otherNight: 76,
           players: [],
           otherNightReminder: this.locale.modal.nightOrder.dawnDescription2
         }
