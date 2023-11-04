@@ -87,13 +87,12 @@ export default {
       if (this.playerIndex < 0) {
         // assign to bluff slot or other slot (index < 0)
         var indexrole = this.playerIndex * -1 - 1;
-        if(indexrole < 3) {
+        if (indexrole < 3) {
           this.$store.commit("players/setBluff", {
             index: indexrole,
             role
           });
-        }
-        else {
+        } else {
           this.$store.commit("players/setNotes", {
             index: indexrole - 3,
             role
