@@ -23,63 +23,70 @@
       ></Player>
     </ul>
 
-
 	<div
-	  class="bottomleft"
-	  ref="bottomleft"
-	  v-if="players.length && this.session.sessionId"
-	>
-	  <div
+    class="bottomleft"
+    ref="bottomleft"
+    v-if="players.length && this.session.sessionId"
+  >
+    <div
         class="notes"
         v-show="isBluffsOpen"
         ref="notes"
         :class="{ closed: !isNotesOpen }"
       >
         <h3>
-		  <font-awesome-icon icon="caret-down" @click.stop="toggleNotes" v-show="isNotesOpen" />
-          <font-awesome-icon icon="caret-up" @click.stop="toggleNotes" v-show="!isNotesOpen" />
+          <font-awesome-icon
+            icon="caret-down"
+            @click.stop="toggleNotes"
+            v-show="isNotesOpen"
+          />
+          <font-awesome-icon
+            icon="caret-up"
+            @click.stop="toggleNotes"
+            v-show="!isNotesOpen"
+          />
         </h3>
         <ul
-		  v-show="isNotesOpen"
-		  v-for="i in noteSize[0]"
+          v-show="isNotesOpen"
+          v-for="i in noteSize[0]"
           :key="i"
-		  class="tokengrid"
-		>
+          class="tokengrid"
+        >
           <li
             v-for="j in noteSize[1]"
             :key="j"
             @click="openRoleModal((2*(i-1) + (j-1)) * -1 - bluffSize[0]*bluffSize[1] - 1)"
-		  >
-			<div
-				class="night-order first"
-				v-if="
-				  notes[(2*(i-1) + (j-1))] &&
-				    nightOrder.get(notes[(2*(i-1) + (j-1))]).first &&
-				    (grimoire.isNightOrder || !session.isSpectator)
-				"
-			>
-				<em>{{ nightOrder.get(notes[(2*(i-1) + (j-1))]).first }}.</em>
-				<span v-if="notes[(2*(i-1) + (j-1))].firstNightReminder">{{
-				  notes[(2*(i-1) + (j-1))].firstNightReminder
-				}}</span>
-			</div>
-			<div
-				class="night-order other"
-				v-if="
-				  notes[(2*(i-1) + (j-1))] &&
-				    nightOrder.get(notes[(2*(i-1) + (j-1))]).other &&
-				    (grimoire.isNightOrder || !session.isSpectator)
-				"
-			>
-				<em>{{ nightOrder.get(notes[(2*(i-1) + (j-1))]).other }}.</em>
-				<span v-if="notes[(2*(i-1) + (j-1))].otherNightReminder">{{
-				  notes[(2*(i-1) + (j-1))].otherNightReminder
-				}}</span>
-			</div>
+          >
+            <div
+              class="night-order first"
+              v-if="
+                notes[(2*(i-1) + (j-1))] &&
+                nightOrder.get(notes[(2*(i-1) + (j-1))]).first &&
+                (grimoire.isNightOrder || !session.isSpectator)
+              "
+            >
+              <em>{{ nightOrder.get(notes[(2*(i-1) + (j-1))]).first }}.</em>
+              <span v-if="notes[(2*(i-1) + (j-1))].firstNightReminder">{{
+                notes[(2*(i-1) + (j-1))].firstNightReminder
+              }}</span>
+            </div>
+            <div
+              class="night-order other"
+              v-if="
+                notes[(2*(i-1) + (j-1))] &&
+                nightOrder.get(notes[(2*(i-1) + (j-1))]).other &&
+                (grimoire.isNightOrder || !session.isSpectator)
+              "
+            >
+              <em>{{ nightOrder.get(notes[(2*(i-1) + (j-1))]).other }}.</em>
+              <span v-if="notes[(2*(i-1) + (j-1))].otherNightReminder">{{
+                notes[(2*(i-1) + (j-1))].otherNightReminder
+              }}</span>
+            </div>
             <Token :role="notes[(2*(i-1) + (j-1))]"></Token>
           </li>
-		</ul>
-      </div>
+        </ul>
+    </div>
 	  <div
         class="bluffs"
         ref="bluffs"
