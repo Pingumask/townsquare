@@ -22,13 +22,13 @@
         }"
       ></Player>
     </ul>
-
-	<div
-    class="bottomleft"
-    ref="bottomleft"
-    v-if="players.length && this.session.sessionId"
-  >
+    
     <div
+      class="bottomleft"
+      ref="bottomleft"
+      v-if="players.length && this.session.sessionId"
+    >
+      <div
         class="notes"
         v-show="isBluffsOpen"
         ref="notes"
@@ -55,65 +55,72 @@
           <li
             v-for="j in noteSize[1]"
             :key="j"
-            @click="openRoleModal((2*(i-1) + (j-1)) * -1 - bluffSize[0]*bluffSize[1] - 1)"
+            @click="
+              openRoleModal(
+                (2 * (i - 1) + (j - 1)) * -1 - bluffSize[0] * bluffSize[1] - 1
+              )
+            "
           >
             <div
               class="night-order first"
               v-if="
-                notes[(2*(i-1) + (j-1))] &&
-                nightOrder.get(notes[(2*(i-1) + (j-1))]).first &&
-                (grimoire.isNightOrder || !session.isSpectator)
+                notes[(2 * (i - 1) + (j - 1))] &&
+                  nightOrder.get(notes[(2 * (i - 1) + (j - 1))]).first &&
+                  (grimoire.isNightOrder || !session.isSpectator)
               "
             >
-              <em>{{ nightOrder.get(notes[(2*(i-1) + (j-1))]).first }}.</em>
-              <span v-if="notes[(2*(i-1) + (j-1))].firstNightReminder">{{
-                notes[(2*(i-1) + (j-1))].firstNightReminder
+              <em>{{ nightOrder.get(notes[(2 * (i - 1) + (j - 1))]).first }}.</em>
+              <span v-if="notes[(2 * (i - 1) + (j - 1))].firstNightReminder">{{
+                notes[(2 * (i - 1) + (j - 1))].firstNightReminder
               }}</span>
             </div>
             <div
               class="night-order other"
               v-if="
-                notes[(2*(i-1) + (j-1))] &&
-                nightOrder.get(notes[(2*(i-1) + (j-1))]).other &&
-                (grimoire.isNightOrder || !session.isSpectator)
+                notes[(2 * (i - 1) + (j - 1))] &&
+                  nightOrder.get(notes[(2 * (i - 1) + (j - 1))]).other &&
+                  (grimoire.isNightOrder || !session.isSpectator)
               "
             >
-              <em>{{ nightOrder.get(notes[(2*(i-1) + (j-1))]).other }}.</em>
-              <span v-if="notes[(2*(i-1) + (j-1))].otherNightReminder">{{
-                notes[(2*(i-1) + (j-1))].otherNightReminder
+              <em>{{ nightOrder.get(notes[(2 * (i - 1) + (j - 1))]).other }}.</em>
+              <span v-if="notes[(2 * (i - 1) + (j - 1))].otherNightReminder">{{
+                notes[(2 * (i - 1) + (j - 1))].otherNightReminder
               }}</span>
             </div>
-            <Token :role="notes[(2*(i-1) + (j-1))]"></Token>
+            <Token :role="notes[(2 * (i - 1) + (j - 1))]"></Token>
           </li>
         </ul>
-    </div>
-	  <div
-        class="bluffs"
-        ref="bluffs"
-        :class="{ closed: !isBluffsOpen }"
-      >
+      </div>
+	    <div class="bluffs" ref="bluffs" :class="{ closed: !isBluffsOpen }">
         <h3>
-          <span v-show="session.isSpectator">{{ locale.townsquare.others }}</span>
-          <span v-show="!session.isSpectator">{{ locale.townsquare.bluffs }}</span>
-          <font-awesome-icon icon="times-circle" @click.stop="toggleBluffs" v-show="isBluffsOpen" />
-          <font-awesome-icon icon="plus-circle" @click.stop="toggleBluffs" v-show="!isBluffsOpen" />
+          <span v-show="session.isSpectator">{{
+            locale.townsquare.others
+          }}</span>
+          <span v-show="!session.isSpectator">{{
+            locale.townsquare.bluffs
+          }}</span>
+          <font-awesome-icon
+            icon="times-circle"
+            @click.stop="toggleBluffs"
+            v-show="isBluffsOpen"
+          />
+          <font-awesome-icon
+            icon="plus-circle"
+            @click.stop="toggleBluffs"
+            v-show="!isBluffsOpen"
+          />
         </h3>
-        <ul
-		  v-show="isBluffsOpen"
-		  v-for="i in bluffSize[0]"
-          :key="i"
-		>
+        <ul v-show="isBluffsOpen" v-for="i in bluffSize[0]" :key="i">
           <li
             v-for="j in bluffSize[1]"
             :key="j"
-            @click="openRoleModal((2*(i-1) + (j-1)) * -1 - 1)"
+            @click="openRoleModal((2 * (i - 1) + (j - 1)) * -1 - 1)"
           >
-            <Token :role="bluffs[2*(i-1) + (j-1)]"></Token>
+            <Token :role="bluffs[2 * (i - 1) + (j - 1)]"></Token>
           </li>
-		</ul>
+        </ul>
       </div>
-	</div>  
-	
+    </div>
 
     <div
       class="storytelling"
@@ -284,7 +291,7 @@ export default {
       this.isBluffsOpen = !this.isBluffsOpen;
     },
     toggleNotes() {
-      this.isNotesOpen = !(this.isNotesOpen);
+      this.isNotesOpen = !this.isNotesOpen;
     },
     toggleFabled() {
       this.isFabledOpen = !this.isFabledOpen;
@@ -653,8 +660,9 @@ export default {
     display: grid;
     bottom: 10px;
   }
-  &.bluffs, &.notes {
-	position: static;
+  &.bluffs,
+  &.notes {
+    position: static;
   }
   &.fabled {
     top: 10px;
@@ -768,7 +776,7 @@ export default {
 }
 
 .tokengrid {
-	gap: 25px 25px;
+  gap: 25px 25px;
 }
 
 .fabled ul li .token:before {
