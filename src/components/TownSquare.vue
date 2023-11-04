@@ -257,13 +257,13 @@ export default {
     return {
       selectedPlayer: 0,
       bluffSize: [1, 3], // 1 row, 3 columns
-	  noteSize: [2, 2], // 2 rows, 2 columns
+      noteSize: [2, 2], // 2 rows, 2 columns
       swap: -1,
       move: -1,
       nominate: -1,
       isBluffsOpen: true,
       isFabledOpen: true,
-	  isNotesOpen: false,
+      isNotesOpen: false,
       isTimeControlsOpen: false,
       timerName: "Timer",
       timerDuration: 1,
@@ -273,8 +273,8 @@ export default {
   },
   methods: {
     toggleBluffs() {
-	  this.isNotesOpen = false;
-	  this.isBluffsOpen = !this.isBluffsOpen;
+      this.isNotesOpen = false;
+      this.isBluffsOpen = !this.isBluffsOpen;
     },
     toggleNotes() {
       this.isNotesOpen = !(this.isNotesOpen);
