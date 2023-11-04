@@ -22,7 +22,7 @@
         }"
       ></Player>
     </ul>
-    
+
     <div
       class="bottomleft"
       ref="bottomleft"
@@ -64,34 +64,34 @@
             <div
               class="night-order first"
               v-if="
-                notes[(2 * (i - 1) + (j - 1))] &&
-                  nightOrder.get(notes[(2 * (i - 1) + (j - 1))]).first &&
+                notes[2 * (i - 1) + (j - 1)] &&
+                  nightOrder.get(notes[2 * (i - 1) + (j - 1)]).first &&
                   (grimoire.isNightOrder || !session.isSpectator)
               "
             >
-              <em>{{ nightOrder.get(notes[(2 * (i - 1) + (j - 1))]).first }}.</em>
-              <span v-if="notes[(2 * (i - 1) + (j - 1))].firstNightReminder">{{
-                notes[(2 * (i - 1) + (j - 1))].firstNightReminder
+              <em>{{ nightOrder.get(notes[2 * (i - 1) + (j - 1)]).first }}.</em>
+              <span v-if="notes[2 * (i - 1) + (j - 1)].firstNightReminder">{{
+                notes[2 * (i - 1) + (j - 1)].firstNightReminder
               }}</span>
             </div>
             <div
               class="night-order other"
               v-if="
-                notes[(2 * (i - 1) + (j - 1))] &&
-                  nightOrder.get(notes[(2 * (i - 1) + (j - 1))]).other &&
+                notes[2 * (i - 1) + (j - 1)] &&
+                  nightOrder.get(notes[2 * (i - 1) + (j - 1)]).other &&
                   (grimoire.isNightOrder || !session.isSpectator)
               "
             >
-              <em>{{ nightOrder.get(notes[(2 * (i - 1) + (j - 1))]).other }}.</em>
-              <span v-if="notes[(2 * (i - 1) + (j - 1))].otherNightReminder">{{
-                notes[(2 * (i - 1) + (j - 1))].otherNightReminder
+              <em>{{ nightOrder.get(notes[2 * (i - 1) + (j - 1)]).other }}.</em>
+              <span v-if="notes[2 * (i - 1) + (j - 1)].otherNightReminder">{{
+                notes[2 * (i - 1) + (j - 1)].otherNightReminder
               }}</span>
             </div>
-            <Token :role="notes[(2 * (i - 1) + (j - 1))]"></Token>
+            <Token :role="notes[2 * (i - 1) + (j - 1)]"></Token>
           </li>
         </ul>
       </div>
-	    <div class="bluffs" ref="bluffs" :class="{ closed: !isBluffsOpen }">
+      <div class="bluffs" ref="bluffs" :class="{ closed: !isBluffsOpen }">
         <h3>
           <span v-show="session.isSpectator">{{
             locale.townsquare.others
