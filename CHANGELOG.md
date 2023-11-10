@@ -2,6 +2,8 @@
 
 ## Upcomming Version
 - Correcting Leviathan's english description
+- Correcting "Late Night Drive By"'s name
+- Adding a token "Used" to the Doomsayer
 
 ### Version 3.15.0
 - Night order bubbles always on for storyteller

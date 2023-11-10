@@ -5,7 +5,7 @@
 		"team": "fabled",
 		"firstNightReminder": "",
 		"otherNightReminder": "",
-		"reminders": [],
+		"reminders": ["Utilisé"],
 		"setup": false,
 		"ability": "Si 4 joueurs ou plus sont en vie, chaque joueur vivant peut, une fois par partie, décider qu'un joueur de son propre alignement meure."
   },
