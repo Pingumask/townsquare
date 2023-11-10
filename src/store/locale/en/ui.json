@@ -70,7 +70,9 @@
     "customNote": "Add a custom reminder node"
   },
   "vote":{
-    "nominated": "nominated",
+    "nominates": "nominates",
+    "callexile": "calls for the exile of",
+    "exclam": "!",
     "votes": "votes",
     "inFavor": "in favor",
     "majorityIs": "majority is",
@@ -205,6 +207,7 @@
     "reference": {
         "title": "Character Reference",
         "jinxed": "Jinxed",
+        "notfirstnight": "*Not the first night",
         "teamNames": {
           "townsfolk": "townfolk",
           "outsider": "outsider",

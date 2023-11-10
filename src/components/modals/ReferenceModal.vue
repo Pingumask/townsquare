@@ -84,6 +84,7 @@
         <li></li>
       </ul>
     </div>
+    <div class="asterisk">{{ locale.modal.reference.notfirstnight }}</div>
   </Modal>
 </template>
 
@@ -209,6 +210,12 @@ h3 {
   aside {
     background: linear-gradient(-90deg, $fabled, transparent);
   }
+}
+
+.asterisk {
+  font-size: 60%;
+  text-align: right;
+  padding-top: 20px;
 }
 
 .team {
