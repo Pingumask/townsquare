@@ -913,8 +913,9 @@ export default {
     opacity: 1;
   }
 
-  // adjustment for fabled
-  .fabled &.first {
+  // adjustment for fabled and notes
+  .fabled &.first,
+  .notes &.first {
     span {
       right: auto;
       left: 40px;
