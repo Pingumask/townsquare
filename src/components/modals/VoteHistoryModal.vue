@@ -68,8 +68,8 @@
                 vote.votes == null
                   ? 'minus-square'
                   : vote.votes.length >= vote.majority
-                  ? 'check-square'
-                  : 'square',
+                    ? 'check-square'
+                    : 'square',
               ]"
             />
           </td>
