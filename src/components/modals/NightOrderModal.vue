@@ -40,7 +40,8 @@
               class="player"
               v-if="
                 (role.id == 'dawn' || role.team == 'fabled') &&
-                  !session.isSpectator
+                  !session.isSpectator &&
+                  players.length && players[0].role.id
               "
             >
               <br />
@@ -104,7 +105,8 @@
                 (role.id == 'dawn' ||
                   role.id == 'dusk' ||
                   role.team == 'fabled') &&
-                  !session.isSpectator
+                  !session.isSpectator &&
+                  players.length && players[0].role.id
               "
             >
               <br />
