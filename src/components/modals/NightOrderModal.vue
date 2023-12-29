@@ -137,7 +137,7 @@ export default {
       rolesFirstNight.push({
         id: "dawn",
         name: this.locale.modal.nightOrder.dawn,
-        firstNight: 58,
+        firstNight: 59,
         team: "default",
         players: [],
         firstNightReminder: this.locale.modal.nightOrder.dawnDescription1
@@ -180,7 +180,7 @@ export default {
           {
             id: "minion",
             name: this.locale.modal.nightOrder.minionInfo,
-            firstNight: 5,
+            firstNight: 7,
             team: "minion",
             players: this.players.filter(p => p.role.team === "minion"),
             firstNightReminder: this.locale.modal.nightOrder
@@ -189,7 +189,7 @@ export default {
           {
             id: "evil",
             name: this.locale.modal.nightOrder.demonInfo,
-            firstNight: 8,
+            firstNight: 10,
             team: "demon",
             players: this.players.filter(p => p.role.team === "demon"),
             firstNightReminder: this.locale.modal.nightOrder
@@ -215,7 +215,7 @@ export default {
           id: "dawn",
           name: this.locale.modal.nightOrder.dawn,
           team: "default",
-          otherNight: 77,
+          otherNight: 78,
           players: [],
           otherNightReminder: this.locale.modal.nightOrder.dawnDescription2
         }
