@@ -55,10 +55,12 @@
               backgroundImage: `url(${
                 role.image && grimoire.isImageOptIn
                   ? role.image
-                  : require('../../assets/icons/' +
-                      (role.imageAlt || role.id) +
-                      '.png')
-              })`
+                  : require(
+                      '../../assets/icons/' +
+                        (role.imageAlt || role.id) +
+                        '.png',
+                    )
+              })`,
             }"
           ></span>
           <span class="reminder" v-if="role.firstNightReminder">
@@ -80,10 +82,12 @@
               backgroundImage: `url(${
                 role.image && grimoire.isImageOptIn
                   ? role.image
-                  : require('../../assets/icons/' +
-                      (role.imageAlt || role.id) +
-                      '.png')
-              })`
+                  : require(
+                      '../../assets/icons/' +
+                        (role.imageAlt || role.id) +
+                        '.png',
+                    )
+              })`,
             }"
           ></span>
           <span class="name">
@@ -128,10 +132,10 @@ import { mapMutations, mapState } from "vuex";
 
 export default {
   components: {
-    Modal
+    Modal,
   },
   computed: {
-    rolesFirstNight: function() {
+    rolesFirstNight: function () {
       const rolesFirstNight = [];
       // Ajouter le matin à l'ordre nocturne
       rolesFirstNight.push({
@@ -182,25 +186,25 @@ export default {
             name: this.locale.modal.nightOrder.minionInfo,
             firstNight: 7,
             team: "minion",
-            players: this.players.filter(p => p.role.team === "minion"),
-            firstNightReminder: this.locale.modal.nightOrder
-              .minionInfoDescription
+            players: this.players.filter((p) => p.role.team === "minion"),
+            firstNightReminder:
+              this.locale.modal.nightOrder.minionInfoDescription,
           },
           {
             id: "evil",
             name: this.locale.modal.nightOrder.demonInfo,
             firstNight: 10,
             team: "demon",
-            players: this.players.filter(p => p.role.team === "demon"),
-            firstNightReminder: this.locale.modal.nightOrder
-              .demonInfoDescription
-          }
+            players: this.players.filter((p) => p.role.team === "demon"),
+            firstNightReminder:
+              this.locale.modal.nightOrder.demonInfoDescription,
+          },
         );
       }
       rolesFirstNight.sort((a, b) => a.firstNight - b.firstNight);
       return rolesFirstNight;
     },
-    rolesOtherNight: function() {
+    rolesOtherNight: function () {
       const rolesOtherNight = [];
       rolesOtherNight.push(
         {
@@ -215,14 +219,15 @@ export default {
           id: "dawn",
           name: this.locale.modal.nightOrder.dawn,
           team: "default",
-          otherNight: 79,
+          otherNight: Infinity,
           players: [],
           otherNightReminder: this.locale.modal.nightOrder.dawnDescription2
+
         }
       );
       this.fabled
         .filter(({ otherNight }) => otherNight)
-        .forEach(fabled => {
+        .forEach((fabled) => {
           rolesOtherNight.push(Object.assign({ players: [] }, fabled));
         });
       this.roles.forEach(role => {
@@ -260,8 +265,8 @@ export default {
     ...mapState("players", ["players", "fabled"])
   },
   methods: {
-    ...mapMutations(["toggleModal"])
-  }
+    ...mapMutations(["toggleModal"]),
+  },
 };
 </script>
 

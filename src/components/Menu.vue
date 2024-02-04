@@ -4,11 +4,9 @@
       class="nomlog-summary"
       v-show="session.voteHistory.length && session.sessionId"
       @click="toggleModal('voteHistory')"
-      :title="
-        `${session.voteHistory.length} recent ${
-          session.voteHistory.length == 1 ? 'nomination' : 'nominations'
-        }`
-      "
+      :title="`${session.voteHistory.length} recent ${
+        session.voteHistory.length == 1 ? 'nomination' : 'nominations'
+      }`"
     >
       <font-awesome-icon icon="book-dead" />
       {{ session.voteHistory.length }}
@@ -17,15 +15,13 @@
       class="session"
       :class="{
         spectator: session.isSpectator,
-        reconnecting: session.isReconnecting
+        reconnecting: session.isReconnecting,
       }"
       v-if="session.sessionId"
       @click="leaveSession"
-      :title="
-        `${session.playerCount} other players in this session${
-          session.ping ? ' (' + session.ping + 'ms latency)' : ''
-        }`
-      "
+      :title="`${session.playerCount} other players in this session${
+        session.ping ? ' (' + session.ping + 'ms latency)' : ''
+      }`"
     >
       <font-awesome-icon icon="broadcast-tower" />
       {{ session.playerCount }}
@@ -76,7 +72,7 @@
               <font-awesome-icon
                 :icon="[
                   'fas',
-                  grimoire.isOrganVoteMode ? 'check-square' : 'square'
+                  grimoire.isOrganVoteMode ? 'check-square' : 'square',
                 ]"
               />
             </em>
@@ -87,7 +83,7 @@
               <font-awesome-icon
                 :icon="[
                   'fas',
-                  grimoire.isNightOrder ? 'check-square' : 'square'
+                  grimoire.isNightOrder ? 'check-square' : 'square',
                 ]"
               />
             </em>
@@ -108,7 +104,7 @@
           </li>
           <li @click="setBackground">
             {{ locale.menu.grimoire.background }}
-            <em><font-awesome-icon icon="image"/></em>
+            <em><font-awesome-icon icon="image" /></em>
           </li>
           <li v-if="!edition.isOfficial" @click="imageOptIn">
             <small>{{ locale.menu.grimoire.customImages }}</small>
@@ -116,7 +112,7 @@
               ><font-awesome-icon
                 :icon="[
                   'fas',
-                  grimoire.isImageOptIn ? 'check-square' : 'square'
+                  grimoire.isImageOptIn ? 'check-square' : 'square',
                 ]"
             /></em>
           </li>
@@ -126,7 +122,7 @@
               ><font-awesome-icon
                 :icon="[
                   'fas',
-                  grimoire.isStreamerMode ? 'check-square' : 'square'
+                  grimoire.isStreamerMode ? 'check-square' : 'square',
                 ]"
             /></em>
           </li>
@@ -178,11 +174,11 @@
             </li>
             <li @click="copySessionUrl">
               {{ locale.menu.session.link }}
-              <em><font-awesome-icon icon="copy"/></em>
+              <em><font-awesome-icon icon="copy" /></em>
             </li>
             <li v-if="!session.isSpectator" @click="distributeRoles">
               {{ locale.menu.session.sendRoles }}
-              <em><font-awesome-icon icon="theater-masks"/></em>
+              <em><font-awesome-icon icon="theater-masks" /></em>
             </li>
             <li
               v-if="session.voteHistory.length || !session.isSpectator"
@@ -205,11 +201,11 @@
           </li>
           <li @click="randomizeSeatings" v-if="players.length > 2">
             {{ locale.menu.players.randomize }}
-            <em><font-awesome-icon icon="dice"/></em>
+            <em><font-awesome-icon icon="dice" /></em>
           </li>
           <li @click="clearPlayers" v-if="players.length">
             {{ locale.menu.players.removeAll }}
-            <em><font-awesome-icon icon="trash-alt"/></em>
+            <em><font-awesome-icon icon="trash-alt" /></em>
           </li>
         </template>
 
@@ -229,11 +225,11 @@
           </li>
           <li v-if="!session.isSpectator" @click="toggleModal('fabled')">
             {{ locale.menu.characters.addFabled }}
-            <em><font-awesome-icon icon="dragon"/></em>
+            <em><font-awesome-icon icon="dragon" /></em>
           </li>
           <li @click="clearRoles" v-if="players.length">
             {{ locale.menu.characters.removeAll }}
-            <em><font-awesome-icon icon="trash-alt"/></em>
+            <em><font-awesome-icon icon="trash-alt" /></em>
           </li>
         </template>
 
@@ -250,7 +246,7 @@
           </li>
           <li @click="toggleModal('gameState')">
             {{ locale.menu.help.gameState }}
-            <em><font-awesome-icon icon="file-code"/></em>
+            <em><font-awesome-icon icon="file-code" /></em>
           </li>
           <li>
             <a href="https://discord.gg/gD3AB8qCrw" target="_blank">
@@ -284,11 +280,11 @@ import { mapMutations, mapState } from "vuex";
 export default {
   computed: {
     ...mapState(["grimoire", "session", "edition", "locale"]),
-    ...mapState("players", ["players"])
+    ...mapState("players", ["players"]),
   },
   data() {
     return {
-      tab: "grimoire"
+      tab: "grimoire",
     };
   },
   methods: {
@@ -302,7 +298,7 @@ export default {
       if (this.session.sessionId) return;
       const sessionId = prompt(
         this.locale.prompt.createSession,
-        Math.round(Math.random() * 10000)
+        Math.round(Math.random() * 10000),
       );
       if (sessionId) {
         this.$store.commit("session/clearVoteHistory");
@@ -326,7 +322,7 @@ export default {
           (() => {
             this.$store.commit("session/distributeRoles", false);
           }).bind(this),
-          2000
+          2000,
         );
       }
     },
@@ -409,9 +405,9 @@ export default {
       "toggleNightOrder",
       "toggleStatic",
       "setZoom",
-      "toggleModal"
-    ])
-  }
+      "toggleModal",
+    ]),
+  },
 };
 </script>
 

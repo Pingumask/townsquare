@@ -10,9 +10,9 @@
           'no-vote': player.isVoteless,
           you: session.sessionId && player.id && player.id === session.playerId,
           'vote-yes': session.votes[index],
-          'vote-lock': voteLocked
+          'vote-lock': voteLocked,
         },
-        player.role.team
+        player.role.team,
       ]"
     >
       <div class="shroud" @click="toggleStatus()"></div>
@@ -22,7 +22,7 @@
         class="night-order first"
         v-if="
           nightOrder.get(player).first &&
-            (grimoire.isNightOrder || !session.isSpectator)
+          (grimoire.isNightOrder || !session.isSpectator)
         "
       >
         <em>{{ nightOrder.get(player).first }}.</em>
@@ -34,7 +34,7 @@
         class="night-order other"
         v-if="
           nightOrder.get(player).other &&
-            (grimoire.isNightOrder || !session.isSpectator)
+          (grimoire.isNightOrder || !session.isSpectator)
         "
       >
         <em>{{ nightOrder.get(player).other }}.</em>
@@ -53,8 +53,8 @@
         <font-awesome-icon
           v-if="
             !grimoire.isOrganVoteMode ||
-              !session.isSpectator ||
-              player.id == session.playerId
+            !session.isSpectator ||
+            player.id == session.playerId
           "
           icon="hand-paper"
           class="vote"
@@ -64,8 +64,8 @@
         <font-awesome-icon
           v-if="
             grimoire.isOrganVoteMode &&
-              session.isSpectator &&
-              player.id !== session.playerId
+            session.isSpectator &&
+            player.id !== session.playerId
           "
           icon="question"
           class="vote"
@@ -75,8 +75,8 @@
         <font-awesome-icon
           v-if="
             !grimoire.isOrganVoteMode ||
-              !session.isSpectator ||
-              player.id == session.playerId
+            !session.isSpectator ||
+            player.id == session.playerId
           "
           icon="times"
           class="vote"
@@ -86,8 +86,8 @@
         <font-awesome-icon
           v-if="
             grimoire.isOrganVoteMode &&
-              session.isSpectator &&
-              player.id !== session.playerId
+            session.isSpectator &&
+            player.id !== session.playerId
           "
           icon="question"
           class="vote"
@@ -159,7 +159,7 @@
             @click="changePronouns"
             v-if="
               !session.isSpectator ||
-                (session.isSpectator && player.id === session.playerId)
+              (session.isSpectator && player.id === session.playerId)
             "
           >
             <font-awesome-icon icon="venus-mars" />{{
@@ -230,10 +230,12 @@
             backgroundImage: `url(${
               reminder.image && grimoire.isImageOptIn
                 ? reminder.image
-                : require('../assets/icons/' +
-                    (reminder.imageAlt || reminder.role) +
-                    '.png')
-            })`
+                : require(
+                    '../assets/icons/' +
+                      (reminder.imageAlt || reminder.role) +
+                      '.png',
+                  )
+            })`,
           }"
         ></span>
         <span class="text">{{ reminder.name }}</span>
@@ -252,22 +254,22 @@ import { mapGetters, mapState } from "vuex";
 
 export default {
   components: {
-    Token
+    Token,
   },
   props: {
     player: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     ...mapState("players", ["players"]),
     ...mapState(["grimoire", "session", "locale"]),
     ...mapGetters({ nightOrder: "players/nightOrder" }),
-    index: function() {
+    index: function () {
       return this.players.indexOf(this.player);
     },
-    voteLocked: function() {
+    voteLocked: function () {
       const session = this.session;
       const players = this.players.length;
       if (!session.nomination) return false;
@@ -275,7 +277,7 @@ export default {
         (this.index - 1 + players - session.nomination[1]) % players;
       return indexAdjusted < session.lockedVote - 1;
     },
-    zoom: function() {
+    zoom: function () {
       if (this.players.length < 7) {
         return { width: 18 + this.grimoire.zoom + "vmin" };
       } else if (this.players.length <= 10) {
@@ -285,12 +287,12 @@ export default {
       } else {
         return { width: 12 + this.grimoire.zoom + "vmin" };
       }
-    }
+    },
   },
   data() {
     return {
       isMenuOpen: false,
-      isSwap: false
+      isSwap: false,
     };
   },
   methods: {
@@ -346,7 +348,7 @@ export default {
       this.$store.commit("players/update", {
         player: this.player,
         property,
-        value
+        value,
       });
       if (closeMenu) {
         this.isMenuOpen = false;
@@ -383,10 +385,10 @@ export default {
       if (!this.voteLocked) return;
       this.$store.commit("session/voteSync", [
         this.index,
-        !this.session.votes[this.index]
+        !this.session.votes[this.index],
       ]);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -924,7 +926,10 @@ li.move:not(.from) .player .overlay svg.move {
     width: 100%;
     position: absolute;
     top: 15%;
-    text-shadow: 0 1px 1px #f6dfbd, 0 -1px 1px #f6dfbd, 1px 0 1px #f6dfbd,
+    text-shadow:
+      0 1px 1px #f6dfbd,
+      0 -1px 1px #f6dfbd,
+      1px 0 1px #f6dfbd,
       -1px 0 1px #f6dfbd;
   }
 

@@ -6,13 +6,13 @@
 export default {
   props: {
     timerName: String,
-    timerDuration: Number
+    timerDuration: Number,
   },
   computed: {
     style() {
       return `--timer: ${this.timerDuration}`;
-    }
-  }
+    },
+  },
 };
 </script>
 

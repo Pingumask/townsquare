@@ -6,12 +6,15 @@ services:
     restart: unless-stopped
     volumes:
       - "${SSH_KEYS}:/root/.ssh"
+      - botc_front:/app/townsquare
     environment:
       NODE_ENV: development
     ports:
       - "${NODE_PORT}:8080"
-    working_dir: /app
+    working_dir: /app/townsquare
     logging:
       driver: "json-file"
       options:
         max-size: "200k"
+volumes:
+  botc_front:

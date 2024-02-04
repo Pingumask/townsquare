@@ -31,7 +31,7 @@
     "hatred": [
       {
         "id": "Heretic",
-        "reason": "A Pit-Hag can not create a Heretic. "
+        "reason": "A Pit-Hag cannot create a Heretic. "
       },
       {
         "id": "Damsel",
@@ -39,7 +39,7 @@
       },
       {
         "id": "Politician",
-        "reason": "A Pit-hag can not create an evil Politician."
+        "reason": "A Pit-hag cannot create an evil Politician."
       }
     ]
   },
@@ -69,19 +69,19 @@
       },
       {
         "id": "Ravenkeeper",
-        "reason": "If Leviathan is in play & the Ravenkeeper dies by execution, they wake that night to use their ability."
+        "reason": "If Leviathan is in play and the Ravenkeeper dies by execution, they wake that night to use their ability."
       },
       {
         "id": "Sage",
-        "reason": "If Leviathan is in play & the Sage dies by execution, they wake that night to use their ability."
+        "reason": "If Leviathan is in play and the Sage dies by execution, they wake that night to use their ability."
       },
       {
         "id": "Farmer",
-        "reason": "If Leviathan is in play & a Farmer dies by execution, a good player becomes a Farmer that night."
+        "reason": "If Leviathan is in play and a Farmer dies by execution, a good player becomes a Farmer that night."
       },
       {
         "id": "Mayor",
-        "reason": "If Leviathan is in play & no execution occurs on day 5, good wins."
+        "reason": "If Leviathan is in play and no execution occurs on day 5, good wins."
       }
     ]
   },
@@ -107,11 +107,11 @@
       },
       {
         "id": "Magician",
-        "reason": "Only 1 jinxed character can be in play. "
+        "reason": "Only one jinxed character can be in play. "
       },
       {
         "id": "Scarlet Woman",
-        "reason": "If there are 5 or more players alive and the player holding the Lil' Monsta token dies, the Scarlet Woman is given the Lil' Monsta token tonight."
+        "reason": "If there are five or more players alive and the player holding the Lil' Monsta token dies, the Scarlet Woman is given the Lil' Monsta token tonight."
       }
     ]
   },
@@ -120,7 +120,7 @@
     "hatred": [
       {
         "id": "Gambler",
-        "reason": "If the Lycanthrope is alive and the Gambler kills themself at night, no other players can die tonight."
+        "reason": "If the Lycanthrope is alive and the Gambler kills themselves at night, no other players can die tonight."
       }
     ]
   },
@@ -129,11 +129,11 @@
     "hatred": [
       {
         "id": "Engineer",
-        "reason": "Legion and the Engineer can not both be in play at the start of the game. If the Engineer creates Legion, most players (including all evil players) become evil Legion."
+        "reason": "Legion and the Engineer cannot both be in play at the start of the game. If the Engineer creates Legion, most players (including all evil players) become evil Legion."
       },
       {
         "id": "Preacher",
-        "reason": "Only 1 jinxed character can be in play."
+        "reason": "Only one jinxed character can be in play."
       }
     ]
   },
@@ -151,11 +151,11 @@
     "hatred": [
       {
         "id": "Magician",
-        "reason": "When the Spy sees the Grimoire, the Demon and Magician's character tokens are removed."
+        "reason": "When the Spy sees the Grimoire, the Demon and the Magician's character tokens are removed."
       },
       {
         "id": "Alchemist",
-        "reason": "The Alchemist can not have the Spy ability."
+        "reason": "The Alchemist cannot have the Spy ability."
       },
       {
         "id": "Poppy Grower",
@@ -163,11 +163,11 @@
       },
       {
         "id": "Damsel",
-        "reason": "Only 1 jinxed character can be in play. "
+        "reason": "Only one jinxed character can be in play. "
       },
       {
         "id": "Heretic",
-        "reason": "Only 1 jinxed character can be in play."
+        "reason": "Only one jinxed character can be in play."
       }
     ]
   },
@@ -176,7 +176,7 @@
     "hatred": [
       {
         "id": "Magician",
-        "reason": "When the Widow sees the Grimoire, the Demon and Magician's character tokens are removed."
+        "reason": "When the Widow sees the Grimoire, the Demon and the Magician's character tokens are removed."
       },
       {
         "id": "Poppy Grower",
@@ -184,15 +184,15 @@
       },
       {
         "id": "Alchemist",
-        "reason": "The Alchemist can not have the Widow ability."
+        "reason": "The Alchemist cannot have the Widow ability."
       },
       {
         "id": "Damsel",
-        "reason": "Only 1 jinxed character can be in play."
+        "reason": "Only one jinxed character can be in play."
       },
       {
         "id": "Heretic",
-        "reason": "Only 1 jinxed character can be in play."
+        "reason": "Only one jinxed character can be in play."
       }
     ]
   },
@@ -201,7 +201,7 @@
     "hatred": [
       {
         "id": "Heretic",
-        "reason": "Only 1 jinxed character can be in play."
+        "reason": "Only one jinxed character can be in play."
       }
     ]
   },
@@ -210,7 +210,7 @@
     "hatred": [
       {
         "id": "Heretic",
-        "reason": "The Baron might only add 1 Outsider, not 2."
+        "reason": "The Baron might only add one Outsider, not two."
       }
     ]
   },
@@ -219,7 +219,7 @@
     "hatred": [
       {
         "id": "Lil' Monsta",
-        "reason": "The Marionette neighbors a Minion, not the Demon. The Marionette is not woken to choose who takes the Lil' Monsta token."
+        "reason": "The Marionette neighbors a Minion, not the Demon. The Marionette is not woken to choose who takes the Lil' Monsta token, and does not learn they are the Marionette if they have the Lil' Monsta token."
       },
       {
         "id": "Poppy Grower",
@@ -248,7 +248,7 @@
     "hatred": [
       {
         "id": "Engineer",
-        "reason": "Riot and the Engineer can not both be in play at the start of the game. \nIf the Engineer creates Riot, the evil players become Riot."
+        "reason": "Riot and the Engineer cannot both be in play at the start of the game. If the Engineer creates Riot, the evil players become Riot."
       },
       {
         "id": "Golem",
@@ -256,7 +256,7 @@
       },
       {
         "id": "Snitch",
-        "reason": "If the Snitch is in play, each Riot player gets an extra 3 bluffs."
+        "reason": "If the Snitch is in play, each Riot player gets an extra three bluffs."
       },
       {
         "id": "Saint",
@@ -264,19 +264,19 @@
       },
       {
         "id": "Butler",
-        "reason": "The Butler can not nominate their master."
+        "reason": "The Butler cannot nominate their master."
       },
       {
         "id": "Pit-Hag",
-        "reason": "If the Pit-Hag creates Riot, all evil players become Riot. \nIf the Pit-Hag creates Riot after day 3, the game continues for one more day."
+        "reason": "If the Pit-Hag creates Riot, all evil players become Riot. If the Pit-Hag creates Riot after day 3, the game continues for one more day."
       },
       {
         "id": "Mayor",
-        "reason": "If the 3rd day begins with just three players alive, the players may choose (as a group) not to nominate at all. If so (and a Mayor is alive) then the Mayor's team wins."
+        "reason": "If the third day begins with just three players alive, the players may choose (as a group) not to nominate at all. If so (and a Mayor is alive) the Mayor's team wins."
       },
       {
         "id": "Monk",
-        "reason": "If a Riot player nominates and kills the Monk-protected-player, the Monk-protected-player does not die."
+        "reason": "If a Riot player nominates a Monk-protected player, the protected-player does not die."
       },
       {
         "id": "Farmer",
@@ -284,7 +284,7 @@
       },
       {
         "id": "Innkeeper",
-        "reason": "If a Riot player nominates an Innkeeper-protected-player, the Innkeeper-protected-player does not die."
+        "reason": "If a Riot player nominates an Innkeeper-protected player, the protected-player does not die."
       },
       {
         "id": "Sage",
@@ -300,7 +300,7 @@
       },
       {
         "id": "Grandmother",
-        "reason": "If a Riot player nominates and kills the Grandchild, the Grandmother dies too."
+        "reason": "If a Riot player nominates and kills the grandchild, the Grandmother dies too."
       },
       {
         "id": "King",
@@ -308,31 +308,31 @@
       },
       {
         "id": "Exorcist",
-        "reason": "Only 1 jinxed character can be in play."
+        "reason": "Only one jinxed character can be in play."
       },
       {
         "id": "Minstrel",
-        "reason": "Only 1 jinxed character can be in play."
+        "reason": "Only one jinxed character can be in play."
       },
       {
         "id": "Flowergirl",
-        "reason": "Only 1 jinxed character can be in play."
+        "reason": "Only one jinxed character can be in play."
       },
       {
         "id": "Undertaker",
-        "reason": "Players that die by nomination register as being executed to the Undertaker."
+        "reason": "Players that die by nomination register as executed to the Undertaker."
       },
       {
         "id": "Cannibal",
-        "reason": "Players that die by nomination register as being executed to the Cannibal."
+        "reason": "Players that die by nomination register as executed to the Cannibal."
       },
       {
         "id": "Pacifist",
-        "reason": "Players that die by nomination register as being executed to the Pacifist."
+        "reason": "Players that die by nomination register as executed to the Pacifist."
       },
       {
         "id": "Devil's Advocate",
-        "reason": "Players that die by nomination register as being executed to the Devil's Advocate."
+        "reason": "Players that die by nomination register as executed to the Devil's Advocate."
       },
       {
         "id": "Investigator",
@@ -365,7 +365,7 @@
       },
       {
         "id": "Slayer",
-        "reason": "If the Slayer slays the Lleech's host, the host dies. "
+        "reason": "If the Slayer shoots the Lleech's host, the host dies. "
       },
       {
         "id": "Heretic",

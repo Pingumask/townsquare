@@ -30,14 +30,14 @@ import { mapMutations, mapState, mapGetters } from "vuex";
 export default {
   computed: {
     ...mapState(["locale"]),
-    ...mapGetters({ nightOrder: "players/nightOrder" })
+    ...mapGetters({ nightOrder: "players/nightOrder" }),
   },
   data() {
     return {
-      language: window.navigator.userLanguage || window.navigator.language
+      language: window.navigator.userLanguage || window.navigator.language,
     };
   },
-  methods: mapMutations(["toggleMenu"])
+  methods: mapMutations(["toggleMenu"]),
 };
 </script>
 

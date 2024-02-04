@@ -2,6 +2,21 @@
 
 ## Upcomming Version
 - Updating night order (and its print)
+- Correcting automatic adding/deletion of Fabled
+
+### Version 3.17.0
+
+- Updating english jinxes
+- Adding an asterisk in the roles reference
+- Correcting the message when someone wants to exile a Traveller
+- Correcting Leviathan's english description
+- Correcting "Late Night Drive By"'s name
+- Adding a token "Used" to the Doomsayer
+- Updated packages & Dockerfile for node >=18
+
+### Version 3.16.0 (merged upstream 2.16.2)
+- fixed custom script format to support new script tool JSON
+- updated packages to be compatible with Node >= 18 again
 
 ### Version 3.15.0
 - Night order bubbles always on for storyteller
@@ -159,7 +174,7 @@ Add localization capabilities and french translation
 ---
 
 ### Version 2.16.1
-Updated character night order to be consistent with script tool
+- Updated character night order to be consistent with script tool
 
 ---
 

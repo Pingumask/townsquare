@@ -31,16 +31,16 @@
 
 <script>
 export default {
-  data: function() {
+  data: function () {
     return {
-      isMaximized: false
+      isMaximized: false,
     };
   },
   methods: {
     close() {
       this.$emit("close");
-    }
-  }
+    },
+  },
 };
 </script>
 

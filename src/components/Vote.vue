@@ -6,16 +6,21 @@
     </div>
     <div class="overlay">
       <audio src="../assets/sounds/countdown.mp3" preload="auto"></audio>
-      <em class="blue">{{ nominator.name }}</em> {{ locale.vote.nominated }}
+      <em class="blue">{{ nominator.name }}</em>
+      {{
+        nominee.role.team == "traveler"
+          ? locale.vote.callexile
+          : locale.vote.nominates
+      }}
       <em>{{ nominee.name }}</em
-      >!
+      >{{ locale.vote.exclam }}
       <br />
       <em
         class="blue"
         v-if="
           !grimoire.isOrganVoteMode ||
-            nominee.role.team == 'traveler' ||
-            !session.isSpectator
+          nominee.role.team == 'traveler' ||
+          !session.isSpectator
         "
       >
         {{ voters.length }} {{ locale.vote.votes }}
@@ -71,7 +76,7 @@
           <div
             class="button"
             :class="{
-              disabled: session.nomination[1] === session.markedPlayer
+              disabled: session.nomination[1] === session.markedPlayer,
             }"
             @click="setMarked"
           >
@@ -137,44 +142,46 @@ import Countdown from "./Countdown";
 
 export default {
   components: {
-    Countdown
+    Countdown,
   },
   computed: {
     ...mapState("players", ["players"]),
     ...mapState(["session", "grimoire", "locale"]),
     ...mapGetters({ alive: "players/alive" }),
-    nominator: function() {
+    nominator: function () {
       return this.players[this.session.nomination[0]];
     },
-    nominatorStyle: function() {
+    nominatorStyle: function () {
       const players = this.players.length;
       const nomination = this.session.nomination[0];
       return {
         transform: `rotate(${Math.round((nomination / players) * 360)}deg)`,
-        transitionDuration: this.session.votingSpeed - 100 + "ms"
+        transitionDuration: this.session.votingSpeed - 100 + "ms",
       };
     },
-    nominee: function() {
+    nominee: function () {
       return this.players[this.session.nomination[1]];
     },
-    nomineeStyle: function() {
+    nomineeStyle: function () {
       const players = this.players.length;
       const nomination = this.session.nomination[1];
       const lock = this.session.lockedVote;
       const rotation = (360 * (nomination + Math.min(lock, players))) / players;
       return {
         transform: `rotate(${Math.round(rotation)}deg)`,
-        transitionDuration: this.session.votingSpeed - 100 + "ms"
+        transitionDuration: this.session.votingSpeed - 100 + "ms",
       };
     },
-    player: function() {
-      return this.players.find(p => p.id === this.session.playerId);
+    player: function () {
+      return this.players.find((p) => p.id === this.session.playerId);
     },
-    currentVote: function() {
-      const index = this.players.findIndex(p => p.id === this.session.playerId);
+    currentVote: function () {
+      const index = this.players.findIndex(
+        (p) => p.id === this.session.playerId,
+      );
       return index >= 0 ? !!this.session.votes[index] : undefined;
     },
-    canVote: function() {
+    canVote: function () {
       if (!this.player) return false;
       if (this.player.isVoteless && this.nominee.role.team !== "traveler")
         return false;
@@ -185,26 +192,27 @@ export default {
         (index - 1 + players - session.nomination[1]) % players;
       return indexAdjusted >= session.lockedVote - 1;
     },
-    voters: function() {
+    voters: function () {
       const nomination = this.session.nomination[1];
       const voters = Array(this.players.length)
         .fill("")
         .map((x, index) =>
-          this.session.votes[index] ? this.players[index].name : ""
+          this.session.votes[index] ? this.players[index].name : "",
         );
       const reorder = [
         ...voters.slice(nomination + 1),
-        ...voters.slice(0, nomination + 1)
+        ...voters.slice(0, nomination + 1),
       ];
-      return (this.session.lockedVote
-        ? reorder.slice(0, this.session.lockedVote - 1)
-        : reorder
-      ).filter(n => !!n);
-    }
+      return (
+        this.session.lockedVote
+          ? reorder.slice(0, this.session.lockedVote - 1)
+          : reorder
+      ).filter((n) => !!n);
+    },
   },
   data() {
     return {
-      voteTimer: null
+      voteTimer: null,
     };
   },
   methods: {
@@ -254,7 +262,9 @@ export default {
     },
     vote(vote) {
       if (!this.canVote) return false;
-      const index = this.players.findIndex(p => p.id === this.session.playerId);
+      const index = this.players.findIndex(
+        (p) => p.id === this.session.playerId,
+      );
       if (index >= 0 && !!this.session.votes[index] !== vote) {
         this.$store.commit("session/voteSync", [index, vote]);
       }
@@ -270,8 +280,8 @@ export default {
     },
     removeMarked() {
       this.$store.commit("session/setMarkedPlayer", -1);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -289,7 +299,10 @@ export default {
   background: url("../assets/demon-head.png") center center no-repeat;
   background-size: auto 75%;
   text-align: center;
-  text-shadow: 0 1px 2px #000000, 0 -1px 2px #000000, 1px 0 2px #000000,
+  text-shadow:
+    0 1px 2px #000000,
+    0 -1px 2px #000000,
+    1px 0 2px #000000,
     -1px 0 2px #000000;
 
   .mark .button {

@@ -70,7 +70,9 @@
     "customNote": "Ajouter une note personnalisée"
   },
   "vote":{
-    "nominated": "accuse",
+    "nominates": "accuse",
+    "callexile": "veut exiler",
+    "exclam": " !",
     "votes": "votes",
     "inFavor": "pour",
     "majorityIs": "majorité à",
@@ -210,6 +212,7 @@
     "reference": {
         "title": "Réference de rôles",
         "jinxed": "Jinx",
+        "notfirstnight": "* Pas la première nuit",
         "teamNames": {
           "townsfolk": "villageois",
           "outsider": "étranger",

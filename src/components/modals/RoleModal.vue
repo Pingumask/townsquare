@@ -60,12 +60,12 @@ export default {
     availableRoles() {
       const availableRoles = [];
       const players = this.$store.state.players.players;
-      this.$store.state.roles.forEach(role => {
+      this.$store.state.roles.forEach((role) => {
         // don't show bluff roles that are already assigned to players
         if (
           this.playerIndex >= 0 ||
           (this.playerIndex < 0 &&
-            !players.some(player => player.role.id === role.id))
+            !players.some((player) => player.role.id === role.id))
         ) {
           availableRoles.push(role);
         }
@@ -75,11 +75,11 @@ export default {
     },
     ...mapState(["modals", "roles", "session", "locale"]),
     ...mapState("players", ["players"]),
-    ...mapState(["otherTravelers"])
+    ...mapState(["otherTravelers"]),
   },
   data() {
     return {
-      tab: "editionRoles"
+      tab: "editionRoles",
     };
   },
   methods: {
@@ -88,7 +88,7 @@ export default {
         // assign to bluff slot (index < 0)
         this.$store.commit("players/setBluff", {
           index: this.playerIndex * -1 - 1,
-          role
+          role,
         });
       } else {
         if (this.session.isSpectator && role.team === "traveler") return;
@@ -97,7 +97,7 @@ export default {
         this.$store.commit("players/update", {
           player,
           property: "role",
-          value: role
+          value: role,
         });
       }
       this.tab = "editionRoles";
@@ -107,8 +107,8 @@ export default {
       this.tab = "editionRoles";
       this.toggleModal("role");
     },
-    ...mapMutations(["toggleModal"])
-  }
+    ...mapMutations(["toggleModal"]),
+  },
 };
 </script>
 
@@ -122,19 +122,29 @@ ul.tokens li {
   transition: transform 500ms ease;
 
   &.townsfolk {
-    box-shadow: 0 0 10px $townsfolk, 0 0 10px #004cff;
+    box-shadow:
+      0 0 10px $townsfolk,
+      0 0 10px #004cff;
   }
   &.outsider {
-    box-shadow: 0 0 10px $outsider, 0 0 10px $outsider;
+    box-shadow:
+      0 0 10px $outsider,
+      0 0 10px $outsider;
   }
   &.minion {
-    box-shadow: 0 0 10px $minion, 0 0 10px $minion;
+    box-shadow:
+      0 0 10px $minion,
+      0 0 10px $minion;
   }
   &.demon {
-    box-shadow: 0 0 10px $demon, 0 0 10px $demon;
+    box-shadow:
+      0 0 10px $demon,
+      0 0 10px $demon;
   }
   &.traveler {
-    box-shadow: 0 0 10px $traveler, 0 0 10px $traveler;
+    box-shadow:
+      0 0 10px $traveler,
+      0 0 10px $traveler;
   }
   &:hover {
     transform: scale(1.2);

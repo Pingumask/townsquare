@@ -8,7 +8,7 @@
           role.image && grimoire.isImageOptIn
             ? role.image
             : require('../assets/icons/' + (role.imageAlt || role.id) + '.png')
-        })`
+        })`,
       }"
     ></span>
     <span
@@ -54,29 +54,29 @@ export default {
   props: {
     role: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
   computed: {
-    reminderLeaves: function() {
+    reminderLeaves: function () {
       return (
         (this.role.reminders || []).length +
         (this.role.remindersGlobal || []).length
       );
     },
-    ...mapState(["grimoire"])
+    ...mapState(["grimoire"]),
   },
   data() {
     return {};
   },
   filters: {
-    nameToFontSize: name => (name && name.length > 10 ? "90%" : "110%")
+    nameToFontSize: (name) => (name && name.length > 10 ? "90%" : "110%"),
   },
   methods: {
     setRole() {
       this.$emit("set-role");
-    }
-  }
+    },
+  },
 };
 </script>
 
