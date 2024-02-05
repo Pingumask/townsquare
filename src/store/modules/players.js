@@ -29,7 +29,7 @@ const getters = {
   nightOrder({ players, fabled, notes }) {
     const firstNight = [0];
     const otherNight = [0];
-    fabled.forEach(role => {
+    fabled.forEach((role) => {
       if (role.firstNight && !firstNight.includes(role)) {
         firstNight.push(role);
       }
@@ -45,19 +45,19 @@ const getters = {
         otherNight.push(role);
       }
     });
-	notes.forEach(role => {
+    notes.forEach(role => {
       if (role.firstNight && !firstNight.includes(role)) {
         firstNight.push(role);
       }
-	  if (role.otherNight && !otherNight.includes(role)) {
+      if (role.otherNight && !otherNight.includes(role)) {
         otherNight.push(role);
       }
     });
-    
+
     firstNight.sort((a, b) => a.firstNight - b.firstNight);
-    otherNight.sort((a, b) => a.otherNight - b.otherNight);	
+    otherNight.sort((a, b) => a.otherNight - b.otherNight);
     const nightOrder = new Map();
-	
+
     players.forEach((player) => {
       const first = Math.max(firstNight.indexOf(player.role), 0);
       const other = Math.max(otherNight.indexOf(player.role), 0);
@@ -68,7 +68,7 @@ const getters = {
       const other = Math.max(otherNight.indexOf(role), 0);
       nightOrder.set(role, { first, other });
     });
-    notes.forEach(role => {
+    notes.forEach((role) => {
       const first = Math.max(firstNight.indexOf(role), 0);
       const other = Math.max(otherNight.indexOf(role), 0);
       nightOrder.set(role, { first, other });
