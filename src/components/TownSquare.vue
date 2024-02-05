@@ -57,7 +57,7 @@
             :key="j"
             @click="
               openRoleModal(
-                (2 * (i - 1) + (j - 1)) * -1 - bluffSize[0] * bluffSize[1] - 1
+                (2 * (i - 1) + (j - 1)) * -1 - bluffSize[0] * bluffSize[1] - 1,
               )
             "
           >
@@ -269,7 +269,7 @@ export default {
   },
   data() {
     return {
-      selectedPlayer: 0,      
+      selectedPlayer: 0,
       bluffSize: [1, 3], // 1 row, 3 columns
       noteSize: [2, 2], // 2 rows, 2 columns
       swap: -1,
