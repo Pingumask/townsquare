@@ -277,7 +277,7 @@ export default {
       nominate: -1,
       isBluffsOpen: true,
       isFabledOpen: true,
-	  isNotesOpen: false,
+      isNotesOpen: false,
       isTimeControlsOpen: false,
       timerName: "Timer",
       timerDuration: 1,
@@ -288,7 +288,7 @@ export default {
   methods: {
     toggleBluffs() {
       this.isBluffsOpen = !this.isBluffsOpen;
-	  this.isNotesOpen = false;
+      this.isNotesOpen = false;
     },
 	toggleNotes() {
       this.isNotesOpen = !this.isNotesOpen;
