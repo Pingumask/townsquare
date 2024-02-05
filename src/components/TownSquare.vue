@@ -24,26 +24,102 @@
     </ul>
 
     <div
-      class="bluffs"
-      v-if="players.length"
-      ref="bluffs"
-      :class="{ closed: !isBluffsOpen }"
+      class="bottomleft"
+      ref="bottomleft"
+      v-if="players.length && this.session.sessionId"
     >
-      <h3>
-        <span v-if="session.isSpectator">{{ locale.townsquare.others }}</span>
-        <span v-else>{{ locale.townsquare.bluffs }}</span>
-        <font-awesome-icon icon="times-circle" @click.stop="toggleBluffs" />
-        <font-awesome-icon icon="plus-circle" @click.stop="toggleBluffs" />
-      </h3>
-      <ul>
-        <li
-          v-for="index in bluffSize"
-          :key="index"
-          @click="openRoleModal(index * -1)"
+      <div
+        class="notes"
+        v-show="isBluffsOpen"
+        ref="notes"
+        :class="{ closed: !isNotesOpen }"
+      >
+        <h3>
+          <font-awesome-icon
+            icon="caret-down"
+            @click.stop="toggleNotes"
+            v-show="isNotesOpen"
+          />
+          <font-awesome-icon
+            icon="caret-up"
+            @click.stop="toggleNotes"
+            v-show="!isNotesOpen"
+          />
+        </h3>
+        <ul
+          v-show="isNotesOpen"
+          v-for="i in noteSize[0]"
+          :key="i"
+          class="tokengrid"
         >
-          <Token :role="bluffs[index - 1]"></Token>
-        </li>
-      </ul>
+          <li
+            v-for="j in noteSize[1]"
+            :key="j"
+            @click="
+              openRoleModal(
+                (2 * (i - 1) + (j - 1)) * -1 - bluffSize[0] * bluffSize[1] - 1
+              )
+            "
+          >
+            <div
+              class="night-order first"
+              v-if="
+                notes[2 * (i - 1) + (j - 1)] &&
+                  nightOrder.get(notes[2 * (i - 1) + (j - 1)]).first &&
+                  (grimoire.isNightOrder || !session.isSpectator)
+              "
+            >
+              <em>{{ nightOrder.get(notes[2 * (i - 1) + (j - 1)]).first }}.</em>
+              <span v-if="notes[2 * (i - 1) + (j - 1)].firstNightReminder">{{
+                notes[2 * (i - 1) + (j - 1)].firstNightReminder
+              }}</span>
+            </div>
+            <div
+              class="night-order other"
+              v-if="
+                notes[2 * (i - 1) + (j - 1)] &&
+                  nightOrder.get(notes[2 * (i - 1) + (j - 1)]).other &&
+                  (grimoire.isNightOrder || !session.isSpectator)
+              "
+            >
+              <em>{{ nightOrder.get(notes[2 * (i - 1) + (j - 1)]).other }}.</em>
+              <span v-if="notes[2 * (i - 1) + (j - 1)].otherNightReminder">{{
+                notes[2 * (i - 1) + (j - 1)].otherNightReminder
+              }}</span>
+            </div>
+            <Token :role="notes[2 * (i - 1) + (j - 1)]"></Token>
+          </li>
+        </ul>
+      </div>
+      <div class="bluffs" ref="bluffs" :class="{ closed: !isBluffsOpen }">
+        <h3>
+          <span v-show="session.isSpectator">{{
+            locale.townsquare.others
+          }}</span>
+          <span v-show="!session.isSpectator">{{
+            locale.townsquare.bluffs
+          }}</span>
+          <font-awesome-icon
+            icon="times-circle"
+            @click.stop="toggleBluffs"
+            v-show="isBluffsOpen"
+          />
+          <font-awesome-icon
+            icon="plus-circle"
+            @click.stop="toggleBluffs"
+            v-show="!isBluffsOpen"
+          />
+        </h3>
+        <ul v-show="isBluffsOpen" v-for="i in bluffSize[0]" :key="i">
+          <li
+            v-for="j in bluffSize[1]"
+            :key="j"
+            @click="openRoleModal((2 * (i - 1) + (j - 1)) * -1 - 1)"
+          >
+            <Token :role="bluffs[2 * (i - 1) + (j - 1)]"></Token>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <div
@@ -189,17 +265,19 @@ export default {
   computed: {
     ...mapGetters({ nightOrder: "players/nightOrder" }),
     ...mapState(["grimoire", "roles", "session", "locale"]),
-    ...mapState("players", ["players", "bluffs", "fabled"]),
+    ...mapState("players", ["players", "bluffs", "fabled", "notes"]),
   },
   data() {
     return {
-      selectedPlayer: 0,
-      bluffSize: 3,
+      selectedPlayer: 0,      
+      bluffSize: [1, 3], // 1 row, 3 columns
+      noteSize: [2, 2], // 2 rows, 2 columns
       swap: -1,
       move: -1,
       nominate: -1,
       isBluffsOpen: true,
       isFabledOpen: true,
+	  isNotesOpen: false,
       isTimeControlsOpen: false,
       timerName: "Timer",
       timerDuration: 1,
@@ -210,6 +288,10 @@ export default {
   methods: {
     toggleBluffs() {
       this.isBluffsOpen = !this.isBluffsOpen;
+	  this.isNotesOpen = false;
+    },
+	toggleNotes() {
+      this.isNotesOpen = !this.isNotesOpen;
     },
     toggleFabled() {
       this.isFabledOpen = !this.isFabledOpen;
@@ -569,13 +651,20 @@ export default {
 }
 
 /***** Demon bluffs / Fabled *******/
-#townsquare > .bluffs,
+#townsquare > .bottomleft,
+#townsquare > .bottomleft > .bluffs,
+#townsquare > .bottomleft > .notes,
 #townsquare > .fabled,
 #townsquare > .storytelling {
   position: absolute;
   left: 10px;
-  &.bluffs {
+  &.bottomleft {
+    display: grid;
     bottom: 10px;
+  }
+  &.bluffs,
+  &.notes {
+    position: static;
   }
   &.fabled {
     top: 10px;
@@ -682,9 +771,14 @@ export default {
   }
 }
 
-#townsquare.public > .bluffs {
+#townsquare.public > .bottomleft > .bluffs,
+#townsquare.public > .bottomleft > .notes {
   opacity: 0;
   transform: scale(0.1);
+}
+
+.tokengrid {
+  gap: 25px 25px;
 }
 
 .fabled ul li .token:before {
@@ -821,8 +915,9 @@ export default {
     opacity: 1;
   }
 
-  // adjustment for fabled
-  .fabled &.first {
+  // adjustment for fabled and notes
+  .fabled &.first,
+  .notes &.first {
     span {
       right: auto;
       left: 40px;
