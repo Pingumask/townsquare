@@ -65,8 +65,8 @@
               class="night-order first"
               v-if="
                 notes[2 * (i - 1) + (j - 1)] &&
-                  nightOrder.get(notes[2 * (i - 1) + (j - 1)]).first &&
-                  (grimoire.isNightOrder || !session.isSpectator)
+                nightOrder.get(notes[2 * (i - 1) + (j - 1)]).first &&
+                (grimoire.isNightOrder || !session.isSpectator)
               "
             >
               <em>{{ nightOrder.get(notes[2 * (i - 1) + (j - 1)]).first }}.</em>
@@ -78,8 +78,8 @@
               class="night-order other"
               v-if="
                 notes[2 * (i - 1) + (j - 1)] &&
-                  nightOrder.get(notes[2 * (i - 1) + (j - 1)]).other &&
-                  (grimoire.isNightOrder || !session.isSpectator)
+                nightOrder.get(notes[2 * (i - 1) + (j - 1)]).other &&
+                (grimoire.isNightOrder || !session.isSpectator)
               "
             >
               <em>{{ nightOrder.get(notes[2 * (i - 1) + (j - 1)]).other }}.</em>
@@ -290,7 +290,7 @@ export default {
       this.isBluffsOpen = !this.isBluffsOpen;
       this.isNotesOpen = false;
     },
-	toggleNotes() {
+    toggleNotes() {
       this.isNotesOpen = !this.isNotesOpen;
     },
     toggleFabled() {
