@@ -90,12 +90,12 @@ export default {
         if (indexrole < 3) {
           this.$store.commit("players/setBluff", {
             index: indexrole,
-            role
+            role,
           });
         } else {
           this.$store.commit("players/setNotes", {
             index: indexrole - 3,
-            role
+            role,
           });
         }
       } else {
