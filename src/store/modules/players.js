@@ -45,7 +45,7 @@ const getters = {
         otherNight.push(role);
       }
     });
-    notes.forEach(role => {
+    notes.forEach((role) => {
       if (role.firstNight && !firstNight.includes(role)) {
         firstNight.push(role);
       }
