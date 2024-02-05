@@ -85,11 +85,19 @@ export default {
   methods: {
     setRole(role) {
       if (this.playerIndex < 0) {
-        // assign to bluff slot (index < 0)
-        this.$store.commit("players/setBluff", {
-          index: this.playerIndex * -1 - 1,
-          role,
-        });
+        // assign to bluff slot or other slot (index < 0)
+        var indexrole = this.playerIndex * -1 - 1;
+        if (indexrole < 3) {
+          this.$store.commit("players/setBluff", {
+            index: indexrole,
+            role
+          });
+        } else {
+          this.$store.commit("players/setNotes", {
+            index: indexrole - 3,
+            role
+          });
+        }
       } else {
         if (this.session.isSpectator && role.team === "traveler") return;
         // assign to player
