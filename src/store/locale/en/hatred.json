@@ -410,5 +410,38 @@
         "reason": "If the Exorcist chooses the Yaggababble, the Yaggababble ability does not kill tonight."
       }
     ]
+  },
+  {
+    "id": "Summoner",
+    "hatred": [
+      {
+        "id": "Alchemist",
+        "reason": "If there is an Alchemist-Summoner in play, the game starts with a Demon in play, as normal. If the Alchemist-Summoner chooses a player, they make that player a Demon but do not change their alignment."
+      },
+      {
+        "id": "Clockmaker",
+        "reason":  "If the Summoner is in play, the Clockmaker does not receive their information until a Demon is created."
+      },
+      {
+        "id": "Poppy Grower",
+        "reason": "If the Poppy Grower is alive when the Summoner acts, the Summoner chooses which Demon, but the Storyteller chooses which player."
+      },
+      {
+        "id": "Marionette",
+        "reason": "The Marionette neighbours the Summoner. The Summoner knows who the Marionette is."
+      },
+      {
+        "id": "Kazali",
+        "reason": "The Kazali can not choose to create a Summoner."
+      },
+      {
+        "id": "Legion",
+        "reason": "If the Summoner creates Legion, most players (including all evil players) become evil Legion."
+      },
+      {
+        "id": "Riot",
+        "reason": "If the Summoner creates Riot, the chosen player and all evil players become Riot. The chosen player must be one of the Summoner's good living neighbours."
+      }
+    ]
   }
 ]

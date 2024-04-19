@@ -1652,6 +1652,21 @@
     "ability": "All players keep their eyes closed when voting & the vote tally is secret. Votes for you only count if you vote."
   },
   {
+    "id": "summoner",
+    "name": "Summoner",
+    "edition": "",
+    "team": "minion",
+    "firstNight": 9.5,
+    "firstNightReminder": "Show the \"These characters are not in play\" card. Show 3 character tokens of good characters not in play.",
+    "otherNight": 21.5,
+    "otherNightReminder": "If it is the 3rd night, wake the Summoner. They point to a player and a Demon on the character sheet - that player becomes that Demon.",
+    "reminders": ["Night 1",
+        "Night 2",
+        "Night 3"],
+    "setup": true,
+    "ability": "You get 3 bluffs. On the 3rd night, choose a player: they become an evil Demon of your choice. [No Demon]"
+  },
+  {
     "id": "lilmonsta",
     "name": "Lil' Monsta",
     "edition": "",

@@ -1826,6 +1826,23 @@
     "ability": "Les votes ont lieu à bulletin secret. Vous ne pouvez être exécuté que si vous levez la main."
   },
   {
+    "id": "summoner",
+    "name": "Invocateur",
+    "edition": "",
+    "team": "minion",
+    "firstNight": 9.5,
+    "firstNightReminder": "Réveillez l'Invocateur, et indiquez-lui trois rôles bons qui ne sont pas en jeu.",
+    "otherNight": 21.5,
+    "otherNightReminder": "S'il s'agit de la 3e nuit, réveillez l'Invocateur. Il chosit un joueur et un Démon : ce joueur devient ce Démon.",
+    "reminders": [
+      "Nuit 1",
+      "Nuit 2",
+      "Nuit 3"
+    ],
+    "setup": true,
+    "ability": "Vous avez trois bluffs. Durant la troisième nuit, désignez un joueur : il devient le mauvais Démon de votre choix. [Aucun Démon]"
+  },
+  {
     "id": "lilmonsta",
     "name": "Bébé monstre",
     "edition": "",

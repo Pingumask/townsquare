@@ -410,5 +410,38 @@
         "reason": "Si l'Exorciste désigne le Yaggablabla, la capacité du Yaggablabla ne tue personne cette nuit."
       }
     ]
+  },
+  {
+    "id": "Summoner",
+    "hatred": [
+      {
+        "id": "Alchemist",
+        "reason": "Si un Alchimiste-Invocateur est en jeu, la partie commence avec un Démon, comme d'habitude. Si l'Alchimiste-Invocateur désigne un joueur, il le transforme en Démon mais ne change pas son alignement."
+      },
+      {
+        "id": "Clockmaker",
+        "reason": "Si l'Invocateur est en jeu, l'Horloger ne reçoit aucune info jusqu'à ce qu'un Démon soit créé."
+      },
+      {
+        "id": "Poppy Grower",
+        "reason": "Si le Planteur de pavot est en vie lorsque l'Invocateur agit, l'Invocateur choisit un rôle de Démon, mais c'est le Narrateur qui choisit un joueur."
+      },
+      {
+        "id": "Marionette",
+        "reason": "La Marionnette est voisine de l'Invocateur. L'Invocateur sait qui est la Marionnette."
+      },
+      {
+        "id": "Kazali",
+        "reason": "Le Kazali ne peut pas créer un Invocateur."
+      },
+      {
+        "id": "Legion",
+        "reason": "Si l'Invocateur crée une Légion, la majorité des joueurs (y compris les joueurs mauvais) deviennent des Légions mauvaises."
+      },
+      {
+        "id": "Riot",
+        "reason": "Si l'Invocateur crée une Émeute, le joueur choisi et tous les mauvais deviennent des Émeutes. Le joueur choisi doit être un des bons voisins vivants de l'Invocateur."
+      }
+    ]
   }
 ]
