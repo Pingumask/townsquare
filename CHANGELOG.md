@@ -1,5 +1,7 @@
 # Release Notes
 
+- Adding four spaces to add some roles for notes
+
 ## Upcomming Version
 - Adding a missing jinx
 - Updating night order (and its print)
