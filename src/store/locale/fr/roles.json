@@ -980,7 +980,7 @@
       "Épuisé"
     ],
     "setup": false,
-    "ability": "Une fois par partie, la nuit, choisissez un personnage Bon : vous gagnez son pouvoir. Si ce personnage était déjà en jeu, il devient Ivre."
+    "ability": "Une fois par partie, la nuit, choisissez un personnage bon : vous gagnez son pouvoir. Si ce personnage est en jeu, il est ivre."
   },
   {
     "id": "artist",
