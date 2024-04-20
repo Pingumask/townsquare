@@ -383,7 +383,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Vous avez besoin d'un jeton de vote pour pouvoir voter. Les joueurs morts peuvent vous offrir leurs jetons de vote. S'ils le font, vous apprenez leur alignement. Vous êtes toujours sobre et en bonne santé."
+    "ability": "Vous avez besoin d'un jeton de vote pour pouvoir voter. Les joueurs morts peuvent vous offrir leurs jetons de vote. S'ils le font, vous apprenez leur alignement. Vous êtes toujours sobre et sain."
   },
   {
     "id": "grandmother",
@@ -1221,7 +1221,7 @@
       "Pouvoir doublé"
     ],
     "setup": false,
-    "ability": "Chaque nuit, un joueur profite d'un bonus jusqu'à la nuit suivante : soit il devient sobre et en bonne santé et n'aura que de vraies informations, soit il peut utiliser sa capacité deux fois aujourd'hui. Il sait de quel bonus il bénéficie."
+    "ability": "Chaque nuit, un joueur profite d'un bonus jusqu'à la nuit suivante : soit il devient sobre et sain et n'aura que de vraies informations, soit il peut utiliser sa capacité deux fois aujourd'hui. Il sait de quel bonus il bénéficie."
   },
   {
     "id": "harlot",
