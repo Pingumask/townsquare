@@ -1049,7 +1049,7 @@
     "otherNight": 46,
     "otherNightReminder": "Si le Bien-aimé est mort aujourd'hui, choisissez un joueur qui sera définitivement Ivre.",
     "reminders": [
-      "Ivre définitif"
+      "Ivre"
     ],
     "setup": false,
     "ability": "Quand vous mourez, 1 joueur devient définitivement Ivre."
