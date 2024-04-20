@@ -124,7 +124,7 @@
       },
       "defense": {
         "button": "Défense",
-        "text": "$accusee se défend de $accusator"
+        "text": "$accusee se défend contre $accusator"
       },
       "debate": {
         "button": "Débat",
