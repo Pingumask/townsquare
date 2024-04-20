@@ -120,13 +120,13 @@
   },
   {
     "id": "ravenkeeper",
-    "name": "Corbeau",
+    "name": "Ami des corbeaux",
     "edition": "tb",
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 57,
-    "otherNightReminder": "Si le Corbeau est mort cette nuit, il désigne un joueur. Indiquez le rôle de ce joueur.",
+    "otherNightReminder": "Si l'Ami des corbeaux est mort cette nuit, il désigne un joueur. Indiquez le rôle de ce joueur.",
     "reminders": [],
     "setup": false,
     "ability": "Si vous mourez la nuit, vous êtes réveillé pour choisir un joueur et apprenez son rôle."
