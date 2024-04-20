@@ -73,7 +73,7 @@
       },
       {
         "id": "Ravenkeeper",
-        "reason": "Si le Léviathan est en jeu et que le Corbeau meurt par exécution, il se réveille cette nuit pour utiliser son pouvoir. "
+        "reason": "Si le Léviathan est en jeu et que l'Ami des corbeaux meurt par exécution, il se réveille cette nuit pour utiliser son pouvoir. "
       },
       {
         "id": "Sage",
@@ -300,7 +300,7 @@
       },
       {
         "id": "Ravenkeeper",
-        "reason": "Si un joueur des Émeutes accuse et tue le Corbeau, le Corbeau utilise son pouvoir cette nuit. "
+        "reason": "Si un joueur des Émeutes accuse et tue l'Ami des corbeaux, l'Ami des corbeaux utilise son pouvoir cette nuit. "
       },
       {
         "id": "Soldier",
