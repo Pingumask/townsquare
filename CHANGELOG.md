@@ -2,8 +2,8 @@
 
 ## Upcomming Version
 
-- Various corrections in the French version
-
+- Update of the icons
+  
 ### Version 3.18.0
 
 - Adding a missing jinx
