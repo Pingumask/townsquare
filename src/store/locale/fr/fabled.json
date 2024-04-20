@@ -94,7 +94,7 @@
     "setup": false,
     "name": "Mensonge",
     "team": "fabled",
-    "ability": "Une fois par partie, un joueur Bon peut recevoir une information fausse."
+    "ability": "Une fois par partie, un joueur bon peut recevoir une information incorrecte."
   },
   {
     "id": "duchess",
