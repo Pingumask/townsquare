@@ -1995,13 +1995,13 @@
   },
   {
     "id": "lleech",
-    "name": "Sangsue",
+    "name": "Ssangssue",
     "edition": "",
     "team": "demon",
     "firstNight": 17,
-    "firstNightReminder": "La Sangue désigne un joueur. Ce joueur est empoisonné.",
+    "firstNightReminder": "La Ssangssue désigne un joueur. Ce joueur est empoisonné.",
     "otherNight": 37,
-    "otherNightReminder": "La Sangsue désigne un joueur. Ce joueur meurt.",
+    "otherNightReminder": "La Ssangssue désigne un joueur. Ce joueur meurt.",
     "reminders": [
       "Mort",
       "Empoisonné permanent"
