@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 
-- Various corrections in the French version
+- Edit folders to prepare future updates
 
 ### Version 3.18.0
 
