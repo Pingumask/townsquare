@@ -441,7 +441,7 @@
       "Exorcisé"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez un joueur (différent de la nuit précédente) : si vous le choisissez, le Démon ne se réveille pas et apprend qui vous êtes."
+    "ability": "Chaque nuit*, désignez un joueur (différent de la nuit précédente) : si choisi, le Démon apprend qui vous êtes, et ne se réveille pas cette nuit."
   },
   {
     "id": "innkeeper",
