@@ -111,7 +111,7 @@
     "hatred": [
       {
         "id": "Poppy Grower",
-        "reason": "Si le Planteur de pavot est en jeu, Les Serviteurs ne se réveillent pas ensemble. Ils sont réveillés un par un jusqu'à ce que l'un d'entre eux décide d'être baby-sitter. "
+        "reason": "Si le Planteur de pavot est en jeu, Les Sbires ne se réveillent pas ensemble. Ils sont réveillés un par un jusqu'à ce que l'un d'entre eux décide d'être baby-sitter. "
       },
       {
         "id": "Magician",
@@ -227,7 +227,7 @@
     "hatred": [
       {
         "id": "Lil' Monsta",
-        "reason": "La Marionette est voisine d'un Serviteur, pas du Démon. La Marionette n'est pas réveillée pour décider qui baby-sitte le Bébé Monstre, et n'apprend pas qu'elle est Marionette si elle devient baby-sitter. "
+        "reason": "La Marionette est voisine d'un Sbire, pas du Démon. La Marionette n'est pas réveillée pour décider qui baby-sitte le Bébé Monstre, et n'apprend pas qu'elle est Marionette si elle devient baby-sitter. "
       },
       {
         "id": "Poppy Grower",
@@ -344,23 +344,23 @@
       },
       {
         "id": "Investigator",
-        "reason": "Les Émeutes apparaîssent comme des Serviteur pour l'Enquéteur. "
+        "reason": "Les Émeutes apparaîssent comme des Sbires pour l'Enquéteur. "
       },
       {
         "id": "Clockmaker",
-        "reason": "Les Émeutes apparaîssent comme des Serviteur pour l'Horloger. "
+        "reason": "Les Émeutes apparaîssent comme des Sbires pour l'Horloger. "
       },
       {
         "id": "Town Crier",
-        "reason": "Les Émeutes apparaîssent comme des Serviteur pour le Crieur public. "
+        "reason": "Les Émeutes apparaîssent comme des Sbires pour le Crieur public. "
       },
       {
         "id": "Damsel",
-        "reason": "Les Émeutes apparaîssent comme des Serviteur pour la Demoiselle. "
+        "reason": "Les Émeutes apparaîssent comme des Sbires pour la Demoiselle. "
       },
       {
         "id": "Preacher",
-        "reason": "Les Émeutes apparaîssent comme des Serviteur pour le Prêcheur. "
+        "reason": "Les Émeutes apparaîssent comme des Sbires pour le Prêcheur. "
       }
     ]
   },
@@ -494,11 +494,11 @@
       },
       {
         "id": "Lil' Monsta",
-        "reason": "Si un Démon choisit de devenir Bébé monstre, il choisit aussi un rôle de Serviteur et devient baby-sitter pour cette nuit."
+        "reason": "Si un Démon choisit de devenir Bébé monstre, il choisit aussi un rôle de Sbire et devient baby-sitter pour cette nuit."
       },
       {
         "id": "Riot",
-        "reason": "Si à la mort du Chapelier, une Émeute choisit de devenir un autre Démon, les autres Émeutes doivent devenir des Serviteurs. Si à la mort du Chapelier, le Démon choisit de devenir Émeute, les Serviteurs deviennent des Émeutes aussi."
+        "reason": "Si à la mort du Chapelier, une Émeute choisit de devenir un autre Démon, les autres Émeutes doivent devenir des Sbires. Si à la mort du Chapelier, le Démon choisit de devenir Émeute, les Sbires deviennent des Émeutes aussi."
       }
     ]
   },
@@ -511,15 +511,15 @@
       },
       {
         "id": "Choirboy",
-        "reason": "Le Kazali ne peut pas choisir de changer le Roi en Serviteur si l'Enfant de choeur est en jeu."
+        "reason": "Le Kazali ne peut pas choisir de changer le Roi en Sbire si l'Enfant de choeur est en jeu."
       },
       {
         "id": "Goon",
-        "reason": "Si le Kazali choisit de transformer l'Homme de main en Serviteur, il devient ivre, et les Serviteurs restants sont choisis par le Narrateur sans prendre en compte les décisions du Kazali."
+        "reason": "Si le Kazali choisit de transformer l'Homme de main en Sbire, il devient ivre, et les Sbires restants sont choisis par le Narrateur sans prendre en compte les décisions du Kazali."
       },
       {
         "id": "Huntsman",
-        "reason": "Si le Kazali transforme la Demoiselle en Serviteur, et si le Chasseur est en jeu, un joueur bon devient Demoiselle."
+        "reason": "Si le Kazali transforme la Demoiselle en Sbire, et si le Chasseur est en jeu, un joueur bon devient Demoiselle."
       },
       {
         "id": "Marionette",
@@ -544,19 +544,19 @@
       },
       {
         "id": "Fearmonger",
-        "reason": "Si le Médecin de Peste aurait du donner la capacité de Semeur de peur au Narrateur, un Serviteur en vie gagne la capacité de Semeur de peur en plus de sa propre capacité, et l'apprend."
+        "reason": "Si le Médecin de Peste aurait du donner la capacité de Semeur de peur au Narrateur, un Sbire en vie gagne la capacité de Semeur de peur en plus de sa propre capacité, et l'apprend."
       },
       {
         "id": "Goblin",
-        "reason": "Si le Médecin de Peste aurait du donner la capacité de Gobelin au Narrateur, un Serviteur en vie gagne la capacité de Gobelin en plus de sa propre capacité, et l'apprend."
+        "reason": "Si le Médecin de Peste aurait du donner la capacité de Gobelin au Narrateur, un Sbire en vie gagne la capacité de Gobelin en plus de sa propre capacité, et l'apprend."
       },
       {
         "id": "Scarlet Woman",
-        "reason": "Si le Médecin de Peste aurait du donner la capacité de Gourgandine au Narrateur, un Serviteur en vie gagne la capacité de Gourgandine en plus de sa propre capacité, et l'apprend."
+        "reason": "Si le Médecin de Peste aurait du donner la capacité de Gourgandine au Narrateur, un Sbire en vie gagne la capacité de Gourgandine en plus de sa propre capacité, et l'apprend."
       },
       {
         "id": "Spy",
-        "reason": "Si le Médecin de Peste aurait du donner la capacité d'Espion au Narrateur, un Serviteur en vie gagne la capacité d'Espion en plus de sa propre capacité, et l'apprend."
+        "reason": "Si le Médecin de Peste aurait du donner la capacité d'Espion au Narrateur, un Sbire en vie gagne la capacité d'Espion en plus de sa propre capacité, et l'apprend."
       },
       {
         "id": "Marionette",
