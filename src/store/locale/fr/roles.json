@@ -746,7 +746,7 @@
       "Vivant"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez 2 joueurs : ils meurent. Un joueur que vous avez désigné la nuit précédente peut être régurgité."
+    "ability": "Chaque nuit*, désignez 2 joueurs : ils meurent. Un joueur mort que vous avez désigné la nuit précédente peut être régurgité."
   },
   {
     "id": "po",
