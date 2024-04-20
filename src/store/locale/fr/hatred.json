@@ -227,27 +227,27 @@
     "hatred": [
       {
         "id": "Lil' Monsta",
-        "reason": "La Marionette est voisine d'un Serviteur, pas du Démon. La Marionette n'est pas réveillée pour décider qui baby-sitte le Bébé Monstre, et n'apprend pas qu'elle est Marionette si elle devient baby-sitter. "
+        "reason": "La Marionnette est voisine d'un Serviteur, pas du Démon. La Marionnette n'est pas réveillée pour décider qui baby-sitte le Bébé Monstre, et n'apprend pas qu'elle est Marionnette si elle devient baby-sitter. "
       },
       {
         "id": "Poppy Grower",
-        "reason": "Quand le Planteur de pavot meurt, le Démon apprend qui est la Marionette, mais la Marionette n'apprend rien. "
+        "reason": "Quand le Planteur de pavot meurt, le Démon apprend qui est la Marionnette, mais la Marionnette n'apprend rien. "
       },
       {
         "id": "Snitch",
-        "reason": "La Marionette n'apprend pas 3 rôles qui ne sont pas en jeu. Le Démon en apprend 3 suplémentaires à la place. "
+        "reason": "La Marionnette n'apprend pas 3 rôles qui ne sont pas en jeu. Le Démon en apprend 3 suplémentaires à la place. "
       },
       {
         "id": "Balloonist",
-        "reason": "Si la Marionette pense être le Montgolfier, [+1 Etranger] "
+        "reason": "Si la Marionnette pense être le Montgolfier, [+1 Etranger] "
       },
       {
         "id": "Damsel",
-        "reason": "La Marionette n'apprend pas qu'une Demoiselle est en jeu. "
+        "reason": "La Marionnette n'apprend pas qu'une Demoiselle est en jeu. "
       },
       {
         "id": "Huntsman",
-        "reason": "Si la Marionette pense être le Chasseur, [+ Demoiselle] "
+        "reason": "Si la Marionnette pense être le Chasseur, [+ Demoiselle] "
       }
     ]
   },
