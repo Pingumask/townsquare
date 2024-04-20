@@ -242,7 +242,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Si vous mourez par exécution, votre équipe perd la partie."
+    "ability": "Si vous mourez par exécution, votre équipe perd."
   },
   {
     "id": "poisoner",
@@ -1080,7 +1080,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Quand vous apprenez votre mort, désignez publiquement un joueur encore en vie : s'il est Mauvais, votre équipe a perdu."
+    "ability": "Quand vous apprenez votre mort, désignez publiquement un joueur encore en vie : s'il est Mauvais, votre équipe perd."
   },
   {
     "id": "eviltwin",
@@ -1732,7 +1732,7 @@
       "Épuisé"
     ],
     "setup": false,
-    "ability": "Les Serviteurs savent que vous êtes en jeu. Si un Serviteur devine publiquement qui vous êtes (un seul essai), votre équipe a perdu."
+    "ability": "Les Serviteurs savent que vous êtes en jeu. Si un Serviteur devine publiquement qui vous êtes (un seul essai), votre équipe perd."
   },
   {
     "id": "golem",
