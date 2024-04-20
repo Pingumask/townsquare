@@ -821,7 +821,7 @@
       "Accusé Mauvais"
     ],
     "setup": false,
-    "ability": "Seul le Narrateur peut lancer des accusations. Chaque jour, au moins un joueur de chaque équipe est accusé."
+    "ability": "Seul le Narrateur peut lancer des accusations. Chaque jour, au moins un de vos adversaire est accusé."
   },
   {
     "id": "voudon",
