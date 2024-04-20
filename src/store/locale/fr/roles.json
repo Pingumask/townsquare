@@ -1371,13 +1371,13 @@
   },
   {
     "id": "balloonist",
-    "name": "Montgolfier",
+    "name": "Aéronaute",
     "edition": "",
     "team": "townsfolk",
     "firstNight": 49,
-    "firstNightReminder": "Choisissez un type de personnage. Indiquez au Montgolfier le personnage d'un joueur qui est de ce type. Marquez ce personnage comme vu par le Montgolfier.",
+    "firstNightReminder": "Choisissez un type de personnage. Indiquez à l'Aéronaute le personnage d'un joueur qui est de ce type. Marquez ce personnage comme vu par l'Aéronaute.",
     "otherNight": 67,
-    "otherNightReminder": "Choisissez un type de personnage qui n'a pas encore été vu par le Montgolfier. Indiquez au Montgolfier un joueur dont le personnage est de ce type. Marquez ce type de personnage comme vu par le Montgolfier.",
+    "otherNightReminder": "Choisissez un type de personnage qui n'a pas encore été vu par l'Aéronaute. Indiquez à l'Aéronaute un joueur dont le personnage est de ce type. Marquez ce type de personnage comme vu par l'Aéronaute.",
     "reminders": [
       "Villageois vu",
       "Étranger vu",
