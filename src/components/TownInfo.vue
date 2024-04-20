@@ -7,7 +7,7 @@
         backgroundImage: `url(${
           edition.logo && grimoire.isImageOptIn
             ? edition.logo
-            : require('../assets/editions/' + edition.id + '.png')
+            : require('../assets/scripts/icons/' + edition.id + '.png')
         })`,
       }"
     ></li>

@@ -40,7 +40,7 @@
             :class="['edition-' + edition.id]"
             :style="{
               backgroundImage: `url(${require(
-                '../../assets/editions/' + edition.id + '.png',
+                '../../assets/scripts/icons/' + edition.id + '.png',
               )})`,
             }"
             :key="edition.id"
