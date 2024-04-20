@@ -868,9 +868,9 @@
     "edition": "snv",
     "team": "townsfolk",
     "firstNight": 21,
-    "firstNightReminder": "Le Charmeur de Serpents désigne un joueur. Si ce joueur est le Démon: inversez les personnages et les équipes du Charmeur de Serpents et du Démon. Reveillez-les pour les en informer. Le nouveau Charmeur de Serpents est empoisonné.",
+    "firstNightReminder": "Le Charmeur désigne un joueur. Si ce joueur est le Démon: inversez les personnages et les équipes du Charmeur et du Démon. Reveillez-les pour les en informer. Le nouveau Charmeur est empoisonné.",
     "otherNight": 12,
-    "otherNightReminder": "Le Charmeur de Serpents désigne un joueur. Si ce joueur est le Démon: inversez les personnages et les équipes du Charmeur de Serpents et du Démon. Reveillez-les pour les en informer. Le nouveau Charmeur de Serpents est empoisonné.",
+    "otherNightReminder": "Le Charmeur désigne un joueur. Si ce joueur est le Démon: inversez les personnages et les équipes du Charmeur et du Démon. Reveillez-les pour les en informer. Le nouveau Charmeur est empoisonné.",
     "reminders": [
       "Empoisonné"
     ],
