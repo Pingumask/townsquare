@@ -215,9 +215,9 @@
       "notfirstnight": "* Pas la première nuit",
       "teamNames": {
         "townsfolk": "villageois",
-        "outsider": "étranger",
+        "outsider": "étrangers",
         "minion": "serviteur",
-        "demon": "démon"
+        "demon": "démons"
       }
     },
     "reminder": {
