@@ -86,7 +86,7 @@
       "Fausse piste"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez 2 joueurs : vous apprenez si l'un des deux est Démon. L'un des bons joueurs vous apparaît comme un Démon aussi."
+    "ability": "Chaque nuit, désignez 2 joueurs : vous apprenez si l'un des deux est Démon. L'un des joueurs bons vous apparaît comme un Démon aussi."
   },
   {
     "id": "undertaker",
