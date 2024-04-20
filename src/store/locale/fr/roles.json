@@ -1052,7 +1052,7 @@
       "Ivre définitif"
     ],
     "setup": false,
-    "ability": "Quand vous mourez, 1 joueur devient définitivement Ivre."
+    "ability": "Quand vous mourez, un joueur devient ivre à partir de maintenant."
   },
   {
     "id": "barber",
