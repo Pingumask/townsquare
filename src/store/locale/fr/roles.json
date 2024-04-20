@@ -1891,12 +1891,12 @@
     "edition": "",
     "team": "minion",
     "firstNight": 13,
-    "firstNightReminder": "Selectionnez un Bon joueur, voisin du Démon et marquez le comme Marionnette. Reveillez le Démon et indiquez lui qui est la Marionette.",
+    "firstNightReminder": "Selectionnez un Bon joueur, voisin du Démon et marquez le comme Marionnette. Reveillez le Démon et indiquez lui qui est la Marionnette.",
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [],
     "remindersGlobal": [
-      "Marionette"
+      "Marionnette"
     ],
     "setup": true,
     "ability": "Vous pensez avoir un Bon rôle, mais vous n'êtes pas ce personnage. Le Démon sait qui vous êtes. [Votre voisin est le Démon]"
