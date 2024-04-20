@@ -75,13 +75,13 @@
   },
   {
     "id": "fortuneteller",
-    "name": "Voyant",
+    "name": "Voyante",
     "edition": "tb",
     "team": "townsfolk",
     "firstNight": 40,
-    "firstNightReminder": "Le Voyant désigne 2 joueurs. Indiquez si, oui ou non, l'un d'eux est le Démon (ou la fausse piste).",
+    "firstNightReminder": "La Voyante désigne 2 joueurs. Indiquez si, oui ou non, l'un d'eux est le Démon (ou la fausse piste).",
     "otherNight": 59,
-    "otherNightReminder": "Le Voyant désigne 2 joueurs. Indiquez si, oui ou non, l'un d'eux est le Démon (ou la fausse piste).",
+    "otherNightReminder": "La Voyante désigne 2 joueurs. Indiquez si, oui ou non, l'un d'eux est le Démon (ou la fausse piste).",
     "reminders": [
       "Fausse piste"
     ],
