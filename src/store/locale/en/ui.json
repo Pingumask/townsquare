@@ -120,7 +120,7 @@
       },
       "accusation": {
         "button": "Accusation",
-        "text": "$accusator accuses $accusee"
+        "text": "$accusator nominates $accusee"
       },
       "defense": {
         "button": "Defense",
