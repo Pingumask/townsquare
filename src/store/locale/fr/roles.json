@@ -1024,7 +1024,7 @@
     "otherNightReminder": "Si le sage a été tué par le Démon, indiquez-lui deux joueur dont l'un est le Démon.",
     "reminders": [],
     "setup": false,
-    "ability": "Si le Démon vous tue, vous apprenez les noms de deux joueurs. L'un d'eux est le Démon."
+    "ability": "Si le Démon vous tue, vous apprenez qu’il s’agit d’un joueur parmi deux."
   },
   {
     "id": "mutant",
