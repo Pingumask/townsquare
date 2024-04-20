@@ -952,13 +952,13 @@
   },
   {
     "id": "seamstress",
-    "name": "Couturier",
+    "name": "Couturière",
     "edition": "snv",
     "team": "townsfolk",
     "firstNight": 45,
-    "firstNightReminder": "Si le Couturier désigne 2 joueurs, indiquez si ces joueurs sont dans la même équipe.",
+    "firstNightReminder": "Si la Couturière désigne 2 joueurs, indiquez si ces joueurs sont dans la même équipe.",
     "otherNight": 65,
-    "otherNightReminder": "Si le Couturier n'a pas encore utilisé son pouvoir et qu'il désigne 2 joueurs, indiquez si ces joueurs sont du même alignement.",
+    "otherNightReminder": "Si la Couturière n'a pas encore utilisé son pouvoir et qu'il désigne 2 joueurs, indiquez si ces joueurs sont du même alignement.",
     "reminders": [
       "Épuisé"
     ],
