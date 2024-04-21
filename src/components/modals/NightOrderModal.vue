@@ -8,7 +8,7 @@
       @click="toggleModal('reference')"
       icon="address-card"
       class="toggle"
-      title="Show Character Reference"
+      :title=locale.modal.nightOrder.reference
     />
     <h3>
       {{ locale.modal.nightOrder.title }}
