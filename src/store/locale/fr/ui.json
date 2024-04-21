@@ -221,7 +221,7 @@
       }
     },
     "reminder": {
-      "title": "Apposer une note:",
+      "title": "Apposer une note :",
       "good": "Bon",
       "evil": "Mauvais",
       "custom": "Note"
