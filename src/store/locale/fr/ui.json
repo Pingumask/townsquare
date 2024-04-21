@@ -218,7 +218,8 @@
         "outsider": "étranger",
         "minion": "serviteur",
         "demon": "démon"
-      }
+      },
+      "nightOrder": "Afficher l'Ordre Nocturne"
     },
     "reminder": {
       "title": "Apposer une note:",
