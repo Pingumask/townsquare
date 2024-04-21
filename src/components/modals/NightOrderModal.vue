@@ -8,7 +8,7 @@
       @click="toggleModal('reference')"
       icon="address-card"
       class="toggle"
-      :title=locale.modal.nightOrder.reference
+      :title="locale.modal.nightOrder.reference"
     />
     <h3>
       {{ locale.modal.nightOrder.title }}
