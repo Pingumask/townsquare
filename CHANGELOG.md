@@ -3,7 +3,6 @@
 ## Upcomming Version
 
 - Various corrections in the French version
-- Minor corrections in the English version
 
 ### Version 3.18.0
 
