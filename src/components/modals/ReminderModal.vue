@@ -3,7 +3,7 @@
     v-if="modals.reminder && availableReminders.length && players[playerIndex]"
     @close="toggleModal('reminder')"
   >
-    <h3>{{ this.locale.modal.reminder.title }}</h3>
+    <h3>Apposer une marque:</h3>
     <ul class="reminders">
       <li
         v-for="reminder in availableReminders"
