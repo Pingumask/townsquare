@@ -2,7 +2,9 @@
 
 ## Upcomming Version
 
-- Various corrections in the French version
+- BUGFIX: missing translation in Roles modal
+- BUGFIX: missing translation in Night order modal
+- BUGFIX: reminder modal title from translation
 
 ### Version 3.18.0
 
