@@ -1,11 +1,6 @@
 # Release Notes
 
 ## Upcomming Version
-
-- Various corrections in the French version
-
-### Version 3.18.0
-
 - Adding a missing jinx
 - Updating night order (and its print)
 - Correcting automatic adding/deletion of Fabled
