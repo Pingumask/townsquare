@@ -2,7 +2,11 @@
 
 ## Upcomming Version
 
-- Various corrections in the French version
+- MAINT: changed french name for Baloonist from Montgolfier to Aéronaute
+- MAINT: adjustment to nomination messages
+- BUGFIX: missing translation in Roles modal
+- BUGFIX: missing translation in Night order modal
+- BUGFIX: reminder modal title from translation
 
 ### Version 3.18.0
 
