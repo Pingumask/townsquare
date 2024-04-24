@@ -780,7 +780,7 @@ export default {
     left: 120%;
     background: linear-gradient(to right, $demon 0%, rgba(0, 0, 0, 0.5) 20%);
     &:before {
-      content: "Autre Nuits";
+      content: "Autres Nuits";
     }
     &:after {
       right: 100%;
