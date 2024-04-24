@@ -767,7 +767,7 @@ export default {
       rgba(0, 0, 0, 0.5) 20%
     );
     &:before {
-      content: "First Night";
+      content: "Première Nuit";
     }
     &:after {
       border-left-color: $townsfolk;
@@ -780,7 +780,7 @@ export default {
     left: 120%;
     background: linear-gradient(to right, $demon 0%, rgba(0, 0, 0, 0.5) 20%);
     &:before {
-      content: "Other Nights";
+      content: "Autre Nuits";
     }
     &:after {
       right: 100%;
