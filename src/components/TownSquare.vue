@@ -191,11 +191,11 @@ export default {
     ...mapState(["grimoire", "roles", "session", "locale"]),
     ...mapState("players", ["players", "bluffs", "fabled"]),	
     firstMessage() {
-	  return JSON.stringify(this.locale.modal.nightOrder.firstNight) ;
-	},	
+      return JSON.stringify(this.locale.modal.nightOrder.firstNight) ;
+    },	
     otherMessage() {
-	  return JSON.stringify(this.locale.modal.nightOrder.otherNights) ;
-	}
+      return JSON.stringify(this.locale.modal.nightOrder.otherNights) ;
+    }
   },
   data() {
     return {
