@@ -189,13 +189,13 @@ export default {
   computed: {
     ...mapGetters({ nightOrder: "players/nightOrder" }),
     ...mapState(["grimoire", "roles", "session", "locale"]),
-    ...mapState("players", ["players", "bluffs", "fabled"]),	
+    ...mapState("players", ["players", "bluffs", "fabled"]),
     firstMessage() {
       return JSON.stringify(this.locale.modal.nightOrder.firstNight) ;
-    },	
+    },
     otherMessage() {
       return JSON.stringify(this.locale.modal.nightOrder.otherNights) ;
-    }
+    },
   },
   data() {
     return {
