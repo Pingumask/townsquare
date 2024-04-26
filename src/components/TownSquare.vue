@@ -189,7 +189,13 @@ export default {
   computed: {
     ...mapGetters({ nightOrder: "players/nightOrder" }),
     ...mapState(["grimoire", "roles", "session", "locale"]),
-    ...mapState("players", ["players", "bluffs", "fabled"]),
+    ...mapState("players", ["players", "bluffs", "fabled"]),	
+    firstMessage() {
+	  return JSON.stringify(this.locale.modal.nightOrder.firstNight) ;
+	},	
+    otherMessage() {
+	  return JSON.stringify(this.locale.modal.nightOrder.otherNights) ;
+	}
   },
   data() {
     return {
@@ -767,7 +773,7 @@ export default {
       rgba(0, 0, 0, 0.5) 20%
     );
     &:before {
-      content: "First Night";
+      content: v-bind(firstMessage);
     }
     &:after {
       border-left-color: $townsfolk;
@@ -780,7 +786,7 @@ export default {
     left: 120%;
     background: linear-gradient(to right, $demon 0%, rgba(0, 0, 0, 0.5) 20%);
     &:before {
-      content: "Other Nights";
+      content: v-bind(otherMessage);
     }
     &:after {
       right: 100%;
