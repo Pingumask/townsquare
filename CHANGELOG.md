@@ -2,13 +2,7 @@
 
 ## Upcomming Version
 
-- MAINT: changed french name for Fibbin from Mensonge to Menteur
-- MAINT: french translation inconcistancy for snake charmer
-- MAINT: changed french name for Baloonist from Montgolfier to Aéronaute
-- MAINT: adjustment to nomination messages
-- BUGFIX: missing translation in Roles modal
-- BUGFIX: missing translation in Night order modal
-- BUGFIX: reminder modal title from translation
+- Various corrections in the French version
 
 ### Version 3.18.0
 
