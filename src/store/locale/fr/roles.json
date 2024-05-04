@@ -314,7 +314,7 @@
       "Diablotin"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez un joueur : il meurt. Si vous vous suicidez de cette façon, un Sbire devient le Diablotin."
+    "ability": "Chaque nuit*, désignez un joueur : il meurt. Si vous vous suicidez de cette façon, un Sbire encore en vie devient le Diablotin."
   },
   {
     "id": "bureaucrat",
