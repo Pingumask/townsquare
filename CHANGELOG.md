@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 
-- Various corrections in the French version
+- Updating King description
 
 ### Version 3.18.0
 
