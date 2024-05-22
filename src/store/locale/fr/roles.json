@@ -1364,10 +1364,10 @@
     "firstNight": 11,
     "firstNightReminder": "Informez le Démon de qui est le Roi.",
     "otherNight": 69,
-    "otherNightReminder": "S'il y a plus de joueurs morts que vivants, révélez au roi le personnage d'un joueur encore en vie.",
+    "otherNightReminder": "S'il y a au moins autant de joueurs morts que vivants, révélez au roi un personnage encore en vie.",
     "reminders": [],
     "setup": false,
-    "ability": "Chaque nuit, s'il y a plus de joueurs morts que vivants, vous apprenez un personnage en vie. Le Démon sait qui vous êtes."
+    "ability": "Chaque nuit, s'il y a au moins autant de joueurs morts que vivants, vous apprenez un personnage en vie. Le Démon sait qui vous êtes."
   },
   {
     "id": "balloonist",
