@@ -229,7 +229,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Vous pouvez apparaître comme Mauvais avec un rôle de Sbire ou de Démon, même après votre mort."
+    "ability": "Vous pouvez apparaître comme Mauvais avec un rôle de Serviteur ou de Démon, même après votre mort."
   },
   {
     "id": "saint",
@@ -2042,7 +2042,7 @@
       "Condamné"
     ],
     "setup": true,
-    "ability": "Chaque nuit*, un joueur peut mourir. Les exécutions ratent si seuls des joueurs Mauvais ont voté. Vous apparaissez également comme un Sbire. [La majorité des joueurs sont Légion]"
+    "ability": "Chaque nuit*, un joueur peut mourir. Les exécutions ratent si seuls des joueurs Mauvais ont voté. Vous apparaissez également comme un Serviteur. [La majorité des joueurs sont Légion]"
   },
   {
     "id": "leviathan",
