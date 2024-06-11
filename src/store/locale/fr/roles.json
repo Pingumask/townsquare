@@ -875,7 +875,7 @@
       "Empoisonné"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un joueur vivant: s'il est Démon, vous échangez de personnage et d'équipe avec lui, puis il est définitivement empoisonné."
+    "ability": "Chaque nuit, désignez un joueur vivant : s'il est Démon, vous échangez de personnage et d'équipe avec lui, puis il est empoisonné."
   },
   {
     "id": "mathematician",
