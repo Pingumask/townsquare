@@ -185,7 +185,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "S'il ne reste que 3 joueurs en vie et que la journée se termine sans exécution, votre équipe remporte la partie. Si vous mourez la nuit, un autre joueur peut mourir à votre place."
+    "ability": "Si 3 joueurs sont en vie & qu'il n'y a pas d'exécution, votre équipe gagne. Si vous mourez la nuit, il se peut qu'un autre joueur meure à la place."
   },
   {
     "id": "butler",
@@ -229,7 +229,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Vous pouvez apparaître comme Mauvais avec un rôle de Serviteur ou de Démon, même après votre mort."
+    "ability": "Il se peut que vous apparaissiez comme mauvais avec un rôle de Sbire ou de Démon, même après votre mort."
   },
   {
     "id": "saint",
@@ -270,7 +270,7 @@
     "otherNightReminder": "Montrez votre grimoire à l'Espion aussi longtemps qu'il en a besoin.",
     "reminders": [],
     "setup": false,
-    "ability": "Chaque nuit, vous voyez le Grimoire du Narrateur. Vous pouvez apparaître comme Bon avec un rôle de Villageois ou d'Étranger, même après votre mort."
+    "ability": "Chaque nuit, vous voyez le Grimoire. Il se peut que vous apparaissiez comme bon et comme Villageois ou Étranger, même après votre mort."
   },
   {
     "id": "scarletwoman",
@@ -370,7 +370,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Si un joueur du même alignement que vous est exécuté, vous pouvez être exécuté à sa place."
+    "ability": "Si un joueur du même alignement que vous est exécuté, il se peut que vous soyez exécuté à la place."
   },
   {
     "id": "beggar",
@@ -564,7 +564,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Les Bons joueurs exécutés peuvent ne pas mourir."
+    "ability": "Lorsqu'un joueur bon est exécuté, il se peut qu'il ne meure pas."
   },
   {
     "id": "fool",
@@ -594,7 +594,7 @@
       "Mort"
     ],
     "setup": false,
-    "ability": "Vous pouvez mourir à tout moment."
+    "ability": "À tout moment, il se peut que vous mouriez."
   },
   {
     "id": "moonchild",
@@ -746,7 +746,7 @@
       "Vivant"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez 2 joueurs : ils meurent. Un joueur que vous avez désigné la nuit précédente peut être régurgité."
+    "ability": "Chaque nuit*, désignez 2 joueurs : ils meurent. Il se peut qu'un joueur mort que vous avez désigné la nuit précédente soit régurgité."
   },
   {
     "id": "po",
@@ -1037,7 +1037,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Si vous êtes persuadé d’être un Étranger, vous pouvez être exécuté."
+    "ability": "Si vous êtes persuadé d’être un Étranger, il se peut que vous soyez exécuté."
   },
   {
     "id": "sweetheart",
@@ -1126,7 +1126,7 @@
       "Persuadé"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un joueur et un personnage bon : il sera persuadé d'être ce personnage demain, ou pourra être exécuté."
+    "ability": "Chaque nuit, désignez un joueur et un personnage bon : il sera persuadé d'être ce personnage demain, ou il se peut qu'il soit exécuté."
   },
   {
     "id": "pithag",
@@ -1236,7 +1236,7 @@
       "Mort"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez un joueur vivant : s'il est d'accord, vous apprenez son personnage, mais vous pouvez tous les deux mourir."
+    "ability": "Chaque nuit*, désignez un joueur vivant : s'il est d'accord, vous apprenez son rôle, mais il se peut que vous mouriez tous les deux."
   },
   {
     "id": "butcher",
@@ -1944,7 +1944,7 @@
       "2e"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez deux joueurs : demain, le premier sera persuadé que le deuxième est mauvais, ou ils pourront tous les deux mourir."
+    "ability": "Chaque nuit, désignez deux joueurs : demain, le premier sera persuadé que le deuxième est mauvais, ou il se peut que les deux meurent."
   },
   {
     "id": "summoner",
@@ -2042,7 +2042,7 @@
       "Condamné"
     ],
     "setup": true,
-    "ability": "Chaque nuit*, un joueur peut mourir. Les exécutions ratent si seuls des joueurs Mauvais ont voté. Vous apparaissez également comme un Serviteur. [La majorité des joueurs sont Légion]"
+    "ability": "Chaque nuit*, il se peut qu'un joueur meure. Les exécutions ratent sans vote de bon. Vous apparaissez aussi comme Sbire. [Majorité de Légion]"
   },
   {
     "id": "leviathan",
@@ -2097,7 +2097,7 @@
       "Mort"
     ],
     "setup": false,
-    "ability": "Vous commencez en connaissant une phrase secrète. Pour chaque fois que vous l'avez dite publiquement aujourd'hui, un joueur peut mourir."
+    "ability": "Vous commencez en sachant une phrase secrète. Pour chaque fois que vous l'avez dite publiquement aujourd'hui, il se peut qu'un joueur meure."
   },
   {
     "id": "kazali",
