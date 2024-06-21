@@ -241,7 +241,8 @@ export default new Vuex.Store({
               outsider: "outsider",
               minion: "minion",
               demon: "evil",
-              fabled: "fabled",
+              fabled: "bootlegger",
+              traveler: "traveler",
             }[role.team] || "custom";
           role.firstNight = Math.abs(role.firstNight);
           role.otherNight = Math.abs(role.otherNight);
