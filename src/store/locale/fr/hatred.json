@@ -369,15 +369,15 @@
     "hatred": [
       {
         "id": "Mastermind",
-        "reason": "Si le Cerveau est en vie et que l'hôte de la Sangsue meurt par execution, la Sangsue survit mais perd son pouvoir. "
+        "reason": "Si le Cerveau est en vie et que l'hôte de la Ssangssue meurt par execution, la Ssangssue survit mais perd son pouvoir. "
       },
       {
         "id": "Slayer",
-        "reason": "Si le Tueur tire sur l'hôte de la Sangsue, l'hôte meurt. "
+        "reason": "Si le Tueur tire sur l'hôte de la Ssangssue, l'hôte meurt. "
       },
       {
         "id": "Heretic",
-        "reason": "Si la Sangsue a empoisonné l'Hérétique, et si elle meurt, alors l'Hérétique reste empoisonné. "
+        "reason": "Si la Ssangssue a empoisonné l'Hérétique, et si elle meurt, alors l'Hérétique reste empoisonné. "
       }
     ]
   },
