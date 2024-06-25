@@ -817,8 +817,8 @@
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [
-      "Accusé Bon",
-      "Accusé Mauvais"
+      "Accuser bon",
+      "Accuser mauvais"
     ],
     "setup": false,
     "ability": "Seul le Narrateur peut lancer des accusations. Chaque jour, au moins un de vos adversaires est accusé."
