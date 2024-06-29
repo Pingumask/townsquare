@@ -1290,7 +1290,7 @@
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [
-      "Seen"
+      "Know"
     ],
     "setup": false,
     "ability": "You start knowing 3 players, 1 and only 1 of which is evil."
@@ -1305,7 +1305,7 @@
     "otherNight": 70,
     "otherNightReminder": "If the known evil player has died, point to another evil player. ",
     "reminders": [
-      "Known"
+      "Know"
     ],
     "setup": true,
     "ability": "You start knowing 1 evil player. If the player you know dies, you learn another evil player tonight. [1 Townsfolk is evil]"
@@ -1597,7 +1597,7 @@
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [
-      "Knows"
+      "Know"
     ],
     "setup": false,
     "ability": "You start knowing 1 good player."
@@ -1653,7 +1653,7 @@
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [
-      "Knows"
+      "Know"
     ],
     "setup": false,
     "ability": "You start knowing 2 players that are not the Demon."
@@ -1801,7 +1801,7 @@
       "Poisoned"
     ],
     "remindersGlobal": [
-      "Knows"
+      "Know"
     ],
     "setup": false,
     "ability": "On your 1st night, look at the Grimoire and choose a player: they are poisoned. 1 good player knows a Widow is in play."
