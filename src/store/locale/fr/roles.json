@@ -963,7 +963,7 @@
       "Épuisé"
     ],
     "setup": false,
-    "ability": Une fois par partie, la nuit, désignez deux  joueurs (autres que vous-même) : vous apprenez s'ils ont le même alignement."
+    "ability": "Une fois par partie, la nuit, désignez deux  joueurs (autres que vous-même) : vous apprenez s'ils ont le même alignement."
   },
   {
     "id": "philosopher",
