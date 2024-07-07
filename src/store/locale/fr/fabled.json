@@ -22,7 +22,7 @@
     "setup": false,
     "name": "Ange",
     "team": "fabled",
-    "ability": "Quelque chose de mauvais peut arriver à la personne que le Narrateur juge la plus responsable de la mort d'un nouveau joueur."
+    "ability": "Il se peut que quelque chose de mauvais arrive à tout joueur qui est le principal responsable de la mort d'un nouveau joueur."
   },
   {
     "id": "buddhist",
@@ -46,7 +46,7 @@
     "setup": false,
     "name": "Libraire infernal",
     "team": "fabled",
-    "ability": "Si un joueur ne cède pas la parole quand le Narrateur appelle au silence, quelque chose de mauvais peut lui arriver."
+    "ability": "Il se peut que quelque chose de mauvais arrive à tout joueur qui parle alors que le Narrateur appelle au silence."
   },
   {
     "id": "revolutionary",
@@ -120,7 +120,7 @@
     "setup": true,
     "name": "Sentinelle",
     "team": "fabled",
-    "ability": "Il peut y avoir un étranger de plus ou de moins."
+    "ability": "Il se peut qu’il y ait un Étranger de plus ou de moins."
   },
   {
     "id": "spiritofivory",
