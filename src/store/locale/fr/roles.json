@@ -116,7 +116,7 @@
       "Protégé"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, choisissez un joueur autre que vous-même : il est à l'abri du Démon cette nuit."
+    "ability": "Chaque nuit*, choisissez un joueur (autre que vous-même) : il est à l'abri du Démon cette nuit."
   },
   {
     "id": "ravenkeeper",
@@ -200,7 +200,7 @@
       "Maître"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un joueur autre que vous-même : demain, vous ne pourrez voter que si votre maître a voté aussi."
+    "ability": "Chaque nuit, désignez un joueur (autre que vous même) : demain, vous ne pourrez voter que si ce joueur a voté aussi."
   },
   {
     "id": "drunk",
@@ -329,7 +329,7 @@
       "Triple vote"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un autre joueur: ses votes comptent triple jusqu'à la tombée de la nuit."
+    "ability": "Chaque nuit, désignez un joueur (autre que vous-même) : demain, son vote comptera triple."
   },
   {
     "id": "thief",
@@ -344,7 +344,7 @@
       "Vote négatif"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un autre joueur : ses votes comptent négativement jusqu'à la tombée de la nuit."
+    "ability": "Chaque nuit, désignez un joueur (autre que vous-même) : demain, son vote comptera négativement."
   },
   {
     "id": "gunslinger",
@@ -426,7 +426,7 @@
     "otherNightReminder": "La Femme de chambre désigne deux autres joueurs vivants. Indiquez combien parmi eux ont été reveillés pour leur pouvoir cette nuit.",
     "reminders": [],
     "setup": false,
-    "ability": "Chaque nuit, désignez 2 joueurs vivants (à part vous-même) : vous apprenez combien ont été réveillés à cause de leur pouvoir cette nuit."
+    "ability": "Chaque nuit, désignez deux joueurs vivants (autres que vous-même) : vous apprenez combien ont été réveillés par leur capacité cette nuit."
   },
   {
     "id": "exorcist",
@@ -860,7 +860,7 @@
     "otherNightReminder": "Le Rêveur désigne un joueur. Indiquez lui un rôle Bon et un rôle Mauvais. L'un de ces deux personnages est ce joueur.",
     "reminders": [],
     "setup": false,
-    "ability": "Chaque nuit, désignez un joueur (ni vous, ni un voyageur) : vous apprenez un personnage Bon et un personnage Mauvais. L'un des deux est celui de ce joueur."
+    "ability": "Chaque nuit, désignez un joueur (ni vous-même, ni un Voyageur) : vous apprenez un personnage bon et un mauvais, l'un d'eux étant son rôle."
   },
   {
     "id": "snakecharmer",
@@ -963,7 +963,7 @@
       "Épuisé"
     ],
     "setup": false,
-    "ability": "Une fois par partie, la nuit, désignez deux autres joueurs : vous apprenez s'ils sont du même alignement."
+    "ability": Une fois par partie, la nuit, désignez deux  joueurs (autres que vous-même) : vous apprenez s'ils ont le même alignement."
   },
   {
     "id": "philosopher",
