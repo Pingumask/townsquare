@@ -94,7 +94,7 @@
     "setup": false,
     "name": "Menteur",
     "team": "fabled",
-    "ability": "Une fois par partie, un joueur Bon peut recevoir une information fausse."
+    "ability": "Une fois par partie, il se peut qu’un joueur bon reçoive une information incorrecte."
   },
   {
     "id": "duchess",
