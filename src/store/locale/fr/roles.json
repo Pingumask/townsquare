@@ -200,7 +200,7 @@
       "Maître"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un joueur (autre que vous même) : demain, vous ne pourrez voter que si ce joueur a voté aussi."
+    "ability": "Chaque nuit, désignez un joueur (autre que vous-même) : demain, vous ne pourrez voter que si ce joueur a voté aussi."
   },
   {
     "id": "drunk",
