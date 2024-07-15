@@ -82,7 +82,7 @@
     "setup": false,
     "name": "Fabricant de Jouet",
     "team": "fabled",
-    "ability": "Le Démon peut choisir de ne pas attaquer et doit le faire obligatoirement au moins une fois une fois au cours de la partie. Les joueurs Mauvais ont accès aux informations de début de partie normales."
+    "ability": "Le Démon peut choisir de ne pas attaquer et doit le faire au moins une fois par partie. Les mauvais ont leurs infos de début normales."
   },
   {
     "id": "fibbin",
