@@ -1236,7 +1236,7 @@
       "Mort"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez un joueur vivant : s'il accepte, vous apprenez son personnage, mais il se peut que vous 2 mouriez."
+    "ability": "Chaque nuit*, désignez un joueur vivant : s'il accepte, vous apprenez son personnage, mais il se peut que vous mouriez tous les deux."
   },
   {
     "id": "butcher",
