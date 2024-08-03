@@ -13,7 +13,7 @@
       "Faux"
     ],
     "setup": false,
-    "ability": "Vous commencez la partie en connaissant le rôle de villageois d'un joueur parmi deux désignés."
+    "ability": "Vous commencez la partie en sachant qu'un joueur parmi deux est un Villageois spécifique."
   },
   {
     "id": "librarian",
@@ -29,7 +29,7 @@
       "Faux"
     ],
     "setup": false,
-    "ability": "Vous commencez la partie en connaissant le rôle d'Étranger d'un joueur parmi deux désignés (ou en sachant qu'il n'y en a pas)."
+    "ability": "Vous commencez la partie en sachant qu'un joueur parmi deux est un Étranger spécifique (ou qu'aucun Étranger n'est en jeu)."
   },
   {
     "id": "investigator",
@@ -45,7 +45,7 @@
       "Faux"
     ],
     "setup": false,
-    "ability": "Vous commencez la partie en connaissant le rôle de Serviteur d'un joueur parmi deux désignés."
+    "ability": "Vous commencez la partie en sachant qu'un joueur parmi deux est un Sbire spécifique."
   },
   {
     "id": "chef",
@@ -129,7 +129,7 @@
     "otherNightReminder": "Si le Corbeau est mort cette nuit, il désigne un joueur. Indiquez le rôle de ce joueur.",
     "reminders": [],
     "setup": false,
-    "ability": "Si vous mourez la nuit, vous êtes réveillé pour choisir un joueur et apprenez son rôle."
+    "ability": "Si vous mourez la nuit, vous êtes réveillé pour désigner un joueur et apprenez son personnage."
   },
   {
     "id": "virgin",
@@ -216,7 +216,7 @@
       "Ivrogne"
     ],
     "setup": true,
-    "ability": "Vous ne savez pas que vous êtres l'Ivrogne. Vous croyez avoir un rôle de Villageois, mais vous ne l'avez pas."
+    "ability": "Vous ne savez pas que vous êtes l'Ivrogne. Vous croyez être un personnage Villageois, mais vous ne l'êtes pas."
   },
   {
     "id": "recluse",
@@ -398,7 +398,7 @@
       "Petit-fils"
     ],
     "setup": false,
-    "ability": "Vous commencez la partie en connaissant le rôle de Villageois d'un autre joueur. Si ce joueur est tué par le Démon, vous mourez aussi."
+    "ability": "Vous commencez la partie en connaissant le personnage d'un joueur bon. Si ce joueur est tué par le Démon, vous mourez aussi."
   },
   {
     "id": "sailor",
@@ -472,7 +472,7 @@
       "Mort"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez un joueur et devinez son rôle : si vous vous trompez, vous mourez."
+    "ability": "Chaque nuit*, désignez un joueur et devinez son personnage : si vous vous trompez, vous mourez."
   },
   {
     "id": "gossip",
@@ -505,7 +505,7 @@
       "Épuisé"
     ],
     "setup": false,
-    "ability": "Une fois par partie, la nuit, désignez un rôle : il est Ivre pour 3 jours et 3 nuits."
+    "ability": "Une fois par partie, la nuit, désignez un personnage : il est ivre pour 3 jours et 3 nuits."
   },
   {
     "id": "professor",
@@ -655,7 +655,7 @@
       "Mort"
     ],
     "setup": true,
-    "ability": "Vous commencez la partie en connaissant tous les rôles d'Étrangers en jeu. Si l'un d'eux est mort aujourd'hui, désignez un joueur cette nuit : il meurt. [-1 ou +1 Étranger]"
+    "ability": "Vous commencez en connaissant les Étrangers en jeu. Si l'un est mort aujourd'hui, désignez un joueur cette nuit : il meurt. [-1 ou +1 Étranger]"
   },
   {
     "id": "devilsadvocate",
@@ -1326,7 +1326,7 @@
       "Pouvoir Dispo"
     ],
     "setup": false,
-    "ability": "Vous commencez la partie en connaissant un rôle de Villageois en jeu. Si vous vous étiez persuadé d’être ce personnage, vous gagnez sa capacité quand il meurt."
+    "ability": "Vous commencez en connaissant un Villageois en jeu. Quand il meurt, si vous étiez persuadé d'être ce personnage, vous gagnez sa capacité."
   },
   {
     "id": "general",
@@ -1899,7 +1899,7 @@
       "Marionette"
     ],
     "setup": true,
-    "ability": "Vous pensez avoir un Bon rôle, mais vous n'êtes pas ce personnage. Le Démon sait qui vous êtes. [Votre voisin est le Démon]"
+    "ability": "Vous croyez être un personnage bon, mais vous ne l'êtes pas. Le Démon sait qui vous êtes. [Le Démon est votre voisin]"
   },
   {
     "id": "boomdandy",
@@ -2127,7 +2127,7 @@
       "Mort"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez un rôle : il meurt. Si ce rôle n'est pas en jeu, le Narrateur choisit qui meurt."
+    "ability": "Chaque nuit*, désignez un personnage : il meurt. Si ce personnage n'est pas en jeu, le Narrateur choisit qui meurt."
   },
   {
     "id": "gangster",
