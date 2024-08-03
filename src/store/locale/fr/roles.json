@@ -1104,9 +1104,9 @@
     "edition": "snv",
     "team": "minion",
     "firstNight": 25,
-    "firstNightReminder": "S'il reste 4 joueurs ou plus en vie, la sorcière désigne un joueur. Si ce joueur accuse demain, il est exécuté.",
+    "firstNightReminder": "S'il reste 4 joueurs ou plus en vie, la Sorcière désigne un joueur. Si ce joueur accuse demain, il meurt.",
     "otherNight": 15,
-    "otherNightReminder": "S'il reste 4 joueurs ou plus en vie, la sorcière désigne un joueur. Si ce joueur accuse demain, il est exécuté.",
+    "otherNightReminder": "S'il reste 4 joueurs ou plus en vie, la Sorcière désigne un joueur. Si ce joueur accuse demain, il meurt.",
     "reminders": [
       "Ensorcelé"
     ],
