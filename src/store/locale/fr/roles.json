@@ -624,7 +624,7 @@
       "Ivre"
     ],
     "setup": false,
-    "ability": "Chaque nuit, le premier joueur qui vous désigne avec son pouvoir est Ivre jusqu'à la tombée de la nuit. Vous acquérez son alignement."
+    "ability": "Chaque nuit, le premier joueur à vous désigner avec sa capacité est ivre jusqu'à la tombée de la nuit. Vous acquérez son alignement."
   },
   {
     "id": "lunatic",
@@ -890,7 +890,7 @@
       "Anormal"
     ],
     "setup": false,
-    "ability": "Chaque nuit, vous apprenez combien de pouvoirs ont dysfonctionné depuis le début de la journée à cause des pouvoirs d'autres joueurs."
+    "ability": "Chaque nuit, vous apprenez combien de joueurs ont vu leurs capacités dysfonctionner (depuis le matin) à cause d'un autre personnage."
   },
   {
     "id": "flowergirl",
@@ -980,7 +980,7 @@
       "Épuisé"
     ],
     "setup": false,
-    "ability": "Une fois par partie, la nuit, choisissez un personnage Bon : vous gagnez son pouvoir. Si ce personnage était déjà en jeu, il devient Ivre."
+    "ability": "Une fois par partie, la nuit, désignez un personnage bon : vous gagnez sa capacité. Si ce personnage est en jeu, il est ivre."
   },
   {
     "id": "artist",
@@ -1111,7 +1111,7 @@
       "Ensorcelé"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un joueur : s'il accuse demain, il meurt. S'il ne reste que 3 joueurs en vie, vous perdez ce pouvoir."
+    "ability": "Chaque nuit, désignez un joueur : s'il accuse demain, il meurt. S'il ne reste que trois joueurs en vie, vous perdez cette capacité."
   },
   {
     "id": "cerenovus",
@@ -1170,11 +1170,11 @@
     "otherNightReminder": "Le Vigormortis désigne un joueur. Ce joueur meurt. Si c'est un Serviteur, l'un de ses voisins Villageois est empoisonné.",
     "reminders": [
       "Mort",
-      "Pouvoir conservé",
+      "Capacité conservée",
       "Empoisonné"
     ],
     "setup": true,
-    "ability": "Chaque nuit*, désignez un joueur : il meurt. Les Serviteurs que vous tuez conservent leurs pouvoirs après leur mort et empoisonnent l'un de leurs voisins villageois. [-1 Étranger]"
+    "ability": "Chaque nuit*, désignez un joueur : il meurt. Les Sbires tués par vous ont leurs capacités et empoisonnent un voisin Villageois. [-1 Étranger]"
   },
   {
     "id": "nodashii",
@@ -1218,7 +1218,7 @@
     "otherNightReminder": "Choisissez un joueur, reveillez-le et indiquez-lui s'il est soigné et l'esprit clair ou s'il bénéficie de double capacité. Traitez-le en conséquences.",
     "reminders": [
       "Sobriété & Santé",
-      "Pouvoir doublé"
+      "Capacité doublée"
     ],
     "setup": false,
     "ability": "Chaque nuit, un joueur profite d'un bonus jusqu'à la nuit suivante : soit il devient sobre et en bonne santé et n'aura que de vraies informations, soit il peut utiliser sa capacité deux fois aujourd'hui. Il sait de quel bonus il bénéficie."
@@ -1262,7 +1262,7 @@
     "otherNightReminder": "Le Collecteur d'os peut, s'il n'a pas encore utilisé sa capacité, désigner un joueur mort. S'il le fait, le joueur désigné peut utiliser sa capacité jusqu'à la nuit prochaine. (Pensez à le reveiller si son pouvoir s'active la nuit).",
     "reminders": [
       "Épuisé",
-      "Pouvoir Dispo"
+      "Capacité Dispo"
     ],
     "setup": false,
     "ability": "Une fois par partie, la nuit*, désignez un joueur mort : ce joueur dispose de sa capacité jusqu'à la nuit prochaine."
@@ -1323,7 +1323,7 @@
     "otherNightReminder": "",
     "reminders": [
       "Persuadé",
-      "Pouvoir Dispo"
+      "Capacité Dispo"
     ],
     "setup": false,
     "ability": "Vous commencez la partie en connaissant un rôle de Villageois en jeu. Si vous vous étiez persuadé d’être ce personnage, vous gagnez sa capacité quand il meurt."
@@ -1428,7 +1428,7 @@
       "?"
     ],
     "setup": false,
-    "ability": "Vous ne savez pas quel est votre pouvoir. Chaque jour, vous pouvez tenter de le deviner en privé avec le Narrateur : il vous indique si votre réponse est proche ou non de la vérité."
+    "ability": "Vous ne savez pas quelle est votre capacité. Chaque jour, devinez-la en privé avec le Narrateur : vous apprenez à quel point vous avez raison."
   },
   {
     "id": "nightwatchman",
