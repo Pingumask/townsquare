@@ -166,10 +166,11 @@
     "edition": {
       "title": "Choisir un Scénario :",
       "tab": {
-        "official": "Scénarios officiels",
-        "popular": "Scripts populaires",
+        "official": "Officiels",
+        "popular": "Populaires",
         "teensyville": "Teensyville",
-        "custom": "Partie personnalisée"
+        "custom": "Personnaliser",
+        "build": "Créer"
       },
       "custom": {
         "introStart": "Pour jouer avec un script personnalisé, vous pouvez sélectionner les personnages de votre choix grace à l'",
@@ -183,7 +184,8 @@
         "upload": "Téléversersement JSON",
         "url": "Entrer une URL",
         "clipboard": "Presse-papier",
-        "back": "Retour"
+        "back": "Retour",
+        "startDraft": "Démarrer un draft"
       }
     },
     "fabled": {

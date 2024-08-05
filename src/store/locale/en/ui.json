@@ -166,10 +166,11 @@
     "edition": {
       "title": "Select an edition:",
       "tab": {
-        "official": "Official scripts",
-        "popular": "Popular scripts",
+        "official": "Official",
+        "popular": "Popular",
         "teensyville": "Teensyville",
-        "custom": "Load custom"
+        "custom": "Custom",
+        "build": "Build"
       },
       "custom": {
         "introStart": "To play with a custom script, you need to select the characters you want to play with in the official",

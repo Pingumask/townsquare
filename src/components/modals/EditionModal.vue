@@ -19,17 +19,20 @@
         >
         <span
           class="tab"
-          icon="theater-masks"
-          @click="tab = 'teensyville'"
-          :class="{ active: tab == 'teensyville' }"
-          >{{ locale.modal.edition.tab.teensyville }}</span
-        >
-        <span
-          class="tab"
           icon="question"
           @click="tab = 'custom'"
           :class="{ active: tab == 'custom' }"
           >{{ locale.modal.edition.tab.custom }}</span
+        >
+        <span
+          class="tab"
+          icon="question"
+          @click="
+            initPool();
+            tab = 'build';
+          "
+          :class="{ active: tab == 'build' }"
+          >{{ locale.modal.edition.tab.build }}</span
         >
       </li>
       <template v-if="tab == 'official'">
@@ -60,8 +63,7 @@
             {{ script[0] }}
           </li>
         </ul>
-      </template>
-      <template v-if="tab == 'teensyville'">
+        <h3>{{ locale.modal.edition.tab.teensyville }}</h3>
         <ul class="scripts">
           <li
             v-for="(script, index) in editions.teensyville"
@@ -110,6 +112,46 @@
           </div>
         </div>
       </template>
+      <template v-if="tab == 'build'">
+        <section
+          v-for="team in teams"
+          :key="team"
+          class="build team"
+          :class="team"
+        >
+          <aside class="aside">
+            <div>
+              <h4>{{ locale.modal.reference.teamNames[team] }}</h4>
+              <strong>{{ selectedInTeam(team) }}</strong>
+            </div>
+          </aside>
+          <ul class="roles" :class="team">
+            <li
+              v-for="role in rolesForTeam(team)"
+              class="role"
+              :class="{ selected: role.selected }"
+              :key="role.id"
+              @click="toggleRole(role.id)"
+            >
+              <Token :role="role" />
+            </li>
+          </ul>
+        </section>
+        <div class="button-group">
+          <div class="button" @click="resetBuilt">
+            <font-awesome-icon :icon="['fas', 'trash-alt']" />
+          </div>
+          <div class="button" @click="initPool">
+            <font-awesome-icon :icon="['fas', 'redo-alt']" />
+          </div>
+          <div class="button" @click="randomizeBuilt">
+            <font-awesome-icon :icon="['fas', 'random']" />
+          </div>
+          <div class="button" @click="startBuilt">
+            <font-awesome-icon :icon="['fas', 'play']" />
+          </div>
+        </div>
+      </template>
     </ul>
   </Modal>
 </template>
@@ -117,38 +159,95 @@
 <script>
 import { mapMutations, mapState } from "vuex";
 import Modal from "./Modal";
+import { rolesJSON } from "../../store/modules/locale";
+import Token from "../Token";
 
 export default {
   components: {
     Modal,
+    Token,
   },
-  data: function () {
+  data() {
     return {
       tab: "official",
+      draftPool: rolesJSON,
+      teams: ["townsfolk", "outsider", "minion", "demon"],
+      recommendedTeamSize: {
+        townsfolk: 13,
+        outsider: 4,
+        minion: 4,
+        demon: 4,
+      },
     };
   },
   computed: {
-    ...mapState(["modals", "locale", "editions"]),
+    ...mapState(["roles", "modals", "locale", "editions"]),
   },
   methods: {
+    initPool() {
+      console.log("init pool");
+      console.table(this.roles);
+      this.draftPool = rolesJSON;
+      this.resetBuilt();
+      for (let [role] of this.roles) {
+        this.toggleRole(role);
+      }
+    },
+    toggleRole(id) {
+      const role = this.draftPool.find((r) => r.id === id);
+      if (role) {
+        this.$set(role, "selected", !role.selected);
+      }
+    },
+    rolesForTeam(team) {
+      return this.draftPool?.filter((role) => role.team === team) ?? [];
+    },
+    selectedInTeam(team) {
+      return this.draftPool?.filter(
+        (role) => role.team === team && role.selected,
+      ).length;
+    },
+    resetBuilt() {
+      for (let role of this.draftPool) {
+        this.$set(role, "selected", false);
+      }
+    },
+    randomizeBuilt() {
+      this.resetBuilt();
+      for (let team of this.teams) {
+        let currentPool = this.rolesForTeam(team);
+        for (let i = 0; i < this.recommendedTeamSize[team]; i++) {
+          let picked = currentPool.splice(
+            Math.floor(Math.random() * currentPool.length),
+            1,
+          )[0];
+          this.$set(picked, "selected", true);
+        }
+      }
+    },
+    startBuilt() {
+      const selected = this.draftPool.filter((role) => role.selected);
+      this.parseRoles(selected);
+    },
     openUpload() {
       this.$refs.upload.click();
     },
     handleUpload() {
       const file = this.$refs.upload.files[0];
-      if (file && file.size) {
-        const reader = new FileReader();
-        reader.addEventListener("load", () => {
-          try {
-            const roles = JSON.parse(reader.result);
-            this.parseRoles(roles);
-          } catch (e) {
-            alert("Error reading custom script: " + e.message);
-          }
-          this.$refs.upload.value = "";
-        });
-        reader.readAsText(file);
+      if (!file?.size) {
+        return;
       }
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        try {
+          const uploadedRoles = JSON.parse(reader.result);
+          this.parseRoles(uploadedRoles);
+        } catch (e) {
+          alert(`Error reading custom script: ${e.message}`);
+        }
+        this.$refs.upload.value = "";
+      });
+      reader.readAsText(file);
     },
     promptURL() {
       const url = prompt(this.locale.prompt.customUrl);
@@ -158,42 +257,36 @@ export default {
     },
     async handleURL(url) {
       const res = await fetch(url);
-      if (res && res.json) {
+      if (res?.json) {
         try {
           const script = await res.json();
           this.parseRoles(script);
         } catch (e) {
-          alert(this.locale.prompt.customError + ": " + e.message);
+          alert(`${this.locale.prompt.customError}: ${e.message}`);
         }
       }
     },
     async readFromClipboard() {
       const text = await navigator.clipboard.readText();
       try {
-        const roles = JSON.parse(text);
-        this.parseRoles(roles);
+        const uploadedRoles = JSON.parse(text);
+        this.parseRoles(uploadedRoles);
       } catch (e) {
-        alert("Error reading custom script: " + e.message);
+        alert(`Error reading custom script: ${e.message}`);
       }
     },
-    parseRoles(roles) {
-      if (!roles || !roles.length) return;
-      roles = roles.map((role) =>
+    parseRoles(pickedRoles) {
+      if (!pickedRoles || !pickedRoles.length) return;
+      pickedRoles = pickedRoles.map((role) =>
         typeof role === "string" ? { id: role } : role,
       );
-      const metaIndex = roles.findIndex(({ id }) => id === "_meta");
-      let meta = {};
-      if (metaIndex > -1) {
-        meta = roles.splice(metaIndex, 1).pop();
-      }
-      this.$store.commit("setCustomRoles", roles);
-      this.$store.commit(
-        "setEdition",
-        Object.assign({}, meta, { id: "custom" }),
-      );
+      const metaIndex = pickedRoles.findIndex(({ id }) => id === "_meta");
+      const meta = metaIndex > -1 ? pickedRoles.splice(metaIndex, 1).pop() : {};
+      this.$store.commit("setCustomRoles", pickedRoles);
+      this.$store.commit("setEdition", { ...meta, id: "custom" });
       // set fabled
       const fabled = [];
-      roles.forEach((role) => {
+      pickedRoles.forEach((role) => {
         if (this.$store.state.fabled.has(role.id || role)) {
           fabled.push(this.$store.state.fabled.get(role.id || role));
         }
@@ -211,6 +304,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../../vars.scss";
 ul {
   width: 100%;
 }
@@ -240,6 +334,14 @@ ul.editions {
   }
 }
 
+.build .role {
+  width: 4vmax;
+  opacity: 0.7;
+
+  &.selected {
+    opacity: 1;
+  }
+}
 .tabs {
   display: flex;
   padding: 0;
@@ -284,8 +386,6 @@ input[type="file"] {
   list-style-type: disc;
   font-size: 120%;
   cursor: pointer;
-  // display: grid;
-  // grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   display: flex;
   gap: 0.75em 1em;
   justify-content: flex-start;
@@ -300,6 +400,61 @@ input[type="file"] {
     &:hover {
       color: red;
     }
+  }
+}
+
+.townsfolk {
+  aside {
+    background: linear-gradient(-90deg, $townsfolk, transparent);
+  }
+}
+.outsider {
+  aside {
+    background: linear-gradient(-90deg, $outsider, transparent);
+  }
+}
+.minion {
+  aside {
+    background: linear-gradient(-90deg, $minion, transparent);
+  }
+}
+.demon {
+  aside {
+    background: linear-gradient(-90deg, $demon, transparent);
+  }
+}
+
+.team {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 3rem 1fr;
+  aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    strong {
+      display: block;
+      font-size: 1.4rem;
+    }
+    div {
+      font-size: 1.1rem;
+      text-align: center;
+      rotate: 90deg;
+    }
+    h4 {
+      margin-block: 0.25rem;
+    }
+  }
+  .roles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-left: 1rem;
+    padding-block: 0.25rem;
+    overflow: hidden;
   }
 }
 </style>

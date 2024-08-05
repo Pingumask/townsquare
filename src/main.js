@@ -34,6 +34,7 @@ const faIcons = [
   "MinusSquare",
   "Music",
   "PeopleArrows",
+  "Play",
   "PlusCircle",
   "Question",
   "Random",
