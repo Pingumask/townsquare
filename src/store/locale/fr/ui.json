@@ -169,7 +169,8 @@
         "official": "Scénarios officiels",
         "popular": "Scripts populaires",
         "teensyville": "Teensyville",
-        "custom": "Partie personnalisée"
+        "custom": "Partie personnalisée",
+        "build": "Créer"
       },
       "custom": {
         "introStart": "Pour jouer avec un script personnalisé, vous pouvez sélectionner les personnages de votre choix grace à l'",
@@ -183,7 +184,8 @@
         "upload": "Téléversersement JSON",
         "url": "Entrer une URL",
         "clipboard": "Presse-papier",
-        "back": "Retour"
+        "back": "Retour",
+        "startDraft": "Démarrer un draft"
       }
     },
     "fabled": {

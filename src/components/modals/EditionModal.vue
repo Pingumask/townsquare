@@ -31,6 +31,13 @@
           :class="{ active: tab == 'custom' }"
           >{{ locale.modal.edition.tab.custom }}</span
         >
+        <span
+          class="tab"
+          icon="question"
+          @click="tab = 'build'"
+          :class="{ active: tab == 'build' }"
+          >{{ locale.modal.edition.tab.build }}</span
+        >
       </li>
       <template v-if="tab == 'official'">
         <ul class="editions">
@@ -110,6 +117,36 @@
           </div>
         </div>
       </template>
+      <template v-if="tab == 'build'">
+        <section
+          v-for="team in teams"
+          :key="team"
+          class="build team"
+          :class="team"
+        >
+          <aside class="aside">
+            <span>{{ team }}</span>
+            <strong>{{ selectedInTeam(team) }}</strong>
+          </aside>
+          <ul class="roles" :class="team">
+            <li
+              v-for="role in rolesForTeam(team)"
+              class="role"
+              :class="{ selected: role.selected }"
+              :key="role.id"
+              @click="toggleRole(role.id)"
+            >
+              <Token :role="role" />
+            </li>
+          </ul>
+        </section>
+        <div class="button-group">
+          <div class="button" @click="startBuilt">
+            <font-awesome-icon :icon="['fas', 'play']" />
+            Start
+          </div>
+        </div>
+      </template>
     </ul>
   </Modal>
 </template>
@@ -117,38 +154,62 @@
 <script>
 import { mapMutations, mapState } from "vuex";
 import Modal from "./Modal";
+import { rolesJSON } from "../../store/modules/locale";
+import Token from "../Token";
 
 export default {
   components: {
     Modal,
+    Token,
   },
-  data: function () {
+  data() {
     return {
       tab: "official",
+      draftPool: rolesJSON,
+      teams: ["townsfolk", "outsider", "minion", "demon"],
     };
   },
   computed: {
     ...mapState(["modals", "locale", "editions"]),
   },
   methods: {
+    toggleRole(id) {
+      const role = this.draftPool.find((r) => r.id === id);
+      if (role) {
+        this.$set(role, "selected", !role.selected);
+      }
+    },
+    rolesForTeam(team) {
+      return this.draftPool?.filter((role) => role.team === team) ?? [];
+    },
+    selectedInTeam(team) {
+      return this.draftPool?.filter(
+        (role) => role.team === team && role.selected,
+      ).length;
+    },
+    startBuilt() {
+      const selected = this.draftPool.filter((role) => role.selected);
+      this.parseRoles(selected);
+    },
     openUpload() {
       this.$refs.upload.click();
     },
     handleUpload() {
       const file = this.$refs.upload.files[0];
-      if (file && file.size) {
-        const reader = new FileReader();
-        reader.addEventListener("load", () => {
-          try {
-            const roles = JSON.parse(reader.result);
-            this.parseRoles(roles);
-          } catch (e) {
-            alert("Error reading custom script: " + e.message);
-          }
-          this.$refs.upload.value = "";
-        });
-        reader.readAsText(file);
+      if (!file?.size) {
+        return;
       }
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        try {
+          const roles = JSON.parse(reader.result);
+          this.parseRoles(roles);
+        } catch (e) {
+          alert(`Error reading custom script: ${e.message}`);
+        }
+        this.$refs.upload.value = "";
+      });
+      reader.readAsText(file);
     },
     promptURL() {
       const url = prompt(this.locale.prompt.customUrl);
@@ -158,12 +219,12 @@ export default {
     },
     async handleURL(url) {
       const res = await fetch(url);
-      if (res && res.json) {
+      if (res?.json) {
         try {
           const script = await res.json();
           this.parseRoles(script);
         } catch (e) {
-          alert(this.locale.prompt.customError + ": " + e.message);
+          alert(`${this.locale.prompt.customError}: ${e.message}`);
         }
       }
     },
@@ -173,7 +234,7 @@ export default {
         const roles = JSON.parse(text);
         this.parseRoles(roles);
       } catch (e) {
-        alert("Error reading custom script: " + e.message);
+        alert(`Error reading custom script: ${e.message}`);
       }
     },
     parseRoles(roles) {
@@ -182,15 +243,9 @@ export default {
         typeof role === "string" ? { id: role } : role,
       );
       const metaIndex = roles.findIndex(({ id }) => id === "_meta");
-      let meta = {};
-      if (metaIndex > -1) {
-        meta = roles.splice(metaIndex, 1).pop();
-      }
+      const meta = metaIndex > -1 ? roles.splice(metaIndex, 1).pop() : {};
       this.$store.commit("setCustomRoles", roles);
-      this.$store.commit(
-        "setEdition",
-        Object.assign({}, meta, { id: "custom" }),
-      );
+      this.$store.commit("setEdition", { ...meta, id: "custom" });
       // set fabled
       const fabled = [];
       roles.forEach((role) => {
@@ -211,6 +266,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../../vars.scss";
 ul {
   width: 100%;
 }
@@ -240,6 +296,14 @@ ul.editions {
   }
 }
 
+.build .role {
+  width: 4vmax;
+  opacity: 0.7;
+
+  &.selected {
+    opacity: 1;
+  }
+}
 .tabs {
   display: flex;
   padding: 0;
@@ -284,8 +348,6 @@ input[type="file"] {
   list-style-type: disc;
   font-size: 120%;
   cursor: pointer;
-  // display: grid;
-  // grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   display: flex;
   gap: 0.75em 1em;
   justify-content: flex-start;
@@ -300,6 +362,52 @@ input[type="file"] {
     &:hover {
       color: red;
     }
+  }
+}
+
+.townsfolk {
+  aside {
+    background: linear-gradient(-90deg, $townsfolk, transparent);
+  }
+}
+.outsider {
+  aside {
+    background: linear-gradient(-90deg, $outsider, transparent);
+  }
+}
+.minion {
+  aside {
+    background: linear-gradient(-90deg, $minion, transparent);
+  }
+}
+.demon {
+  aside {
+    background: linear-gradient(-90deg, $demon, transparent);
+  }
+}
+
+.team {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 80px 1fr;
+  aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    strong {
+      font-size: 2rem;
+      display: block;
+    }
+  }
+  .roles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-inline: 1rem;
   }
 }
 </style>

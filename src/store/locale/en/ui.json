@@ -169,7 +169,8 @@
         "official": "Official scripts",
         "popular": "Popular scripts",
         "teensyville": "Teensyville",
-        "custom": "Load custom"
+        "custom": "Load custom",
+        "build": "Build script"
       },
       "custom": {
         "introStart": "To play with a custom script, you need to select the characters you want to play with in the official",
