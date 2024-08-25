@@ -69,7 +69,7 @@
     "setup": false,
     "name": "Violoniste",
     "team": "fabled",
-    "ability": "Une fois par partie, le Démon choisit un joueur Bon en secret : tous les joueurs votent pour décider l'équipe duquel de ces 2 joueurs a gagné."
+    "ability": "Une fois par partie, le Démon choisit un joueur adverse en secret : tous les joueurs choisissent l'équipe duquel de ces deux joueurs gagne."
   },
   {
     "id": "toymaker",
@@ -143,7 +143,7 @@
     "setup": false,
     "name": "Djinn",
     "team": "fabled",
-    "ability": "Le Narrateur met en place une règle spéciale et l'explique aux joueurs avant le début de la partie."
+    "ability": "Utilisez la règle spéciale du Djinn. Tous les joueurs connaissent cette règle."
   },
   {
     "id": "stormcatcher",
