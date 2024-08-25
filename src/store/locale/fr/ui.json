@@ -111,8 +111,8 @@
         "text": "Journée"
       },
       "nominations": {
-        "button": "Nominations",
-        "text": "Nominations ouvertes"
+        "button": "Accusations",
+        "text": "Accusations ouvertes"
       },
       "dusk": {
         "button": "Fin de Journée",
@@ -124,7 +124,7 @@
       },
       "defense": {
         "button": "Défense",
-        "text": "$accusee se défend de $accusator"
+        "text": "$accusee se défend contre $accusator"
       },
       "debate": {
         "button": "Débat",
@@ -199,15 +199,16 @@
       "custom": "Scénario Perso",
       "firstNight": "Première Nuit",
       "otherNights": "Autres Nuits",
-      "minionInfo": "Informations Serviteurs",
-      "minionInfoDescription": "S'il y a plusieurs Serviteurs, ils apprennent qui sont les autres Serviteurs. Indiquez aux Serviteurs qui est le Démon.",
+      "minionInfo": "Informations Sbires",
+      "minionInfoDescription": "S'il y a plusieurs Sbires, ils apprennent qui sont les autres Sbires. Indiquez aux Sbires qui est le Démon.",
       "demonInfo": "Info & Bluffs Démon",
-      "demonInfoDescription": "Indiquez au Démon qui sont ses serviteurs. Indiquez les rôles de 3 personnages bons qui ne sont pas en jeu.",
+      "demonInfoDescription": "Indiquez au Démon qui sont ses Sbires. Indiquez les rôles de 3 personnages bons qui ne sont pas en jeu.",
       "dawn": "Matin",
       "dawnDescription1": "Réveillez les joueurs.",
       "dawnDescription2": "Réveillez les joueurs, puis annoncez qui est mort cette nuit",
       "dusk": "Tombée de la nuit",
-      "duskDescription": "Terminez la journée, et endormez les joueurs."
+      "duskDescription": "Terminez la journée, et endormez les joueurs.",
+      "reference": "Afficher la Réference de rôles"
     },
     "reference": {
       "title": "Réference de rôles",
@@ -216,12 +217,14 @@
       "teamNames": {
         "townsfolk": "villageois",
         "outsider": "étrangers",
-        "minion": "serviteur",
+        "minion": "sbires",
         "demon": "démons"
-      }
+      },
+      "nightOrder": "Afficher l'Ordre Nocturne"
+
     },
     "reminder": {
-      "title": "Apposer une note:",
+      "title": "Apposer une note :",
       "good": "Bon",
       "evil": "Mauvais",
       "custom": "Note"
@@ -234,8 +237,8 @@
     },
     "roles": {
       "titleStart": "Selectionner les personnages pour ",
-      "titleEnd": " joueurs:",
-      "warning": "Attention: certains des personnages sélectionnés changent la distribution de début de partie ! La distribution aléatoire n'effectue pas elle-même ces changements, pensez à modifier les attributions en conséquence avant d'envoyer les rôles aux joueurs.",
+      "titleEnd": " joueurs :",
+      "warning": "Attention : certains des personnages sélectionnés changent la distribution de début de partie ! La distribution aléatoire n'effectue pas elle-même ces changements, pensez à modifier les attributions en conséquence avant d'envoyer les rôles aux joueurs.",
       "allowMultiple": "Permettre les doublons de personnages",
       "assignStart": "Attribuer aléatoirement ces ",
       "assignEnd": " rôles",

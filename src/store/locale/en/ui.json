@@ -120,7 +120,7 @@
       },
       "accusation": {
         "button": "Accusation",
-        "text": "$accusator accuses $accusee"
+        "text": "$accusator nominates $accusee"
       },
       "defense": {
         "button": "Defense",
@@ -207,7 +207,8 @@
       "dawnDescription1": "Wake all players.",
       "dawnDescription2": "Wake all players, then announce who died this night.",
       "dusk": "Dusk",
-      "duskDescription": "End the day, and put all players to sleep."
+      "duskDescription": "End the day, and put all players to sleep.",
+      "reference": "Show Character Reference"
     },
     "reference": {
       "title": "Character Reference",
@@ -219,6 +220,7 @@
         "minion": "minions",
         "demon": "demons"
       }
+      "nightOrder": "Show Night Order"
     },
     "reminder": {
       "title": "Choose a reminder token:",
