@@ -8,7 +8,7 @@
       @click="toggleModal('nightOrder')"
       icon="cloud-moon"
       class="toggle"
-      title="Show Night Order"
+      :title="locale.modal.reference.nightOrder"
     />
     <h3>
       {{ locale.modal.reference.title }}
