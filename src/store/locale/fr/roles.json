@@ -1855,11 +1855,11 @@
   },
   {
     "id": "mephit",
-    "name": "Méphite",
+    "name": "Mezepheles",
     "edition": "",
     "team": "minion",
     "firstNight": 29,
-    "firstNightReminder": "Indiquez au Mephit son mot secret.",
+    "firstNightReminder": "Indiquez au Mezepheles son mot secret.",
     "otherNight": 20,
     "otherNightReminder": "Si un joueur Bon a pronnoncé le mot secret aujourd'hui, réveillez-le et informez-le qu'il fait maintenant partie de l'équipe des Mauvais.",
     "reminders": [
