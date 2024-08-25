@@ -216,10 +216,10 @@
       "notfirstnight": "*Not the first night",
       "teamNames": {
         "townsfolk": "townfolk",
-        "outsider": "outsider",
-        "minion": "minion",
-        "demon": "demon"
-      },
+        "outsider": "outsiders",
+        "minion": "minions",
+        "demon": "demons"
+      }
       "nightOrder": "Show Night Order"
     },
     "reminder": {
