@@ -143,7 +143,7 @@
     "setup": false,
     "name": "Djinn",
     "team": "fabled",
-    "ability": "Le Narrateur met en place une règle spéciale et l'explique aux joueurs avant le début de la partie."
+    "ability": "Utilisez la règle spéciale du Djinn. Tous les joueurs connaissent cette règle."
   },
   {
     "id": "stormcatcher",

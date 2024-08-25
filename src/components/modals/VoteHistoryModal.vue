@@ -120,6 +120,7 @@ export default {
   left: 20px;
   top: 15px;
   cursor: pointer;
+
   &:hover {
     color: red;
   }
@@ -137,6 +138,7 @@ export default {
   color: white;
   text-decoration: none;
   margin: 0 15px;
+
   &:hover {
     color: red;
     cursor: pointer;
@@ -145,6 +147,7 @@ export default {
 
 h3 {
   margin: 0 40px 0 10px;
+
   svg {
     vertical-align: middle;
   }
@@ -167,12 +170,15 @@ tbody {
   td:nth-child(2) {
     color: $townsfolk;
   }
+
   td:nth-child(3) {
     color: $demon;
   }
+
   td:nth-child(5) {
     text-align: center;
   }
+
   td:nth-child(6) {
     text-align: center;
   }
