@@ -37,15 +37,15 @@
     "edition": "tb",
     "team": "townsfolk",
     "firstNight": 37,
-    "firstNightReminder": "Indiquez un rôle de Serviteur en jeu et deux joueurs. L'un de ces joueurs est ce personnage.",
+    "firstNightReminder": "Indiquez un rôle de Sbire en jeu et deux joueurs. L'un de ces joueurs est ce personnage.",
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [
-      "Serviteur",
+      "Sbire",
       "Faux"
     ],
     "setup": false,
-    "ability": "Vous commencez la partie en connaissant le rôle de Serviteur d'un joueur parmi deux désignés."
+    "ability": "Vous commencez la partie en connaissant le rôle de Sbire d'un joueur parmi deux désignés."
   },
   {
     "id": "chef",
@@ -75,18 +75,18 @@
   },
   {
     "id": "fortuneteller",
-    "name": "Voyant",
+    "name": "Voyante",
     "edition": "tb",
     "team": "townsfolk",
     "firstNight": 40,
-    "firstNightReminder": "Le Voyant désigne 2 joueurs. Indiquez si, oui ou non, l'un d'eux est le Démon (ou la fausse piste).",
+    "firstNightReminder": "La Voyante désigne 2 joueurs. Indiquez si, oui ou non, l'un d'eux est le Démon (ou la fausse piste).",
     "otherNight": 59,
-    "otherNightReminder": "Le Voyant désigne 2 joueurs. Indiquez si, oui ou non, l'un d'eux est le Démon (ou la fausse piste).",
+    "otherNightReminder": "La Voyante désigne 2 joueurs. Indiquez si, oui ou non, l'un d'eux est le Démon (ou la fausse piste).",
     "reminders": [
       "Fausse piste"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez 2 joueurs : vous apprenez si l'un des deux est Démon. L'un des bons joueurs vous apparaît comme un Démon aussi."
+    "ability": "Chaque nuit, désignez 2 joueurs : vous apprenez si l'un des deux est Démon. L'un des joueurs bons vous apparaît comme un Démon aussi."
   },
   {
     "id": "undertaker",
@@ -101,7 +101,7 @@
       "Executé"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, si un joueur est mort par exécution pendant la journée, vous apprenez son personnage."
+    "ability": "Chaque nuit*, vous apprenez quel personnage est mort par exécution aujourd’hui."
   },
   {
     "id": "monk",
@@ -120,13 +120,13 @@
   },
   {
     "id": "ravenkeeper",
-    "name": "Corbeau",
+    "name": "Ami des corbeaux",
     "edition": "tb",
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 57,
-    "otherNightReminder": "Si le Corbeau est mort cette nuit, il désigne un joueur. Indiquez le rôle de ce joueur.",
+    "otherNightReminder": "Si l'Ami des corbeaux est mort cette nuit, il désigne un joueur. Indiquez le rôle de ce joueur.",
     "reminders": [],
     "setup": false,
     "ability": "Si vous mourez la nuit, vous êtes réveillé pour choisir un joueur et apprenez son rôle."
@@ -172,7 +172,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Le Démon ne peut pas vous faire de mal."
+    "ability": "Vous êtes à l’abri du Démon."
   },
   {
     "id": "mayor",
@@ -200,7 +200,7 @@
       "Maître"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un joueur autre que vous-même : demain, vous ne pourrez voter que si votre maître a voté aussi."
+    "ability": "Chaque nuit, désignez un joueur autre que vous-même : demain, vous ne pourrez voter que si ce joueur a voté aussi."
   },
   {
     "id": "drunk",
@@ -242,7 +242,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Si vous mourez par exécution, votre équipe perd la partie."
+    "ability": "Si vous mourez par exécution, votre équipe perd."
   },
   {
     "id": "poisoner",
@@ -308,13 +308,13 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 26,
-    "otherNightReminder": "Le Diablotin désigne un joueur, ce joueur meurt. Si le Diablotin se choisit lui-même, l'un de ses Serviteurs encore en vie devient le Diablotin.",
+    "otherNightReminder": "Le Diablotin désigne un joueur, ce joueur meurt. Si le Diablotin se choisit lui-même, l'un des Sbires encore en vie devient le Diablotin.",
     "reminders": [
       "Mort",
       "Diablotin"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez un joueur: il meurt. Si vous vous suicidez de cette façon, l'un de vos Serviteurs encore en vie devient le Diablotin."
+    "ability": "Chaque nuit*, désignez un joueur : il meurt. Si vous vous suicidez de cette façon, un Sbire encore en vie devient le Diablotin."
   },
   {
     "id": "bureaucrat",
@@ -441,7 +441,7 @@
       "Exorcisé"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez un joueur (différent de la nuit précédente) : si vous le choisissez, le Démon ne se réveille pas et apprend qui vous êtes."
+    "ability": "Chaque nuit*, désignez un joueur (différent de la nuit précédente) : si choisi, le Démon apprend qui vous êtes, et ne se réveille pas cette nuit."
   },
   {
     "id": "innkeeper",
@@ -536,7 +536,7 @@
       "Tous Ivres"
     ],
     "setup": false,
-    "ability": "Quand un Serviteur meurt par exécution, tous les autres joueurs (sauf les Voyageurs) sont Ivres jusqu'à la tombée de la nuit."
+    "ability": "Quand un Sbire meurt par exécution, tous les autres joueurs (sauf les Voyageurs) sont Ivres jusqu'à la tombée de la nuit."
   },
   {
     "id": "tealady",
@@ -632,7 +632,7 @@
     "edition": "bmr",
     "team": "outsider",
     "firstNight": 9,
-    "firstNightReminder": "S'il y a 7 joueurs ou plus, indiquez à l'Aliéné un nombre de rôles de Serviteurs correspondant au nombre de Serviteurs en jeu et des joueurs pour chacuns de ces personnages. Montrez 3 jetons de personnages bons de votre choix. Si le faux personnage de Démon assigné à l'Aliéné a des actions de nuit, prétendez que vous lui faites réaliser ces actions. Placez le(s) marqueur(s) d'attaque de l'Aliéné. Réveillez le vrai Démon. Dévoilez au Démon les véritables Serviteurs et 3 bons personnages qui ne sont pas en jeu. Dévoilez au Démon qui est l'Aliéné. Si l'Aliéné a attaqué des joueurs, dévoilez au véritable Démon les joueurs marqués puis retirez les marqueurs de l'Aliéné.",
+    "firstNightReminder": "S'il y a 7 joueurs ou plus, indiquez à l'Aliéné un nombre de rôles de Sbires correspondant au nombre de Sbires en jeu et des joueurs pour chacuns de ces personnages. Montrez 3 jetons de personnages bons de votre choix. Si le faux personnage de Démon assigné à l'Aliéné a des actions de nuit, prétendez que vous lui faites réaliser ces actions. Placez le(s) marqueur(s) d'attaque de l'Aliéné. Réveillez le vrai Démon. Dévoilez au Démon les véritables Sbires et 3 bons personnages qui ne sont pas en jeu. Dévoilez au Démon qui est l'Aliéné. Si l'Aliéné a attaqué des joueurs, dévoilez au véritable Démon les joueurs marqués puis retirez les marqueurs de l'Aliéné.",
     "otherNight": 22,
     "otherNightReminder": "Permettez à l'Aliéné de réaliser les actions du Démon qu'il croit être. Placez le(s) marqueur(s) d'attaque. Si l'Aliéné a indiqué des joueurs, réveillez le Démon. Dévoilez au Démon les marqueurs de l'Aliéné puis retirez-les.",
     "reminders": [],
@@ -640,7 +640,7 @@
       "Aliéné"
     ],
     "setup": true,
-    "ability": "Vous croyez être le Démon mais vous ne l'êtes pas. Le Démon sait qui vous êtes et qui vous désignez chaque nuit."
+    "ability": "Vous croyez être un Démon, mais vous ne l'êtes pas. Le Démon sait qui vous êtes et qui vous désignez chaque nuit."
   },
   {
     "id": "godfather",
@@ -777,7 +777,7 @@
       "Apprenti"
     ],
     "setup": false,
-    "ability": "Au cours de votre première nuit, vous acquérez une capacité de villageois si vous êtes bon, ou une capacité de Serviteur si vous êtes Mauvais."
+    "ability": "Au cours de votre première nuit, vous acquérez une capacité de villageois si vous êtes bon, ou une capacité de Sbire si vous êtes Mauvais."
   },
   {
     "id": "matron",
@@ -842,12 +842,12 @@
     "edition": "snv",
     "team": "townsfolk",
     "firstNight": 43,
-    "firstNightReminder": "Indiquez à quelle distance le Démon se trouve de son Serviteur le plus proche (en nombre de maisons).",
+    "firstNightReminder": "Indiquez à quelle distance le Démon se trouve de son Sbire le plus proche (en nombre de maisons).",
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Vous commencez la partie en sachant à combien de maisons le Démon se trouve de son Serviteur le plus proche."
+    "ability": "Vous commencez la partie en sachant à combien de sièges le Démon se trouve de son Sbire le plus proche."
   },
   {
     "id": "dreamer",
@@ -916,13 +916,13 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 63,
-    "otherNightReminder": "Indiquez si un Serviteur a lancé une accusation aujourd'hui",
+    "otherNightReminder": "Indiquez si un Sbire a lancé une accusation aujourd'hui",
     "reminders": [
       "A Accusé",
       "N'a pas accusé"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, vous apprenez si un Serviteur a lancé une accusation aujourd'hui."
+    "ability": "Chaque nuit*, vous apprenez si un Sbire a lancé une accusation aujourd'hui."
   },
   {
     "id": "oracle",
@@ -952,13 +952,13 @@
   },
   {
     "id": "seamstress",
-    "name": "Couturier",
+    "name": "Couturière",
     "edition": "snv",
     "team": "townsfolk",
     "firstNight": 45,
-    "firstNightReminder": "Si le Couturier désigne 2 joueurs, indiquez si ces joueurs sont dans la même équipe.",
+    "firstNightReminder": "Si la Couturière désigne 2 joueurs, indiquez si ces joueurs sont dans la même équipe.",
     "otherNight": 65,
-    "otherNightReminder": "Si le Couturier n'a pas encore utilisé son pouvoir et qu'il désigne 2 joueurs, indiquez si ces joueurs sont du même alignement.",
+    "otherNightReminder": "Si la Couturière n'a pas encore utilisé son pouvoir et qu'il désigne 2 joueurs, indiquez si ces joueurs sont du même alignement.",
     "reminders": [
       "Épuisé"
     ],
@@ -980,7 +980,7 @@
       "Épuisé"
     ],
     "setup": false,
-    "ability": "Une fois par partie, la nuit, choisissez un personnage Bon : vous gagnez son pouvoir. Si ce personnage était déjà en jeu, il devient Ivre."
+    "ability": "Une fois par partie, la nuit, choisissez un personnage bon : vous gagnez son pouvoir. Si ce personnage est en jeu, il est ivre."
   },
   {
     "id": "artist",
@@ -1024,7 +1024,7 @@
     "otherNightReminder": "Si le sage a été tué par le Démon, indiquez-lui deux joueur dont l'un est le Démon.",
     "reminders": [],
     "setup": false,
-    "ability": "Si le Démon vous tue, vous apprenez les noms de deux joueurs. L'un d'eux est le Démon."
+    "ability": "Si le Démon vous tue, vous apprenez qu’il s’agit d’un joueur parmi deux."
   },
   {
     "id": "mutant",
@@ -1052,7 +1052,7 @@
       "Ivre définitif"
     ],
     "setup": false,
-    "ability": "Quand vous mourez, 1 joueur devient définitivement Ivre."
+    "ability": "Quand vous mourez, un joueur est désormais ivre."
   },
   {
     "id": "barber",
@@ -1080,7 +1080,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Quand vous apprenez votre mort, désignez publiquement un joueur encore en vie : s'il est Mauvais, votre équipe a perdu."
+    "ability": "Quand vous apprenez votre mort, désignez publiquement un joueur encore en vie : s'il est Mauvais, votre équipe perd."
   },
   {
     "id": "eviltwin",
@@ -1104,9 +1104,9 @@
     "edition": "snv",
     "team": "minion",
     "firstNight": 25,
-    "firstNightReminder": "S'il reste 4 joueurs ou plus en vie, la sorcière désigne un joueur. Si ce joueur accuse demain, il est exécuté.",
+    "firstNightReminder": "S'il reste 4 joueurs ou plus en vie, la Sorcière désigne un joueur. Si ce joueur accuse demain, il meurt.",
     "otherNight": 15,
-    "otherNightReminder": "S'il reste 4 joueurs ou plus en vie, la sorcière désigne un joueur. Si ce joueur accuse demain, il est exécuté.",
+    "otherNightReminder": "S'il reste 4 joueurs ou plus en vie, la Sorcière désigne un joueur. Si ce joueur accuse demain, il meurt.",
     "reminders": [
       "Ensorcelé"
     ],
@@ -1167,14 +1167,14 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 34,
-    "otherNightReminder": "Le Vigormortis désigne un joueur. Ce joueur meurt. Si c'est un Serviteur, l'un de ses voisins Villageois est empoisonné.",
+    "otherNightReminder": "Le Vigormortis désigne un joueur. Ce joueur meurt. Si c'est un Sbire, l'un de ses voisins Villageois est empoisonné.",
     "reminders": [
       "Mort",
       "Pouvoir conservé",
       "Empoisonné"
     ],
     "setup": true,
-    "ability": "Chaque nuit*, désignez un joueur : il meurt. Les Serviteurs que vous tuez conservent leurs pouvoirs après leur mort et empoisonnent l'un de leurs voisins villageois. [-1 Étranger]"
+    "ability": "Chaque nuit*, désignez un joueur : il meurt. Les Sbires que vous tuez conservent leurs pouvoirs après leur mort et empoisonnent l'un de leurs voisins villageois. [-1 Étranger]"
   },
   {
     "id": "nodashii",
@@ -1347,14 +1347,14 @@
     "edition": "",
     "team": "townsfolk",
     "firstNight": 15,
-    "firstNightReminder": "Le Prêcheur désigne un joueur. Si c'est un Serviteur, réveillez-le et indiquez lui qu'il a été démasqué par le Prêcheur. Le Serviteur perd ses capacités.",
+    "firstNightReminder": "Le Prêcheur désigne un joueur. Si c'est un Sbire, réveillez-le et indiquez lui qu'il a été démasqué par le Prêcheur. Le Sbire perd ses capacités.",
     "otherNight": 7,
-    "otherNightReminder": "Le Prêcheur désigne un joueur. Si c'est un Serviteur, réveillez-le et indiquez lui qu'il a été démasqué par le Prêcheur. Le Serviteur perd ses capacités.",
+    "otherNightReminder": "Le Prêcheur désigne un joueur. Si c'est un Sbire, réveillez-le et indiquez lui qu'il a été démasqué par le Prêcheur. Le Sbire perd ses capacités.",
     "reminders": [
       "Sermonné"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un joueur: si c'est un Serviteur, il perd ses capacités et apprend que vous l'avez démasqué."
+    "ability": "Chaque nuit, désignez un joueur : si c'est un Sbire, il l'apprend. Les Sbires désignés n'ont pas de capacité."
   },
   {
     "id": "king",
@@ -1364,10 +1364,10 @@
     "firstNight": 11,
     "firstNightReminder": "Informez le Démon de qui est le Roi.",
     "otherNight": 69,
-    "otherNightReminder": "S'il y a plus de joueurs morts que vivants, révélez au roi le personnage d'un joueur encore en vie.",
+    "otherNightReminder": "S'il y a au moins autant de joueurs morts que vivants, révélez au Roi un personnage encore en vie.",
     "reminders": [],
     "setup": false,
-    "ability": "Chaque nuit, s'il y a plus de joueurs morts que vivants, vous apprenez le personnage d'un joueur vivant. Le Démon sait qui vous êtes."
+    "ability": "Chaque nuit, s'il y a au moins autant de joueurs morts que vivants, vous apprenez un personnage en vie. Le Démon sait qui vous êtes."
   },
   {
     "id": "balloonist",
@@ -1381,7 +1381,7 @@
     "reminders": [
       "Villageois vu",
       "Étranger vu",
-      "Serviteur vu",
+      "Sbire vu",
       "Démon vu"
     ],
     "setup": true,
@@ -1451,15 +1451,15 @@
     "edition": "",
     "team": "townsfolk",
     "firstNight": 14,
-    "firstNightReminder": "L'ingénieur décide s'il veut utiliser son pouvoir. S'il le fait, il désigne un personnage de Démon et autant de personnages de Serviteurs qu'il y en a en jeu. Remplacez les rôles des joueurs correspondants par les rôles désignés, puis réveillez-les un à un pour leur indiquer leurs nouveaux rôles.",
+    "firstNightReminder": "L'ingénieur décide s'il veut utiliser son pouvoir. S'il le fait, il désigne un personnage de Démon et autant de personnages de Sbires qu'il y en a en jeu. Remplacez les rôles des joueurs correspondants par les rôles désignés, puis réveillez-les un à un pour leur indiquer leurs nouveaux rôles.",
     "otherNight": 6,
-    "otherNightReminder": "S'il ne l'a pas encore fait, l'Ingénieur décide s'il veut utiliser son pouvoir. S'il le fait, il désigne un personnage de Démon et autant de personnages de Serviteurs qu'il y en a en jeu. Remplacez les rôles des joueurs correspondants par les rôles désignés, puis réveillez-les un à un pour leur indiquer leurs nouveaux rôles.",
+    "otherNightReminder": "S'il ne l'a pas encore fait, l'Ingénieur décide s'il veut utiliser son pouvoir. S'il le fait, il désigne un personnage de Démon et autant de personnages de Sbires qu'il y en a en jeu. Remplacez les rôles des joueurs correspondants par les rôles désignés, puis réveillez-les un à un pour leur indiquer leurs nouveaux rôles.",
     "reminders": [
       "Changé",
       "Épuisé"
     ],
     "setup": false,
-    "ability": "Une fois par partie, la nuit, choisissez quel Démon ou quels Serviteurs sont en jeu."
+    "ability": "Une fois par partie, la nuit, choisissez quel Démon ou quels Sbires sont en jeu."
   },
   {
     "id": "fisherman",
@@ -1505,7 +1505,7 @@
       "Alchimiste"
     ],
     "setup": false,
-    "ability": "Vous avez la capacité d'un Serviteur qui n'est pas en jeu."
+    "ability": "Vous avez la capacité d'un Sbire qui n'est pas en jeu."
   },
   {
     "id": "farmer",
@@ -1526,12 +1526,12 @@
     "edition": "",
     "team": "townsfolk",
     "firstNight": 6,
-    "firstNightReminder": "Aux Serviteurs, montrez le Magicien comme un autre Démon. Au Démon, montrez le Magicien comme un autre Serviteur.",
+    "firstNightReminder": "Aux Sbires, montrez le Magicien comme un autre Démon. Au Démon, montrez le Magicien comme un autre Sbire.",
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Le Démon croit que vous êtes un Serviteur. Les Serviteurs croient que vous êtes un Démon."
+    "ability": "Le Démon croit que vous êtes un Sbire. Les Sbires croient que vous êtes un Démon."
   },
   {
     "id": "choirboy",
@@ -1552,15 +1552,15 @@
     "edition": "",
     "team": "townsfolk",
     "firstNight": 5,
-    "firstNightReminder": "Ne donnez pas les informations sur leurs alliés au Démon et aux Serviteurs.",
+    "firstNightReminder": "Ne donnez pas les informations sur leurs alliés au Démon et aux Sbires.",
     "otherNight": 4,
-    "otherNightReminder": "Si le Cultivateur de Pavot est mort, indiquez au Démon et à ses Serviteurs qui sont leurs alliés.",
+    "otherNightReminder": "Si le Cultivateur de Pavot est mort, indiquez au Démon et à ses Sbires qui sont leurs alliés.",
     "reminders": [
       "Revélations",
       "Masqués"
     ],
     "setup": false,
-    "ability": "Le Démon et ses Serviteurs n'apprennent pas qui sont leurs alliés en début de partie. Si vous mourez, ils l'apprennent cette nuit."
+    "ability": "Le Démon et ses Sbires n'apprennent pas qui sont leurs alliés en début de partie. Si vous mourez, ils l'apprennent cette nuit."
   },
   {
     "id": "atheist",
@@ -1668,12 +1668,12 @@
     "edition": "",
     "team": "outsider",
     "firstNight": 8,
-    "firstNightReminder": "Reveillez les Serviteurs séparement et indiquez leur 3 personnages qui ne sont pas en jeu. Ces personnages peuvent différer ou être les mêmes que ceux montrés à d'autres Serviteurs et/ou au Démon.",
+    "firstNightReminder": "Reveillez les Sbires séparement et indiquez leur 3 personnages qui ne sont pas en jeu. Ces personnages peuvent différer ou être les mêmes que ceux montrés à d'autres Sbires et/ou au Démon.",
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Les Serviteurs commencent la partie en connaissant 3 personnages qui ne sont pas en jeu."
+    "ability": "Les Sbires commencent la partie en connaissant 3 personnages qui ne sont pas en jeu."
   },
   {
     "id": "acrobat",
@@ -1732,7 +1732,7 @@
       "Épuisé"
     ],
     "setup": false,
-    "ability": "Les Serviteurs savent que vous êtes en jeu. Si un Serviteur devine publiquement qui vous êtes (un seul essai), votre équipe a perdu."
+    "ability": "Les Sbires savent que vous êtes en jeu. Si un Sbire devine publiquement qui vous êtes (un seul essai), votre équipe perd."
   },
   {
     "id": "golem",
@@ -1775,7 +1775,7 @@
       "Capacité du Narrateur"
     ],
     "setup": false,
-    "ability": "Si vous mourez, le Narrateur gagne la capacité d’un Serviteur qui n’est pas en jeu."
+    "ability": "Si vous mourez, le Narrateur gagne la capacité d’un Sbire qui n’est pas en jeu."
   },
   {
     "id": "hatter",
@@ -1785,12 +1785,12 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 44,
-    "otherNightReminder": "À la mort du Chapelier, effacez les rôles des Serviteurs et des Démons. Réveillez-les l'un après l'autre, en leur demandant à chacun le rôle qu'il souhaite devenir. Si l'un d'eux demande le même rôle qu'un joueur qui a déjà choisi, demandez-lui de choisir un autre rôle. Modifier les rôles de ces joueurs en conséquence.",
+    "otherNightReminder": "À la mort du Chapelier, effacez les rôles des Sbires et des Démons. Réveillez-les l'un après l'autre, en leur demandant à chacun le rôle qu'il souhaite devenir. Si l'un d'eux demande le même rôle qu'un joueur qui a déjà choisi, demandez-lui de choisir un autre rôle. Modifier les rôles de ces joueurs en conséquence.",
     "reminders": [
       "Heure du Thé"
     ],
     "setup": false,
-    "ability": "Si vous êtes mort aujourd'hui (de jour comme de nuit), les Serviteurs et Démons peuvent choisir de devenir d'autres Serviteurs et Démons."
+    "ability": "Si vous êtes mort aujourd'hui (de jour comme de nuit), les Sbires et Démons peuvent choisir de devenir d'autres Sbires et Démons."
   },
   {
     "id": "widow",
@@ -1855,11 +1855,11 @@
   },
   {
     "id": "mephit",
-    "name": "Méphite",
+    "name": "Mezepheles",
     "edition": "",
     "team": "minion",
     "firstNight": 29,
-    "firstNightReminder": "Indiquez au Mephit son mot secret.",
+    "firstNightReminder": "Indiquez au Mezepheles son mot secret.",
     "otherNight": 20,
     "otherNightReminder": "Si un joueur Bon a pronnoncé le mot secret aujourd'hui, réveillez-le et informez-le qu'il fait maintenant partie de l'équipe des Mauvais.",
     "reminders": [
@@ -1891,12 +1891,12 @@
     "edition": "",
     "team": "minion",
     "firstNight": 13,
-    "firstNightReminder": "Selectionnez un Bon joueur, voisin du Démon et marquez le comme Marionnette. Reveillez le Démon et indiquez lui qui est la Marionette.",
+    "firstNightReminder": "Selectionnez un Bon joueur, voisin du Démon et marquez le comme Marionnette. Reveillez le Démon et indiquez lui qui est la Marionnette.",
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [],
     "remindersGlobal": [
-      "Marionette"
+      "Marionnette"
     ],
     "setup": true,
     "ability": "Vous pensez avoir un Bon rôle, mais vous n'êtes pas ce personnage. Le Démon sait qui vous êtes. [Votre voisin est le Démon]"
@@ -1982,16 +1982,16 @@
     "edition": "",
     "team": "demon",
     "firstNight": 16,
-    "firstNightReminder": "Réveillez tous les Serviteurs ensemble, faites-les voter pour désigner quel joueur baby-sitte le Bébé Monstre.",
+    "firstNightReminder": "Réveillez tous les Sbires ensemble, faites-les voter pour désigner quel joueur baby-sitte le Bébé Monstre.",
     "otherNight": 38,
-    "otherNightReminder": "Réveillez tous les Serviteurs ensemble, faites-les voter pour désigner quel joueur baby-sitte le Bébé Monstre. Choisissez un joueur, il meurt.",
+    "otherNightReminder": "Réveillez tous les Sbires ensemble, faites-les voter pour désigner quel joueur baby-sitte le Bébé Monstre. Choisissez un joueur, il meurt.",
     "reminders": [],
     "remindersGlobal": [
       "Démon",
       "Mort"
     ],
     "setup": true,
-    "ability": "Chaque nuit, les Serviteurs choisissent qui sera le baby-sitter de Bébé monstre. Le Baby-sitter est considéré comme le Démon jusqu'à la tombée de la nuit. Un joueur meurt chaque nuit*. [+1 Serviteur, -1 Démon]"
+    "ability": "Chaque nuit, les Sbires choisissent qui sera le baby-sitter de Bébé monstre. Le Baby-sitter est considéré comme le Démon jusqu'à la tombée de la nuit. Un joueur meurt chaque nuit*. [+1 Sbire, -1 Démon]"
   },
   {
     "id": "lleech",
@@ -2082,7 +2082,7 @@
       "Jour 3"
     ],
     "setup": true,
-    "ability": "Les joueurs accusés meurent immédiatement sans vote mais peuvent accuser à leur tour. Le troisième jour, les joueurs accusés doivent accuser. À la fin du troisième jour, les mauvais gagnent. [Tous les Serviteurs sont des Émeutes]"
+    "ability": "Les joueurs accusés meurent immédiatement sans vote mais peuvent accuser à leur tour. Le troisième jour, les joueurs accusés doivent accuser. À la fin du troisième jour, les mauvais gagnent. [Tous les Sbires sont des Émeutes]"
   },
   {
     "id": "yaggababble",
@@ -2105,14 +2105,14 @@
     "edition": "",
     "team": "demon",
     "firstNight": 3,
-    "firstNightReminder": "Réveillez le Kazali. Celui-ci choisit un joueur et un rôle de Serviteur : changez le rôle de ce joueur. Répétez autant de fois qu'il faut de Serviteurs. Réveillez les joueurs désignés pour les informer de leurs nouveaux rôles.",
+    "firstNightReminder": "Réveillez le Kazali. Celui-ci choisit un joueur et un rôle de Sbire : changez le rôle de ce joueur. Répétez autant de fois qu'il faut de Sbires. Réveillez les joueurs désignés pour les informer de leurs nouveaux rôles.",
     "otherNight": 39,
     "otherNightReminder": "Le Kazali désigne un joueur : ce joueur meurt.",
     "reminders": [
       "Mort"
     ],
     "setup": true,
-    "ability": "Chaque nuit*, désignez un joueur : il meurt. [Vous choisissez quels joueurs sont quels Serviteurs. -? à +? Étrangers]"
+    "ability": "Chaque nuit*, désignez un joueur : il meurt. [Vous choisissez quels joueurs sont quels Sbires. -? à +? Étrangers]"
   },
   {
     "id": "ojo",
