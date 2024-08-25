@@ -1,8 +1,23 @@
 # Release Notes
 
-## Upcomming Version
-
+## Upcoming version
+- MAINT: Upgrade caniuselite
 - Various corrections in the French version
+- Minor corrections in the English version
+- Translatable night description bubbles
+
+### Version 3.19.0
+
+- MAINT: Updating King description
+- MAINT: Update of the icons
+- MAINT: chnged french translation for Minions from Serviteurs to sbrires
+- MAINT: changed french name for Fibbin from Mensonge to Menteur
+- MAINT: french translation inconcistancy for snake charmer
+- MAINT: changed french name for Baloonist from Montgolfier to Aéronaute
+- MAINT: adjustment to nomination messages
+- BUGFIX: missing translation in Roles modal
+- BUGFIX: missing translation in Night order modal
+- BUGFIX: reminder modal title from translation
 
 ### Version 3.18.0
 
@@ -22,20 +37,25 @@
 - Adding a token "Used" to the Doomsayer
 - Updated packages & Dockerfile for node >=18
 
+---
 ### Version 3.16.0 (merged upstream 2.16.2)
 - fixed custom script format to support new script tool JSON
 - updated packages to be compatible with Node >= 18 again
 
+---
 ### Version 3.15.0
 - Night order bubbles always on for storyteller
 - Optional night order bubbles for players
 
+---
 ### Version 3.14.0
 Reworked script selection UI
 
+---
 ### Version 3.13.2
 Malformed JSON breaking compilation
 
+---
 ### Version 3.13.1
 Some corrections in the reminders tokens:
 - Correcting some french names
