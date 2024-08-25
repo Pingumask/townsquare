@@ -1851,13 +1851,13 @@
   },
   {
     "id": "mephit",
-    "name": "Mephit",
+    "name": "Mezepheles",
     "edition": "",
     "team": "minion",
     "firstNight": 29,
-    "firstNightReminder": "Show the Mephit their secret word.",
+    "firstNightReminder": "Show the Mezepheles their secret word.",
     "otherNight": 20,
-    "otherNightReminder": "Wake the 1st good player that said the Mephit's secret word and show them the 'You are' card and the thumbs down evil signal.",
+    "otherNightReminder": "Wake the 1st good player that said the Mezepheles' secret word and show them the 'You are' card and the thumbs down evil signal.",
     "reminders": [
       "Turns evil",
       "No ability"
