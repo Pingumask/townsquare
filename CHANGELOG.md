@@ -2,7 +2,7 @@
 
 ## Upcoming version
 
-
+- Renaming the "edition" folder and reorganizing its files
 
 ### Version 3.20.0
 
