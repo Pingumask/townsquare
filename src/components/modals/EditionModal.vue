@@ -205,12 +205,12 @@ export default {
           } else if ((role.id || role) == "bootlegger") {
             bootleggerAdded = true;
           }
-        } else if (role.edition == "custom"  ||  role.image) {
+        } else if (role.edition == "custom" || role.image) {
           /* If the role isn't fabled, but detected as custom, we will need a Bootlegger
            * NB: The actual version isn't perfect, since they only detect custom roles with an image or with the argument "edition":"custom".
            * The code will could be changed later, when all non-custom roles will have an attribute "edition"
            */
-          bootleggerNedded = true ;
+          bootleggerNedded = true;
         }
         // If the role isn't fabled, neither custom, and if we neither added a Djinn neither planned to add a Djinn, we look if this role is jinxed
         else if (!djinnAdded && !djinnNeeded && this.jinxes.get(role.id)) {
