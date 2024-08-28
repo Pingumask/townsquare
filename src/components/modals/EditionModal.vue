@@ -191,22 +191,22 @@ export default {
         "setEdition",
         Object.assign({}, meta, { id: "custom" }),
       );
-	  
+      
       // set fabled
       const fabled = [];
-      var djinnAdded = false ;
-      var djinnNeeded = false ;
-      var bootleggerAdded = false ;
-      var bootleggerNedded = false ;
-	  
+      var djinnAdded = false;
+      var djinnNeeded = false;
+      var bootleggerAdded = false;
+      var bootleggerNedded = false;
+      
       roles.forEach((role) => {
         if (this.$store.state.fabled.has(role.id || role)) {
           fabled.push(this.$store.state.fabled.get(role.id || role));
-          if((role.id || role) == "djinn") {
-            djinnAdded = true ;
+          if ((role.id || role) == "djinn") {
+            djinnAdded = true;
           }
-          else if((role.id || role) == "bootlegger") {
-            bootleggerAdded = true ;
+          else if ((role.id || role) == "bootlegger") {
+            bootleggerAdded = true;
           }
         }
         /* If the role isn't fabled, but detected as custom, we will need a Bootlegger
@@ -218,10 +218,10 @@ export default {
         }
           
         // If the role isn't fabled, neither custom, and if we neither added a Djinn neither planned to add a Djinn, we look if this role is jinxed
-        else if(!djinnAdded && !djinnNeeded && (this.jinxes.get(role.id))) {
+        else if (!djinnAdded && !djinnNeeded && this.jinxes.get(role.id)) {
           this.jinxes.get(role.id).forEach((reason, second) => {
             if (this.roles.get(second)) {
-              djinnNeeded = true ;
+              djinnNeeded = true;
             }
           });
         }
@@ -233,7 +233,6 @@ export default {
       if (bootleggerNedded && !bootleggerAdded) {
         fabled.push(this.$store.state.fabled.get("bootlegger"));
       }
-	  
       this.$store.commit("players/setFabled", { fabled });
     },
     runEdition(edition) {
