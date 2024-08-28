@@ -2,7 +2,7 @@
 
 ## Upcoming version
 
-
+- Automatic Djinn and Bootlegger
 
 ### Version 3.20.0
 
