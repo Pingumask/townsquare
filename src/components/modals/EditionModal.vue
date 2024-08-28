@@ -191,32 +191,27 @@ export default {
         "setEdition",
         Object.assign({}, meta, { id: "custom" }),
       );
-      
       // set fabled
       const fabled = [];
       var djinnAdded = false;
       var djinnNeeded = false;
       var bootleggerAdded = false;
       var bootleggerNedded = false;
-      
       roles.forEach((role) => {
         if (this.$store.state.fabled.has(role.id || role)) {
           fabled.push(this.$store.state.fabled.get(role.id || role));
           if ((role.id || role) == "djinn") {
             djinnAdded = true;
-          }
-          else if ((role.id || role) == "bootlegger") {
+          } else if ((role.id || role) == "bootlegger") {
             bootleggerAdded = true;
           }
-        }
-        /* If the role isn't fabled, but detected as custom, we will need a Bootlegger
-         * NB: The actual version isn't perfect, since they only detect custom roles with an image or with the argument "edition":"custom".
-         * The code will could be changed later, when all non-custom roles will have an attribute "edition"
-         */
-        else if (role.edition == "custom"  ||  role.image) {
+        } else if (role.edition == "custom"  ||  role.image) {
+          /* If the role isn't fabled, but detected as custom, we will need a Bootlegger
+           * NB: The actual version isn't perfect, since they only detect custom roles with an image or with the argument "edition":"custom".
+           * The code will could be changed later, when all non-custom roles will have an attribute "edition"
+           */
           bootleggerNedded = true ;
         }
-          
         // If the role isn't fabled, neither custom, and if we neither added a Djinn neither planned to add a Djinn, we look if this role is jinxed
         else if (!djinnAdded && !djinnNeeded && this.jinxes.get(role.id)) {
           this.jinxes.get(role.id).forEach((reason, second) => {
@@ -226,7 +221,6 @@ export default {
           });
         }
       });
-      
       if (djinnNeeded && !djinnAdded) {
         fabled.push(this.$store.state.fabled.get("djinn"));
       }
