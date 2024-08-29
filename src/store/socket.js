@@ -699,8 +699,8 @@ class LiveSession {
     const players = this._store.state.players.players;
     if (
       !nomination ||
-      (typeof nomination[0] !== "number" || players.length > nomination[0]) &&
-      (typeof nomination[1] !== "number" || players.length > nomination[1])
+      ((typeof nomination[0] !== "number" || players.length > nomination[0]) &&
+        (typeof nomination[1] !== "number" || players.length > nomination[1]))
     ) {
       this.setVotingSpeed(this._store.state.session.votingSpeed);
       this._send("nomination", nomination);
@@ -819,10 +819,10 @@ class LiveSession {
       (index -
         1 +
         playerCount -
-        (typeof session.nomination[1]=="number"
+        (typeof session.nomination[1] == "number"
           ? session.nomination[1]
           : session.nomination[0])) %
-        playerCount;
+    playerCount;
     if (fromST || indexAdjusted >= session.lockedVote - 1) {
       this._store.commit("session/vote", [index, vote]);
     }
@@ -836,9 +836,10 @@ class LiveSession {
     const { lockedVote, votes, nomination } = this._store.state.session;
     const { players } = this._store.state.players;
     const index =
-      ((typeof nomination[1]=="number" ? nomination[1] : nomination[0]) +
-      lockedVote -
-      1) % players.length;
+      ((typeof nomination[1] == "number" ? nomination[1] : nomination[0]) +
+        lockedVote -
+        1) %
+      players.length;
     this._send("lock", [this._store.state.session.lockedVote, votes[index]]);
   }
 
@@ -855,10 +856,10 @@ class LiveSession {
       const { lockedVote, nomination } = this._store.state.session;
       const { players } = this._store.state.players;
       const index =
-        ((typeof nomination[1]=="number" ? nomination[1] : nomination[0]) +
-        lockedVote -
-        1)
-        % players.length;
+        ((typeof nomination[1] == "number" ? nomination[1] : nomination[0]) +
+          lockedVote -
+          1) %
+        players.length;
       if (this._store.state.session.votes[index] !== vote) {
         this._store.commit("session/vote", [index, vote]);
       }
