@@ -28,6 +28,7 @@ const state = () => ({
   isVoteInProgress: false,
   voteHistory: [],
   markedPlayer: -1,
+  playerForSpecialVote: -1,
   isVoteHistoryAllowed: true,
   isRolesDistributed: false,
 });
@@ -50,6 +51,7 @@ const mutations = {
   setVotingSpeed: set("votingSpeed"),
   setVoteInProgress: set("isVoteInProgress"),
   setMarkedPlayer: set("markedPlayer"),
+  setPlayerForSpecialVote: set("playerForSpecialVote"),
   setNomination: set("nomination"),
   setVoteHistoryAllowed: set("isVoteHistoryAllowed"),
   claimSeat: set("claimedSeat"),
@@ -80,16 +82,17 @@ const mutations = {
   addHistory(state, players) {
     if (!state.isVoteHistoryAllowed && state.isSpectator) return;
     if (!state.nomination || state.lockedVote <= players.length) return;
-    const isExile = players[state.nomination[1]].role.team === "traveler";
+    const isExile = typeof state.nomination[1] =="number" && players[state.nomination[1]].role.team === "traveler";
     const organGrinder = gameInfo.state.grimoire.isOrganVoteMode && !isExile;
     state.voteHistory.push({
       timestamp: new Date(),
-      nominator: players[state.nomination[0]].name,
-      nominee: players[state.nomination[1]].name,
-      type: isExile
-        ? gameInfo.state.locale.modal.voteHistory.exile
-        : gameInfo.state.locale.modal.voteHistory.execution +
-          (organGrinder && !state.isSpectator ? "*" : ""),
+      nominator: typeof state.nomination[0] =="number" ? players[state.nomination[0]].name : state.nomination[0],
+      nominee: typeof state.nomination[1] =="number" ? players[state.nomination[1]].name : typeof state.nomination[1] =="string" ? state.nomination[1] : "",
+      type: typeof state.nomination[1] !=="object"
+        ? isExile
+          ? gameInfo.state.locale.modal.voteHistory.exile
+          : gameInfo.state.locale.modal.voteHistory.execution + (organGrinder && !state.isSpectator ? "*" : "")
+        : state.nomination[1][2],
       majority: Math.ceil(
         players.filter((player) => !player.isDead || isExile).length / 2,
       ),
