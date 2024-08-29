@@ -289,7 +289,7 @@ export default {
           (typeof session.nomination[1] == "number"
             ? session.nomination[1]
             : session.nomination[0])) %
-      players;
+        players;
       return indexAdjusted < session.lockedVote - 1;
     },
     zoom: function () {
