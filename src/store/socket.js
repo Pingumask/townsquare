@@ -822,7 +822,7 @@ class LiveSession {
         (typeof session.nomination[1] == "number"
           ? session.nomination[1]
           : session.nomination[0])) %
-    playerCount;
+      playerCount;
     if (fromST || indexAdjusted >= session.lockedVote - 1) {
       this._store.commit("session/vote", [index, vote]);
     }
