@@ -283,7 +283,13 @@ export default {
       const players = this.players.length;
       if (!session.nomination) return false;
       const indexAdjusted =
-        (this.index - 1 + players - (typeof session.nomination[1]=="number" ? session.nomination[1] : session.nomination[0]) ) % players;
+        (this.index -
+          1 +
+          players -
+          (typeof session.nomination[1]=="number"
+            ? session.nomination[1]
+            : session.nomination[0]) ) %
+          players;
       return indexAdjusted < session.lockedVote - 1;
     },
     zoom: function () {
@@ -381,8 +387,11 @@ export default {
     },
     specialVote() {
       this.isMenuOpen = false;
-      this.$store.commit("session/setPlayerForSpecialVote",this.players.indexOf(this.player));
-      this.$store.commit("toggleModal","specialVote");
+      this.$store.commit(
+        "session/setPlayerForSpecialVote",
+        this.players.indexOf(this.player)
+      );
+      this.$store.commit("toggleModal", "specialVote");
     },
     cancel() {
       this.$emit("trigger", ["cancel"]);
