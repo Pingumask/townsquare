@@ -89,7 +89,7 @@
         :timerDuration="grimoire.timer.duration"
       />
     </li>
-    <li class="marked"  v-if="typeof session.markedPlayer == 'string'">
+    <li class="marked" v-if="typeof session.markedPlayer == 'string'">
       <font-awesome-icon icon="skull" />
     </li>
   </ul>
@@ -229,5 +229,4 @@ export default {
     }
   }
 }
-
 </style>
