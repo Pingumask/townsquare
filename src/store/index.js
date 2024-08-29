@@ -128,6 +128,7 @@ export default new Vuex.Store({
       role: false,
       roles: false,
       voteHistory: false,
+      specialVote: false,
     },
     edition: editionJSONbyId.get("tb"),
     editions: editionJSON,
