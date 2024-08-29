@@ -286,9 +286,9 @@ export default {
         (this.index -
           1 +
           players -
-          (typeof session.nomination[1]=="number"
+          (typeof session.nomination[1] == "number"
             ? session.nomination[1]
-            : session.nomination[0]) ) %
+            : session.nomination[0])) %
           players;
       return indexAdjusted < session.lockedVote - 1;
     },
@@ -389,7 +389,7 @@ export default {
       this.isMenuOpen = false;
       this.$store.commit(
         "session/setPlayerForSpecialVote",
-        this.players.indexOf(this.player)
+        this.players.indexOf(this.player),
       );
       this.$store.commit("toggleModal", "specialVote");
     },
