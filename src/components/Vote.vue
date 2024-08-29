@@ -171,7 +171,7 @@ export default {
     nominator: function () {
       try {
         return this.players[this.session.nomination[0]];
-      } catch(error) {
+      } catch (error) {
         return null;
       }
     },
@@ -196,7 +196,7 @@ export default {
     nominee: function () {
       try {
         return this.players[this.session.nomination[1]];
-      } catch(error) {
+      } catch (error) {
         return null;
       }
     },
@@ -224,7 +224,7 @@ export default {
       if (
         this.player.isVoteless &&
         ((this.nominee && this.nominee.role.team !== "traveler") ||
-          typeof this.session.nomination[1]==="string")
+          typeof this.session.nomination[1] === "string")
       )
         return false;
       const session = this.session;
@@ -235,7 +235,7 @@ export default {
           1 +
           players -
           (this.nominee ? session.nomination[1] : session.nomination[0])) %
-          players;
+        players;
       return indexAdjusted >= session.lockedVote - 1;
     },
     voters: function () {
