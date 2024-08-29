@@ -2,7 +2,7 @@
 
 ## Upcoming version
 
-
+- Adding some special votes
 
 ### Version 3.20.0
 
