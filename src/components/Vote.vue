@@ -6,7 +6,12 @@
     </div>
     <div class="overlay">
       <audio src="../assets/sounds/countdown.mp3" preload="auto"></audio>
-      <em class="blue">{{ nominator ? nominator.name : session.nomination[0][0].toUpperCase() + session.nomination[0].slice(1) }}</em>
+      <em class="blue">{{
+        nominator
+          ? nominator.name
+          : session.nomination[0][0].toUpperCase() +
+            session.nomination[0].slice(1)
+      }}</em>
       {{
         typeof session.nomination[1] == "object"
           ? session.nomination[1][0]
@@ -14,14 +19,16 @@
             ? locale.vote.callexile
             : locale.vote.nominates
       }}
-      <em v-if="typeof session.nomination[1] !== 'object'">{{ nominee ? nominee.name : session.nomination[1] }}</em
+      <em v-if="typeof session.nomination[1] !== 'object'">{{
+        nominee ? nominee.name : session.nomination[1]
+      }}</em
       >{{ locale.vote.exclam }}
       <br />
       <em
         class="blue"
         v-if="
           !grimoire.isOrganVoteMode ||
-          nominee && nominee.role.team == 'traveler' ||
+          (nominee && nominee.role.team == 'traveler') ||
           !session.isSpectator
         "
       >
@@ -29,7 +36,12 @@
       </em>
       <em class="blue" v-else> ? {{ locale.vote.votes }} </em>
       {{ locale.vote.inFavor }}
-      <em v-if="(nominee && nominee.role.team !== 'traveler') || typeof session.nomination[1] == 'string'">
+      <em
+        v-if="
+          (nominee && nominee.role.team !== 'traveler') ||
+          typeof session.nomination[1] == 'string'
+        "
+      >
         ({{ locale.vote.majorityIs }} {{ Math.ceil(alive / 2) }})
       </em>
       <em v-else-if="nominee">
@@ -74,7 +86,13 @@
             {{ locale.vote.close }}
           </div>
         </div>
-        <div class="button-group mark" v-if="typeof session.nomination[1] !== 'object' && (!nominee || nominee.role.team !== 'traveler')">
+        <div
+          class="button-group mark"
+          v-if="
+            typeof session.nomination[1] !== 'object' &&
+            (!nominee || nominee.role.team !== 'traveler')
+          "
+        >
           <div
             class="button"
             :class="{
@@ -153,8 +171,7 @@ export default {
     nominator: function () {
       try {
         return this.players[this.session.nomination[0]];
-      }
-      catch(error) {
+      } catch(error) {
         return null;
       }
     },
@@ -166,10 +183,10 @@ export default {
           transform: `rotate(${Math.round((nomination / players) * 360)}deg)`,
           transitionDuration: this.session.votingSpeed - 100 + "ms",
         };
-      }
-      else {
+      } else {
         const lock = this.session.lockedVote;
-        const rotation = (360 * (nomination + Math.min(lock, players))) / players;
+        const rotation =
+          (360 * (nomination + Math.min(lock, players))) / players;
         return {
           transform: `rotate(${Math.round(rotation)}deg)`,
           transitionDuration: this.session.votingSpeed - 100 + "ms",
@@ -179,8 +196,7 @@ export default {
     nominee: function () {
       try {
         return this.players[this.session.nomination[1]];
-      }
-      catch(error) {
+      } catch(error) {
         return null;
       }
     },
@@ -205,17 +221,27 @@ export default {
     },
     canVote: function () {
       if (!this.player) return false;
-      if (this.player.isVoteless && ((this.nominee && this.nominee.role.team !== "traveler") || typeof this.session.nomination[1]==="string"))
+      if (
+        this.player.isVoteless &&
+        ((this.nominee && this.nominee.role.team !== "traveler") ||
+          typeof this.session.nomination[1]==="string")
+      )
         return false;
       const session = this.session;
       const players = this.players.length;
       const index = this.players.indexOf(this.player);
       const indexAdjusted =
-        (index - 1 + players - (this.nominee ? session.nomination[1] : session.nomination[0])) % players;
+        (index -
+          1 +
+          players -
+          (this.nominee ? session.nomination[1] : session.nomination[0])) %
+          players;
       return indexAdjusted >= session.lockedVote - 1;
     },
     voters: function () {
-      const nomination = this.nominee ? this.session.nomination[1] : this.session.nomination[0];
+      const nomination = this.nominee
+        ? this.session.nomination[1]
+        : this.session.nomination[0];
       const voters = Array(this.players.length)
         .fill("")
         .map((x, index) =>
