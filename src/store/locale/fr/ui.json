@@ -151,6 +151,7 @@
     "removePlayer": "Retirer le joueur",
     "emptySeat": "Vider le siège",
     "nomination": "Accusation",
+    "specialVote": "Vote spécial",
     "claimSeat": "S'asseoir ici",
     "vacateSeat": "Libérer le Siège",
     "occupiedSeat": "Siège Occupé"
@@ -257,6 +258,17 @@
       "execution": "Exécution",
       "exile": "Exil",
       "hiddenVote": "Résultat caché par l'Organiste"
+    },
+    "specialvote": {
+      "title": "Sélectionnez un type de vote :",
+      "bishop": "Accusation par le Narrateur",
+      "atheist": "Accusation du Narrateur",
+      "st": "le Narrateur",
+      "cultleader": "Création de secte",
+      "cultleaderMessages": ["veut créer une secte","Voulez-vous rejoindre la secte créée par $player ?","Secte"],
+      "custom": "Vote personnalisé",
+      "complete": "Complétez : ",
+      "customMessages": ["","Le débat est ouvert","(Personnalisé)"]
     }
   }
 }
