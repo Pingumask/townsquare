@@ -89,6 +89,9 @@
         :timerDuration="grimoire.timer.duration"
       />
     </li>
+    <li class="marked"  v-if="typeof session.markedPlayer == 'string'">
+      <font-awesome-icon icon="skull" />
+    </li>
   </ul>
 </template>
 
@@ -124,7 +127,7 @@ export default {
     countdownStyle: function () {
       return `--timer: ${this.$store.state.grimoire.timer.duration}`;
     },
-    ...mapState(["edition", "grimoire", "locale"]),
+    ...mapState(["edition", "grimoire", "locale", "session"]),
     ...mapState("players", ["players"]),
   },
 };
@@ -212,4 +215,19 @@ export default {
     top: -50%;
   }
 }
+
+.marked {
+  opacity: 0.5;
+  position: absolute;
+  svg {
+    height: 80px;
+    width: 80px;
+    stroke: white;
+    stroke-width: 15px;
+    path {
+      fill: white;
+    }
+  }
+}
+
 </style>
