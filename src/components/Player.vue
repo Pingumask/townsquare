@@ -53,6 +53,7 @@
         <font-awesome-icon
           v-if="
             !grimoire.isOrganVoteMode ||
+            typeof session.nomination[1] == 'object' ||
             !session.isSpectator ||
             player.id == session.playerId
           "
@@ -64,6 +65,7 @@
         <font-awesome-icon
           v-if="
             grimoire.isOrganVoteMode &&
+            typeof session.nomination[1] !== 'object' &&
             session.isSpectator &&
             player.id !== session.playerId
           "
@@ -86,6 +88,7 @@
         <font-awesome-icon
           v-if="
             grimoire.isOrganVoteMode &&
+            typeof session.nomination[1] !== 'object' &&
             session.isSpectator &&
             player.id !== session.playerId
           "
@@ -197,6 +200,12 @@
                 {{ locale.player.nomination }}
               </li>
             </template>
+            <template v-if="!session.nomination">
+              <li @click="specialVote()">
+                <font-awesome-icon icon="vote-yea" />
+                {{ locale.player.specialVote }}
+              </li>
+            </template>
           </template>
           <li
             @click="claimSeat"
@@ -274,7 +283,7 @@ export default {
       const players = this.players.length;
       if (!session.nomination) return false;
       const indexAdjusted =
-        (this.index - 1 + players - session.nomination[1]) % players;
+        (this.index - 1 + players - (typeof session.nomination[1]=="number" ? session.nomination[1] : session.nomination[0]) ) % players;
       return indexAdjusted < session.lockedVote - 1;
     },
     zoom: function () {
@@ -369,6 +378,11 @@ export default {
     nominatePlayer(player) {
       this.isMenuOpen = false;
       this.$emit("trigger", ["nominatePlayer", player]);
+    },
+    specialVote() {
+      this.isMenuOpen = false;
+      this.$store.commit("session/setPlayerForSpecialVote",this.players.indexOf(this.player));
+      this.$store.commit("toggleModal","specialVote");
     },
     cancel() {
       this.$emit("trigger", ["cancel"]);
