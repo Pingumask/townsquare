@@ -4,19 +4,19 @@
     <div class="allTheButtons">
       <template>
         <button @click="bishopVote()">
-          <img src="../../assets/icons/bishop.png">
+          <img src="../../assets/icons/bishop.png/">
           <span>{{ locale.modal.specialvote.bishop }}</span>
         </button>
         <button @click="atheistVote()">
-          <img src="../../assets/icons/atheist.png">
+          <img src="../../assets/icons/atheist.png/">
           <span>{{ locale.modal.specialvote.atheist }}</span>
         </button>
         <button @click="cultleaderVote()">
-          <img src="../../assets/icons/cultleader.png">
+          <img src="../../assets/icons/cultleader.png/">
           <span>{{ locale.modal.specialvote.cultleader }}</span>
         </button>
         <button @click="customVote()">
-          <img src="../../assets/icons/custom.png">
+          <img src="../../assets/icons/custom.png/">
           <span>{{ locale.modal.specialvote.custom }}</span>
         </button>
       </template>
@@ -33,7 +33,7 @@ export default {
     Modal,
   },
   computed: {
-    ...mapState(["modals", "locale", "grimoire", "session"]),	
+    ...mapState(["modals", "locale", "grimoire", "session"]),
     ...mapState("players", ["players"]),
   },
   methods: {
@@ -42,18 +42,32 @@ export default {
       this.$store.commit("toggleModal", "specialVote");
     },
     bishopVote() {
-      this.launchVote([this.locale.modal.specialvote.st, this.session.playerForSpecialVote]);
+      this.launchVote([
+        this.locale.modal.specialvote.st,
+        this.session.playerForSpecialVote
+      ]);
     },
     atheistVote() {
-      this.launchVote([this.session.playerForSpecialVote, this.locale.modal.specialvote.st]);
+      this.launchVote([
+        this.session.playerForSpecialVote,
+        this.locale.modal.specialvote.st
+      ]);
     },
     cultleaderVote() {
-      this.launchVote([this.session.playerForSpecialVote, this.locale.modal.specialvote.cultleaderMessages]);
+      this.launchVote([
+        this.session.playerForSpecialVote,
+        this.locale.modal.specialvote.cultleaderMessages
+      ]);
     },
     customVote() {
       let playerName = this.players[this.session.playerForSpecialVote].name;
-      let input = prompt(this.locale.modal.specialvote.complete + playerName + " ____________________" + this.locale.vote.exclam);
-      if(input) {
+      let input = prompt(
+        this.locale.modal.specialvote.complete +
+        playerName +
+        " ____________________" +
+        this.locale.vote.exclam
+      );
+      if (input) {
         let messages = this.locale.modal.specialvote.customMessages;
         messages[0] = input;
         this.launchVote([this.session.playerForSpecialVote, messages]);
@@ -79,7 +93,7 @@ button {
   border-radius: 10px;
   display: block;
   margin-left: auto;
-  margin-right:auto;
+  margin-right: auto;
   width: 35%;
   margin-top: 15px;
   display: flex;
@@ -111,6 +125,4 @@ img {
 template {
   margin-top: 30px;
 }
-
-
 </style>
