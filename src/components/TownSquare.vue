@@ -82,13 +82,19 @@
         </div>
       </div>
       <div class="button-group" v-if="session.nomination">
-        <div @click="setAccusationTimer()" class="button">
+        <div @click="setAccusationTimer()" class="button" v-if="typeof session.nomination[1]!=='object'">
           {{ locale.townsquare.timer.accusation.button }}
         </div>
-        <div @click="setDefenseTimer()" class="button">
+        <div @click="setSpecialVoteTimer()" class="button" v-else>
+          {{ session.nomination[1][2] }}
+        </div>
+        <div @click="setDefenseTimer()" class="button" v-if="typeof session.nomination[1]!=='object'">
           {{ locale.townsquare.timer.defense.button }}
         </div>
-        <div @click="setDebateTimer()" class="button">
+        <div @click="setDebateTimer()" class="button" v-if="typeof session.nomination[1]!=='object'">
+          {{ locale.townsquare.timer.debate.button }}
+        </div>
+        <div @click="setSpecialDebateTimer()" class="button" v-else>
           {{ locale.townsquare.timer.debate.button }}
         </div>
       </div>
@@ -389,16 +395,16 @@ export default {
       this.timerDuration = 1;
       let timerText = this.locale.townsquare.timer.accusation.text;
       timerText = timerText
-        .replace("$accusator", this.players[this.session.nomination[0]].name)
-        .replace("$accusee", this.players[this.session.nomination[1]].name);
+        .replace("$accusator", typeof this.session.nomination[0]=="number" ? this.players[this.session.nomination[0]].name : this.session.nomination[0][0].toUpperCase()+this.session.nomination[0].slice(1))
+        .replace("$accusee", typeof this.session.nomination[1]=="number" ? this.players[this.session.nomination[1]].name : this.session.nomination[1]);
       this.timerName = timerText;
     },
     setDefenseTimer() {
       this.timerDuration = 1;
       let timerText = this.locale.townsquare.timer.defense.text;
       timerText = timerText
-        .replace("$accusee", this.players[this.session.nomination[1]].name)
-        .replace("$accusator", this.players[this.session.nomination[0]].name);
+        .replace("$accusee", typeof this.session.nomination[1]=="number" ? this.players[this.session.nomination[1]].name : this.session.nomination[1][0].toUpperCase()+this.session.nomination[1].slice(1))
+        .replace("$accusator", typeof this.session.nomination[0]=="number" ? this.players[this.session.nomination[0]].name : this.session.nomination[0]);
       this.timerName = timerText;
     },
     setDebateTimer() {
@@ -406,7 +412,21 @@ export default {
       let timerText = this.locale.townsquare.timer.debate.text;
       timerText = timerText.replace(
         "$accusee",
-        this.players[this.session.nomination[1]].name,
+        typeof this.session.nomination[1]=="number" ? this.players[this.session.nomination[1]].name : this.session.nomination[1],
+      );
+      this.timerName = timerText;
+    },
+    setSpecialVoteTimer() {
+      this.timerDuration = 1;
+      let timerText = this.players[this.session.nomination[0]].name + " " + this.session.nomination[1][0];
+      this.timerName = timerText;
+    },
+    setSpecialDebateTimer() {
+      this.timerDuration = 2;
+      let timerText = this.session.nomination[1][1];
+      timerText = timerText.replace(
+        "$player",
+        this.players[this.session.nomination[0]].name,
       );
       this.timerName = timerText;
     },
