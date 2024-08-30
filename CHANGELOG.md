@@ -2,7 +2,7 @@
 
 ## Upcoming version
 
-
+- Updating jinxes
 
 ### Version 3.20.0
 
