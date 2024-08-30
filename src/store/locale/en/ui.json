@@ -206,7 +206,7 @@
       "dusk": "Dusk",
       "duskDescription1": "Put all players to sleep.",
       "duskDescription2": "End the day, and put all players to sleep.",
-	  "dawn": "Dawn",
+      "dawn": "Dawn",
       "dawnDescription1": "Wake all players.",
       "dawnDescription2": "Wake all players, then announce who died this night.",
       "reference": "Show Character Reference"
