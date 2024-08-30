@@ -139,7 +139,7 @@ export default {
       const rolesFirstNight = [];
       // Adding Dawn and Dusk to the night order
       rolesFirstNight.push(
-	    {
+        {
           id: "dusk",
           name: this.locale.modal.nightOrder.dusk,
           team: "default",
@@ -147,15 +147,15 @@ export default {
           players: [],
           firstNightReminder: this.locale.modal.nightOrder.duskDescription1,
         },
-	    {
+        {
           id: "dawn",
           name: this.locale.modal.nightOrder.dawn,
           firstNight: 1000,
           team: "default",
           players: [],
           firstNightReminder: this.locale.modal.nightOrder.dawnDescription1,
-        }
-	  );
+        },
+      );
       var toymaker = false;
       // Adding Fabled characters
       this.fabled.forEach((fabled) => {
