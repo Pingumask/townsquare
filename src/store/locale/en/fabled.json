@@ -50,7 +50,8 @@
   },
   {
     "id": "revolutionary",
-    "firstNightReminder": "",
+    "firstNight": 1,
+    "firstNightReminder": "Tell the group who the two players impacted by the Revolutionary are, and remind them that they have the same alignment.",
     "otherNightReminder": "",
     "reminders": [
       "Same alignment",
@@ -74,7 +75,7 @@
   {
     "id": "toymaker",
     "firstNightReminder": "",
-    "otherNight": 2,
+    "otherNight": 27,
     "otherNightReminder": "If it is a night when a Demon attack could end the game, and the Demon is marked “Final night: No Attack,” then the Demon does not act tonight. (Do not wake them.)",
     "reminders": [
       "Final Night: No Attack"
@@ -99,7 +100,7 @@
   {
     "id": "duchess",
     "firstNightReminder": "",
-    "otherNight": 2,
+    "otherNight": 3,
     "otherNightReminder": "Wake each player marked “Visitor” or “False Info” one at a time. Show them the Duchess token, then fingers (1, 2, 3) equaling the number of evil players marked “Visitor” or, if you are waking the player marked “False Info,” show them any number of fingers except the number of evil players marked “Visitor.”",
     "reminders": [
       "Visitor",
@@ -145,8 +146,8 @@
   },
   {
     "id": "stormcatcher",
-    "firstNight": 1,
-    "firstNightReminder": "Mark a good player as \"Safe\". Wake each evil player and show them the marked player.",
+    "firstNight": 12,
+    "firstNightReminder": "Show each evil player which player is marked as \"Safe\".",
     "otherNightReminder": "",
     "reminders": [
       "Safe"
@@ -159,7 +160,8 @@
   {
     "id": "ferryman",
     "firstNightReminder": "",
-    "otherNightReminder": "",
+    "otherNight": 1002,
+    "otherNightReminder": "If it's the last day, return each dead player's vote token.",
     "reminders": [],
     "setup": false,
     "name": "Ferryman",
@@ -168,7 +170,8 @@
   },
   {
     "id": "gardener",
-    "firstNightReminder": "",
+    "firstNight": 1,
+    "firstNightReminder": "Tell the group which player's character you've chosen.",
     "otherNightReminder": "",
     "reminders": [
       "Assigned"
@@ -180,9 +183,9 @@
   },
   {
     "id": "bootlegger",
-    "firstNight": 1,
+    "firstNight": 3,
     "firstNightReminder": "If applicable, use homebrew rule(s).",
-    "otherNight": 2,
+    "otherNight": 3,
     "otherNightReminder": "If applicable, use homebrew rule(s).",
     "reminders": [],
     "setup": false,
