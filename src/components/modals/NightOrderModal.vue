@@ -39,7 +39,7 @@
             <span
               class="player"
               v-if="
-                (role.id == 'dawn' || role.team == 'fabled') &&
+                (role.team == 'default' || role.team == 'fabled') &&
                 !session.isSpectator &&
                 players.length &&
                 players[0].role.id
@@ -107,9 +107,7 @@
             <span
               class="player"
               v-if="
-                (role.id == 'dawn' ||
-                  role.id == 'dusk' ||
-                  role.team == 'fabled') &&
+                (role.team == 'default' || role.team == 'fabled') &&
                 !session.isSpectator &&
                 players.length &&
                 players[0].role.id
@@ -139,17 +137,27 @@ export default {
   computed: {
     rolesFirstNight: function () {
       const rolesFirstNight = [];
-      // Ajouter le matin à l'ordre nocturne
-      rolesFirstNight.push({
-        id: "dawn",
-        name: this.locale.modal.nightOrder.dawn,
-        firstNight: 1000,
-        team: "default",
-        players: [],
-        firstNightReminder: this.locale.modal.nightOrder.dawnDescription1,
-      });
+      // Adding Dawn and Dusk to the night order
+      rolesFirstNight.push(
+	    {
+          id: "dusk",
+          name: this.locale.modal.nightOrder.dusk,
+          team: "default",
+          firstNight: 2,
+          players: [],
+          firstNightReminder: this.locale.modal.nightOrder.duskDescription1,
+        },
+	    {
+          id: "dawn",
+          name: this.locale.modal.nightOrder.dawn,
+          firstNight: 1000,
+          team: "default",
+          players: [],
+          firstNightReminder: this.locale.modal.nightOrder.dawnDescription1,
+        }
+	  );
       var toymaker = false;
-      // Ajout des fabuleux
+      // Adding Fabled characters
       this.fabled.forEach((fabled) => {
         if (fabled.firstNight) {
           rolesFirstNight.push(Object.assign({ players: [] }, fabled));
@@ -163,7 +171,7 @@ export default {
           rolesFirstNight.push(Object.assign({ players }, role));
         }
       });
-      // Ajout des Voyageurs, en n'ajoutant qu'une fois ceux en double
+      // Adding Travellers (duplicates only once)
       const seenTravelers = [];
       var nbTravelers = 0;
       this.players.forEach((player) => {
@@ -180,13 +188,13 @@ export default {
           }
         }
       });
-      // Ajouter minion / demon infos à l'ordre nocturne
+      // Adding Minions/Demon info
       if (this.players.length - nbTravelers > 6 || toymaker) {
         rolesFirstNight.push(
           {
             id: "minion",
             name: this.locale.modal.nightOrder.minionInfo,
-            firstNight: 7,
+            firstNight: 10,
             team: "minion",
             players: this.players.filter((p) => p.role.team === "minion"),
             firstNightReminder:
@@ -195,7 +203,7 @@ export default {
           {
             id: "evil",
             name: this.locale.modal.nightOrder.demonInfo,
-            firstNight: 10,
+            firstNight: 16,
             team: "demon",
             players: this.players.filter((p) => p.role.team === "demon"),
             firstNightReminder:
@@ -213,9 +221,9 @@ export default {
           id: "dusk",
           name: this.locale.modal.nightOrder.dusk,
           team: "default",
-          otherNight: 1,
+          otherNight: 2,
           players: [],
-          otherNightReminder: this.locale.modal.nightOrder.duskDescription,
+          otherNightReminder: this.locale.modal.nightOrder.duskDescription2,
         },
         {
           id: "dawn",
@@ -237,7 +245,7 @@ export default {
           rolesOtherNight.push(Object.assign({ players }, role));
         }
       });
-      // Ajout des Voyageurs, en n'ajoutant qu'une fois ceux en double
+      // Adding Travellers (duplicates only once)
       const seenTravelers = [];
       this.players.forEach((player) => {
         if (
