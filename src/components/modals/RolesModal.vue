@@ -34,7 +34,7 @@
         </div>
       </li>
     </ul>
-	<ul class="tokens">
+    <ul class="tokens">
       <li
         v-for="role in fabledWithSetup"
         :class="['fabled', 'selected']"
@@ -43,7 +43,7 @@
         <Token :role="role" />
         <font-awesome-icon icon="exclamation-triangle" />
       </li>
-	</ul>
+    </ul>
     <div class="warning" v-if="hasSelectedSetupRoles || fabledWithSetup.length">
       <font-awesome-icon icon="exclamation-triangle" />
       <span>{{ locale.modal.roles.warning }}</span>
@@ -107,16 +107,16 @@ export default {
         roles.some((role) => role.selected && role.setup),
       );
     },
-	fabledWithSetup: function() {
-	  const { fabled } = this.$store.state.players;
-	  let res = [];
-	  for(let i=0 ; i<fabled.length ; i++) {
-	    if(fabled[i].setup) {
-		  res.push(fabled[i]) ;
-		}
-	  }
-	  return res ;
-	},
+    fabledWithSetup: function() {
+      const { fabled } = this.$store.state.players;
+      let res = [];
+      for(let i=0 ; i<fabled.length ; i++) {
+        if(fabled[i].setup) {
+          res.push(fabled[i]) ;
+        }
+      }
+      return res ;
+    },
     ...mapState(["roles", "modals", "locale"]),
     ...mapState("players", ["players", "fabled"]),
     ...mapGetters({ nonTravelers: "players/nonTravelers" }),
@@ -185,7 +185,7 @@ export default {
     roles() {
       this.selectRandomRoles();
     },
-  }
+  },
 };
 </script>
 
