@@ -107,15 +107,15 @@ export default {
         roles.some((role) => role.selected && role.setup),
       );
     },
-    fabledWithSetup: function() {
+    fabledWithSetup: function () {
       const { fabled } = this.$store.state.players;
       let res = [];
-      for(let i=0 ; i<fabled.length ; i++) {
-        if(fabled[i].setup) {
-          res.push(fabled[i]) ;
+      for (let i = 0 ; i < fabled.length ; i++) {
+        if (fabled[i].setup) {
+          res.push(fabled[i]);
         }
       }
-      return res ;
+      return res;
     },
     ...mapState(["roles", "modals", "locale"]),
     ...mapState("players", ["players", "fabled"]),
