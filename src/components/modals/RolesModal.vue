@@ -110,7 +110,7 @@ export default {
     fabledWithSetup: function () {
       const { fabled } = this.$store.state.players;
       let res = [];
-      for (let i = 0 ; i < fabled.length ; i++) {
+      for (let i = 0; i < fabled.length; i++) {
         if (fabled[i].setup) {
           res.push(fabled[i]);
         }
