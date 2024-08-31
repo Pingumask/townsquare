@@ -2,7 +2,7 @@
 
 ## Upcoming version
 
-
+- Showing pertinent Fabled during setup
 
 ### Version 3.20.0
 
