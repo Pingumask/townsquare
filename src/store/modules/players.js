@@ -46,8 +46,16 @@ const getters = {
     });
     // If x has an attribute 'role' (meaning x is a player), then, to know their night order, we look at x.role.firstNight or x.role.otherNight
     // Else, (meaning x is instead a Fabled), to know their night order we look at x.firstNight or x.otherNight
-    firstNight.sort((a, b) => (a.role ? a.role.firstNight : a.firstNight) - (b.role ? b.role.firstNight : b.firstNight));
-    otherNight.sort((a, b) => (a.role ? a.role.otherNight : a.otherNight) - (b.role ? b.role.otherNight : b.otherNight));
+    firstNight.sort(
+      (a, b) =>
+        (a.role ? a.role.firstNight : a.firstNight) -
+        (b.role ? b.role.firstNight : b.firstNight),
+    );
+    otherNight.sort(
+      (a, b) =>
+        (a.role ? a.role.otherNight : a.otherNight) -
+        (b.role ? b.role.otherNight : b.otherNight),
+    );
     const nightOrder = new Map();
     players.forEach((player) => {
       const first = Math.max(firstNight.indexOf(player), 0);
