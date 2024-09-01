@@ -29,27 +29,29 @@ const getters = {
     const firstNight = [0];
     const otherNight = [0];
     fabled.forEach((role) => {
-      if (role.firstNight && !firstNight.includes(role)) {
+      if (role.firstNight) {
         firstNight.push(role);
       }
-      if (role.otherNight && !otherNight.includes(role)) {
+      if (role.otherNight) {
         otherNight.push(role);
       }
     });
-    players.forEach(({ role }) => {
-      if (role.firstNight && !firstNight.includes(role)) {
-        firstNight.push(role);
+    players.forEach((player) => {
+      if (player.role.firstNight) {
+        firstNight.push(player);
       }
-      if (role.otherNight && !otherNight.includes(role)) {
-        otherNight.push(role);
+      if (player.role.otherNight) {
+        otherNight.push(player);
       }
     });
-    firstNight.sort((a, b) => a.firstNight - b.firstNight);
-    otherNight.sort((a, b) => a.otherNight - b.otherNight);
+	// If x has an attribute 'role' (meaning x is a player), then, to know their night order, we look at x.role.firstNight or x.role.otherNight
+	// Else, (meaning x is instead a Fabled), to know their night order we look at x.firstNight or x.otherNight
+    firstNight.sort((a, b) => (a.role ? a.role.firstNight : a.firstNight) - (b.role ? b.role.firstNight : b.firstNight));
+    otherNight.sort((a, b) => (a.role ? a.role.otherNight : a.otherNight) - (b.role ? b.role.otherNight : b.otherNight));
     const nightOrder = new Map();
     players.forEach((player) => {
-      const first = Math.max(firstNight.indexOf(player.role), 0);
-      const other = Math.max(otherNight.indexOf(player.role), 0);
+      const first = Math.max(firstNight.indexOf(player), 0);
+      const other = Math.max(otherNight.indexOf(player), 0);
       nightOrder.set(player, { first, other });
     });
     fabled.forEach((role) => {
