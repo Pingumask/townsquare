@@ -2,7 +2,7 @@
 
 ## Upcoming version
 
-
+- Unique night order bubble for each player with the same role
 
 ### Version 3.20.0
 
