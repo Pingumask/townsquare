@@ -62,31 +62,6 @@
     ]
   },
   {
-    "id": "Widow",
-    "hatred": [
-      {
-        "id": "Alchemist",
-        "reason": "The Alchemist can not have the Widow ability."
-      },
-      {
-        "id": "Magician",
-        "reason": "When the Widow sees the Grimoire, the Demon and Magician's character tokens are removed."
-      },
-      {
-        "id": "Poppy Grower",
-        "reason": "If the Poppy Grower is in play, the Widow does not see the Grimoire until the Poppy Grower dies."
-      },
-      {
-        "id": "Heretic",
-        "reason": "Only one jinxed character can be in play."
-      },
-      {
-        "id": "Damsel",
-        "reason": "If the Widow is (or has been) in play, the Damsel is poisoned."
-      }
-    ]
-  },
-  {
     "id": "Godfather",
     "hatred": [
       {
@@ -119,12 +94,130 @@
         "reason": "If the Plague Doctor dies, a living Minion gains the Spy ability in addition to their own ability, and learns this."
       },
       {
+        "id": "Damsel",
+        "reason": "If the Spy is (or has been) in play, the Damsel is poisoned."
+      },
+      {
         "id": "Heretic",
         "reason": "Only one jinxed character can be in play."
+      }
+    ]
+  },
+  {
+    "id": "Cerenovus",
+    "hatred": [
+      {
+        "id": "Goblin",
+        "reason": "The Cerenovus may choose to make a player mad that they are the Goblin."
+      }
+    ]
+  },
+  {
+    "id": "Fearmonger",
+    "hatred": [
+      {
+        "id": "Plague Doctor",
+        "reason": "If the Plague Doctor dies, a living Minion gains the Fearmonger ability in addition to their own ability, and learns this."
+      }
+    ]
+  },
+  {
+    "id": "Pit-Hag",
+    "hatred": [
+      {
+        "id": "Village Idiot",
+        "reason": "If there is a spare token, the Pit-Hag can create an extra Village Idiot. If so, the drunk Village Idiot might change."
+      },
+      {
+        "id": "Cult Leader",
+        "reason": "If the Pit-Hag turns an evil player into the Cult Leader, they can't turn good due to their own ability."
+      },
+      {
+        "id": "Goon",
+        "reason": "If the Pit-Hag turns an evil player into the Goon, they can't turn good due to their own ability."
+      },
+      {
+        "id": "Ogre",
+        "reason": "If the Pit-Hag turns an evil player into the Ogre, they can't turn good due to their own ability."
+      },
+      {
+        "id": "Politician",
+        "reason": "If the Pit-Hag turns an evil player into the Politician, they can't turn good due to their own ability."
       },
       {
         "id": "Damsel",
-        "reason": "If the Spy is (or has been) in play, the Damsel is poisoned."
+        "reason": "If a Pit-Hag creates a Damsel, the Storyteller chooses which player it is."
+      },
+      {
+        "id": "Heretic",
+        "reason": "A Pit-Hag cannot create a Heretic. "
+      }
+    ]
+  },
+  {
+    "id": "Widow",
+    "hatred": [
+      {
+        "id": "Alchemist",
+        "reason": "The Alchemist can not have the Widow ability."
+      },
+      {
+        "id": "Magician",
+        "reason": "When the Widow sees the Grimoire, the Demon and Magician's character tokens are removed."
+      },
+      {
+        "id": "Poppy Grower",
+        "reason": "If the Poppy Grower is in play, the Widow does not see the Grimoire until the Poppy Grower dies."
+      },
+      {
+        "id": "Damsel",
+        "reason": "If the Widow is (or has been) in play, the Damsel is poisoned."
+      },
+      {
+        "id": "Heretic",
+        "reason": "Only one jinxed character can be in play."
+      }
+    ]
+  },
+  {
+    "id": "Marionette",
+    "hatred": [
+      {
+        "id": "Balloonist",
+        "reason": "If the Marionette thinks that they are the Balloonist, +1 Outsider was added."
+      },
+      {
+        "id": "Huntsman",
+        "reason": "If the Marionette thinks that they are the Huntsman, the Damsel was added."
+      },
+      {
+        "id": "Poppy Grower",
+        "reason": "When the Poppy Grower dies, the Demon learns the Marionette but the Marionette learns nothing."
+      },
+      {
+        "id": "Plague Doctor",
+        "reason": "If the Demon has a neighbor who is alive and a Townsfolk or Outsider when the Plague Doctor dies, that player becomes an evil Marionette. If there is already an extra evil player, this does not happen."
+      },
+      {
+        "id": "Damsel",
+        "reason": "The Marionette does not learn that a Damsel is in play."
+      },
+      {
+        "id": "Snitch",
+        "reason": "The Marionette does not learn 3 not in-play characters. The Demon learns an extra 3 instead."
+      },
+      {
+        "id": "Lil' Monsta",
+        "reason": "The Marionette neighbors a Minion, not the Demon. The Marionette is not woken to choose who takes the Lil' Monsta token, and does not learn they are the Marionette if they have the Lil' Monsta token."
+      }
+    ]
+  },
+  {
+    "id": "Evil Twin",
+    "hatred": [
+      {
+        "id": "Plague Doctor",
+        "reason": "The Storyteller cannot gain the Evil Twin ability if the Plague Doctor dies."
       }
     ]
   },
@@ -168,92 +261,28 @@
         "reason": "The Marionette neighbours the Summoner. The Summoner knows who the Marionette is."
       },
       {
-        "id": "Kazali",
-        "reason": "The Summoner cannot create an in-play Demon. If the Summoner creates a not-in-play Demon, deaths tonight are arbitrary."
-      },
-      {
         "id": "Pukka",
         "reason": "The Summoner may choose a player to become the Pukka on the 2nd night."
       },
       {
-        "id": "Lord of Typhon",
-        "reason": "If the Summoner creates a Lord of Typhon, the Lord of Typhon must neighbor a Minion. The other neighbor becomes a not-in-play evil Minion."
+        "id": "Kazali",
+        "reason": "The Summoner cannot create an in-play Demon. If the Summoner creates a not-in-play Demon, deaths tonight are arbitrary."
+      },
+      {
+        "id": "Zombuul",
+        "reason": "If the Summoner turns a dead player into the Zombuul, the Storyteller treats that player as a Zombuul that has died once."
       },
 	  {
         "id": "Legion",
         "reason": "If the Summoner creates Legion, most players (including all evil players) become evil Legion."
       },
       {
-        "id": "Zombuul",
-        "reason": "If the Summoner turns a dead player into the Zombuul, the Storyteller treats that player as a Zombuul that has died once."
+        "id": "Lord of Typhon",
+        "reason": "If the Summoner creates a Lord of Typhon, the Lord of Typhon must neighbor a Minion. The other neighbor becomes a not-in-play evil Minion."
       },
       {
         "id": "Riot",
         "reason": "If the Summoner creates Riot, the chosen player and all evil players become Riot. The chosen player must be one of the Summoner's good living neighbours."
-      }
-    ]
-  },
-  {
-    "id": "Cerenovus",
-    "hatred": [
-      {
-        "id": "Goblin",
-        "reason": "The Cerenovus may choose to make a player mad that they are the Goblin."
-      }
-    ]
-  },
-  {
-    "id": "Fearmonger",
-    "hatred": [
-      {
-        "id": "Plague Doctor",
-        "reason": "If the Plague Doctor dies, a living Minion gains the Fearmonger ability in addition to their own ability, and learns this."
-      }
-    ]
-  },
-  {
-    "id": "Pit-Hag",
-    "hatred": [
-      {
-        "id": "Village Idiot",
-        "reason": "If there is a spare token, the Pit-Hag can create an extra Village Idiot. If so, the drunk Village Idiot might change."
-      },
-      {
-        "id": "Cult Leader",
-        "reason": "If the Pit-Hag turns an evil player into the Cult Leader, they can't turn good due to their own ability."
-      },
-      {
-        "id": "Ogre",
-        "reason": "If the Pit-Hag turns an evil player into the Ogre, they can't turn good due to their own ability."
-      },
-      {
-        "id": "Goon",
-        "reason": "If the Pit-Hag turns an evil player into the Goon, they can't turn good due to their own ability."
-      },
-      {
-        "id": "Heretic",
-        "reason": "A Pit-Hag cannot create a Heretic. "
-      },
-      {
-        "id": "Damsel",
-        "reason": "If a Pit-Hag creates a Damsel, the Storyteller chooses which player it is."
-      },
-      {
-        "id": "Politician",
-        "reason": "If the Pit-Hag turns an evil player into the Politician, they can't turn good due to their own ability."
-      }
-    ]
-  },
-  {
-    "id": "Baron",
-    "hatred": [
-      {
-        "id": "Plague Doctor",
-        "reason": "If the Storyteller gains the Baron ability, up to two players become out-of-play Outsiders."
-      },
-	  {
-        "id": "Heretic",
-        "reason": "The Baron might only add one Outsider, not two."
       }
     ]
   },
@@ -267,37 +296,20 @@
     ]
   },
   {
+    "id": "Boomdandy",
+    "hatred": [
+      {
+        "id": "Plague Doctor",
+        "reason": "If the Plague Doctor is executed and the Storyteller would gain the Boomdandy ability, the Boomdandy ability triggers immediately."
+      }
+    ]
+  },
+  {
     "id": "Scarlet Woman",
     "hatred": [
       {
         "id": "Plague Doctor",
         "reason": "If the Plague Doctor dies, a living Minion gains the Scarlet Woman ability in addition to their own ability, and learns this."
-      }
-    ]
-  },
-  {
-    "id": "Evil Twin",
-    "hatred": [
-      {
-        "id": "Plague Doctor",
-        "reason": "The Storyteller cannot gain the Evil Twin ability if the Plague Doctor dies."
-      }
-    ]
-  },
-  {
-    "id": "Organ Grinder",
-    "hatred": [
-      {
-        "id": "Preacher",
-        "reason": "If the Preacher removes the Organ Grinder ability, the Organ Grinder keeps their ability but the Preacher keeps their eyes open when voting."
-      },
-	  {
-        "id": "Minstrel",
-        "reason": "If the Minstrel makes everyone drunk, the Organ Grinder keeps their ability but the Minstrel keeps their eyes open when voting."
-      },
-      {
-        "id": "Butler",
-        "reason": "If the Organ Grinder is causing eyes closed voting, the Butler may raise their hand to vote but their vote is only counted if their master voted too."
       }
     ]
   },
@@ -329,12 +341,12 @@
         "reason": "If the Vizier and Magician are both in play, the Demon does not learn the Minions."
       },
       {
-        "id": "Zealot",
-        "reason": "The Zealot might register as evil to the Vizier."
-      },
-      {
         "id": "Politician",
         "reason": "The Politician might register as evil to the Vizier."
+      },
+      {
+        "id": "Zealot",
+        "reason": "The Zealot might register as evil to the Vizier."
       },
       {
         "id": "Fearmonger",
@@ -343,44 +355,69 @@
     ]
   },
   {
-    "id": "Boomdandy",
+    "id": "Organ Grinder",
     "hatred": [
       {
-        "id": "Plague Doctor",
-        "reason": "If the Plague Doctor is executed and the Storyteller would gain the Boomdandy ability, the Boomdandy ability triggers immediately."
+        "id": "Preacher",
+        "reason": "If the Preacher removes the Organ Grinder ability, the Organ Grinder keeps their ability but the Preacher keeps their eyes open when voting."
+      },
+	  {
+        "id": "Minstrel",
+        "reason": "If the Minstrel makes everyone drunk, the Organ Grinder keeps their ability but the Minstrel keeps their eyes open when voting."
+      },
+      {
+        "id": "Butler",
+        "reason": "If the Organ Grinder is causing eyes closed voting, the Butler may raise their hand to vote but their vote is only counted if their master voted too."
       }
     ]
   },
   {
-    "id": "Marionette",
+    "id": "Boffin",
     "hatred": [
       {
-        "id": "Balloonist",
-        "reason": "If the Marionette thinks that they are the Balloonist, +1 Outsider might have been added."
+        "id": "Village Idiot",
+        "reason": "If there is a spare token, the Boffin can give the Demon the Village Idiot ability."
       },
       {
-        "id": "Huntsman",
-        "reason": "If the Marionette thinks that they are the Huntsman, the Damsel was added."
+        "id": "Cult Leader",
+        "reason": "If the Demon has the Cult Leader ability, they can't turn good due to this ability."
       },
       {
-        "id": "Poppy Grower",
-        "reason": "When the Poppy Grower dies, the Demon learns the Marionette but the Marionette learns nothing."
+        "id": "Alchemist",
+        "reason": "If the Alchemist has the Boffin ability, the Alchemist does not learn what ability the Demon has."
       },
       {
-        "id": "Snitch",
-        "reason": "The Marionette does not learn 3 not in-play characters. The Demon learns an extra 3 instead."
+        "id": "Goon",
+        "reason": "If the Demon has the Goon ability, they can't turn good due to this ability."
       },
+      {
+        "id": "Ogre",
+        "reason": "The Demon cannot have the Ogre ability."
+      },
+      {
+        "id": "Drunk",
+        "reason": "If the Demon would have the Drunk ability, the Boffin chooses a Townsfolk player to have this ability instead."
+      },
+      {
+        "id": "Politician",
+        "reason": "The Demon cannot have the Politician ability."
+      },
+	  {
+        "id": "Heretic",
+        "reason": "The Demon cannot have the Heretic ability."
+      }
+    ]
+  },
+  {
+    "id": "Baron",
+    "hatred": [
       {
         "id": "Plague Doctor",
-        "reason": "If the Demon has a neighbor who is alive and a Townsfolk or Outsider when the Plague Doctor dies, that player becomes an evil Marionette. If there is already an extra evil player, this does not happen."
+        "reason": "If the Storyteller gains the Baron ability, up to two players become out-of-play Outsiders."
       },
-      {
-        "id": "Damsel",
-        "reason": "The Marionette does not learn that a Damsel is in play."
-      },
-      {
-        "id": "Lil' Monsta",
-        "reason": "The Marionette neighbors a Minion, not the Demon. The Marionette is not woken to choose who takes the Lil' Monsta token, and does not learn they are the Marionette if they have the Lil' Monsta token."
+	  {
+        "id": "Heretic",
+        "reason": "The Baron might only add one Outsider, not two."
       }
     ]
   },
@@ -390,6 +427,35 @@
       {
         "id": "Exorcist",
         "reason": "If the Exorcist chooses the Yaggababble, the Yaggababble ability does not kill tonight."
+      }
+    ]
+  },
+  {
+    "id": "Lil' Monsta",
+    "hatred": [
+      {
+        "id": "Magician",
+        "reason": "Each night, the Magician chooses a Minion: if that Minion & Lil' Monsta are alive, that Minion babysits Lil’ Monsta."
+      },
+      {
+        "id": "Poppy Grower",
+        "reason": "If the Poppy Grower is in play, Minions don't wake together. They are woken one by one, until one of them chooses to take the Lil' Monsta token."
+      },
+      {
+        "id": "Hatter",
+        "reason": "If a Demon chooses Lil' Monsta, they also choose a Minion to become and babysit Lil' Monsta tonight."
+      },
+      {
+        "id": "Scarlet Woman",
+        "reason": "If there are five or more players alive and the player holding the Lil' Monsta token dies, the Scarlet Woman is given the Lil' Monsta token tonight."
+      },
+      {
+        "id": "Vizier",
+        "reason": "The Vizier can die by execution if they are babysitting Lil' Monsta."
+      },
+	  {
+        "id": "Organ Grinder",
+        "reason": "Votes for the Organ Grinder count if the Organ Grinder is babysitting Lil' Monsta."
       }
     ]
   },
@@ -421,33 +487,60 @@
         "reason": "If the Kazali chooses to create a Marionette, they must choose one of their neighbors."
       }
     ]
-  },  
+  },
   {
-    "id": "Lil' Monsta",
+    "id": "Al-Hadikhia",
     "hatred": [
       {
-        "id": "Magician",
-        "reason": "Each night, the Magician chooses a Minion: if that Minion & Lil' Monsta are alive, that Minion babysits Lil’ Monsta."
-      },
-      {
-        "id": "Poppy Grower",
-        "reason": "If the Poppy Grower is in play, Minions don't wake together. They are woken one by one, until one of them chooses to take the Lil' Monsta token."
-      },
-      {
-        "id": "Hatter",
-        "reason": "If a Demon chooses Lil' Monsta, they also choose a Minion to become and babysit Lil' Monsta tonight."
+        "id": "Mastermind",
+        "reason": "If the Al-Hadikhia dies by execution, and the Mastermind is alive, the Al-Hadikhia chooses 3 good players tonight: if all 3 choose to live, evil wins. Otherwise, good wins."
       },
       {
         "id": "Scarlet Woman",
-        "reason": "If there are five or more players alive and the player holding the Lil' Monsta token dies, the Scarlet Woman is given the Lil' Monsta token tonight."
-      },
-	  {
-        "id": "Organ Grinder",
-        "reason": "Votes for the Organ Grinder count if the Organ Grinder is babysitting Lil' Monsta."
+        "reason": "If there are two living Al-Hadikhias, the Scarlet Woman Al-Hadikhia becomes the Scarlet Woman again."
+      }
+    ]
+  },
+  {
+    "id": "Vortox",
+    "hatred": [
+      {
+        "id": "Banshee",
+        "reason": "If the Vortox is in play and the Demon kills the Banshee, the players still learn that the Banshee has died."
+      }
+    ]
+  },
+  {
+    "id": "Fang Gu",
+    "hatred": [
+      {
+        "id": "Scarlet Woman",
+        "reason": "If the Fang Gu chooses an Outsider and dies, the Scarlet Woman does not become the Fang Gu."
+      }
+    ]
+  },
+  {
+    "id": "Legion",
+    "hatred": [
+      {
+        "id": "Preacher",
+        "reason": "If the Preacher chooses Legion, Legion keeps their ability, but the Preacher might learn they are Legion."
       },
       {
-        "id": "Vizier",
-        "reason": "The Vizier can die by execution if they are babysitting Lil' Monsta."
+        "id": "Engineer",
+        "reason": "Legion and the Engineer cannot both be in play at the start of the game. If the Engineer creates Legion, most players (including all evil players) become evil Legion."
+      },
+      {
+        "id": "Minstrel",
+        "reason": "If Legion died by execution today, Legion keeps their ability, but the Minstrel might learn they are Legion."
+      },
+	  {
+        "id": "Hatter",
+        "reason": "If the Hatter dies and Legion is in play, nothing happens. If the Hatter dies and an evil player chooses Legion, all current evil players become Legion."
+      },
+	  {
+        "id": "Zealot",
+        "reason": "The Zealot might register as evil to Legion’s ability."
       }
     ]
   },
@@ -469,62 +562,6 @@
     ]
   },
   {
-    "id": "Vortox",
-    "hatred": [
-      {
-        "id": "Banshee",
-        "reason": "If the Vortox is in play and the Demon kills the Banshee, the players still learn that the Banshee has died."
-      }
-    ]
-  },
-  {
-    "id": "Legion",
-    "hatred": [
-      {
-        "id": "Preacher",
-        "reason": "If the Preacher chooses Legion, Legion keeps their ability, but the Preacher might learn they are Legion."
-      },
-      {
-        "id": "Engineer",
-        "reason": "Legion and the Engineer cannot both be in play at the start of the game. If the Engineer creates Legion, most players (including all evil players) become evil Legion."
-      },
-      {
-        "id": "Minstrel",
-        "reason": "If Legion died by execution today, Legion keeps their ability, but the Minstrel might learn they are Legion."
-      },
-	  {
-        "id": "Zealot",
-        "reason": "The Zealot might register as evil to Legion’s ability."
-      },
-	  {
-        "id": "Hatter",
-        "reason": "If the Hatter dies and Legion is in play, nothing happens. If the Hatter dies and an evil player chooses Legion, all current evil players become Legion."
-      }
-    ]
-  },
-  {
-    "id": "Al-Hadikhia",
-    "hatred": [
-      {
-        "id": "Scarlet Woman",
-        "reason": "If there are two living Al-Hadikhias, the Scarlet Woman Al-Hadikhia becomes the Scarlet Woman again."
-      },
-      {
-        "id": "Mastermind",
-        "reason": "If the Al-Hadikhia dies by execution, and the Mastermind is alive, the Al-Hadikhia chooses 3 good players tonight: if all 3 choose to live, evil wins. Otherwise, good wins."
-      }
-    ]
-  },
-  {
-    "id": "Fang Gu",
-    "hatred": [
-      {
-        "id": "Scarlet Woman",
-        "reason": "If the Fang Gu chooses an Outsider and dies, the Scarlet Woman does not become the Fang Gu."
-      }
-    ]
-  },
-  {
     "id": "Leviathan",
     "hatred": [
       {
@@ -540,10 +577,6 @@
         "reason": "If Leviathan nominates and executes the Soldier, the Soldier does not die."
       },
       {
-        "id": "Sage",
-        "reason": "If Leviathan is in play & the Sage dies by execution, they wake that night to use their ability. They are drunk if their nominator was good."
-      },
-      {
         "id": "Farmer",
         "reason": "If Leviathan is in play and a Farmer dies by execution, a good player becomes a Farmer that night."
       },	  
@@ -552,12 +585,16 @@
         "reason": "If Leviathan is in play & the Ravenkeeper dies by execution, they wake that night to use their ability. They are drunk if their nominator was good."
       },
       {
-        "id": "Mayor",
-        "reason": "If Leviathan is in play and no execution occurs on day 5, good wins."
+        "id": "Sage",
+        "reason": "If Leviathan is in play & the Sage dies by execution, they wake that night to use their ability. They are drunk if their nominator was good."
       },
       {
         "id": "Banshee",
         "reason": "If Leviathan is in play, and the Banshee dies by execution, all players learn that the Banshee has died, and the Banshee gains their ability."
+      },
+      {
+        "id": "Mayor",
+        "reason": "If Leviathan is in play and no execution occurs on day 5, good wins."
       },
 	  {
         "id": "Hatter",
@@ -625,12 +662,12 @@
         "reason": "If a Riot player nominates the Soldier, the Soldier does not die."
       },
       {
-        "id": "Pacifist",
-        "reason": "Players that die by nomination register as executed to the Pacifist."
+        "id": "Cannibal",
+        "reason": "Players that die by nomination register as executed to the Cannibal."
       },
       {
-        "id": "Sage",
-        "reason": "If a Riot player nominates and kills a Sage, the Sage uses their ability tonight."
+        "id": "Minstrel",
+        "reason": "Only one jinxed character can be in play."
       },
       {
         "id": "Farmer",
@@ -641,32 +678,36 @@
         "reason": "If a Riot player nominates and kills the Ravenkeeper, the Ravenkeeper uses their ability tonight."
       },
       {
-        "id": "Minstrel",
-        "reason": "Only one jinxed character can be in play."
-      },
-      {
-        "id": "Cannibal",
-        "reason": "Players that die by nomination register as executed to the Cannibal."
-      },
-      {
-        "id": "Mayor",
-        "reason": "If the third day begins with just three players alive, the players may choose (as a group) not to nominate at all. If so (and a Mayor is alive) the Mayor's team wins."
+        "id": "Sage",
+        "reason": "If a Riot player nominates and kills a Sage, the Sage uses their ability tonight."
       },
       {
         "id": "Banshee",
         "reason": "If Riot nominates and kills the Banshee, all players learn that the Banshee has died, and the Banshee may nominate two players immediately."
       },
       {
-        "id": "Snitch",
-        "reason": "If the Snitch is in play, each Riot player gets an extra three bluffs."
+        "id": "Mayor",
+        "reason": "If the third day begins with just three players alive, the players may choose (as a group) not to nominate at all. If so (and a Mayor is alive) the Mayor's team wins."
+      },
+      {
+        "id": "Pacifist",
+        "reason": "Players that die by nomination register as executed to the Pacifist."
       },
       {
         "id": "Butler",
         "reason": "The Butler cannot nominate their master."
       },
+	  {
+        "id": "Golem",
+        "reason": "If The Golem nominates Riot, the Riot player does not die."
+      },
       {
         "id": "Saint",
         "reason": "If a good player nominates and kills the Saint, the Saint's team loses."
+      },
+	  {
+        "id": "Hatter",
+        "reason": "If the Hatter dies, Riot is in play and a Riot chooses a different Demon, a normal evil team is created from the Riot players. If the Hatter dies and the Demon chooses Riot, Minions become Riot too."
       },
       {
         "id": "Zealot",
@@ -676,13 +717,9 @@
         "id": "Damsel",
         "reason": "Riot registers as a Minion to the Damsel."
       },
-	  {
-        "id": "Golem",
-        "reason": "If The Golem nominates Riot, the Riot player does not die."
-      },
-	  {
-        "id": "Hatter",
-        "reason": "If the Hatter dies, Riot is in play and a Riot chooses a different Demon, a normal evil team is created from the Riot players. If the Hatter dies and the Demon chooses Riot, Minions become Riot too."
+      {
+        "id": "Snitch",
+        "reason": "If the Snitch is in play, each Riot player gets an extra three bluffs."
       },
       {
         "id": "Devil's Advocate",
