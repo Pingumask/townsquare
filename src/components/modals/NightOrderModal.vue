@@ -194,7 +194,7 @@ export default {
           {
             id: "minion",
             name: this.locale.modal.nightOrder.minionInfo,
-            firstNight: 10,
+            firstNight: 12,
             team: "minion",
             players: this.players.filter((p) => p.role.team === "minion"),
             firstNightReminder:
@@ -203,7 +203,7 @@ export default {
           {
             id: "evil",
             name: this.locale.modal.nightOrder.demonInfo,
-            firstNight: 16,
+            firstNight: 18,
             team: "demon",
             players: this.players.filter((p) => p.role.team === "demon"),
             firstNightReminder:
