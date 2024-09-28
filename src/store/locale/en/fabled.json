@@ -146,7 +146,7 @@
   },
   {
     "id": "stormcatcher",
-    "firstNight": 12,
+    "firstNight": 13,
     "firstNightReminder": "Show each evil player which player is marked as \"Safe\".",
     "otherNightReminder": "",
     "reminders": [
