@@ -148,7 +148,7 @@
   },
   {
     "id": "stormcatcher",
-    "firstNight": 12,
+    "firstNight": 13,
     "firstNightReminder": "Réveillez chaque joueur Mauvais et indiquez-lui quel joueur est marqué comme \"Protégé\".",
     "otherNightReminder": "",
     "reminders": [
