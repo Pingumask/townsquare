@@ -358,14 +358,6 @@
     "id": "Organ Grinder",
     "hatred": [
       {
-        "id": "Preacher",
-        "reason": "Si le Prêcheur retire sa capacité à l'Organiste barbare, l'Organiste barbare garde sa capacité mais le Prêcheur garde les yeux ouverts durant les votes."
-      },
-	  {
-        "id": "Minstrel",
-        "reason": "Si le Ménestrel rend tout le monde ivre, l'Organiste barbare garde sa capacité mais le Ménestrel garde les yeux ouverts durant les votes."
-      },
-      {
         "id": "Butler",
         "reason": "Si les votes ont lieu à bulletin secret à cause de l'Organiste barbare, le Majordome peut lever sa main mais son vote ne compte que si son maître la lève aussi."
       }
@@ -472,7 +464,7 @@
       },
       {
         "id": "Soldier",
-        "reason": "Si le Kazali transforme le Soldat en Sbire, le Soldat choisit quel Sbire non-distribué il devient."
+        "reason": "Le Kazali peut choisir que le Soldat devient un de ses mauvais Sbires."
       },
       {
         "id": "Choirboy",
