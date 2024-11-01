@@ -464,7 +464,7 @@
       },
       {
         "id": "Soldier",
-        "reason": "The Kazali can choose that the Goon player is one of their evil Minions."
+        "reason": "The Kazali can choose that the Soldier player is one of their evil Minions."
       },
       {
         "id": "Choirboy",
@@ -472,7 +472,7 @@
       },
       {
         "id": "Goon",
-        "reason": "If the Kazali chooses the Goon to become a Minion, remaining Minions choices are decided by the Storyteller."
+        "reason": "The Kazali can choose that the Goon player is one of their evil Minions."
       },
       {
         "id": "Marionette",
