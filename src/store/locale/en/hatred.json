@@ -66,7 +66,7 @@
     "hatred": [
       {
         "id": "Heretic",
-        "reason": "Only one jinxed character can be in play."
+        "reason": "Only 1 jinxed character can be in play."
       }
     ]
   },
@@ -99,7 +99,7 @@
       },
       {
         "id": "Heretic",
-        "reason": "Only one jinxed character can be in play."
+        "reason": "Only 1 jinxed character can be in play."
       }
     ]
   },
@@ -175,7 +175,7 @@
       },
       {
         "id": "Heretic",
-        "reason": "Only one jinxed character can be in play."
+        "reason": "Only 1 jinxed character can be in play."
       }
     ]
   },
@@ -282,7 +282,7 @@
       },
       {
         "id": "Riot",
-        "reason": "If the Summoner creates Riot, the chosen player and all evil players become Riot. The chosen player must be one of the Summoner's good living neighbours."
+        "reason": "If the Summoner creates Riot, all Minions also become Riot."
       }
     ]
   },
@@ -305,6 +305,15 @@
     ]
   },
   {
+    "id": "Mastermind",
+    "hatred": [
+      {
+        "id": "Al-Hadikhia",
+        "reason": "If the Al-Hadikhia dies by execution, and the Mastermind is alive, the Al-Hadikhia chooses 3 good players tonight: if all 3 choose to live, evil wins. Otherwise, good wins."
+      }
+    ]
+  },
+  {
     "id": "Scarlet Woman",
     "hatred": [
       {
@@ -322,7 +331,7 @@
       },
       {
         "id": "Preacher",
-        "reason": "If the Vizier loses their ability, they learn this and if the Vizier is executed while they have their ability, their team wins."
+        "reason": "If the Vizier loses their ability, they learn this. If the Vizier is executed while they have their ability, their team wins."
       },
       {
         "id": "Alsaahir",
@@ -330,7 +339,7 @@
       },
       {
         "id": "Courtier",
-        "reason": "If the Vizier loses their ability, they learn this and if the Vizier is executed while they have their ability, their team wins."
+        "reason": "If the Vizier loses their ability, they learn this. If the Vizier is executed while they have their ability, their team wins."
       },
       {
         "id": "Alchemist",
@@ -409,7 +418,7 @@
       },
 	  {
         "id": "Heretic",
-        "reason": "The Baron might only add one Outsider, not two."
+        "reason": "The Baron might only add 1 Outsider, not 2."
       }
     ]
   },
@@ -484,10 +493,6 @@
     "id": "Al-Hadikhia",
     "hatred": [
       {
-        "id": "Mastermind",
-        "reason": "If the Al-Hadikhia dies by execution, and the Mastermind is alive, the Al-Hadikhia chooses 3 good players tonight: if all 3 choose to live, evil wins. Otherwise, good wins."
-      },
-      {
         "id": "Scarlet Woman",
         "reason": "If there are two living Al-Hadikhias, the Scarlet Woman Al-Hadikhia becomes the Scarlet Woman again."
       }
@@ -541,7 +546,7 @@
     "hatred": [
       {
         "id": "Slayer",
-        "reason": "If the Slayer shoots the Lleech's host, the host dies. "
+        "reason": "If the Slayer shoots the Lleech's host, the host dies."
       },
       {
         "id": "Heretic",
@@ -549,7 +554,7 @@
       },
 	  {
         "id": "Mastermind",
-        "reason": "If the Mastermind is alive and the Lleech's host dies by execution, the Lleech lives but loses their ability. "
+        "reason": "If the Mastermind is alive and the Lleech's host dies by execution, the Lleech lives but loses their ability."
       }
     ]
   },
@@ -570,7 +575,7 @@
       },
       {
         "id": "Farmer",
-        "reason": "If Leviathan is in play and a Farmer dies by execution, a good player becomes a Farmer that night."
+        "reason": "If Leviathan is in play & a Farmer dies by execution, a good player becomes a Farmer that night."
       },	  
       {
         "id": "Ravenkeeper",
@@ -623,7 +628,7 @@
       },
       {
         "id": "Flowergirl",
-        "reason": "Only one jinxed character can be in play."
+        "reason": "Only 1 jinxed character can be in play."
       },
       {
         "id": "Town Crier",
@@ -639,11 +644,11 @@
       },
       {
         "id": "Monk",
-        "reason": "If a Riot player nominates a Monk-protected player, the protected-player does not die."
+        "reason": "If a Riot player nominates and kills the Monk-protected-player, the Monk-protected-player does not die."
       },
       {
         "id": "Exorcist",
-        "reason": "Only one jinxed character can be in play."
+        "reason": "Only 1 jinxed character can be in play."
       },
       {
         "id": "Engineer",
@@ -659,7 +664,7 @@
       },
       {
         "id": "Minstrel",
-        "reason": "Only one jinxed character can be in play."
+        "reason": "Only 1 jinxed character can be in play."
       },
       {
         "id": "Farmer",
@@ -687,7 +692,7 @@
       },
       {
         "id": "Butler",
-        "reason": "The Butler cannot nominate their master."
+        "reason": "The Butler can not nominate their master."
       },
 	  {
         "id": "Golem",
@@ -711,7 +716,7 @@
       },
       {
         "id": "Snitch",
-        "reason": "If the Snitch is in play, each Riot player gets an extra three bluffs."
+        "reason": "If the Snitch is in play, each Riot player gets an extra 3 bluffs."
       },
       {
         "id": "Devil's Advocate",
