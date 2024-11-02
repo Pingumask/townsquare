@@ -31,7 +31,7 @@
     "hatred": [
       {
         "id": "Juggler",
-        "reason": "Si le Jongleur a deviné des rôles durant son premier jour et est alors mort par exécution, le Cannibale apprend combien de rôles le Jongleur a deviné correctement."
+        "reason": "Si le Jongleur a deviné des rôles durant son premier jour et est alors mort par exécution, le Cannibale apprend cette nuit combien de rôles le Jongleur a deviné correctement."
       },
 	  {
         "id": "Butler",
@@ -126,7 +126,7 @@
     "hatred": [
       {
         "id": "Village Idiot",
-        "reason": "S'il y a moins de trois Idiots du Village, le Chaudronnier peut en créer un nouveau. L'Idiot du Village ivre peut alors changer."
+        "reason": "S'il y a moins de trois Idiots du Village, le Chaudronnier peut en créer un nouveau. Il se peut alors que l'Idiot du Village ivre change."
       },
       {
         "id": "Cult Leader",
@@ -242,7 +242,7 @@
       },
       {
         "id": "Alchemist",
-        "reason": "Si un Alchimiste-Invocateur est en jeu, la partie commence avec un Démon, comme d'habitude. Si l'Alchimiste-Invocateur désigne un joueur, il le transforme en Démon mais ne change pas son alignement.""
+        "reason": "Si un Alchimiste-Invocateur est en jeu, la partie commence avec un Démon, comme d'habitude. Si l'Alchimiste-Invocateur désigne un joueur, il le transforme en Démon mais ne change pas son alignement."
       },
       {
         "id": "Poppy Grower",
@@ -270,7 +270,7 @@
       },
       {
         "id": "Zombuul",
-        "reason": "Si l'Invocateur change un joueur mort en Zombuul, le Narrateur traite ce joueur comme un Zombuul qui a été tué une fois."
+        "reason": "Si l'Invocateur change un joueur mort en Zombuul, le Narrateur traite ce joueur comme un Zombuul qui est mort une fois."
       },
 	  {
         "id": "Legion",
@@ -282,7 +282,7 @@
       },
       {
         "id": "Riot",
-        "reason": "Si l'Invocateur crée une Émeute, le joueur choisi et tous les mauvais deviennent des Émeutes. Le joueur choisi doit être un des bons voisins vivants de l'Invocateur."
+        "reason": "Si l'Invocateur crée une Émeute, tous les Sbires deviennent également des Émeutes."
       }
     ]
   },
@@ -301,6 +301,15 @@
       {
         "id": "Plague Doctor",
         "reason": "Si le Médecin de Peste est exécuté et que le Narrateur aurait du gagner une capacité d'Homme-bombe, la capacité d'Homme-bombe s'active immédiatement."
+      }
+    ]
+  },
+  {
+    "id": "Mastermind",
+    "hatred": [
+      {
+        "id": "Al-Hadikhia",
+        "reason": "Si l'Al-Hadikhia meurt par exécution, et si le Cerveau est en vie, l'Al-Hadikhia désigne trois joueurs bons cette nuit. Si tous choisit de vivre, les mauvais gagnent ; sinon, les bons gagnent."
       }
     ]
   },
@@ -350,7 +359,7 @@
       },
       {
         "id": "Fearmonger",
-        "reason": "Le Vizir se réveille avec le Semeur de peur, et ne peut pas exécuter ce joueur."
+        "reason": "Le Vizir se réveille avec le Semeur de peur, apprend quel joueur celui-ci choisit, et ne peut pas exécuter ce joueur."
       }
     ]
   },
@@ -435,7 +444,7 @@
       },
       {
         "id": "Hatter",
-        "reason": "Si un Démon choisit de devenir Bébé monstre, il choisit aussi un rôle de Sbire et a la garde du Bébé monstre cette nuit."
+        "reason": "Si un Démon choisit de devenir Bébé monstre, il choisit aussi le Sbire qu'il devient et a la garde du Bébé monstre cette nuit."
       },
       {
         "id": "Scarlet Woman",
@@ -484,10 +493,6 @@
     "id": "Al-Hadikhia",
     "hatred": [
       {
-        "id": "Mastermind",
-        "reason": "Si l'Al-Hadikhia meurt par exécution, et si le Cerveau est en vie, l'Al-Hadikhia désigne trois joueurs bons cette nuit. Si tous choisit de vivre, les mauvais gagnent ; sinon, les bons gagnent."
-      },
-      {
         "id": "Scarlet Woman",
         "reason": "S'il y a deux Al-Hadikhias en vie, la Gourgandine devenue Al-Hadikhia redevient Gourgandine."
       }
@@ -507,7 +512,7 @@
     "hatred": [
       {
         "id": "Scarlet Woman",
-        "reason": "Si le Fang Gu désigne un Étranger et meurt, La Gourgandine ne devient pas Fang Gu ."
+        "reason": "Si le Fang Gu désigne un Étranger et meurt, La Gourgandine ne devient pas le Fang Gu."
       }
     ]
   },
@@ -631,7 +636,7 @@
       },
       {
         "id": "Undertaker",
-        "reason": "Les joueurs qui meurent par accusation apparaîssent comme exécutés pour le Fossoyeur"
+        "reason": "Les joueurs qui meurent par accusation apparaîssent comme exécutés pour le Fossoyeur."
       },
       {
         "id": "Innkeeper",
