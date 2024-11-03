@@ -453,10 +453,6 @@
       {
         "id": "Vizier",
         "reason": "The Vizier can die by execution if they are babysitting Lil' Monsta."
-      },
-	  {
-        "id": "Organ Grinder",
-        "reason": "Votes for the Organ Grinder count if the Organ Grinder is babysitting Lil' Monsta."
       }
     ]
   },
