@@ -453,10 +453,6 @@
       {
         "id": "Vizier",
         "reason": "Le Vizir peut mourir par exécution s'il a la garde du Bébé Monstre."
-      },
-	  {
-        "id": "Organ Grinder",
-        "reason": "Les votes contre l'Organiste barbare comptent si l'Organiste barbare a la garde du Bébé Monstre."
       }
     ]
   },
