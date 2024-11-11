@@ -9,15 +9,6 @@
     ]
   },
   {
-    "id": "Lycanthrope",
-    "hatred": [
-      {
-        "id": "Gambler",
-        "reason": "Si le Lycanthrope est en vie et que le Parieur se tue lui-même durant la nuit, aucun autre joueur ne peut mourir cette nuit."
-      }
-    ]
-  },
-  {
     "id": "Philosopher",
     "hatred": [
       {
@@ -33,11 +24,15 @@
         "id": "Juggler",
         "reason": "Si le Jongleur a deviné des rôles durant son premier jour et est alors mort par exécution, le Cannibale apprend cette nuit combien de rôles le Jongleur a deviné correctement."
       },
-	  {
+      {
+        "id": "Poppy Grower",
+        "reason": "Si le Cannibale mange le Planteur de pavot, puis meurt ou perd la capacité du Planteur de pavot, le Démon et les Sbires apprennent qui sont leurs alliés cette nuit."
+      },
+      {
         "id": "Butler",
         "reason": "Si le Cannibale gagne la capacité du Majordome, il l'apprend."
       },
-	  {
+      {
         "id": "Zealot",
         "reason": "Si le Cannibale gagne la capacité du Fanatique, il l'apprend."
       }
