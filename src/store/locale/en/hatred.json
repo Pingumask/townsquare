@@ -9,15 +9,6 @@
     ]
   },
   {
-    "id": "Lycanthrope",
-    "hatred": [
-      {
-        "id": "Gambler",
-        "reason": "If the Lycanthrope is alive and the Gambler kills themselves at night, no other players can die tonight."
-      }
-    ]
-  },
-  {
     "id": "Philosopher",
     "hatred": [
       {
@@ -33,11 +24,15 @@
         "id": "Juggler",
         "reason": "If the Juggler guesses on their first day and dies by execution, tonight the living Cannibal learns how many guesses the Juggler got correct."
       },
-	  {
+      {
+        "id": "Poppy Grower",
+        "reason": "If the Cannibal eats the Poppy Grower, then dies or loses the Poppy Grower ability, the Demon and Minions learn each other that night."
+      },
+      {
         "id": "Butler",
         "reason": "If the Cannibal gains the Butler ability, the Cannibal learns this."
       },
-	  {
+      {
         "id": "Zealot",
         "reason": "If the Cannibal gains the Zealot ability, the Cannibal learns this."
       }
