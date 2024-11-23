@@ -2,7 +2,7 @@
 
 ## Upcoming version
 
-
+- Using official generic icons as default custom icons
 
 ### Version 3.20.1
 - Inconsistancies in french translations for "Power" & "Character"
