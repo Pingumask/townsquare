@@ -226,6 +226,10 @@
       "title": "Apposer une note :",
       "good": "Bon",
       "evil": "Mauvais",
+      "townsfolk": "Villageois",
+      "outsider": "Étranger",
+      "minion": "Sbire",
+      "demon": "Demon",
       "custom": "Note"
     },
     "role": {
