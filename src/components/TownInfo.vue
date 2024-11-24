@@ -89,7 +89,13 @@
         :timerDuration="grimoire.timer.duration"
       />
     </li>
-    <li class="marked"  v-if="typeof session.markedPlayer == 'string' && !(this.session.isSpectator && grimoire.isOrganVoteMode)">
+    <li
+      class="marked"
+      v-if="
+        typeof session.markedPlayer == 'string' &&
+        !(this.session.isSpectator && grimoire.isOrganVoteMode)
+      "
+    >
       <font-awesome-icon icon="skull" />
     </li>
   </ul>
