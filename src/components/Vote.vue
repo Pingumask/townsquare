@@ -39,9 +39,9 @@
         <em
           class="orange"
           v-if="
-            grimoire.isOrganVoteMode && (
-              (nominee && nominee.role.team !== 'traveler') ||
-              typeof session.nomination[1] == 'string' )
+            grimoire.isOrganVoteMode &&
+            ((nominee && nominee.role.team !== 'traveler') ||
+              typeof session.nomination[1] == 'string')
           "
         >
           {{ locale.vote.secretBallot }}
