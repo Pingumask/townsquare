@@ -226,6 +226,10 @@
       "title": "Choose a reminder token:",
       "good": "Good",
       "evil": "Evil",
+	  "townsfolk": "Townfolk",
+	  "outsider": "Outsider",
+	  "minion": "Minion",
+	  "demon": "Demon",
       "custom": "Custom Note"
     },
     "role": {
