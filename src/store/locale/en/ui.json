@@ -76,6 +76,7 @@
     "votes": "votes",
     "inFavor": "in favor",
     "majorityIs": "majority is",
+    "secretBallot": "Voting is by secret ballot.",
     "timePerPlayer": "Time per player:",
     "countdown": "Countdown",
     "restart": "Restart",
