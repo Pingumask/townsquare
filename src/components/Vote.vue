@@ -35,15 +35,13 @@
       </em>
 
       <template v-if="!session.isSpectator">
-        <br v-if="grimoire.isOrganVoteMode">
+        <br />
         <em
           class="orange"
           v-if="
-            grimoire.isOrganVoteMode &&
-            (
+            grimoire.isOrganVoteMode && (
               (nominee && nominee.role.team !== 'traveler') ||
-              typeof session.nomination[1] == 'string'
-            )
+              typeof session.nomination[1] == 'string' )
           "
         >
           {{ locale.vote.secretBallot }}
