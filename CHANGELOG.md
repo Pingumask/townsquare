@@ -2,7 +2,7 @@
 
 ## Upcoming version
 
-
+- Clearer and more efficient print for the votes hidden by Organ Grinder
 
 ### Version 3.20.1
 - Inconsistancies in french translations for "Power" & "Character"
