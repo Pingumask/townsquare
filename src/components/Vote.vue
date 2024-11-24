@@ -35,6 +35,19 @@
       </em>
 
       <template v-if="!session.isSpectator">
+        <br v-if="grimoire.isOrganVoteMode">
+        <em
+           class="orange"
+           v-if="
+             grimoire.isOrganVoteMode &&
+             (
+               (nominee && nominee.role.team !== 'traveler') ||
+			   typeof session.nomination[1] == 'string'
+			 )
+		   "
+        >
+          {{ locale.vote.secretBallot }}
+        </em>
         <div v-if="!session.isVoteInProgress && session.lockedVote < 1">
           {{ locale.vote.timePerPlayer }}
           <font-awesome-icon
@@ -322,6 +335,9 @@ export default {
     font-weight: bold;
     &.blue {
       color: $townsfolk;
+    }
+    &.orange {
+      color: $minion;
     }
   }
 
