@@ -2,7 +2,7 @@
 
 ## Upcoming version
 
-
+- Adding the reminder tokens "Townsfolk", "Outsider", "Minion" and "Demon"
 
 ### Version 3.20.1
 - Inconsistancies in french translations for "Power" & "Character"
