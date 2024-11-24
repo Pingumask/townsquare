@@ -76,6 +76,7 @@
     "votes": "votes",
     "inFavor": "pour",
     "majorityIs": "majorité à",
+    "secretBallot": "Les votes ont lieu à bulletin secret.",
     "timePerPlayer": "Temps par Joueur :",
     "countdown": "Compte à rebours",
     "restart": "Relancer",
