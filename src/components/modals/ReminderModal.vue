@@ -86,8 +86,30 @@ export default {
         }
       });
 
-      reminders.push({ role: "good", name: this.locale.modal.reminder.good });
-      reminders.push({ role: "evil", name: this.locale.modal.reminder.evil });
+      reminders.push({
+        role: "good",
+        name: this.locale.modal.reminder.good,
+      });
+      reminders.push({
+        role: "evil",
+        name: this.locale.modal.reminder.evil,
+      });
+      reminders.push({
+        role: "townsfolk",
+        name: this.locale.modal.reminder.townsfolk,
+      });
+      reminders.push({
+        role: "outsider",
+        name: this.locale.modal.reminder.outsider,
+      });
+      reminders.push({
+        role: "minion",
+        name: this.locale.modal.reminder.minion,
+      });
+      reminders.push({
+        role: "demon",
+        name: this.locale.modal.reminder.demon,
+      });
       reminders.push({
         role: "custom",
         name: this.locale.modal.reminder.custom,

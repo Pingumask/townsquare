@@ -1,25 +1,34 @@
 <template>
   <div id="vote">
     <div class="arrows">
-      <span class="nominee" :style="nomineeStyle"></span>
-      <span class="nominator" :style="nominatorStyle"></span>
+      <span class="nominee" :style="nomineeStyle" v-if="nominee"></span>
+      <span class="nominator" :style="nominatorStyle" v-if="nominator"></span>
     </div>
     <div class="overlay">
       <audio src="../assets/sounds/countdown.mp3" preload="auto"></audio>
-      <em class="blue">{{ nominator.name }}</em>
+      <em class="blue">{{
+        nominator
+          ? nominator.name
+          : session.nomination[0][0].toUpperCase() +
+            session.nomination[0].slice(1)
+      }}</em>
       {{
-        nominee.role.team == "traveler"
-          ? locale.vote.callexile
-          : locale.vote.nominates
+        typeof session.nomination[1] == "object"
+          ? session.nomination[1][0]
+          : nominee && nominee.role.team == "traveler"
+            ? locale.vote.callexile
+            : locale.vote.nominates
       }}
-      <em>{{ nominee.name }}</em
+      <em v-if="typeof session.nomination[1] !== 'object'">{{
+        nominee ? nominee.name : session.nomination[1]
+      }}</em
       >{{ locale.vote.exclam }}
       <br />
       <em
         class="blue"
         v-if="
           !grimoire.isOrganVoteMode ||
-          nominee.role.team == 'traveler' ||
+          (nominee && nominee.role.team == 'traveler') ||
           !session.isSpectator
         "
       >
@@ -27,14 +36,30 @@
       </em>
       <em class="blue" v-else> ? {{ locale.vote.votes }} </em>
       {{ locale.vote.inFavor }}
-      <em v-if="nominee.role.team !== 'traveler'">
+      <em
+        v-if="
+          (nominee && nominee.role.team !== 'traveler') ||
+          typeof session.nomination[1] == 'string'
+        "
+      >
         ({{ locale.vote.majorityIs }} {{ Math.ceil(alive / 2) }})
       </em>
-      <em v-else>
+      <em v-else-if="nominee">
         ({{ locale.vote.majorityIs }} {{ Math.ceil(players.length / 2) }})
       </em>
 
       <template v-if="!session.isSpectator">
+        <br />
+        <em
+          class="orange"
+          v-if="
+            grimoire.isOrganVoteMode &&
+            ((nominee && nominee.role.team !== 'traveler') ||
+              typeof session.nomination[1] == 'string')
+          "
+        >
+          {{ locale.vote.secretBallot }}
+        </em>
         <div v-if="!session.isVoteInProgress && session.lockedVote < 1">
           {{ locale.vote.timePerPlayer }}
           <font-awesome-icon
@@ -72,7 +97,13 @@
             {{ locale.vote.close }}
           </div>
         </div>
-        <div class="button-group mark" v-if="nominee.role.team !== 'traveler'">
+        <div
+          class="button-group mark"
+          v-if="
+            typeof session.nomination[1] !== 'object' &&
+            (!nominee || nominee.role.team !== 'traveler')
+          "
+        >
           <div
             class="button"
             :class="{
@@ -149,18 +180,36 @@ export default {
     ...mapState(["session", "grimoire", "locale"]),
     ...mapGetters({ alive: "players/alive" }),
     nominator: function () {
-      return this.players[this.session.nomination[0]];
+      try {
+        return this.players[this.session.nomination[0]];
+      } catch (error) {
+        return null;
+      }
     },
     nominatorStyle: function () {
       const players = this.players.length;
       const nomination = this.session.nomination[0];
-      return {
-        transform: `rotate(${Math.round((nomination / players) * 360)}deg)`,
-        transitionDuration: this.session.votingSpeed - 100 + "ms",
-      };
+      if (this.nominee) {
+        return {
+          transform: `rotate(${Math.round((nomination / players) * 360)}deg)`,
+          transitionDuration: this.session.votingSpeed - 100 + "ms",
+        };
+      } else {
+        const lock = this.session.lockedVote;
+        const rotation =
+          (360 * (nomination + Math.min(lock, players))) / players;
+        return {
+          transform: `rotate(${Math.round(rotation)}deg)`,
+          transitionDuration: this.session.votingSpeed - 100 + "ms",
+        };
+      }
     },
     nominee: function () {
-      return this.players[this.session.nomination[1]];
+      try {
+        return this.players[this.session.nomination[1]];
+      } catch (error) {
+        return null;
+      }
     },
     nomineeStyle: function () {
       const players = this.players.length;
@@ -183,17 +232,27 @@ export default {
     },
     canVote: function () {
       if (!this.player) return false;
-      if (this.player.isVoteless && this.nominee.role.team !== "traveler")
+      if (
+        this.player.isVoteless &&
+        ((this.nominee && this.nominee.role.team !== "traveler") ||
+          typeof this.session.nomination[1] === "string")
+      )
         return false;
       const session = this.session;
       const players = this.players.length;
       const index = this.players.indexOf(this.player);
       const indexAdjusted =
-        (index - 1 + players - session.nomination[1]) % players;
+        (index -
+          1 +
+          players -
+          (this.nominee ? session.nomination[1] : session.nomination[0])) %
+        players;
       return indexAdjusted >= session.lockedVote - 1;
     },
     voters: function () {
-      const nomination = this.session.nomination[1];
+      const nomination = this.nominee
+        ? this.session.nomination[1]
+        : this.session.nomination[0];
       const voters = Array(this.players.length)
         .fill("")
         .map((x, index) =>
@@ -322,6 +381,9 @@ export default {
     font-weight: bold;
     &.blue {
       color: $townsfolk;
+    }
+    &.orange {
+      color: $minion;
     }
   }
 

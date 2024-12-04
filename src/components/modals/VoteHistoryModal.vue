@@ -60,7 +60,7 @@
             {{ vote.votes == null ? "?" : vote.votes.length }}
             <font-awesome-icon icon="hand-paper" />
           </td>
-          <td>
+          <td v-if="vote.nominee">
             {{ vote.majority }}
             <font-awesome-icon
               :icon="[
@@ -73,6 +73,7 @@
               ]"
             />
           </td>
+          <td v-else></td>
           <td>
             {{
               vote.votes == null

@@ -50,7 +50,8 @@
   },
   {
     "id": "revolutionary",
-    "firstNightReminder": "",
+    "firstNight": 1,
+    "firstNightReminder": "Dites au groupe qui sont les deux joueurs impactés par le Révolutionnaire, et rappelez qu'ils ont le même alignement.",
     "otherNightReminder": "",
     "reminders": [
       "Même camp",
@@ -74,7 +75,7 @@
   {
     "id": "toymaker",
     "firstNightReminder": "",
-    "otherNight": 2,
+    "otherNight": 27,
     "otherNightReminder": "Si le Démon pourrait terminer la partie cette nuit, mais qu'il a toujours son marqueur 'nuit sans attaque', il n'agit pas cette nuit (ne le réveillez pas)",
     "reminders": [
       "Nuit sans attaque"
@@ -99,7 +100,7 @@
   {
     "id": "duchess",
     "firstNightReminder": "",
-    "otherNight": 2,
+    "otherNight": 3,
     "otherNightReminder": "Reveillez chaque visiteur dans l'ordre un par un. Indiquez à chacun d'entre eux combien de Visiteurs sont mauvais. Excepté celui qui reçoit les fausses informations qui recevra à la place n'importe quel autre nombre.",
     "reminders": [
       "Visiteur 1",
@@ -147,8 +148,8 @@
   },
   {
     "id": "stormcatcher",
-    "firstNight": 1,
-    "firstNightReminder": "Marquez un joueur comme \"Sûr\". Réveillez chaque joueur Mauvais et indiquez lui qui est ce joueur.",
+    "firstNight": 13,
+    "firstNightReminder": "Réveillez chaque joueur Mauvais et indiquez-lui quel joueur est marqué comme \"Protégé\".",
     "otherNightReminder": "",
     "reminders": [
       "Sûr"
@@ -161,7 +162,8 @@
   {
     "id": "ferryman",
     "firstNightReminder": "",
-    "otherNightReminder": "",
+    "otherNight": 1002,
+    "otherNightReminder": "Si c'est le dernier jour, rendez à chaque joueur mort son jeton de vote.",
     "reminders": [],
     "setup": false,
     "name": "Passeur",
@@ -170,7 +172,8 @@
   },
   {
     "id": "gardener",
-    "firstNightReminder": "",
+    "firstNight": 1,
+    "firstNightReminder": "Dites au groupe quel est le joueur dont vous avez choisi le personnage.",
     "otherNightReminder": "",
     "reminders": [
       "Rôle choisi"
@@ -182,9 +185,9 @@
   },
   {
     "id": "bootlegger",
-    "firstNight": 1,
+    "firstNight": 3,
     "firstNightReminder": "Si applicables, utilisez la (les) règle(s) faite(s)-maison.",
-    "otherNight": 2,
+    "otherNight": 3,
     "otherNightReminder": "Si applicables, utilisez la (les) règle(s) faite(s)-maison.",
     "reminders": [],
     "setup": false,

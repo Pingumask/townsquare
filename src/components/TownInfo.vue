@@ -89,6 +89,15 @@
         :timerDuration="grimoire.timer.duration"
       />
     </li>
+    <li
+      class="marked"
+      v-if="
+        typeof session.markedPlayer == 'string' &&
+        !(this.session.isSpectator && grimoire.isOrganVoteMode)
+      "
+    >
+      <font-awesome-icon icon="skull" />
+    </li>
   </ul>
 </template>
 
@@ -124,7 +133,7 @@ export default {
     countdownStyle: function () {
       return `--timer: ${this.$store.state.grimoire.timer.duration}`;
     },
-    ...mapState(["edition", "grimoire", "locale"]),
+    ...mapState(["edition", "grimoire", "locale", "session"]),
     ...mapState("players", ["players"]),
   },
 };
@@ -210,6 +219,20 @@ export default {
     background-size: 100% auto;
     position: absolute;
     top: -50%;
+  }
+}
+
+.marked {
+  opacity: 0.5;
+  position: absolute;
+  svg {
+    height: 80px;
+    width: 80px;
+    stroke: white;
+    stroke-width: 15px;
+    path {
+      fill: white;
+    }
   }
 }
 </style>
