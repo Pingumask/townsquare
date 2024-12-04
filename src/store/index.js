@@ -128,6 +128,7 @@ export default new Vuex.Store({
       role: false,
       roles: false,
       voteHistory: false,
+      specialVote: false,
     },
     edition: editionJSONbyId.get("tb"),
     editions: editionJSON,
@@ -237,11 +238,11 @@ export default new Vuex.Store({
           if (rolesJSONbyId.get(role.id)) return role;
           role.imageAlt = // map team to generic icon
             {
-              townsfolk: "good",
+              townsfolk: "townsfolk",
               outsider: "outsider",
               minion: "minion",
-              demon: "evil",
-              fabled: "bootlegger",
+              demon: "demon",
+              fabled: "fabled",
               traveler: "traveler",
             }[role.team] || "custom";
           role.firstNight = Math.abs(role.firstNight);

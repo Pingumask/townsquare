@@ -152,6 +152,7 @@
     "removePlayer": "Retirer le joueur",
     "emptySeat": "Vider le siège",
     "nomination": "Accusation",
+    "specialVote": "Vote spécial",
     "claimSeat": "S'asseoir ici",
     "vacateSeat": "Libérer le Siège",
     "occupiedSeat": "Siège Occupé"
@@ -204,11 +205,12 @@
       "minionInfoDescription": "S'il y a plusieurs Sbires, ils apprennent qui sont les autres Sbires. Indiquez aux Sbires qui est le Démon.",
       "demonInfo": "Info & Bluffs Démon",
       "demonInfoDescription": "Indiquez au Démon qui sont ses Sbires. Indiquez les rôles de 3 personnages bons qui ne sont pas en jeu.",
+      "dusk": "Tombée de la nuit",
+      "duskDescription1": "Endormez les joueurs.",
+      "duskDescription2": "Terminez la journée, et endormez les joueurs.",
       "dawn": "Matin",
       "dawnDescription1": "Réveillez les joueurs.",
       "dawnDescription2": "Réveillez les joueurs, puis annoncez qui est mort cette nuit",
-      "dusk": "Tombée de la nuit",
-      "duskDescription": "Terminez la journée, et endormez les joueurs.",
       "reference": "Afficher la Réference de rôles"
     },
     "reference": {
@@ -227,6 +229,10 @@
       "title": "Apposer une note :",
       "good": "Bon",
       "evil": "Mauvais",
+      "townsfolk": "Villageois",
+      "outsider": "Étranger",
+      "minion": "Sbire",
+      "demon": "Demon",
       "custom": "Note"
     },
     "role": {
@@ -258,6 +264,17 @@
       "execution": "Exécution",
       "exile": "Exil",
       "hiddenVote": "Résultat caché par l'Organiste"
+    },
+    "specialvote": {
+      "title": "Sélectionnez un type de vote :",
+      "bishop": "Accusation par le Narrateur",
+      "atheist": "Accusation du Narrateur",
+      "st": "le Narrateur",
+      "cultleader": "Création de secte",
+      "cultleaderMessages": ["veut créer une secte","Voulez-vous rejoindre la secte créée par $player ?","Secte"],
+      "custom": "Vote personnalisé",
+      "complete": "Complétez : ",
+      "customMessages": ["","Le débat est ouvert","(Personnalisé)"]
     }
   }
 }

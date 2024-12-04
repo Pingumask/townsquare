@@ -3,8 +3,17 @@
 ## Upcoming version
 
 - Clearer and more efficient print for the votes hidden by Organ Grinder
+- Using official generic icons as default custom icons
+- Adding the reminder tokens "Townsfolk", "Outsider", "Minion" and "Demon"
+- Unique night order bubble for each player with the same role
+- Adding some special votes
+- Automatic Djinn and Bootlegger
+- Updating night order
+- Updating jinxes
+- Showing pertinent Fabled during setup
 
 ### Version 3.20.1
+
 - Inconsistancies in french translations for "Power" & "Character"
 
 ### Version 3.20.0
