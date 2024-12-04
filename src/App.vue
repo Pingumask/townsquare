@@ -34,6 +34,7 @@
     <NightOrderModal />
     <VoteHistoryModal />
     <GameStateModal />
+    <SpecialVoteModal />
     <Gradients />
     <span id="version">v{{ version }}</span>
   </div>
@@ -55,6 +56,7 @@ import NightOrderModal from "./components/modals/NightOrderModal";
 import FabledModal from "@/components/modals/FabledModal";
 import VoteHistoryModal from "@/components/modals/VoteHistoryModal";
 import GameStateModal from "@/components/modals/GameStateModal";
+import SpecialVoteModal from "@/components/modals/SpecialVoteModal";
 
 export default {
   components: {
@@ -71,6 +73,7 @@ export default {
     EditionModal,
     RolesModal,
     Gradients,
+    SpecialVoteModal,
   },
   computed: {
     ...mapState(["grimoire", "session", "edition"]),
