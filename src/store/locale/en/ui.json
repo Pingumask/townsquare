@@ -151,6 +151,7 @@
     "removePlayer": "Remove",
     "emptySeat": "Empty seat",
     "nomination": "Nomination",
+    "specialVote": "Special vote",
     "claimSeat": "Claim seat",
     "vacateSeat": "Vacate seat",
     "occupiedSeat": "Seat occupied"
@@ -258,6 +259,17 @@
       "execution": "Execution",
       "exile": "Exile",
       "hiddenVote": "The result is hidden because of the Organ Grinder"
+    },
+    "specialvote": {
+      "title": "Choose a vote type:",
+      "bishop": "Nomination by the Story Teller",
+      "atheist": "Nomination of the Story Teller",
+      "st": "the Story Teller",
+      "cultleader": "Cult creation",
+      "cultleaderMessages": ["wants to create a cult","Do you want to join $player's cult?","Cult"],
+      "custom": "Custom vote",
+      "complete": "Complete: ",
+      "customMessages": ["","The debate is open","(Custom)"]
     }
   }
 }
