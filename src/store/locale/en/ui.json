@@ -151,6 +151,7 @@
     "removePlayer": "Remove",
     "emptySeat": "Empty seat",
     "nomination": "Nomination",
+    "specialVote": "Special vote",
     "claimSeat": "Claim seat",
     "vacateSeat": "Vacate seat",
     "occupiedSeat": "Seat occupied"
@@ -203,11 +204,12 @@
       "minionInfoDescription": "If more than one Minion, they all make eye contact with each other. Show the “This is the Demon” card. Point to the Demon.",
       "demonInfo": "Demon info & bluffs",
       "demonInfoDescription": "Show the “These are your minions” card. Point to each Minion. Show the “These characters are not in play” card. Show 3 character tokens of good characters not in play.",
+      "dusk": "Dusk",
+      "duskDescription1": "Put all players to sleep.",
+      "duskDescription2": "End the day, and put all players to sleep.",
       "dawn": "Dawn",
       "dawnDescription1": "Wake all players.",
       "dawnDescription2": "Wake all players, then announce who died this night.",
-      "dusk": "Dusk",
-      "duskDescription": "End the day, and put all players to sleep.",
       "reference": "Show Character Reference"
     },
     "reference": {
@@ -257,6 +259,17 @@
       "execution": "Execution",
       "exile": "Exile",
       "hiddenVote": "The result is hidden because of the Organ Grinder"
+    },
+    "specialvote": {
+      "title": "Choose a vote type:",
+      "bishop": "Nomination by the Story Teller",
+      "atheist": "Nomination of the Story Teller",
+      "st": "the Story Teller",
+      "cultleader": "Cult creation",
+      "cultleaderMessages": ["wants to create a cult","Do you want to join $player's cult?","Cult"],
+      "custom": "Custom vote",
+      "complete": "Complete: ",
+      "customMessages": ["","The debate is open","(Custom)"]
     }
   }
 }
