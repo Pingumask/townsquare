@@ -144,7 +144,7 @@
             v-if="
               player.canVoteTwice &&
               typeof session.nomination[1] !== 'object' &&
-              (!nominee·||·nominee.role.team·!==·'traveler')
+              (!nominee || nominee.role.team !== 'traveler')
             "
           >
             x2
@@ -249,7 +249,7 @@ export default {
       const indexAdjusted =
         (index - 1 + players - session.nomination[1]) % players;
       // If the vote is already locked, the player cannot vote
-      if(indexAdjusted < session.lockedVote - 1) {
+      if (indexAdjusted < session.lockedVote - 1) {
         return false;
       }	
       // (Else) If the vote is not a nomination, the player can vote
@@ -257,10 +257,10 @@ export default {
         typeof session.nomination[1] == "object" ||
         (this.nominee && this.nominee.role.team == "traveler")
       ) {
-        return true ;
+        return true;
       }
       // (Else) If the player is dead, they need a token or a double vote
-      if(this.player.isDead) {
+      if (this.player.isDead) {
         return !this.player.isVoteless || this.player.canVoteTwice;
       }
       // In all other cases, the player can always vote
@@ -302,7 +302,7 @@ export default {
         if (lastLockedVote >= this.players.length) {
           lastLockedVote -= this.players.length;
         }
-        if(lastLockedVote > this.session.nomination[1]) {
+        if (lastLockedVote > this.session.nomination[1]) {
           for (
             let i = this.session.nomination[1] + 1;
             i <= lastLockedVote;
