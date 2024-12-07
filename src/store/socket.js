@@ -348,7 +348,7 @@ class LiveSession {
         "isDead",
         "isVoteless",
         "canVoteTwice",
-        "pronouns"
+        "pronouns",
       ].forEach((property) => {
         const value = state[property];
         if (player[property] !== value) {
