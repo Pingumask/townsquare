@@ -9,7 +9,7 @@
           marked: session.markedPlayer === index,
           'no-vote': player.isVoteless,
           you: session.sessionId && player.id && player.id === session.playerId,
-		  'no-vote': !session.votes[index] || session.votes[index] === 0,
+          'no-vote': !session.votes[index] || session.votes[index] === 0,
           'vote-once': session.votes[index] === 1,
           'vote-twice': session.votes[index] === 2,
           'vote-lock': voteLocked,
@@ -57,34 +57,34 @@
             !grimoire.isOrganVoteMode ||
             !session.isSpectator ||
             player.id == session.playerId ||
-			typeof session.nomination[1] == 'object' ||
-			this.players[this.session.nomination[1]].role.team == 'traveler'
+            typeof session.nomination[1] == 'object' ||
+            this.players[this.session.nomination[1]].role.team == 'traveler'
           "
           icon="hand-paper"
           class="vote simpleVote"
           :title="locale.player.handUp"
           @click="vote()"
         />
-		<font-awesome-icon
+        <font-awesome-icon
           v-if="
             !grimoire.isOrganVoteMode ||
             !session.isSpectator ||
             player.id == session.playerId ||
-			typeof session.nomination[1] == 'object' ||
-			this.players[this.session.nomination[1]].role.team == 'traveler'
+            typeof session.nomination[1] == 'object' ||
+            this.players[this.session.nomination[1]].role.team == 'traveler'
           "
           icon="hand-paper"
           class="vote doubleVote handLeft"
           title="Double vote 1"
           @click="vote()"
         />
-		<font-awesome-icon
+        <font-awesome-icon
           v-if="
             !grimoire.isOrganVoteMode ||
             !session.isSpectator ||
             player.id == session.playerId ||
-			typeof session.nomination[1] == 'object' ||
-			this.players[this.session.nomination[1]].role.team == 'traveler'
+            typeof session.nomination[1] == 'object' ||
+            this.players[this.session.nomination[1]].role.team == 'traveler'
           "
           icon="hand-paper"
           class="vote doubleVote handRight"
@@ -96,8 +96,8 @@
             !grimoire.isOrganVoteMode ||
             !session.isSpectator ||
             player.id == session.playerId ||
-			typeof session.nomination[1] == 'object' ||
-			this.players[this.session.nomination[1]].role.team == 'traveler'
+            typeof session.nomination[1] == 'object' ||
+            this.players[this.session.nomination[1]].role.team == 'traveler'
           "
           icon="times"
           class="vote"
@@ -109,8 +109,8 @@
             grimoire.isOrganVoteMode &&
             session.isSpectator &&
             player.id !== session.playerId &&
-			typeof session.nomination[1] !== 'object' &&
-			this.players[this.session.nomination[1]].role.team !== 'traveler'
+            typeof session.nomination[1] !== 'object' &&
+            this.players[this.session.nomination[1]].role.team !== 'traveler'
           "
           icon="question"
           class="vote"
@@ -371,31 +371,37 @@ export default {
       const name = prompt("Player name", this.player.name) || this.player.name;
       this.updatePlayer("name", name, true);
     },
-	findRoleById(id) {
-	  let findedRole = this.$store.state.roles.get(id);
-	  if(findedRole) return findedRole ;
-	  return this.$store.state.fabled.get(id);
-	},
+    findRoleById(id) {
+      let findedRole = this.$store.state.roles.get(id);
+      if (findedRole) return findedRole ;
+      return this.$store.state.fabled.get(id);
+    },
     removeReminder(reminder) {
       let reminders = [...this.player.reminders];
       reminders.splice(this.player.reminders.indexOf(reminder), 1);
       this.updatePlayer("reminders", reminders, true);
-	  
-	  //If the reminder was removed by the ST, we make some tests with the remaining reminders, to possibly change some values
-	  if(!this.session.isSpectator) {
-	    reminders = [...this.player.reminders]; //Updating the reminders
-		let canVoteTwice = false;		
-		for(let i=0; i<reminders.length ; i++) {
-		  if(reminders[i].role === "banshee" || (this.findRoleById(reminders[i].role).copyEffects && this.findRoleById(reminders[i].role).copyEffects.includes("banshee"))) {
-		    canVoteTwice = true;
-		  }
-		}
-		this.$store.commit("players/update", {
-		  player: this.player,
-		  property: "canVoteTwice",
-		  value: canVoteTwice
-		});
-	  }
+      
+      //If the reminder was removed by the ST, we make some tests with the remaining reminders, to possibly change some values
+	    if(!this.session.isSpectator) {
+        reminders = [...this.player.reminders]; //Updating the reminders
+        let canVoteTwice = false;		
+        for(let i=0; i<reminders.length ; i++) {
+          if(
+            reminders[i].role === "banshee" ||
+            (this.findRoleById(reminders[i].role).copyEffects &&
+             this.findRoleById(reminders[i].role).copyEffects.includes(
+               "banshee",
+             ))
+          ) {
+            canVoteTwice = true;
+          }
+        }
+        this.$store.commit("players/update", {
+          player: this.player,
+          property: "canVoteTwice",
+          value: canVoteTwice
+        });
+      }
     },
     updatePlayer(property, value, closeMenu = false) {
       if (
@@ -681,8 +687,16 @@ export default {
 }
 
 // another player's vote which is not locked yet
-:is(#townsquare.vote .player.vote-once .overlay svg.vote.fa-hand-paper):is(.simpleVote),
-:is(#townsquare.vote .player.vote-twice .overlay svg.vote.fa-hand-paper):is(.doubleVote),
+:is(
+    #townsquare.vote
+      .player.vote-once
+      .overlay svg.vote.fa-hand-paper
+  ):is(.simpleVote),
+:is(
+    #townsquare.vote
+      .player.vote-twice
+      .overlay svg.vote.fa-hand-paper
+  ):is(.doubleVote),
 #townsquare.vote .overlay svg.vote.fa-question {
   opacity: 0.5;
   transform: scale(1);
@@ -692,10 +706,27 @@ export default {
 }
 
 // my vote, or a locked vote
-:is(#townsquare.vote .player.you.vote-once .overlay svg.vote.fa-hand-paper):is(.simpleVote),
-:is(#townsquare.vote .player.you.vote-twice .overlay svg.vote.fa-hand-paper):is(.doubleVote),
-:is(#townsquare.vote .player.vote-lock.vote-once .overlay svg.vote.fa-hand-paper):is(.simpleVote),
-:is(#townsquare.vote .player.vote-lock.vote-twice .overlay svg.vote.fa-hand-paper):is(.doubleVote),
+:is(
+    #townsquare.vote
+      .player.you.vote-once
+      .overlay svg.vote.fa-hand-paper
+  ):is(.simpleVote),
+:is(
+    #townsquare.vote
+      .player.you.vote-twice
+      .overlay svg.vote.fa-hand-paper
+  ):is(.doubleVote),
+:is(
+    #townsquare.vote
+      .player.vote-lock.vote-once
+      .overlay svg.vote.fa-hand-paper
+  ):is(.simpleVote),
+:is(
+    #townsquare.vote
+      .player.vote-lock.vote-twice
+      .overlay
+      ·svg.vote.fa-hand-paper
+  ):is(.doubleVote),
 #townsquare.vote .player.vote-lock.no-vote .overlay svg.vote.fa-times,
 #townsquare.vote .player.vote-lock .overlay svg.vote.fa-question {
   opacity: 1;
