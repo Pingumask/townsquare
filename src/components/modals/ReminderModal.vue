@@ -148,7 +148,7 @@ export default {
           reminder.role === "banshee" ||
           (this.findRoleById(reminder.role).copyEffects &&
            this.findRoleById(reminder.role).copyEffects.includes("banshee"))
-        )·{
+        ) {
           this.$store.commit("players/update", {
             player: player,
             property: "canVoteTwice",
