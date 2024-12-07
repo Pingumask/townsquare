@@ -10,7 +10,7 @@ import gameInfo from "../index.js";
 const handleVote = (state, [index, vote]) => {
   if (!state.nomination) return;
   state.votes = [...state.votes];
-  state.votes[index] = vote === undefined ? !state.votes[index] : vote;
+  state.votes[index] = vote === undefined ? (state.votes[index]==0 ? 1 : 0) : vote;
 };
 
 const state = () => ({
@@ -80,6 +80,12 @@ const mutations = {
    * @param players
    */
   addHistory(state, players) {
+    function countVotes(votes) {
+	  let res = 0 ;
+	  for(let i=0 ; i<votes.length ; i++)
+	    res += votes[i] ? votes[i] : 0 ;
+	  return res ;
+	}
     if (!state.isVoteHistoryAllowed && state.isSpectator) return;
     if (!state.nomination || state.lockedVote <= players.length) return;
     const isExile =
@@ -105,14 +111,15 @@ const mutations = {
             : gameInfo.state.locale.modal.voteHistory.execution +
               (organGrinder && !state.isSpectator ? "*" : "")
           : state.nomination[1][2],
+      votes: countVotes(state.votes),
       majority: Math.ceil(
         players.filter((player) => !player.isDead || isExile).length / 2,
       ),
-      votes:
+      voters:
         organGrinder && state.isSpectator
           ? null
           : players
-              .filter((player, index) => state.votes[index])
+              .filter((player, index) => state.votes[index] && state.votes[index]!=0)
               .map(({ name }) => name),
     });
   },
