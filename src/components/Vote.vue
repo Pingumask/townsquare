@@ -280,10 +280,11 @@ export default {
     votesCount: function () {
       let res = 0 ;
 
-      /*  If we are counting the votes, then we take account only of the locked vote.
-       *  We will also take account of modifiers like Bureaucrat or Thief (not coded yet).
-       */
       if(this.session.lockedVote) {
+        
+        /*  If we are counting the votes, then we take account only of the locked vote.
+         *  We will also take account of modifiers like Bureaucrat or Thief (not coded yet).
+         */
 
         if(this.session.lockedVote == 1) {
           return 0 ;   // We are just starting, no vote is counted yet.
@@ -314,18 +315,18 @@ export default {
             res += this.session.votes[i] ? this.session.votes[i] : 0;
           }
         }
-      }
-	  
-	    /*  If we are not counting the votes, then we take account of all the votes.
-	     *  We do not take account of modifiers like Bureaucrat or Thief.
-	     */
-	    else {
+      } else {
+
+        /*  If we are not counting the votes, then we take account of all the votes.
+         *  We do not take account of modifiers like Bureaucrat or Thief.
+	       */
+        
         for (let i = 0; i < this.players.length; i++) {
           res += this.session.votes[i] ? this.session.votes[i] : 0;
         }
       }
-    
-      return res ;
+
+      return res;
     },
   },
   data() {
