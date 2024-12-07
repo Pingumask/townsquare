@@ -687,12 +687,12 @@ export default {
 }
 
 // another player's vote which is not locked yet
-:is(
-    #townsquare.vote .player.vote-once .overlay svg.vote.fa-hand-paper
-  ):is(.simpleVote),
-:is(
-    #townsquare.vote .player.vote-twice .overlay svg.vote.fa-hand-paper
-  ):is(.doubleVote),
+:is(#townsquare.vote .player.vote-once .overlay svg.vote.fa-hand-paper):is(
+    .simpleVote
+  ),
+:is(#townsquare.vote .player.vote-twice .overlay svg.vote.fa-hand-paper):is(
+    .doubleVote
+  ),
 #townsquare.vote .overlay svg.vote.fa-question {
   opacity: 0.5;
   transform: scale(1);
@@ -702,11 +702,12 @@ export default {
 }
 
 // my vote, or a locked vote
-:is(
-    #townsquare.vote .player.you.vote-once .overlay svg.vote.fa-hand-paper
-  ):is(.simpleVote),
-:is( #townsquare.vote .player.you.vote-twice .overlay svg.vote.fa-hand-paper
-  ):is(.doubleVote),
+:is(#townsquare.vote .player.you.vote-once .overlay svg.vote.fa-hand-paper):is(
+    .simpleVote
+  ),
+:is(#townsquare.vote .player.you.vote-twice .overlay svg.vote.fa-hand-paper):is(
+    .doubleVote
+  )
 :is(
     #townsquare.vote .player.vote-lock.vote-once .overlay svg.vote.fa-hand-paper
   ):is(.simpleVote),
