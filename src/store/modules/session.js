@@ -83,7 +83,7 @@ const mutations = {
   addHistory(state, players) {
     function countVotes(votes) {
       let res = 0;
-       (let i = 0; i < votes.length; i++) res += votes[i] ? votes[i] : 0;
+      for (let i = 0; i < votes.length; i++) res += votes[i] ? votes[i] : 0;
       return res;
     }
     if (!state.isVoteHistoryAllowed && state.isSpectator) return;
