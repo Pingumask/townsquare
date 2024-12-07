@@ -255,7 +255,7 @@ export default {
       // (Else) If the vote is not a nomination, the player can vote
       if (
         typeof session.nomination[1] == "object" ||
-        (this.nominee·&&·this.nominee.role.team·==·"traveler")
+        (this.nominee && this.nominee.role.team == "traveler")
       ) {
         return true ;
       }
