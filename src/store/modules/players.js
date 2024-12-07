@@ -5,6 +5,7 @@ const NEWPLAYER = {
   reminders: [],
   isVoteless: false,
   isDead: false,
+  canVoteTwice: false,
   pronouns: "",
 };
 
