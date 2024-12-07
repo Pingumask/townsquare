@@ -1659,6 +1659,21 @@
     "ability": "You start knowing 2 players that are not the Demon."
   },
   {
+    "id": "banshee",
+    "name": "Banshee",
+    "edition": "",
+    "team": "townsfolk",
+    "firstNight": 0,
+    "firstNightReminder": "Announce that the Banshee has died. Mark the Banshee with their reminder.",
+    "otherNight": 53,
+    "otherNightReminder": "",
+    "reminders": [
+      "Has Ability"
+    ],
+    "setup": false,
+    "ability": "If the Demon kills you, all players learn this. From now on, you may nominate twice per day and vote twice per nomination."
+  },
+  {
     "id": "snitch",
     "name": "Snitch",
     "edition": "",
