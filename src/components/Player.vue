@@ -382,10 +382,10 @@ export default {
       this.updatePlayer("reminders", reminders, true);
 
       //If the reminder was removed by the ST, we make some tests with the remaining reminders, to possibly change some values
-      if(!this.session.isSpectator) {
+      if (!this.session.isSpectator) {
         reminders = [...this.player.reminders]; //Updating the reminders
         let canVoteTwice = false;
-        for (let i = 0; i < reminders.length ; i++) {
+        for (let i = 0; i < reminders.length; i++) {
           if (
             reminders[i].role === "banshee" ||
             (this.findRoleById(reminders[i].role).copyEffects &&
@@ -688,14 +688,10 @@ export default {
 
 // another player's vote which is not locked yet
 :is(
-    #townsquare.vote
-      .player.vote-once
-      .overlay svg.vote.fa-hand-paper
+    #townsquare.vote .player.vote-once .overlay svg.vote.fa-hand-paper
   ):is(.simpleVote),
 :is(
-    #townsquare.vote
-      .player.vote-twice
-      .overlay svg.vote.fa-hand-paper
+    #townsquare.vote .player.vote-twice .overlay svg.vote.fa-hand-paper
   ):is(.doubleVote),
 #townsquare.vote .overlay svg.vote.fa-question {
   opacity: 0.5;
@@ -707,21 +703,16 @@ export default {
 
 // my vote, or a locked vote
 :is(
-    #townsquare.vote
-      .player.you.vote-once
-      .overlay svg.vote.fa-hand-paper
+    #townsquare.vote .player.you.vote-once .overlay svg.vote.fa-hand-paper
   ):is(.simpleVote),
-:is( #townsquare.vote
-      .player.you.vote-twice
-      .overlay svg.vote.fa-hand-paper
+:is( #townsquare.vote .player.you.vote-twice .overlay svg.vote.fa-hand-paper
   ):is(.doubleVote),
 :is(
-    #townsquare.vote
-      .player.vote-lock.vote-once
-      .overlay svg.vote.fa-hand-paper
+    #townsquare.vote .player.vote-lock.vote-once .overlay svg.vote.fa-hand-paper
   ):is(.simpleVote),
 :is(
-    #townsquare.vote .player.vote-lock.vote-twice
+    #townsquare.vote
+      .player.vote-lock.vote-twice
       .overlay
       ·svg.vote.fa-hand-paper
   ):is(.doubleVote),
