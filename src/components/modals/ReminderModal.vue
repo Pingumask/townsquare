@@ -122,7 +122,7 @@ export default {
   methods: {
     findRoleById(id) {
       let findedRole = this.$store.state.roles.get(id);
-      if(findedRole) return findedRole ;
+      if (findedRole) return findedRole;
       return this.$store.state.fabled.get(id);
     },
     addReminder(reminder) {
@@ -141,13 +141,12 @@ export default {
         value,
       });
       this.$store.commit("toggleModal", "reminder");
-      
-	    // If this reminder was added by the ST, then special effects can happen with some tokens
+      // If this reminder was added by the ST, then special effects can happen with some tokens
       if (!this.session.isSpectator) {
         if (
           reminder.role === "banshee" ||
           (this.findRoleById(reminder.role).copyEffects &&
-           this.findRoleById(reminder.role).copyEffects.includes("banshee"))
+            this.findRoleById(reminder.role).copyEffects.includes("banshee"))
         ) {
           this.$store.commit("players/update", {
             player: player,
