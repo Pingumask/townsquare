@@ -373,25 +373,25 @@ export default {
     },
     findRoleById(id) {
       let findedRole = this.$store.state.roles.get(id);
-      if (findedRole) return findedRole ;
+      if (findedRole) return findedRole;
       return this.$store.state.fabled.get(id);
     },
     removeReminder(reminder) {
       let reminders = [...this.player.reminders];
       reminders.splice(this.player.reminders.indexOf(reminder), 1);
       this.updatePlayer("reminders", reminders, true);
-      
+
       //If the reminder was removed by the ST, we make some tests with the remaining reminders, to possibly change some values
-	    if(!this.session.isSpectator) {
+      if(!this.session.isSpectator) {
         reminders = [...this.player.reminders]; //Updating the reminders
-        let canVoteTwice = false;		
-        for(let i=0; i<reminders.length ; i++) {
-          if(
+        let canVoteTwice = false;
+        for (let i = 0; i < reminders.length ; i++) {
+          if (
             reminders[i].role === "banshee" ||
             (this.findRoleById(reminders[i].role).copyEffects &&
-             this.findRoleById(reminders[i].role).copyEffects.includes(
-               "banshee",
-             ))
+              this.findRoleById(reminders[i].role).copyEffects.includes(
+                "banshee",
+              ))
           ) {
             canVoteTwice = true;
           }
@@ -399,7 +399,7 @@ export default {
         this.$store.commit("players/update", {
           player: this.player,
           property: "canVoteTwice",
-          value: canVoteTwice
+          value: canVoteTwice,
         });
       }
     },
@@ -711,8 +711,7 @@ export default {
       .player.you.vote-once
       .overlay svg.vote.fa-hand-paper
   ):is(.simpleVote),
-:is(
-    #townsquare.vote
+:is( #townsquare.vote
       .player.you.vote-twice
       .overlay svg.vote.fa-hand-paper
   ):is(.doubleVote),
@@ -722,8 +721,7 @@ export default {
       .overlay svg.vote.fa-hand-paper
   ):is(.simpleVote),
 :is(
-    #townsquare.vote
-      .player.vote-lock.vote-twice
+    #townsquare.vote .player.vote-lock.vote-twice
       .overlay
       ·svg.vote.fa-hand-paper
   ):is(.doubleVote),
