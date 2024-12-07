@@ -251,7 +251,7 @@ export default {
       // If the vote is already locked, the player cannot vote
       if (indexAdjusted < session.lockedVote - 1) {
         return false;
-      }	
+      }
       // (Else) If the vote is not a nomination, the player can vote
       if (
         typeof session.nomination[1] == "object" ||
