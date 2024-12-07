@@ -1663,6 +1663,21 @@
     "ability": "Vous commencez la partie en connaissant deux joueurs qui ne sont pas Démon."
   },
   {
+    "id": "banshee",
+    "name": "Banshee",
+    "edition": "",
+    "team": "townsfolk",
+    "firstNight": 0,
+    "firstNightReminder": "Si la Banshee a été tuée par le Démon, marquez-la et annoncez-le aux joueurs",
+    "otherNight": 53,
+    "otherNightReminder": "",
+    "reminders": [
+      "A sa capacité"
+    ],
+    "setup": false,
+    "ability": "Si le Démon vous tue, tous les joueurs l'apprennent. Désormais, vous pouvez accuser deux fois par jour et voter deux fois par accusation."
+  },
+  {
     "id": "snitch",
     "name": "Cafteur",
     "edition": "",

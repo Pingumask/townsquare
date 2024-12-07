@@ -2,6 +2,8 @@
 
 ## Upcoming version
 
+- Adding missing characters
+
 - MAINT update dependencies
 
 ### Version 3.21.0

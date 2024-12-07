@@ -57,7 +57,7 @@
           <td>{{ vote.nominee }}</td>
           <td>{{ vote.type }}</td>
           <td>
-            {{ vote.votes == null ? "?" : vote.votes.length }}
+            {{ vote.voters == null ? "?" : vote.votes }}
             <font-awesome-icon icon="hand-paper" />
           </td>
           <td v-if="vote.nominee">
@@ -65,9 +65,9 @@
             <font-awesome-icon
               :icon="[
                 'fas',
-                vote.votes == null
+                vote.voters == null
                   ? 'minus-square'
-                  : vote.votes.length >= vote.majority
+                  : vote.voters.length >= vote.majority
                     ? 'check-square'
                     : 'square',
               ]"
@@ -76,9 +76,9 @@
           <td v-else></td>
           <td>
             {{
-              vote.votes == null
+              vote.voters == null
                 ? locale.modal.voteHistory.hiddenVote
-                : vote.votes.join(", ")
+                : vote.voters.join(", ")
             }}
           </td>
         </tr>

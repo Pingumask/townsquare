@@ -32,7 +32,7 @@
           !session.isSpectator
         "
       >
-        {{ voters.length }} {{ locale.vote.votes }}
+        {{ votesCount }} {{ locale.vote.votes }}
       </em>
       <em class="blue" v-else> ? {{ locale.vote.votes }} </em>
       {{ locale.vote.inFavor }}
@@ -125,17 +125,29 @@
         <div class="button-group">
           <div
             class="button townsfolk"
-            @click="vote(false)"
+            @click="vote(0)"
             :class="{ disabled: !currentVote }"
           >
             {{ locale.vote.handDown }}
           </div>
           <div
             class="button demon"
-            @click="vote(true)"
-            :class="{ disabled: currentVote }"
+            @click="vote(1)"
+            :class="{ disabled: currentVote === 1 }"
           >
             {{ locale.vote.handUp }}
+          </div>
+          <div
+            class="button demon"
+            @click="vote(2)"
+            :class="{ disabled: currentVote === 2 }"
+            v-if="
+              player.canVoteTwice &&
+              typeof session.nomination[1] !== 'object' &&
+              (!nominee || nominee.role.team !== 'traveler')
+            "
+          >
+            x2
           </div>
         </div>
       </template>
@@ -231,23 +243,28 @@ export default {
       return index >= 0 ? !!this.session.votes[index] : undefined;
     },
     canVote: function () {
-      if (!this.player) return false;
-      if (
-        this.player.isVoteless &&
-        ((this.nominee && this.nominee.role.team !== "traveler") ||
-          typeof this.session.nomination[1] === "string")
-      )
-        return false;
       const session = this.session;
       const players = this.players.length;
       const index = this.players.indexOf(this.player);
       const indexAdjusted =
-        (index -
-          1 +
-          players -
-          (this.nominee ? session.nomination[1] : session.nomination[0])) %
-        players;
-      return indexAdjusted >= session.lockedVote - 1;
+        (index - 1 + players - session.nomination[1]) % players;
+      // If the vote is already locked, the player cannot vote
+      if (indexAdjusted < session.lockedVote - 1) {
+        return false;
+      }
+      // (Else) If the vote is not a nomination, the player can vote
+      if (
+        typeof session.nomination[1] == "object" ||
+        (this.nominee && this.nominee.role.team == "traveler")
+      ) {
+        return true;
+      }
+      // (Else) If the player is dead, they need a token or a double vote
+      if (this.player.isDead) {
+        return !this.player.isVoteless || this.player.canVoteTwice;
+      }
+      // In all other cases, the player can always vote
+      return true;
     },
     voters: function () {
       const nomination = this.nominee
@@ -256,7 +273,7 @@ export default {
       const voters = Array(this.players.length)
         .fill("")
         .map((x, index) =>
-          this.session.votes[index] ? this.players[index].name : "",
+          this.session.votes[index] !== 0 ? this.players[index].name : "",
         );
       const reorder = [
         ...voters.slice(nomination + 1),
@@ -267,6 +284,55 @@ export default {
           ? reorder.slice(0, this.session.lockedVote - 1)
           : reorder
       ).filter((n) => !!n);
+    },
+    votesCount: function () {
+      let res = 0;
+
+      if (this.session.lockedVote) {
+        /*  If we are counting the votes, then we take account only of the locked vote.
+         *  We will also take account of modifiers like Bureaucrat or Thief (not coded yet).
+         */
+
+        if (this.session.lockedVote == 1) {
+          return 0; // We are just starting, no vote is counted yet.
+        }
+
+        let lastLockedVote =
+          this.session.nomination[1] + (this.session.lockedVote - 1);
+        if (lastLockedVote >= this.players.length) {
+          lastLockedVote -= this.players.length;
+        }
+        if (lastLockedVote > this.session.nomination[1]) {
+          for (
+            let i = this.session.nomination[1] + 1;
+            i <= lastLockedVote;
+            i++
+          ) {
+            res += this.session.votes[i] ? this.session.votes[i] : 0;
+          }
+        } else {
+          for (let i = 0; i <= lastLockedVote; i++) {
+            res += this.session.votes[i] ? this.session.votes[i] : 0;
+          }
+          for (
+            let i = this.session.nomination[1] + 1;
+            i < this.players.length;
+            i++
+          ) {
+            res += this.session.votes[i] ? this.session.votes[i] : 0;
+          }
+        }
+      } else {
+        /*  If we are not counting the votes, then we take account of all the votes.
+         *  We do not take account of modifiers like Bureaucrat or Thief.
+         */
+
+        for (let i = 0; i < this.players.length; i++) {
+          res += this.session.votes[i] ? this.session.votes[i] : 0;
+        }
+      }
+
+      return res;
     },
   },
   data() {
