@@ -707,7 +707,7 @@ export default {
   ),
 :is(#townsquare.vote .player.you.vote-twice .overlay svg.vote.fa-hand-paper):is(
     .doubleVote
-  )
+  ),
 :is(
     #townsquare.vote .player.vote-lock.vote-once .overlay svg.vote.fa-hand-paper
   ):is(.simpleVote),
