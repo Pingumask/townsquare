@@ -1972,6 +1972,25 @@
     "ability": "Each night, choose 2 players: tomorrow, the 1st player is mad that the 2nd is evil, or both might die."
   },
   {
+    "id": "xaan",
+    "name": "Xaan",
+    "edition": "",
+    "team": "minion",
+    "firstNight": 25.5,
+    "firstNightReminder": "Place the Xaan 'Night 1' marker. If the game started with 1 Outsider, place the 'X' marker on all Townsfolks: they are poisoned.",
+    "otherNight": 8.5,
+    "otherNightReminder": "If the Townsfolk were poisoned, remove the 'X' marker. Else, edit the Xaan's marker; then, if the night matches with the starting number of Outsiders, place the 'X' marker on all Townsfolks: they are poisoned.",
+    "reminders": [
+      "Night 1",
+      "Night 2",
+      "Night 3",
+      "Night 4",
+      "X"
+    ],
+    "setup": true,
+    "ability": "On night X, all Townsfolk are poisoned until dusk. [X Outsiders]"
+  },
+  {
     "id": "lilmonsta",
     "name": "Lil' Monsta",
     "edition": "",
