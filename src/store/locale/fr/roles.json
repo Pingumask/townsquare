@@ -1499,13 +1499,13 @@
     "firstNight": 8,
     "firstNightReminder": "Indiquez à l'alchimiste de quelle capacité il dispose.",
     "otherNight": 0,
-    "otherNightReminder": "Si la capacité de l'alchimiste s'utilise la nuit, réveillez le.",
+    "otherNightReminder": "",
     "reminders": [],
     "remindersGlobal": [
       "Alchimiste"
     ],
     "setup": false,
-    "ability": "Vous avez la capacité d'un Sbire qui n'est pas en jeu."
+    "ability": "Vous avez une capacité de Sbire. Quand vous l'utilisez, le Narrateur peut vous demander de modifier votre choix."
   },
   {
     "id": "farmer",
