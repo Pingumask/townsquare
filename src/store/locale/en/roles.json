@@ -1669,7 +1669,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Minions start knowing 3 not-in-play characters."
+    "ability": "Each Minion gets 3 bluffs."
   },
   {
     "id": "acrobat",
