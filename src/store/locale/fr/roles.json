@@ -1943,7 +1943,7 @@
       "2e"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez deux joueurs : demain, le premier sera persuadé que le deuxième est mauvais, ou il se peut que les deux meurent."
+    "ability": "Chaque nuit, désignez deux joueurs : demain, le premier sera persuadé que le second est mauvais, ou il se peut que l'un ou les deux meurent."
   },
   {
     "id": "summoner",
