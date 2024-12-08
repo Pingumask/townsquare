@@ -1919,15 +1919,16 @@
     "name": "Organiste barbare",
     "edition": "",
     "team": "minion",
-    "firstNight": 0,
-    "firstNightReminder": "",
-    "otherNight": 0,
-    "otherNightReminder": "",
+    "firstNight": 30.5,
+    "firstNightReminder": "Réveillez l'Organiste barbare : il choisit s'il est ivre ou non.",
+    "otherNight": 14.5,
+    "otherNightReminder": "Réveillez l'Organiste barbare : il choisit s'il est ivre ou non.",
     "reminders": [
+      "Ivre",
       "Vote utilisé"
     ],
     "setup": false,
-    "ability": "Les votes ont lieu à bulletin secret. Vous ne pouvez être exécuté que si vous levez la main."
+    "ability": "Les votes ont lieu à bulletin secret et les résultats ne sont pas annoncés. Chaque nuit, choisissez si vous êtes ivre ou non."
   },
   {
     "id": "harpy",
