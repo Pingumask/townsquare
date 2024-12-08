@@ -1663,6 +1663,19 @@
     "ability": "Vous commencez la partie en connaissant deux joueurs qui ne sont pas Démon."
   },
   {
+    "id": "alsaahir",
+    "name": "Alsaahir",
+    "edition": "",
+    "team": "townsfolk",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "ability": "Chaque jour, si vous devinez publiquement quels joueurs sont Sbire(s) et quels joueurs sont Démon(s), les bons gagnent."
+  },
+  {
     "id": "snitch",
     "name": "Cafteur",
     "edition": "",
@@ -1804,6 +1817,21 @@
     "reminders": [],
     "setup": false,
     "ability": "S'il reste au moins cinq joueurs en vie, vous devez voter pour toutes les accusations."
+  },
+  {
+    "id": "ogre",
+    "name": "Ogre",
+    "edition": "",
+    "team": "outsider",
+    "firstNight": 63,
+    "firstNightReminder": "L'Ogre désigne un joueur (autre que lui-même) et acquiert son alignement.",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [
+      "Ami"
+    ],
+    "setup": false,
+    "ability": "Durant votre première nuit, désignez un autre joueur : vous acquérez son alignement (sans savoir lequel), même si ivre ou empoisonné."
   },
   {
     "id": "widow",
