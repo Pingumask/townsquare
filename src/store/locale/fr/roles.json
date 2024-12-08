@@ -1367,7 +1367,7 @@
     "otherNightReminder": "S'il y a au moins autant de joueurs morts que vivants, révélez au Roi un personnage encore en vie.",
     "reminders": [],
     "setup": false,
-    "ability": "Chaque nuit, s'il y a au moins autant de joueurs morts que vivants, vous apprenez un personnage en vie. Le Démon sait qui vous êtes."
+    "ability": "Chaque nuit, s'il y a au moins autant de joueurs morts que vivants, vous apprenez un personnage en vie. Le Démon sait que vous êtes le Roi."
   },
   {
     "id": "balloonist",
@@ -1436,14 +1436,14 @@
     "edition": "",
     "team": "townsfolk",
     "firstNight": 60,
-    "firstNightReminder": "Le Garde de nuit peut désigner un joueur. Reveillez ce joueur, indiquez lui que le garde de nuit se dévoile à lui.",
+    "firstNightReminder": "Le Gardien de nuit peut désigner un joueur. Reveillez ce joueur, indiquez lui qui est le Gardien de nuit.",
     "otherNight": 76,
-    "otherNightReminder": "Le Garde de nuit peut désigner un joueur. Reveillez ce joueur, indiquez lui que le garde de nuit se dévoile à lui.",
+    "otherNightReminder": "Le Garde de nuit peut désigner un joueur. Reveillez ce joueur, indiquez lui qui est le Gardien de nuit",
     "reminders": [
       "Épuisé"
     ],
     "setup": false,
-    "ability": "Une fois par partie, la nuit, désignez un joueur : il apprend qui vous êtes."
+    "ability": "Une fois par partie, la nuit, désignez un joueur : il apprend que vous êtes le Gardien de nuit."
   },
   {
     "id": "engineer",
@@ -1732,7 +1732,7 @@
       "Épuisé"
     ],
     "setup": false,
-    "ability": "Les Sbires savent que vous êtes en jeu. Si un Sbire devine publiquement qui vous êtes (un seul essai), votre équipe perd."
+    "ability": "Tous les Sbires savent qu'une Demoiselle est en jeu. Si un Sbire devine publiquement qui vous êtes (un seul essai), votre équipe perd."
   },
   {
     "id": "golem",
@@ -1973,7 +1973,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Tous les joueurs savent qui vous êtes. Vous ne pouvez pas mourir de jour. Si un bon a voté, vous pouvez choisir d'exécuter immédiatement."
+    "ability": "Tous les joueurs savent que vous êtes le Vizir. Vous ne pouvez mourir de jour. Si un bon vote, vous pouvez choisir d'exécuter immédiatement."
   },
   {
     "id": "lilmonsta",
