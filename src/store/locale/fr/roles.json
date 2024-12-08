@@ -1377,7 +1377,7 @@
     "firstNight": 56,
     "firstNightReminder": "Choisissez un type de personnage. Indiquez à l'Aéronaute le personnage d'un joueur qui est de ce type. Marquez ce personnage comme vu par l'Aéronaute.",
     "otherNight": 72,
-    "otherNightReminder": "Choisissez un type de personnage qui n'a pas encore été vu par l'Aéronaute. Indiquez à l'Aéronaute un joueur dont le personnage est de ce type. Marquez ce type de personnage comme vu par l'Aéronaute.",
+    "otherNightReminder": "Choisissez un type de personnage différent de la nuit précédente. Indiquez à l'Aéronaute un joueur dont le personnage est de ce type. Marquez ce type de personnage comme vu par l'Aéronaute, et retirez le précédent marqueur.",
     "reminders": [
       "Villageois vu",
       "Étranger vu",
@@ -1385,7 +1385,7 @@
       "Démon vu"
     ],
     "setup": true,
-    "ability": "Chaque nuit, vous apprenez qu'un joueur a un personnage d'un type que vous n'avez pas encore vu jusqu'à ce que vous en connaissiez un de chaque. [+1 Étranger]."
+    "ability": "Chaque nuit, vous apprenez un joueur qui a un type de rôle différent de celui de la nuit précédente. [+0 ou +1 Étranger]"
   },
   {
     "id": "cultleader",
@@ -1408,12 +1408,13 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 26,
-    "otherNightReminder": "Le Lycanthrope désigne un joueur vivant : s'il est gentil, il meurt, et personne d'autre ne pourra mourir cette nuit.",
+    "otherNightReminder": "Le Lycanthrope désigne un joueur vivant : s'il est bon, il meurt, et personne ne pourra être tué par le Démon cette nuit.",
     "reminders": [
+      "Piège à loup",
       "Mort"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez un joueur vivant : s'il est gentil, il meurt, mais personne d'autre ne pourra mourir cette nuit."
+    "ability": "Chaque nuit*, désignez un joueur vivant : s'il est bon, il meurt et le Démon ne tue pas cette nuit. Un joueur bon apparaît comme mauvais."
   },
   {
     "id": "amnesiac",
@@ -1663,6 +1664,19 @@
     "ability": "Vous commencez la partie en connaissant deux joueurs qui ne sont pas Démon."
   },
   {
+    "id": "alsaahir",
+    "name": "Alsaahir",
+    "edition": "",
+    "team": "townsfolk",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "ability": "Chaque jour, si vous devinez publiquement quels joueurs sont Sbire(s) et quels joueurs sont Démon(s), les bons gagnent."
+  },
+  {
     "id": "snitch",
     "name": "Cafteur",
     "edition": "",
@@ -1775,7 +1789,7 @@
       "Capacité du Narrateur"
     ],
     "setup": false,
-    "ability": "Si vous mourez, le Narrateur gagne la capacité d’un Sbire qui n’est pas en jeu."
+    "ability": "Quand vous mourez, le Narrateur gagne une capacité de Sbire."
   },
   {
     "id": "hatter",
@@ -1791,6 +1805,34 @@
     ],
     "setup": false,
     "ability": "Si vous êtes mort aujourd'hui (de jour comme de nuit), les Sbires et Démons peuvent choisir de devenir d'autres Sbires et Démons."
+  },
+  {
+    "id": "zealot",
+    "name": "Fanatique",
+    "edition": "",
+    "team": "outsider",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "ability": "S'il reste au moins cinq joueurs en vie, vous devez voter pour toutes les accusations."
+  },
+  {
+    "id": "ogre",
+    "name": "Ogre",
+    "edition": "",
+    "team": "outsider",
+    "firstNight": 63,
+    "firstNightReminder": "L'Ogre désigne un joueur (autre que lui-même) et acquiert son alignement.",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [
+      "Ami"
+    ],
+    "setup": false,
+    "ability": "Durant votre première nuit, désignez un autre joueur : vous acquérez son alignement (sans savoir lequel), même si ivre ou empoisonné."
   },
   {
     "id": "widow",
@@ -1912,22 +1954,23 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Si vous êtes exécuté, tous les joueurs sauf 3 meurent. 1 minute plus tard, le joueur le plus accusé meurt."
+    "ability": "Si vous êtes exécuté, tous les joueurs sauf 3 meurent. Après un décompte de 10 à 1, le joueur pointé par le plus de joueurs meurt."
   },
   {
     "id": "organgrinder",
     "name": "Organiste barbare",
     "edition": "",
     "team": "minion",
-    "firstNight": 0,
-    "firstNightReminder": "",
-    "otherNight": 0,
-    "otherNightReminder": "",
+    "firstNight": 30.5,
+    "firstNightReminder": "Réveillez l'Organiste barbare : il choisit s'il est ivre ou non.",
+    "otherNight": 14.5,
+    "otherNightReminder": "Réveillez l'Organiste barbare : il choisit s'il est ivre ou non.",
     "reminders": [
+      "Ivre",
       "Vote utilisé"
     ],
     "setup": false,
-    "ability": "Les votes ont lieu à bulletin secret. Vous ne pouvez être exécuté que si vous levez la main."
+    "ability": "Les votes ont lieu à bulletin secret et les résultats ne sont pas annoncés. Chaque nuit, choisissez si vous êtes ivre ou non."
   },
   {
     "id": "harpy",
@@ -1943,7 +1986,7 @@
       "2e"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez deux joueurs : demain, le premier sera persuadé que le deuxième est mauvais, ou il se peut que les deux meurent."
+    "ability": "Chaque nuit, désignez deux joueurs : demain, le premier sera persuadé que le second est mauvais, ou il se peut que l'un ou les deux meurent."
   },
   {
     "id": "summoner",
@@ -1976,6 +2019,38 @@
     "ability": "Tous les joueurs savent qui vous êtes. Vous ne pouvez pas mourir de jour. Si un bon a voté, vous pouvez choisir d'exécuter immédiatement."
   },
   {
+    "id": "xaan",
+    "name": "Xaan",
+    "edition": "",
+    "team": "minion",
+    "firstNight": 25.5,
+    "firstNightReminder": "Marquez le Xaan 'Nuit 1'. Si la partie a commencé avec 1 Étranger, marquez tous les Villageois 'X' : ils sont empoisonnés.",
+    "otherNight": 8.5,
+    "otherNightReminder": "Si les Villageois étaient empoisonnés, retirez les marqueurs 'X'. Sinon, modifiez le marqueur devant le Xaan ; puis, si la nuit correspond au nombre d'Étrangers en début de partie, marquez tous les Villageois 'X' : ils sont empoisonnés.",
+    "reminders": [
+      "Nuit 1",
+      "Nuit 2",
+      "Nuit 3",
+      "Nuit 4",
+      "X"
+    ],
+    "setup": true,
+    "ability": "La nuit X, tous les Villageois sont empoisonnés jusqu'à la tombée de la nuit. [X Étrangers]"
+  },
+  {
+    "id": "boffin",
+    "name": "Spécialiste",
+    "edition": "",
+    "team": "minion",
+    "firstNight": 6,
+    "firstNightReminder": "Réveillez le Spécialiste et indiquez-lui la capacité qu'il a donné au Démon. Réveillez le Démon, dites-lui que le Spécialiste lui a donné une capacité, et précisez laquelle.",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "ability": "Le Démon (même si ivre ou empoisonné) a la capacité d'un personnage bon qui n'est pas en jeu. Vous savez tous les deux laquelle."
+  },
+  {
     "id": "lilmonsta",
     "name": "Bébé monstre",
     "edition": "",
@@ -1983,14 +2058,14 @@
     "firstNight": 24,
     "firstNightReminder": "Réveillez tous les Sbires ensemble, faites-les voter pour désigner quel joueur baby-sitte le Bébé Monstre.",
     "otherNight": 42,
-    "otherNightReminder": "Réveillez tous les Sbires ensemble, faites-les voter pour désigner quel joueur baby-sitte le Bébé Monstre. Choisissez un joueur, il meurt.",
+    "otherNightReminder": "Réveillez tous les Sbires ensemble, faites-les voter pour désigner quel joueur baby-sitte le Bébé Monstre. Vous pouvez choisir un joueur, il meurt.",
     "reminders": [],
     "remindersGlobal": [
       "Démon",
       "Mort"
     ],
     "setup": true,
-    "ability": "Chaque nuit, les Sbires choisissent qui sera le baby-sitter de Bébé monstre. Le Baby-sitter est considéré comme le Démon jusqu'à la tombée de la nuit. Un joueur meurt chaque nuit*. [+1 Sbire, -1 Démon]"
+    "ability": "Chaque nuit, les Sbires choisissent qui a la garde du Bébé monstre et “est le Démon”. Chaque nuit*, il se peut qu'un joueur meure. [+1 Sbire]"
   },
   {
     "id": "lleech",
@@ -2006,7 +2081,7 @@
       "Empoisonné permanent"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez un joueur : il meurt. Lors de votre première nuit, désignez un joueur vivant : il est définitivement empoisonné - Vous mourrez si, et seulement si, ce joueur meurt."
+    "ability": "Chaque nuit*, désignez un joueur : il meurt. Votre 1re nuit, désignez un vivant : il est empoisonné. Vous mourez (seulement) s'il est mort."
   },
   {
     "id": "alhadikhia",
@@ -2129,6 +2204,21 @@
     "ability": "Chaque nuit*, désignez un personnage : il meurt. Si ce personnage n'est pas en jeu, le Narrateur choisit qui meurt."
   },
   {
+    "id": "lordoftyphon",
+    "name": "Maître de Typhon",
+    "edition": "",
+    "team": "demon",
+    "firstNight": 4,
+    "firstNightReminder": "Réveiller le bon nombre de joueurs des deux côtés du Maître de Typhon. Leur révéler leur rôle de Sbire.",
+    "otherNight": 37,
+    "otherNightReminder": "Le Maître de Typhon désigne un joueur : ce joueur meurt.",
+    "reminders": [
+      "Mort"
+    ],
+    "setup": true,
+    "ability": "Chaque nuit*, désignez un joueur : il meurt. [Les joueurs mauvais sont en ligne, avec vous au milieu. +1 Sbire. -? à +? Étrangers]"
+  },
+  {
     "id": "gangster",
     "name": "Gangster",
     "edition": "",
@@ -2140,5 +2230,20 @@
     "reminders": [],
     "setup": false,
     "ability": "Une fois par jour, vous pouvez tuer un de vos voisins vivants, à condition d'avoir la permission de votre autre voisin vivant."
+  },
+  {
+    "id": "gnome",
+    "name": "Gnome",
+    "edition": "",
+    "team": "traveler",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [
+      "Amigo"
+    ],
+    "setup": false,
+    "ability": "Tous les joueurs commencent en connaissant un joueur de votre alignement. Vous pouvez choisir de tuer quiconque accuse ce joueur."
   }
 ]
