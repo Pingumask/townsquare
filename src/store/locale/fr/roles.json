@@ -1983,7 +1983,7 @@
     "firstNight": 24,
     "firstNightReminder": "Réveillez tous les Sbires ensemble, faites-les voter pour désigner quel joueur baby-sitte le Bébé Monstre.",
     "otherNight": 42,
-    "otherNightReminder": "Réveillez tous les Sbires ensemble, faites-les voter pour désigner quel joueur baby-sitte le Bébé Monstre. Choisissez un joueur, il meurt.",
+    "otherNightReminder": "Réveillez tous les Sbires ensemble, faites-les voter pour désigner quel joueur baby-sitte le Bébé Monstre. Vous pouvez choisir un joueur, il meurt.",
     "reminders": [],
     "remindersGlobal": [
       "Démon",
