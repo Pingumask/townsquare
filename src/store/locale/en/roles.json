@@ -1969,7 +1969,7 @@
       "2nd"
     ],
     "setup": false,
-    "ability": "Each night, choose 2 players: tomorrow, the 1st player is mad that the 2nd is evil, or both might die."
+    "ability": "Each night, choose 2 players: tomorrow, the 1st player is mad that the 2nd is evil, or one or both might die."
   },
   {
     "id": "lilmonsta",
