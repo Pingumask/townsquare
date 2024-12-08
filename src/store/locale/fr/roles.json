@@ -1673,7 +1673,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Les Sbires commencent la partie en connaissant 3 personnages qui ne sont pas en jeu."
+    "ability": "Chaque Sbire a trois bluffs."
   },
   {
     "id": "acrobat",
