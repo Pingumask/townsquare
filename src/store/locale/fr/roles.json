@@ -1990,7 +1990,7 @@
       "Mort"
     ],
     "setup": true,
-    "ability": "Chaque nuit, les Sbires choisissent qui sera le baby-sitter de Bébé monstre. Le Baby-sitter est considéré comme le Démon jusqu'à la tombée de la nuit. Un joueur meurt chaque nuit*. [+1 Sbire, -1 Démon]"
+    "ability": "Chaque nuit, les Sbires choisissent qui a la garde du Bébé monstre et “est le Démon”. Chaque nuit*, il se peut qu'un joueur meure. [+1 Sbire]"
   },
   {
     "id": "lleech",
