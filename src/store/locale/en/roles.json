@@ -1659,6 +1659,19 @@
     "ability": "You start knowing 2 players that are not the Demon."
   },
   {
+    "id": "alsaahir",
+    "name": "Alsaahir",
+    "edition": "",
+    "team": "townsfolk",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "ability": "Each day, if you publicly guess which players are Minion(s) and which are Demon(s), good wins."
+  },
+  {
     "id": "snitch",
     "name": "Snitch",
     "edition": "",
@@ -1787,6 +1800,34 @@
     ],
     "setup": false,
     "ability": "If you died today or tonight, the Minion & Demon players may choose new Minion & Demon characters to be."
+  },
+  {
+    "id": "zealot",
+    "name": "Zealot",
+    "edition": "",
+    "team": "outsider",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "ability": "If there are 5 or more players alive, you must vote for every nomination."
+  },
+  {
+    "id": "ogre",
+    "name": "Ogre",
+    "edition": "",
+    "team": "outsider",
+    "firstNight": 63,
+    "firstNightReminder": "The Ogre points to a player (not themselves) and becomes their alignment.",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [
+      "Friend"
+    ],
+    "setup": false,
+    "ability": "On your 1st night, choose a player (not yourself): you become their alignment (you don't know which) even if drunk or poisoned."
   },
   {
     "id": "widow",
@@ -1991,6 +2032,19 @@
     "ability": "On night X, all Townsfolk are poisoned until dusk. [X Outsiders]"
   },
   {
+    "id": "boffin",
+    "name": "Boffin",
+    "edition": "",
+    "team": "minion",
+    "firstNight": 6,
+    "firstNightReminder": "Wake the Boffin and how them the token of the ability the Demon has. Put the Boffin back to sleep. Wake the Demon, show the Boffin token, then show the token of the good ability the Demon has.",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "ability": "The Demon (even if drunk or poisoned) has a not-in-play good character's ability. You both know which."
+  },
+  {
     "id": "lilmonsta",
     "name": "Lil' Monsta",
     "edition": "",
@@ -2139,6 +2193,21 @@
     "ability": "Each night*, choose a character: they die. If they are not in play, the Storyteller chooses who dies."
   },
   {
+    "id": "lordoftyphon",
+    "name": "Lord of Typhon",
+    "edition": "",
+    "team": "demon",
+    "firstNight": 4,
+    "firstNightReminder": "Wake the players on either side of the Demon. Show them the 'You Are' card, the token of the Minion they now are, and a thumbs down to indicate they are evil.",
+    "otherNight": 37,
+    "otherNightReminder": "The Lord of Typhon points to a player. That player dies.",
+    "reminders": [
+      "Dead"
+    ],
+    "setup": true,
+    "ability": "Each night*, choose a player: they die. [Evil characters are in a line. You are in the middle. +1 Minion. -? to +? Outsiders]"
+  },
+  {
     "id": "gangster",
     "name": "Gangster",
     "edition": "",
@@ -2150,5 +2219,20 @@
     "reminders": [],
     "setup": false,
     "ability": "Once per day, you may choose to kill an alive neighbour, if your other alive neighbour agrees."
+  },
+  {
+    "id": "gnome",
+    "name": "Gnome",
+    "edition": "",
+    "team": "traveler",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [
+      "Amigo"
+    ],
+    "setup": false,
+    "ability": "All players start knowing a player of your alignment. You may choose to kill anyone who nominates them."
   }
 ]
