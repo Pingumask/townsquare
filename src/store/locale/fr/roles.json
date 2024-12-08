@@ -1912,7 +1912,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Si vous êtes exécuté, tous les joueurs sauf 3 meurent. 1 minute plus tard, le joueur le plus accusé meurt."
+    "ability": "Si vous êtes exécuté, tous les joueurs sauf 3 meurent. Après un décompte de 10 à 1, le joueur pointé par le plus de joueurs meurt."
   },
   {
     "id": "organgrinder",
