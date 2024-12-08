@@ -1494,7 +1494,7 @@
     "edition": "",
     "team": "townsfolk",
     "firstNight": 8,
-    "firstNightReminder": "Show the Alchemist a not-in-play Minion token",
+    "firstNightReminder": "Show the Alchemist a Minion token",
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [],
@@ -1502,7 +1502,7 @@
       "Alchemist"
     ],
     "setup": false,
-    "ability": "You have a not-in-play Minion ability."
+    "ability": "You have a Minion ability. When using this, the Storyteller may prompt you to choose differently."
   },
   {
     "id": "farmer",
