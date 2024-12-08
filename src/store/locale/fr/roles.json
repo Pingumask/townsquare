@@ -1377,7 +1377,7 @@
     "firstNight": 56,
     "firstNightReminder": "Choisissez un type de personnage. Indiquez à l'Aéronaute le personnage d'un joueur qui est de ce type. Marquez ce personnage comme vu par l'Aéronaute.",
     "otherNight": 72,
-    "otherNightReminder": "Choisissez un type de personnage qui n'a pas encore été vu par l'Aéronaute. Indiquez à l'Aéronaute un joueur dont le personnage est de ce type. Marquez ce type de personnage comme vu par l'Aéronaute.",
+    "otherNightReminder": "Choisissez un type de personnage différent de la nuit précédente. Indiquez à l'Aéronaute un joueur dont le personnage est de ce type. Marquez ce type de personnage comme vu par l'Aéronaute, et retirez le précédent marqueur.",
     "reminders": [
       "Villageois vu",
       "Étranger vu",
@@ -1385,7 +1385,7 @@
       "Démon vu"
     ],
     "setup": true,
-    "ability": "Chaque nuit, vous apprenez qu'un joueur a un personnage d'un type que vous n'avez pas encore vu jusqu'à ce que vous en connaissiez un de chaque. [+1 Étranger]."
+    "ability": "Chaque nuit, vous apprenez un joueur qui a un type de rôle différent de celui de la nuit précédente. [+0 ou +1 Étranger]"
   },
   {
     "id": "cultleader",
