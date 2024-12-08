@@ -1518,7 +1518,7 @@
     "otherNightReminder": "Si le Fermier est mort aujourd'hui, réveillez un villageois et indiquez-lui qu'il est devenu le Fermier.",
     "reminders": [],
     "setup": false,
-    "ability": "Si vous mourez la nuit, un bon joueur vivant devient Fermier."
+    "ability": "Quand vous mourez la nuit, un bon joueur vivant devient Fermier."
   },
   {
     "id": "magician",
