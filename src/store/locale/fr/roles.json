@@ -2016,7 +2016,7 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 40,
-    "otherNightReminder": "Le Al-Hadikhia désigne 3 joueurs. Annoncez à chacun des joueurs désignés, dans l'ordre et individuellement la liste des désignés, et demandez leur s'ils veulent vivre ou mourir. A la fin des décisions, chaque joueur devient vivant ou mort conformément à son choix. Si les joueurs ont tous les 3 choisi de vivre, ils meurent tous les 3.",
+    "otherNightReminder": "Al-Hadikhia peut désigner 3 joueurs. S'il le fait, les marquer '1', '2' et '3'. Annoncer le premier joueur désigné, et demandez-lui son choix. Marquez-le suivant son choix. Répétez l'opération avec les deux suivants.",
     "reminders": [
       "1",
       "2",
@@ -2025,7 +2025,7 @@
       "Mourir"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez 3 joueurs (tout le monde sait qui a été désigné). Chacun de ces joueurs choisit secrètement s'il veut vivre ou mourir, mais, si les 3 vivent, ils meurent tous les 3."
+    "ability": "Chaque nuit*, vous pouvez désigner 3 joueurs (tout le monde sait qui) : chacun choisit “vivre” ou “mourir”, mais si tous vivent, tous meurent."
   },
   {
     "id": "legion",
