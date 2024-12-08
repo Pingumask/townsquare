@@ -1659,6 +1659,22 @@
     "ability": "You start knowing 2 players that are not the Demon."
   },
   {
+    "id": "acrobat",
+    "name": "Acrobat",
+    "edition": "",
+    "team": "townsfolk",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 12.5,
+    "otherNightReminder": "The Acrobat choose a player: mark this player with the 'Chosen' reminder. If this player is or becomes drunk or poisoned tonight, the Acrobat dies.",
+    "reminders": [
+      "Chosen",
+      "Dead"
+    ],
+    "setup": false,
+    "ability": "Each night*, choose a player: if they are or become drunk or poisoned tonight, you die."
+  },
+  {
     "id": "snitch",
     "name": "Snitch",
     "edition": "",
@@ -1670,21 +1686,6 @@
     "reminders": [],
     "setup": false,
     "ability": "Minions start knowing 3 not-in-play characters."
-  },
-  {
-    "id": "acrobat",
-    "name": "Acrobat",
-    "edition": "",
-    "team": "outsider",
-    "firstNight": 0,
-    "firstNightReminder": "",
-    "otherNight": 48,
-    "otherNightReminder": "If a good living neighbour is drunk or poisoned, the Acrobat player dies.",
-    "reminders": [
-      "Dead"
-    ],
-    "setup": false,
-    "ability": "Each night*, if either good living neighbour is drunk or poisoned, you die."
   },
   {
     "id": "puzzlemaster",

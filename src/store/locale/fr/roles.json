@@ -1663,6 +1663,22 @@
     "ability": "Vous commencez la partie en connaissant deux joueurs qui ne sont pas Démon."
   },
   {
+    "id": "acrobat",
+    "name": "Acrobate",
+    "edition": "",
+    "team": "townsfolk",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 12.5,
+    "otherNightReminder": "L'Acrobate désigne un joueur : marquez ce joueur \"Désigné\". Si ce joueur est ou devient ivre ou empoisonné avant le matin, l'Acrobate meurt.",
+    "reminders": [
+      "Désigné",
+      "Mort"
+    ],
+    "setup": false,
+    "ability": "Chaque nuit*, désignez un joueur : s'il est ou devient ivre ou empoisonné cette nuit, vous mourez."
+  },
+  {
     "id": "snitch",
     "name": "Cafteur",
     "edition": "",
@@ -1674,21 +1690,6 @@
     "reminders": [],
     "setup": false,
     "ability": "Les Sbires commencent la partie en connaissant 3 personnages qui ne sont pas en jeu."
-  },
-  {
-    "id": "acrobat",
-    "name": "Acrobate",
-    "edition": "",
-    "team": "outsider",
-    "firstNight": 0,
-    "firstNightReminder": "",
-    "otherNight": 48,
-    "otherNightReminder": "Si l'un de ses bons voisins vivants est Ivre ou Empoisonné, l'Accrobate meurt.",
-    "reminders": [
-      "Mort"
-    ],
-    "setup": false,
-    "ability": "Chaque nuit*, si l'un de vos bons voisins vivants est ivre ou empoisonné, vous mourez."
   },
   {
     "id": "puzzlemaster",
