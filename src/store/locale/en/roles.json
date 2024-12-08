@@ -1771,7 +1771,7 @@
       "Storyteller Ability"
     ],
     "setup": false,
-    "ability": "If you die, the Storyteller gains a not-in-play Minion ability."
+    "ability": "When you die, the Storyteller gains a Minion ability."
   },
   {
     "id": "hatter",
