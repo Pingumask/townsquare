@@ -1789,6 +1789,19 @@
     "ability": "If you died today or tonight, the Minion & Demon players may choose new Minion & Demon characters to be."
   },
   {
+    "id": "zealot",
+    "name": "Zealot",
+    "edition": "",
+    "team": "outsider",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "ability": "If there are 5 or more players alive, you must vote for every nomination."
+  },
+  {
     "id": "widow",
     "name": "Widow",
     "edition": "",
