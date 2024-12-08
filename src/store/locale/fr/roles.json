@@ -1408,12 +1408,13 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 26,
-    "otherNightReminder": "Le Lycanthrope désigne un joueur vivant : s'il est gentil, il meurt, et personne d'autre ne pourra mourir cette nuit.",
+    "otherNightReminder": "Le Lycanthrope désigne un joueur vivant : s'il est bon, il meurt, et personne ne pourra être tué par le Démon cette nuit.",
     "reminders": [
+      "Piège à loup",
       "Mort"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez un joueur vivant : s'il est gentil, il meurt, mais personne d'autre ne pourra mourir cette nuit."
+    "ability": "Chaque nuit*, désignez un joueur vivant : s'il est bon, il meurt et le Démon ne tue pas cette nuit. Un joueur bon apparaît comme mauvais."
   },
   {
     "id": "amnesiac",
