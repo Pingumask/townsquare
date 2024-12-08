@@ -2140,5 +2140,20 @@
     "reminders": [],
     "setup": false,
     "ability": "Une fois par jour, vous pouvez tuer un de vos voisins vivants, à condition d'avoir la permission de votre autre voisin vivant."
+  },
+  {
+    "id": "gnome",
+    "name": "Gnome",
+    "edition": "",
+    "team": "traveler",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [
+      "Amigo"
+    ],
+    "setup": false,
+    "ability": "Tous les joueurs commencent en connaissant un joueur de votre alignement. Vous pouvez choisir de tuer quiconque accuse ce joueur."
   }
 ]
