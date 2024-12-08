@@ -2129,6 +2129,21 @@
     "ability": "Chaque nuit*, désignez un personnage : il meurt. Si ce personnage n'est pas en jeu, le Narrateur choisit qui meurt."
   },
   {
+    "id": "lordoftyphon",
+    "name": "Maître de Typhon",
+    "edition": "",
+    "team": "demon",
+    "firstNight": 4,
+    "firstNightReminder": "Réveiller le bon nombre de joueurs des deux côtés du Maître de Typhon. Leur révéler leur rôle de Sbire.",
+    "otherNight": 37,
+    "otherNightReminder": "Le Maître de Typhon désigne un joueur : ce joueur meurt.",
+    "reminders": [
+      "Mort"
+    ],
+    "setup": true,
+    "ability": "Chaque nuit*, désignez un joueur : il meurt. [Les joueurs mauvais sont en ligne, avec vous au milieu. +1 Sbire. -? à +? Étrangers]"
+  },
+  {
     "id": "gangster",
     "name": "Gangster",
     "edition": "",
