@@ -1979,7 +1979,7 @@
     "firstNight": 24,
     "firstNightReminder": "Wake all Minions together, allow them to vote by pointing at who they want to babysit Lil' Monsta.",
     "otherNight": 42,
-    "otherNightReminder": "Wake all Minions together, allow them to vote by pointing at who they want to babysit Lil' Monsta. Choose a player, that player dies.",
+    "otherNightReminder": "Wake all Minions together, allow them to vote by pointing at who they want to babysit Lil' Monsta. You can choose a player, that player dies.",
     "reminders": [],
     "remindersGlobal": [
       "Is the Demon",
