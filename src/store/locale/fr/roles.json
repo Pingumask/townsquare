@@ -2080,8 +2080,8 @@
       "Jour 2",
       "Jour 3"
     ],
-    "setup": true,
-    "ability": "Les joueurs accusés meurent immédiatement sans vote mais peuvent accuser à leur tour. Le troisième jour, les joueurs accusés doivent accuser. À la fin du troisième jour, les mauvais gagnent. [Tous les Sbires sont des Émeutes]"
+    "setup": false,
+    "ability": "Durant le jour 3, les Sbires deviennent des Émeutes ; et les accusés meurent & accusent un joueur vivant immédiatement. Cela doit arriver."
   },
   {
     "id": "yaggababble",
