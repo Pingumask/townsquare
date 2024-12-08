@@ -1365,7 +1365,7 @@
     "otherNightReminder": "If there are at least as many dead as living, show the King a character token of a living player.",
     "reminders": [],
     "setup": false,
-    "ability": "Each night, if the dead equal or outnumber the living, you learn 1 alive character. The Demon knows who you are."
+    "ability": "Each night, if the dead equal or outnumber the living, you learn 1 alive character. The Demon knows you are the King."
   },
   {
     "id": "balloonist",
@@ -1441,7 +1441,7 @@
       "No ability"
     ],
     "setup": false,
-    "ability": "Once per game, at night, choose a player: they learn who you are."
+    "ability": "Once per game, at night, choose a player: they learn you are the Nightwatchman." 
   },
   {
     "id": "engineer",
@@ -1728,7 +1728,7 @@
       "Guess used"
     ],
     "setup": false,
-    "ability": "All Minions know you are in play. If a Minion publicly guesses you (once), your team loses."
+    "ability": "All Minions know a Damsel is in play. If a Minion publicly guesses you (once), your team loses."
   },
   {
     "id": "golem",
@@ -1953,7 +1953,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "All players know who you are. You can not die during the day. If good voted, you may choose to execute immediately."
+    "ability": "All players know you are the Vizier. You can not die during the day. If good voted, you may choose to execute immediately."
   },
   {
     "id": "harpy",
