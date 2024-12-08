@@ -2006,7 +2006,7 @@
       "Empoisonné permanent"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez un joueur : il meurt. Lors de votre première nuit, désignez un joueur vivant : il est définitivement empoisonné - Vous mourrez si, et seulement si, ce joueur meurt."
+    "ability": "Chaque nuit*, désignez un joueur : il meurt. Votre 1re nuit, désignez un vivant : il est empoisonné. Vous mourez (seulement) s'il est mort."
   },
   {
     "id": "alhadikhia",
