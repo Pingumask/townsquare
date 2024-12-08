@@ -1976,6 +1976,25 @@
     "ability": "Tous les joueurs savent qui vous êtes. Vous ne pouvez pas mourir de jour. Si un bon a voté, vous pouvez choisir d'exécuter immédiatement."
   },
   {
+    "id": "xaan",
+    "name": "Xaan",
+    "edition": "",
+    "team": "minion",
+    "firstNight": 25.5,
+    "firstNightReminder": "Marquez le Xaan 'Nuit 1'. Si la partie a commencé avec 1 Étranger, marquez tous les Villageois 'X' : ils sont empoisonnés.",
+    "otherNight": 8.5,
+    "otherNightReminder": "Si les Villageois étaient empoisonnés, retirez les marqueurs 'X'. Sinon, modifiez le marqueur devant le Xaan ; puis, si la nuit correspond au nombre d'Étrangers en début de partie, marquez tous les Villageois 'X' : ils sont empoisonnés.",
+    "reminders": [
+      "Nuit 1",
+      "Nuit 2",
+      "Nuit 3",
+      "Nuit 4",
+      "X"
+    ],
+    "setup": true,
+    "ability": "La nuit X, tous les Villageois sont empoisonnés jusqu'à la tombée de la nuit. [X Étrangers]"
+  },
+  {
     "id": "lilmonsta",
     "name": "Bébé monstre",
     "edition": "",
