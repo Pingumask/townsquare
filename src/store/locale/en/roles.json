@@ -1406,7 +1406,7 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 26,
-    "otherNightReminder": "The Lycanthrope points to a living player: if good, they die and no one else can die tonight.",
+    "otherNightReminder": "The Lycanthrope points to a living player: if good, they die and no one can be killed by the Demon tonight.",
     "reminders": [
       "Faux Paw",
       "Dead"
