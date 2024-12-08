@@ -1663,6 +1663,19 @@
     "ability": "Vous commencez la partie en connaissant deux joueurs qui ne sont pas Démon."
   },
   {
+    "id": "alsaahir",
+    "name": "Alsaahir",
+    "edition": "",
+    "team": "townsfolk",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "ability": "Chaque jour, si vous devinez publiquement quels joueurs sont Sbire(s) et quels joueurs sont Démon(s), les bons gagnent."
+  },
+  {
     "id": "snitch",
     "name": "Cafteur",
     "edition": "",
@@ -1791,6 +1804,34 @@
     ],
     "setup": false,
     "ability": "Si vous êtes mort aujourd'hui (de jour comme de nuit), les Sbires et Démons peuvent choisir de devenir d'autres Sbires et Démons."
+  },
+  {
+    "id": "zealot",
+    "name": "Fanatique",
+    "edition": "",
+    "team": "outsider",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "ability": "S'il reste au moins cinq joueurs en vie, vous devez voter pour toutes les accusations."
+  },
+  {
+    "id": "ogre",
+    "name": "Ogre",
+    "edition": "",
+    "team": "outsider",
+    "firstNight": 63,
+    "firstNightReminder": "L'Ogre désigne un joueur (autre que lui-même) et acquiert son alignement.",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [
+      "Ami"
+    ],
+    "setup": false,
+    "ability": "Durant votre première nuit, désignez un autre joueur : vous acquérez son alignement (sans savoir lequel), même si ivre ou empoisonné."
   },
   {
     "id": "widow",
@@ -1976,6 +2017,38 @@
     "ability": "Tous les joueurs savent qui vous êtes. Vous ne pouvez pas mourir de jour. Si un bon a voté, vous pouvez choisir d'exécuter immédiatement."
   },
   {
+    "id": "xaan",
+    "name": "Xaan",
+    "edition": "",
+    "team": "minion",
+    "firstNight": 25.5,
+    "firstNightReminder": "Marquez le Xaan 'Nuit 1'. Si la partie a commencé avec 1 Étranger, marquez tous les Villageois 'X' : ils sont empoisonnés.",
+    "otherNight": 8.5,
+    "otherNightReminder": "Si les Villageois étaient empoisonnés, retirez les marqueurs 'X'. Sinon, modifiez le marqueur devant le Xaan ; puis, si la nuit correspond au nombre d'Étrangers en début de partie, marquez tous les Villageois 'X' : ils sont empoisonnés.",
+    "reminders": [
+      "Nuit 1",
+      "Nuit 2",
+      "Nuit 3",
+      "Nuit 4",
+      "X"
+    ],
+    "setup": true,
+    "ability": "La nuit X, tous les Villageois sont empoisonnés jusqu'à la tombée de la nuit. [X Étrangers]"
+  },
+  {
+    "id": "boffin",
+    "name": "Spécialiste",
+    "edition": "",
+    "team": "minion",
+    "firstNight": 6,
+    "firstNightReminder": "Réveillez le Spécialiste et indiquez-lui la capacité qu'il a donné au Démon. Réveillez le Démon, dites-lui que le Spécialiste lui a donné une capacité, et précisez laquelle.",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "ability": "Le Démon (même si ivre ou empoisonné) a la capacité d'un personnage bon qui n'est pas en jeu. Vous savez tous les deux laquelle."
+  },
+  {
     "id": "lilmonsta",
     "name": "Bébé monstre",
     "edition": "",
@@ -2129,6 +2202,21 @@
     "ability": "Chaque nuit*, désignez un personnage : il meurt. Si ce personnage n'est pas en jeu, le Narrateur choisit qui meurt."
   },
   {
+    "id": "lordoftyphon",
+    "name": "Maître de Typhon",
+    "edition": "",
+    "team": "demon",
+    "firstNight": 4,
+    "firstNightReminder": "Réveiller le bon nombre de joueurs des deux côtés du Maître de Typhon. Leur révéler leur rôle de Sbire.",
+    "otherNight": 37,
+    "otherNightReminder": "Le Maître de Typhon désigne un joueur : ce joueur meurt.",
+    "reminders": [
+      "Mort"
+    ],
+    "setup": true,
+    "ability": "Chaque nuit*, désignez un joueur : il meurt. [Les joueurs mauvais sont en ligne, avec vous au milieu. +1 Sbire. -? à +? Étrangers]"
+  },
+  {
     "id": "gangster",
     "name": "Gangster",
     "edition": "",
@@ -2140,5 +2228,20 @@
     "reminders": [],
     "setup": false,
     "ability": "Une fois par jour, vous pouvez tuer un de vos voisins vivants, à condition d'avoir la permission de votre autre voisin vivant."
+  },
+  {
+    "id": "gnome",
+    "name": "Gnome",
+    "edition": "",
+    "team": "traveler",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [
+      "Amigo"
+    ],
+    "setup": false,
+    "ability": "Tous les joueurs commencent en connaissant un joueur de votre alignement. Vous pouvez choisir de tuer quiconque accuse ce joueur."
   }
 ]
