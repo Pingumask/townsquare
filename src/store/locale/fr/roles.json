@@ -1775,7 +1775,7 @@
       "Capacité du Narrateur"
     ],
     "setup": false,
-    "ability": "Si vous mourez, le Narrateur gagne la capacité d’un Sbire qui n’est pas en jeu."
+    "ability": "Quand vous mourez, le Narrateur gagne une capacité de Sbire."
   },
   {
     "id": "hatter",
