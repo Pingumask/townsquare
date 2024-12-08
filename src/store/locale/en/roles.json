@@ -1515,7 +1515,7 @@
     "otherNightReminder": "If a Farmer died tonight, choose another good player and make them the Farmer. Wake this player, show them the 'You are' card and the Farmer character token.",
     "reminders": [],
     "setup": false,
-    "ability": "If you die at night, an alive good player becomes a Farmer."
+    "ability": "When you die at night, an alive good player becomes a Farmer."
   },
   {
     "id": "magician",
