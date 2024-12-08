@@ -1581,8 +1581,8 @@
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [
-      "Poisoned",
-      "Died today"
+      "Lunch",
+      "Poisoned"
     ],
     "setup": false,
     "ability": "You have the ability of the recently killed executee. If they are evil, you are poisoned until a good player dies by execution."
