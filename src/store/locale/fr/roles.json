@@ -1793,6 +1793,19 @@
     "ability": "Si vous êtes mort aujourd'hui (de jour comme de nuit), les Sbires et Démons peuvent choisir de devenir d'autres Sbires et Démons."
   },
   {
+    "id": "zealot",
+    "name": "Fanatique",
+    "edition": "",
+    "team": "outsider",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "ability": "S'il reste au moins cinq joueurs en vie, vous devez voter pour toutes les accusations."
+  },
+  {
     "id": "widow",
     "name": "Veuve",
     "edition": "",
