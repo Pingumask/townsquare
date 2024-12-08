@@ -1408,10 +1408,11 @@
     "otherNight": 26,
     "otherNightReminder": "The Lycanthrope points to a living player: if good, they die and no one else can die tonight.",
     "reminders": [
+      "Faux Paw",
       "Dead"
     ],
     "setup": false,
-    "ability": "Each night*, choose a living player: if good, they die, but they are the only player that can die tonight."
+    "ability": "Each night*, choose an alive player. If good, they die & the Demon doesn’t kill tonight. One good player registers as evil."
   },
   {
     "id": "amnesiac",
