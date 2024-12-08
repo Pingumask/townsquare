@@ -3,7 +3,7 @@
 ## Upcoming version
 
 - Updating some characters who were officially edited
-
+- Adding missing characters
 - MAINT update dependencies
 
 ### Version 3.21.0
