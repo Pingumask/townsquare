@@ -1793,6 +1793,21 @@
     "ability": "Si vous êtes mort aujourd'hui (de jour comme de nuit), les Sbires et Démons peuvent choisir de devenir d'autres Sbires et Démons."
   },
   {
+    "id": "ogre",
+    "name": "Ogre",
+    "edition": "",
+    "team": "outsider",
+    "firstNight": 63,
+    "firstNightReminder": "L'Ogre désigne un joueur (autre que lui-même) et acquiert son alignement.",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [
+      "Ami"
+    ],
+    "setup": false,
+    "ability": "Durant votre première nuit, désignez un autre joueur : vous acquérez son alignement (sans savoir lequel), même si ivre ou empoisonné."
+  },
+  {
     "id": "widow",
     "name": "Veuve",
     "edition": "",
