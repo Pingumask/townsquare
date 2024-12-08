@@ -2071,8 +2071,8 @@
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [],
-    "setup": true,
-    "ability": "Nominees die, but may nominate again immediately (on day 3, they must). After day 3, evil wins. [All Minions are Riot]"
+    "setup": false,
+    "ability": "On day 3, Minions become Riot & nominees die but nominate an alive player immediately. This must happen."
   },
   {
     "id": "yaggababble",
