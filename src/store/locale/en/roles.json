@@ -1659,6 +1659,19 @@
     "ability": "You start knowing 2 players that are not the Demon."
   },
   {
+    "id": "alsaahir",
+    "name": "Alsaahir",
+    "edition": "",
+    "team": "townsfolk",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "ability": "Each day, if you publicly guess which players are Minion(s) and which are Demon(s), good wins."
+  },
+  {
     "id": "snitch",
     "name": "Snitch",
     "edition": "",
