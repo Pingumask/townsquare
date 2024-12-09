@@ -5,9 +5,7 @@
       :class="['edition-' + edition.id]"
       :style="{
         backgroundImage: `url(${
-          edition.logo && grimoire.isImageOptIn
-            ? edition.logo
-            : require('../assets/logos/' + edition.id + '.png')
+          edition.logo && grimoire.isImageOptIn ? edition.logo : logoPath
         })`,
       }"
     ></li>
@@ -102,15 +100,16 @@
 </template>
 
 <script>
-import gameJSON from "./../game";
+import gameJSON from "../game.json";
 import { mapState } from "vuex";
-import Countdown from "./Countdown";
+import Countdown from "./Countdown.vue";
 
 export default {
   components: {
     Countdown,
   },
   computed: {
+    logoPath: () => `../assets/logos/${this?.edition?.id ?? "custom"}.png`,
     teams: function () {
       const { players } = this.$store.state.players;
       const nonTravelers = this.$store.getters["players/nonTravelers"];

@@ -242,11 +242,7 @@
             backgroundImage: `url(${
               reminder.image && grimoire.isImageOptIn
                 ? reminder.image
-                : require(
-                    '../assets/icons/' +
-                      (reminder.imageAlt || reminder.role) +
-                      '.png',
-                  )
+                : rolePath(reminder.role)
             })`,
           }"
         ></span>
@@ -261,7 +257,7 @@
 </template>
 
 <script>
-import Token from "./Token";
+import Token from "./Token.vue";
 import { mapGetters, mapState } from "vuex";
 
 export default {
@@ -355,6 +351,12 @@ export default {
       const reminders = [...this.player.reminders];
       reminders.splice(this.player.reminders.indexOf(reminder), 1);
       this.updatePlayer("reminders", reminders, true);
+    },
+    rolePath(role) {
+      return new URL(
+        `../assets/icons/${role.imageAlt || role.id}.png`,
+        import.meta.url,
+      ).href;
     },
     updatePlayer(property, value, closeMenu = false) {
       if (

@@ -26,7 +26,7 @@
 
 <script>
 import { mapMutations, mapState } from "vuex";
-import Modal from "./Modal";
+import Modal from "./Modal.vue";
 
 export default {
   components: {

@@ -121,7 +121,7 @@ class LiveSession {
     try {
       [command, params] = JSON.parse(data);
     } catch (err) {
-      console.log("unsupported socket message", data);
+      console.log("unsupported socket message", err, data);
     }
     switch (command) {
       case "getGamestate":

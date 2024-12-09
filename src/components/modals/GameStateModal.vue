@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import Modal from "./Modal";
+import Modal from "./Modal.vue";
 import { mapMutations, mapState } from "vuex";
 
 export default {

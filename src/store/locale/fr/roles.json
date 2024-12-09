@@ -116,7 +116,7 @@
       "Protégé"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, choisissez un joueur (autre que vous-même) : il est à l'abri du Démon cette nuit."
+    "ability": "Chaque nuit*, désignez un joueur (autre que vous-même) : il est à l'abri du Démon cette nuit."
   },
   {
     "id": "ravenkeeper",
@@ -144,7 +144,7 @@
       "Épuisé"
     ],
     "setup": false,
-    "ability": "La première fois que vous êtes accusé, si la personne qui vous accuse est un Villageois, elle est exécutée immédiatement."
+    "ability": "La première fois que vous êtes accusé, si l'accusateur est un Villageois, il est exécuté immédiatement."
   },
   {
     "id": "slayer",
@@ -314,7 +314,7 @@
       "Diablotin"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez un joueur : il meurt. Si vous vous suicidez de cette façon, un Sbire encore en vie devient le Diablotin."
+    "ability": "Chaque nuit*, désignez un joueur : il meurt. Si vous vous suicidez de cette façon, un Sbire devient le Diablotin."
   },
   {
     "id": "bureaucrat",
@@ -357,7 +357,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Chaque jour, après que les votes de la première accusation aient été comptabilisés. Vous pouvez désigner l'un des joueurs qui a voté : il meurt."
+    "ability": "Chaque jour, après que les votes de la première accusation aient été comptés, vous pouvez désigner l'un des joueurs qui a voté : il meurt."
   },
   {
     "id": "scapegoat",
@@ -383,7 +383,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Vous avez besoin d'un jeton de vote pour pouvoir voter. Les joueurs morts peuvent vous offrir leurs jetons de vote. S'ils le font, vous apprenez leur alignement. Vous êtes toujours sobre et en bonne santé."
+    "ability": "Vous avez besoin d'un jeton pour voter. Si un mort vous donne le sien, vous apprenez son alignement. Vous êtes sobre et sain."
   },
   {
     "id": "grandmother",
@@ -637,7 +637,8 @@
     "otherNightReminder": "Permettez à l'Aliéné de réaliser les actions du Démon qu'il croit être. Placez le(s) marqueur(s) d'attaque. Si l'Aliéné a indiqué des joueurs, réveillez le Démon. Dévoilez au Démon les marqueurs de l'Aliéné puis retirez-les.",
     "reminders": [],
     "remindersGlobal": [
-      "Aliéné"
+      "Aliéné",
+      "Désigné"
     ],
     "setup": true,
     "ability": "Vous croyez être un Démon, mais vous ne l'êtes pas. Le Démon sait qui vous êtes et qui vous désignez chaque nuit."
@@ -652,6 +653,7 @@
     "otherNight": 46,
     "otherNightReminder": "Si un Étranger est mort aujourd'hui, le Parrain désigne un joueur. Ce joueur meurt.",
     "reminders": [
+      "Mort aujourd'hui",
       "Mort"
     ],
     "setup": true,
@@ -762,7 +764,7 @@
       "3 Attaques"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, vous pouvez désigner un joueur : il meurt. Si votre dernier choix ne portait sur personne, choisissez 3 joueurs cette nuit."
+    "ability": "Chaque nuit*, vous pouvez désigner un joueur : il meurt. Si votre dernier choix ne portait sur personne, désignez 3 joueurs cette nuit."
   },
   {
     "id": "apprentice",

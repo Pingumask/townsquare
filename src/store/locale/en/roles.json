@@ -636,7 +636,8 @@
     "otherNightReminder": "Allow the Lunatic to do the actions of the Demon. Place their 'attack' markers. If the Lunatic selected players: Wake the Demon. Show the 'attack' marker, then point to each marked player. Remove any Lunatic 'attack' markers.",
     "reminders": [],
     "remindersGlobal": [
-      "Lunatic"
+      "Lunatic",
+      "Chosen"
     ],
     "setup": false,
     "ability": "You think you are a Demon, but you are not. The Demon knows who you are & who you choose at night."

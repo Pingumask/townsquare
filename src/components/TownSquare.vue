@@ -192,10 +192,10 @@
 
 <script>
 import { mapGetters, mapState } from "vuex";
-import Player from "./Player";
-import Token from "./Token";
-import ReminderModal from "./modals/ReminderModal";
-import RoleModal from "./modals/RoleModal";
+import Player from "./Player.vue";
+import Token from "./Token.vue";
+import ReminderModal from "./modals/ReminderModal.vue";
+import RoleModal from "./modals/RoleModal.vue";
 
 export default {
   components: {

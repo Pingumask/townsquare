@@ -50,8 +50,8 @@
 
 <script>
 import { mapMutations, mapState } from "vuex";
-import Modal from "./Modal";
-import Token from "../Token";
+import Modal from "./Modal.vue";
+import Token from "../Token.vue";
 
 export default {
   components: { Token, Modal },

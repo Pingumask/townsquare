@@ -5,9 +5,7 @@
       v-if="role.id"
       :style="{
         backgroundImage: `url(${
-          role.image && grimoire.isImageOptIn
-            ? role.image
-            : require('../assets/icons/' + (role.imageAlt || role.id) + '.png')
+          role.image && grimoire.isImageOptIn ? role.image : rolePath
         })`,
       }"
     ></span>
@@ -63,6 +61,12 @@ export default {
         (this.role.reminders || []).length +
         (this.role.remindersGlobal || []).length
       );
+    },
+    rolePath() {
+      return new URL(
+        `../assets/icons/${this.role.imageAlt || this.role.id}.png`,
+        import.meta.url,
+      ).href;
     },
     ...mapState(["grimoire"]),
   },

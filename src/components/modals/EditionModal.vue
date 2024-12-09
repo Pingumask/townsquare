@@ -42,9 +42,7 @@
             class="edition"
             :class="['edition-' + edition.id]"
             :style="{
-              backgroundImage: `url(${require(
-                '../../assets/logos/' + edition.id + '.png',
-              )})`,
+              backgroundImage: `url(${editionPath(edition)})`,
             }"
             :key="edition.id"
             @click="runEdition(edition)"
@@ -158,9 +156,9 @@
 
 <script>
 import { mapMutations, mapState } from "vuex";
-import Modal from "./Modal";
+import Modal from "./Modal.vue";
 import { rolesJSON } from "../../store/modules/locale";
-import Token from "../Token";
+import Token from "../Token.vue";
 
 export default {
   components: {
@@ -186,8 +184,7 @@ export default {
   methods: {
     initPool() {
       console.log("init pool");
-      console.table(this.roles);
-      this.draftPool = rolesJSON;
+      this.draftPool = rolesJSON.default;
       this.resetBuilt();
       for (let [role] of this.roles) {
         this.toggleRole(role);
@@ -326,6 +323,10 @@ export default {
       this.$store.commit("setEdition", edition);
       // The editions contain no Fabled
       this.$store.commit("players/setFabled", { fabled: [] });
+    },
+    editionPath(edition) {
+      return new URL(`../../assets/logos/${edition.id}.png`, import.meta.url)
+        .href;
     },
     ...mapMutations(["toggleModal", "setEdition"]),
   },

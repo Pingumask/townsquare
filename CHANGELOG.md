@@ -4,6 +4,15 @@
 
 
 
+### Version 3.23.0
+
+- Upgraded from node 18 to node 22
+- Replaced vue-cli with Vite
+- Set up for docker watch
+- Adding tokens to some characters
+- Updating the icon for "Demon info & bluffs"
+- Minor ability rephrasing in the French version (mainly in Trouble Brewing)
+
 ### Version 3.22.0
 
 - Official abilities rebalances :

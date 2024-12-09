@@ -43,20 +43,20 @@
 <script>
 import { mapState } from "vuex";
 import app from "../package.json";
-import TownSquare from "./components/TownSquare";
-import TownInfo from "./components/TownInfo";
-import Menu from "./components/Menu";
-import RolesModal from "./components/modals/RolesModal";
-import EditionModal from "./components/modals/EditionModal";
-import Intro from "./components/Intro";
-import ReferenceModal from "./components/modals/ReferenceModal";
-import Vote from "./components/Vote";
-import Gradients from "./components/Gradients";
-import NightOrderModal from "./components/modals/NightOrderModal";
-import FabledModal from "@/components/modals/FabledModal";
-import VoteHistoryModal from "@/components/modals/VoteHistoryModal";
-import GameStateModal from "@/components/modals/GameStateModal";
-import SpecialVoteModal from "@/components/modals/SpecialVoteModal";
+import TownSquare from "./components/TownSquare.vue";
+import TownInfo from "./components/TownInfo.vue";
+import Menu from "./components/Menu.vue";
+import RolesModal from "./components/modals/RolesModal.vue";
+import EditionModal from "./components/modals/EditionModal.vue";
+import Intro from "./components/Intro.vue";
+import ReferenceModal from "./components/modals/ReferenceModal.vue";
+import Vote from "./components/Vote.vue";
+import Gradients from "./components/Gradients.vue";
+import NightOrderModal from "./components/modals/NightOrderModal.vue";
+import FabledModal from "./components/modals/FabledModal.vue";
+import VoteHistoryModal from "./components/modals/VoteHistoryModal.vue";
+import GameStateModal from "./components/modals/GameStateModal.vue";
+import SpecialVoteModal from "./components/modals/SpecialVoteModal.vue";
 
 export default {
   components: {

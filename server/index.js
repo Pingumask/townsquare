@@ -1,13 +1,13 @@
-const fs = require("fs");
-const https = require("https");
-const WebSocket = require("ws");
-const client = require("prom-client");
+import fs from "fs";
+import https from "https";
+import WebSocket from "ws";
+import client from "prom-client";
 
 // Create a Registry which registers the metrics
 const register = new client.Registry();
 // Add a default label which is added to all metrics
 register.setDefaultLabels({
-  app: "clocktower-online"
+  app: "clocktower-online",
 });
 
 const PING_INTERVAL = 30000; // 30 seconds
@@ -22,11 +22,11 @@ if (process.env.NODE_ENV !== "development") {
 const server = https.createServer(options);
 const wss = new WebSocket.Server({
   ...(process.env.NODE_ENV === "development" ? { port: 8081 } : { server }),
-  verifyClient: info =>
+  verifyClient: (info) =>
     info.origin &&
     !!info.origin.match(
-      /^https?:\/\/([^.]+\.github\.io|localhost|clocktower\.online|eddbra1nprivatetownsquare\.xyz)/i
-    )
+      /^https?:\/\/([^.]+\.github\.io|localhost|clocktower\.online|eddbra1nprivatetownsquare\.xyz)/i,
+    ),
 });
 
 function noop() {}
@@ -48,14 +48,14 @@ const metrics = {
     help: "Concurrent Players",
     collect() {
       this.set(wss.clients.size);
-    }
+    },
   }),
   channels_concurrent: new client.Gauge({
     name: "channels_concurrent",
     help: "Concurrent Channels",
     collect() {
       this.set(Object.keys(channels).length);
-    }
+    },
   }),
   channels_list: new client.Gauge({
     name: "channel_players",
@@ -66,35 +66,35 @@ const metrics = {
         this.set(
           { name: channel },
           channels[channel].filter(
-            ws =>
+            (ws) =>
               ws &&
               (ws.readyState === WebSocket.OPEN ||
-                ws.readyState === WebSocket.CONNECTING)
-          ).length
+                ws.readyState === WebSocket.CONNECTING),
+          ).length,
         );
       }
-    }
+    },
   }),
   messages_incoming: new client.Counter({
     name: "messages_incoming",
-    help: "Incoming messages"
+    help: "Incoming messages",
   }),
   messages_outgoing: new client.Counter({
     name: "messages_outgoing",
-    help: "Outgoing messages"
+    help: "Outgoing messages",
   }),
   connection_terminated_host: new client.Counter({
     name: "connection_terminated_host",
-    help: "Terminated connection due to host already present"
+    help: "Terminated connection due to host already present",
   }),
   connection_terminated_spam: new client.Counter({
     name: "connection_terminated_spam",
-    help: "Terminated connection due to message spam"
+    help: "Terminated connection due to message spam",
   }),
   connection_terminated_timeout: new client.Counter({
     name: "connection_terminated_timeout",
-    help: "Terminated connection due to timeout"
-  })
+    help: "Terminated connection due to timeout",
+  }),
 };
 
 // register metrics
@@ -113,10 +113,10 @@ wss.on("connection", function connection(ws, req) {
     ws.playerId === "host" &&
     channels[ws.channel] &&
     channels[ws.channel].some(
-      client =>
+      (client) =>
         client !== ws &&
         client.readyState === WebSocket.OPEN &&
-        client.playerId === "host"
+        client.playerId === "host",
     )
   ) {
     console.log(ws.channel, "duplicate host");
@@ -144,16 +144,12 @@ wss.on("connection", function connection(ws, req) {
       console.log(ws.channel, "disconnecting user due to spam");
       ws.close(
         1000,
-        "Your app seems to be malfunctioning, please clear your browser cache."
+        "Your app seems to be malfunctioning, please clear your browser cache.",
       );
       metrics.connection_terminated_spam.inc();
       return;
     }
-    const messageType = data
-      .toLocaleLowerCase()
-      .substr(1)
-      .split(",", 1)
-      .pop();
+    const messageType = data.toLocaleLowerCase().substr(1).split(",", 1).pop();
     switch (messageType) {
       case '"ping"':
         // ping messages will only be sent host -> all or all -> host
@@ -164,7 +160,10 @@ wss.on("connection", function connection(ws, req) {
             (ws.playerId === "host" || client.playerId === "host")
           ) {
             client.send(
-              data.replace(/latency/, (client.latency || 0) + (ws.latency || 0))
+              data.replace(
+                /latency/,
+                (client.latency || 0) + (ws.latency || 0),
+              ),
             );
             metrics.messages_outgoing.inc();
           }
@@ -177,7 +176,7 @@ wss.on("connection", function connection(ws, req) {
           wss.clients.size,
           ws.channel,
           ws.playerId,
-          data
+          data,
         );
         try {
           const dataToPlayer = JSON.parse(data)[1];
@@ -202,7 +201,7 @@ wss.on("connection", function connection(ws, req) {
           wss.clients.size,
           ws.channel,
           ws.playerId,
-          data
+          data,
         );
         channels[ws.channel].forEach(function each(client) {
           if (client !== ws && client.readyState === WebSocket.OPEN) {
@@ -232,10 +231,10 @@ const interval = setInterval(function ping() {
     if (
       !channels[channel].length ||
       !channels[channel].some(
-        ws =>
+        (ws) =>
           ws &&
           (ws.readyState === WebSocket.OPEN ||
-            ws.readyState === WebSocket.CONNECTING)
+            ws.readyState === WebSocket.CONNECTING),
       )
     ) {
       metrics.channels_list.remove({ name: channel });
@@ -255,6 +254,6 @@ if (process.env.NODE_ENV !== "development") {
   server.listen(8080);
   server.on("request", (req, res) => {
     res.setHeader("Content-Type", register.contentType);
-    register.metrics().then(out => res.end(out));
+    register.metrics().then((out) => res.end(out));
   });
 }

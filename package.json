@@ -1,36 +1,36 @@
 {
   "name": "townsquare",
-  "version": "3.22.0",
+  "version": "3.23.0",
   "description": "Blood on the Clocktower Town Square",
   "author": "Pingumaskt",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build ./src/main.js",
-    "lint": "vue-cli-service lint",
-    "lint-ci": "vue-cli-service lint --no-fix --max-warnings=0"
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "serve": "vite preview",
+    "lint": "eslint src --fix",
+    "lint-check": "eslint src --no-fix --max-warnings=0"
   },
+  "type": "module",
   "main": "App.vue",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.32",
-    "@fortawesome/free-brands-svg-icons": "^5.15.1",
-    "@fortawesome/free-solid-svg-icons": "^5.15.1",
-    "@fortawesome/vue-fontawesome": "^0.1.10",
-    "@vue/cli-service": "^5.0.8",
-    "prom-client": "^13.0.0",
+    "@fortawesome/fontawesome-svg-core": "^6.7.1",
+    "@fortawesome/free-brands-svg-icons": "^6.7.1",
+    "@fortawesome/free-solid-svg-icons": "^6.7.1",
+    "@fortawesome/vue-fontawesome": "^2.0.10",
+    "@vitejs/plugin-vue2": "^2.3.3",
+    "vite": "^6.0.3",
     "vue": "^2.7.16",
     "vue-template-compiler": "^2.7.15",
     "vuex": "^3.6.2",
-    "ws": "^7.4.6"
+    "ws": "^8.18.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-eslint": "^5.0.8",
-    "@vue/eslint-config-prettier": "^8.0.0",
-    "eslint": "^8.53.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "eslint-plugin-vue": "^9.18.1",
+    "@vue/eslint-config-prettier": "^10.1.0",
+    "eslint": "^9.16.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-vue": "^9.32.0",
     "prettier": "^3.0.3",
-    "sass": "^1.82.0",
-    "sass-loader": "^16.0.4"
+    "sass": "^1.82.0"
   },
   "keywords": [
     "botc",
@@ -44,6 +44,6 @@
     "url": "https://github.com//bra1n/townsquare.git"
   },
   "engines": {
-    "node": "^18"
+    "node": "^22"
   }
 }
