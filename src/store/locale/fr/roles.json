@@ -185,7 +185,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Si 3 joueurs sont en vie & qu'il n'y a pas d'exécution, votre équipe gagne. Si vous mourez la nuit, il se peut qu'un autre joueur meure à la place."
+    "ability": "Si 3 joueurs sont en vie & il n'y a pas d'exécution, votre équipe gagne. Si vous mourez la nuit, il se peut qu'un autre joueur meure à la place."
   },
   {
     "id": "butler",
