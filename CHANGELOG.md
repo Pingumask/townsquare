@@ -4,6 +4,12 @@
 
 
 
+### Version 3.23.0
+
+- Upgraded from node 18 to node 22
+- Replaced vue-cli with Vite
+- Set up for docker watch
+
 ### Version 3.22.0
 
 - Official abilities rebalances :

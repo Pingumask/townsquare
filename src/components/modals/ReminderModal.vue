@@ -18,11 +18,7 @@
             backgroundImage: `url(${
               reminder.image && grimoire.isImageOptIn
                 ? reminder.image
-                : require(
-                    '../../assets/icons/' +
-                      (reminder.imageAlt || reminder.role) +
-                      '.png',
-                  )
+                : rolePath(reminder.role)
             })`,
           }"
         ></span>
@@ -33,7 +29,7 @@
 </template>
 
 <script>
-import Modal from "./Modal";
+import Modal from "./Modal.vue";
 import { mapMutations, mapState } from "vuex";
 
 /**
@@ -136,6 +132,12 @@ export default {
         value,
       });
       this.$store.commit("toggleModal", "reminder");
+    },
+    rolePath(role) {
+      return new URL(
+        `../assets/icons/${role.imageAlt || role.id}.png`,
+        import.meta.url,
+      ).href;
     },
     ...mapMutations(["toggleModal"]),
   },

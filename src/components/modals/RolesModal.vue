@@ -77,9 +77,9 @@
 </template>
 
 <script>
-import Modal from "./Modal";
-import gameJSON from "./../../game";
-import Token from "./../Token";
+import Modal from "./Modal.vue";
+import gameJSON from "../../game.json";
+import Token from "../Token.vue";
 import { mapGetters, mapMutations, mapState } from "vuex";
 
 const randomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];

@@ -23,7 +23,7 @@ if (!usedLanguage) {
   usedLanguage = MASTER_LANGUAGE; // set to master language if no language is supported by both the user and the application
 }
 
-export const locale = require(`../locale/${usedLanguage}/ui.json`);
-export const rolesJSON = require(`../locale/${usedLanguage}/roles.json`);
-export const jinxesJSON = require(`../locale/${usedLanguage}/hatred.json`);
-export const fabledJSON = require(`../locale/${usedLanguage}/fabled.json`);
+export const locale = await import(`../locale/${usedLanguage}/ui.json`);
+export const rolesJSON = await import(`../locale/${usedLanguage}/roles.json`);
+export const jinxesJSON = await import(`../locale/${usedLanguage}/hatred.json`);
+export const fabledJSON = await import(`../locale/${usedLanguage}/fabled.json`);

@@ -169,7 +169,7 @@
 
 <script>
 import { mapGetters, mapState } from "vuex";
-import Countdown from "./Countdown";
+import Countdown from "./Countdown.vue";
 
 export default {
   components: {

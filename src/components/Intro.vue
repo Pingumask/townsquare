@@ -1,6 +1,6 @@
 <template>
   <div class="intro">
-    <img src="static/apple-icon.png" alt="" class="logo" />
+    <img src="../../public/apple-icon.png" alt="" class="logo" />
     <div>
       {{ locale.intro.header }}
       <span class="button" @click="toggleMenu">

@@ -32,11 +32,7 @@
               backgroundImage: `url(${
                 role.image && grimoire.isImageOptIn
                   ? role.image
-                  : require(
-                      '../../assets/icons/' +
-                        (role.imageAlt || role.id) +
-                        '.png',
-                    )
+                  : rolePath(role)
               })`,
             }"
           ></span>
@@ -62,17 +58,13 @@
           <span
             class="icon"
             :style="{
-              backgroundImage: `url(${require(
-                '../../assets/icons/' + jinx.first.id + '.png',
-              )})`,
+              backgroundImage: rolePath(jinx.first),
             }"
           ></span>
           <span
             class="icon"
             :style="{
-              backgroundImage: `url(${require(
-                '../../assets/icons/' + jinx.second.id + '.png',
-              )})`,
+              backgroundImage: rolePath(jinx.second),
             }"
           ></span>
           <div class="role">
@@ -91,7 +83,7 @@
 </template>
 
 <script>
-import Modal from "./Modal";
+import Modal from "./Modal.vue";
 import { mapMutations, mapState } from "vuex";
 
 export default {
@@ -147,6 +139,12 @@ export default {
     ...mapState("players", ["players"]),
   },
   methods: {
+    rolePath(role) {
+      return new URL(
+        `../../assets/icons/${role.imageAlt || role.id}.png`,
+        import.meta.url,
+      ).href;
+    },
     ...mapMutations(["toggleModal"]),
   },
 };
