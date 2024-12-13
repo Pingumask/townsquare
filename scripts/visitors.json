@@ -1,0 +1,73 @@
+[
+    {
+        "id": "_meta",
+        "name": "Visitors",
+        "author": "Zets"
+    },
+    {
+        "id": "librarian"
+    },
+    {
+        "id": "investigator"
+    },
+    {
+        "id": "chef"
+    },
+    {
+        "id": "empath"
+    },
+    {
+        "id": "fortuneteller"
+    },
+    {
+        "id": "cultleader"
+    },
+    {
+        "id": "monk"
+    },
+    {
+        "id": "nightwatchman"
+    },
+    {
+        "id": "ravenkeeper"
+    },
+    {
+        "id": "slayer"
+    },
+    {
+        "id": "magician"
+    },
+    {
+        "id": "mayor"
+    },
+    {
+        "id": "cannibal"
+    },
+    {
+        "id": "drunk"
+    },
+    {
+        "id": "recluse"
+    },
+    {
+        "id": "snitch"
+    },
+    {
+        "id": "saint"
+    },
+    {
+        "id": "poisoner"
+    },
+    {
+        "id": "spy"
+    },
+    {
+        "id": "baron"
+    },
+    {
+        "id": "scarletwoman"
+    },
+    {
+        "id": "imp"
+    }
+]

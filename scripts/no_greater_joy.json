@@ -1,0 +1,41 @@
+[
+    {
+        "id": "_meta",
+        "logo": "clockmaker",
+        "name": "No greater joy",
+        "author": "Steven Medway"
+    },
+    {
+        "id": "clockmaker"
+    },
+    {
+        "id": "investigator"
+    },
+    {
+        "id": "empath"
+    },
+    {
+        "id": "chambermaid"
+    },
+    {
+        "id": "artist"
+    },
+    {
+        "id": "sage"
+    },
+    {
+        "id": "drunk"
+    },
+    {
+        "id": "klutz"
+    },
+    {
+        "id": "scarlet_woman"
+    },
+    {
+        "id": "baron"
+    },
+    {
+        "id": "imp"
+    }
+]
