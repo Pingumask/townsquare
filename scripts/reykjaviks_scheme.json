@@ -1,0 +1,80 @@
+[
+  {
+    "id": "_meta",
+    "name": "Reykjavik's Scheme",
+    "author": "Gordon Fitzgerald",
+    "background": "https://raw.githubusercontent.com/Pingumask/townsquare/develop/src/assets/scripts/reykjaviks_scheme.bg.png"
+  },
+  {
+    "id": "slayer"
+  },
+  {
+    "id": "artist"
+  },
+  {
+    "id": "fisherman"
+  },
+  {
+    "id": "savant"
+  },
+  {
+    "id": "gossip"
+  },
+  {
+    "id": "cannibal"
+  },
+  {
+    "id": "mayor"
+  },
+  {
+    "id": "minstrel"
+  },
+  {
+    "id": "virgin"
+  },
+  {
+    "id": "tealady"
+  },
+  {
+    "id": "alchemist"
+  },
+  {
+    "id": "pacifist"
+  },
+  {
+    "id": "fool"
+  },
+  {
+    "id": "golem"
+  },
+  {
+    "id": "damsel"
+  },
+  {
+    "id": "heretic"
+  },
+  {
+    "id": "snitch"
+  },
+  {
+    "id": "boomdandy"
+  },
+  {
+    "id": "goblin"
+  },
+  {
+    "id": "psychopath"
+  },
+  {
+    "id": "devilsadvocate"
+  },
+  {
+    "id": "alhadikhia"
+  },
+  {
+    "id": "lleech"
+  },
+  {
+    "id": "sentinel"
+  }
+]
