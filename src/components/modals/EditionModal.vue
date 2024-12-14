@@ -203,7 +203,7 @@ export default {
     async launchScript(fileName) {
       console.log(fileName)
       try {
-        const script = await import("/public/scripts/" + fileName);
+        const script = await import(`../../../public/scripts/${fileName}`);
         this.parseRoles(script.default);
       } catch (e) {
         alert(`${this.locale.prompt.customError}: ${e.message}`);

@@ -1,20 +1,38 @@
-version: "3.5"
 services:
   blood_on_the_clocktower:
     container_name: frontend
     build: "${PROJECT_LOCAL_PATH}"
-    restart: unless-stopped
-    volumes:
-      - "${SSH_KEYS}:/root/.ssh"
-      - botc_front:/app/townsquare
+    command: "npm run dev"
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app/townsquare
+          ignore:
+            - node_modules/
+            - dist/
+            - .git/
+            - .vscode/
+        - action: sync+restart
+          path: vite.config.ts
+          target: /app/vite.config.ts
+        - action: sync+restart
+          path: docker-compose.yml
+          target: /app/docker-compose.yml
+        - action: rebuild
+          path: package.json
+        - action: rebuild
+          path: package-lock.json
+        - action: rebuild
+          path: Dockerfile
+        - action: rebuild
+          path: .env
     environment:
       NODE_ENV: development
     ports:
-      - "${NODE_PORT}:8080"
+      - "${NODE_PORT}:5173"
     working_dir: /app/townsquare
     logging:
       driver: "json-file"
       options:
         max-size: "200k"
-volumes:
-  botc_front:
