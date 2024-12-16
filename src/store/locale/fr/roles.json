@@ -1013,7 +1013,7 @@
       "Faux"
     ],
     "setup": false,
-    "ability": "Lors de votre première journée, devinez publiquement les personnages de 5 joueurs maximum. La nuit suivante, vous apprenez combien vous en avez deviné correctement."
+    "ability": "Durant votre 1er jour, devinez publiquement le personnage d'un joueur jusqu'à 5 fois. Cette nuit, vous apprenez combien étaient corrects."
   },
   {
     "id": "sage",
