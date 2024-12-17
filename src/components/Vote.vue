@@ -182,12 +182,20 @@ export default {
       );
       return index >= 0 ? !!this.session.votes[index] : undefined;
     },
+    noVoudon: function() {
+      for (let i=0 ; i<this.players.length ; i++) {
+        if(this.players[i].role.id == "voudon")
+          return this.players[i].isDead ;
+      }
+      return true ;
+    },
     canVote: function () {
       if (!this.player) return false;
       if (
         this.player.isVoteless &&
-        ((this.nominee && this.nominee.role.team !== "traveler") ||
-          typeof this.session.nomination[1] === "string")
+        (this.nominee && this.nominee.role.team !== "traveler" ||
+          typeof this.session.nomination[1] === "string") &&
+        this.noVoudon
       )
         return false;
       const session = this.session;

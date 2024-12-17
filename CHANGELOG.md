@@ -5,6 +5,7 @@
 - Replacing the icon custom.png
 - Changing the order of the three editions, to match the official order
 - Minor ability rephrasing in the French version (mainly in Sects & Violets)
+- If Voudon is in play, allowing dead players to vote without vote token.
 
 ### Version 3.24.4
 - Bugfix missing images
