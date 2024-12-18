@@ -39,10 +39,10 @@
       <ul>
         <li v-for="(jinx, index) in jinxed" :key="index">
           <span class="icon" :style="{
-            backgroundImage: rolePath(jinx.first),
+            backgroundImage: 'url(' + rolePath(jinx.first) + ')',
           }"></span>
           <span class="icon" :style="{
-            backgroundImage: rolePath(jinx.second),
+            backgroundImage: 'url(' + rolePath(jinx.second) + ')',
           }"></span>
           <div class="role">
             <span class="name">{{ jinx.first.name }} & {{ jinx.second.name }}</span>
