@@ -1,6 +1,6 @@
 {
   "name": "townsquare",
-  "version": "3.25.0",
+  "version": "4.0.0",
   "description": "Blood on the Clocktower Town Square",
   "author": "Pingumaskt",
   "scripts": {
@@ -16,12 +16,12 @@
     "@fortawesome/fontawesome-svg-core": "^6.7.1",
     "@fortawesome/free-brands-svg-icons": "^6.7.1",
     "@fortawesome/free-solid-svg-icons": "^6.7.1",
-    "@fortawesome/vue-fontawesome": "^2.0.10",
-    "@vitejs/plugin-vue2": "^2.3.3",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/compiler-sfc": "^3.5.13",
     "vite": "^6.0.3",
-    "vue": "^2.7.16",
-    "vue-template-compiler": "^2.7.15",
-    "vuex": "^3.6.2",
+    "vue": "^3.5.13",
+    "vuex": "^4.1.0",
     "ws": "^8.18.0"
   },
   "devDependencies": {

@@ -2,24 +2,22 @@
   <Modal v-if="modals.specialVote" @close="toggleModal('specialVote')">
     <h3>{{ locale.modal.specialvote.title }}</h3>
     <div class="allTheButtons">
-      <template>
-        <button @click="bishopVote()">
-          <img src="../../assets/icons/bishop.png" />
-          <span>{{ locale.modal.specialvote.bishop }}</span>
-        </button>
-        <button @click="atheistVote()">
-          <img src="../../assets/icons/atheist.png" />
-          <span>{{ locale.modal.specialvote.atheist }}</span>
-        </button>
-        <button @click="cultleaderVote()">
-          <img src="../../assets/icons/cultleader.png" />
-          <span>{{ locale.modal.specialvote.cultleader }}</span>
-        </button>
-        <button @click="customVote()">
-          <img src="../../assets/icons/custom.png" />
-          <span>{{ locale.modal.specialvote.custom }}</span>
-        </button>
-      </template>
+      <button @click="bishopVote()">
+        <img src="../../assets/icons/bishop.png" :alt="locale.modal.specialvote.bishop" />
+        <span>{{ locale.modal.specialvote.bishop }}</span>
+      </button>
+      <button @click="atheistVote()">
+        <img src="../../assets/icons/atheist.png" :alt="locale.modal.specialvote.atheist" />
+        <span>{{ locale.modal.specialvote.atheist }}</span>
+      </button>
+      <button @click="cultleaderVote()">
+        <img src="../../assets/icons/cultleader.png" :alt="locale.modal.specialvote.cultleader" />
+        <span>{{ locale.modal.specialvote.cultleader }}</span>
+      </button>
+      <button @click="customVote()">
+        <img src="../../assets/icons/custom.png" :alt="locale.modal.specialvote.custom" />
+        <span>{{ locale.modal.specialvote.custom }}</span>
+      </button>
     </div>
   </Modal>
 </template>

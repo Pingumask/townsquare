@@ -3,17 +3,17 @@
     night: grimoire.isNight,
     static: grimoire.isStatic,
   }" :style="{
-      backgroundImage: `url('${background}')`,
-      backgroundColor: `${backgroundColor}`,
-    }">
+    backgroundImage: `url('${background}')`,
+    backgroundColor: `${backgroundColor}`,
+  }">
     <video id="background" v-if="background && background.match(/\.(mp4|webm)$/i)" :src="background" autoplay
       loop></video>
     <div class="backdrop"></div>
-    <transition name="blur">
-      <Intro v-if="!players.length"></Intro>
-      <TownInfo v-if="players.length && !session.nomination"></TownInfo>
-      <Vote v-if="session.nomination"></Vote>
-    </transition>
+
+    <Intro v-if="!players.length"></Intro>
+    <TownInfo v-if="players.length && !session.nomination"></TownInfo>
+    <Vote v-if="session.nomination"></Vote>
+
     <TownSquare></TownSquare>
     <Menu ref="menu"></Menu>
     <EditionModal />
@@ -139,11 +139,7 @@ export default {
 
 @font-face {
   font-family: "Papyrus";
-  src: url("assets/fonts/papyrus.eot");
-  /* IE9*/
   src:
-    url("assets/fonts/papyrus.eot?#iefix") format("embedded-opentype"),
-    /* IE6-IE8 */
     url("assets/fonts/papyrus.woff2") format("woff2"),
     /* chrome firefox */
     url("assets/fonts/papyrus.woff") format("woff"),

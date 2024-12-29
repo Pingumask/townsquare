@@ -1,12 +1,9 @@
-import Vue from "vue";
 import Vuex from "vuex";
 import persistence from "./persistence.js";
 import socket from "./socket.js";
 import players from "./modules/players.js";
 import session from "./modules/session.js";
 import editionJSON from "../editions.json";
-
-Vue.use(Vuex);
 
 const set = (key) => (state, value) => {
   state.grimoire[key] = value;

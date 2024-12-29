@@ -41,7 +41,7 @@
           {{ locale.modal.edition.custom.introStart }}
           <a href="https://script.bloodontheclocktower.com/" target="_blank">{{
             locale.modal.edition.custom.scriptTool
-            }}</a>
+          }}</a>
           {{ locale.modal.edition.custom.introEnd }}.<br />
           <br />
           {{ locale.modal.edition.custom.instructionsStart }}
@@ -75,9 +75,8 @@
             </div>
           </aside>
           <ul class="roles" :class="team">
-            <li v-for="role in rolesForTeam(team)" class="role" :class="{ selected: role.selected }" :key="role.id"
-              @click="toggleRole(role.id)">
-              <Token :role="role" />
+            <li v-for="role in rolesForTeam(team)" class="role" :key="role.id" @click="toggleRole(role.id)">
+              <Token :role="role" :unchecked="!role.selected" />
             </li>
           </ul>
         </section>
@@ -138,7 +137,7 @@ export default {
     toggleRole(id) {
       const role = this.draftPool.find((r) => r.id === id);
       if (role) {
-        this.$set(role, "selected", !role.selected);
+        role.selected = !role.selected;
       }
     },
     rolesForTeam(team) {
@@ -151,7 +150,7 @@ export default {
     },
     resetBuilt() {
       for (let role of this.draftPool) {
-        this.$set(role, "selected", false);
+        role.selected = false;
       }
     },
     randomizeBuilt() {
@@ -163,7 +162,7 @@ export default {
             Math.floor(Math.random() * currentPool.length),
             1,
           )[0];
-          this.$set(picked, "selected", true);
+          picked.selected = true;
         }
       }
     },
@@ -316,11 +315,6 @@ ul.editions {
 
 .build .role {
   width: 4vmax;
-  opacity: 0.7;
-
-  &.selected {
-    opacity: 1;
-  }
 }
 
 .tabs {
@@ -446,7 +440,7 @@ input[type="file"] {
     justify-content: flex-start;
     padding-left: 1rem;
     padding-block: 0.25rem;
-    overflow: hidden;
+    overflow: visible;
   }
 }
 </style>

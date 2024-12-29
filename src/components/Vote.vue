@@ -5,7 +5,9 @@
       <span class="nominator" :style="nominatorStyle" v-if="nominator"></span>
     </div>
     <div class="overlay">
-      <audio src="../assets/sounds/countdown.mp3" preload="auto"></audio>
+      <audio preload="auto">
+        <source src="../assets/sounds/countdown.mp3">
+      </audio>
       <em class="blue">{{
         nominator
           ? nominator.name
@@ -21,14 +23,14 @@
       }}
       <em v-if="typeof session.nomination[1] !== 'object'">{{
         nominee ? nominee.name : session.nomination[1]
-        }}</em>{{ locale.vote.exclam }}
+      }}</em>{{ locale.vote.exclam }}
       <br />
       <em class="blue" v-if="
         !grimoire.isOrganVoteMode ||
         (nominee && nominee.role.team == 'traveler') ||
         !session.isSpectator
       ">
-        {{ voters.length }} {{ locale.vote.votes }}
+        {{ voters?.length }} {{ locale.vote.votes }}
       </em>
       <em class="blue" v-else> ? {{ locale.vote.votes }} </em>
       {{ locale.vote.inFavor }}
@@ -107,15 +109,15 @@
       <Countdown v-if="grimoire.timer.duration" :timerName="grimoire.timer.name"
         :timerDuration="grimoire.timer.duration" />
     </div>
-    <transition name="blur">
-      <div class="countdown" v-if="session.isVoteInProgress && !session.lockedVote">
-        <span>3</span>
-        <span>2</span>
-        <span>1</span>
-        <span>{{ locale.vote.doVote }}</span>
-        <audio :autoplay="!grimoire.isMuted" src="../assets/sounds/countdown.mp3" :muted="grimoire.isMuted"></audio>
-      </div>
-    </transition>
+    <div class="countdown" v-if="session.isVoteInProgress && !session.lockedVote">
+      <span>3</span>
+      <span>2</span>
+      <span>1</span>
+      <span>{{ locale.vote.doVote }}</span>
+      <audio :autoplay="!grimoire.isMuted" :muted="grimoire.isMuted">
+        <source src="../assets/sounds/countdown.mp3">
+      </audio>
+    </div>
   </div>
 </template>
 
@@ -309,7 +311,8 @@ export default {
 
 #vote {
   position: absolute;
-  width: 20%;
+  margin: auto;
+  width: 20vw;
   z-index: 20;
   display: flex;
   align-items: center;

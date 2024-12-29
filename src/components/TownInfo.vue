@@ -1,5 +1,8 @@
 <template>
   <ul class="info">
+    <audio preload="auto">
+      <source src="../assets/sounds/countdown.mp3">
+    </audio>
     <li class="edition" :class="['edition-' + edition.id]" :style="{
       backgroundImage: 'url(' + logoUrl + ')',
     }"></li>
@@ -53,7 +56,9 @@
       {{ locale.towninfo.nightPhase }}
     </li>
     <li v-if="grimoire.isRinging">
-      <audio :autoplay="!grimoire.isMuted" src="../assets/sounds/countdown.mp3" :muted="grimoire.isMuted"></audio>
+      <audio :autoplay="!grimoire.isMuted" :muted="grimoire.isMuted">
+        <source src="../assets/sounds/countdown.mp3">
+      </audio>
       <font-awesome-icon :icon="['fas', 'music']" />
       <font-awesome-icon :icon="['fas', 'bell']" />
       <font-awesome-icon :icon="['fas', 'music']" />
@@ -121,15 +126,15 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use "../vars.scss" as *;
 
 .info {
   position: absolute;
   display: flex;
-  width: 20%;
-  height: 20%;
-  padding: 50px 0 0;
+  width: 100vw;
+  height: 20vh;
+
   align-items: center;
   align-content: center;
   justify-content: center;

@@ -21,7 +21,7 @@
         <em>{{ nightOrder.get(player).first }}.</em>
         <span v-if="player.role.firstNightReminder">{{
           player.role.firstNightReminder
-        }}</span>
+          }}</span>
       </div>
       <div class="night-order other" v-if="
         nightOrder.get(player).other &&
@@ -30,7 +30,7 @@
         <em>{{ nightOrder.get(player).other }}.</em>
         <span v-if="player.role.otherNightReminder">{{
           player.role.otherNightReminder
-        }}</span>
+          }}</span>
       </div>
 
       <Token :role="player.role" @set-role="$emit('trigger', ['openRoleModal'])" />
@@ -693,8 +693,8 @@ li.move:not(.from) .player .overlay svg.move {
   z-index: 2;
 
   &.highlight {
-    animation-iteration-count: 1;
     animation: redToWhite 1s normal forwards;
+    animation-iteration-count: 1;
   }
 }
 

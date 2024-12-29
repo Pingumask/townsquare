@@ -1,39 +1,18 @@
 <template>
-  <div class="token" @click="setRole" :class="[role.id]">
-    <span
-      class="icon"
-      v-if="role.id"
-      :style="{
-        backgroundImage: `url(${
-          role.image && grimoire.isImageOptIn ? role.image : rolePath
+  <div class="token" @click="setRole" :class="[role.id, { unchecked: unchecked }]">
+    <span class="icon" v-if="role.id" :style="{
+      backgroundImage: `url(${role.image && grimoire.isImageOptIn ? role.image : rolePath
         })`,
-      }"
-    ></span>
-    <span
-      class="leaf-left"
-      v-if="role.firstNight || role.firstNightReminder"
-    ></span>
-    <span
-      class="leaf-right"
-      v-if="role.otherNight || role.otherNightReminder"
-    ></span>
+    }"></span>
+    <span class="leaf-left" v-if="role.firstNight || role.firstNightReminder"></span>
+    <span class="leaf-right" v-if="role.otherNight || role.otherNightReminder"></span>
     <span v-if="reminderLeaves" :class="['leaf-top' + reminderLeaves]"></span>
     <span class="leaf-orange" v-if="role.setup"></span>
     <svg viewBox="0 0 150 150" class="name">
-      <path
-        d="M 13 75 C 13 160, 138 160, 138 75"
-        id="curve"
-        fill="transparent"
-      />
-      <text
-        width="150"
-        x="66.6%"
-        text-anchor="middle"
-        class="label mozilla"
-        :font-size="role.name | nameToFontSize"
-      >
+      <path d="M 13 75 C 13 160, 138 160, 138 75" id="curve" fill="transparent" />
+      <text width="150" x="66.6%" text-anchor="middle" class="label mozilla" :font-size="nameToFontSize">
         <textPath xlink:href="#curve">
-          {{ role.name }}
+          {{ role?.name || "" }}
         </textPath>
       </text>
     </svg>
@@ -54,12 +33,16 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    unchecked: {
+      type: Boolean,
+      default: false,
+    }
   },
   computed: {
-    reminderLeaves: function () {
+    reminderLeaves() {
       return (
-        (this.role.reminders || []).length +
-        (this.role.remindersGlobal || []).length
+        (this.role?.reminders || []).length +
+        (this.role?.remindersGlobal || []).length
       );
     },
     rolePath() {
@@ -68,13 +51,11 @@ export default {
         import.meta.url,
       ).href;
     },
+    nameToFontSize() { return (this.role?.name?.length > 10 ? "90%" : "110%") },
     ...mapState(["grimoire"]),
   },
   data() {
     return {};
-  },
-  filters: {
-    nameToFontSize: (name) => (name && name.length > 10 ? "90%" : "110%"),
   },
   methods: {
     setRole() {
@@ -99,15 +80,18 @@ export default {
   justify-content: center;
   transition: border-color 250ms;
 
+  &.unchecked {
+    background: #ddd4;
+  }
+
   &:hover .name .label {
     stroke: black;
     fill: white;
+
     @-moz-document url-prefix() {
       &.mozilla {
         stroke: none;
-        filter: drop-shadow(0 1.5px 0 black) drop-shadow(0 -1.5px 0 black)
-          drop-shadow(1.5px 0 0 black) drop-shadow(-1.5px 0 0 black)
-          drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
+        filter: drop-shadow(0 1.5px 0 black) drop-shadow(0 -1.5px 0 black) drop-shadow(1.5px 0 0 black) drop-shadow(-1.5px 0 0 black) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
       }
     }
   }
@@ -121,6 +105,16 @@ export default {
     width: 100%;
     height: 100%;
     margin-top: 3%;
+  }
+
+  &.unchecked {
+    * {
+      filter: grayscale(80%);
+    }
+
+    &:hover * {
+      filter: grayscale(0%);
+    }
   }
 
   span {
@@ -172,6 +166,7 @@ export default {
     height: 100%;
     font-size: 24px; // svg fonts are relative to document font size
     user-select: none;
+
     .label {
       fill: black;
       stroke: white;
@@ -187,9 +182,7 @@ export default {
           // Vue doesn't support scoped media queries, so we have to use a second css class
           stroke: none;
           text-shadow: none;
-          filter: drop-shadow(0 1.5px 0 white) drop-shadow(0 -1.5px 0 white)
-            drop-shadow(1.5px 0 0 white) drop-shadow(-1.5px 0 0 white)
-            drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
+          filter: drop-shadow(0 1.5px 0 white) drop-shadow(0 -1.5px 0 white) drop-shadow(1.5px 0 0 white) drop-shadow(-1.5px 0 0 white) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
         }
       }
     }

@@ -31,23 +31,23 @@
           <li @click="toggleGrimoire" v-if="players.length">
             <template v-if="!grimoire.isPublic">{{
               locale.menu.grimoire.hide
-            }}</template>
+              }}</template>
             <template v-if="grimoire.isPublic">{{
               locale.menu.grimoire.show
-            }}</template>
+              }}</template>
             <em>[G]</em>
           </li>
           <li @click="toggleNight" v-if="!session.isSpectator">
             <template v-if="!grimoire.isNight">{{
               locale.menu.grimoire.nightSwitch
-            }}</template>
+              }}</template>
             <template v-if="grimoire.isNight">{{
               locale.menu.grimoire.daySwitch
-            }}</template>
+              }}</template>
             <em>[S]</em>
           </li>
           <li @click="toggleRinging" v-if="!session.isSpectator">
-            <template>{{ locale.menu.grimoire.ringBell }}</template>
+            {{ locale.menu.grimoire.ringBell }}
             <em>[B]</em>
           </li>
           <li @click="toggleOrganVoteMode" v-if="!session.isSpectator">
