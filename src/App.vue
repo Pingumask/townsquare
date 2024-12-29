@@ -223,9 +223,8 @@ ul {
 
 #version {
   position: absolute;
-  text-align: right;
-  right: 10px;
-  bottom: 10px;
+  text-align: center;
+  bottom: 0;
   font-size: 60%;
   opacity: 0.5;
 }

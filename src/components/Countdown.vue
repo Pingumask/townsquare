@@ -18,7 +18,7 @@ export default {
 
 <style lang="scss" scoped>
 div {
-  width: 100%;
+  width: 40vmin;
   height: 1.6em;
   border: 2px solid black;
   background: rgba(0, 0, 0, 0.4);

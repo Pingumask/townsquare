@@ -16,18 +16,15 @@
   </transition>
 </template>
 
-<script>
-export default {
-  data: function () {
-    return {
-      isMaximized: false,
-    };
-  },
-  methods: {
-    close() {
-      this.$emit("close");
-    },
-  },
+<script setup>
+import { ref, defineEmits } from 'vue';
+
+const isMaximized = ref(false);
+
+const emit = defineEmits(['close']);
+
+const close = () => {
+  emit('close');
 };
 </script>
 

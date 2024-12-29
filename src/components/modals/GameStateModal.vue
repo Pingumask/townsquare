@@ -14,92 +14,78 @@
   </Modal>
 </template>
 
-<script>
+<script setup>
+import { ref, computed } from 'vue';
+import { useStore } from 'vuex';
 import Modal from "./Modal.vue";
-import { mapMutations, mapState } from "vuex";
 
-export default {
-  components: {
-    Modal,
-  },
-  computed: {
-    gamestate: function () {
-      return JSON.stringify({
-        bluffs: this.players.bluffs.map(({ id }) => id),
-        edition: this.edition.isOfficial
-          ? { id: this.edition.id }
-          : this.edition,
-        roles: this.edition.isOfficial
-          ? ""
-          : this.$store.getters.customRolesStripped,
-        fabled: this.players.fabled.map((fabled) =>
-          fabled.isCustom ? fabled : { id: fabled.id },
-        ),
-        players: this.players.players.map((player) => ({
-          ...player,
-          role: player.role.id || {},
-        })),
+const store = useStore();
+const input = ref("");
+
+const modals = computed(() => store.state.modals);
+const players = computed(() => store.state.players);
+const edition = computed(() => store.state.edition);
+const session = computed(() => store.state.session);
+const locale = computed(() => store.state.locale);
+
+const gamestate = computed(() => {
+  return JSON.stringify({
+    bluffs: players.value.bluffs.map(({ id }) => id),
+    edition: edition.value.isOfficial
+      ? { id: edition.value.id }
+      : edition.value,
+    roles: edition.value.isOfficial
+      ? ""
+      : store.getters.customRolesStripped,
+    fabled: players.value.fabled.map((fabled) =>
+      fabled.isCustom ? fabled : { id: fabled.id },
+    ),
+    players: players.value.players.map((player) => ({
+      ...player,
+      role: player.role.id || {},
+    })),
+  });
+});
+
+const copy = () => {
+  navigator.clipboard.writeText(input.value || gamestate.value);
+};
+
+const load = () => {
+  if (session.value.isSpectator) return;
+  try {
+    const data = JSON.parse(input.value || gamestate.value);
+    const { bluffs, edition, roles, fabled, players } = data;
+
+    if (roles) store.commit("setCustomRoles", roles);
+    if (edition) store.commit("setEdition", edition);
+    if (bluffs.length) {
+      bluffs.forEach((role, index) => {
+        store.commit("players/setBluff", {
+          index,
+          role: store.state.roles.get(role) || {},
+        });
       });
-    },
-    ...mapState(["modals", "players", "edition", "roles", "session", "locale"]),
-  },
-  data() {
-    return {
-      input: "",
-    };
-  },
-  methods: {
-    copy: function () {
-      navigator.clipboard.writeText(this.input || this.gamestate);
-    },
-    load: function () {
-      if (this.session.isSpectator) return;
-      try {
-        const data = JSON.parse(this.input || this.gamestate);
-        const { bluffs, edition, roles, fabled, players } = data;
-        if (roles) {
-          this.$store.commit("setCustomRoles", roles);
-        }
-        if (edition) {
-          this.$store.commit("setEdition", edition);
-        }
-        if (bluffs.length) {
-          bluffs.forEach((role, index) => {
-            this.$store.commit("players/setBluff", {
-              index,
-              role: this.$store.state.roles.get(role) || {},
-            });
-          });
-        }
-        if (fabled) {
-          this.$store.commit("players/setFabled", {
-            fabled: fabled.map(
-              (f) =>
-                this.$store.state.fabled.get(f) ||
-                this.$store.state.fabled.get(f.id) ||
-                f,
-            ),
-          });
-        }
-        if (players) {
-          this.$store.commit(
-            "players/set",
-            players.map((player) => ({
-              ...player,
-              role:
-                this.$store.state.roles.get(player.role) ||
-                this.$store.getters.rolesJSONbyId.get(player.role) ||
-                {},
-            })),
-          );
-        }
-        this.toggleModal("gameState");
-      } catch (e) {
-        alert("Unable to parse JSON: " + e);
-      }
-    },
-    ...mapMutations(["toggleModal"]),
-  },
+    }
+    if (fabled) {
+      store.commit("players/setFabled", {
+        fabled: fabled.map(f => store.state.fabled.get(f) || store.state.fabled.get(f.id) || f),
+      });
+    }
+    if (players) {
+      store.commit("players/set", players.map(player => ({
+        ...player,
+        role: store.state.roles.get(player.role) || store.getters.rolesJSONbyId.get(player.role) || {},
+      })));
+    }
+    toggleModal("gameState");
+  } catch (e) {
+    alert("Unable to parse JSON: " + e);
+  }
+};
+
+const toggleModal = (modal) => {
+  store.commit("toggleModal", modal);
 };
 </script>
 
