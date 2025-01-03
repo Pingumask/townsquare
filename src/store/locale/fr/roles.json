@@ -4,7 +4,7 @@
     "name": "Lavandière",
     "edition": "tb",
     "team": "townsfolk",
-    "firstNight": 42,
+    "firstNight": 44,
     "firstNightReminder": "Indiquez un personnage de villageois en jeu et deux joueurs. L'un de ces joueurs est ce personnage.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -20,7 +20,7 @@
     "name": "Bibliothécaire",
     "edition": "tb",
     "team": "townsfolk",
-    "firstNight": 43,
+    "firstNight": 46,
     "firstNightReminder": "Indiquez un personnage d'Étranger en jeu et deux joueurs. L'un de ces joueurs est ce personnage. (S'il n'y a pas d'Étranger, indiquez le).",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -36,7 +36,7 @@
     "name": "Enquêteur",
     "edition": "tb",
     "team": "townsfolk",
-    "firstNight": 44,
+    "firstNight": 47,
     "firstNightReminder": "Indiquez un personnage de Sbire en jeu et deux joueurs. L'un de ces joueurs est ce personnage.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -52,7 +52,7 @@
     "name": "Chef",
     "edition": "tb",
     "team": "townsfolk",
-    "firstNight": 45,
+    "firstNight": 48,
     "firstNightReminder": "Indiquez combien de paires de Mauvais voisins sont dans la partie.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -65,9 +65,9 @@
     "name": "Empathe",
     "edition": "tb",
     "team": "townsfolk",
-    "firstNight": 46,
+    "firstNight": 49,
     "firstNightReminder": "Indiquez combien de joueurs sont Mauvais parmi les voisins de l'Empathe.",
-    "otherNight": 63,
+    "otherNight": 66,
     "otherNightReminder": "Indiquez combien de joueurs sont Mauvais parmi les voisins vivants de l'Empathe.",
     "reminders": [],
     "setup": false,
@@ -78,9 +78,9 @@
     "name": "Voyante",
     "edition": "tb",
     "team": "townsfolk",
-    "firstNight": 47,
+    "firstNight": 50,
     "firstNightReminder": "La Voyante désigne 2 joueurs. Indiquez si, oui ou non, l'un d'eux est le Démon (ou la fausse piste).",
-    "otherNight": 64,
+    "otherNight": 67,
     "otherNightReminder": "La Voyante désigne 2 joueurs. Indiquez si, oui ou non, l'un d'eux est le Démon (ou la fausse piste).",
     "reminders": [
       "Fausse piste"
@@ -95,7 +95,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 65,
+    "otherNight": 68,
     "otherNightReminder": "Si un joueur est mort par execution aujourd'hui, indiquez le personnage du joueur exécuté.",
     "reminders": [
       "Executé"
@@ -110,7 +110,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 14,
+    "otherNight": 17,
     "otherNightReminder": "Le joueur précédement protégé ne l'est plus. Le Moine désigne un joueur (autre que lui-même). Marquez ce joueur comme protégé.",
     "reminders": [
       "Protégé"
@@ -125,7 +125,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 62,
+    "otherNight": 65,
     "otherNightReminder": "Si l'Ami des corbeaux est mort cette nuit, il désigne un joueur. Indiquez le personnage de ce joueur.",
     "reminders": [],
     "setup": false,
@@ -192,9 +192,9 @@
     "name": "Majordome",
     "edition": "tb",
     "team": "outsider",
-    "firstNight": 48,
+    "firstNight": 51,
     "firstNightReminder": "Le Majordome désigne un joueur. Marquez ce joueur comme 'Maître'.",
-    "otherNight": 78,
+    "otherNight": 81,
     "otherNightReminder": "Le Majordome désigne un joueur. Marquez ce joueur comme 'Maître'.",
     "reminders": [
       "Maître"
@@ -249,9 +249,9 @@
     "name": "Empoisonneur",
     "edition": "tb",
     "team": "minion",
-    "firstNight": 26,
+    "firstNight": 27,
     "firstNightReminder": "L'empoisonneur désigne un joueur, marquez-le comme empoisonné.",
-    "otherNight": 9,
+    "otherNight": 10,
     "otherNightReminder": "Le joueur précédement empoisonné ne l'est plus. L'empoisonneur désigne un joueur. Ce joueur est empoisonné.",
     "reminders": [
       "Empoisonné"
@@ -264,9 +264,9 @@
     "name": "Espion",
     "edition": "tb",
     "team": "minion",
-    "firstNight": 62,
+    "firstNight": 65,
     "firstNightReminder": "Montrez votre grimoire à l'Espion aussi longtemps qu'il en a besoin.",
-    "otherNight": 79,
+    "otherNight": 82,
     "otherNightReminder": "Montrez votre grimoire à l'Espion aussi longtemps qu'il en a besoin.",
     "reminders": [],
     "setup": false,
@@ -279,7 +279,7 @@
     "team": "minion",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 22,
+    "otherNight": 26,
     "otherNightReminder": "Si le Démon est mort (et que la partie n'a pas pris fin), informez la Gourgandine qu'elle devient le Démon.",
     "reminders": [
       "Démon"
@@ -307,7 +307,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 29,
+    "otherNight": 33,
     "otherNightReminder": "Le Diablotin désigne un joueur, ce joueur meurt. Si le Diablotin se choisit lui-même, l'un des Sbires encore en vie devient le Diablotin.",
     "reminders": [
       "Mort",
@@ -390,9 +390,9 @@
     "name": "Grand-mère",
     "edition": "bmr",
     "team": "townsfolk",
-    "firstNight": 49,
+    "firstNight": 52,
     "firstNightReminder": "Indiquez à la Grand-mère qui est son Petit-fils.",
-    "otherNight": 61,
+    "otherNight": 64,
     "otherNightReminder": "Si le Petit-Fils a été tué par le Démon cette nuit: la Grand-mère meurt.",
     "reminders": [
       "Petit-fils"
@@ -420,9 +420,9 @@
     "name": "Femme de chambre",
     "edition": "bmr",
     "team": "townsfolk",
-    "firstNight": 66,
+    "firstNight": 69,
     "firstNightReminder": "La Femme de chambre désigne deux autres joueurs vivants. Indiquez combien parmi eux ont été reveillés pour leur capacité cette nuit.",
-    "otherNight": 82,
+    "otherNight": 85,
     "otherNightReminder": "La Femme de chambre désigne deux autres joueurs vivants. Indiquez combien parmi eux ont été reveillés pour leur capacité cette nuit.",
     "reminders": [],
     "setup": false,
@@ -435,7 +435,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 25,
+    "otherNight": 29,
     "otherNightReminder": "L'Exorciste désigne un joueur, différent de la nuit précédente. Si ce joueur est le Démon, informez celui-ci qu'il a été identifié par l'Exorciste et dévoilez-lui qui est l'Exorciste. Ne réveillez pas le Démon pour utiliser sa capacité cette nuit.",
     "reminders": [
       "Exorcisé"
@@ -450,7 +450,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 11,
+    "otherNight": 12,
     "otherNightReminder": "Les joueurs Ivres et protégés désignés précédement ne le sont plus. L'Aubergiste désigne 2 joueurs. Ils sont protégés. L'un des 2 est Ivre.",
     "reminders": [
       "Protégé",
@@ -466,7 +466,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 12,
+    "otherNight": 14,
     "otherNightReminder": "Le Parieur désigne un joueur, et un rôle. S'ils ne correspondent pas, le Parieur meurt.",
     "reminders": [
       "Mort"
@@ -481,7 +481,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 47,
+    "otherNight": 51,
     "otherNightReminder": "Si les annonces publiques de la Commère étaient vraie aujourd'hui, choisisser un joueur non protégé. Ce joueur meurt.",
     "reminders": [
       "Mort"
@@ -494,9 +494,9 @@
     "name": "Courtisan",
     "edition": "bmr",
     "team": "townsfolk",
-    "firstNight": 28,
+    "firstNight": 29,
     "firstNightReminder": "Le Courtisan décide d'utiliser ou non sa capacité. S'il le fait, il désigne un personnage : s'il est en jeu, il devient Ivre.",
-    "otherNight": 10,
+    "otherNight": 11,
     "otherNightReminder": "S'il ne l'a pas déjà fait, Le Courtisan décide d'utiliser ou non sa capacité. S'il le fait, il désigne un personnage : si ce personnage est en jeu, il devient Ivre pour 3 jours et 3 nuits.",
     "reminders": [
       "Ivre 3",
@@ -514,7 +514,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 54,
+    "otherNight": 57,
     "otherNightReminder": "S'il ne l'a pas déjà fait, Le Professeur décide d'utiliser ou non sa capacité. S'il le fait, il désigne un joueur mort. Si c'est un Villageois, il est ressuscité.",
     "reminders": [
       "Vivant",
@@ -588,7 +588,7 @@
     "team": "outsider",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 59,
+    "otherNight": 62,
     "otherNightReminder": "Le bricoleur peut mourir à tout moment.",
     "reminders": [
       "Mort"
@@ -603,7 +603,7 @@
     "team": "outsider",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 60,
+    "otherNight": 63,
     "otherNightReminder": "Si l'Enfant de la lune a désigné un joueur et que ce joueur est bon, le joueur désigné meurt.",
     "reminders": [
       "Mort"
@@ -633,7 +633,7 @@
     "team": "outsider",
     "firstNight": 16,
     "firstNightReminder": "S'il y a 7 joueurs ou plus, indiquez à l'Aliéné un nombre de rôles de Sbires correspondant au nombre de Sbires en jeu et des joueurs pour chacuns de ces personnages. Montrez 3 jetons de personnages bons de votre choix. Si le faux personnage de Démon assigné à l'Aliéné a des actions de nuit, prétendez que vous lui faites réaliser ces actions. Placez le(s) marqueur(s) d'attaque de l'Aliéné. Réveillez le vrai Démon. Dévoilez au Démon les véritables Sbires et 3 bons personnages qui ne sont pas en jeu. Dévoilez au Démon qui est l'Aliéné. Si l'Aliéné a attaqué des joueurs, dévoilez au véritable Démon les joueurs marqués puis retirez les marqueurs de l'Aliéné.",
-    "otherNight": 24,
+    "otherNight": 28,
     "otherNightReminder": "Permettez à l'Aliéné de réaliser les actions du Démon qu'il croit être. Placez le(s) marqueur(s) d'attaque. Si l'Aliéné a indiqué des joueurs, réveillez le Démon. Dévoilez au Démon les marqueurs de l'Aliéné puis retirez-les.",
     "reminders": [],
     "remindersGlobal": [
@@ -648,9 +648,9 @@
     "name": "Parrain",
     "edition": "bmr",
     "team": "minion",
-    "firstNight": 30,
+    "firstNight": 32,
     "firstNightReminder": "Dévoilez les rôles d'Étrangers en jeu.",
-    "otherNight": 46,
+    "otherNight": 50,
     "otherNightReminder": "Si un Étranger est mort aujourd'hui, le Parrain désigne un joueur. Ce joueur meurt.",
     "reminders": [
       "Mort aujourd'hui",
@@ -664,9 +664,9 @@
     "name": "Avocat du diable",
     "edition": "bmr",
     "team": "minion",
-    "firstNight": 31,
+    "firstNight": 34,
     "firstNightReminder": "L'avocat du Diable désigne un joueur vivant. Si ce joueur est executé demain, il ne meurt pas.",
-    "otherNight": 15,
+    "otherNight": 19,
     "otherNightReminder": "L'avocat du Diable désigne un joueur vivant différent de la nuit précédente. Si ce joueur est executé demain, il ne meurt pas.",
     "reminders": [
       "Non Exécutable"
@@ -681,7 +681,7 @@
     "team": "minion",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 45,
+    "otherNight": 49,
     "otherNightReminder": "S'il ne l'a pas déjà fait, L'Assassin décide d'utiliser ou non sa capacité. S'il le fait, il désigne un joueur. Ce joueur meurt même s'il ne devrait pas pouvoir mourir pour une raison quelconque.",
     "reminders": [
       "Mort",
@@ -710,7 +710,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 30,
+    "otherNight": 34,
     "otherNightReminder": "Si personne n'est mort aujourd'hui, Le Zombuul désigne un joueur. Ce joueur meurt.",
     "reminders": [
       "Mort"
@@ -723,9 +723,9 @@
     "name": "Pukka",
     "edition": "bmr",
     "team": "demon",
-    "firstNight": 38,
+    "firstNight": 41,
     "firstNightReminder": "Le Pukka désigne un joueur. Ce joueur est empoisonné.",
-    "otherNight": 31,
+    "otherNight": 35,
     "otherNightReminder": "Le Pukka désigne un joueur. Ce joueur est empoisonné. Le joueur précédement empoisonné meurt et devient sain.",
     "reminders": [
       "Empoisonné",
@@ -741,7 +741,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 32,
+    "otherNight": 36,
     "otherNightReminder": "L'un des joueurs désignés par le Shabaloth la nuit précédente peut être régurgité. Le Shabaloth désigne deux joueurs. Ces joueurs meurent.",
     "reminders": [
       "Mort",
@@ -757,7 +757,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 33,
+    "otherNight": 37,
     "otherNightReminder": "Si le Po n'a désigné personne la nuit précédente, Le Po choisit 3 joueurs. Sinon, il n'en choisit qu'un. Les joueurs désignés meurent",
     "reminders": [
       "Mort",
@@ -843,7 +843,7 @@
     "name": "Horloger",
     "edition": "snv",
     "team": "townsfolk",
-    "firstNight": 50,
+    "firstNight": 53,
     "firstNightReminder": "Indiquez à quelle distance le Démon se trouve de son Sbire le plus proche (en nombre de maisons).",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -856,9 +856,9 @@
     "name": "Rêveur",
     "edition": "snv",
     "team": "townsfolk",
-    "firstNight": 51,
+    "firstNight": 54,
     "firstNightReminder": "Le Rêveur désigne un joueur. Indiquez lui un personnage Bon et un personnage Mauvais. L'un de ces deux personnages est ce joueur.",
-    "otherNight": 66,
+    "otherNight": 69,
     "otherNightReminder": "Le Rêveur désigne un joueur. Indiquez lui un personnage Bon et un personnage Mauvais. L'un de ces deux personnages est ce joueur.",
     "reminders": [],
     "setup": false,
@@ -869,9 +869,9 @@
     "name": "Charmeur",
     "edition": "snv",
     "team": "townsfolk",
-    "firstNight": 29,
+    "firstNight": 31,
     "firstNightReminder": "Le Charmeur désigne un joueur. Si ce joueur est le Démon: inversez les personnages et les équipes du Charmeur et du Démon. Reveillez-les pour les en informer. Le nouveau Charmeur est empoisonné.",
-    "otherNight": 13,
+    "otherNight": 16,
     "otherNightReminder": "Le Charmeur désigne un joueur. Si ce joueur est le Démon: inversez les personnages et les équipes du Charmeur et du Démon. Reveillez-les pour les en informer. Le nouveau Charmeur est empoisonné.",
     "reminders": [
       "Empoisonné"
@@ -884,9 +884,9 @@
     "name": "Mathématicien",
     "edition": "snv",
     "team": "townsfolk",
-    "firstNight": 67,
+    "firstNight": 70,
     "firstNightReminder": "Indiquez combien de joueurs ont vu leurs capacités dysfonctionner (depuis le matin) à cause d'un autre personnage.",
-    "otherNight": 83,
+    "otherNight": 86,
     "otherNightReminder": "Indiquez combien de joueurs ont vu leurs capacités dysfonctionner (depuis le matin) à cause d'un autre personnage.",
     "reminders": [
       "Anormal"
@@ -901,7 +901,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 67,
+    "otherNight": 70,
     "otherNightReminder": "Indiquez si le Démon a voté ou non aujourd'hui.",
     "reminders": [
       "Démon Votant",
@@ -917,7 +917,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 68,
+    "otherNight": 71,
     "otherNightReminder": "Indiquez si un Sbire a lancé une accusation aujourd'hui",
     "reminders": [
       "A Accusé",
@@ -933,7 +933,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 69,
+    "otherNight": 72,
     "otherNightReminder": "Indiquez combien de joueurs morts sont Mauvais.",
     "reminders": [],
     "setup": false,
@@ -957,9 +957,9 @@
     "name": "Couturière",
     "edition": "snv",
     "team": "townsfolk",
-    "firstNight": 52,
+    "firstNight": 55,
     "firstNightReminder": "Si la Couturière désigne 2 joueurs, indiquez si ces joueurs sont dans la même équipe.",
-    "otherNight": 70,
+    "otherNight": 73,
     "otherNightReminder": "Si la Couturière n'a pas encore utilisé sa capacité et qu'il désigne 2 joueurs, indiquez si ces joueurs sont du même alignement.",
     "reminders": [
       "Épuisé"
@@ -1006,7 +1006,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 71,
+    "otherNight": 74,
     "otherNightReminder": "Si aujourd'hui était la première journée du jongleur, indiquez-lui combien de ses prédictions étaient juste.",
     "reminders": [
       "Correct",
@@ -1022,7 +1022,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 52,
+    "otherNight": 55,
     "otherNightReminder": "Si le sage a été tué par le Démon, indiquez-lui deux joueur dont l'un est le Démon.",
     "reminders": [],
     "setup": false,
@@ -1048,7 +1048,7 @@
     "team": "outsider",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 51,
+    "otherNight": 54,
     "otherNightReminder": "Si le Bien-aimé est mort aujourd'hui, choisissez un joueur qui sera définitivement Ivre.",
     "reminders": [
       "Ivre"
@@ -1063,7 +1063,7 @@
     "team": "outsider",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 50,
+    "otherNight": 53,
     "otherNightReminder": "Si le Barbier est mort aujourd'hui, réveillez le Démon. Le Démon désigne 2 joueurs : reveillez ces joueurs et informez-les de leur nouveau personnage.",
     "reminders": [
       "Échanges"
@@ -1089,7 +1089,7 @@
     "name": "Jumeau maléfique",
     "edition": "snv",
     "team": "minion",
-    "firstNight": 32,
+    "firstNight": 35,
     "firstNightReminder": "Réveillez le Jumeau Maléfique et son Jumeau. Informez-les tous deux du personnage de l'autre.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1105,9 +1105,9 @@
     "name": "Sorcière",
     "edition": "snv",
     "team": "minion",
-    "firstNight": 33,
+    "firstNight": 36,
     "firstNightReminder": "S'il reste 4 joueurs ou plus en vie, la Sorcière désigne un joueur. Si ce joueur accuse demain, il meurt.",
-    "otherNight": 16,
+    "otherNight": 20,
     "otherNightReminder": "S'il reste 4 joueurs ou plus en vie, la Sorcière désigne un joueur. Si ce joueur accuse demain, il meurt.",
     "reminders": [
       "Ensorcelé"
@@ -1120,9 +1120,9 @@
     "name": "Cerenovus",
     "edition": "snv",
     "team": "minion",
-    "firstNight": 34,
+    "firstNight": 37,
     "firstNightReminder": "Le Cerenovus désigne un joueur et un personnage. Reveillez ce joueur. Informez-le qu'il est persuadé d'être ce personnage. S'il n'est pas convaincant, il peut être exécuté.",
-    "otherNight": 17,
+    "otherNight": 21,
     "otherNightReminder": "Le Cerenovus désigne un joueur et un personnage. Reveillez ce joueur. Informez-le qu'il est persuadé d'être ce personnage. S'il n'est pas convaincant, il peut être exécuté.",
     "reminders": [
       "Persuadé"
@@ -1137,7 +1137,7 @@
     "team": "minion",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 18,
+    "otherNight": 22,
     "otherNightReminder": "Le Chaudronnier désigne un joueur et un personnage. Si ce personnage n'est pas en jeu, réveillez ce joueur et dévoillez-lui son nouveau personnage. Si le personnage est déjà en jeu, rien ne se passe.",
     "reminders": [],
     "setup": false,
@@ -1150,7 +1150,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 34,
+    "otherNight": 38,
     "otherNightReminder": "Le Fang Gu désigne un joueur. Si ce joueur n'est pas un Étranger, il meurt. Si ce personnage est un Étranger et qu'il n'y a qu'un seul Fang gu en jeu, le Fang Gu meurt à la place du joueur désigné. Le joueur désigné devient un Fang Gu et rejoint l'équipe des Mauvais. Réveillez le nouveau Fang Gu. Indiquez-lui son nouveau rôle.",
     "reminders": [
       "Mort",
@@ -1168,7 +1168,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 38,
+    "otherNight": 42,
     "otherNightReminder": "Le Vigormortis désigne un joueur. Ce joueur meurt. Si c'est un Sbire, l'un de ses voisins Villageois est empoisonné.",
     "reminders": [
       "Mort",
@@ -1185,7 +1185,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 35,
+    "otherNight": 39,
     "otherNightReminder": "Le No Dashii désigne un joueur. Ce joueur meurt. Les voisins villageois du No Dashii sont empoisonnés.",
     "reminders": [
       "Mort",
@@ -1201,7 +1201,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 36,
+    "otherNight": 40,
     "otherNightReminder": "Le Vortox désigne un joueur. Ce joueur meurt.",
     "reminders": [
       "Mort"
@@ -1289,7 +1289,7 @@
     "name": "Noble",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 55,
+    "firstNight": 58,
     "firstNightReminder": "Indiquez 3 joueurs dont un seul est Mauvais, sans ordre particulier.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1304,9 +1304,9 @@
     "name": "Mercenaire",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 59,
+    "firstNight": 62,
     "firstNightReminder": "Indiquer au Mercenaire un joueur de l'équipe des Mauvais. Réveillez le Villageois qui fait partie des Mauvais pour l'informer qu'il est Mauvais.",
-    "otherNight": 75,
+    "otherNight": 78,
     "otherNightReminder": "Si le Mauvais connu par le Mercenaire est mort, informez-le d'un autre Mauvais.",
     "reminders": [
       "Connu"
@@ -1319,7 +1319,7 @@
     "name": "Pixie",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 39,
+    "firstNight": 42,
     "firstNightReminder": "Indiquez à la Pixie le personnage d'un villageois déjà en jeu.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1335,9 +1335,9 @@
     "name": "Général",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 65,
+    "firstNight": 68,
     "firstNightReminder": "Indiquez quelle équipe est selon vous en train de mener la partie : les Bons, les Mauvais ou personne.",
-    "otherNight": 81,
+    "otherNight": 84,
     "otherNightReminder": "Indiquez quelle équipe est selon vous en train de mener la partie : les Bons, les Mauvais ou personne.",
     "reminders": [],
     "setup": false,
@@ -1365,7 +1365,7 @@
     "team": "townsfolk",
     "firstNight": 19,
     "firstNightReminder": "Informez le Démon de qui est le Roi.",
-    "otherNight": 74,
+    "otherNight": 77,
     "otherNightReminder": "S'il y a au moins autant de joueurs morts que vivants, révélez au Roi un personnage encore en vie.",
     "reminders": [],
     "setup": false,
@@ -1376,9 +1376,9 @@
     "name": "Aéronaute",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 56,
+    "firstNight": 59,
     "firstNightReminder": "Choisissez un type de personnage. Indiquez à l'Aéronaute le personnage d'un joueur qui est de ce type. Marquez ce personnage comme vu par l'Aéronaute.",
-    "otherNight": 72,
+    "otherNight": 75,
     "otherNightReminder": "Choisissez un type de personnage différent de la nuit précédente. Indiquez à l'Aéronaute un joueur dont le personnage est de ce type. Marquez ce type de personnage comme vu par l'Aéronaute, et retirez le précédent marqueur.",
     "reminders": [
       "Villageois vu",
@@ -1394,9 +1394,9 @@
     "name": "Gourou",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 61,
+    "firstNight": 64,
     "firstNightReminder": "Si le Gourou change d'équipe, réveillez-le pour l'en informer.",
-    "otherNight": 77,
+    "otherNight": 80,
     "otherNightReminder": "Si le Gourou change d'équipe, réveillez-le pour l'en informer.",
     "reminders": [],
     "setup": false,
@@ -1409,7 +1409,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 26,
+    "otherNight": 30,
     "otherNightReminder": "Le Lycanthrope désigne un joueur vivant : s'il est bon, il meurt, et personne ne pourra être tué par le Démon cette nuit.",
     "reminders": [
       "Piège à loup",
@@ -1423,9 +1423,9 @@
     "name": "Amnésique",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 41,
+    "firstNight": 44,
     "firstNightReminder": "Décidez de la capacité de l'Amnésique. Si sa capacité nécessite de le réveiller la nuit, réveillez l'Amnésique et faites-lui utiliser sa capacité.",
-    "otherNight": 57,
+    "otherNight": 60,
     "otherNightReminder": "Si sa capacité nécessite de le réveiller la nuit, réveillez l'Amnésique et faites-lui utiliser sa capacité.",
     "reminders": [
       "?"
@@ -1438,9 +1438,9 @@
     "name": "Gardien de nuit",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 60,
+    "firstNight": 63,
     "firstNightReminder": "Le Gardien de nuit peut désigner un joueur. Reveillez ce joueur, indiquez lui qui est le Gardien de nuit.",
-    "otherNight": 76,
+    "otherNight": 79,
     "otherNightReminder": "Le Garde de nuit peut désigner un joueur. Reveillez ce joueur, indiquez lui qui est le Gardien de nuit",
     "reminders": [
       "Épuisé"
@@ -1484,9 +1484,9 @@
     "name": "Chasseur",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 40,
+    "firstNight": 43,
     "firstNightReminder": "Le chasseur décide s'il souhaite utiliser sa compétence. S'il le fait : il désigne un joueur qu'il suppose être la demoiselle, s'il a raison, la demoiselle devient un villageois qui n'est pas encore en jeu.",
-    "otherNight": 56,
+    "otherNight": 59,
     "otherNightReminder": "S'il ne l'a pas encore fait, le chasseur décide s'il souhaite utiliser sa compétence. S'il le fait : il désigne un joueur qu'il suppose être la demoiselle, s'il a raison, la demoiselle devient un villageois qui n'est pas encore en jeu.",
     "reminders": [
       "Épuisé"
@@ -1517,7 +1517,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 58,
+    "otherNight": 61,
     "otherNightReminder": "Si le Fermier est mort aujourd'hui, réveillez un villageois et indiquez-lui qu'il est devenu le Fermier.",
     "reminders": [],
     "setup": false,
@@ -1543,7 +1543,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 55,
+    "otherNight": 58,
     "otherNightReminder": "Si le Roi a été tué par le Démon, réveillez l'Enfant de chœur et dévoilez-lui quel joueur est le Démon.",
     "reminders": [],
     "setup": true,
@@ -1599,7 +1599,7 @@
     "name": "Intendant",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 53,
+    "firstNight": 56,
     "firstNightReminder": "Désignez un joueur bon à l'Intendant.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1614,7 +1614,7 @@
     "name": "Shugenja",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 57,
+    "firstNight": 60,
     "firstNightReminder": "Réveillez le Shugenja. Indiquez-lui dans quelle direction se trouve le mauvais le plus proche. En cas d'égalité, lui indiquer n'importe laquelle des deux directions.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1627,9 +1627,9 @@
     "name": "Grande Prêtresse",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 64,
+    "firstNight": 67,
     "firstNightReminder": "Désignez un joueur à la Grande Prêtresse.",
-    "otherNight": 80,
+    "otherNight": 83,
     "otherNightReminder": "Désignez un joueur à la Grande Prêtresse.",
     "reminders": [],
     "setup": false,
@@ -1640,9 +1640,9 @@
     "name": "Idiot du Village",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 58,
+    "firstNight": 61,
     "firstNightReminder": "Réveillez l'Idiot du Village. Celui-ci désigne un joueur : indiquez-lui l'alignement de ce joueur.",
-    "otherNight": 73,
+    "otherNight": 76,
     "otherNightReminder": "Réveillez l'Idiot du Village. Celui-ci désigne un joueur : indiquez-lui l'alignement de ce joueur.",
     "reminders": [
       "Ivre"
@@ -1656,7 +1656,7 @@
     "name": "Chevalier",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 54,
+    "firstNight": 57,
     "firstNightReminder": "Désignez au Chevalier deux joueurs qui ne sont pas Démon",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1686,7 +1686,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 12.5,
+    "otherNight": 15,
     "otherNightReminder": "L'Acrobate désigne un joueur : marquez ce joueur \"Désigné\". Si ce joueur est ou devient ivre ou empoisonné avant le matin, l'Acrobate meurt.",
     "reminders": [
       "Désigné",
@@ -1702,7 +1702,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "Si la Banshee a été tuée par le Démon, marquez-la et annoncez-le aux joueurs",
-    "otherNight": 53,
+    "otherNight": 56,
     "otherNightReminder": "",
     "reminders": [
       "A sa capacité"
@@ -1817,7 +1817,7 @@
     "team": "outsider",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 49,
+    "otherNight": 52,
     "otherNightReminder": "À la mort du Chapelier, effacez les rôles des Sbires et des Démons. Réveillez-les l'un après l'autre, en leur demandant à chacun le personnage qu'il souhaite devenir. Si l'un d'eux demande le même personnage qu'un joueur qui a déjà choisi, demandez-lui de choisir un autre rôle. Modifier les rôles de ces joueurs en conséquence.",
     "reminders": [
       "Heure du Thé"
@@ -1843,7 +1843,7 @@
     "name": "Ogre",
     "edition": "",
     "team": "outsider",
-    "firstNight": 63,
+    "firstNight": 66,
     "firstNightReminder": "L'Ogre désigne un joueur (autre que lui-même) et acquiert son alignement.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1858,7 +1858,7 @@
     "name": "Veuve",
     "edition": "",
     "team": "minion",
-    "firstNight": 27,
+    "firstNight": 28,
     "firstNightReminder": "Montrez le grimmoire à la Veuve aussi longtemps qu'elle le souhaite. La Veuve désigne un joueur. Ce joueur est empoisonné. Reveillez un joueur Bon. Indiquez-lui qu'il y a une Veuve dans la partie.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1876,9 +1876,9 @@
     "name": "Semeur de peur",
     "edition": "",
     "team": "minion",
-    "firstNight": 35,
+    "firstNight": 38,
     "firstNightReminder": "Le Semeur de peur désigne un joueur. Placez le marqueur 'Peur' sur le joueur désigné.",
-    "otherNight": 19,
+    "otherNight": 23,
     "otherNightReminder": "Le Semeur de peur désigne un joueur. Si le joueur désigné n'est plus le même que la nuit précédente, déplacez le marqueur 'Peur'.",
     "reminders": [
       "Peur"
@@ -1919,9 +1919,9 @@
     "name": "Mezepheles",
     "edition": "",
     "team": "minion",
-    "firstNight": 37,
+    "firstNight": 40,
     "firstNightReminder": "Indiquez au Mezepheles son mot secret.",
-    "otherNight": 21,
+    "otherNight": 25,
     "otherNightReminder": "Si un joueur Bon a pronnoncé le mot secret aujourd'hui, réveillez-le et informez-le qu'il fait maintenant partie de l'équipe des Mauvais.",
     "reminders": [
       "Mauvais",
@@ -1935,9 +1935,9 @@
     "name": "Mezepheles",
     "edition": "",
     "team": "minion",
-    "firstNight": 37,
+    "firstNight": 40,
     "firstNightReminder": "Indiquez au Mezepheles son mot secret.",
-    "otherNight": 21,
+    "otherNight": 25,
     "otherNightReminder": "Si un joueur Bon a pronnoncé le mot secret aujourd'hui, réveillez-le et informez-le qu'il fait maintenant partie de l'équipe des Mauvais.",
     "reminders": [
       "Mauvais",
@@ -1980,9 +1980,9 @@
     "name": "Organiste barbare",
     "edition": "",
     "team": "minion",
-    "firstNight": 30.5,
+    "firstNight": 33,
     "firstNightReminder": "Réveillez l'Organiste barbare : il choisit s'il est ivre ou non.",
-    "otherNight": 14.5,
+    "otherNight": 18,
     "otherNightReminder": "Réveillez l'Organiste barbare : il choisit s'il est ivre ou non.",
     "reminders": [
       "Ivre",
@@ -1996,9 +1996,9 @@
     "name": "Harpie",
     "edition": "",
     "team": "minion",
-    "firstNight": 36,
+    "firstNight": 39,
     "firstNightReminder": "Réveillez la Harpie. Elle désigne deux joueurs, l'un après l'autre. Réveillez le premier joueur, et lui révéler qu'il est persuadé par la Harpie que le deuxième est mauvais.",
-    "otherNight": 20,
+    "otherNight": 24,
     "otherNightReminder": "Réveillez la Harpie. Elle désigne deux joueurs, l'un après l'autre. Réveillez le premier joueur, et lui révéler qu'il est persuadé par la Harpie que le deuxième est mauvais.",
     "reminders": [
       "Persuadé",
@@ -2014,7 +2014,7 @@
     "team": "minion",
     "firstNight": 17,
     "firstNightReminder": "Réveillez l'Invocateur, et indiquez-lui trois rôles bons qui ne sont pas en jeu.",
-    "otherNight": 23,
+    "otherNight": 27,
     "otherNightReminder": "S'il s'agit de la 3e nuit, réveillez l'Invocateur. Il chosit un joueur et un Démon : ce joueur devient ce Démon.",
     "reminders": [
       "Nuit 1",
@@ -2042,9 +2042,9 @@
     "name": "Xaan",
     "edition": "",
     "team": "minion",
-    "firstNight": 25.5,
+    "firstNight": 26,
     "firstNightReminder": "Marquez le Xaan 'Nuit 1'. Si la partie a commencé avec 1 Étranger, marquez tous les Villageois 'X' : ils sont empoisonnés.",
-    "otherNight": 8.5,
+    "otherNight": 9,
     "otherNightReminder": "Si les Villageois étaient empoisonnés, retirez les marqueurs 'X'. Sinon, modifiez le marqueur devant le Xaan ; puis, si la nuit correspond au nombre d'Étrangers en début de partie, marquez tous les Villageois 'X' : ils sont empoisonnés.",
     "reminders": [
       "Nuit 1",
@@ -2076,7 +2076,7 @@
     "team": "demon",
     "firstNight": 24,
     "firstNightReminder": "Réveillez tous les Sbires ensemble, faites-les voter pour désigner quel joueur baby-sitte le Bébé Monstre.",
-    "otherNight": 42,
+    "otherNight": 46,
     "otherNightReminder": "Réveillez tous les Sbires ensemble, faites-les voter pour désigner quel joueur baby-sitte le Bébé Monstre. Vous pouvez choisir un joueur, il meurt.",
     "reminders": [],
     "remindersGlobal": [
@@ -2093,7 +2093,7 @@
     "team": "demon",
     "firstNight": 25,
     "firstNightReminder": "La Ssangssue désigne un joueur. Ce joueur est empoisonné.",
-    "otherNight": 41,
+    "otherNight": 45,
     "otherNightReminder": "La Ssangssue désigne un joueur. Ce joueur meurt.",
     "reminders": [
       "Mort",
@@ -2109,7 +2109,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 40,
+    "otherNight": 44,
     "otherNightReminder": "Al-Hadikhia peut désigner 3 joueurs. S'il le fait, les marquer '1', '2' et '3'. Annoncer le premier joueur désigné, et demandez-lui son choix. Marquez-le suivant son choix. Répétez l'opération avec les deux suivants.",
     "reminders": [
       "1",
@@ -2128,7 +2128,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 28,
+    "otherNight": 32,
     "otherNightReminder": "Vous pouvez choisir un joueur, Ce joueur meurt.",
     "reminders": [
       "Mort",
@@ -2185,7 +2185,7 @@
     "team": "demon",
     "firstNight": 10,
     "firstNightReminder": "Révélez sa phrase au Yaggablabla.",
-    "otherNight": 43,
+    "otherNight": 47,
     "otherNightReminder": "Choisissez un nombre de joueurs inférieur ou égal au nombre de fois que le Yaggablabla a dit sa phrase publiquement : ces joueurs meurent.",
     "reminders": [
       "Mort"
@@ -2200,7 +2200,7 @@
     "team": "demon",
     "firstNight": 5,
     "firstNightReminder": "Réveillez le Kazali. Celui-ci choisit un joueur et un personnage de Sbire : changez le personnage de ce joueur. Répétez autant de fois qu'il faut de Sbires. Réveillez les joueurs désignés pour les informer de leurs nouveaux rôles.",
-    "otherNight": 44,
+    "otherNight": 48,
     "otherNightReminder": "Le Kazali désigne un joueur : ce joueur meurt.",
     "reminders": [
       "Mort"
@@ -2215,7 +2215,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 39,
+    "otherNight": 43,
     "otherNightReminder": "L'Ojo désigne un rôle. S'il est en jeu, un joueur avec ce personnage meurt. Si le personnage choisi n'est pas en jeu, tuez le(s) joueur(s) que vous voulez.",
     "reminders": [
       "Mort"
@@ -2230,7 +2230,7 @@
     "team": "demon",
     "firstNight": 4,
     "firstNightReminder": "Réveiller le bon nombre de joueurs des deux côtés du Maître de Typhon. Leur révéler leur rôle de Sbire.",
-    "otherNight": 37,
+    "otherNight": 41,
     "otherNightReminder": "Le Maître de Typhon désigne un joueur : ce joueur meurt.",
     "reminders": [
       "Mort"
