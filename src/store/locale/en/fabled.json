@@ -75,7 +75,7 @@
   {
     "id": "toymaker",
     "firstNightReminder": "",
-    "otherNight": 27,
+    "otherNight": 31,
     "otherNightReminder": "If it is a night when a Demon attack could end the game, and the Demon is marked “Final night: No Attack,” then the Demon does not act tonight. (Do not wake them.)",
     "reminders": [
       "Final Night: No Attack"
