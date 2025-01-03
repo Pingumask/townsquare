@@ -23,46 +23,48 @@
   </div>
 </template>
 
-<script>
-import { mapState } from "vuex";
+<script setup>
+import { useStore } from 'vuex';
+import { computed } from 'vue';
 
-export default {
-  name: "Token",
-  props: {
-    role: {
-      type: Object,
-      default: () => ({}),
-    },
-    unchecked: {
-      type: Boolean,
-      default: false,
-    }
+const props = defineProps({
+  role: {
+    type: Object,
+    default: () => ({}),
   },
-  computed: {
-    reminderLeaves() {
-      return (
-        (this.role?.reminders || []).length +
-        (this.role?.remindersGlobal || []).length
-      );
-    },
-    rolePath() {
-      return new URL(
-        `../assets/icons/${this.role.imageAlt || this.role.id}.png`,
-        import.meta.url,
-      ).href;
-    },
-    nameToFontSize() { return (this.role?.name?.length > 10 ? "90%" : "110%") },
-    ...mapState(["grimoire"]),
-  },
-  data() {
-    return {};
-  },
-  methods: {
-    setRole() {
-      this.$emit("set-role");
-    },
-  },
-};
+  unchecked: {
+    type: Boolean,
+    default: false,
+  }
+});
+
+const emit = defineEmits(['set-role']);
+
+const store = useStore();
+
+const reminderLeaves = computed(() => {
+  return (
+    (props.role?.reminders || []).length +
+    (props.role?.remindersGlobal || []).length
+  );
+});
+
+const rolePath = computed(() => {
+  return new URL(
+    `../assets/icons/${props.role.imageAlt || props.role.id}.png`,
+    import.meta.url,
+  ).href;
+});
+
+const nameToFontSize = computed(() => {
+  return (props.role?.name?.length > 10 ? "90%" : "110%");
+});
+
+const grimoire = computed(() => store.state.grimoire);
+
+function setRole() {
+  emit('set-role');
+}
 </script>
 
 <style scoped lang="scss">
