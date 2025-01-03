@@ -76,54 +76,50 @@
   </ul>
 </template>
 
-<script>
-import gameJSON from "../game.json";
-import { mapState } from "vuex";
-import Countdown from "./Countdown.vue";
+<script setup>
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+import Countdown from './Countdown.vue';
+import gameJSON from '../game.json';
 
-export default {
-  components: {
-    Countdown,
-  },
-  computed: {
-    logoUrl() {
-      const { edition, grimoire } = this;
-      if (edition.logo && !edition.logo.includes('.')) {
-        return new URL(`../assets/logos/${edition.logo}.png`, import.meta.url).href;
-      }
+const store = useStore();
 
-      if (edition.logo && grimoire.isImageOptIn) {
-        return edition.logo;
-      }
+const edition = computed(() => store.state.edition);
+const grimoire = computed(() => store.state.grimoire);
+const locale = computed(() => store.state.locale);
+const session = computed(() => store.state.session);
+const players = computed(() => store.state.players.players);
 
-      return new URL('../assets/logos/custom.png', import.meta.url).href;
-    },
-    teams: function () {
-      const { players } = this.$store.state.players;
-      const nonTravelers = this.$store.getters["players/nonTravelers"];
-      const alive = players.filter((player) => player.isDead !== true).length;
-      const aliveNT = players.filter(
-        (player) => player.isDead !== true && player.role.team !== "traveler",
-      ).length;
-      return {
-        ...gameJSON[nonTravelers - 5],
-        traveler: players.length - nonTravelers,
-        alive,
-        aliveNT,
-        votes:
-          alive +
-          players.filter(
-            (player) => player.isDead === true && player.isVoteless !== true,
-          ).length,
-      };
-    },
-    countdownStyle: function () {
-      return `--timer: ${this.$store.state.grimoire.timer.duration}`;
-    },
-    ...mapState(["edition", "grimoire", "locale", "session"]),
-    ...mapState("players", ["players"]),
-  },
-};
+const logoUrl = computed(() => {
+  if (edition.value.logo && !edition.value.logo.includes('.')) {
+    return new URL(`../assets/logos/${edition.value.logo}.png`, import.meta.url).href;
+  }
+
+  if (edition.value.logo && grimoire.value.isImageOptIn) {
+    return edition.value.logo;
+  }
+
+  return new URL('../assets/logos/custom.png', import.meta.url).href;
+});
+
+const teams = computed(() => {
+  const nonTravelers = store.getters['players/nonTravelers'];
+  const alive = players.value.filter(player => player.isDead !== true).length;
+  const aliveNT = players.value.filter(
+    player => player.isDead !== true && player.role.team !== 'traveler'
+  ).length;
+  return {
+    ...gameJSON[nonTravelers - 5],
+    traveler: players.value.length - nonTravelers,
+    alive,
+    aliveNT,
+    votes: alive + players.value.filter(
+      player => player.isDead === true && player.isVoteless !== true
+    ).length,
+  };
+});
+
+const countdownStyle = computed(() => `--timer: ${store.state.grimoire.timer.duration}`);
 </script>
 
 <style lang="scss">
