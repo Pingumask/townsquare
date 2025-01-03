@@ -75,7 +75,7 @@
   {
     "id": "toymaker",
     "firstNightReminder": "",
-    "otherNight": 27,
+    "otherNight": 31,
     "otherNightReminder": "Si le Démon pourrait terminer la partie cette nuit, mais qu'il a toujours son marqueur 'nuit sans attaque', il n'agit pas cette nuit (ne le réveillez pas)",
     "reminders": [
       "Nuit sans attaque"
