@@ -122,7 +122,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onMounted, onUnmounted } from "vue";
+import { computed, ref, onUnmounted } from "vue";
 import { useStore } from "vuex";
 import Countdown from "./Countdown.vue";
 
@@ -192,9 +192,9 @@ const currentVote = computed(() => {
 });
 
 const noVoudon = computed(() => {
-  for (let i = 0; i < players.value.length; i++) {
-    if (players.value[i].role.id == "voudon")
-      return players.value[i].isDead;
+  for (const element of players.value) {
+    if (element.role.id == "voudon")
+      return element.isDead;
   }
   return true;
 });

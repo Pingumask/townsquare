@@ -100,18 +100,14 @@
             (grimoire.isNightOrder || !session.isSpectator)
           ">
             <em>{{ nightOrder.get(role).first }}.</em>
-            <span v-if="role.firstNightReminder">{{
-              role.firstNightReminder
-            }}</span>
+            <span v-if="role.firstNightReminder">{{ role.firstNightReminder }}</span>
           </div>
           <div class="night-order other" v-if="
             nightOrder.get(role).other &&
             (grimoire.isNightOrder || !session.isSpectator)
           ">
             <em>{{ nightOrder.get(role).other }}.</em>
-            <span v-if="role.otherNightReminder">{{
-              role.otherNightReminder
-            }}</span>
+            <span v-if="role.otherNightReminder">{{ role.otherNightReminder }}</span>
           </div>
           <Token :role="role"></Token>
         </li>
@@ -214,29 +210,24 @@ export default {
     },
     removePlayer(playerIndex) {
       if (this.session.isSpectator || this.session.lockedVote) return;
-      if (
-        confirm(
-          `Do you really want to remove ${this.players[playerIndex].name}?`,
-        )
-      ) {
-        const { nomination } = this.session;
-        if (nomination) {
-          if (nomination.includes(playerIndex)) {
-            // abort vote if removed player is either nominator or nominee
-            this.$store.commit("session/nomination");
-          } else if (
-            nomination[0] > playerIndex ||
-            nomination[1] > playerIndex
-          ) {
-            // update nomination array if removed player has lower index
-            this.$store.commit("session/setNomination", [
-              nomination[0] > playerIndex ? nomination[0] - 1 : nomination[0],
-              nomination[1] > playerIndex ? nomination[1] - 1 : nomination[1],
-            ]);
-          }
+      if (!confirm(`Do you really want to remove ${this.players[playerIndex].name}?`)) return;
+      const { nomination } = this.session;
+      if (nomination) {
+        if (nomination.includes(playerIndex)) {
+          // abort vote if removed player is either nominator or nominee
+          this.$store.commit("session/nomination");
+        } else if (
+          nomination[0] > playerIndex ||
+          nomination[1] > playerIndex
+        ) {
+          // update nomination array if removed player has lower index
+          this.$store.commit("session/setNomination", [
+            nomination[0] > playerIndex ? nomination[0] - 1 : nomination[0],
+            nomination[1] > playerIndex ? nomination[1] - 1 : nomination[1],
+          ]);
         }
-        this.$store.commit("players/remove", playerIndex);
       }
+      this.$store.commit("players/remove", playerIndex);
     },
     swapPlayer(from, to) {
       if (this.session.isSpectator || this.session.lockedVote) return;
