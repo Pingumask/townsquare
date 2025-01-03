@@ -1,17 +1,15 @@
 <template>
   <div id="controls">
     <span class="nomlog-summary" v-show="session.voteHistory.length && session.sessionId"
-      @click="toggleModal('voteHistory')" :title="`${session.voteHistory.length} recent ${session.voteHistory.length == 1 ? 'nomination' : 'nominations'
-        }`">
+      :title="`${session.voteHistory.length} recent ${session.voteHistory.length == 1 ? 'nomination' : 'nominations'}`"
+      @click="toggleModal('voteHistory')">
       <font-awesome-icon icon="book-dead" class="fa fa-book-dead" />
       {{ session.voteHistory.length }}
     </span>
-    <span class="session" :class="{
-      spectator: session.isSpectator,
-      reconnecting: session.isReconnecting,
-    }" v-if="session.sessionId" @click="leaveSession" :title="`${session.playerCount} other players in this session${session.ping ? ' (' + session.ping + 'ms latency)' : ''
-      }`">
-      <font-awesome-icon icon="broadcast-tower" class="fa fa-broadcast-tower" />
+    <span class="session" v-if="session.sessionId" @click="leaveSession"
+      :title="`${session.playerCount} other players in this session${session.ping ? ' (' + session.ping + 'ms latency)' : ''}`"
+      :class="{ spectator: session.isSpectator, reconnecting: session.isReconnecting }">
+      <font-awesome-icon icon=" broadcast-tower" class="fa fa-broadcast-tower" />
       {{ session.playerCount }}
     </span>
     <div class="menu" :class="{ open: grimoire.isMenuOpen }">
@@ -29,21 +27,13 @@
           <!-- Grimoire -->
           <li class="headline">{{ locale.menu.grimoire.title }}</li>
           <li @click="toggleGrimoire" v-if="players.length">
-            <template v-if="!grimoire.isPublic">{{
-              locale.menu.grimoire.hide
-              }}</template>
-            <template v-if="grimoire.isPublic">{{
-              locale.menu.grimoire.show
-              }}</template>
+            <template v-if="!grimoire.isPublic">{{ locale.menu.grimoire.hide }}</template>
+            <template v-if="grimoire.isPublic">{{ locale.menu.grimoire.show }}</template>
             <em>[G]</em>
           </li>
           <li @click="toggleNight" v-if="!session.isSpectator">
-            <template v-if="!grimoire.isNight">{{
-              locale.menu.grimoire.nightSwitch
-              }}</template>
-            <template v-if="grimoire.isNight">{{
-              locale.menu.grimoire.daySwitch
-              }}</template>
+            <template v-if="!grimoire.isNight">{{ locale.menu.grimoire.nightSwitch }}</template>
+            <template v-if="grimoire.isNight">{{ locale.menu.grimoire.daySwitch }}</template>
             <em>[S]</em>
           </li>
           <li @click="toggleRinging" v-if="!session.isSpectator">
@@ -230,141 +220,148 @@
   </div>
 </template>
 
-<script>
-import { mapMutations, mapState } from "vuex";
+<script setup>
+import { computed, ref } from 'vue';
+import { useStore } from 'vuex';
 
-export default {
-  computed: {
-    ...mapState(["grimoire", "session", "edition", "locale"]),
-    ...mapState("players", ["players"]),
-  },
-  data() {
-    return {
-      tab: "grimoire",
-    };
-  },
-  methods: {
-    setBackground() {
-      const background = prompt(this.locale.prompt.background);
-      if (background || background === "") {
-        this.$store.commit("setBackground", background);
-      }
-    },
-    hostSession() {
-      if (this.session.sessionId) return;
-      const sessionId = prompt(
-        this.locale.prompt.createSession,
-        Math.round(Math.random() * 10000),
-      );
-      if (sessionId) {
-        this.$store.commit("session/clearVoteHistory");
-        this.$store.commit("session/setSpectator", false);
-        this.$store.commit("session/setSessionId", sessionId);
-        this.$store.commit("toggleGrimoire", false);
-        this.copySessionUrl();
-      }
-    },
-    copySessionUrl() {
-      const url = window.location.href.split("#")[0];
-      const link = url + "#" + this.session.sessionId;
-      navigator.clipboard.writeText(link);
-    },
-    distributeRoles() {
-      if (this.session.isSpectator) return;
-      const popup = this.locale.prompt.sendRoles;
-      if (confirm(popup)) {
-        this.$store.commit("session/distributeRoles", true);
-        setTimeout(
-          (() => {
-            this.$store.commit("session/distributeRoles", false);
-          }).bind(this),
-          2000,
-        );
-      }
-    },
-    imageOptIn() {
-      const popup = this.locale.prompt.imageOptIn;
-      if (this.grimoire.isImageOptIn || confirm(popup)) {
-        this.toggleImageOptIn();
-      }
-    },
-    streamerMode() {
-      this.toggleStreamerMode();
-    },
-    joinSession() {
-      if (this.session.sessionId) return this.leaveSession();
-      let sessionId = prompt(this.locale.prompt.joinSession);
-      if (sessionId.match(/^https?:\/\//i)) {
-        sessionId = sessionId.split("#").pop();
-      }
-      if (sessionId) {
-        this.$store.commit("session/clearVoteHistory");
-        this.$store.commit("session/setSpectator", true);
-        this.$store.commit("toggleGrimoire", false);
-        this.$store.commit("session/setSessionId", sessionId);
-      }
-    },
-    leaveSession() {
-      if (confirm(this.locale.prompt.leaveSession)) {
-        this.$store.commit("session/setSpectator", false);
-        this.$store.commit("session/setSessionId", "");
-      }
-    },
-    addPlayer() {
-      if (this.session.isSpectator) return;
-      if (this.players.length >= 20) return;
-      const name = prompt(this.locale.prompt.addPlayer);
-      if (name) {
-        this.$store.commit("players/add", name);
-      }
-    },
-    randomizeSeatings() {
-      if (this.session.isSpectator) return;
-      if (confirm(this.locale.prompt.randomizeSeatings)) {
-        this.$store.dispatch("players/randomize");
-      }
-    },
-    clearPlayers() {
-      if (this.session.isSpectator) return;
-      if (confirm(this.locale.prompt.clearPlayers)) {
-        // abort vote if in progress
-        if (this.session.nomination) {
-          this.$store.commit("session/nomination");
-        }
-        this.$store.commit("players/clear");
-      }
-    },
-    clearRoles() {
-      if (confirm(this.locale.prompt.clearRoles)) {
-        this.$store.dispatch("players/clearRoles");
-      }
-    },
-    toggleNight() {
-      this.$store.commit("toggleNight");
-      if (this.grimoire.isNight) {
-        this.$store.commit("session/setMarkedPlayer", -1);
-      }
-    },
-    toggleOrganVoteMode() {
-      this.$store.commit("toggleOrganVoteMode");
-    },
-    toggleRinging() {
-      this.$store.commit("toggleRinging", true);
-      setTimeout(this.$store.commit, 4000, "toggleRinging", false);
-    },
-    ...mapMutations([
-      "toggleGrimoire",
-      "toggleMenu",
-      "toggleImageOptIn",
-      "toggleStreamerMode",
-      "toggleMuted",
-      "toggleNightOrder",
-      "toggleStatic",
-      "setZoom",
-      "toggleModal",
-    ]),
-  },
+const store = useStore();
+
+const grimoire = computed(() => store.state.grimoire);
+const session = computed(() => store.state.session);
+const edition = computed(() => store.state.edition);
+const locale = computed(() => store.state.locale);
+const players = computed(() => store.state.players.players);
+
+const tab = ref('grimoire');
+
+const setBackground = () => {
+  const background = prompt(locale.value.prompt.background);
+  if (background || background === '') {
+    store.commit('setBackground', background);
+  }
 };
+
+const hostSession = () => {
+  if (session.value.sessionId) return;
+  const sessionId = prompt(
+    locale.value.prompt.createSession,
+    Math.round(Math.random() * 10000),
+  );
+  if (sessionId) {
+    store.commit('session/clearVoteHistory');
+    store.commit('session/setSpectator', false);
+    store.commit('session/setSessionId', sessionId);
+    store.commit('toggleGrimoire', false);
+    copySessionUrl();
+  }
+};
+
+const copySessionUrl = () => {
+  const url = window.location.href.split('#')[0];
+  const link = url + '#' + session.value.sessionId;
+  navigator.clipboard.writeText(link);
+};
+
+const distributeRoles = () => {
+  if (session.value.isSpectator) return;
+  const popup = locale.value.prompt.sendRoles;
+  if (confirm(popup)) {
+    store.commit('session/distributeRoles', true);
+    setTimeout(() => {
+      store.commit('session/distributeRoles', false);
+    }, 2000);
+  }
+};
+
+const imageOptIn = () => {
+  const popup = locale.value.prompt.imageOptIn;
+  if (grimoire.value.isImageOptIn || confirm(popup)) {
+    toggleImageOptIn();
+  }
+};
+
+const streamerMode = () => {
+  toggleStreamerMode();
+};
+
+const joinSession = () => {
+  if (session.value.sessionId) return leaveSession();
+  let sessionId = prompt(locale.value.prompt.joinSession);
+  if (sessionId.match(/^https?:\/\//i)) {
+    sessionId = sessionId.split('#').pop();
+  }
+  if (sessionId) {
+    store.commit('session/clearVoteHistory');
+    store.commit('session/setSpectator', true);
+    store.commit('toggleGrimoire', false);
+    store.commit('session/setSessionId', sessionId);
+  }
+};
+
+const leaveSession = () => {
+  if (confirm(locale.value.prompt.leaveSession)) {
+    store.commit('session/setSpectator', false);
+    store.commit('session/setSessionId', '');
+  }
+};
+
+const addPlayer = () => {
+  if (session.value.isSpectator) return;
+  if (players.value.length >= 20) return;
+  const name = prompt(locale.value.prompt.addPlayer);
+  if (name) {
+    store.commit('players/add', name);
+  }
+};
+
+const randomizeSeatings = () => {
+  if (session.value.isSpectator) return;
+  if (confirm(locale.value.prompt.randomizeSeatings)) {
+    store.dispatch('players/randomize');
+  }
+};
+
+const clearPlayers = () => {
+  if (session.value.isSpectator) return;
+  if (confirm(locale.value.prompt.clearPlayers)) {
+    if (session.value.nomination) {
+      store.commit('session/nomination');
+    }
+    store.commit('players/clear');
+  }
+};
+
+const clearRoles = () => {
+  if (confirm(locale.value.prompt.clearRoles)) {
+    store.dispatch('players/clearRoles');
+  }
+};
+
+const toggleNight = () => {
+  store.commit('toggleNight');
+  if (grimoire.value.isNight) {
+    store.commit('session/setMarkedPlayer', -1);
+  }
+};
+
+const toggleOrganVoteMode = () => {
+  store.commit('toggleOrganVoteMode');
+};
+
+const toggleRinging = () => {
+  store.commit('toggleRinging', true);
+  setTimeout(() => store.commit('toggleRinging', false), 4000);
+};
+
+const toggleGrimoire = () => store.commit('toggleGrimoire');
+const toggleMenu = () => store.commit('toggleMenu');
+const toggleImageOptIn = () => store.commit('toggleImageOptIn');
+const toggleStreamerMode = () => store.commit('toggleStreamerMode');
+const toggleMuted = () => store.commit('toggleMuted');
+const toggleNightOrder = () => store.commit('toggleNightOrder');
+const toggleStatic = () => store.commit('toggleStatic');
+const setZoom = (zoom) => store.commit('setZoom', zoom);
+const toggleModal = (modal) => store.commit('toggleModal', modal);
 </script>
 
 <style scoped lang="scss">
