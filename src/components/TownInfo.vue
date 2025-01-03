@@ -122,7 +122,7 @@ const teams = computed(() => {
 const countdownStyle = computed(() => `--timer: ${store.state.grimoire.timer.duration}`);
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "../vars.scss" as *;
 
 .info {
