@@ -82,10 +82,6 @@ function setRole() {
   justify-content: center;
   transition: border-color 250ms;
 
-  &.unchecked {
-    background: #ddd4;
-  }
-
   &:hover .name .label {
     stroke: black;
     fill: white;
@@ -110,6 +106,8 @@ function setRole() {
   }
 
   &.unchecked {
+    background: #ddd4;
+
     * {
       filter: grayscale(80%);
     }
