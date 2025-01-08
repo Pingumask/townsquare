@@ -12,6 +12,7 @@ export default defineConfig({
     },
   },
   build: {
+    sourcemap: true,
     rollupOptions: {
       ignore: "src/scripts/*",
       output: {
@@ -22,5 +23,8 @@ export default defineConfig({
       preserveModules: true,
     },
     target: "es2022",
+  },
+  server: {
+    sourcemap: true,
   },
 });

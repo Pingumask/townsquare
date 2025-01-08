@@ -17,6 +17,28 @@
       "skipFiles": [
         "${workspaceFolder}/node_modules/**"
       ]
+    },
+    {
+      "type": "firefox",
+      "request": "launch",
+      "name": "Launch and Attach Firefox",
+      "url": "http://localhost:8079",
+      "webRoot": "${workspaceFolder}/src",
+      "pathMappings": [
+        {
+          "url": "http://localhost:8079/src",
+          "path": "${workspaceFolder}/src"
+        }
+      ],
+      "skipFiles": [
+        "${workspaceFolder}/node_modules/**"
+      ],
+      "firefoxExecutable": "C:\\Program Files\\Firefox Developer Edition\\firefox.exe",
+      "firefoxArgs": [
+        "-start-debugger-server",
+        "6000"
+      ],
+      "port": 6000
     }
   ]
 }
