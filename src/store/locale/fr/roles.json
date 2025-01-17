@@ -1494,7 +1494,7 @@
       "Épuisé"
     ],
     "setup": true,
-    "ability": "Une fois par partie, la nuit, désignez un joueur vivant : la Demoiselle, si elle est désignée, devient un personnage de Villageois qui n'était pas en jeu. [+ Demoiselle]"
+    "ability": "Une fois par partie, la nuit, désignez un joueur vivant : la Demoiselle, si désignée, devient un Villageois qui n'était pas en jeu. [+ Demoiselle]"
   },
   {
     "id": "alchemist",
