@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 
-
+- Minor rephrasing in the French version (mainly shortening Experimental Townsfolk's abilities)
 
 ### Version 4.1.0
 - Correcting a bug with the "give back token" update
