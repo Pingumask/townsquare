@@ -1098,7 +1098,7 @@
       "Jumeau"
     ],
     "setup": false,
-    "ability": "Vous & un adversaire savez vos personnages respectifs. Si le bon est exécuté, les mauvais gagnent. Le bien ne peut gagner si vous 2 vivez."
+    "ability": "Vous savez le personnage d'un adversaire, qui vous connaît. Si le bon est exécuté, le mal gagne. Le bien ne peut gagner si vous 2 vivez."
   },
   {
     "id": "witch",
