@@ -1433,7 +1433,7 @@
       "?"
     ],
     "setup": false,
-    "ability": "Vous ne savez pas quelle est votre capacité. Chaque jour, devinez-la en privé avec le Narrateur : vous apprenez à quel point vous avez raison."
+    "ability": "Vous ne connaissez pas votre capacité. Chaque jour, devinez-la en privé avec le Narrateur : vous apprenez à quel point vous avez raison."
   },
   {
     "id": "nightwatchman",
