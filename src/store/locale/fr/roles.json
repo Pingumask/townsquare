@@ -1402,7 +1402,7 @@
     "otherNightReminder": "Si le Gourou change d'équipe, réveillez-le pour l'en informer.",
     "reminders": [],
     "setup": false,
-    "ability": "Chaque nuit, vous rejoignez l'équipe de l'un de vos voisins vivants. Si tous les bons joueurs choisissent de rejoindre votre secte, votre équipe gagne."
+    "ability": "Chaque nuit, vous acquérez l'alignement d'un voisin vivant. Si tous les bons choisissent de rejoindre votre secte, votre équipe gagne."
   },
   {
     "id": "lycanthrope",
