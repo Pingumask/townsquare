@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 
-
+- When sending roles, checking if all roles can be send to a player
 
 ### Version 4.1.0
 - Correcting a bug with the "give back token" update
