@@ -263,10 +263,24 @@ const distributeRoles = () => {
   if (session.value.isSpectator) return;
   const popup = locale.value.prompt.sendRoles;
   if (confirm(popup)) {
-    store.commit('session/distributeRoles', true);
-    setTimeout(() => {
-      store.commit('session/distributeRoles', false);
-    }, 2000);
+    // Checking all players to see if one of them has a forbidden role
+    let forbiddenRole="";
+    for (let i=0 ; i<players.value.length && !forbiddenRole ; i++) {
+      if(players.value[i].role.forbidden) {
+        forbiddenRole = players.value[i].role.name;
+      }
+    }		
+    let confirmedDistribution = (forbiddenRole == "") ;		
+    if(!confirmedDistribution) {
+      const forbiddenPopup = locale.value.prompt.sendRolesWithForbidden1 + forbiddenRole + locale.value.prompt.sendRolesWithForbidden2;
+      confirmedDistribution = confirm(forbiddenPopup);
+    }
+    if(confirmedDistribution) {
+      store.commit('session/distributeRoles', true);
+      setTimeout(() => {
+        store.commit('session/distributeRoles', false);
+      }, 2000);
+    }
   }
 };
 

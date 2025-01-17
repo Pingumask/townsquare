@@ -58,6 +58,8 @@
     "background": "Entrez l'URL de l'image de fond",
     "createSession": "Entrez un nom ou numéro de session",
     "sendRoles": "Voulez-vous envoyer les rôles à tous les joueurs ASSIS ?",
+    "sendRolesWithForbidden1": "ATTENTION\nL'un des rôles que vous voulez envoyer est un rôle interdit (",
+    "sendRolesWithForbidden2": ").\nConfirmer l'envoi ?",
     "imageOptIn": "Êtes-vous sûr de vouloir autoriser les images externes ? Un auteur de script mal intentionné pourrait s'en servir pour traquer votre adresse IP.",
     "joinSession": "Entrez le nom ou numéro de la session que vous souhaitez rejoindre",
     "leaveSession": "Êtes-vous sur de vouloir quitter la partie en cours ?",
