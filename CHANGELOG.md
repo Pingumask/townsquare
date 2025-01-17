@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 
-
+- Ignoring out of date characters in the script builder
 
 ### Version 4.1.0
 - Correcting a bug with the "give back token" update
