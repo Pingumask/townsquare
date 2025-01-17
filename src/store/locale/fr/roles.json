@@ -1299,7 +1299,7 @@
       "Connu"
     ],
     "setup": false,
-    "ability": "Vous commencez la partie en connaissant les noms de 3 joueurs, un seul parmi ces 3 joueurs est Mauvais."
+    "ability": "Vous commencez la partie en connaissant 3 joueurs, un seul parmi ces 3 joueurs est mauvais."
   },
   {
     "id": "bountyhunter",
