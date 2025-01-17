@@ -1578,7 +1578,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": true,
-    "ability": "Le Narrateur peut briser les règles du jeu. Si les joueurs exécutent le Narrateur, les bons remportent la partie, même si vous êtes mort. [Aucun joueur n'est Mauvais]"
+    "ability": "Le Narrateur peut briser les règles du jeu. S'il est exécuté, les bons gagnent, même si vous êtes mort. [Aucun joueur mauvais]"
   },
   {
     "id": "cannibal",
