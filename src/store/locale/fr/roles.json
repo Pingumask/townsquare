@@ -1594,7 +1594,7 @@
       "Empoisonné"
     ],
     "setup": false,
-    "ability": "Vous avez la capacité du dernier joueur mort par exécution. S'il était Mauvais, vous êtes empoisonné jusqu'à ce qu'un joueur Bon meure par exécution."
+    "ability": "Vous avez la capacité du dernier mort par exécution. S'il est mauvais, vous êtes empoisonné jusqu'à ce qu'un bon meure par exécution."
   },
   {
     "id": "steward",
