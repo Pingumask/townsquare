@@ -1622,7 +1622,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Vous commencez la partie en sachant si le mauvais le plus proche est dans le sens horaire ou anti-horaire. Si équidistants, l'info est arbitraire."
+    "ability": "Vous commencez en sachant si le mauvais le plus proche est dans le sens horaire ou anti-horaire. Si équidistants, cette info est arbitraire."
   },
   {
     "id": "highpriestess",
