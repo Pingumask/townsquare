@@ -2056,7 +2056,7 @@
       "X"
     ],
     "setup": true,
-    "ability": Durant la nuit X, tous les Villageois sont empoisonnés jusqu'au crépuscule. [X Étrangers]"
+    "ability": "Durant la nuit X, tous les Villageois sont empoisonnés jusqu'au crépuscule. [X Étrangers]"
   },
   {
     "id": "boffin",
