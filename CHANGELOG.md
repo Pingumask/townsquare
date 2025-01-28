@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 
-
+- Replacing the icons "dawn.png" and "dusk.png"
 
 ### Version 4.1.0
 - Correcting a bug with the "give back token" update
