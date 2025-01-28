@@ -1991,7 +1991,7 @@
       "Vote utilisé"
     ],
     "setup": false,
-    "ability": "Les votes ont lieu à bulletin secret et les résultats ne sont pas annoncés. Chaque nuit, choisissez si vous êtes ivre ou non."
+    "ability": "Les votes sont à bulletin secret et les résultats ne sont pas annoncés. Chaque nuit, choisissez si vous êtes ivre jusqu'au crépuscule."
   },
   {
     "id": "harpy",
