@@ -84,6 +84,14 @@ import Modal from "./Modal.vue";
 const store = useStore();
 
 const rolesFirstNight = computed(() => {
+
+  function nightIndex(role, officialEdition) {
+    if(officialEdition && role.firstNightEdition) {
+      return role.firstNightEdition;
+	}
+    return role.firstNight;
+  }
+  
   const rolesFirstNight = [
     {
       id: "dusk",
@@ -157,11 +165,19 @@ const rolesFirstNight = computed(() => {
       },
     );
   }
-  rolesFirstNight.sort((a, b) => a.firstNight - b.firstNight);
+  rolesFirstNight.sort((a, b) => nightIndex(a,edition.value.isOfficial) - nightIndex(b,edition.value.isOfficial));
   return rolesFirstNight;
 });
 
 const rolesOtherNight = computed(() => {
+
+  function nightIndex(role, officialEdition) {
+    if(officialEdition && role.otherNightEdition) {
+      return role.otherNightEdition;
+	}
+    return role.otherNight;
+  }
+
   const rolesOtherNight = [{
     id: "dusk",
     name: locale.value.modal.nightOrder.dusk,
@@ -204,7 +220,7 @@ const rolesOtherNight = computed(() => {
       rolesOtherNight.push({ players: activePlayers, ...player.role });
     }
   });
-  rolesOtherNight.sort((a, b) => a.otherNight - b.otherNight);
+  rolesOtherNight.sort((a, b) => nightIndex(a,edition.value.isOfficial) - nightIndex(b,edition.value.isOfficial));
   return rolesOtherNight;
 });
 

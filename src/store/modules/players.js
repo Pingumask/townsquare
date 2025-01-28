@@ -25,7 +25,25 @@ const getters = {
     return Math.min(nonTravelers.length, 15);
   },
   // calculate a Map of player => night order
-  nightOrder({ players, fabled }) {
+  nightOrder({ players, fabled }, getters, { edition }) {
+    
+    // gives the index of the first night for a player. This function supposes that, if they are called, "player" has an attribute "role".
+    function getFirstNight(player, officialEdition) {
+      if(officialEdition && player.role.firstNightEdition) {
+        return player.role.firstNightEdition;
+	  }
+      return player.role.firstNight;
+    }
+    
+    // gives the index of the other nights (not the first one) for a player. This function supposes that, if they are called, "player" has an attribute "role".
+    function getOtherNight(player, officialEdition) {
+      if(officialEdition && player.role.otherNightEdition) {
+        return player.role.otherNightEdition;
+	  }
+      return player.role.otherNight;
+    }
+    
+    
     const firstNight = [0];
     const otherNight = [0];
     fabled.forEach((role) => {
@@ -44,17 +62,17 @@ const getters = {
         otherNight.push(player);
       }
     });
-    // If x has an attribute 'role' (meaning x is a player), then, to know their night order, we look at x.role.firstNight or x.role.otherNight
+    // If x has an attribute 'role' (meaning x is a player), then, to know their night order, we use the getter functions above.
     // Else, (meaning x is instead a Fabled), to know their night order we look at x.firstNight or x.otherNight
     firstNight.sort(
       (a, b) =>
-        (a.role ? a.role.firstNight : a.firstNight) -
-        (b.role ? b.role.firstNight : b.firstNight),
+        (a.role ? getFirstNight(a, edition.isOfficial) : a.firstNight) -
+        (b.role ? getFirstNight(b, edition.isOfficial) : b.firstNight),
     );
     otherNight.sort(
       (a, b) =>
-        (a.role ? a.role.otherNight : a.otherNight) -
-        (b.role ? b.role.otherNight : b.otherNight),
+        (a.role ? getOtherNight(a, edition.isOfficial) : a.otherNight) -
+        (b.role ? getOtherNight(b, edition.isOfficial) : b.otherNight),
     );
     const nightOrder = new Map();
     players.forEach((player) => {

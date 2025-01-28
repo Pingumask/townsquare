@@ -96,6 +96,7 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 68,
+    "otherNightEdition": 65.5,
     "otherNightReminder": "If a player was executed today: Show that player\u2019s character token.",
     "reminders": [
       "Executed"
@@ -265,8 +266,10 @@
     "edition": "tb",
     "team": "minion",
     "firstNight": 65,
+    "firstNightEdition": 41,
     "firstNightReminder": "Show the Grimoire to the Spy for as long as they need.",
     "otherNight": 82,
+    "otherNightEdition": 18,
     "otherNightReminder": "Show the Grimoire to the Spy for as long as they need.",
     "reminders": [],
     "setup": false,
@@ -450,6 +453,7 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 12,
+    "otherNightEdition": 9,
     "otherNightReminder": "The previously protected and drunk players lose those markers. The Innkeeper points to two players. Those players are protected. One is drunk.",
     "reminders": [
       "Protected",
@@ -481,6 +485,7 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 51,
+    "otherNightEdition": 60,
     "otherNightReminder": "If the Gossip\u2019s public statement was true: Choose a player not protected from dying tonight. That player dies.",
     "reminders": [
       "Dead"
@@ -973,6 +978,7 @@
     "edition": "snv",
     "team": "townsfolk",
     "firstNight": 7,
+    "firstNightEdition": 24,
     "firstNightReminder": "The Philosopher either shows a 'no' head signal, or points to a good character on their sheet. If they chose a character: Swap the out-of-play character token with the Philosopher token and add the 'Is the Philosopher' reminder. If the character is in play, place the drunk marker by that player.",
     "otherNight": 4,
     "otherNightReminder": "If the Philosopher has not used their ability: the Philosopher either shows a 'no' head signal, or points to a good character on their sheet. If they chose a character: Swap the out-of-play character token with the Philosopher token and add the 'Is the Philosopher' reminder. If the character is in play, place the drunk marker by that player.",
@@ -1168,6 +1174,7 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 42,
+    "otherNightEdition": 38.5,
     "otherNightReminder": "The Vigormortis points to a player. That player dies. If a Minion, they keep their ability and one of their Townsfolk neighbours is poisoned.",
     "reminders": [
       "Dead",

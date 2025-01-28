@@ -96,6 +96,7 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 68,
+    "otherNightEdition": 65.5,
     "otherNightReminder": "Si un joueur est mort par execution aujourd'hui, indiquez le personnage du joueur exécuté.",
     "reminders": [
       "Executé"
@@ -265,9 +266,11 @@
     "edition": "tb",
     "team": "minion",
     "firstNight": 65,
-    "firstNightReminder": "Montrez votre grimoire à l'Espion aussi longtemps qu'il en a besoin.",
+    "firstNightEdition": 41,
+    "firstNightReminder": "Montrez le Grimoire à l'Espion aussi longtemps qu'il en a besoin.",
     "otherNight": 82,
-    "otherNightReminder": "Montrez votre grimoire à l'Espion aussi longtemps qu'il en a besoin.",
+    "otherNightEdition": 18,
+    "otherNightReminder": "Montrez le Grimoire à l'Espion aussi longtemps qu'il en a besoin.",
     "reminders": [],
     "setup": false,
     "ability": "Chaque nuit, vous voyez le Grimoire. Il se peut que vous apparaissiez comme bon et comme Villageois ou Étranger, même après votre mort."
@@ -451,6 +454,7 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 12,
+    "otherNightEdition": 9,
     "otherNightReminder": "Les joueurs Ivres et protégés désignés précédement ne le sont plus. L'Aubergiste désigne 2 joueurs. Ils sont protégés. L'un des 2 est Ivre.",
     "reminders": [
       "Protégé",
@@ -482,6 +486,7 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 51,
+    "otherNightEdition": 60,
     "otherNightReminder": "Si l'annonce publique de la Commère était vraie aujourd'hui, choisissez un joueur. Ce joueur meurt.",
     "reminders": [
       "Mort"
@@ -973,6 +978,7 @@
     "edition": "snv",
     "team": "townsfolk",
     "firstNight": 7,
+    "firstNightEdition": 24,
     "firstNightReminder": "Le Philosophe choisit s'il souhaite utiliser sa capacité. S'il le fait, il choisir un personnage Bon. Si ce personnage n'est pas en jeu, le philosophe gagne sa capacité. Sinon, ce personnage devient Ivre.",
     "otherNight": 4,
     "otherNightReminder": "S'il ne l'a pas encore fait, le Philosophe choisit s'il souhaite utiliser sa capacité. S'il le fait, il choisit un personnage Bon. Si ce personnage n'est pas en jeu, le philosophe gagne sa capacité. Sinon, ce personnage devient Ivre.",
@@ -1171,6 +1177,7 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 42,
+    "otherNightEdition": 38.5,
     "otherNightReminder": "Le Vigormortis désigne un joueur. Ce joueur meurt. Si c'est un Sbire, l'un de ses voisins Villageois est empoisonné.",
     "reminders": [
       "Mort",
