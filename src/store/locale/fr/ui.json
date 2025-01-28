@@ -207,10 +207,10 @@
       "minionInfoDescription": "S'il y a plusieurs Sbires, ils apprennent qui sont les autres Sbires. Indiquez aux Sbires qui est le Démon.",
       "demonInfo": "Info & Bluffs Démon",
       "demonInfoDescription": "Indiquez au Démon qui sont ses Sbires. Indiquez les rôles de 3 personnages bons qui ne sont pas en jeu.",
-      "dusk": "Tombée de la nuit",
+      "dusk": "Crépuscule",
       "duskDescription1": "Endormez les joueurs.",
       "duskDescription2": "Terminez la journée, et endormez les joueurs.",
-      "dawn": "Matin",
+      "dawn": "Aube",
       "dawnDescription1": "Réveillez les joueurs.",
       "dawnDescription2": "Réveillez les joueurs, puis annoncez qui est mort cette nuit.",
       "reference": "Afficher la Réference de rôles"
