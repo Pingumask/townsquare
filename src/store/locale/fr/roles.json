@@ -257,7 +257,7 @@
       "Empoisonné"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un joueur : il est empoisonné jusqu'à la tombée de la nuit."
+    "ability": "Chaque nuit, désignez un joueur : il est empoisonné pour cette nuit et le jour suivant."
   },
   {
     "id": "spy",
@@ -413,7 +413,7 @@
       "Ivre"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un joueur vivant : l'un de vous deux est Ivre jusqu'à la tombée de la nuit. Vous ne pouvez pas mourir."
+    "ability": "Chaque nuit, désignez un joueur vivant : l'un de vous deux est ivre jusqu'au crépuscule. Vous ne pouvez pas mourir."
   },
   {
     "id": "chambermaid",
@@ -457,7 +457,7 @@
       "Ivre"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez 2 joueurs : ils ne peuvent pas mourir cette nuit, mais l'un d'entre eux est Ivre jusqu'à la tombée de la nuit."
+    "ability": "Chaque nuit*, désignez 2 joueurs : ils ne peuvent pas mourir cette nuit, mais l'un d'entre eux est ivre jusqu'au crépuscule."
   },
   {
     "id": "gambler",
@@ -536,7 +536,7 @@
       "Tous Ivres"
     ],
     "setup": false,
-    "ability": "Quand un Sbire meurt par exécution, tous les autres joueurs (sauf les Voyageurs) sont Ivres jusqu'à la tombée de la nuit."
+    "ability": "Quand un Sbire meurt par exécution, tous les autres joueurs (sauf les Voyageurs) sont ivres jusqu'à demain au crépuscule."
   },
   {
     "id": "tealady",
@@ -624,7 +624,7 @@
       "Ivre"
     ],
     "setup": false,
-    "ability": "Chaque nuit, le premier joueur à vous désigner avec sa capacité est ivre jusqu'à la tombée de la nuit. Vous acquérez son alignement."
+    "ability": "Chaque nuit, le premier joueur à vous désigner avec sa capacité est ivre jusqu'au crépuscule. Vous acquérez son alignement."
   },
   {
     "id": "lunatic",
@@ -892,7 +892,7 @@
       "Anormal"
     ],
     "setup": false,
-    "ability": "Chaque nuit, vous apprenez combien de joueurs ont vu leurs capacités dysfonctionner (depuis le matin) à cause d'un autre personnage."
+    "ability": "Chaque nuit, vous apprenez combien de joueurs ont vu leurs capacités dysfonctionner (depuis l'aube) à cause d'un autre personnage."
   },
   {
     "id": "flowergirl",
@@ -1225,7 +1225,7 @@
       "Capacité doublée"
     ],
     "setup": false,
-    "ability": "Chaque nuit jusqu'à la suivante, 1) un joueur est sobre, sain et a de vraies infos, ou 2) sa capacité marche deux fois. Il apprend ce bonus."
+    "ability": "Chaque nuit jusqu'au crépuscule, 1) un joueur est sobre, sain et a de vraies infos, ou 2) sa capacité marche deux fois. Il apprend ce bonus."
   },
   {
     "id": "harlot",
@@ -1269,7 +1269,7 @@
       "Capacité Dispo"
     ],
     "setup": false,
-    "ability": "Une fois par partie, la nuit*, désignez un joueur mort : ce joueur dispose de sa capacité jusqu'à la nuit prochaine."
+    "ability": "Une fois par partie, la nuit*, désignez un joueur mort : il retrouve sa capacité jusqu'au crépuscule."
   },
   {
     "id": "deviant",
@@ -2056,7 +2056,7 @@
       "X"
     ],
     "setup": true,
-    "ability": "La nuit X, tous les Villageois sont empoisonnés jusqu'à la tombée de la nuit. [X Étrangers]"
+    "ability": Durant la nuit X, tous les Villageois sont empoisonnés jusqu'au crépuscule. [X Étrangers]"
   },
   {
     "id": "boffin",
