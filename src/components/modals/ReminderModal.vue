@@ -41,12 +41,14 @@ const store = useStore();
 const modals = computed(() => store.state.modals);
 const grimoire = computed(() => store.state.grimoire);
 const locale = computed(() => store.state.locale);
+const roles = computed(() => store.state.roles);
+const jinxes = computed(() => store.state.jinxes);
 const players = computed(() => store.state.players.players);
 
 const availableReminders = computed(() => {
   let reminders = [];
   const { players, bluffs } = store.state.players;
-  store.state.roles.forEach((role) => {
+  roles.value.forEach((role) => {
     // add reminders from player roles
     if (players.some((p) => p.role.id === role.id)) {
       reminders = [...reminders, ...role.reminders.map(mapReminder(role))];
@@ -72,6 +74,20 @@ const availableReminders = computed(() => {
   store.state.otherTravelers.forEach((role) => {
     if (players.some((p) => p.role.id === role.id)) {
       reminders = [...reminders, ...role.reminders.map(mapReminder(role))];
+    }
+  });
+  
+  // looking at the jinxes to potentially add  reminders
+  roles.value.forEach((role) => {
+    if (jinxes.value.get(role.id)) {
+      jinxes.value.get(role.id).forEach((reason, second) => {
+        if (typeof reason == "object" && roles.value.get(second)) {
+          reminders.push({
+            role: "djinn",
+            name: reason[1],
+          });
+        }
+      });
     }
   });
 
