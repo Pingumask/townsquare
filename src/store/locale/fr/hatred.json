@@ -155,7 +155,10 @@
       },
       {
         "id": "Damsel",
-        "reason": "Si l'Espion est (ou a été) en jeu, la Demoiselle est empoisonnée."
+        "reason": [
+          "Si l'Espion est (ou a été) en jeu, la Demoiselle est empoisonnée.",
+          "Empoisonnée"
+        ]
       }
     ]
   },
@@ -177,19 +180,31 @@
       },
       {
         "id": "Cult Leader",
-        "reason": "Si le Chaudronnier change un joueur mauvais en Gourou, celui-ci ne peut pas devenir bon par sa capacité."
+        "reason": [
+          "Si le Chaudronnier change un joueur mauvais en Gourou, celui-ci ne peut pas devenir bon par sa capacité.",
+          "Toujours mauvais"
+        ]
       },
       {
         "id": "Goon",
-        "reason": "Si le Chaudronnier change un joueur mauvais en Homme de main, celui-ci ne peut pas devenir bon par sa capacité."
+        "reason": [
+          "Si le Chaudronnier change un joueur mauvais en Homme de main, celui-ci ne peut pas devenir bon par sa capacité.",
+          "Toujours mauvais"
+        ]
       },
       {
         "id": "Ogre",
-        "reason": "Si le Chaudronnier change un joueur mauvais en Ogre, celui-ci ne peut pas devenir bon par sa capacité."
+        "reason": [
+          "Si le Chaudronnier change un joueur mauvais en Ogre, celui-ci ne peut pas devenir bon par sa capacité.",
+          "Toujours mauvais"
+        ]
       },
       {
         "id": "Politician",
-        "reason": "Si le Chaudronnier change un joueur mauvais en Politicien, celui-ci ne peut pas devenir bon par sa capacité."
+        "reason": [
+          "Si le Chaudronnier change un joueur mauvais en Politicien, celui-ci ne peut pas devenir bon par sa capacité.",
+          "Toujours mauvais"
+        ]
       },
       {
         "id": "Damsel",
@@ -355,7 +370,10 @@
       },
       {
         "id": "Cult Leader",
-        "reason": "Si le Démon a la capacité du Gourou, il ne peut pas devenir bon par sa capacité."
+        "reason": [
+          "Si le Démon a la capacité du Gourou, il ne peut pas devenir bon par sa capacité.",
+          "Toujours mauvais"
+        ]
       },
       {
         "id": "Alchemist",
@@ -363,7 +381,10 @@
       },
       {
         "id": "Goon",
-        "reason": "Si le Démon a la capacité de l'Homme de main, il ne peut pas devenir bon par sa capacité."
+        "reason": [
+          "Si le Démon a la capacité de l'Homme de main, il ne peut pas devenir bon par sa capacité.",
+          "Toujours mauvais"
+        ]
       },
       {
         "id": "Ogre",
@@ -396,7 +417,10 @@
       },
       {
         "id": "Damsel",
-        "reason": "Si la Veuve est (ou a été) en jeu, la Demoiselle est empoisonnée."
+        "reason": [
+          "Si la Veuve est (ou a été) en jeu, la Demoiselle est empoisonnée.",
+          "Empoisonnée"
+        ]
       }
     ]
   },
@@ -535,19 +559,31 @@
       },
       {
         "id": "Farmer",
-        "reason": "Chaque nuit*, le Léviathan désigne un bon joueur vivant (différent de toutes les nuits précédentes) : un Fermier ainsi désigné utilise sa capacité mais ne meurt pas."
+        "reason": [
+          "Chaque nuit*, le Léviathan désigne un bon joueur vivant (différent de toutes les nuits précédentes) : un Fermier ainsi désigné utilise sa capacité mais ne meurt pas.",
+          "Déjà désigné"
+        ]
       },
       {
         "id": "Ravenkeeper",
-        "reason": "Chaque nuit*, le Léviathan désigne un bon joueur vivant (différent de toutes les nuits précédentes) : un Ami des Corbeaux ainsi désigné utilise sa capacité mais ne meurt pas."
+        "reason": [
+          "Chaque nuit*, le Léviathan désigne un bon joueur vivant (différent de toutes les nuits précédentes) : un Ami des Corbeaux ainsi désigné utilise sa capacité mais ne meurt pas.",
+          "Déjà désigné"
+        ]
       },
       {
         "id": "Sage",
-        "reason": "Chaque nuit*, le Léviathan désigne un bon joueur vivant (différent de toutes les nuits précédentes) : un Sage ainsi désigné utilise sa capacité mais ne meurt pas."
+        "reason": [
+          "Chaque nuit*, le Léviathan désigne un bon joueur vivant (différent de toutes les nuits précédentes) : un Sage ainsi désigné utilise sa capacité mais ne meurt pas.",
+          "Déjà désigné"
+        ]
       },
       {
         "id": "Banshee",
-        "reason": "Chaque nuit*, le Léviathan désigne un bon joueur vivant (différent de toutes les nuits précédentes) : une Banshee ainsi désignée meurt et gagne sa capacité."
+        "reason": [
+          "Chaque nuit*, le Léviathan désigne un bon joueur vivant (différent de toutes les nuits précédentes) : une Banshee ainsi désignée meurt et gagne sa capacité.",
+          "Déjà désigné"
+        ]
       },
       {
         "id": "Mayor",
@@ -592,19 +628,31 @@
       },
       {
         "id": "Farmer",
-        "reason": "Chaque nuit*, l'Émeute désigne un bon joueur vivant (différent de toutes les nuits précédentes) : un Fermier ainsi désigné utilise sa capacité mais ne meurt pas."
+        "reason": [
+          "Chaque nuit*, l'Émeute désigne un bon joueur vivant (différent de toutes les nuits précédentes) : un Fermier ainsi désigné utilise sa capacité mais ne meurt pas.",
+          "Déjà désigné"
+        ]
       },
       {
         "id": "Ravenkeeper",
-        "reason": "Chaque nuit*, l'Émeute désigne un bon joueur vivant (différent de toutes les nuits précédentes) : un Ami des Corbeaux ainsi désigné utilise sa capacité mais ne meurt pas."
+        "reason": [
+          "Chaque nuit*, l'Émeute désigne un bon joueur vivant (différent de toutes les nuits précédentes) : un Ami des Corbeaux ainsi désigné utilise sa capacité mais ne meurt pas.",
+          "Déjà désigné"
+        ]
       },
       {
         "id": "Sage",
-        "reason": "Chaque nuit*, l'Émeute désigne un bon joueur vivant (différent de toutes les nuits précédentes) : un Sage ainsi désigné utilise sa capacité mais ne meurt pas."
+        "reason": [
+          "Chaque nuit*, l'Émeute désigne un bon joueur vivant (différent de toutes les nuits précédentes) : un Sage ainsi désigné utilise sa capacité mais ne meurt pas.",
+          "Déjà désigné"
+        ]
       },
       {
         "id": "Banshee",
-        "reason": "Chaque nuit*, l'Émeute désigne un bon joueur vivant (différent de toutes les nuits précédentes) : une Banshee ainsi désignée meurt et gagne sa capacité."
+        "reason": [
+          "Chaque nuit*, l'Émeute désigne un bon joueur vivant (différent de toutes les nuits précédentes) : une Banshee ainsi désignée meurt et gagne sa capacité.",
+          "Déjà désigné"
+        ]
       },
       {
         "id": "Mayor",
