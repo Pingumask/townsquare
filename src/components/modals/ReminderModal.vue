@@ -82,10 +82,12 @@ const availableReminders = computed(() => {
     if (jinxes.value.get(role.id)) {
       jinxes.value.get(role.id).forEach((reason, second) => {
         if (typeof reason == "object" && roles.value.get(second)) {
-          reminders.push({
-            role: "djinn",
-            name: reason[1],
-          });
+          for(let i=1 ; i<reason.length ; i++) {
+            reminders.push({
+              role: "djinn",
+              name: reason[i],
+            });
+          }
         }
       });
     }
