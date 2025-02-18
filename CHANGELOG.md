@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 
-
+- Adding useful reminders for some jinxes
 
 ### Version 4.1.0
 - Correcting a bug with the "give back token" update

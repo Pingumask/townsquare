@@ -46,7 +46,7 @@
           }"></span>
           <div class="role">
             <span class="name">{{ jinx.first.name }} & {{ jinx.second.name }}</span>
-            <span class="ability">{{ jinx.reason }}</span>
+            <span class="ability">{{ typeof jinx.reason == "string" ? jinx.reason : jinx.reason[0] }}</span>
           </div>
         </li>
         <li></li>
