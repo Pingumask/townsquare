@@ -314,14 +314,27 @@ const cancel = () => {
   }
 }
 
+@property --item {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --angle {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0deg;
+}
+
 @mixin on-circle($item-count) {
-  $angle: math.div(360, $item-count);
-  $rot: 0;
+  --angle: #{math.round(math.div(360, $item-count))};
 
   // rotation and tooltip placement
   @for $i from 1 through $item-count {
     &:nth-child(#{$i}) {
-      transform: rotate($rot * 1deg);
+      --item: #{$i - 1};
+
+      rotate: calc(var(--item) * var(--angle) * 1deg);
 
       $quarter: math.div($item-count, 4);
       $position: $i - 1;
@@ -420,7 +433,7 @@ const cancel = () => {
       }
 
       >* {
-        transform: rotate($rot * -1deg);
+        rotate: calc(var(--item) * var(--angle) * -1deg);
       }
 
       // animation cascade
@@ -449,8 +462,6 @@ const cancel = () => {
         }
       }
     }
-
-    $rot: $rot + $angle;
   }
 }
 
@@ -763,12 +774,12 @@ const cancel = () => {
 }
 
 .list-move {
-  transition: all 1s;
+  transition: all 2s;
 }
 
 .list-enter-active,
 .list-leave-active {
-  transition: all 1s ease;
+  transition: all 2s ease;
 }
 
 .list-enter-from,
