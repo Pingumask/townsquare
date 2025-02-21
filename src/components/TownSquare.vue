@@ -4,7 +4,7 @@
     spectator: session.isSpectator,
     vote: session.nomination,
   }">
-    <ul class="circle" :class="['size-' + players.length]">
+    <TransitionGroup tag="ul" name="list" class="circle" :class="['size-' + players.length]">
       <Player v-for="(player, index) in players" :key="index" :player="player" @trigger="handleTrigger(index, $event)"
         :class="{
           from: Math.max(swap, move, nominate) === index,
@@ -12,7 +12,7 @@
           move: move > -1,
           nominate: nominate > -1,
         }"></Player>
-    </ul>
+    </TransitionGroup>
 
     <div class="bluffs" v-if="players.length" ref="bluffs" :class="{ closed: !isBluffsOpen }">
       <h3>
@@ -865,6 +865,22 @@ export default {
       }
     }
   }
+
+  .list-move {
+    transition: all 1.5s;
+  }
+
+  .list-enter-active,
+  .list-leave-active {
+    transition: all 1.5s ease;
+  }
+
+  .list-enter-from,
+  .list-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
 }
 
 #townsquare:not(.spectator) .fabled ul li:hover .token:before {

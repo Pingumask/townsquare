@@ -9,11 +9,11 @@
     <video id="background" v-if="background && background.match(/\.(mp4|webm)$/i)" :src="background" autoplay
       loop></video>
     <div class="backdrop"></div>
-
-    <Intro v-if="!players.length"></Intro>
-    <TownInfo v-if="players.length && !session.nomination"></TownInfo>
-    <Vote v-if="session.nomination"></Vote>
-
+    <TransitionGroup name="blur">
+      <Intro v-if="!players.length"></Intro>
+      <TownInfo v-if="players.length && !session.nomination"></TownInfo>
+      <Vote v-if="session.nomination"></Vote>
+    </TransitionGroup>
     <TownSquare></TownSquare>
     <Menu ref="menuRef"></Menu>
     <EditionModal />
@@ -33,20 +33,20 @@
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import app from "../package.json";
-import TownSquare from "./components/TownSquare.vue";
-import TownInfo from "./components/TownInfo.vue";
-import Menu from "./components/Menu.vue";
-import RolesModal from "./components/modals/RolesModal.vue";
-import EditionModal from "./components/modals/EditionModal.vue";
-import Intro from "./components/Intro.vue";
-import ReferenceModal from "./components/modals/ReferenceModal.vue";
-import Vote from "./components/Vote.vue";
 import Gradients from "./components/Gradients.vue";
-import NightOrderModal from "./components/modals/NightOrderModal.vue";
+import Intro from "./components/Intro.vue";
+import Menu from "./components/Menu.vue";
+import EditionModal from "./components/modals/EditionModal.vue";
 import FabledModal from "./components/modals/FabledModal.vue";
-import VoteHistoryModal from "./components/modals/VoteHistoryModal.vue";
 import GameStateModal from "./components/modals/GameStateModal.vue";
+import NightOrderModal from "./components/modals/NightOrderModal.vue";
+import ReferenceModal from "./components/modals/ReferenceModal.vue";
+import RolesModal from "./components/modals/RolesModal.vue";
 import SpecialVoteModal from "./components/modals/SpecialVoteModal.vue";
+import VoteHistoryModal from "./components/modals/VoteHistoryModal.vue";
+import TownInfo from "./components/TownInfo.vue";
+import TownSquare from "./components/TownSquare.vue";
+import Vote from "./components/Vote.vue";
 
 const store = useStore();
 const version = app.version;
