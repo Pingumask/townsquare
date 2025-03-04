@@ -469,7 +469,7 @@ export default {
   $rot: 0;
 
   // rotation and tooltip placement
-  @for $i from 1 through $item-count {
+  @for $i from 1 through $item-count+1 {
     &:nth-child(#{$i}) {
       transform: rotate($rot * 1deg);
 
@@ -872,17 +872,22 @@ export default {
 }
 
 .list-move {
-  transition: all 1s;
+  transition: transform 1.5s;
 }
 
 .list-enter-active,
 .list-leave-active {
-  transition: all 1s ease;
+  transition: all 2s ease;
+  >* {
+    transition: all 2s ease;
+    scale: 1;
+  }
 }
 
 .list-enter-from,
 .list-leave-to {
-  opacity: 0;
-  // transform: translateX(30px);
+  >* {
+    scale: 0;
+  }
 }
 </style>

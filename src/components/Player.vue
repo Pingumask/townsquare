@@ -94,7 +94,7 @@
         </div>
       </div>
 
-      <transition name="fold">
+      <Transition name="fold">
         <ul class="menu" v-if="isMenuOpen">
           <li @click="changePronouns" v-if="
             !session.isSpectator ||
@@ -149,7 +149,7 @@
             <template v-else> {{ locale.player.occupiedSeat }}</template>
           </li>
         </ul>
-      </transition>
+      </Transition>
     </div>
 
     <template v-if="props.player.reminders">
