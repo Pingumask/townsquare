@@ -17,6 +17,7 @@
       <ul>
         <li class="tabs" :class="tab">
           <font-awesome-icon icon="book-open" class="fa fa-book-open" @click="tab = 'grimoire'" />
+		  <font-awesome-icon icon="star-half-stroke" class="fa fa-star" v-if="!session.isSpectator" @click="tab = 'special'" />
           <font-awesome-icon :icon="['fas', 'tower-broadcast']" class="fa fa-tower-broadcast"
             @click="tab = 'session'" />
           <font-awesome-icon icon="users" class="fa fa-users" v-if="!session.isSpectator" @click="tab = 'players'" />
@@ -40,15 +41,6 @@
           <li @click="toggleRinging" v-if="!session.isSpectator">
             {{ locale.menu.grimoire.ringBell }}
             <em>[B]</em>
-          </li>
-          <li @click="toggleOrganVoteMode" v-if="!session.isSpectator">
-            {{ locale.menu.grimoire.organGrinder }}
-            <em>
-              <font-awesome-icon :icon="[
-                'fas',
-                grimoire.isOrganVoteMode ? 'check-square' : 'square',
-              ]" />
-            </em>
           </li>
           <li @click="toggleNightOrder" v-if="session.isSpectator">
             {{ locale.menu.grimoire.order }}
@@ -92,6 +84,29 @@
           <li @click="toggleMuted">
             {{ locale.menu.grimoire.mute }}
             <em><font-awesome-icon :icon="['fas', grimoire.isMuted ? 'volume-mute' : 'volume-up']" /></em>
+          </li>
+        </template>
+        
+        <template v-if="tab === 'special' && !session.isSpectator">
+          <!-- Special -->
+          <li class="headline">{{ locale.menu.special.title }}</li>
+          <li @click="toggleReversedAlignment" v-if="!session.isSpectator">
+            {{ locale.menu.special.reversedAlignment }}
+            <em>
+              <font-awesome-icon :icon="[
+                'fas',
+                grimoire.reversedAlignment ? 'check-square' : 'square',
+              ]" />
+            </em>
+          </li>
+          <li @click="toggleOrganVoteMode" v-if="!session.isSpectator">
+            {{ locale.menu.special.secretVote }}
+            <em>
+              <font-awesome-icon :icon="[
+                'fas',
+                grimoire.isOrganVoteMode ? 'check-square' : 'square',
+              ]" />
+            </em>
           </li>
         </template>
 
@@ -341,6 +356,10 @@ const toggleNight = () => {
   }
 };
 
+const toggleReversedAlignment = () => {
+  store.commit('toggleReversedAlignment');
+};
+
 const toggleOrganVoteMode = () => {
   store.commit('toggleOrganVoteMode');
 };
@@ -514,6 +533,7 @@ defineExpose({
         }
 
         &.grimoire .fa-book-open,
+        &.special .fa-star,
         &.players .fa-users,
         &.characters .fa-theater-masks,
         &.session .fa-tower-broadcast,
