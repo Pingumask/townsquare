@@ -75,6 +75,7 @@ const allowMultiple = ref(false);
 const roles = computed(() => store.state.roles);
 const modals = computed(() => store.state.modals);
 const locale = computed(() => store.state.locale);
+const grimoire = computed(() => store.state.grimoire);
 const players = computed(() => store.state.players.players);
 const fabled = computed(() => store.state.players.fabled);
 const nonTravelers = computed(() => store.getters['players/nonTravelers']);
@@ -128,6 +129,7 @@ const selectRandomRoles = () => {
 };
 
 const assignRoles = () => {
+  let reversedAlignment = false;
   if (selectedRoles.value <= nonTravelers.value && selectedRoles.value) {
     // generate list of selected roles and randomize it
     const roles = Object.values(roleSelection.value)
@@ -144,13 +146,22 @@ const assignRoles = () => {
     players.value.forEach((player) => {
       if (player.role.team !== "traveler" && roles.length) {
         const value = roles.pop();
+        if(value.reversedAlignment) {
+          reversedAlignment = true;
+        }
         store.commit("players/update", {
           player,
           property: "role",
           value,
         });
+        store.commit("players/update", {
+          player,
+          property: "alignment",
+          value: "auto",
+        });
       }
     });
+    store.commit("toggleReversedAlignment", reversedAlignment);
     store.commit("toggleModal", "roles");
   }
 };
