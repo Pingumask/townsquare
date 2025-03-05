@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 
-
+- Allowing marking an alignment change by changing icons' colours
 
 ### Version 4.1.0
 - Correcting a bug with the "give back token" update
