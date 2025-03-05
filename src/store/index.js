@@ -108,13 +108,14 @@ const initializeStore = async () => {
         isMuted: false,
         isImageOptIn: false,
         isStreamerMode: false,
-        isOrganVoteMode: false,
         zoom: 0,
         background: "",
         timer: {
           name: "",
           duration: 0,
         },
+        isOrganVoteMode: false,
+        reversedAlignment: false,
       },
       modals: {
         edition: false,
@@ -179,6 +180,7 @@ const initializeStore = async () => {
       toggleImageOptIn: toggle("isImageOptIn"),
       toggleStreamerMode: toggle("isStreamerMode"),
       toggleOrganVoteMode: toggle("isOrganVoteMode"),
+      toggleReversedAlignment: toggle("reversedAlignment"),
       setTimer(state, timer) {
         state.grimoire.timer = timer;
       },
