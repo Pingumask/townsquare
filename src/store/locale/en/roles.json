@@ -623,6 +623,7 @@
       "Drunk"
     ],
     "setup": false,
+    "canChangeTeam": true,
     "ability": "Each night, the 1st player to choose you with their ability is drunk until dusk. You become their alignment."
   },
   {
@@ -1068,6 +1069,7 @@
       "Haircuts tonight"
     ],
     "setup": false,
+    "reversedAlignment": true,
     "ability": "If you died today or tonight, the Demon may choose 2 players (not another Demon) to swap characters."
   },
   {
@@ -1142,6 +1144,7 @@
       "Dead"
     ],
     "setup": false,
+    "reversedAlignment": true,
     "ability": "Each night*, choose a player & a character they become (if not-in-play). If a Demon is made, deaths tonight are arbitrary."
   },
   {
@@ -1311,6 +1314,7 @@
       "Know"
     ],
     "setup": true,
+    "reversedAlignment": true,
     "ability": "You start knowing 1 evil player. If the player you know dies, you learn another evil player tonight. [1 Townsfolk is evil]"
   },
   {
@@ -1399,6 +1403,7 @@
     "otherNightReminder": "If the cult leader changed alignment, show them the thumbs up good signal of the thumbs down evil signal accordingly.",
     "reminders": [],
     "setup": false,
+    "canChangeTeam": true,
     "ability": "Each night, you become the alignment of an alive neighbour. If all good players choose to join your cult, your team wins."
   },
   {
@@ -1925,6 +1930,7 @@
       "No ability"
     ],
     "setup": false,
+    "reversedAlignment": true,
     "ability": "You start knowing a secret word. The 1st good player to say this word becomes evil that night."
   },
   {
@@ -1941,6 +1947,7 @@
       "No ability"
     ],
     "setup": false,
+    "reversedAlignment": true,
     "ability": "You start knowing a secret word. The 1st good player to say this word becomes evil that night."
   },
   {
