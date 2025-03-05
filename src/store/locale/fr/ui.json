@@ -13,8 +13,12 @@
       "streamerMode": "Mode Streamer",
       "animations": "Effets réduits",
       "mute": "Silencieux",
-      "ringBell": "Sonner Clocher",
-      "organGrinder": "Vote d'Organiste"
+      "ringBell": "Sonner Clocher"
+    },
+    "special": {
+      "title": "Spécial",
+      "reversedAlignment": "Alignement inversé",
+      "secretVote": "Vote secret"
     },
     "session": {
       "title": {
@@ -90,6 +94,7 @@
     "secondsBetweenVotes": "secondes par vote",
     "handDown": "Baisser la Main",
     "handUp": "Lever la Main",
+    "alignment": "Inverser l'alignement",
     "seatToVote": "Asseyez-vous pour pouvoir voter",
     "doVote": "Votez"
   },
