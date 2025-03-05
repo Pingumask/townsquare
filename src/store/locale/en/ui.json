@@ -13,8 +13,12 @@
       "streamerMode": "Streamer Mode",
       "animations": "Disable Animations",
       "mute": "Mute Sounds",
-      "ringBell": "Ring Bell",
-      "organGrinder ": "Organ Grinder Vote"
+      "ringBell": "Ring Bell"
+    },
+    "special": {
+      "title": "Special",
+      "reversedAlignment": "Reversed Alignment",
+      "secretVote ": "Secret Vote"
     },
     "session": {
       "title": {
@@ -90,6 +94,7 @@
     "secondsBetweenVotes": "seconds between votes",
     "handDown": "Hand DOWN",
     "handUp": "Hand UP",
+    "alignment": "Switch alignment",
     "seatToVote": "Pleas claim a seat to vote",
     "doVote": "Go"
   },
