@@ -33,7 +33,7 @@
         </span>
       </div>
 
-      <Token :role="props.player.role" @set-role="$emit('trigger', ['openRoleModal'])" />
+      <Token :role="props.player.role" :alignment="props.player.alignment" @set-role="$emit('trigger', ['openRoleModal'])" />
 
       <!-- Overlay icons -->
       <div class="overlay">
@@ -69,6 +69,18 @@
         <font-awesome-icon icon="hand-point-right" class="fa fa-hand-point-right nominate"
           @click="nominatePlayer(props.player)" :title="locale.player.nominate" />
       </div>
+	  
+	  
+	  <!-- Alignment swicth icon -->
+	  <font-awesome-icon v-if="
+        !session.isSpectator &&
+		props.player.role.id &&
+        (
+          grimoire.reversedAlignment ||
+          props.player.role.team === 'traveler' ||
+          props.player.role.canChangeTeam
+        )
+      " icon="arrows-rotate" class="switch" :title="locale.player.alignment" @click="switchAlignment()" />
 
       <!-- Claimed seat icon -->
       <font-awesome-icon icon="chair" class="fa fa-chair seat" v-if="props.player.id && session.sessionId"
@@ -257,6 +269,22 @@ function changeName() {
   if (session.value.isSpectator) return;
   const name = prompt("Player name", props.player.name) || props.player.name;
   updatePlayer("name", name, true);
+}
+
+function switchAlignment() {
+  if(props.player.alignment === "auto") {
+    if(props.player.role.team === "townsfolk" || props.player.role.team === "outsider") {
+      props.player.alignment = "evil";
+    } else {
+      props.player.alignment = "good";
+    }
+  } else if(props.player.alignment === "good") {
+    props.player.alignment = "evil";
+  } else if(props.player.role.team === "traveler") {
+    props.player.alignment = "auto";
+  } else {
+    props.player.alignment = "good";
+  }
 }
 
 function removeReminder(reminder) {
@@ -621,6 +649,15 @@ li.move:not(.from) .player .overlay svg.move {
   margin-top: -15%;
   right: 2px;
 }
+
+
+.switch {
+  color: #a811cf;
+  position: absolute;
+  top: 2px;
+  right: -12px;
+}
+
 
 /****** Session seat glow *****/
 @mixin glow($name, $color) {

@@ -2,6 +2,7 @@ const NEWPLAYER = {
   name: "",
   id: "",
   role: {},
+  alignment: "auto",
   reminders: [],
   voteToken: false,
   isDead: false,
@@ -86,6 +87,7 @@ const actions = {
         if (player.role.team !== "traveler") {
           player.role = {};
         }
+        player.alignment = "auto";
         player.reminders = [];
         return player;
       });

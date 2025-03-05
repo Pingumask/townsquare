@@ -32,6 +32,10 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
+  alignment: {
+    type: String,
+    default: "auto",
+  },
   unchecked: {
     type: Boolean,
     default: false,
@@ -49,11 +53,29 @@ const reminderLeaves = computed(() => {
   );
 });
 
+// Assuming that alignment is "good" or "evil", and that the role isn't null, returns true if this alignment matchs the type of the role
+const correctAlignment = computed(() => {
+  if(props.alignment === "good") {
+    return props.role.team === "townsfolk" || props.role.team === "outsider";
+  }
+  else {
+    return props.role.team === "minion" || props.role.team === "demon";
+  }
+});
+
 const rolePath = computed(() => {
-  return new URL(
-    `../assets/icons/${props.role.imageAlt || props.role.id}.png`,
-    import.meta.url,
-  ).href;
+  if(props.alignment === "auto" || correctAlignment.value) {
+    return new URL(
+      `../assets/icons/${props.role.imageAlt || props.role.id}.png`,
+      import.meta.url,
+    ).href;
+  }
+  else {
+    return new URL(
+      `../assets/icons/${props.alignment}/${props.role.imageAlt || props.role.id}.png`,
+      import.meta.url,
+    ).href;
+  }
 });
 
 const nameToFontSize = computed(() => {
