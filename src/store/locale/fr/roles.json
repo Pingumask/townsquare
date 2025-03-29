@@ -1822,7 +1822,7 @@
     "otherNight": 52,
     "otherNightReminder": "À la mort du Chapelier, effacez les rôles des Sbires et des Démons. Réveillez-les l'un après l'autre, en leur demandant à chacun le personnage qu'il souhaite devenir. Si l'un d'eux demande le même personnage qu'un joueur qui a déjà choisi, demandez-lui de choisir un autre rôle. Modifier les rôles de ces joueurs en conséquence.",
     "reminders": [
-      "Heure du Thé"
+      "Thé cette nuit"
     ],
     "setup": false,
     "ability": "Si vous êtes mort aujourd'hui (de jour comme de nuit), les Sbires et Démons peuvent choisir de devenir d'autres Sbires et Démons."
