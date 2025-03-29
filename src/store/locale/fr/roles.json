@@ -113,7 +113,7 @@
     "otherNight": 17,
     "otherNightReminder": "Le joueur précédement protégé ne l'est plus. Le Moine désigne un joueur (autre que lui-même). Marquez ce joueur comme protégé.",
     "reminders": [
-      "Protégé"
+      "À l'abri"
     ],
     "setup": false,
     "ability": "Chaque nuit*, désignez un joueur (autre que vous-même) : il est à l'abri du Démon cette nuit."
@@ -453,7 +453,7 @@
     "otherNight": 12,
     "otherNightReminder": "Les joueurs Ivres et protégés désignés précédement ne le sont plus. L'Aubergiste désigne 2 joueurs. Ils sont protégés. L'un des 2 est Ivre.",
     "reminders": [
-      "Protégé",
+      "À l'abri",
       "Ivre"
     ],
     "setup": false,
