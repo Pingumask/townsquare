@@ -1457,6 +1457,7 @@
     "otherNight": 7,
     "otherNightReminder": "The Engineer shows a 'no' head signal, or points to a Demon or points to the relevant number of Minions. If the Engineer chose characters, replace the Demon or Minions with the choices, then wake the relevant players and show them the 'You are' card and the relevant character tokens.",
     "reminders": [
+      "Changed",
       "No ability"
     ],
     "setup": false,
