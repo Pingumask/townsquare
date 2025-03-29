@@ -2114,7 +2114,7 @@
     "otherNightReminder": "La Ssangssue désigne un joueur. Ce joueur meurt.",
     "reminders": [
       "Mort",
-      "Empoisonné permanent"
+      "Empoisonné"
     ],
     "setup": false,
     "ability": "Chaque nuit*, désignez un joueur : il meurt. Votre 1re nuit, désignez un vivant : il est empoisonné. Vous mourez (seulement) s'il est mort."
