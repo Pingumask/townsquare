@@ -1218,8 +1218,8 @@
     "otherNight": 3,
     "otherNightReminder": "Choose a player, wake them and tell them which Barista power is affecting them. Treat them accordingly (sober/healthy/true info or activate their ability twice).",
     "reminders": [
-      "Sober & Healthy",
-      "Ability twice"
+      "Sober and Healthy",
+      "Acts twice"
     ],
     "setup": false,
     "ability": "Each night, until dusk, 1) a player becomes sober, healthy and gets true info, or 2) their ability works twice. They learn which."
