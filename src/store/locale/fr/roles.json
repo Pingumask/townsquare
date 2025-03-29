@@ -1221,8 +1221,8 @@
     "otherNight": 3,
     "otherNightReminder": "Choisissez un joueur, reveillez-le et indiquez-lui s'il est sobre et sain ou s'il bénéficie de double capacité. Traitez-le en conséquence.",
     "reminders": [
-      "Sobriété & Santé",
-      "Capacité doublée"
+      "Sobre et Sain",
+      "Agit deux fois"
     ],
     "setup": false,
     "ability": "Chaque nuit jusqu'à la suivante, 1) un joueur est sobre, sain et a de vraies infos, ou 2) sa capacité marche deux fois. Il apprend ce bonus."
