@@ -499,9 +499,9 @@
     "otherNight": 11,
     "otherNightReminder": "S'il ne l'a pas déjà fait, Le Courtisan décide d'utiliser ou non sa capacité. S'il le fait, il désigne un personnage : si ce personnage est en jeu, il devient Ivre pour 3 jours et 3 nuits.",
     "reminders": [
-      "Ivre 3",
-      "Ivre 2",
       "Ivre 1",
+      "Ivre 2",
+      "Ivre 3",
       "Épuisé"
     ],
     "setup": false,
