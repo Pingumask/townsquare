@@ -713,6 +713,7 @@
     "otherNight": 34,
     "otherNightReminder": "Si personne n'est mort aujourd'hui, Le Zombuul désigne un joueur. Ce joueur meurt.",
     "reminders": [
+      "Mort aujourd'hui",
       "Mort"
     ],
     "setup": false,
