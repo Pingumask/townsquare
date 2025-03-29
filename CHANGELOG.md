@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 
-
+- Updating the text on some reminders (to use official wording and have a french version similar to this official wording)
 
 ### Version 4.1.0
 - Correcting a bug with the "give back token" update
