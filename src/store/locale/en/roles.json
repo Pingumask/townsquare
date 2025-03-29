@@ -1352,7 +1352,7 @@
     "otherNight": 8,
     "otherNightReminder": "The Preacher chooses a player. If a Minion is chosen, wake the Minion and show the 'This character selected you' card and then the Preacher token.",
     "reminders": [
-      "At a sermon"
+      "No ability"
     ],
     "setup": false,
     "ability": "Each night, choose a player: a Minion, if chosen, learns this. All chosen Minions have no ability."
