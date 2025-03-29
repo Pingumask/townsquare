@@ -669,7 +669,7 @@
     "otherNight": 19,
     "otherNightReminder": "L'avocat du Diable désigne un joueur vivant différent de la nuit précédente. Si ce joueur est executé demain, il ne meurt pas.",
     "reminders": [
-      "Non Exécutable"
+      "Survit si exécuté"
     ],
     "setup": false,
     "ability": "Chaque nuit, désignez un joueur vivant (différent de la nuit précédente) : s'il est exécuté demain, il ne meurt pas."
