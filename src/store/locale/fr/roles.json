@@ -1156,9 +1156,7 @@
     "otherNightReminder": "Le Fang Gu désigne un joueur. Si ce joueur n'est pas un Étranger, il meurt. Si ce personnage est un Étranger et qu'il n'y a qu'un seul Fang gu en jeu, le Fang Gu meurt à la place du joueur désigné. Le joueur désigné devient un Fang Gu et rejoint l'équipe des Mauvais. Réveillez le nouveau Fang Gu. Indiquez-lui son nouveau rôle.",
     "reminders": [
       "Mort",
-      "Démon",
-      "Mauvais",
-      "Épuisé"
+      "Utilisé"
     ],
     "setup": true,
     "ability": "Chaque nuit*, désignez un joueur : il meurt. Le 1er Étranger tué ainsi devient un mauvais Fang Gu et vous mourez à sa place. [+1 Étranger]"
