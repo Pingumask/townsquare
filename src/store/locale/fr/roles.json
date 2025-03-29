@@ -438,7 +438,7 @@
     "otherNight": 29,
     "otherNightReminder": "L'Exorciste désigne un joueur, différent de la nuit précédente. Si ce joueur est le Démon, informez celui-ci qu'il a été identifié par l'Exorciste et dévoilez-lui qui est l'Exorciste. Ne réveillez pas le Démon pour utiliser sa capacité cette nuit.",
     "reminders": [
-      "Exorcisé"
+      "Désigné"
     ],
     "setup": false,
     "ability": "Chaque nuit*, désignez un joueur (différent de la nuit précédente) : si choisi, le Démon apprend qui vous êtes et ne se réveille pas cette nuit."
