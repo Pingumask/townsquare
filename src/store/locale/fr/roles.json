@@ -2004,7 +2004,7 @@
     "otherNightReminder": "Réveillez la Harpie. Elle désigne deux joueurs, l'un après l'autre. Réveillez le premier joueur, et lui révéler qu'il est persuadé par la Harpie que le deuxième est mauvais.",
     "reminders": [
       "Persuadé",
-      "2e"
+      "2nd"
     ],
     "setup": false,
     "ability": "Chaque nuit, désignez deux joueurs : demain, le premier sera persuadé que le second est mauvais, ou il se peut que l'un ou les deux meurent."
