@@ -920,8 +920,8 @@
     "otherNight": 71,
     "otherNightReminder": "Indiquez si un Sbire a accusé accusation aujourd'hui",
     "reminders": [
-      "A Accusé",
-      "N'a pas accusé"
+      "Sbire a accusé",
+      "Sbire n'a pas accusé"
     ],
     "setup": false,
     "ability": "Chaque nuit*, vous apprenez si un Sbire a accusé aujourd'hui."
