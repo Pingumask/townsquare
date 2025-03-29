@@ -904,8 +904,8 @@
     "otherNight": 70,
     "otherNightReminder": "Indiquez si le Démon a voté ou non aujourd'hui.",
     "reminders": [
-      "Démon Votant",
-      "Démon Abstenu"
+      "Démon a voté",
+      "Démon n'a pas voté"
     ],
     "setup": false,
     "ability": "Chaque nuit*, vous apprenez si un Démon a voté aujourd'hui."
