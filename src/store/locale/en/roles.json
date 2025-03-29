@@ -113,7 +113,7 @@
     "otherNight": 17,
     "otherNightReminder": "The previously protected player is no longer protected. The Monk points to a player not themself. Mark that player 'Protected'.",
     "reminders": [
-      "Protected"
+      "Safe"
     ],
     "setup": false,
     "ability": "Each night*, choose a player (not yourself): they are safe from the Demon tonight."
@@ -452,7 +452,7 @@
     "otherNight": 12,
     "otherNightReminder": "The previously protected and drunk players lose those markers. The Innkeeper points to two players. Those players are protected. One is drunk.",
     "reminders": [
-      "Protected",
+      "Safe",
       "Drunk"
     ],
     "setup": false,
