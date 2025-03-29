@@ -98,7 +98,7 @@
     "otherNight": 68,
     "otherNightReminder": "Si un joueur est mort par execution aujourd'hui, indiquez le personnage du joueur exécuté.",
     "reminders": [
-      "Executé"
+      "Mort aujourd'hui"
     ],
     "setup": false,
     "ability": "Chaque nuit*, vous apprenez quel personnage est mort par exécution aujourd’hui."

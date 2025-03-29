@@ -96,9 +96,9 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 68,
-    "otherNightReminder": "If a player was executed today: Show that player\u2019s character token.",
+    "otherNightReminder": "If a player died by executed today: Show that player\u2019s character token.",
     "reminders": [
-      "Executed"
+      "Died today"
     ],
     "setup": false,
     "ability": "Each night*, you learn which character died by execution today."
