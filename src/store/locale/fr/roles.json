@@ -1736,7 +1736,7 @@
     "otherNightReminder": "",
     "reminders": [
       "Ivre Permanent",
-      "Épuisé"
+      "Essai utilisé"
     ],
     "setup": false,
     "ability": "Un joueur est Ivre de façon permanente, même après votre mort. Une fois par partie, en privé, vous pouvez tenter de deviner qui est le joueur Ivre. Si vous voyez juste, le Narrateur vous dévoile qui est le Démon, si vous vous trompez, il vous indique un autre joueur comme étant le Démon."
@@ -1764,7 +1764,7 @@
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [
-      "Épuisé"
+      "Essai utilisé"
     ],
     "setup": false,
     "ability": "Tous les Sbires savent qu'une Demoiselle est en jeu. Si un Sbire devine publiquement qui vous êtes (un seul essai), votre équipe perd."
