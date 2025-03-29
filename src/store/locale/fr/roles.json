@@ -889,7 +889,7 @@
     "otherNight": 86,
     "otherNightReminder": "Indiquez combien de joueurs ont vu leurs capacités dysfonctionner (depuis le matin) à cause d'un autre personnage.",
     "reminders": [
-      "Anormal"
+      "Dysfonctionnement"
     ],
     "setup": false,
     "ability": "Chaque nuit, vous apprenez combien de joueurs ont vu leurs capacités dysfonctionner (depuis le matin) à cause d'un autre personnage."
