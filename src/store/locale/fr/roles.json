@@ -1066,7 +1066,7 @@
     "otherNight": 53,
     "otherNightReminder": "Si le Barbier est mort aujourd'hui, réveillez le Démon. Le Démon désigne 2 joueurs : reveillez ces joueurs et informez-les de leur nouveau personnage.",
     "reminders": [
-      "Échanges"
+      "Rasage cette nuit"
     ],
     "setup": false,
     "ability": "Si vous êtes mort aujourd'hui (de jour ou de nuit), le Démon peut désigner 2 joueurs (pas 1 autre Démon) et échanger leur personnage."
