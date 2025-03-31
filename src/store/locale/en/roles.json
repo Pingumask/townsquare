@@ -113,7 +113,7 @@
     "otherNight": 17,
     "otherNightReminder": "The previously protected player is no longer protected. The Monk points to a player not themself. Mark that player 'Protected'.",
     "reminders": [
-      "Protected"
+      "Safe"
     ],
     "setup": false,
     "ability": "Each night*, choose a player (not yourself): they are safe from the Demon tonight."
@@ -216,6 +216,7 @@
       "Drunk"
     ],
     "setup": true,
+    "forbidden": true,
     "ability": "You do not know you are the Drunk. You think you are a Townsfolk character, but you are not."
   },
   {
@@ -452,7 +453,7 @@
     "otherNight": 12,
     "otherNightReminder": "The previously protected and drunk players lose those markers. The Innkeeper points to two players. Those players are protected. One is drunk.",
     "reminders": [
-      "Protected",
+      "Safe",
       "Drunk"
     ],
     "setup": false,
@@ -640,6 +641,7 @@
       "Chosen"
     ],
     "setup": false,
+    "forbidden": true,
     "ability": "You think you are a Demon, but you are not. The Demon knows who you are & who you choose at night."
   },
   {
@@ -1913,6 +1915,7 @@
   },
   {
     "id": "mephit",
+    "outOfDate": true,
     "name": "Mezepheles",
     "edition": "",
     "team": "minion",
@@ -1957,6 +1960,7 @@
       "Is the Marionette"
     ],
     "setup": true,
+    "forbidden": true,
     "ability": "You think you are a good character but you are not. The Demon knows who you are. [You neighbour the Demon]"
   },
   {
@@ -1986,7 +1990,7 @@
       "Used vote"
     ],
     "setup": false,
-    "ability": "All players keep their eyes closed when voting & the vote tally is secret. Each night, choose if you are drunk or not."
+    "ability": "All players keep their eyes closed when voting and the vote tally is secret. Each night, choose if you are drunk until dusk."
   },
   {
     "id": "summoner",
@@ -2096,6 +2100,7 @@
       "Dead"
     ],
     "setup": true,
+    "forbidden": true,
     "ability": "Each night, Minions choose who babysits Lil' Monsta & 'is the Demon'. Each night*, a player might die. [+1 Minion]"
   },
   {
