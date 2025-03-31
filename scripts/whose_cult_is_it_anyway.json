@@ -1,7 +1,7 @@
 [
   {
     "id": "_meta",
-    "name": "Whose Cult is it Anyway",
+    "name": "Whose Cult Is It Anyway?",
     "author": "Aero"
   },
   {
@@ -11,19 +11,19 @@
     "id": "pixie"
   },
   {
-    "id": "king"
+    "id": "balloonist"
+  },
+  {
+    "id": "preacher"
   },
   {
     "id": "villageidiot"
   },
   {
-    "id": "balloonist"
+    "id": "king"
   },
   {
     "id": "cultleader"
-  },
-  {
-    "id": "fortuneteller"
   },
   {
     "id": "oracle"
@@ -38,13 +38,10 @@
     "id": "seamstress"
   },
   {
-    "id": "choirboy"
-  },
-  {
     "id": "cannibal"
   },
   {
-    "id": "puzzlemaster"
+    "id": "choirboy"
   },
   {
     "id": "recluse"
@@ -53,7 +50,10 @@
     "id": "mutant"
   },
   {
-    "id": "hatter"
+    "id": "zealot"
+  },
+  {
+    "id": "puzzlemaster"
   },
   {
     "id": "witch"
@@ -74,10 +74,25 @@
     "id": "nodashii"
   },
   {
-    "id": "vortox"
+    "id": "fanggu"
   },
   {
-    "id": "fanggu"
+    "id": "lordoftyphon"
+  },
+  {
+    "id": "harlot"
+  },
+  {
+    "id": "butcher"
+  },
+  {
+    "id": "bonecollector"
+  },
+  {
+    "id": "beggar"
+  },
+  {
+    "id": "bishop"
   },
   {
     "id": "stormcatcher"
