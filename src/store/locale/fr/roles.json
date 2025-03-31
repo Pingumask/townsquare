@@ -216,6 +216,7 @@
       "Ivrogne"
     ],
     "setup": true,
+    "forbidden": true,
     "ability": "Vous ne savez pas que vous êtes l'Ivrogne. Vous croyez être un personnage Villageois, mais vous ne l'êtes pas."
   },
   {
@@ -641,6 +642,7 @@
       "Désigné"
     ],
     "setup": true,
+    "forbidden": true,
     "ability": "Vous croyez être un Démon, mais vous ne l'êtes pas. Le Démon sait qui vous êtes et qui vous désignez chaque nuit."
   },
   {
@@ -1098,7 +1100,7 @@
       "Jumeau"
     ],
     "setup": false,
-    "ability": "Vous & un adversaire savez vos personnages respectifs. Si le bon est exécuté, les mauvais gagnent. Le bien ne peut gagner si vous 2 vivez."
+    "ability": "Vous savez le personnage d'un adversaire, qui vous connaît. Si le bon est exécuté, le mal gagne. Le bien ne peut gagner si vous 2 vivez."
   },
   {
     "id": "witch",
@@ -1299,7 +1301,7 @@
       "Connu"
     ],
     "setup": false,
-    "ability": "Vous commencez la partie en connaissant les noms de 3 joueurs, un seul parmi ces 3 joueurs est Mauvais."
+    "ability": "Vous commencez la partie en connaissant 3 joueurs, un seul parmi ces 3 joueurs est mauvais."
   },
   {
     "id": "bountyhunter",
@@ -1314,7 +1316,7 @@
       "Connu"
     ],
     "setup": true,
-    "ability": "Vous commencez la partie en sachant qu'un joueur est dans l'équipe des Mauvais. Si le joueur que vous connaissez meurt, vous apprenez un autre joueur de l'équipe des Mauvais. [Un des Villageois fait partie de l'équipe des Mauvais]"
+    "ability": "Vous commencez en sachant un joueur mauvais. Si le joueur connu meurt, vous apprenez un autre mauvais la nuit. [1 Villageois mauvais]"
   },
   {
     "id": "pixie",
@@ -1371,7 +1373,7 @@
     "otherNightReminder": "S'il y a au moins autant de joueurs morts que vivants, révélez au Roi un personnage encore en vie.",
     "reminders": [],
     "setup": false,
-    "ability": "Chaque nuit, s'il y a au moins autant de joueurs morts que vivants, vous apprenez un personnage en vie. Le Démon sait que vous êtes le Roi."
+    "ability": "Chaque nuit, s'il y a au moins autant de morts que de vivants, vous apprenez un personnage en vie. Le Démon sait que vous êtes le Roi."
   },
   {
     "id": "balloonist",
@@ -1402,7 +1404,7 @@
     "otherNightReminder": "Si le Gourou change d'équipe, réveillez-le pour l'en informer.",
     "reminders": [],
     "setup": false,
-    "ability": "Chaque nuit, vous rejoignez l'équipe de l'un de vos voisins vivants. Si tous les bons joueurs choisissent de rejoindre votre secte, votre équipe gagne."
+    "ability": "Chaque nuit, vous acquérez l'alignement d'un voisin vivant. Si tous les bons choisissent de rejoindre votre secte, votre équipe gagne."
   },
   {
     "id": "lycanthrope",
@@ -1433,7 +1435,7 @@
       "?"
     ],
     "setup": false,
-    "ability": "Vous ne savez pas quelle est votre capacité. Chaque jour, devinez-la en privé avec le Narrateur : vous apprenez à quel point vous avez raison."
+    "ability": "Vous ne connaissez pas votre capacité. Chaque jour, devinez-la en privé avec le Narrateur : vous apprenez à quel point vous avez raison."
   },
   {
     "id": "nightwatchman",
@@ -1494,7 +1496,7 @@
       "Épuisé"
     ],
     "setup": true,
-    "ability": "Une fois par partie, la nuit, désignez un joueur vivant : la Demoiselle, si elle est désignée, devient un personnage de Villageois qui n'était pas en jeu. [+ Demoiselle]"
+    "ability": "Une fois par partie, la nuit, désignez un joueur vivant : la Demoiselle, si désignée, devient un Villageois qui n'était pas en jeu. [+ Demoiselle]"
   },
   {
     "id": "alchemist",
@@ -1918,6 +1920,7 @@
   },
   {
     "id": "mephit",
+    "outOfDate": true,
     "name": "Mezepheles",
     "edition": "",
     "team": "minion",
@@ -1962,6 +1965,7 @@
       "Marionnette"
     ],
     "setup": true,
+    "forbidden": true,
     "ability": "Vous croyez être un personnage bon, mais vous ne l'êtes pas. Le Démon sait qui vous êtes. [Le Démon est votre voisin]"
   },
   {
@@ -2101,6 +2105,7 @@
       "Mort"
     ],
     "setup": true,
+    "forbidden": true,
     "ability": "Chaque nuit, les Sbires choisissent qui a la garde du Bébé monstre et “est le Démon”. Chaque nuit*, il se peut qu'un joueur meure. [+1 Sbire]"
   },
   {
