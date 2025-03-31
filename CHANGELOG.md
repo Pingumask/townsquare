@@ -1,10 +1,25 @@
 # Release Notes
 
 ## Upcomming Version
+- Replacing the icons "dawn.png" and "dusk.png"
+- Updating some custom scripts
+- When sending roles, checking if all roles can be sent to a player
+- Ignoring out of date characters in the script builder
+- French Translation updates :
+  - Dawn
+  - Dusk
+  - Evil twin ability 
+  - Noble ability
+  - Bounty hunter ability
+  - King ability
+  - Cult Leader ability
+  - Amnesiac ability
+  - Huntsman ability
+  - Atheist ability
+  - Cannibal ability
+  - Shugenja ability
 
-- Minor rephrasing in the French version (mainly shortening Experimental Townsfolk's abilities)
-
-### Version 4.1.0
+### Version 4.1.1
 - Correcting a bug with the "give back token" update
 - Allow voting delay to go down to 0 to lock everyone at once
 
