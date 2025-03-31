@@ -1915,6 +1915,7 @@
   },
   {
     "id": "mephit",
+    "outOfDate": true,
     "name": "Mezepheles",
     "edition": "",
     "team": "minion",
