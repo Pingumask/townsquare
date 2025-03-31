@@ -216,6 +216,7 @@
       "Drunk"
     ],
     "setup": true,
+    "forbidden": true,
     "ability": "You do not know you are the Drunk. You think you are a Townsfolk character, but you are not."
   },
   {
@@ -640,6 +641,7 @@
       "Chosen"
     ],
     "setup": false,
+    "forbidden": true,
     "ability": "You think you are a Demon, but you are not. The Demon knows who you are & who you choose at night."
   },
   {
@@ -1913,6 +1915,7 @@
   },
   {
     "id": "mephit",
+    "outOfDate": true,
     "name": "Mezepheles",
     "edition": "",
     "team": "minion",
@@ -1957,6 +1960,7 @@
       "Is the Marionette"
     ],
     "setup": true,
+    "forbidden": true,
     "ability": "You think you are a good character but you are not. The Demon knows who you are. [You neighbour the Demon]"
   },
   {
@@ -2096,6 +2100,7 @@
       "Dead"
     ],
     "setup": true,
+    "forbidden": true,
     "ability": "Each night, Minions choose who babysits Lil' Monsta & 'is the Demon'. Each night*, a player might die. [+1 Minion]"
   },
   {
