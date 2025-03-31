@@ -113,7 +113,7 @@
     "otherNight": 17,
     "otherNightReminder": "Le joueur précédement protégé ne l'est plus. Le Moine désigne un joueur (autre que lui-même). Marquez ce joueur comme protégé.",
     "reminders": [
-      "Protégé"
+      "À l'abri"
     ],
     "setup": false,
     "ability": "Chaque nuit*, désignez un joueur (autre que vous-même) : il est à l'abri du Démon cette nuit."
@@ -216,6 +216,7 @@
       "Ivrogne"
     ],
     "setup": true,
+    "forbidden": true,
     "ability": "Vous ne savez pas que vous êtes l'Ivrogne. Vous croyez être un personnage Villageois, mais vous ne l'êtes pas."
   },
   {
@@ -257,7 +258,7 @@
       "Empoisonné"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un joueur : il est empoisonné jusqu'à la tombée de la nuit."
+    "ability": "Chaque nuit, désignez un joueur : il est empoisonné pour cette nuit et le jour suivant."
   },
   {
     "id": "spy",
@@ -413,7 +414,7 @@
       "Ivre"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un joueur vivant : l'un de vous deux est Ivre jusqu'à la tombée de la nuit. Vous ne pouvez pas mourir."
+    "ability": "Chaque nuit, désignez un joueur vivant : l'un de vous deux est ivre jusqu'au crépuscule. Vous ne pouvez pas mourir."
   },
   {
     "id": "chambermaid",
@@ -438,7 +439,7 @@
     "otherNight": 29,
     "otherNightReminder": "L'Exorciste désigne un joueur, différent de la nuit précédente. Si ce joueur est le Démon, informez celui-ci qu'il a été identifié par l'Exorciste et dévoilez-lui qui est l'Exorciste. Ne réveillez pas le Démon pour utiliser sa capacité cette nuit.",
     "reminders": [
-      "Exorcisé"
+      "Désigné"
     ],
     "setup": false,
     "ability": "Chaque nuit*, désignez un joueur (différent de la nuit précédente) : si choisi, le Démon apprend qui vous êtes et ne se réveille pas cette nuit."
@@ -453,11 +454,11 @@
     "otherNight": 12,
     "otherNightReminder": "Les joueurs Ivres et protégés désignés précédement ne le sont plus. L'Aubergiste désigne 2 joueurs. Ils sont protégés. L'un des 2 est Ivre.",
     "reminders": [
-      "Protégé",
+      "À l'abri",
       "Ivre"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez 2 joueurs : ils ne peuvent pas mourir cette nuit, mais l'un d'entre eux est Ivre jusqu'à la tombée de la nuit."
+    "ability": "Chaque nuit*, désignez 2 joueurs : ils ne peuvent pas mourir cette nuit, mais l'un d'entre eux est ivre jusqu'au crépuscule."
   },
   {
     "id": "gambler",
@@ -536,7 +537,7 @@
       "Tous Ivres"
     ],
     "setup": false,
-    "ability": "Quand un Sbire meurt par exécution, tous les autres joueurs (sauf les Voyageurs) sont Ivres jusqu'à la tombée de la nuit."
+    "ability": "Quand un Sbire meurt par exécution, tous les autres joueurs (sauf les Voyageurs) sont ivres jusqu'à demain au crépuscule."
   },
   {
     "id": "tealady",
@@ -624,7 +625,7 @@
       "Ivre"
     ],
     "setup": false,
-    "ability": "Chaque nuit, le premier joueur à vous désigner avec sa capacité est ivre jusqu'à la tombée de la nuit. Vous acquérez son alignement."
+    "ability": "Chaque nuit, le premier joueur à vous désigner avec sa capacité est ivre jusqu'au crépuscule. Vous acquérez son alignement."
   },
   {
     "id": "lunatic",
@@ -641,6 +642,7 @@
       "Désigné"
     ],
     "setup": true,
+    "forbidden": true,
     "ability": "Vous croyez être un Démon, mais vous ne l'êtes pas. Le Démon sait qui vous êtes et qui vous désignez chaque nuit."
   },
   {
@@ -669,7 +671,7 @@
     "otherNight": 19,
     "otherNightReminder": "L'avocat du Diable désigne un joueur vivant différent de la nuit précédente. Si ce joueur est executé demain, il ne meurt pas.",
     "reminders": [
-      "Non Exécutable"
+      "Survit si exécuté"
     ],
     "setup": false,
     "ability": "Chaque nuit, désignez un joueur vivant (différent de la nuit précédente) : s'il est exécuté demain, il ne meurt pas."
@@ -713,6 +715,7 @@
     "otherNight": 34,
     "otherNightReminder": "Si personne n'est mort aujourd'hui, Le Zombuul désigne un joueur. Ce joueur meurt.",
     "reminders": [
+      "Mort aujourd'hui",
       "Mort"
     ],
     "setup": false,
@@ -892,7 +895,7 @@
       "Anormal"
     ],
     "setup": false,
-    "ability": "Chaque nuit, vous apprenez combien de joueurs ont vu leurs capacités dysfonctionner (depuis le matin) à cause d'un autre personnage."
+    "ability": "Chaque nuit, vous apprenez combien de joueurs ont vu leurs capacités dysfonctionner (depuis l'aube) à cause d'un autre personnage."
   },
   {
     "id": "flowergirl",
@@ -1098,7 +1101,7 @@
       "Jumeau"
     ],
     "setup": false,
-    "ability": "Vous & un adversaire savez vos personnages respectifs. Si le bon est exécuté, les mauvais gagnent. Le bien ne peut gagner si vous 2 vivez."
+    "ability": "Vous savez le personnage d'un adversaire, qui vous connaît. Si le bon est exécuté, le mal gagne. Le bien ne peut gagner si vous 2 vivez."
   },
   {
     "id": "witch",
@@ -1156,9 +1159,7 @@
     "otherNightReminder": "Le Fang Gu désigne un joueur. Si ce joueur n'est pas un Étranger, il meurt. Si ce personnage est un Étranger et qu'il n'y a qu'un seul Fang gu en jeu, le Fang Gu meurt à la place du joueur désigné. Le joueur désigné devient un Fang Gu et rejoint l'équipe des Mauvais. Réveillez le nouveau Fang Gu. Indiquez-lui son nouveau rôle.",
     "reminders": [
       "Mort",
-      "Démon",
-      "Mauvais",
-      "Épuisé"
+      "Utilisé"
     ],
     "setup": true,
     "ability": "Chaque nuit*, désignez un joueur : il meurt. Le 1er Étranger tué ainsi devient un mauvais Fang Gu et vous mourez à sa place. [+1 Étranger]"
@@ -1174,7 +1175,7 @@
     "otherNightReminder": "Le Vigormortis désigne un joueur. Ce joueur meurt. Si c'est un Sbire, l'un de ses voisins Villageois est empoisonné.",
     "reminders": [
       "Mort",
-      "Capacité conservée",
+      "A sa capacité",
       "Empoisonné"
     ],
     "setup": true,
@@ -1225,7 +1226,7 @@
       "Capacité doublée"
     ],
     "setup": false,
-    "ability": "Chaque nuit jusqu'à la suivante, 1) un joueur est sobre, sain et a de vraies infos, ou 2) sa capacité marche deux fois. Il apprend ce bonus."
+    "ability": "Chaque nuit jusqu'au crépuscule, 1) un joueur est sobre, sain et a de vraies infos, ou 2) sa capacité marche deux fois. Il apprend ce bonus."
   },
   {
     "id": "harlot",
@@ -1266,10 +1267,10 @@
     "otherNightReminder": "Le Collecteur d'os peut, s'il n'a pas encore utilisé sa capacité, désigner un joueur mort. S'il le fait, le joueur désigné peut utiliser sa capacité jusqu'à la nuit prochaine. (Pensez à le reveiller si sa capacité s'active la nuit).",
     "reminders": [
       "Épuisé",
-      "Capacité Dispo"
+      "A sa capacité"
     ],
     "setup": false,
-    "ability": "Une fois par partie, la nuit*, désignez un joueur mort : ce joueur dispose de sa capacité jusqu'à la nuit prochaine."
+    "ability": "Une fois par partie, la nuit*, désignez un joueur mort : il retrouve sa capacité jusqu'au crépuscule."
   },
   {
     "id": "deviant",
@@ -1299,7 +1300,7 @@
       "Connu"
     ],
     "setup": false,
-    "ability": "Vous commencez la partie en connaissant les noms de 3 joueurs, un seul parmi ces 3 joueurs est Mauvais."
+    "ability": "Vous commencez la partie en connaissant 3 joueurs, un seul parmi ces 3 joueurs est mauvais."
   },
   {
     "id": "bountyhunter",
@@ -1314,7 +1315,7 @@
       "Connu"
     ],
     "setup": true,
-    "ability": "Vous commencez la partie en sachant qu'un joueur est dans l'équipe des Mauvais. Si le joueur que vous connaissez meurt, vous apprenez un autre joueur de l'équipe des Mauvais. [Un des Villageois fait partie de l'équipe des Mauvais]"
+    "ability": "Vous commencez en sachant un joueur mauvais. Si le joueur connu meurt, vous apprenez un autre mauvais la nuit. [1 Villageois mauvais]"
   },
   {
     "id": "pixie",
@@ -1327,7 +1328,7 @@
     "otherNightReminder": "",
     "reminders": [
       "Persuadé",
-      "Capacité Dispo"
+      "A sa capacité"
     ],
     "setup": false,
     "ability": "Vous commencez en connaissant un Villageois en jeu. Quand il meurt, si vous étiez persuadé d'être ce personnage, vous gagnez sa capacité."
@@ -1371,7 +1372,7 @@
     "otherNightReminder": "S'il y a au moins autant de joueurs morts que vivants, révélez au Roi un personnage encore en vie.",
     "reminders": [],
     "setup": false,
-    "ability": "Chaque nuit, s'il y a au moins autant de joueurs morts que vivants, vous apprenez un personnage en vie. Le Démon sait que vous êtes le Roi."
+    "ability": "Chaque nuit, s'il y a au moins autant de morts que de vivants, vous apprenez un personnage en vie. Le Démon sait que vous êtes le Roi."
   },
   {
     "id": "balloonist",
@@ -1402,7 +1403,7 @@
     "otherNightReminder": "Si le Gourou change d'équipe, réveillez-le pour l'en informer.",
     "reminders": [],
     "setup": false,
-    "ability": "Chaque nuit, vous rejoignez l'équipe de l'un de vos voisins vivants. Si tous les bons joueurs choisissent de rejoindre votre secte, votre équipe gagne."
+    "ability": "Chaque nuit, vous acquérez l'alignement d'un voisin vivant. Si tous les bons choisissent de rejoindre votre secte, votre équipe gagne."
   },
   {
     "id": "lycanthrope",
@@ -1433,7 +1434,7 @@
       "?"
     ],
     "setup": false,
-    "ability": "Vous ne savez pas quelle est votre capacité. Chaque jour, devinez-la en privé avec le Narrateur : vous apprenez à quel point vous avez raison."
+    "ability": "Vous ne connaissez pas votre capacité. Chaque jour, devinez-la en privé avec le Narrateur : vous apprenez à quel point vous avez raison."
   },
   {
     "id": "nightwatchman",
@@ -1494,7 +1495,7 @@
       "Épuisé"
     ],
     "setup": true,
-    "ability": "Une fois par partie, la nuit, désignez un joueur vivant : la Demoiselle, si elle est désignée, devient un personnage de Villageois qui n'était pas en jeu. [+ Demoiselle]"
+    "ability": "Une fois par partie, la nuit, désignez un joueur vivant : la Demoiselle, si désignée, devient un Villageois qui n'était pas en jeu. [+ Demoiselle]"
   },
   {
     "id": "alchemist",
@@ -1578,7 +1579,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": true,
-    "ability": "Le Narrateur peut briser les règles du jeu. Si les joueurs exécutent le Narrateur, les bons remportent la partie, même si vous êtes mort. [Aucun joueur n'est Mauvais]"
+    "ability": "Le Narrateur peut briser les règles du jeu. S'il est exécuté, les bons gagnent, même si vous êtes mort. [Aucun joueur mauvais]"
   },
   {
     "id": "cannibal",
@@ -1594,7 +1595,7 @@
       "Empoisonné"
     ],
     "setup": false,
-    "ability": "Vous avez la capacité du dernier joueur mort par exécution. S'il était Mauvais, vous êtes empoisonné jusqu'à ce qu'un joueur Bon meure par exécution."
+    "ability": "Vous avez la capacité du dernier mort par exécution. S'il est mauvais, vous êtes empoisonné jusqu'à ce qu'un bon meure par exécution."
   },
   {
     "id": "steward",
@@ -1622,7 +1623,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Vous commencez la partie en sachant si le mauvais le plus proche est dans le sens horaire ou anti-horaire. Si équidistants, l'info est arbitraire."
+    "ability": "Vous commencez en sachant si le mauvais le plus proche est dans le sens horaire ou anti-horaire. Si équidistants, cette info est arbitraire."
   },
   {
     "id": "highpriestess",
@@ -1735,8 +1736,8 @@
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [
-      "Ivre Permanent",
-      "Épuisé"
+      "Ivre",
+      "Essai utilisé"
     ],
     "setup": false,
     "ability": "Un joueur est Ivre de façon permanente, même après votre mort. Une fois par partie, en privé, vous pouvez tenter de deviner qui est le joueur Ivre. Si vous voyez juste, le Narrateur vous dévoile qui est le Démon, si vous vous trompez, il vous indique un autre joueur comme étant le Démon."
@@ -1764,7 +1765,7 @@
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [
-      "Épuisé"
+      "Essai utilisé"
     ],
     "setup": false,
     "ability": "Tous les Sbires savent qu'une Demoiselle est en jeu. Si un Sbire devine publiquement qui vous êtes (un seul essai), votre équipe perd."
@@ -1911,13 +1912,14 @@
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [
-      "Annoncé"
+      "Revendiqué"
     ],
     "setup": false,
     "ability": "Si vous dites publiquement que vous êtes le Gobelin quand vous êtes accusé et que vous êtes exécuté durant la même journée, votre équipe gagne."
   },
   {
     "id": "mephit",
+    "outOfDate": true,
     "name": "Mezepheles",
     "edition": "",
     "team": "minion",
@@ -1962,6 +1964,7 @@
       "Marionnette"
     ],
     "setup": true,
+    "forbidden": true,
     "ability": "Vous croyez être un personnage bon, mais vous ne l'êtes pas. Le Démon sait qui vous êtes. [Le Démon est votre voisin]"
   },
   {
@@ -1991,7 +1994,7 @@
       "Vote utilisé"
     ],
     "setup": false,
-    "ability": "Les votes ont lieu à bulletin secret et les résultats ne sont pas annoncés. Chaque nuit, choisissez si vous êtes ivre ou non."
+    "ability": "Les votes sont à bulletin secret et les résultats ne sont pas annoncés. Chaque nuit, choisissez si vous êtes ivre jusqu'au crépuscule."
   },
   {
     "id": "harpy",
@@ -2056,7 +2059,7 @@
       "X"
     ],
     "setup": true,
-    "ability": "La nuit X, tous les Villageois sont empoisonnés jusqu'à la tombée de la nuit. [X Étrangers]"
+    "ability": "Durant la nuit X, tous les Villageois sont empoisonnés jusqu'au crépuscule. [X Étrangers]"
   },
   {
     "id": "boffin",
@@ -2101,6 +2104,7 @@
       "Mort"
     ],
     "setup": true,
+    "forbidden": true,
     "ability": "Chaque nuit, les Sbires choisissent qui a la garde du Bébé monstre et “est le Démon”. Chaque nuit*, il se peut qu'un joueur meure. [+1 Sbire]"
   },
   {
@@ -2114,7 +2118,7 @@
     "otherNightReminder": "La Ssangssue désigne un joueur. Ce joueur meurt.",
     "reminders": [
       "Mort",
-      "Empoisonné permanent"
+      "Empoisonné"
     ],
     "setup": false,
     "ability": "Chaque nuit*, désignez un joueur : il meurt. Votre 1re nuit, désignez un vivant : il est empoisonné. Vous mourez (seulement) s'il est mort."
