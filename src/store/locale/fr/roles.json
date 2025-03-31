@@ -216,6 +216,7 @@
       "Ivrogne"
     ],
     "setup": true,
+    "forbidden": true,
     "ability": "Vous ne savez pas que vous êtes l'Ivrogne. Vous croyez être un personnage Villageois, mais vous ne l'êtes pas."
   },
   {
@@ -641,6 +642,7 @@
       "Désigné"
     ],
     "setup": true,
+    "forbidden": true,
     "ability": "Vous croyez être un Démon, mais vous ne l'êtes pas. Le Démon sait qui vous êtes et qui vous désignez chaque nuit."
   },
   {
@@ -1918,6 +1920,7 @@
   },
   {
     "id": "mephit",
+    "outOfDate": true,
     "name": "Mezepheles",
     "edition": "",
     "team": "minion",
@@ -1962,6 +1965,7 @@
       "Marionnette"
     ],
     "setup": true,
+    "forbidden": true,
     "ability": "Vous croyez être un personnage bon, mais vous ne l'êtes pas. Le Démon sait qui vous êtes. [Le Démon est votre voisin]"
   },
   {
@@ -2101,6 +2105,7 @@
       "Mort"
     ],
     "setup": true,
+    "forbidden": true,
     "ability": "Chaque nuit, les Sbires choisissent qui a la garde du Bébé monstre et “est le Démon”. Chaque nuit*, il se peut qu'un joueur meure. [+1 Sbire]"
   },
   {
