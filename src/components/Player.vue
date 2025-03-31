@@ -158,7 +158,7 @@
         <span class="icon" :style="{
           backgroundImage: `url(${reminder.image && grimoire.isImageOptIn
             ? reminder.image
-            : rolePath(reminder.role)
+            : rolePath(reminder.imageAlt || reminder.role)
             })`,
         }"></span>
         <span class="text">{{ reminder.name }}</span>
