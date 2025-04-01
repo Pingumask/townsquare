@@ -101,7 +101,7 @@
     "id": "duchess",
     "firstNightReminder": "",
     "otherNight": 3,
-    "otherNightReminder": "Reveillez chaque visiteur dans l'ordre un par un. Indiquez à chacun d'entre eux combien de Visiteurs sont mauvais. Excepté celui qui reçoit les fausses informations qui recevra à la place n'importe quel autre nombre.",
+    "otherNightReminder": "Reveillez chaque visiteur un par un. Indiquez à chacun d'entre eux combien de Visiteurs sont mauvais. Excepté celui qui reçoit les fausses informations qui recevra à la place n'importe quel autre nombre.",
     "reminders": [
       "Visiteur",
       "Fausse Info"
