@@ -1456,9 +1456,9 @@
     "edition": "",
     "team": "townsfolk",
     "firstNight": 22,
-    "firstNightReminder": "L'ingénieur décide s'il veut utiliser sa capacité. S'il le fait, il désigne un personnage de Démon et autant de personnages de Sbires qu'il y en a en jeu. Remplacez les rôles des joueurs correspondants par les rôles désignés, puis réveillez-les un à un pour leur indiquer leurs nouveaux rôles.",
+    "firstNightReminder": "L'ingénieur décide s'il veut utiliser sa capacité. S'il le fait, il désigne un personnage de Démon ou autant de personnages de Sbires qu'il y en a en jeu. Remplacez les rôles des joueurs correspondants par les rôles désignés, puis réveillez-les un à un pour leur indiquer leurs nouveaux rôles.",
     "otherNight": 7,
-    "otherNightReminder": "S'il ne l'a pas encore fait, l'Ingénieur décide s'il veut utiliser sa capacité. S'il le fait, il désigne un personnage de Démon et autant de personnages de Sbires qu'il y en a en jeu. Remplacez les rôles des joueurs correspondants par les rôles désignés, puis réveillez-les un à un pour leur indiquer leurs nouveaux rôles.",
+    "otherNightReminder": "S'il ne l'a pas encore fait, l'Ingénieur décide s'il veut utiliser sa capacité. S'il le fait, il désigne un personnage de Démon ou autant de personnages de Sbires qu'il y en a en jeu. Remplacez les rôles des joueurs correspondants par les rôles désignés, puis réveillez-les un à un pour leur indiquer leurs nouveaux rôles.",
     "reminders": [
       "Changé",
       "Épuisé"
