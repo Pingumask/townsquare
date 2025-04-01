@@ -1999,9 +1999,9 @@
     "edition": "",
     "team": "minion",
     "firstNight": 39,
-    "firstNightReminder": "Réveillez la Harpie. Elle désigne deux joueurs, l'un après l'autre. Réveillez le premier joueur, et lui révéler qu'il est persuadé par la Harpie que le deuxième est mauvais.",
+    "firstNightReminder": "Réveillez la Harpie. Elle désigne deux joueurs, l'un après l'autre. Réveillez le premier joueur, et lui révéler qu'il est persuadé par la Harpie que le second est mauvais.",
     "otherNight": 24,
-    "otherNightReminder": "Réveillez la Harpie. Elle désigne deux joueurs, l'un après l'autre. Réveillez le premier joueur, et lui révéler qu'il est persuadé par la Harpie que le deuxième est mauvais.",
+    "otherNightReminder": "Réveillez la Harpie. Elle désigne deux joueurs, l'un après l'autre. Réveillez le premier joueur, et lui révéler qu'il est persuadé par la Harpie que le second est mauvais.",
     "reminders": [
       "Persuadé",
       "2nd"
