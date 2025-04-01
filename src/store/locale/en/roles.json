@@ -1010,7 +1010,7 @@
     "otherNightReminder": "If today was the Juggler\u2019s first day: Show the hand signal for the number (0, 1, 2, etc.) of 'Correct' markers. Remove markers.",
     "reminders": [
       "Correct",
-      "False"
+      "Wrong"
     ],
     "setup": false,
     "ability": "On your 1st day, publicly guess up to 5 players' characters. That night, you learn how many you got correct."
