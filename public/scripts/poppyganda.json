@@ -2,6 +2,7 @@
   {
     "id": "_meta",
     "name": "Poppyganda",
+    "logo": "poppyganda",
     "author": "Dan"
   },
   {
@@ -23,10 +24,10 @@
     "id": "towncrier"
   },
   {
-    "id": "monk"
+    "id": "oracle"
   },
   {
-    "id": "oracle"
+    "id": "monk"
   },
   {
     "id": "savant"
@@ -35,7 +36,7 @@
     "id": "juggler"
   },
   {
-    "id": "sage"
+    "id": "farmer"
   },
   {
     "id": "mayor"
@@ -44,10 +45,10 @@
     "id": "poppygrower"
   },
   {
-    "id": "drunk"
+    "id": "lunatic"
   },
   {
-    "id": "lunatic"
+    "id": "drunk"
   },
   {
     "id": "mutant"
@@ -56,27 +57,24 @@
     "id": "snitch"
   },
   {
-    "id": "eviltwin"
-  },
-  {
     "id": "cerenovus"
-  },
-  {
-    "id": "baron"
   },
   {
     "id": "marionette"
   },
   {
+    "id": "eviltwin"
+  },
+  {
+    "id": "baron"
+  },
+  {
     "id": "imp"
   },
   {
-    "id": "legion"
-  },
-  {
-    "id": "vigormortis"
-  },
-  {
     "id": "vortox"
+  },
+  {
+    "id": "legion"
   }
 ]
