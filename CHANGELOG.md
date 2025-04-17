@@ -1,10 +1,27 @@
 # Release Notes
 
 ## Upcomming Version
+- Using official "safe" reminded instead of "protected"
+- Printing default image on reminders (bug correction)
+- Updating Organ Grinder's ability text
+- Replacing the icons "dawn.png" and "dusk.png"
+- Updating some custom scripts
+- When sending roles, checking if all roles can be sent to a player
+- Ignoring out of date characters in the script builder
+- Added "Wrong" reminder for the juggler
+- Added "Changed" reminder for the engineer
+- French Translation updates :
+  - Dawn
+  - Dusk
+  - "Safe" in reminders (already changed earlier in abilities)
+  - "Has ability" reminders
+  - "No ability" reminders
+  - Fibbin renamed from "Menteur" to "Baratineur"
+  - Pit-hag renamed from "Chaudronnier" to "Chaudronnière"
+  - Various abilities rephrased
+  - Various reminders added and/or adjusted
 
-- Updating the text on some reminders (to use official wording and have a french version similar to this official wording)
-
-### Version 4.1.0
+### Version 4.1.1
 - Correcting a bug with the "give back token" update
 - Allow voting delay to go down to 0 to lock everyone at once
 
