@@ -114,7 +114,7 @@
       },
       {
         "id": "Pit-Hag",
-        "reason": "Le Chaudronnier ne peut pas créer un Hérétique."
+        "reason": "La Chaudronnière ne peut pas créer un Hérétique."
       },
       {
         "id": "Widow",
@@ -173,27 +173,27 @@
     "hatred": [
       {
         "id": "Village Idiot",
-        "reason": "S'il y a moins de trois Idiots du Village, le Chaudronnier peut en créer un nouveau. Il se peut alors que l'Idiot du Village ivre change."
+        "reason": "S'il y a moins de trois Idiots du Village, la Chaudronnière peut en créer un nouveau. Il se peut alors que l'Idiot du Village ivre change."
       },
       {
         "id": "Cult Leader",
-        "reason": "Si le Chaudronnier change un joueur mauvais en Gourou, celui-ci ne peut pas devenir bon par sa capacité."
+        "reason": "Si la Chaudronnière change un joueur mauvais en Gourou, celui-ci ne peut pas devenir bon par sa capacité."
       },
       {
         "id": "Goon",
-        "reason": "Si le Chaudronnier change un joueur mauvais en Homme de main, celui-ci ne peut pas devenir bon par sa capacité."
+        "reason": "Si la Chaudronnière change un joueur mauvais en Homme de main, celui-ci ne peut pas devenir bon par sa capacité."
       },
       {
         "id": "Ogre",
-        "reason": "Si le Chaudronnier change un joueur mauvais en Ogre, celui-ci ne peut pas devenir bon par sa capacité."
+        "reason": "Si la Chaudronnière change un joueur mauvais en Ogre, celui-ci ne peut pas devenir bon par sa capacité."
       },
       {
         "id": "Politician",
-        "reason": "Si le Chaudronnier change un joueur mauvais en Politicien, celui-ci ne peut pas devenir bon par sa capacité."
+        "reason": "Si la Chaudronnière change un joueur mauvais en Politicien, celui-ci ne peut pas devenir bon par sa capacité."
       },
       {
         "id": "Damsel",
-        "reason": "Si le Chaudronnier crée une Demoiselle, le Narrateur choisit quel joueur le devient."
+        "reason": "Si la Chaudronnière crée une Demoiselle, le Narrateur choisit quel joueur le devient."
       }
     ]
   },
@@ -559,7 +559,7 @@
       },
       {
         "id": "Pit-Hag",
-        "reason": "Après le jour 5, le Chaudronnier ne peut pas créer de Léviathan."
+        "reason": "Après le jour 5, la Chaudronnière ne peut pas créer de Léviathan."
       }
     ]
   },
