@@ -2196,7 +2196,7 @@
     ],
     "setup": true,
     "multiple": true,
-    "ability": "Chaque nuit*, il se peut qu'un joueur meure. Les exécutions ratent sans vote de bon. Vous apparaissez aussi comme Sbire. [Majorité de Légion]"
+    "ability": "Chaque nuit*, il se peut qu'un joueur meure. Les exécutions ratent si 0 bon vote. Vous apparaissez aussi comme Sbire. [Majorité de Légion]"
   },
   {
     "id": "leviathan",
