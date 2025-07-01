@@ -20,6 +20,7 @@
           <font-awesome-icon :icon="['fas', 'tower-broadcast']" class="fa fa-tower-broadcast"
             @click="tab = 'session'" />
           <font-awesome-icon icon="users" class="fa fa-users" v-if="!session.isSpectator" @click="tab = 'players'" />
+          <font-awesome-icon icon="chair" class="fa fa-chair" v-if="!session.isSpectator" @click="tab = 'playersMenu'" />
           <font-awesome-icon icon="theater-masks" class="fa fa-theater-masks" @click="tab = 'characters'" />
           <font-awesome-icon icon="question" class="fa fa-question" @click="tab = 'help'" />
         </li>
@@ -155,6 +156,120 @@
           </li>
         </template>
 
+        <template v-if="tab === 'playersMenu' && !session.isSpectator">
+          <!-- Players' Menu -->
+          <li class="headline">{{ locale.menu.playersMenu.title }}</li>        
+          <li @click="togglePlayersMenu('changePronouns')">
+            <small>
+              <div>
+                <font-awesome-icon icon="venus-mars" class="fa fa-venus-mars" />
+                {{ locale.player.changePronouns }}
+              </div>
+            </small>
+            <em>
+              <font-awesome-icon :icon="[
+                'fas',
+                playersMenu.changePronouns ? 'check-square' : 'square',
+              ]" />
+            </em>
+          </li>
+          <li @click="togglePlayersMenu('changeName')">
+            <small>
+              <div>		
+                <font-awesome-icon icon="user-edit" class="fa fa-user-edit" />
+                {{ locale.player.changeName }}
+              </div>
+            </small>
+            <em>
+              <font-awesome-icon :icon="[
+                'fas',
+                playersMenu.changeName ? 'check-square' : 'square',
+              ]" />
+            </em>
+          </li>
+          <li @click="togglePlayersMenu('movePlayer')">
+            <small>
+              <div>
+                <font-awesome-icon icon="redo-alt" class="fa fa-redo-alt" />
+                {{ locale.player.movePlayer }}
+              </div>
+            </small>
+            <em>
+              <font-awesome-icon :icon="[
+                'fas',
+                playersMenu.movePlayer ? 'check-square' : 'square',
+              ]" />
+            </em>
+          </li>
+          <li @click="togglePlayersMenu('swapPlayers')">
+            <small>
+              <div>
+                <font-awesome-icon icon="exchange-alt" class="fa fa-exchange-alt" />
+                {{ locale.player.swapPlayers }}
+              </div>
+            </small>
+            <em>
+              <font-awesome-icon :icon="[
+                'fas',
+                playersMenu.swapPlayers ? 'check-square' : 'square',
+              ]" />
+            </em>
+          </li>
+          <li @click="togglePlayersMenu('removePlayer')">
+            <small>
+              <div>
+                <font-awesome-icon icon="times-circle" class="fa fa-times-circle" />
+                {{ locale.player.removePlayer }}
+              </div>
+            </small>
+            <em>
+              <font-awesome-icon :icon="[
+                'fas',
+                playersMenu.removePlayer ? 'check-square' : 'square',
+              ]" />
+            </em>
+          </li>
+          <li @click="togglePlayersMenu('swapAlignment')">
+            <small>
+              <div>
+                <font-awesome-icon icon="yin-yang" class="fa fa-yin-yang" />
+                {{ locale.player.swapAlignment }}
+              </div>
+            </small>
+            <em>
+              <font-awesome-icon :icon="[
+                'fas',
+                playersMenu.swapAlignment ? 'check-square' : 'square',
+              ]" />
+            </em>
+          </li>
+          <li class="grey">
+            <small>
+              <div>
+                <font-awesome-icon icon="hand-point-right" class="fa fa-hand-point-right" />
+                {{ locale.player.nomination }} {{ locale.menu.playersMenu.required }}
+              </div>
+            </small>
+            <em>
+              <font-awesome-icon icon="check-square" class="fa fa-check-square" />
+            </em>
+          </li>
+          <li @click="togglePlayersMenu('specialVote')">
+            <small>
+              <div>
+                <font-awesome-icon icon="vote-yea" class="fa fa-vote-yea" />
+                {{ locale.player.specialVote }}
+              </div>
+            </small>
+            <em>
+              <font-awesome-icon :icon="[
+                'fas',
+                playersMenu.specialVote ? 'check-square' : 'square',
+              ]" />
+            </em>
+          </li>
+        </template>
+
         <template v-if="tab === 'characters'">
           <!-- Characters -->
           <li class="headline">{{ locale.menu.characters.title }}</li>
@@ -224,6 +339,7 @@ import { useStore } from 'vuex';
 const store = useStore();
 
 const grimoire = computed(() => store.state.grimoire);
+const playersMenu = computed(() => store.state.playersMenu);
 const session = computed(() => store.state.session);
 const edition = computed(() => store.state.edition);
 const locale = computed(() => store.state.locale);
@@ -357,6 +473,10 @@ const toggleNight = () => {
 
 const toggleOrganVoteMode = () => {
   store.commit('toggleOrganVoteMode');
+};
+
+const togglePlayersMenu = (name) => {
+  store.commit('togglePlayersMenu', name);
 };
 
 const toggleRinging = () => {
@@ -562,6 +682,10 @@ defineExpose({
           rgba(0, 0, 0, 0.5) 20%,
           rgba(0, 0, 0, 0.5) 80%,
           $demon 100%);
+    }
+  
+    .grey {
+      color: grey;
     }
   }
 }
