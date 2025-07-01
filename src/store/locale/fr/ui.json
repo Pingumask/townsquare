@@ -38,6 +38,10 @@
       "randomize": "Mélanger Sièges",
       "removeAll": "Retirer Joueurs"
     },
+    "playersMenu": {
+      "title": "Menu des joueurs",
+      "required": "(requis)"
+    },
     "characters": {
       "title": "Personnages",
       "selectEdition": "Choisir Scénario",
@@ -153,6 +157,7 @@
     "swapPlayers": "Échanger les sièges",
     "removePlayer": "Retirer le joueur",
     "emptySeat": "Vider le siège",
+    "swapAlignment": "Inverser Alignement",
     "nomination": "Accusation",
     "specialVote": "Vote spécial",
     "claimSeat": "S'asseoir ici",
