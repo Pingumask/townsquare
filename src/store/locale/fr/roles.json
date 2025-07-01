@@ -2218,7 +2218,7 @@
       "Jour 5"
     ],
     "setup": false,
-    "ability": "Si plus d'un Bon joueur est exécuté, les Mauvais gagnent. Tous les joueurs savent que votre personnage est en jeu. Après 5 jours, les Mauvais gagnent."
+    "ability": "Si plus d'un bon est exécuté, les mauvais gagnent. Tous les joueurs savent que vous êtes en jeu. Après le jour 5, les mauvais gagnent."
   },
   {
     "id": "riot",
