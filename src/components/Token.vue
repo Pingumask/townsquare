@@ -32,6 +32,10 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
+  alignment: {
+    type: String,
+    default: "auto",
+  },
   unchecked: {
     type: Boolean,
     default: false,
@@ -50,10 +54,18 @@ const reminderLeaves = computed(() => {
 });
 
 const rolePath = computed(() => {
-  return new URL(
-    `../assets/icons/${props.role.imageAlt || props.role.id}.png`,
-    import.meta.url,
-  ).href;
+  if(props.alignment === "auto") {
+    return new URL(
+      `../assets/icons/${props.role.imageAlt || props.role.id}.png`,
+      import.meta.url,
+    ).href;
+  }
+  else {
+    return new URL(
+      `../assets/icons/${props.alignment}/${props.role.imageAlt || props.role.id}.png`,
+      import.meta.url,
+    ).href;
+  }
 });
 
 const nameToFontSize = computed(() => {
