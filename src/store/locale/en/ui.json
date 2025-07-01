@@ -38,6 +38,10 @@
       "randomize": "Randomize",
       "removeAll": "Remove all"
     },
+    "playersMenu": {
+      "title": "Players' Menu",
+      "required": "(required)"
+    },
     "characters": {
       "title": "Characters",
       "selectEdition": "Select Edition",
@@ -153,6 +157,7 @@
     "swapPlayers": "Swap seats",
     "removePlayer": "Remove",
     "emptySeat": "Empty seat",
+    "swapAlignment": "Swap Alignment",
     "nomination": "Nomination",
     "specialVote": "Special vote",
     "claimSeat": "Claim seat",
