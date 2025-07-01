@@ -673,17 +673,23 @@ class LiveSession {
    */
   distributeRoles() {
     if (this._isSpectator) return;
-    const message = {};
+    const messageRole = {};
+    const messageAlignment = {};
     this._store.state.players.players.forEach((player, index) => {
       if (player.id && player.role) {
-        message[player.id] = [
+        messageRole[player.id] = [
           "player",
           { index, property: "role", value: player.role.id },
         ];
+		messageAlignment[player.id] = [
+          "player",
+          { index, property: "alignment", value: player.alignment },
+        ];
       }
     });
-    if (Object.keys(message).length) {
-      this._send("direct", message);
+    if (Object.keys(messageRole).length) {
+      this._send("direct", messageRole);
+      this._send("direct", messageAlignment);
     }
   }
 
