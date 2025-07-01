@@ -33,7 +33,7 @@
         </span>
       </div>
 
-      <Token :role="props.player.role" @set-role="$emit('trigger', ['openRoleModal'])" />
+      <Token :role="props.player.role" :alignment="props.player.alignment" @set-role="$emit('trigger', ['openRoleModal'])" />
 
       <!-- Overlay icons -->
       <div class="overlay">
@@ -97,26 +97,26 @@
       <transition name="fold">
         <ul class="menu" v-if="isMenuOpen">
           <li @click="changePronouns" v-if="
-            !session.isSpectator ||
+            (!session.isSpectator && playersMenu.changePronouns) ||
             (session.isSpectator && props.player.id === session.playerId)
           ">
             <font-awesome-icon icon="venus-mars" class="fa fa-venus-mars" />
             {{ locale.player.changePronouns }}
           </li>
           <template v-if="!session.isSpectator">
-            <li @click="changeName">
+            <li @click="changeName" v-if="playersMenu.changeName">
               <font-awesome-icon icon="user-edit" class="fa fa-user-edit" />
               {{ locale.player.changeName }}
             </li>
-            <li @click="movePlayer()" :class="{ disabled: session.lockedVote }">
+            <li @click="movePlayer()" :class="{ disabled: session.lockedVote }" v-if="playersMenu.movePlayer">
               <font-awesome-icon icon="redo-alt" class="fa fa-redo-alt" />
               {{ locale.player.movePlayer }}
             </li>
-            <li @click="swapPlayer()" :class="{ disabled: session.lockedVote }">
+            <li @click="swapPlayer()" :class="{ disabled: session.lockedVote }" v-if="playersMenu.swapPlayers">
               <font-awesome-icon icon="exchange-alt" class="fa fa-exchange-alt" />
               {{ locale.player.swapPlayers }}
             </li>
-            <li @click="removePlayer" :class="{ disabled: session.lockedVote }">
+            <li @click="removePlayer" :class="{ disabled: session.lockedVote }" v-if="playersMenu.removePlayer">
               <font-awesome-icon icon="times-circle" class="fa fa-times-circle" />
               {{ locale.player.removePlayer }}
             </li>
@@ -124,13 +124,17 @@
               <font-awesome-icon icon="chair" class="fa fa-chair" />
               {{ locale.player.emptySeat }}
             </li>
+            <li @click="switchAlignment" v-if="props.player.role.id && (props.player.role.team == 'traveler' || playersMenu.swapAlignment)">
+              <font-awesome-icon icon="yin-yang" class="fa fa-yin-yang" />
+              {{ locale.player.swapAlignment }}
+            </li>
             <template v-if="!session.nomination">
               <li @click="nominatePlayer()">
                 <font-awesome-icon icon="hand-point-right" class="fa fa-hand-point-right" />
                 {{ locale.player.nomination }}
               </li>
             </template>
-            <template v-if="!session.nomination">
+            <template v-if="!session.nomination && playersMenu.specialVote">
               <li @click="specialVote()">
                 <font-awesome-icon icon="vote-yea" class="fa fa-vote-yea" />
                 {{ locale.player.specialVote }}
@@ -188,6 +192,7 @@ const emit = defineEmits(['update-player', 'trigger']);
 const store = useStore();
 const players = computed(() => store.state.players.players);
 const grimoire = computed(() => store.state.grimoire);
+const playersMenu = computed(() => store.state.playersMenu);
 const session = computed(() => store.state.session);
 const locale = computed(() => store.state.locale);
 const nightOrder = computed(() => store.getters["players/nightOrder"]);
@@ -257,6 +262,20 @@ function changeName() {
   if (session.value.isSpectator) return;
   const name = prompt("Player name", props.player.name) || props.player.name;
   updatePlayer("name", name, true);
+}
+
+function switchAlignment() {
+  if(props.player.alignment === "auto") {
+    if(props.player.role.team === "townsfolk" || props.player.role.team === "outsider") {
+      props.player.alignment = "evil";
+    } else {
+      props.player.alignment = "good";
+    }
+  } else if(props.player.role.team === "traveler" && props.player.alignment === "good") {
+    props.player.alignment = "evil";
+  } else {
+    props.player.alignment = "auto";
+  }
 }
 
 function removeReminder(reminder) {
