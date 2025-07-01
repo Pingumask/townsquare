@@ -681,7 +681,7 @@ class LiveSession {
           "player",
           { index, property: "role", value: player.role.id },
         ];
-		messageAlignment[player.id] = [
+        messageAlignment[player.id] = [
           "player",
           { index, property: "alignment", value: player.alignment },
         ];
