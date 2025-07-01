@@ -2251,7 +2251,7 @@
       "Mort"
     ],
     "setup": false,
-    "ability": "Vous commencez en sachant une phrase secrète. Pour chaque fois que vous l'avez dite publiquement aujourd'hui, il se peut qu'un joueur meure."
+    "ability": "Vous commencez en sachant une phrase. Pour chaque fois que vous l'avez dite publiquement aujourd'hui, il se peut qu'un joueur meure."
   },
   {
     "id": "kazali",
