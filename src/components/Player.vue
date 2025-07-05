@@ -271,10 +271,12 @@ function switchAlignment() {
     } else {
       props.player.alignment = "good";
     }
-  } else if(props.player.role.team === "traveler" && props.player.alignment === "good") {
+  } else if(props.player.alignment === "good") {
     props.player.alignment = "evil";
-  } else {
+  } else if(props.player.role.team === "traveler") {
     props.player.alignment = "auto";
+  } else {
+    props.player.alignment = "good";
   }
 }
 
