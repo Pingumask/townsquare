@@ -63,11 +63,11 @@
       <font-awesome-icon :icon="['fas', 'bell']" />
       <font-awesome-icon :icon="['fas', 'music']" />
     </li>
-	<li v-else-if="grimoire.isRooster">
-	  <audio :autoplay="!grimoire.isMuted" :muted="grimoire.isMuted">
+    <li v-else-if="grimoire.isRooster">
+      <audio :autoplay="!grimoire.isMuted" :muted="grimoire.isMuted">
         <source src="../assets/sounds/rooster.mp3">
       </audio>
-	</li>
+    </li>
     <li class="marked" v-if="
       typeof session.markedPlayer == 'string' &&
       !(session.isSpectator && grimoire.isOrganVoteMode)
