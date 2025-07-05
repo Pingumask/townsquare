@@ -320,7 +320,6 @@ class LiveSession {
       isNight,
       isVoteHistoryAllowed,
       isRinging,
-      isRooster,
       isOrganVoteMode,
       timer,
       nomination,
