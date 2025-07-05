@@ -53,8 +53,20 @@ const reminderLeaves = computed(() => {
   );
 });
 
-const rolePath = computed(() => {
+const defaultAlignement = computed(() => {
   if(props.alignment === "auto") {
+    return true;
+  }
+  else if(props.alignment === "good") {
+    return props.role.team === "townsfolk" || props.role.team === "outsider";
+  }
+  else {
+    return props.role.team === "minion" || props.role.team === "demon";
+  }
+});
+
+const rolePath = computed(() => {
+  if(defaultAlignement.value) {
     return new URL(
       `../assets/icons/${props.role.imageAlt || props.role.id}.png`,
       import.meta.url,
