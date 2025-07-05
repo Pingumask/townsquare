@@ -1141,13 +1141,13 @@
   },
   {
     "id": "pithag",
-    "name": "Chaudronnière",
+    "name": "Guenaude",
     "edition": "snv",
     "team": "minion",
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 22,
-    "otherNightReminder": "La Chaudronnière désigne un joueur et un personnage. Si ce personnage n'est pas en jeu, réveillez ce joueur et dévoillez-lui son nouveau personnage. Si le personnage est déjà en jeu, rien ne se passe.",
+    "otherNightReminder": "La Guenaude désigne un joueur et un personnage. Si ce personnage n'est pas en jeu, réveillez ce joueur et dévoillez-lui son nouveau personnage. Si le personnage est déjà en jeu, rien ne se passe.",
     "reminders": [
       "Mort"
     ],
