@@ -179,6 +179,10 @@ export default {
       if (this.grimoire.isNight) {
         this.$store.commit("session/setMarkedPlayer", -1);
       }
+	  else {	    
+        this.$store.commit("toggleRooster", true);
+        setTimeout(this.$store.commit, 4000, "toggleRooster", false);
+	  }
     },
     toggleRinging() {
       this.$store.commit("toggleRinging", true);
