@@ -21,7 +21,7 @@
   - "Has ability" reminders
   - "No ability" reminders
   - Fibbin renamed from "Menteur" to "Baratineur"
-  - Pit-hag renamed from "Chaudronnier" to "Chaudronnière"
+  - Pit-hag renamed from "Chaudronnier" to "Guenaude"
   - Various abilities rephrased
   - Various reminders added and/or adjusted
 - Adding new characters:
