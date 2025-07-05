@@ -184,6 +184,10 @@ class LiveSession {
         if (!this._isSpectator) return;
         this._store.commit("toggleRinging", params);
         break;
+      case "isRooster":
+        if (!this._isSpectator) return;
+        this._store.commit("toggleRooster", params);
+        break;
       case "setTimer":
         if (!this._isSpectator) return;
         this._store.commit("setTimer", params);
@@ -288,6 +292,7 @@ class LiveSession {
         gamestate: this._gamestate,
         isNight: grimoire.isNight,
         isRinging: grimoire.isRinging,
+        isRooster: grimoire.isRooster,
         timer: grimoire.timer,
         isVoteHistoryAllowed: session.isVoteHistoryAllowed,
         isOrganVoteMode: grimoire.isOrganVoteMode,
@@ -315,6 +320,7 @@ class LiveSession {
       isNight,
       isVoteHistoryAllowed,
       isRinging,
+      isRooster,
       isOrganVoteMode,
       timer,
       nomination,
@@ -732,6 +738,14 @@ class LiveSession {
   }
 
   /**
+   * Send the isRooster status. ST only
+   */
+  setIsRooster() {
+    if (this._isSpectator) return;
+    this._send("isRooster", this._store.state.grimoire.isRooster);
+  }
+
+  /**
    * Send the isOrganVoteMode status. ST only
    */
   setIsOrganVoteMode() {
@@ -947,6 +961,9 @@ export default (store) => {
         break;
       case "toggleRinging":
         session.setIsRinging();
+        break;
+      case "toggleRooster":
+        session.setIsRooster();
         break;
       case "setTimer":
         session.setTimer();
