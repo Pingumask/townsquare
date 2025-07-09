@@ -2132,9 +2132,9 @@
     "edition": "",
     "team": "minion",
     "firstNight": 2.5,
-    "firstNightReminder": "Each time you wake an evil player at night, first wake the Wraith.",
+    "firstNightReminder": "Each time you wake an evil player at night, first wake the Wraith. If the Wraith is drunk or poisoned, tell them they cannot open their eyes.",
     "otherNight": 2.5,
-    "otherNightReminder": "Each time you wake an evil player at night, first wake the Wraith.",
+    "otherNightReminder": "Each time you wake an evil player at night, first wake the Wraith. If the Wraith is drunk or poisoned, tell them they cannot open their eyes.",
     "reminders": [],
     "setup": false,
     "ability": "You may choose to open your eyes at night. You wake when other evil players do."
