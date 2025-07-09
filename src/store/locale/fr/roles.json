@@ -2129,6 +2129,19 @@
     "ability": "Une fois par partie, faites un vœu. S’il est exaucé, il se peut que votre vœu ait un prix et laisse un indice sur sa nature."
   },
   {
+    "id": "wraith",
+    "name": "Spectre",
+    "edition": "",
+    "team": "minion",
+    "firstNight": 2.5,
+    "firstNightReminder": "Chaque fois que vous réveillez un joueur mauvais, réveillez d’abord le Spectre. Si le Spectre est ivre ou empoisonné, dites-lui qu'il ne peut pas ouvrir les yeux.",
+    "otherNight": 2.5,
+    "otherNightReminder": "Chaque fois que vous réveillez un joueur mauvais, réveillez d’abord le Spectre. Si le Spectre est ivre ou empoisonné, dites-lui qu'il ne peut pas ouvrir les yeux.",
+    "reminders": [],
+    "setup": false,
+    "ability": "Vous pouvez choisir d'ouvrir les yeux durant la nuit. Vous êtes réveillés quand les autres joueurs mauvais le sont."
+  },
+  {
     "id": "lilmonsta",
     "name": "Bébé monstre",
     "edition": "",
