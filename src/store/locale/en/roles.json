@@ -2127,6 +2127,19 @@
     "ability": "Once per game, choose to make a wish. If granted, it might have a price & leave a clue as to its nature."
   },
   {
+    "id": "wraith",
+    "name": "Wraith",
+    "edition": "",
+    "team": "minion",
+    "firstNight": 2.5,
+    "firstNightReminder": "Each time you wake an evil player at night, first wake the Wraith.",
+    "otherNight": 2.5,
+    "otherNightReminder": "Each time you wake an evil player at night, first wake the Wraith.",
+    "reminders": [],
+    "setup": false,
+    "ability": "You may choose to open your eyes at night. You wake when other evil players do."
+  },
+  {
     "id": "lilmonsta",
     "name": "Lil' Monsta",
     "edition": "",
