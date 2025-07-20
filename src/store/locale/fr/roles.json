@@ -2325,5 +2325,20 @@
     ],
     "setup": false,
     "ability": "Tous les joueurs commencent en connaissant un joueur de votre alignement. Vous pouvez choisir de tuer quiconque accuse ce joueur."
+  },
+  {
+    "id": "cacklejack",
+    "name": "Voltingue",
+    "edition": "",
+    "team": "traveler",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 3,
+    "otherNightReminder": "N'importe quand durant la nuit, changez le personnage d'un joueur qui n'est pas marqué \"Pas moi\". Réveillez ce joueur pour l'informer de son nouveau rôle.",
+    "reminders": [
+      "Pas moi"
+    ],
+    "setup": false,
+    "ability": "Chaque jour, désignez un joueur : un autre joueur change de personnage cette nuit."
   }
 ]
