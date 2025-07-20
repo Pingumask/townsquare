@@ -2318,5 +2318,20 @@
     ],
     "setup": false,
     "ability": "All players start knowing a player of your alignment. You may choose to kill anyone who nominates them."
+  },
+  {
+    "id": "cacklejack",
+    "name": "Cacklejack",
+    "edition": "",
+    "team": "traveler",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 3,
+    "otherNightReminder": "Anytime during the night, change the character of a player not marked \"Not me\". Wake this player to tell them their new role.",
+    "reminders": [
+      "Not me"
+    ],
+    "setup": false,
+    "ability": "Each day, choose a player: a different player changes character tonight."
   }
 ]
