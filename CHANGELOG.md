@@ -28,6 +28,7 @@
   - Deus ex Fiasco
   - Hermit
   - Princess
+  - Cacklejack
 
 ### Version 4.1.1
 - Correcting a bug with the "give back token" update
