@@ -21,15 +21,15 @@
     "edition": "tb",
     "team": "townsfolk",
     "firstNight": 46,
-    "firstNightReminder": "Indiquez un personnage d'Étranger en jeu et deux joueurs. L'un de ces joueurs est ce personnage. (S'il n'y a pas d'Étranger, indiquez le).",
+    "firstNightReminder": "Indiquez un personnage de Marginal en jeu et deux joueurs. L'un de ces joueurs est ce personnage. (S'il n'y a pas de Marginal, indiquez le).",
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [
-      "Étranger",
+      "Marginal",
       "Faux"
     ],
     "setup": false,
-    "ability": "Vous commencez la partie en sachant qu'un joueur parmi deux est un Étranger spécifique (ou qu'aucun Étranger n'est en jeu)."
+    "ability": "Vous commencez la partie en sachant qu'un joueur parmi deux est un Marginal spécifique (ou qu'aucun Marginal n'est en jeu)."
   },
   {
     "id": "investigator",
@@ -274,7 +274,7 @@
     "otherNightReminder": "Montrez le Grimoire à l'Espion aussi longtemps qu'il en a besoin.",
     "reminders": [],
     "setup": false,
-    "ability": "Chaque nuit, vous voyez le Grimoire. Il se peut que vous apparaissiez comme bon et comme Villageois ou Étranger, même après votre mort."
+    "ability": "Chaque nuit, vous voyez le Grimoire. Il se peut que vous apparaissiez comme bon et comme Villageois ou Marginal, même après votre mort."
   },
   {
     "id": "scarletwoman",
@@ -302,7 +302,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": true,
-    "ability": "Il y a des Étrangers supplémentaires en jeu. [+2 Étrangers]"
+    "ability": "Il y a des Marginaux supplémentaires en jeu. [+2 Marginaux]"
   },
   {
     "id": "imp",
@@ -656,15 +656,15 @@
     "edition": "bmr",
     "team": "minion",
     "firstNight": 32,
-    "firstNightReminder": "Dévoilez les rôles d'Étrangers en jeu.",
+    "firstNightReminder": "Dévoilez les rôles de Marginaux en jeu.",
     "otherNight": 50,
-    "otherNightReminder": "Si un Étranger est mort aujourd'hui, le Parrain désigne un joueur. Ce joueur meurt.",
+    "otherNightReminder": "Si un Marginal est mort aujourd'hui, le Parrain désigne un joueur. Ce joueur meurt.",
     "reminders": [
       "Mort aujourd'hui",
       "Mort"
     ],
     "setup": true,
-    "ability": "Vous commencez en connaissant les Étrangers en jeu. Si l'un est mort aujourd'hui, désignez un joueur cette nuit : il meurt. [-1 ou +1 Étranger]"
+    "ability": "Vous commencez en sachant les Marginaux en jeu. Si l'un est mort aujourd'hui, désignez un joueur cette nuit : il meurt. [-1 ou +1 Marginal]"
   },
   {
     "id": "devilsadvocate",
@@ -1048,7 +1048,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Si vous êtes persuadé d’être un Étranger, il se peut que vous soyez exécuté."
+    "ability": "Si vous êtes persuadé d’être un Marginal, il se peut que vous soyez exécuté."
   },
   {
     "id": "sweetheart",
@@ -1162,13 +1162,13 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 38,
-    "otherNightReminder": "Le Fang Gu désigne un joueur. Si ce joueur n'est pas un Étranger, il meurt. Si ce personnage est un Étranger et qu'il n'y a qu'un seul Fang gu en jeu, le Fang Gu meurt à la place du joueur désigné. Le joueur désigné devient un Fang Gu et rejoint l'équipe des Mauvais. Réveillez le nouveau Fang Gu. Indiquez-lui son nouveau rôle.",
+    "otherNightReminder": "Le Fang Gu désigne un joueur. Si ce joueur n'est pas un Marginal, il meurt. Si ce personnage est un Marginal et qu'il n'y a qu'un seul Fang gu en jeu, le Fang Gu meurt à la place du joueur désigné. Le joueur désigné devient un Fang Gu et rejoint l'équipe des Mauvais. Réveillez le nouveau Fang Gu. Indiquez-lui son nouveau rôle.",
     "reminders": [
       "Mort",
       "Utilisé"
     ],
     "setup": true,
-    "ability": "Chaque nuit*, désignez un joueur : il meurt. Le 1er Étranger tué ainsi devient un mauvais Fang Gu et vous mourez à sa place. [+1 Étranger]"
+    "ability": "Chaque nuit*, désignez un joueur : il meurt. Le 1er Marginal tué ainsi devient un mauvais Fang Gu et vous mourez à sa place. [+1 Marginal]"
   },
   {
     "id": "vigormortis",
@@ -1186,7 +1186,7 @@
       "Empoisonné"
     ],
     "setup": true,
-    "ability": "Chaque nuit*, désignez un joueur : il meurt. Les Sbires tués par vous gardent leur capacité & empoisonnent 1 voisin Villageois. [-1 Étranger]"
+    "ability": "Chaque nuit*, désignez un joueur : il meurt. Les Sbires tués par vous ont leur capacité et empoisonnent un voisin Villageois. [-1 Marginal]"
   },
   {
     "id": "nodashii",
@@ -1392,12 +1392,12 @@
     "otherNightReminder": "Choisissez un type de personnage différent de la nuit précédente. Indiquez à l'Aéronaute un joueur dont le personnage est de ce type. Marquez ce type de personnage comme vu par l'Aéronaute, et retirez le précédent marqueur.",
     "reminders": [
       "Villageois vu",
-      "Étranger vu",
+      "Marginal vu",
       "Sbire vu",
       "Démon vu"
     ],
     "setup": true,
-    "ability": "Chaque nuit, vous apprenez un joueur qui a un type de rôle différent de celui de la nuit précédente. [+0 ou +1 Étranger]"
+    "ability": "Chaque nuit, vous apprenez un joueur qui a un type de rôle différent de celui de la nuit précédente. [+0 ou +1 Marginal]"
   },
   {
     "id": "cultleader",
@@ -1893,7 +1893,7 @@
       "3"
     ],
     "setup": true,
-    "ability": "Vous avez les capacités de tous les Étrangers. [-0 ou -1 Étranger]"
+    "ability": "Vous avez les capacités de tous les Marginaux. [-0 ou -1 Marginal]"
   },
   {
     "id": "widow",
@@ -2087,9 +2087,9 @@
     "edition": "",
     "team": "minion",
     "firstNight": 26,
-    "firstNightReminder": "Marquez le Xaan 'Nuit 1'. Si la partie a commencé avec 1 Étranger, marquez tous les Villageois 'X' : ils sont empoisonnés.",
+    "firstNightReminder": "Marquez le Xaan 'Nuit 1'. Si la partie a commencé avec 1 Marginal, marquez tous les Villageois 'X' : ils sont empoisonnés.",
     "otherNight": 9,
-    "otherNightReminder": "Si les Villageois étaient empoisonnés, retirez les marqueurs 'X'. Sinon, modifiez le marqueur devant le Xaan ; puis, si la nuit correspond au nombre d'Étrangers en début de partie, marquez tous les Villageois 'X' : ils sont empoisonnés.",
+    "otherNightReminder": "Si les Villageois étaient empoisonnés, retirez les marqueurs 'X'. Sinon, modifiez le marqueur devant le Xaan ; puis, si la nuit correspond au nombre de Marginaux en début de partie, marquez tous les Villageois 'X' : ils sont empoisonnés.",
     "reminders": [
       "Nuit 1",
       "Nuit 2",
@@ -2098,7 +2098,7 @@
       "X"
     ],
     "setup": true,
-    "ability": "Durant la nuit X, tous les Villageois sont empoisonnés jusqu'au crépuscule. [X Étrangers]"
+    "ability": "Durant la nuit X, tous les Villageois sont empoisonnés jusqu'au crépuscule. [X Marginaux]"
   },
   {
     "id": "boffin",
@@ -2266,7 +2266,7 @@
       "Mort"
     ],
     "setup": true,
-    "ability": "Chaque nuit*, désignez un joueur : il meurt. [Vous choisissez quels joueurs sont quels Sbires. -? à +? Étrangers]"
+    "ability": "Chaque nuit*, désignez un joueur : il meurt. [Vous choisissez quels joueurs sont quels Sbires. -? à +? Marginaux]"
   },
   {
     "id": "ojo",
@@ -2296,7 +2296,7 @@
       "Mort"
     ],
     "setup": true,
-    "ability": "Chaque nuit*, désignez un joueur : il meurt. [Les joueurs mauvais sont en ligne, avec vous au milieu. +1 Sbire. -? à +? Étrangers]"
+    "ability": "Chaque nuit*, désignez un joueur : il meurt. [Les joueurs mauvais sont en ligne, avec vous au milieu. +1 Sbire. -? à +? Marginaux]"
   },
   {
     "id": "gangster",
