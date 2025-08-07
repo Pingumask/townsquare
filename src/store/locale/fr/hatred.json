@@ -26,6 +26,43 @@
     ]
   },
   {
+    "id": "Alchemist",
+    "hatred": [
+      {
+        "id": "Spy",
+        "reason": "Si l'Alchimiste a la capacité de l'Espion, il ne l'a pas, et un Espion est en jeu. Chaque jour, après la phase d'exécution, l'Alchimiste vivant peut publiquement deviner un joueur vivant comme étant l'Espion. S'il a raison, le Démon doit désigner l'Espion cette nuit."
+      },
+      {
+        "id": "Widow",
+        "reason": "Si l'Alchimiste a la capacité de la Veuve, il ne l'a pas, et une Veuve est en jeu. Chaque jour, après la phase d'exécution, l'Alchimiste vivant peut publiquement deviner un joueur vivant comme étant la Veuve. S'il a raison, le Démon doit désigner la Veuve cette nuit."
+      },
+      {
+        "id": "Marionette",
+        "reason": "Un Alchimiste-Marionnette n'a pas la capacité de la Marionnette et la Marionnette est en jeu."
+      },
+      {
+        "id": "Wraith",
+        "reason": "Si l'Alchimiste a la capacité du Spectre, il ne l'a pas, et un Spectre est en jeu. Chaque jour, après la phase d'exécution, l'Alchimiste vivant peut publiquement deviner un joueur vivant comme étant le Spectre. S'il a raison, le Démon doit désigner le Spectre cette nuit."
+      },
+      {
+        "id": "Summoner",
+        "reason": "L'Alchimiste-Invocateur n'a aucun bluff, et choisit quel Démon mais pas quel joueur. S'il meurt avant que ceci n'arrive, les mauvais gagnent."
+      },
+      {
+        "id": "Mastermind",
+        "reason": "Un Alchimiste-Conspirateur n'a pas la capacité du Conspirateur et aucun Conspirateur n'est en jeu."
+      },
+      {
+        "id": "Organ Grinder",
+        "reason": "Si l'Alchimiste a la capacité de l'Organiste barbare, l'Organiste barbare est en jeu, et si l'Alchimiste et l'Organsite barbare sont tous les deux sobres, ils deviennent tous les deux ivres."
+      },
+      {
+        "id": "Boffin",
+        "reason": "Si l'Alchimiste a la capacité du Spécialiste, il n'apprend pas quelle capacité il donne au Démon.."
+      }
+    ]
+  },
+  {
     "id": "Cannibal",
     "hatred": [
       {
@@ -51,6 +88,31 @@
     ]
   },
   {
+    "id": "Magician",
+    "hatred": [
+      {
+        "id": "Spy",
+        "reason": "Quand l'Espion regarde le Grimoire, les jetons du Démon et du Magicien sont retirés."
+      },
+      {
+        "id": "Widow",
+        "reason": "Quand la Veuve regarde le Grimoire, les jetons du Démon et du Magicien sont retirés."
+      },
+      {
+        "id": "Wraith",
+        "reason": "Chaque jour, après la phase d'exécution, le Magicien vivant peut publiquement deviner un joueur vivant comme étant le Spectre. S'il a raison, le Démon doit désigner le Spectre cette nuit."
+      },
+      {
+        "id": "Vizier",
+        "reason": "Si le Vizir et le Magicien sont tous deux en jeu, le Démon n'apprend pas qui sont les Sbires."
+      },
+      {
+        "id": "Lil' Monsta",
+        "reason": "Chaque nuit, le Magicien choisit un rôle de Sbire : si ce Sbire et le Bébé monstre sont vivants, ce Sbire a la garde du Bébé monstre."
+      }
+    ]
+  },
+  {
     "id": "Butler",
     "hatred": [
       {
@@ -69,6 +131,39 @@
     ]
   },
   {
+    "id": "Heretic",
+    "hatred": [
+      {
+        "id": "Godfather",
+        "reason": "Seul un de ces personnages peut être en jeu."
+      },
+      {
+        "id": "Spy",
+        "reason": "Seul un de ces personnages peut être en jeu."
+      },
+      {
+        "id": "Pit-Hag",
+        "reason": "Une Guenaude ne peut pas créer d'Hérétique."
+      },
+      {
+        "id": "Widow",
+        "reason": "Seul un de ces personnages peut être en jeu."
+      },
+      {
+        "id": "Boffin",
+        "reason": "Le Démon ne peut pas avoir la capacité de l'Hérétique."
+      },
+      {
+        "id": "Baron",
+        "reason": "Il se peut que le Baron ajoute un Marginal au lieu de deux."
+      },
+      {
+        "id": "Lleech",
+        "reason": "Si la Ssangssue a empoisonné l'Hérétique, et si elle meurt, l'Hérétique reste empoisonné."
+      }
+    ]
+  },
+  {
     "id": "Plague Doctor",
     "hatred": [
       {
@@ -81,7 +176,11 @@
       },
       {
         "id": "Marionette",
-        "reason": "Si l'un des voisins du Démon est un Villageois ou Étranger et est vivant quand le Narrateur aurait du gagner la capacité de la Marionnette, ce joueur devient une Marionnette mauvaise. S'il y a déjà un joueur mauvais supplémentaire, cela n'arrive pas."
+        "reason": "Si l'un des voisins du Démon est Villageois ou Marginal et est vivant quand le Narrateur aurait du gagner la capacité de la Marionnette, ce joueur devient une Marionnette mauvaise. S'il y a déjà un joueur mauvais supplémentaire, cela n'arrive pas."
+      },
+      {
+        "id": "Wraith",
+        "reason": "Si le Médecin de Peste aurait du donner la capacité du Spectre au Narrateur, un Sbire en vie gagne la capacité du Spectre en plus de sa propre capacité, et l'apprend."
       },
       {
         "id": "Evil Twin",
@@ -101,54 +200,13 @@
       },
       {
         "id": "Baron",
-        "reason": "Si le Narrateur gagne la capacité du Baron, jusqu'à deux joueurs deviennent des Étrangers qui ne sont pas en jeu."
-      }
-    ]
-  },
-  {
-    "id": "Heretic",
-    "hatred": [
-      {
-        "id": "Godfather",
-        "reason": "Seul un de ces personnages peut être en jeu."
-      },
-      {
-        "id": "Spy",
-        "reason": "Seul un de ces personnages peut être en jeu."
-      },
-      {
-        "id": "Pit-Hag",
-        "reason": "La Chaudronnière ne peut pas créer un Hérétique."
-      },
-      {
-        "id": "Widow",
-        "reason": "Seul un de ces personnages peut être en jeu."
-      },
-      {
-        "id": "Boffin",
-        "reason": "Le Démon ne peut pas avoir la capacité de l'Hérétique."
-      },
-      {
-        "id": "Baron",
-        "reason": "Il se peut que le Baron ajoute un Étranger au lieu de deux."
-      },
-      {
-        "id": "Lleech",
-        "reason": "Si la Ssangssue a empoisonné l'Hérétique, et si elle meurt, alors l'Hérétique reste empoisonné."
+        "reason": "Si le Narrateur gagne la capacité du Baron, jusqu'à deux joueurs deviennent des Marginaux qui ne sont pas en jeu."
       }
     ]
   },
   {
     "id": "Spy",
     "hatred": [
-      {
-        "id": "Alchemist",
-        "reason": "Si l'Alchimiste a la capacité de l'Espion, il ne voit pas le Grimoire, et le véritable Espion ne peut pas apparaître faussement."
-      },
-      {
-        "id": "Magician",
-        "reason": "Quand l'Espion regarde le Grimoire, les jetons du Démon et du Magicien sont retirés."
-      },
       {
         "id": "Poppy Grower",
         "reason": "Si le Planteur de pavot est en jeu, l'Espion ne regarde pas le Grimoire avant la mort du Planteur de pavot."
@@ -177,27 +235,40 @@
     "hatred": [
       {
         "id": "Village Idiot",
-        "reason": "S'il y a moins de trois Idiots du Village, la Chaudronnière peut en créer un nouveau. Il se peut alors que l'Idiot du Village ivre change."
+        "reason": "S'il y a moins de trois Idiots du Village, la Guenaude peut en créer un nouveau. Il se peut alors que l'Idiot du Village ivre change."
       },
       {
         "id": "Cult Leader",
-        "reason": "Si la Chaudronnière change un joueur mauvais en Gourou, celui-ci ne peut pas devenir bon par sa capacité."
+        "reason": "Si la Guenaude change un joueur mauvais en Gourou, celui-ci ne peut pas devenir bon par sa capacité."
       },
       {
         "id": "Goon",
-        "reason": "Si la Chaudronnière change un joueur mauvais en Homme de main, celui-ci ne peut pas devenir bon par sa capacité."
+        "reason": "Si la Guenaude change un joueur mauvais en Homme de main, celui-ci ne peut pas devenir bon par sa capacité."
       },
       {
         "id": "Ogre",
-        "reason": "Si la Chaudronnière change un joueur mauvais en Ogre, celui-ci ne peut pas devenir bon par sa capacité."
+        "reason": "Si la Guenaude change un joueur mauvais en Ogre, celui-ci ne peut pas devenir bon par sa capacité."
       },
       {
         "id": "Politician",
-        "reason": "Si la Chaudronnière change un joueur mauvais en Politicien, celui-ci ne peut pas devenir bon par sa capacité."
+        "reason": "Si la Guenaude change un joueur mauvais en Politicien, celui-ci ne peut pas devenir bon par sa capacité."
       },
       {
         "id": "Damsel",
-        "reason": "Si la Chaudronnière crée une Demoiselle, le Narrateur choisit quel joueur le devient."
+        "reason": "Si la Guenaude crée une Demoiselle, le Narrateur choisit quel joueur le devient."
+      }
+    ]
+  },
+  {
+    "id": "Widow",
+    "hatred": [
+      {
+        "id": "Poppy Grower",
+        "reason": "Si le Planteur de pavot est en jeu, la Veuve ne regarde pas le Grimoire avant la mort du Planteur de pavot."
+      },
+      {
+        "id": "Damsel",
+        "reason": "Si la Veuve est (ou a été) en jeu, la Demoiselle est empoisonnée."
       }
     ]
   },
@@ -206,7 +277,7 @@
     "hatred": [
       {
         "id": "Balloonist",
-        "reason": "Si la Marionnette pense être l'Aéronaute, il se peut qu'1 Etranger ait été ajouté."
+        "reason": "Si la Marionnette pense être l'Aéronaute, il se peut qu'1 Marginal ait été ajouté."
       },
       {
         "id": "Huntsman",
@@ -223,6 +294,10 @@
       {
         "id": "Snitch",
         "reason": "La Marionnette n'apprend pas 3 personnages qui ne sont pas en jeu. Le Démon en apprend 3 suplémentaires à la place."
+      },
+      {
+        "id": "Wraith",
+        "reason": "Le Spectre n'est pas réveillé avec la Marionnette."
       },
       {
         "id": "Lil' Monsta",
@@ -248,10 +323,6 @@
       {
         "id": "Courtier",
         "reason": "Si l'Invocateur est ivre durant la troisième nuit, l'Invocateur choisit quel Démon mais le Narrateur choisit quel joueur."
-      },
-      {
-        "id": "Alchemist",
-        "reason": "Si un Alchimiste-Invocateur est en jeu, la partie commence avec un Démon, comme d'habitude. Si l'Alchimiste-Invocateur désigne un joueur, il le transforme en Démon mais ne change pas son alignement."
       },
       {
         "id": "Poppy Grower",
@@ -304,12 +375,12 @@
     "id": "Scarlet Woman",
     "hatred": [
       {
-        "id": "Al-Hadikhia",
-        "reason": "S'il y a deux Al-Hadikhias en vie, la Gourgandine devenue Al-Hadikhia redevient Gourgandine."
+        "id": "Fang Gu",
+        "reason": "Si le Fang Gu désigne un Marginal et meurt, La Gourgandine ne devient pas le Fang Gu."
       },
       {
-        "id": "Fang Gu",
-        "reason": "Si le Fang Gu désigne un Étranger et meurt, La Gourgandine ne devient pas le Fang Gu."
+        "id": "Al-Hadikhia",
+        "reason": "S'il y a deux Al-Hadikhias en vie, la Gourgandine devenue Al-Hadikhia redevient Gourgandine."
       }
     ]
   },
@@ -331,10 +402,6 @@
       {
         "id": "Courtier",
         "reason": "Si le Vizir perd sa capacité, il l'apprend. Si le Vizir est exécuté alors qu'il a sa capacité, son équipe gagne."
-      },
-      {
-        "id": "Magician",
-        "reason": "Si le Vizir et le Magicien sont tous deux en jeu, le Démon n'apprend pas qui sont les Sbires."
       },
       {
         "id": "Politician",
@@ -362,10 +429,6 @@
         "reason": "Si le Démon a la capacité du Gourou, il ne peut pas devenir bon par sa capacité."
       },
       {
-        "id": "Alchemist",
-        "reason": "Si l'Alchimiste a la capacité du Spécialiste, il n'apprend pas quelle capacité il donne au Démon."
-      },
-      {
         "id": "Goon",
         "reason": "Si le Démon a la capacité de l'Homme de main, il ne peut pas devenir bon par sa capacité."
       },
@@ -384,27 +447,6 @@
     ]
   },
   {
-    "id": "Widow",
-    "hatred": [
-      {
-        "id": "Alchemist",
-        "reason": "Si l'Alchimiste a la capacité de la Veuve, il ne voit pas le Grimoire."
-      },
-      {
-        "id": "Magician",
-        "reason": "Quand la Veuve regarde le Grimoire, les jetons du Démon et du Magicien sont retirés."
-      },
-      {
-        "id": "Poppy Grower",
-        "reason": "Si le Planteur de pavot est en jeu, la Veuve ne regarde pas le Grimoire avant la mort du Planteur de pavot."
-      },
-      {
-        "id": "Damsel",
-        "reason": "Si la Veuve est (ou a été) en jeu, la Demoiselle est empoisonnée."
-      }
-    ]
-  },
-  {
     "id": "Yaggababble",
     "hatred": [
       {
@@ -416,10 +458,6 @@
   {
     "id": "Lil' Monsta",
     "hatred": [
-      {
-        "id": "Magician",
-        "reason": "Chaque nuit, le Magicien choisit un rôle de Sbire : si ce Sbire et le Bébé monstre sont vivants, ce Sbire a la garde du Bébé monstre."
-      },
       {
         "id": "Poppy Grower",
         "reason": "Si le Planteur de pavot est en jeu, les Sbires ne se réveillent pas ensemble. Ils sont réveillés un par un jusqu'à ce que l'un d'entre eux décide d'être baby-sitter."
@@ -460,15 +498,6 @@
       {
         "id": "Marionette",
         "reason": "Si le Kazali veut créer une Marionnette, il doit choisir l'un de ses voisins."
-      }
-    ]
-  },
-  {
-    "id": "Al-Hadikhia",
-    "hatred": [
-      {
-        "id": "Princess",
-        "reason": "Si la Princesse a accusé et exécuté un joueur durant son premier jour, personne ne meurt par la capacité d'Al-Hadikhia cette nuit."
       }
     ]
   },
@@ -520,6 +549,15 @@
     ]
   },
   {
+    "id": "Al-Hadikhia",
+    "hatred": [
+      {
+        "id": "Princess",
+        "reason": "Si la Princesse a accusé et exécuté un joueur durant son premier jour, personne ne meurt par la capacité d'Al-Hadikhia cette nuit."
+      }
+    ]
+  },
+  {
     "id": "Leviathan",
     "hatred": [
       {
@@ -564,7 +602,7 @@
       },
       {
         "id": "Mayor",
-        "reason": "Si le Léviathan est en jeu et qu'il n'y a pas d'exécution le cinquième jour, les bons gagnent."
+        "reason": "Si le Léviathan est en jeu, que le Maire est vivant, et qu'il n'y a pas d'exécution le cinquième jour, les bons gagnent."
       },
       {
         "id": "Hatter",
@@ -572,7 +610,7 @@
       },
       {
         "id": "Pit-Hag",
-        "reason": "Après le jour 5, la Chaudronnière ne peut pas créer de Léviathan."
+        "reason": "Après le jour 5, la Guenaude ne peut pas créer de Léviathan."
       }
     ]
   },
