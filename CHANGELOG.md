@@ -12,6 +12,7 @@
 - Added "Wrong" reminder for the juggler
 - Added "Changed" reminder for the engineer
 - Correcting Banshee's night reminders
+- Updating the jinxes
 - French Translation updates :
   - Dawn
   - Dusk
