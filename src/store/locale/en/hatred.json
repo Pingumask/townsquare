@@ -26,6 +26,43 @@
     ]
   },
   {
+    "id": "Alchemist",
+    "hatred": [
+      {
+        "id": "Spy",
+        "reason": "If the Alchemist has the Spy ability, they do not, and a Spy is in play. Each day, after the execution phase, the living Alchemist may publicly guess a living player as the Spy. If correct, the Demon must choose the Spy tonight."
+      },
+      {
+        "id": "Widow",
+        "reason": "If the Alchemist has the Widow ability, they do not, and a Widow is in play. Each day, after the execution phase, the living Alchemist may publicly guess a living player as the Widow. If correct, the Demon must choose the Widow tonight."
+      },
+      {
+        "id": "Marionette",
+        "reason": "An Alchemist-Marionette has no Marionette ability & the Marionette is in play."
+      },
+      {
+        "id": "Wraith",
+        "reason": "If the Alchemist has the Wraith ability, they do not, and a Wraith is in play. Each day, after the execution phase, the living Alchemist may publicly guess a living player as the Wraith: if correct, the Demon must choose the Wraith tonight."
+      },
+      {
+        "id": "Summoner",
+        "reason": "The Alchemist-Summoner does not get bluffs, and chooses which Demon but not which player. If they die before this happens, evil wins. [No Demon]"
+      },
+      {
+        "id": "Mastermind",
+        "reason": "An Alchemist-Mastermind has no Mastermind ability & the Mastermind is not-in-play."
+      },
+      {
+        "id": "Organ Grinder",
+        "reason": "If the Alchemist has the Organ Grinder ability, the Organ Grinder is in play & if both the Alchemist and Organ Grinder are sober, both are drunk."
+      },
+      {
+        "id": "Boffin",
+        "reason": "If the Alchemist has the Boffin ability, the Alchemist does not learn what ability the Demon has."
+      }
+    ]
+  },
+  {
     "id": "Cannibal",
     "hatred": [
       {
@@ -51,6 +88,31 @@
     ]
   },
   {
+    "id": "Magician",
+    "hatred": [
+      {
+        "id": "Spy",
+        "reason": "When the Spy sees the Grimoire, the Demon and the Magician's character tokens are removed."
+      },
+      {
+        "id": "Widow",
+        "reason": "When the Widow sees the Grimoire, the Demon and Magician's character tokens are removed."
+      },
+      {
+        "id": "Wraith",
+        "reason": "Each day, after the execution phase, the living Magician may publicly guess a living player as the Wraith: if correct, the Demon must choose the Wraith tonight."
+      },
+      {
+        "id": "Vizier",
+        "reason": "If the Vizier and Magician are both in play, the Demon does not learn the Minions."
+      },
+      {
+        "id": "Lil' Monsta",
+        "reason": "Each night, the Magician chooses a Minion: if that Minion & Lil' Monsta are alive, that Minion babysits Lil’ Monsta."
+      }
+    ]
+  },
+  {
     "id": "Butler",
     "hatred": [
       {
@@ -65,43 +127,6 @@
       {
         "id": "Recluse",
         "reason": "If the Recluse registers as evil to the Ogre, the Ogre learns that they are evil."
-      }
-    ]
-  },
-  {
-    "id": "Plague Doctor",
-    "hatred": [
-      {
-        "id": "Spy",
-        "reason": "If the Plague Doctor dies, a living Minion gains the Spy ability in addition to their own ability, and learns this."
-      },
-      {
-        "id": "Fearmonger",
-        "reason": "If the Plague Doctor dies, a living Minion gains the Fearmonger ability in addition to their own ability, and learns this."
-      },
-      {
-        "id": "Marionette",
-        "reason": "If the Demon has a neighbor who is alive and a Townsfolk or Outsider when the Plague Doctor dies, that player becomes an evil Marionette. If there is already an extra evil player, this does not happen."
-      },
-      {
-        "id": "Evil Twin",
-        "reason": "The Storyteller cannot gain the Evil Twin ability if the Plague Doctor dies."
-      },
-      {
-        "id": "Goblin",
-        "reason": "If the Plague Doctor dies, a living Minion gains the Goblin ability in addition to their own ability, and learns this."
-      },
-      {
-        "id": "Boomdandy",
-        "reason": "If the Plague Doctor is executed and the Storyteller would gain the Boomdandy ability, the Boomdandy ability triggers immediately."
-      },
-      {
-        "id": "Scarlet Woman",
-        "reason": "If the Plague Doctor dies, a living Minion gains the Scarlet Woman ability in addition to their own ability, and learns this."
-      },
-      {
-        "id": "Baron",
-        "reason": "If the Storyteller gains the Baron ability, up to two players become out-of-play Outsiders."
       }
     ]
   },
@@ -139,16 +164,49 @@
     ]
   },
   {
-    "id": "Spy",
+    "id": "Plague Doctor",
     "hatred": [
       {
-        "id": "Alchemist",
-        "reason": "If the Alchemist has the Spy ability, they do not see the Grimoire, and the real Spy cannot register falsely."
+        "id": "Spy",
+        "reason": "If the Plague Doctor dies, a living Minion gains the Spy ability in addition to their own ability, and learns this."
       },
       {
-        "id": "Magician",
-        "reason": "When the Spy sees the Grimoire, the Demon and the Magician's character tokens are removed."
+        "id": "Fearmonger",
+        "reason": "If the Plague Doctor dies, a living Minion gains the Fearmonger ability in addition to their own ability, and learns this."
       },
+      {
+        "id": "Marionette",
+        "reason": "If the Demon has a neighbor who is alive and a Townsfolk or Outsider when the Plague Doctor dies, that player becomes an evil Marionette. If there is already an extra evil player, this does not happen."
+      },
+      {
+        "id": "Wraith",
+        "reason": "If the Plague Doctor dies, a living Minion gains the Wraith ability in addition to their own ability, and learns this."
+      },
+      {
+        "id": "Evil Twin",
+        "reason": "The Storyteller cannot gain the Evil Twin ability if the Plague Doctor dies."
+      },
+      {
+        "id": "Goblin",
+        "reason": "If the Plague Doctor dies, a living Minion gains the Goblin ability in addition to their own ability, and learns this."
+      },
+      {
+        "id": "Boomdandy",
+        "reason": "If the Plague Doctor is executed and the Storyteller would gain the Boomdandy ability, the Boomdandy ability triggers immediately."
+      },
+      {
+        "id": "Scarlet Woman",
+        "reason": "If the Plague Doctor dies, a living Minion gains the Scarlet Woman ability in addition to their own ability, and learns this."
+      },
+      {
+        "id": "Baron",
+        "reason": "If the Storyteller gains the Baron ability, up to two players become out-of-play Outsiders."
+      }
+    ]
+  },
+  {
+    "id": "Spy",
+    "hatred": [
       {
         "id": "Poppy Grower",
         "reason": "If the Poppy Grower is in play, the Spy does not see the Grimoire until the Poppy Grower dies."
@@ -202,6 +260,19 @@
     ]
   },
   {
+    "id": "Widow",
+    "hatred": [
+      {
+        "id": "Poppy Grower",
+        "reason": "If the Poppy Grower is in play, the Widow does not see the Grimoire until the Poppy Grower dies."
+      },
+      {
+        "id": "Damsel",
+        "reason": "If the Widow is (or has been) in play, the Damsel is poisoned."
+      }
+    ]
+  },
+  {
     "id": "Marionette",
     "hatred": [
       {
@@ -223,6 +294,10 @@
       {
         "id": "Snitch",
         "reason": "The Marionette does not learn 3 not in-play characters. The Demon learns an extra 3 instead."
+      },
+      {
+        "id": "Wraith",
+        "reason": "The Wraith does not wake with the Marionette."
       },
       {
         "id": "Lil' Monsta",
@@ -248,10 +323,6 @@
       {
         "id": "Courtier",
         "reason": "If the Summoner is drunk on the 3rd night, the Summoner chooses which Demon, but the Storyteller chooses which player."
-      },
-      {
-        "id": "Alchemist",
-        "reason": "If there is an Alchemist-Summoner in play, the game starts with a Demon in play, as normal. If the Alchemist-Summoner chooses a player, they make that player a Demon but do not change their alignment."
       },
       {
         "id": "Poppy Grower",
@@ -304,12 +375,12 @@
     "id": "Scarlet Woman",
     "hatred": [
       {
-        "id": "Al-Hadikhia",
-        "reason": "If there are two living Al-Hadikhias, the Scarlet Woman Al-Hadikhia becomes the Scarlet Woman again."
-      },
-      {
         "id": "Fang Gu",
         "reason": "If the Fang Gu chooses an Outsider and dies, the Scarlet Woman does not become the Fang Gu."
+      },
+      {
+        "id": "Al-Hadikhia",
+        "reason": "If there are two living Al-Hadikhias, the Scarlet Woman Al-Hadikhia becomes the Scarlet Woman again."
       }
     ]
   },
@@ -331,10 +402,6 @@
       {
         "id": "Courtier",
         "reason": "If the Vizier loses their ability, they learn this. If the Vizier is executed while they have their ability, their team wins."
-      },
-      {
-        "id": "Magician",
-        "reason": "If the Vizier and Magician are both in play, the Demon does not learn the Minions."
       },
       {
         "id": "Politician",
@@ -362,10 +429,6 @@
         "reason": "If the Demon has the Cult Leader ability, they can't turn good due to this ability."
       },
       {
-        "id": "Alchemist",
-        "reason": "If the Alchemist has the Boffin ability, the Alchemist does not learn what ability the Demon has."
-      },
-      {
         "id": "Goon",
         "reason": "If the Demon has the Goon ability, they can't turn good due to this ability."
       },
@@ -384,27 +447,6 @@
     ]
   },
   {
-    "id": "Widow",
-    "hatred": [
-      {
-        "id": "Alchemist",
-        "reason": "If the Alchemist has the Widow ability, they do not see the Grimoire."
-      },
-      {
-        "id": "Magician",
-        "reason": "When the Widow sees the Grimoire, the Demon and Magician's character tokens are removed."
-      },
-      {
-        "id": "Poppy Grower",
-        "reason": "If the Poppy Grower is in play, the Widow does not see the Grimoire until the Poppy Grower dies."
-      },
-      {
-        "id": "Damsel",
-        "reason": "If the Widow is (or has been) in play, the Damsel is poisoned."
-      }
-    ]
-  },
-  {
     "id": "Yaggababble",
     "hatred": [
       {
@@ -416,10 +458,6 @@
   {
     "id": "Lil' Monsta",
     "hatred": [
-      {
-        "id": "Magician",
-        "reason": "Each night, the Magician chooses a Minion: if that Minion & Lil' Monsta are alive, that Minion babysits Lil’ Monsta."
-      },
       {
         "id": "Poppy Grower",
         "reason": "If the Poppy Grower is in play, Minions don't wake together. They are woken one by one, until one of them chooses to take the Lil' Monsta token."
@@ -460,15 +498,6 @@
       {
         "id": "Marionette",
         "reason": "If the Kazali chooses to create a Marionette, they must choose one of their neighbors."
-      }
-    ]
-  },
-  {
-    "id": "Al-Hadikhia",
-    "hatred": [
-      {
-        "id": "Princess",
-        "reason": "If the Princess nominated & executed a player on their 1st day, no one dies to the Al-Hadikhia ability tonight."
       }
     ]
   },
@@ -516,6 +545,15 @@
       {
         "id": "Mastermind",
         "reason": "If the Mastermind is alive and the Lleech's host dies by execution, the Lleech lives but loses their ability."
+      }
+    ]
+  },
+  {
+    "id": "Al-Hadikhia",
+    "hatred": [
+      {
+        "id": "Princess",
+        "reason": "If the Princess nominated & executed a player on their 1st day, no one dies to the Al-Hadikhia ability tonight."
       }
     ]
   },
