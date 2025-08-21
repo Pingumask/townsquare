@@ -33,6 +33,10 @@
   ],
   "popular": [
     [
+      "Anonymous Dishonesty",
+      "anonymous_dishonesty.json"
+    ],
+    [
       "Boozling",
       "boozling.json"
     ],
@@ -49,12 +53,20 @@
       "church_of_spies.json"
     ],
     [
+      "Contempt",
+      "contempt.json"
+    ],
+    [
       "Cultists of Atlantis",
       "cultists_of_atlantis.json"
     ],
     [
       "Deadly Penance Day",
       "deadly_penance_day.json"
+    ],
+    [
+      "Devout Theists",
+      "devout_theists.json"
     ],
     [
       "Dusk in the House of the Damned",
@@ -81,6 +93,14 @@
       "the_horrifying_spectacle_of_public_executions.json"
     ],
     [
+      "Insanity & Intuition",
+      "insanity_and_intuition.json"
+    ],
+    [
+      "Irrational Behaviour",
+      "irrational_behaviour.json"
+    ],
+    [
       "Knowing me, Knowing you",
       "knowing_me_knowing_you.json"
     ],
@@ -93,6 +113,10 @@
       "midnight_oasis.json"
     ],
     [
+      "Monkey Do Math",
+      "monkey_do_math.json"
+    ],
+    [
       "No roles barred",
       "no_roles_barred.json"
     ],
@@ -101,8 +125,20 @@
       "one_in_one_out.json"
     ],
     [
+      "The Ones You Least Expect",
+      "the_ones_you_least_expect.json"
+    ],
+    [
       "Poppyganda",
       "poppyganda.json"
+    ],
+    [
+      "Punchy",
+      "punchy.json"
+    ],
+    [
+      "Quick Maths",
+      "quick_maths.json"
     ],
     [
       "Reptiles !",
@@ -111,6 +147,10 @@
     [
       "Reptiles II : Lizard in the city",
       "reptiles2.json"
+    ],
+    [
+      "Revenge of the Martian Vampires",
+      "revenge_of_the_martian_vampires.json"
     ],
     [
       "Reykjavik's Scheme",

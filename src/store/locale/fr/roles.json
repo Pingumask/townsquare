@@ -1141,13 +1141,13 @@
   },
   {
     "id": "pithag",
-    "name": "Chaudronnière",
+    "name": "Guenaude",
     "edition": "snv",
     "team": "minion",
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 22,
-    "otherNightReminder": "La Chaudronnière désigne un joueur et un personnage. Si ce personnage n'est pas en jeu, réveillez ce joueur et dévoillez-lui son nouveau personnage. Si le personnage est déjà en jeu, rien ne se passe.",
+    "otherNightReminder": "La Guenaude désigne un joueur et un personnage. Si ce personnage n'est pas en jeu, réveillez ce joueur et dévoillez-lui son nouveau personnage. Si le personnage est déjà en jeu, rien ne se passe.",
     "reminders": [
       "Mort"
     ],
@@ -2196,7 +2196,7 @@
     ],
     "setup": true,
     "multiple": true,
-    "ability": "Chaque nuit*, il se peut qu'un joueur meure. Les exécutions ratent sans vote de bon. Vous apparaissez aussi comme Sbire. [Majorité de Légion]"
+    "ability": "Chaque nuit*, il se peut qu'un joueur meure. Les exécutions ratent si 0 bon vote. Vous apparaissez aussi comme Sbire. [Majorité de Légion]"
   },
   {
     "id": "leviathan",
@@ -2218,7 +2218,7 @@
       "Jour 5"
     ],
     "setup": false,
-    "ability": "Si plus d'un Bon joueur est exécuté, les Mauvais gagnent. Tous les joueurs savent que votre personnage est en jeu. Après 5 jours, les Mauvais gagnent."
+    "ability": "Si plus d'un bon est exécuté, les mauvais gagnent. Tous les joueurs savent que vous êtes en jeu. Après le jour 5, les mauvais gagnent."
   },
   {
     "id": "riot",
@@ -2325,5 +2325,20 @@
     ],
     "setup": false,
     "ability": "Tous les joueurs commencent en connaissant un joueur de votre alignement. Vous pouvez choisir de tuer quiconque accuse ce joueur."
+  },
+  {
+    "id": "cacklejack",
+    "name": "Voltingue",
+    "edition": "",
+    "team": "traveler",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 3,
+    "otherNightReminder": "N'importe quand durant la nuit, changez le personnage d'un joueur qui n'est pas marqué \"Pas moi\". Réveillez ce joueur pour l'informer de son nouveau rôle.",
+    "reminders": [
+      "Pas moi"
+    ],
+    "setup": false,
+    "ability": "Chaque jour, désignez un joueur : un autre joueur change de personnage cette nuit."
   }
 ]

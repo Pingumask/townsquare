@@ -353,6 +353,10 @@ const toggleNight = () => {
   if (grimoire.value.isNight) {
     store.commit('session/setMarkedPlayer', -1);
   }
+  else {	    
+    store.commit('toggleRooster', true);
+    setTimeout(() => store.commit('toggleRooster', false), 4000);
+  }
 };
 
 const toggleOrganVoteMode = () => {
