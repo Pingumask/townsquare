@@ -2127,6 +2127,19 @@
     "ability": "Once per game, choose to make a wish. If granted, it might have a price & leave a clue as to its nature."
   },
   {
+    "id": "wraith",
+    "name": "Wraith",
+    "edition": "",
+    "team": "minion",
+    "firstNight": 2.5,
+    "firstNightReminder": "Each time you wake an evil player at night, first wake the Wraith. If the Wraith is drunk or poisoned, tell them they cannot open their eyes.",
+    "otherNight": 2.5,
+    "otherNightReminder": "Each time you wake an evil player at night, first wake the Wraith. If the Wraith is drunk or poisoned, tell them they cannot open their eyes.",
+    "reminders": [],
+    "setup": false,
+    "ability": "You may choose to open your eyes at night. You wake when other evil players do."
+  },
+  {
     "id": "lilmonsta",
     "name": "Lil' Monsta",
     "edition": "",
@@ -2318,5 +2331,20 @@
     ],
     "setup": false,
     "ability": "All players start knowing a player of your alignment. You may choose to kill anyone who nominates them."
+  },
+  {
+    "id": "cacklejack",
+    "name": "Cacklejack",
+    "edition": "",
+    "team": "traveler",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 3,
+    "otherNightReminder": "Anytime during the night, change the character of a player not marked \"Not me\". Wake this player to tell them their new role.",
+    "reminders": [
+      "Not me"
+    ],
+    "setup": false,
+    "ability": "Each day, choose a player: a different player changes character tonight."
   }
 ]
