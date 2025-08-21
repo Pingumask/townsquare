@@ -2,6 +2,7 @@
   <ul class="info">
     <audio preload="auto">
       <source src="../assets/sounds/countdown.mp3">
+      <source src="../assets/sounds/rooster.mp3">
     </audio>
     <li class="edition" :class="['edition-' + edition.id]" :style="{
       backgroundImage: 'url(' + logoUrl + ')',
@@ -62,6 +63,11 @@
       <font-awesome-icon :icon="['fas', 'music']" />
       <font-awesome-icon :icon="['fas', 'bell']" />
       <font-awesome-icon :icon="['fas', 'music']" />
+    </li>
+    <li v-else-if="grimoire.isRooster">
+      <audio :autoplay="!grimoire.isMuted" :muted="grimoire.isMuted">
+        <source src="../assets/sounds/rooster.mp3">
+      </audio>
     </li>
     <li class="marked" v-if="
       typeof session.markedPlayer == 'string' &&

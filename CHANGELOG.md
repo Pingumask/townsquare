@@ -1,6 +1,8 @@
 # Release Notes
 
 ## Upcomming Version
+- Automatic rooster sound when we switch to day
+- Adding new scripts from the Carousel Collection
 - Alternative night order for the editions
 - Using official "safe" reminded instead of "protected"
 - Printing default image on reminders (bug correction)
@@ -12,6 +14,7 @@
 - Added "Wrong" reminder for the juggler
 - Added "Changed" reminder for the engineer
 - Correcting Banshee's night reminders
+- Updating the Hatter's icon
 - French Translation updates :
   - Dawn
   - Dusk
@@ -21,14 +24,14 @@
   - "Has ability" reminders
   - "No ability" reminders
   - Fibbin renamed from "Menteur" to "Baratineur"
-  - Pit-hag renamed from "Chaudronnier" to "Chaudronnière"
+  - Pit-hag renamed from "Chaudronnier" to "Guenaude"
   - Various abilities rephrased
   - Various reminders added and/or adjusted
 - Adding new characters:
   - Deus ex Fiasco
   - Hermit
   - Princess
-- Adding new scripts from the Carousel Collection
+  - Cacklejack
 
 ### Version 4.1.1
 - Correcting a bug with the "give back token" update
