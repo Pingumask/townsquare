@@ -116,6 +116,15 @@ const initializeStore = async () => {
           duration: 0,
         },
       },
+      playersMenu: {
+        changePronouns: false,
+        changeName: true,
+        movePlayer: true,
+        swapPlayers: false,
+        removePlayer: true,
+        swapAlignment: false,
+        specialVote: false,
+	  },
       modals: {
         edition: false,
         fabled: false,
@@ -189,6 +198,11 @@ const initializeStore = async () => {
         for (let modal in modals) {
           if (modal === name) continue;
           modals[modal] = false;
+        }
+      },
+      togglePlayersMenu({ playersMenu }, name) {
+        if (name) {
+          playersMenu[name] = !playersMenu[name];
         }
       },
       setCustomRoles(state, roles) {

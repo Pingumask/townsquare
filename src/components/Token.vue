@@ -32,6 +32,10 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
+  alignment: {
+    type: String,
+    default: "auto",
+  },
   unchecked: {
     type: Boolean,
     default: false,
@@ -49,11 +53,31 @@ const reminderLeaves = computed(() => {
   );
 });
 
+const defaultAlignement = computed(() => {
+  if(props.alignment === "auto") {
+    return true;
+  }
+  else if(props.alignment === "good") {
+    return props.role.team === "townsfolk" || props.role.team === "outsider";
+  }
+  else {
+    return props.role.team === "minion" || props.role.team === "demon";
+  }
+});
+
 const rolePath = computed(() => {
-  return new URL(
-    `../assets/icons/${props.role.imageAlt || props.role.id}.png`,
-    import.meta.url,
-  ).href;
+  if(defaultAlignement.value) {
+    return new URL(
+      `../assets/icons/${props.role.imageAlt || props.role.id}.png`,
+      import.meta.url,
+    ).href;
+  }
+  else {
+    return new URL(
+      `../assets/icons/${props.alignment}/${props.role.imageAlt || props.role.id}.png`,
+      import.meta.url,
+    ).href;
+  }
 });
 
 const nameToFontSize = computed(() => {

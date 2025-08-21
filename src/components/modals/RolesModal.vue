@@ -149,6 +149,11 @@ const assignRoles = () => {
           property: "role",
           value,
         });
+        store.commit("players/update", {
+          player,
+          property: "alignment",
+          value: "auto",
+        });
       }
     });
     store.commit("toggleModal", "roles");
