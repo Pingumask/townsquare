@@ -223,7 +223,7 @@
       "notfirstnight": "* Pas la première nuit",
       "teamNames": {
         "townsfolk": "villageois",
-        "outsider": "étrangers",
+        "outsider": "marginaux",
         "minion": "sbires",
         "demon": "démons"
       },
@@ -234,7 +234,7 @@
       "good": "Bon",
       "evil": "Mauvais",
       "townsfolk": "Villageois",
-      "outsider": "Étranger",
+      "outsider": "Marginal",
       "minion": "Sbire",
       "demon": "Demon",
       "custom": "Note"
