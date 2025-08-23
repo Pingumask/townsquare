@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 
-
+- Updating the text on some reminders (to use official wording and have a french version similar to this official wording)
 
 
 ## 5.0.1
