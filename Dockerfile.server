@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:14-alpine
 
 # Install dependencies for the server
 RUN apk add --no-cache git
@@ -16,7 +16,7 @@ RUN npm ci --omit=dev
 COPY server/ .
 
 # Expose the WebSocket port
-EXPOSE 8081
+EXPOSE 80 8081
 
 # Start the server
 CMD ["node", "index.js"]

@@ -5,6 +5,10 @@ services:
       context: "."
       dockerfile: Dockerfile
     command: "npm run dev"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.townsquare.rule=Host(`townsquare.localhost`)"
+      - "traefik.http.routers.townsquare.entrypoints=web"
     develop:
       watch:
         - action: sync
@@ -29,13 +33,11 @@ services:
           path: docker-compose.yml
     environment:
       NODE_ENV: development
-      # VITE_SERVER_URL: ws://localhost:8078/
-      VITE_SERVER_URL: wss://live.clocktower.online:8080/
-    ports:
-      - "8080:5173"
+      VITE_SERVER_URL: ws://localhost:8081/
+      # VITE_SERVER_URL: wss://live.clocktower.online:8080/
     working_dir: /app/townsquare
     networks:
-      - townsquare-network
+      - traefik
     logging:
       driver: "json-file"
       options:
@@ -47,6 +49,12 @@ services:
       context: "."
       dockerfile: Dockerfile.server
     command: "node index.js"
+    ports:
+      - 8081:8081
+    labels:
+      - "traefik.http.routers.botc-ws.rule=Host(`ws_server.localhost`)"
+      - "traefik.http.routers.botc-ws.service=botc-ws-service"
+      - "traefik.http.services.botc-ws-service.loadbalancer.server.port=8081"
     develop:
       watch:
         - action: sync+restart
@@ -62,16 +70,14 @@ services:
     environment:
       NODE_ENV: development
       ALLOWED_ORIGINS: "([^.]+\\.github\\.io|localhost|clocktower\\.online|eddbra1nprivatetownsquare\\.xyz)"
-    ports:
-      - "8078:8081"
     working_dir: /app/server
     networks:
-      - townsquare-network
+      - traefik
     logging:
       driver: "json-file"
       options:
         max-size: "200k"
 
 networks:
-  townsquare-network:
-    driver: bridge
+  traefik:
+    external: true

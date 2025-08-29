@@ -9,10 +9,10 @@
     "dev": "node index.js"
   },
   "dependencies": {
-    "ws": "^8.14.2",
-    "prom-client": "^15.1.0"
+    "prom-client": "^15.1.0",
+    "ws": "^6.2.3"
   },
   "engines": {
-    "node": "^18"
+    "node": "^14"
   }
 }

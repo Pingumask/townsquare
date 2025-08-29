@@ -2,7 +2,7 @@
   "name": "townsquare",
   "version": "5.0.1",
   "description": "Blood on the Clocktower Town Square",
-  "author": "Pingumaskt",
+  "author": "Pingumask",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vue-tsc && vite build",
