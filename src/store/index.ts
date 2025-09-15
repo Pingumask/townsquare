@@ -211,7 +211,7 @@ const initializeStore = async () => {
               if (strippedProps.includes(prop as typeof strippedProps[number])) continue;
               const value = roleObj[prop];
               if (customKeys.includes(prop) && value !== customObj[prop]) {
-                strippedRole[String(customKeys.indexOf(prop))] = value;
+                strippedRole[String(customKeys[customKeys.indexOf(prop)])] = value;
               }
             }
             customRoles.push(strippedRole);
