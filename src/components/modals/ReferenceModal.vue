@@ -13,12 +13,11 @@
       </aside>
       <ul>
         <li v-for="role in teamRoles" :key="role.id" :class="[team]">
-          <span v-if="role.id" class="icon" :style="{
-            backgroundImage: `url(${role.image && grimoire.isImageOptIn
-              ? role.image
-              : rolePath(role)
-              })`,
-          }" />
+          <picture v-if="role && role.id && role.id != 'empty'">
+            <source :srcset="rolePath(role, 'svg')" type="image/svg+xml" />
+            <img v-if="role.image" :src="role.image" :alt="role.id" />
+            <img v-if="!role.image" :src="rolePath(role, 'png')" :alt="role.id" />
+          </picture>
           <div class="role">
             <span v-if="Object.keys(playersByRole).length" class="player">
               {{ playersByRole[role.id] ? playersByRole[role.id]?.join(", ") : "" }}
@@ -38,12 +37,16 @@
       </aside>
       <ul>
         <li v-for="(jinx, index) in jinxed" :key="index">
-          <span class="icon" :style="{
-            backgroundImage: 'url(' + rolePath(jinx.first) + ')',
-          }" />
-          <span class="icon" :style="{
-            backgroundImage: 'url(' + rolePath(jinx.second) + ')',
-          }" />
+          <picture>
+            <source :srcset="rolePath(jinx.first, 'svg')" type="image/svg+xml" />
+            <img v-if="jinx.first.image" :src="jinx.first.image" :alt="jinx.first.id" />
+            <img v-if="!jinx.first.image" :src="rolePath(jinx.first, 'png')" :alt="jinx.first.id" />
+          </picture>
+          <picture>
+            <source :srcset="rolePath(jinx.second, 'svg')" type="image/svg+xml" />
+            <img v-if="jinx.second.image" :src="jinx.second.image" :alt="jinx.second.id" />
+            <img v-if="!jinx.second.image" :src="rolePath(jinx.second, 'png')" :alt="jinx.second.id" />
+          </picture>
           <div class="role">
             <span class="name">{{ jinx.first.name }} & {{ jinx.second.name }}</span>
             <span class="ability">{{ jinx.reason }}</span>
@@ -72,7 +75,6 @@ const store = useStore();
 const roles = computed(() => store.state.roles);
 const modals = computed(() => store.state.modals);
 const edition = computed(() => store.state.edition);
-const grimoire = computed(() => store.state.grimoire);
 const jinxes = computed(() => store.state.jinxes);
 const players = computed(() => store.state.players.players);
 
@@ -124,12 +126,12 @@ const playersByRole = computed(() => {
   return playersMap;
 });
 
-const rolePath = (role: Role) => {
+function rolePath(role: Role, format: string) {
   return new URL(
-    `../../assets/icons/${role.imageAlt || role.id}.png`,
+    `../../assets/icons/${role.id}.${format}`,
     import.meta.url,
   ).href;
-};
+}
 
 const toggleModal = (modalName: string) => {
   store.commit("toggleModal", modalName);
@@ -166,6 +168,17 @@ h3 {
   aside {
     background: linear-gradient(-90deg, $townsfolk, transparent);
   }
+}
+
+picture {
+  top: 0;
+  width: 4rem;
+  height: 4rem;
+}
+
+picture * {
+  max-width: 4rem;
+  max-height: 4rem;
 }
 
 .outsider {

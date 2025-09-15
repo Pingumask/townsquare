@@ -4,6 +4,11 @@
       backgroundImage: `url(${role.image && grimoire.isImageOptIn ? role.image : rolePath
         })`,
     }" />
+    <picture v-if="role && role.id && role.id != 'empty'">
+      <source :srcset="rolePath(role, 'svg')" type="image/svg+xml" />
+      <img v-if="role.image" :src="role.image" :alt="role.id" />
+      <img v-if="!role.image" :src="rolePath(role, 'png')" :alt="role.id" />
+    </picture>
     <span v-if="role.firstNight || role.firstNightReminder" class="leaf-left" />
     <span v-if="role.otherNight || role.otherNightReminder" class="leaf-right" />
     <span v-if="reminderLeaves" :class="['leaf-top' + reminderLeaves]" />
@@ -49,12 +54,12 @@ const reminderLeaves = computed(() => {
   );
 });
 
-const rolePath = computed(() => {
+function rolePath(role: Role, format: string) {
   return new URL(
-    `../assets/icons/${props.role.imageAlt || props.role.id}.png`,
+    `../assets/icons/${role.id}.${format}`,
     import.meta.url,
   ).href;
-});
+}
 
 const nameToFontSize = computed(() => {
   return (props.role?.name?.length && props.role.name.length > 10 ? "90%" : "110%");
@@ -159,6 +164,19 @@ function setRole() {
     &.leaf-top6 {
       background-image: url("../assets/leaf-top6.png");
     }
+  }
+
+  picture {
+    position: absolute;
+    top: 0;
+    width: 90%;
+    height: 90%;
+  }
+
+  picture * {
+    max-width: 100%;
+    max-height: 100%;
+    mix-blend-mode: multiply;
   }
 
   .name {

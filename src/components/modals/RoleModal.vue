@@ -61,18 +61,10 @@ const availableRoles = computed((): Role[] => {
     id: 'empty',
     name: '',
     team: 'townsfolk',
-    ability: '',
     isCustom: false,
-    edition: '',
-    firstNight: 0,
-    otherNight: 0,
-    firstNightReminder: '',
-    otherNightReminder: '',
     reminders: [],
     remindersGlobal: [],
     setup: false,
-    image: '',
-    imageAlt: '',
     forbidden: false
   } as Role);
   return availableRoles;

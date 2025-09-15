@@ -3,5 +3,5 @@ RUN apk update
 WORKDIR /app/townsquare
 COPY . .
 RUN npm rebuild && npm clean-install
-EXPOSE 5173 8079
+EXPOSE 5173
 CMD ["npm","run","dev"]

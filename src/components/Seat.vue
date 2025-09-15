@@ -288,8 +288,9 @@ function removeReminder(reminder: Reminder) {
 }
 
 function rolePath(role: string) {
-  return new URL(`../assets/icons/${role}.png`, import.meta.url).href;
+  return new URL(`../assets/icons/${role}.svg`, import.meta.url).href;
 }
+
 
 function updatePlayer(property: string, value: unknown, closeMenu = false) {
   if (
