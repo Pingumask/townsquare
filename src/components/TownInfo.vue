@@ -7,7 +7,7 @@
     <li class="edition" :class="['edition-' + edition.id]" :style="{
       backgroundImage: 'url(' + logoUrl + ')',
     }" />
-    <li v-if="players.length - teams.traveler < 5">
+    <li v-if="players.length - teams.traveller < 5">
       {{ t('towninfo.addPlayers') }}
     </li>
     <li>
@@ -22,7 +22,7 @@
         {{ teams.alive }}
         <font-awesome-icon icon="heartbeat" class="alive fa-heartbeat" />
       </span>
-      <span v-if="teams.traveler > 0">
+      <span v-if="teams.traveller > 0">
         {{ teams.aliveNT }}
         <font-awesome-icon icon="house-user" class="alive fa-house-user" />
       </span>
@@ -30,7 +30,7 @@
         {{ teams.votes }} <font-awesome-icon icon="vote-yea" class="votes fa-vote-yea" />
       </span>
     </li>
-    <li v-if="players.length - teams.traveler >= 5">
+    <li v-if="players.length - teams.traveller >= 5">
       <span>
         {{ teams.townsfolk }}
         <font-awesome-icon icon="user-friends" class="townsfolk fa-user-friends" />
@@ -47,9 +47,9 @@
         {{ teams.demon }}
         <font-awesome-icon class="demon" :icon="(teams.demon || 0) > 1 ? 'user-friends' : 'user'" />
       </span>
-      <span v-if="teams.traveler">
-        {{ teams.traveler }}
-        <font-awesome-icon class="traveler" :icon="teams.traveler > 1 ? 'user-friends' : 'user'" />
+      <span v-if="teams.traveller">
+        {{ teams.traveller }}
+        <font-awesome-icon class="traveller" :icon="teams.traveller > 1 ? 'user-friends' : 'user'" />
       </span>
     </li>
     <li v-if="grimoire.isNight">
@@ -113,14 +113,14 @@ const logoUrl = computed(() => {
 });
 
 const teams = computed(() => {
-  const nonTravelers = store.getters['players/nonTravelers'];
+  const nontravellers = store.getters['players/nontravellers'];
   const alive = players.value.filter((player: Player) => player.isDead !== true).length;
   const aliveNT = players.value.filter(
-    (player: Player) => player.isDead !== true && player.role.team !== 'traveler'
+    (player: Player) => player.isDead !== true && player.role.team !== 'traveller'
   ).length;
   return {
-    ...gameJSON[nonTravelers - 5],
-    traveler: players.value.length - nonTravelers,
+    ...gameJSON[nontravellers - 5],
+    traveller: players.value.length - nontravellers,
     alive,
     aliveNT,
     votes: players.value.filter(
@@ -202,8 +202,8 @@ const teams = computed(() => {
       color: $demon;
     }
 
-    .traveler {
-      color: $traveler;
+    .traveller {
+      color: $traveller;
     }
   }
 

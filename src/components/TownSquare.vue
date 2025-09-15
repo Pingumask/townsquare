@@ -259,7 +259,7 @@ const openReminderModal = (playerIndex: number) => {
 
 const openRoleModal = (playerIndex: number) => {
   const player = players.value[playerIndex];
-  if (session.value.isSpectator && player && player.role.team === "traveler")
+  if (session.value.isSpectator && player && player.role.team === "traveller")
     return;
   selectedPlayer.value = playerIndex;
   store.commit("toggleModal", "role");

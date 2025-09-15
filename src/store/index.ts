@@ -64,11 +64,11 @@ const initializeStore = async () => {
     );
   };
 
-  const getTravelersNotInEdition = (edition: Edition = defaultEdition()) => {
+  const gettravellersNotInEdition = (edition: Edition = defaultEdition()) => {
     return new Map(
       rolesJSON.default
         .filter(
-          (r) => r.team === "traveler" && r.edition !== edition.id && !(edition.roles || []).includes(r.id),
+          (r) => r.team === "traveller" && r.edition !== edition.id && !(edition.roles || []).includes(r.id),
         )
         .map((role) => [role.id, role] as const),
     );
@@ -151,7 +151,7 @@ const initializeStore = async () => {
       edition: editionJSONbyId.get("tb"),
       editions: editionJSON,
       roles: getRolesByEdition(),
-      otherTravelers: getTravelersNotInEdition(),
+      othertravellers: gettravellersNotInEdition(),
       fabled,
       jinxes,
       locale,
@@ -281,7 +281,7 @@ const initializeStore = async () => {
                 minion: "minion",
                 demon: "demon",
                 fabled: "fabled",
-                traveler: "traveler",
+                traveller: "traveller",
               } as Record<string, string>)[String(role.team)] || "custom";
             role.firstNight = Math.abs(Number(role.firstNight));
             role.otherNight = Math.abs(Number(role.otherNight));
@@ -297,9 +297,9 @@ const initializeStore = async () => {
           ...fabledJSON.default.map((role) => [role.id, role] as const),
         ]);
 
-        state.otherTravelers = new Map(
+        state.othertravellers = new Map(
           rolesJSON.default
-            .filter((r) => r.team === "traveler" && !roles.some((i) => (i as Role).id === r.id))
+            .filter((r) => r.team === "traveller" && !roles.some((i) => (i as Role).id === r.id))
             .map((role) => [role.id, role] as const),
         );
       },
@@ -307,7 +307,7 @@ const initializeStore = async () => {
         if (editionJSONbyId.has(edition.id)) {
           state.edition = editionJSONbyId.get(edition.id) as Edition;
           state.roles = getRolesByEdition(state.edition!);
-          state.otherTravelers = getTravelersNotInEdition(state.edition!);
+          state.othertravellers = gettravellersNotInEdition(state.edition!);
         } else {
           state.edition = edition;
         }
