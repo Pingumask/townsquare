@@ -17,7 +17,7 @@
       <br>
       <em v-if="
         !grimoire.isOrganVoteMode ||
-        (nominee && nominee.role.team == 'traveler') ||
+        (nominee && nominee.role.team == 'traveller') ||
         !session.isSpectator
       " class="blue">
         {{ voters?.length }} {{ t('vote.votes') }}
@@ -25,7 +25,7 @@
       <em v-else class="blue"> ? {{ t('vote.votes') }} </em>
       {{ t('vote.inFavor') }}
       <em v-if="
-        (nominee && nominee.role.team !== 'traveler') ||
+        (nominee && nominee.role.team !== 'traveller') ||
         (session.nomination && typeof session.nomination.nominee === 'string')
       ">
         ({{ t('vote.majorityIs') }} {{ Math.ceil(alive / 2) }})
@@ -38,7 +38,7 @@
         <br>
         <em v-if="
           grimoire.isOrganVoteMode &&
-          ((nominee && nominee.role.team !== 'traveler') ||
+          ((nominee && nominee.role.team !== 'traveller') ||
             (session.nomination && typeof session.nomination.nominee === 'string'))
         " class="orange">
           {{ t('vote.secretBallot') }}
@@ -70,7 +70,7 @@
         </div>
         <div v-if="
           !shouldHideNominee &&
-          (!nominee || nominee.role.team !== 'traveler')
+          (!nominee || nominee.role.team !== 'traveller')
         " class="button-group mark">
           <div class="button" :class="{
             disabled: session.nomination?.nominee === session.markedPlayer,
@@ -195,7 +195,7 @@ const isFreeVote = computed(() => {
   if (!isActiveNomination(session.value.nomination)) return false;
   return (
     session.value.nomination.nominee === null
-    || nominee.value?.role.team === 'traveler'
+    || nominee.value?.role.team === 'traveller'
   )
 });
 
@@ -250,8 +250,8 @@ const voteAction = computed(() => {
     return nomination.specialVote.timerText;
   }
 
-  // Check if it's a traveler exile
-  if (nominee.value?.role?.team === 'traveler') {
+  // Check if it's a traveller exile
+  if (nominee.value?.role?.team === 'traveller') {
     return t('vote.callexile');
   }
 

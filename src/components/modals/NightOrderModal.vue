@@ -127,7 +127,7 @@ const rolesFirstNight = computed(() => {
     }
   });
   roles.value.forEach((role: Role) => {
-    if (role.firstNight && role.team !== "traveler") {
+    if (role.firstNight && role.team !== "traveller") {
       const roleWithPlayers: NightOrderRole = {
         ...role,
         players: players.value.filter((p: Player) => p.role.id === role.id)
@@ -136,13 +136,13 @@ const rolesFirstNight = computed(() => {
     }
   });
   // Adding Travellers (duplicates only once)
-  const seenTravelers: string[] = [];
-  let nbTravelers = 0;
+  const seentravellers: string[] = [];
+  let nbtravellers = 0;
   players.value.forEach((player: Player) => {
-    if (player.role.team == "traveler") {
-      nbTravelers++;
-      if (!seenTravelers.includes(player.role.id)) {
-        seenTravelers.push(player.role.id);
+    if (player.role.team == "traveller") {
+      nbtravellers++;
+      if (!seentravellers.includes(player.role.id)) {
+        seentravellers.push(player.role.id);
         if (player.role.firstNight) {
           const activePlayers = players.value.filter(
             (p: Player) => p.role.id === player.role.id,
@@ -153,7 +153,7 @@ const rolesFirstNight = computed(() => {
     }
   });
   // Adding Minions/Demon info
-  if (players.value.length - nbTravelers > 6 || toymaker) {
+  if (players.value.length - nbtravellers > 6 || toymaker) {
     rolesFirstNight.push(
       {
         id: "minion",
@@ -210,7 +210,7 @@ const rolesOtherNight = computed(() => {
       rolesOtherNight.push({ players: [], ...fabled });
     });
   roles.value.forEach((role: Role) => {
-    if (role.otherNight && role.team !== "traveler") {
+    if (role.otherNight && role.team !== "traveller") {
       const roleWithPlayers: NightOrderRole = {
         ...role,
         players: players.value.filter((p: Player) => p.role.id === role.id)
@@ -219,17 +219,17 @@ const rolesOtherNight = computed(() => {
     }
   });
   // Adding Travellers (duplicates only once)
-  const seenTravelers: string[] = [];
+  const seentravellers: string[] = [];
   players.value.forEach((player: Player) => {
     if (
       player.role.otherNight &&
-      player.role.team == "traveler" &&
-      !seenTravelers.includes(player.role.id)
+      player.role.team == "traveller" &&
+      !seentravellers.includes(player.role.id)
     ) {
       const activePlayers = players.value.filter(
         (p: Player) => p.role.id === player.role.id,
       );
-      seenTravelers.push(player.role.id);
+      seentravellers.push(player.role.id);
       rolesOtherNight.push({ players: activePlayers, ...player.role });
     }
   });
@@ -352,12 +352,12 @@ h4 {
   }
 }
 
-.traveler {
+.traveller {
   .name {
-    background: linear-gradient(90deg, $traveler, transparent 35%);
+    background: linear-gradient(90deg, $traveller, transparent 35%);
 
     .night .other & {
-      background: linear-gradient(-90deg, $traveler, transparent 35%);
+      background: linear-gradient(-90deg, $traveller, transparent 35%);
     }
   }
 }

@@ -5,6 +5,11 @@
 
 
 
+## 5.0.2
+- Fixed : Missing translation for organ grinder votes 
+- Fixed : Custom role incorrectly formated when sent to players
+- Fixed : Custom traveler roles not being automatically shown to players
+
 ## 5.0.1
 - Fixed vote not being closeable due to a bug in the vote history recording
 - Fixed the team names not being displayed correctly

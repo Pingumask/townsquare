@@ -73,8 +73,8 @@ const availableReminders = computed((): Reminder[] => {
     reminders = [...reminders, ...role.reminders!.map(mapReminder(role))];
   });
 
-  // add out of script traveler reminders
-  store.state.otherTravelers.forEach((role: Role) => {
+  // add out of script traveller reminders
+  store.state.othertravellers.forEach((role: Role) => {
     if (players.some((p: Player) => p.role.id === role.id)) {
       reminders = [...reminders, ...role.reminders!.map(mapReminder(role))];
     }

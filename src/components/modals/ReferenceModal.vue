@@ -107,14 +107,14 @@ const rolesGrouped = computed(() => {
     }
     grouped[role.team || 'default']?.push(role);
   });
-  delete grouped["traveler"];
+  delete grouped["traveller"];
   return grouped;
 });
 
 const playersByRole = computed(() => {
   const playersMap: Record<string, string[]> = {};
   players.value.forEach(({ name, role }: Player) => {
-    if (role && role.id && role.team !== "traveler") {
+    if (role && role.id && role.team !== "traveller") {
       if (!playersMap[role.id]) {
         playersMap[role.id] = [];
       }

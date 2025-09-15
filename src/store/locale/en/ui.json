@@ -14,7 +14,7 @@
       "animations": "Disable Animations",
       "mute": "Mute Sounds",
       "ringBell": "Ring Bell",
-      "organGrinder ": "Organ Grinder Vote"
+      "organGrinder": "Organ Grinder Vote"
     },
     "session": {
       "title": {
@@ -242,7 +242,7 @@
       "title": "Choose a new character for",
       "bluff": "bluffing",
       "editionRoles": "Edition Roles",
-      "otherTravelers": "Other Travelers"
+      "othertravellers": "Other travellers"
     },
     "roles": {
       "titleStart": "Select the characters for ",

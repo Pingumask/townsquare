@@ -130,7 +130,7 @@ export interface PlayersState {
 export interface Role {
   id: string;
   name?: string;
-  team?: 'townsfolk' | 'outsider' | 'minion' | 'demon' | 'traveler' | 'fabled' | 'default';
+  team?: 'townsfolk' | 'outsider' | 'minion' | 'demon' | 'traveller' | 'fabled' | 'default';
   ability?: string;
   isCustom?: boolean;
   edition?: string;
@@ -238,10 +238,10 @@ export function isSpecialVote(nomination: Nomination | null): nomination is Nomi
   return isActiveNomination(nomination) && !!nomination.specialVote;
 }
 
-export function isTravelerExile(nomination: Nomination | null, players: Player[]): boolean {
+export function istravellerExile(nomination: Nomination | null, players: Player[]): boolean {
   if (!isStandardNomination(nomination)) return false;
   const nominee = players[nomination.nominee];
-  return nominee?.role?.team === 'traveler';
+  return nominee?.role?.team === 'traveller';
 }
 
 // Helper functions to create nominations
@@ -258,7 +258,7 @@ export function createSpecialVote(
 }
 
 // Utility types
-export type TeamType = 'townsfolk' | 'outsider' | 'minion' | 'demon' | 'traveler' | 'fabled';
+export type TeamType = 'townsfolk' | 'outsider' | 'minion' | 'demon' | 'traveller' | 'fabled';
 export type GamePhase = 'setup' | 'firstNight' | 'day' | 'otherNight' | 'ended';
 
 
@@ -281,7 +281,7 @@ export interface RootState {
   edition?: Edition; // optional — may be undefined initially
   editions: EditionsJSON;
   roles: Map<string, Role>;
-  otherTravelers: Map<string, Role>;
+  othertravellers: Map<string, Role>;
   fabled: Map<string, Role>;
   jinxes: Map<string, Map<string, string>>;
   locale: LocaleModule;

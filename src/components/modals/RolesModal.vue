@@ -1,16 +1,16 @@
 <template>
-  <Modal v-if="modals.roles && nonTravelers >= 5" class="roles" @close="toggleModal('roles')">
+  <Modal v-if="modals.roles && nontravellers >= 5" class="roles" @close="toggleModal('roles')">
     <h3>
       {{
         t('modal.roles.titleStart') +
-        nonTravelers +
+        nontravellers +
         t('modal.roles.titleEnd')
       }}
     </h3>
     <ul v-for="(teamRoles, team) in roleSelection" :key="team" class="tokens">
       <li class="count" :class="[team]">
         {{ getTeamRoleCount(teamRoles) }} /
-        {{ game[nonTravelers - 5]?.[team as keyof typeof game[0]] }}
+        {{ game[nontravellers - 5]?.[team as keyof typeof game[0]] }}
       </li>
       <li v-for="role in teamRoles" :key="role.id" :class="[role.team, role.selected ? 'selected' : '']"
         @click="role.selected = role.selected ? 0 : 1">
@@ -40,7 +40,7 @@
     </label>
     <div class="button-group">
       <div class="button" :class="{
-        disabled: selectedRoles > nonTravelers || !selectedRoles,
+        disabled: selectedRoles > nontravellers || !selectedRoles,
       }" @click="assignRoles">
         <font-awesome-icon icon="people-arrows" class="fa fa-people-arrows" />
         {{
@@ -82,7 +82,7 @@ const roles = computed(() => store.state.roles);
 const modals = computed(() => store.state.modals);
 const players = computed(() => store.state.players.players);
 const fabled = computed(() => store.state.players.fabled);
-const nonTravelers = computed(() => store.getters['players/nonTravelers']);
+const nontravellers = computed(() => store.getters['players/nontravellers']);
 
 const selectedRoles = computed(() => {
   return Object.values(roleSelection.value)
@@ -120,8 +120,8 @@ const selectRandomRoles = () => {
     }
     roleSelection.value[role.team || 'unknown']?.push(selectableRole);
   });
-  delete roleSelection.value["traveler"];
-  const playerCount = Math.max(5, nonTravelers.value);
+  delete roleSelection.value["traveller"];
+  const playerCount = Math.max(5, nontravellers.value);
   const composition = game.value[playerCount - 5];
   if (composition) {
     Object.keys(composition).forEach((team: string) => {
@@ -141,7 +141,7 @@ const selectRandomRoles = () => {
 };
 
 const assignRoles = () => {
-  if (selectedRoles.value <= nonTravelers.value && selectedRoles.value) {
+  if (selectedRoles.value <= nontravellers.value && selectedRoles.value) {
     // generate list of selected roles and randomize it
     const roles = Object.values(roleSelection.value)
       .map((roles: SelectableRole[]) =>
@@ -155,7 +155,7 @@ const assignRoles = () => {
       .sort((a: [number, SelectableRole], b: [number, SelectableRole]) => a[0] - b[0])
       .map((a: [number, SelectableRole]) => a[1]);
     players.value.forEach((player: Player) => {
-      if (player.role.team !== "traveler" && roles.length) {
+      if (player.role.team !== "traveller" && roles.length) {
         const value = roles.pop();
         store.commit("players/update", {
           player,
@@ -233,10 +233,10 @@ ul.tokens {
         0 0 10px $demon;
     }
 
-    &.traveler {
+    &.traveller {
       box-shadow:
-        0 0 10px $traveler,
-        0 0 10px $traveler;
+        0 0 10px $traveller,
+        0 0 10px $traveller;
     }
 
     &.fabled {
