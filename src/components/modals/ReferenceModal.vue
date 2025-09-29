@@ -14,7 +14,8 @@
       <ul>
         <li v-for="role in teamRoles" :key="role.id" :class="[team]">
           <picture v-if="role.id && role.id != 'empty'" class="icon">
-            <img :src="rolePath(role)" :alt="role.id">
+            <InlineSvg v-if="rolePath(role).endsWith('.svg')" :src="rolePath(role)" />
+            <img v-else :src="rolePath(role)" :alt="role.id">
           </picture>
           <div class="role">
             <span v-if="Object.keys(playersByRole).length" class="player">
@@ -62,6 +63,7 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 import Modal from "./Modal.vue";
 import { useRolePath, useTranslation } from '@/composables';
+import InlineSvg from 'vue-inline-svg';
 
 const { rolePath } = useRolePath();
 const { t } = useTranslation();

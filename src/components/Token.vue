@@ -1,7 +1,8 @@
 <template>
   <div class="token" :class="[role.id, { unchecked: unchecked }]" @click="setRole">
-    <picture v-if="role.id && role.id != 'empty'">
-      <img :src="rolePath(role)" :alt="role.id">
+    <picture v-if="role.id && role.id != 'empty'" class="role" :class="role.team">
+      <InlineSvg :src="rolePath(role)" />
+      <!-- <img v-else :src="rolePath(role)" :alt="role.id"> -->
     </picture>
     <span v-if="role.firstNight || role.firstNightReminder" class="leaf-left" />
     <span v-if="role.otherNight || role.otherNightReminder" class="leaf-right" />
@@ -26,6 +27,7 @@
 import type { Role } from '@/types';
 import { computed } from 'vue';
 import { useRolePath } from '@/composables';
+import InlineSvg from 'vue-inline-svg';
 
 const { rolePath } = useRolePath();
 
@@ -58,6 +60,30 @@ function setRole() {
 </script>
 
 <style scoped lang="scss">
+picture.role.townsfolk {
+  --color: #1f65ff;
+}
+
+picture.role.outsider {
+  --color: #46d5ff;
+}
+
+picture.role.minion {
+  --color: #ff6900;
+}
+
+picture.role.demon {
+  --color: #ce0100;
+}
+
+picture.role.fabled {
+  --color: #ffe91f;
+}
+
+// picture.role.traveler {
+//   --color: #cc04ff
+// }
+
 .token {
   border-radius: 50%;
   width: 100%;
