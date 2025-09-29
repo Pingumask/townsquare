@@ -2,6 +2,7 @@
 
 ## Upcomming Version
 
+- Removed copyrighted role icons and replaced with svg versions
 - Bug correction:
   - Now possible to launch Trouble Brewing Advanced
 

@@ -91,7 +91,7 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
 import Modal from "./Modal.vue";
-import { useTranslation } from '@/composables/useTranslation';
+import { useTranslation } from '@/composables';
 
 const { t } = useTranslation();
 const store = useStore();

@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { useStore } from 'vuex';
-import { useTranslation } from '@/composables/useTranslation';
+import { useTranslation } from '@/composables';
 
 const store = useStore();
 const { t } = useTranslation();

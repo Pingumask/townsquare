@@ -4,12 +4,9 @@
     <ul class="reminders">
       <li v-for="reminder in availableReminders" :key="reminder.role + ' ' + reminder.name" class="reminder"
         :class="[reminder.role]" @click="addReminder(reminder)">
-        <span class="icon" :style="{
-          backgroundImage: `url(${reminder.image && grimoire.isImageOptIn
-            ? reminder.image
-            : rolePath(reminder.imageAlt || reminder.role)
-            })`,
-        }" />
+        <picture>
+          <img v-if="reminder.image" :src="reminder.image" :alt="reminder.name" />
+        </picture>
         <span class="text">{{ reminder.name }}</span>
       </li>
     </ul>
@@ -21,22 +18,19 @@ import type { Reminder, Role, Player } from "@/types";
 import { computed } from "vue";
 import { useStore } from "vuex";
 import Modal from "./Modal.vue";
-import { useTranslation } from '@/composables/useTranslation';
+import { useRolePath, useTranslation } from '@/composables';
 
 const { t } = useTranslation();
-/**
- * Helper function that maps a reminder name with a role-based object that provides necessary visual data.
- * @param role The role for which the reminder should be generated
- * @return {function(*): {image: string|string[]|string|*, role: *, name: *, imageAlt: string|*}}
- */
+const { rolePath } = useRolePath();
+
 const mapReminder =
-  ({ id, image, imageAlt }: Role) =>
+  (role: Role) =>
     (name: string): Reminder => ({
-      role: id,
-      image: image || '',
-      imageAlt: imageAlt || '',
+      role: role.id,
+      image: role.image || rolePath(role),
+      imageAlt: role.imageAlt || '',
       name,
-      id: `${id}-${name}`,
+      id: `${role.id}-${name}`,
     });
 
 const props = defineProps<{
@@ -45,7 +39,6 @@ const props = defineProps<{
 const store = useStore();
 
 const modals = computed(() => store.state.modals);
-const grimoire = computed(() => store.state.grimoire);
 const players = computed(() => store.state.players.players);
 
 const availableReminders = computed((): Reminder[] => {
@@ -73,8 +66,8 @@ const availableReminders = computed((): Reminder[] => {
     reminders = [...reminders, ...role.reminders!.map(mapReminder(role))];
   });
 
-  // add out of script traveller reminders
-  store.state.othertravellers.forEach((role: Role) => {
+  // add out of script traveler reminders
+  store.state.othertravelers.forEach((role: Role) => {
     if (players.some((p: Player) => p.role.id === role.id)) {
       reminders = [...reminders, ...role.reminders!.map(mapReminder(role))];
     }
@@ -83,36 +76,43 @@ const availableReminders = computed((): Reminder[] => {
   reminders.push({
     id: "good",
     role: "good",
+    image: new URL('@/assets/icons/good.svg', import.meta.url).href,
     name: t('modal.reminder.good'),
   });
   reminders.push({
     id: "evil",
     role: "evil",
+    image: new URL('@/assets/icons/evil.svg', import.meta.url).href,
     name: t('modal.reminder.evil'),
   });
   reminders.push({
     id: "townsfolk",
     role: "townsfolk",
+    image: new URL('@/assets/icons/townsfolk.png', import.meta.url).href,
     name: t('modal.reminder.townsfolk'),
   });
   reminders.push({
     id: "outsider",
     role: "outsider",
+    image: new URL('@/assets/icons/outsider.png', import.meta.url).href,
     name: t('modal.reminder.outsider'),
   });
   reminders.push({
     id: "minion",
     role: "minion",
+    image: new URL('@/assets/icons/minion.png', import.meta.url).href,
     name: t('modal.reminder.minion'),
   });
   reminders.push({
     id: "demon",
     role: "demon",
+    image: new URL('@/assets/icons/demon.png', import.meta.url).href,
     name: t('modal.reminder.demon'),
   });
   reminders.push({
     id: "custom",
     role: "custom",
+    image: new URL('@/assets/icons/custom.png', import.meta.url).href,
     name: t('modal.reminder.custom'),
   });
   return reminders;
@@ -134,13 +134,6 @@ function addReminder(reminder: Reminder) {
     value,
   });
   store.commit("toggleModal", "reminder");
-}
-
-function rolePath(role: string) {
-  return new URL(
-    `../../assets/icons/${role}.png`,
-    import.meta.url,
-  ).href;
 }
 
 function toggleModal(modal: string) {
@@ -168,14 +161,20 @@ ul.reminders .reminder {
   line-height: 100%;
   transition: transform 500ms ease;
 
-  .icon {
+  li {
+    position: relative;
+  }
+
+  picture {
     position: absolute;
     top: 0;
     width: 90%;
     height: 90%;
-    background-size: 100%;
-    background-position: center center;
-    background-repeat: no-repeat;
+  }
+
+  picture * {
+    max-width: 100%;
+    max-height: 100%;
   }
 
   .text {

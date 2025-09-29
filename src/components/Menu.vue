@@ -236,7 +236,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { useStore } from 'vuex';
-import { useTranslation } from '@/composables/useTranslation';
+import { useTranslation } from '@/composables';
 const { t } = useTranslation();
 
 const store = useStore();

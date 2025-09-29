@@ -1,9 +1,8 @@
 <template>
   <div class="token" :class="[role.id, { unchecked: unchecked }]" @click="setRole">
-    <span v-if="role.id" class="icon" :style="{
-      backgroundImage: `url(${role.image && grimoire.isImageOptIn ? role.image : rolePath
-        })`,
-    }" />
+    <picture v-if="role.id && role.id != 'empty'">
+      <img :src="rolePath(role)" :alt="role.id">
+    </picture>
     <span v-if="role.firstNight || role.firstNightReminder" class="leaf-left" />
     <span v-if="role.otherNight || role.otherNightReminder" class="leaf-right" />
     <span v-if="reminderLeaves" :class="['leaf-top' + reminderLeaves]" />
@@ -26,7 +25,9 @@
 <script setup lang="ts">
 import type { Role } from '@/types';
 import { computed } from 'vue';
-import { useStore } from 'vuex';
+import { useRolePath } from '@/composables';
+
+const { rolePath } = useRolePath();
 
 const props = withDefaults(defineProps<{
   role?: Role;
@@ -40,8 +41,6 @@ const emit = defineEmits<{
   'set-role': [role: Role];
 }>();
 
-const store = useStore();
-
 const reminderLeaves = computed(() => {
   return (
     (props.role?.reminders || []).length +
@@ -49,18 +48,9 @@ const reminderLeaves = computed(() => {
   );
 });
 
-const rolePath = computed(() => {
-  return new URL(
-    `../assets/icons/${props.role.imageAlt || props.role.id}.png`,
-    import.meta.url,
-  ).href;
-});
-
 const nameToFontSize = computed(() => {
   return (props.role?.name?.length && props.role.name.length > 10 ? "90%" : "110%");
 });
-
-const grimoire = computed(() => store.state.grimoire);
 
 function setRole() {
   emit('set-role', props.role!);
@@ -159,6 +149,19 @@ function setRole() {
     &.leaf-top6 {
       background-image: url("../assets/leaf-top6.png");
     }
+  }
+
+  picture {
+    position: absolute;
+    top: 0;
+    width: 90%;
+    height: 90%;
+  }
+
+  picture * {
+    max-width: 100%;
+    max-height: 100%;
+    mix-blend-mode: multiply;
   }
 
   .name {

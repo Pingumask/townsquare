@@ -104,7 +104,7 @@ import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import Token from "../Token.vue";
 import Modal from "./Modal.vue";
-import { useTranslation } from '@/composables/useTranslation';
+import { useTranslation } from '@/composables';
 
 const { t } = useTranslation();
 const store = useStore();

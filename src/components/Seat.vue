@@ -158,12 +158,9 @@
     <template v-if="props.player.reminders">
       <div v-for="reminder in props.player.reminders" :key="reminder.role + ' ' + reminder.name" class="reminder"
         :class="[reminder.role]" @click="removeReminder(reminder)">
-        <span class="icon" :style="{
-          backgroundImage: `url(${reminder.image && grimoire.isImageOptIn
-            ? reminder.image
-            : rolePath(reminder.imageAlt || reminder.role)
-            })`,
-        }" />
+        <picture>
+          <img v-if="reminder.image" :src="reminder.image" :alt="reminder.name" />
+        </picture>
         <span class="text">{{ reminder.name }}</span>
       </div>
     </template>
@@ -180,7 +177,7 @@ import { isActiveNomination } from "@/types";
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import Token from "./Token.vue";
-import { useTranslation } from '@/composables/useTranslation';
+import { useTranslation } from '@/composables';
 
 const { t } = useTranslation();
 interface Props {
@@ -287,10 +284,6 @@ function removeReminder(reminder: Reminder) {
   updatePlayer("reminders", reminders, true);
 }
 
-function rolePath(role: string) {
-  return new URL(`../assets/icons/${role}.png`, import.meta.url).href;
-}
-
 function updatePlayer(property: string, value: unknown, closeMenu = false) {
   if (
     session.value.isSpectator &&
@@ -366,6 +359,18 @@ function vote() {
 .fold-enter,
 .fold-leave-to {
   transform: perspective(200px) rotateY(90deg);
+}
+
+picture {
+  position: absolute;
+  top: 0;
+  width: 90%;
+  height: 90%;
+}
+
+picture * {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /***** Player token *****/
@@ -478,7 +483,7 @@ function vote() {
     }
   }
 
-  &.traveller .life {
+  &.traveler .life {
     filter: grayscale(100%);
   }
 }
@@ -493,13 +498,13 @@ function vote() {
     transform: perspective(400px) rotateY(0deg);
   }
 
-  &.traveller:not(.dead) .token {
+  &.traveler:not(.dead) .token {
     transform: perspective(400px) scale(0.8);
     pointer-events: none;
     transition-delay: 0s;
   }
 
-  &.traveller.dead .token {
+  &.traveler.dead .token {
     transition-delay: 0s;
   }
 }
@@ -671,7 +676,8 @@ li.move:not(.from) .player .overlay svg.move {
 @include glow("outsider", $outsider);
 @include glow("demon", $demon);
 @include glow("minion", $minion);
-@include glow("traveller", $traveller);
+@include glow("traveler", $traveler);
+@include glow("traveller", $traveler);
 
 .player.you .token {
   animation: townsfolk-glow 5s ease-in-out infinite;

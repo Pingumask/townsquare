@@ -3,15 +3,15 @@
     <h3>{{ t('modal.specialvote.title') }}</h3>
     <div class="allTheButtons">
       <button @click="bishopVote()">
-        <img src="../../assets/icons/bishop.png" :alt="t('modal.specialvote.bishop')">
+        <img src="../../assets/icons/bishop.svg" :alt="t('modal.specialvote.bishop')">
         <span>{{ t('modal.specialvote.bishop') }}</span>
       </button>
       <button @click="atheistVote()">
-        <img src="../../assets/icons/atheist.png" :alt="t('modal.specialvote.atheist')">
+        <img src="../../assets/icons/atheist.svg" :alt="t('modal.specialvote.atheist')">
         <span>{{ t('modal.specialvote.atheist') }}</span>
       </button>
       <button @click="cultleaderVote()">
-        <img src="../../assets/icons/cultleader.png" :alt="t('modal.specialvote.cultleader')">
+        <img src="../../assets/icons/cultleader.svg" :alt="t('modal.specialvote.cultleader')">
         <span>{{ t('modal.specialvote.cultleader') }}</span>
       </button>
       <button @click="customVote()">
@@ -28,7 +28,7 @@ import { createSpecialVote } from '@/types';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
 import Modal from './Modal.vue';
-import { useTranslation } from '@/composables/useTranslation';
+import { useTranslation } from '@/composables';
 
 const { t } = useTranslation();
 const store = useStore();
