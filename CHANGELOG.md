@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 
-- Updating the Lord of Typhon
+- Correcting French Lord of Typhon's description
 
 
 ## 5.0.2
