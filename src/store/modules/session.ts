@@ -113,7 +113,7 @@ const mutations = {
           ? players[nomination.nominee]?.name || ""
           : nomination.nominee || "",
       type:
-        nomination.specialVote?.type ||
+        nomination.specialVote?.buttonLabel ||
         (isExile
           ? texts.exile
           : texts.execution + (organGrinder && !state.isSpectator ? "*" : "")),
