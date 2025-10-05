@@ -2,7 +2,8 @@
 
 ## Upcomming Version
 
-
+- Bug correction:
+  - Printing the correct type of the special votes (for now only CL) in the vote history
 
 
 ## 5.0.2
