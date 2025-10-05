@@ -2,7 +2,8 @@
 
 ## Upcomming Version
 
-
+- Bug correction:
+  - Now possible to launch Trouble Brewing Advanced
 
 
 ## 5.0.2
