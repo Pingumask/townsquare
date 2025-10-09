@@ -1,4 +1,7 @@
-import { library, type IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import {
+  library,
+  type IconDefinition,
+} from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -58,6 +61,7 @@ const faIcons = [
   "VoteYea",
   "WindowMaximize",
   "WindowMinimize",
+  "YinYang",
 ];
 const fabIcons = ["Github", "Discord"];
 
@@ -65,8 +69,10 @@ const fasMap = fas as unknown as Record<string, IconDefinition>;
 const fabMap = fab as unknown as Record<string, IconDefinition>;
 
 library.add(
-  ...faIcons.map((i) => fasMap["fa" + i]).filter(Boolean) as IconDefinition[],
-  ...fabIcons.map((i) => fabMap["fa" + i]).filter(Boolean) as IconDefinition[],
+  ...(faIcons.map((i) => fasMap["fa" + i]).filter(Boolean) as IconDefinition[]),
+  ...(fabIcons
+    .map((i) => fabMap["fa" + i])
+    .filter(Boolean) as IconDefinition[]),
 );
 
 // Initialize the app asynchronously
@@ -74,7 +80,7 @@ const initApp = async () => {
   const store = await getStore();
   const app = createApp(App);
   app.component("FontAwesomeIcon", FontAwesomeIcon);
-  app.use(store as unknown as import('vue').Plugin);
+  app.use(store as unknown as import("vue").Plugin);
   app.mount("#app");
 };
 

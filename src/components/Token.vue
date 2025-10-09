@@ -1,9 +1,6 @@
 <template>
   <div class="token" :class="[role.id, { unchecked: unchecked }]" @click="setRole">
-    <span v-if="role.id" class="icon" :style="{
-      backgroundImage: `url(${role.image && grimoire.isImageOptIn ? role.image : rolePath
-        })`,
-    }" />
+    <RoleIcon :role="role" :player="player" />
     <span v-if="role.firstNight || role.firstNightReminder" class="leaf-left" />
     <span v-if="role.otherNight || role.otherNightReminder" class="leaf-right" />
     <span v-if="reminderLeaves" :class="['leaf-top' + reminderLeaves]" />
@@ -24,23 +21,23 @@
 </template>
 
 <script setup lang="ts">
-import type { Role } from '@/types';
+import type { Player, Role } from '@/types';
 import { computed } from 'vue';
-import { useStore } from 'vuex';
+import RoleIcon from './RoleIcon.vue';
 
 const props = withDefaults(defineProps<{
   role?: Role;
   unchecked?: boolean;
+  player?: Player;
 }>(), {
   role: () => ({} as Role),
   unchecked: false,
+  player: () => ({} as Player),
 });
 
 const emit = defineEmits<{
   'set-role': [role: Role];
 }>();
-
-const store = useStore();
 
 const reminderLeaves = computed(() => {
   return (
@@ -49,18 +46,11 @@ const reminderLeaves = computed(() => {
   );
 });
 
-const rolePath = computed(() => {
-  return new URL(
-    `../assets/icons/${props.role.imageAlt || props.role.id}.png`,
-    import.meta.url,
-  ).href;
-});
-
 const nameToFontSize = computed(() => {
-  return (props.role?.name?.length && props.role.name.length > 10 ? "90%" : "110%");
+  if (!props.role?.name) return "0%";
+  if (props.role.name.length <= 10) return "110%";
+  return `${Math.max(110 - ((props.role.name.length - 10) * 4), 50)}%`;
 });
-
-const grimoire = computed(() => store.state.grimoire);
 
 function setRole() {
   emit('set-role', props.role!);
@@ -68,6 +58,44 @@ function setRole() {
 </script>
 
 <style scoped lang="scss">
+.townsfolk {
+  --color: #1f65ff;
+  --blend: multiply;
+}
+
+.outsider,
+.outsider.good {
+  --color: #46d5ff;
+  --blend: normal;
+  filter: drop-shadow(#000c 0 0 8px);
+}
+
+.minion {
+  --color: #ff6900;
+  --blend: multiply;
+}
+
+.demon,
+.demon.evil {
+  --color: #ce0100;
+  --blend: multiply;
+}
+
+.traveler {
+  --blend: multiply;
+}
+
+.good {
+  --color: #2956b8;
+  --blend: multiply;
+}
+
+.evil {
+  --color: #ff6900;
+  --blend: multiply;
+  ;
+}
+
 .token {
   border-radius: 50%;
   width: 100%;
@@ -159,6 +187,19 @@ function setRole() {
     &.leaf-top6 {
       background-image: url("../assets/leaf-top6.png");
     }
+  }
+
+  picture {
+    position: absolute;
+    top: 0;
+    width: 90%;
+    height: 90%;
+  }
+
+  picture * {
+    max-width: 100%;
+    max-height: 100%;
+    mix-blend-mode: multiply;
   }
 
   .name {

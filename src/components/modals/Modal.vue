@@ -60,8 +60,8 @@ const close = () => {
   .night-reference &,
   .characters & {
     overflow: auto;
-    max-height: 95vh;
     scrollbar-gutter: stable both-edges;
+    max-height: 100vh;
   }
 
   .roles &,

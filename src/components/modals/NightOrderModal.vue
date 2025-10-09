@@ -31,12 +31,9 @@
               <small />
             </span>
           </span>
-          <span v-if="role.id" class="icon" :style="{
-            backgroundImage: `url(${role.image && grimoire.isImageOptIn
-              ? role.image
-              : rolePath(role)
-              })`,
-          }" />
+          <span v-if="role.id && role.id != 'empty'" class="icon" :class="role.team">
+            <RoleIcon :role="role" />
+          </span>
           <span v-if="role.firstNightReminder" class="reminder">
             {{ role.firstNightReminder }}
           </span>
@@ -47,12 +44,9 @@
           {{ t('modal.nightOrder.otherNights') }}
         </li>
         <li v-for="role in rolesOtherNight" :key="role.id" :class="[role.team]">
-          <span v-if="role.id" class="icon" :style="{
-            backgroundImage: `url(${role.image && grimoire.isImageOptIn
-              ? role.image
-              : rolePath(role)
-              })`,
-          }" />
+          <span v-if="role.id && role.id != 'empty'" class="icon" :class="role.team">
+            <RoleIcon :role="role" />
+          </span>
           <span class="name">
             {{ role.name }}
             <span v-if="role.players.length" class="player">
@@ -85,7 +79,8 @@ import type { NightOrderRole, Role, Player } from "@/types";
 import { computed } from "vue";
 import { useStore } from "vuex";
 import Modal from "./Modal.vue";
-import { useTranslation } from '@/composables/useTranslation';
+import { useTranslation } from '@/composables';
+import RoleIcon from "../RoleIcon.vue";
 
 const { t } = useTranslation();
 const store = useStore();
@@ -107,6 +102,7 @@ const rolesFirstNight = computed(() => {
       firstNight: 2,
       players: [],
       firstNightReminder: t('modal.nightOrder.duskDescription1'),
+      image: new URL('@/assets/icons/dusk.png', import.meta.url).href,
     },
     {
       id: "dawn",
@@ -115,6 +111,7 @@ const rolesFirstNight = computed(() => {
       team: "default",
       players: [],
       firstNightReminder: t('modal.nightOrder.dawnDescription1'),
+      image: new URL('@/assets/icons/dawn.png', import.meta.url).href,
     },
   ];
   let toymaker = false;
@@ -127,7 +124,7 @@ const rolesFirstNight = computed(() => {
     }
   });
   roles.value.forEach((role: Role) => {
-    if (role.firstNight && role.team !== "traveller") {
+    if (role.firstNight && (role.team !== "traveler")) {
       const roleWithPlayers: NightOrderRole = {
         ...role,
         players: players.value.filter((p: Player) => p.role.id === role.id)
@@ -135,14 +132,14 @@ const rolesFirstNight = computed(() => {
       rolesFirstNight.push(roleWithPlayers);
     }
   });
-  // Adding Travellers (duplicates only once)
-  const seentravellers: string[] = [];
-  let nbtravellers = 0;
+  // Adding travelers (duplicates only once)
+  const seentravelers: string[] = [];
+  let nbtravelers = 0;
   players.value.forEach((player: Player) => {
-    if (player.role.team == "traveller") {
-      nbtravellers++;
-      if (!seentravellers.includes(player.role.id)) {
-        seentravellers.push(player.role.id);
+    if (player.role.team == "traveler") {
+      nbtravelers++;
+      if (!seentravelers.includes(player.role.id)) {
+        seentravelers.push(player.role.id);
         if (player.role.firstNight) {
           const activePlayers = players.value.filter(
             (p: Player) => p.role.id === player.role.id,
@@ -153,7 +150,7 @@ const rolesFirstNight = computed(() => {
     }
   });
   // Adding Minions/Demon info
-  if (players.value.length - nbtravellers > 6 || toymaker) {
+  if (players.value.length - nbtravelers > 6 || toymaker) {
     rolesFirstNight.push(
       {
         id: "minion",
@@ -163,6 +160,7 @@ const rolesFirstNight = computed(() => {
         players: players.value.filter((p: Player) => p.role.team === "minion"),
         firstNightReminder:
           t('modal.nightOrder.minionInfoDescription'),
+        image: new URL('@/assets/icons/minion.png', import.meta.url).href,
       },
       {
         id: "demon",
@@ -172,6 +170,7 @@ const rolesFirstNight = computed(() => {
         players: players.value.filter((p: Player) => p.role.team === "demon"),
         firstNightReminder:
           t('modal.nightOrder.demonInfoDescription'),
+        image: new URL('@/assets/icons/demon.png', import.meta.url).href,
       },
     );
   }
@@ -195,6 +194,7 @@ const rolesOtherNight = computed(() => {
     otherNight: 2,
     players: [],
     otherNightReminder: t('modal.nightOrder.duskDescription2'),
+    image: new URL('@/assets/icons/dusk.png', import.meta.url).href,
   },
   {
     id: "dawn",
@@ -203,6 +203,7 @@ const rolesOtherNight = computed(() => {
     otherNight: 1000,
     players: [],
     otherNightReminder: t('modal.nightOrder.dawnDescription2'),
+    image: new URL('@/assets/icons/dawn.png', import.meta.url).href,
   },
   ];
   fabled.value.filter(({ otherNight }: Role) => otherNight)
@@ -210,7 +211,7 @@ const rolesOtherNight = computed(() => {
       rolesOtherNight.push({ players: [], ...fabled });
     });
   roles.value.forEach((role: Role) => {
-    if (role.otherNight && role.team !== "traveller") {
+    if (role.otherNight && role.team !== "traveler") {
       const roleWithPlayers: NightOrderRole = {
         ...role,
         players: players.value.filter((p: Player) => p.role.id === role.id)
@@ -218,18 +219,18 @@ const rolesOtherNight = computed(() => {
       rolesOtherNight.push(roleWithPlayers);
     }
   });
-  // Adding Travellers (duplicates only once)
-  const seentravellers: string[] = [];
+  // Adding travelers (duplicates only once)
+  const seentravelers: string[] = [];
   players.value.forEach((player: Player) => {
     if (
       player.role.otherNight &&
-      player.role.team == "traveller" &&
-      !seentravellers.includes(player.role.id)
+      player.role.team == "traveler" &&
+      !seentravelers.includes(player.role.id)
     ) {
       const activePlayers = players.value.filter(
         (p: Player) => p.role.id === player.role.id,
       );
-      seentravellers.push(player.role.id);
+      seentravelers.push(player.role.id);
       rolesOtherNight.push({ players: activePlayers, ...player.role });
     }
   });
@@ -238,19 +239,11 @@ const rolesOtherNight = computed(() => {
 });
 
 const edition = computed(() => store.state.edition);
-const grimoire = computed(() => store.state.grimoire);
 const session = computed(() => store.state.session);
 const players = computed(() => store.state.players.players);
 const fabled = computed(() => store.state.players.fabled);
 const modals = computed(() => store.state.modals);
 const roles = computed(() => store.state.roles);
-
-const rolePath = (role: Role) => {
-  return new URL(
-    `../../assets/icons/${role.imageAlt || role.id}.png`,
-    import.meta.url,
-  ).href;
-};
 
 const toggleModal = (modal: string) => {
   store.commit("toggleModal", modal);
@@ -352,12 +345,12 @@ h4 {
   }
 }
 
-.traveller {
+.traveler {
   .name {
-    background: linear-gradient(90deg, $traveller, transparent 35%);
+    background: linear-gradient(90deg, $traveler, transparent 35%);
 
     .night .other & {
-      background: linear-gradient(-90deg, $traveller, transparent 35%);
+      background: linear-gradient(-90deg, $traveler, transparent 35%);
     }
   }
 }
@@ -379,7 +372,8 @@ ul {
     margin-bottom: 3px;
 
     .icon {
-      width: 5vh;
+      max-width: 5vh;
+      max-height: 5vh;
       background-size: 100% auto;
       background-position: center center;
       background-repeat: no-repeat;
@@ -387,6 +381,12 @@ ul {
       flex-shrink: 0;
       text-align: center;
       margin: 0 2px;
+
+      img,
+      svg {
+        max-width: 100%;
+        max-height: 100%;
+      }
 
       &:after {
         content: " ";
@@ -495,6 +495,24 @@ ul {
       text-align: left;
       border-right: 0;
     }
+  }
+}
+
+.icon {
+  &.townsfolk {
+    --color: #1f65ff;
+  }
+
+  &.outsider {
+    --color: #46d5ff;
+  }
+
+  &.minion {
+    --color: #ff6900;
+  }
+
+  &.demon {
+    --color: #ce0100;
   }
 }
 

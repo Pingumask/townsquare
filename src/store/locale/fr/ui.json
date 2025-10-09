@@ -38,6 +38,10 @@
       "randomize": "Mélanger Sièges",
       "removeAll": "Retirer Joueurs"
     },
+    "playersMenu": {
+      "title": "Menu des joueurs",
+      "required": "(requis)"
+    },
     "characters": {
       "title": "Personnages",
       "selectEdition": "Choisir Scénario",
@@ -144,6 +148,7 @@
     "handDown": "Main baissée",
     "cancel": "Annuler",
     "swap": "Échanger de siège avec ce joueur",
+    "swapAlignment": "Inverser Alignement",
     "move": "Déplacer le joueur vers ce siège",
     "nominate": "Accuse ce joueur",
     "ghostVote": "Vote Fantôme",
@@ -243,7 +248,7 @@
       "title": "Choisissez un personnage pour",
       "bluff": "bluffer",
       "editionRoles": "Rôles de ce Scénario",
-      "othertravellers": "Autres Voyageurs"
+      "othertravelers": "Autres Voyageurs"
     },
     "roles": {
       "titleStart": "Selectionner les personnages pour ",
