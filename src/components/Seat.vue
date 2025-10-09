@@ -777,7 +777,7 @@ li.move:not(.from) .player .overlay svg.move {
   right: 10%;
   display: flex;
   justify-content: center;
-  font-size: 120%;
+  font-size: clamp(16px, calc(-1.1429rem + 4.2857vw), 28px);
   line-height: 120%;
   cursor: pointer;
   white-space: nowrap;

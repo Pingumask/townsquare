@@ -3,6 +3,7 @@
 ## Upcomming Version
 
 - Removed copyrighted role icons and replaced with svg versions
+- Reactive font sizes (smaller text on smaller screens)
 - Bug correction:
   - Now possible to launch Trouble Brewing Advanced
 
