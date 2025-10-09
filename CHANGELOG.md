@@ -4,8 +4,17 @@
 
 
 
-## 5.1.0
+## 5.1.1
+- Further adjustments to token font sizes
+- French translations role name changes :
+  - Vendeur de jouets -> Fabricant de jouets 
+  - Libraire infernal -> Bibliothécaire de l'Enfer 
+  - Ami des corbeaux -> Gardien des corbeaux 
+  - Charmeur -> Charmeur de Serpents 
+  - Mercenaire -> Chasseur de primes 
+  - Maître de Typhon -> Seigneur de Typhon
 
+## 5.1.0
 - Removed copyrighted role icons and replaced with svg versions
 - Reactive font sizes (smaller text on smaller screens)
   - Smaller text on mobile devices

@@ -44,7 +44,7 @@
       "Catastrophe"
     ],
     "setup": false,
-    "name": "Libraire infernal",
+    "name": "Bibliothécaire de l'enfer",
     "team": "fabled",
     "ability": "Il se peut que quelque chose de mauvais arrive à tout joueur qui parle alors que le Narrateur appelle au silence."
   },
@@ -81,7 +81,7 @@
       "Nuit sans attaque"
     ],
     "setup": false,
-    "name": "Vendeur de jouets",
+    "name": "Fabricant de jouets",
     "team": "fabled",
     "ability": "Le Démon peut choisir de ne pas attaquer et doit le faire au moins une fois par partie. Les mauvais ont leurs infos de début normales."
   },
