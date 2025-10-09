@@ -47,7 +47,9 @@ const reminderLeaves = computed(() => {
 });
 
 const nameToFontSize = computed(() => {
-  return (props.role?.name?.length && props.role.name.length > 10 ? "90%" : "110%");
+  if (!props.role?.name) return "0%";
+  if (props.role.name.length <= 10) return "110%";
+  return `${Math.max(110 - ((props.role.name.length - 10) * 4), 50)}%`;
 });
 
 function setRole() {
