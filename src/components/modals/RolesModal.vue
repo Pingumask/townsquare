@@ -163,6 +163,11 @@ const assignRoles = () => {
           value,
         });
       }
+      store.commit("players/update", {
+        player,
+        property: "alignment",
+        value: null,
+      });
     });
     store.commit("toggleModal", "roles");
   }

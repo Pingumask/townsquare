@@ -13,10 +13,7 @@
       </aside>
       <ul>
         <li v-for="role in teamRoles" :key="role.id" :class="[team]">
-          <picture v-if="role.id && role.id != 'empty'" class="icon">
-            <InlineSvg v-if="rolePath(role).endsWith('.svg')" :src="rolePath(role)" />
-            <img v-else :src="rolePath(role)" :alt="role.id">
-          </picture>
+          <RoleIcon :role="role" class="icon" />
           <div class="role">
             <span v-if="Object.keys(playersByRole).length" class="player">
               {{ playersByRole[role.id] ? playersByRole[role.id]?.join(", ") : "" }}
@@ -36,12 +33,8 @@
       </aside>
       <ul>
         <li v-for="(jinx, index) in jinxed" :key="index">
-          <picture v-if="jinx.first && jinx.first.id != 'empty'" class="icon">
-            <img :src="rolePath(jinx.first)" :alt="jinx.first.id">
-          </picture>
-          <picture v-if="jinx.second && jinx.second.id != 'empty'" class="icon">
-            <img :src="rolePath(jinx.second)" :alt="jinx.second.id">
-          </picture>
+          <RoleIcon :role="jinx.first" />
+          <RoleIcon :role="jinx.second" />
           <div class="role">
             <span class="name">{{ jinx.first.name }} & {{ jinx.second.name }}</span>
             <span class="ability">{{ jinx.reason }}</span>
@@ -62,10 +55,10 @@ import type { Role, Player, JinxInfo } from '@/types';
 import { computed } from "vue";
 import { useStore } from "vuex";
 import Modal from "./Modal.vue";
-import { useRolePath, useTranslation } from '@/composables';
-import InlineSvg from 'vue-inline-svg';
+import { useTranslation } from '@/composables';
 
-const { rolePath } = useRolePath();
+import RoleIcon from '../RoleIcon.vue';
+
 const { t } = useTranslation();
 const store = useStore();
 
@@ -160,16 +153,27 @@ h3 {
   }
 }
 
-picture {
+.icon {
+  &.townsfolk {
+    --color: #1f65ff;
+  }
+
+  &.outsider {
+    --color: #46d5ff;
+  }
+
+  &.minion {
+    --color: #ff6900;
+  }
+
+  &.demon {
+    --color: #ce0100;
+  }
+
   top: 0;
   width: 4rem;
   height: 4rem;
   text-align: right;
-}
-
-picture * {
-  max-width: 4rem;
-  max-height: 4rem;
 }
 
 .outsider {

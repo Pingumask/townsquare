@@ -61,6 +61,7 @@ const close = () => {
   .characters & {
     overflow: auto;
     scrollbar-gutter: stable both-edges;
+    max-height: 100vh;
   }
 
   .roles &,

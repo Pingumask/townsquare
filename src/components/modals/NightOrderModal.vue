@@ -31,7 +31,9 @@
               <small />
             </span>
           </span>
-          <span class="icon"><img :src="rolePath(role)" :alt="role.id" /></span>
+          <span v-if="role.id && role.id != 'empty'" class="icon" :class="role.team">
+            <RoleIcon :role="role" />
+          </span>
           <span v-if="role.firstNightReminder" class="reminder">
             {{ role.firstNightReminder }}
           </span>
@@ -42,7 +44,9 @@
           {{ t('modal.nightOrder.otherNights') }}
         </li>
         <li v-for="role in rolesOtherNight" :key="role.id" :class="[role.team]">
-          <span class="icon"><img :src="rolePath(role)" :alt="role.id" /></span>
+          <span v-if="role.id && role.id != 'empty'" class="icon" :class="role.team">
+            <RoleIcon :role="role" />
+          </span>
           <span class="name">
             {{ role.name }}
             <span v-if="role.players.length" class="player">
@@ -75,9 +79,9 @@ import type { NightOrderRole, Role, Player } from "@/types";
 import { computed } from "vue";
 import { useStore } from "vuex";
 import Modal from "./Modal.vue";
-import { useRolePath, useTranslation } from '@/composables';
+import { useTranslation } from '@/composables';
+import RoleIcon from "../RoleIcon.vue";
 
-const { rolePath } = useRolePath();
 const { t } = useTranslation();
 const store = useStore();
 
@@ -98,6 +102,7 @@ const rolesFirstNight = computed(() => {
       firstNight: 2,
       players: [],
       firstNightReminder: t('modal.nightOrder.duskDescription1'),
+      image: new URL('@/assets/icons/dusk.png', import.meta.url).href,
     },
     {
       id: "dawn",
@@ -106,6 +111,7 @@ const rolesFirstNight = computed(() => {
       team: "default",
       players: [],
       firstNightReminder: t('modal.nightOrder.dawnDescription1'),
+      image: new URL('@/assets/icons/dawn.png', import.meta.url).href,
     },
   ];
   let toymaker = false;
@@ -154,6 +160,7 @@ const rolesFirstNight = computed(() => {
         players: players.value.filter((p: Player) => p.role.team === "minion"),
         firstNightReminder:
           t('modal.nightOrder.minionInfoDescription'),
+        image: new URL('@/assets/icons/minion.png', import.meta.url).href,
       },
       {
         id: "demon",
@@ -163,6 +170,7 @@ const rolesFirstNight = computed(() => {
         players: players.value.filter((p: Player) => p.role.team === "demon"),
         firstNightReminder:
           t('modal.nightOrder.demonInfoDescription'),
+        image: new URL('@/assets/icons/demon.png', import.meta.url).href,
       },
     );
   }
@@ -186,6 +194,7 @@ const rolesOtherNight = computed(() => {
     otherNight: 2,
     players: [],
     otherNightReminder: t('modal.nightOrder.duskDescription2'),
+    image: new URL('@/assets/icons/dusk.png', import.meta.url).href,
   },
   {
     id: "dawn",
@@ -194,6 +203,7 @@ const rolesOtherNight = computed(() => {
     otherNight: 1000,
     players: [],
     otherNightReminder: t('modal.nightOrder.dawnDescription2'),
+    image: new URL('@/assets/icons/dawn.png', import.meta.url).href,
   },
   ];
   fabled.value.filter(({ otherNight }: Role) => otherNight)
@@ -363,7 +373,7 @@ ul {
 
     .icon {
       max-width: 5vh;
-      max-height: 3vh;
+      max-height: 5vh;
       background-size: 100% auto;
       background-position: center center;
       background-repeat: no-repeat;
@@ -372,8 +382,10 @@ ul {
       text-align: center;
       margin: 0 2px;
 
-      img {
-        width: 100%;
+      img,
+      svg {
+        max-width: 100%;
+        max-height: 100%;
       }
 
       &:after {
@@ -483,6 +495,24 @@ ul {
       text-align: left;
       border-right: 0;
     }
+  }
+}
+
+.icon {
+  &.townsfolk {
+    --color: #1f65ff;
+  }
+
+  &.outsider {
+    --color: #46d5ff;
+  }
+
+  &.minion {
+    --color: #ff6900;
+  }
+
+  &.demon {
+    --color: #ce0100;
   }
 }
 

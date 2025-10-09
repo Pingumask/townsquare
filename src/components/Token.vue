@@ -1,9 +1,6 @@
 <template>
   <div class="token" :class="[role.id, { unchecked: unchecked }]" @click="setRole">
-    <picture v-if="role.id && role.id != 'empty'" class="role" :class="role.team">
-      <InlineSvg :src="rolePath(role)" />
-      <!-- <img v-else :src="rolePath(role)" :alt="role.id"> -->
-    </picture>
+    <RoleIcon :role="role" :player="player" />
     <span v-if="role.firstNight || role.firstNightReminder" class="leaf-left" />
     <span v-if="role.otherNight || role.otherNightReminder" class="leaf-right" />
     <span v-if="reminderLeaves" :class="['leaf-top' + reminderLeaves]" />
@@ -24,19 +21,18 @@
 </template>
 
 <script setup lang="ts">
-import type { Role } from '@/types';
+import type { Player, Role } from '@/types';
 import { computed } from 'vue';
-import { useRolePath } from '@/composables';
-import InlineSvg from 'vue-inline-svg';
-
-const { rolePath } = useRolePath();
+import RoleIcon from './RoleIcon.vue';
 
 const props = withDefaults(defineProps<{
   role?: Role;
   unchecked?: boolean;
+  player?: Player;
 }>(), {
   role: () => ({} as Role),
   unchecked: false,
+  player: () => ({} as Player),
 });
 
 const emit = defineEmits<{
@@ -60,29 +56,43 @@ function setRole() {
 </script>
 
 <style scoped lang="scss">
-picture.role.townsfolk {
+.townsfolk {
   --color: #1f65ff;
+  --blend: multiply;
 }
 
-picture.role.outsider {
+.outsider,
+.outsider.good {
   --color: #46d5ff;
+  --blend: normal;
+  filter: drop-shadow(#000c 0 0 8px);
 }
 
-picture.role.minion {
+.minion {
   --color: #ff6900;
+  --blend: multiply;
 }
 
-picture.role.demon {
+.demon,
+.demon.evil {
   --color: #ce0100;
+  --blend: multiply;
 }
 
-picture.role.fabled {
-  --color: #ffe91f;
+.traveler {
+  --blend: multiply;
 }
 
-// picture.role.traveler {
-//   --color: #cc04ff
-// }
+.good {
+  --color: #2956b8;
+  --blend: multiply;
+}
+
+.evil {
+  --color: #ff6900;
+  --blend: multiply;
+  ;
+}
 
 .token {
   border-radius: 50%;

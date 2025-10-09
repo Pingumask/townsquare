@@ -24,7 +24,9 @@ class LiveSession {
 
   constructor(store: StoreLike<RootState>) {
     // Use environment variable if available, otherwise default to production server
-    this._wss = import.meta.env["VITE_SERVER_URL"] || "wss://live.clocktower.online:8080/";
+    this._wss =
+      import.meta.env["VITE_SERVER_URL"] ||
+      "wss://live.clocktower.online:8080/";
     this._socket = null;
     this._isSpectator = true;
     this._gamestate = [];
@@ -49,9 +51,9 @@ class LiveSession {
     this.disconnect();
     this._socket = new WebSocket(
       this._wss +
-      channel +
-      "/" +
-      (this._isSpectator ? this._store.state.session.playerId : "host"),
+        channel +
+        "/" +
+        (this._isSpectator ? this._store.state.session.playerId : "host"),
     );
     this._socket.addEventListener("message", this._handleMessage.bind(this));
     this._socket.onopen = this._onOpen.bind(this);
@@ -93,7 +95,11 @@ class LiveSession {
    * @param params
    * @private
    */
-  _sendDirect(playerId: string | undefined | null, command: string, params: unknown) {
+  _sendDirect(
+    playerId: string | undefined | null,
+    command: string,
+    params: unknown,
+  ) {
     if (playerId) {
       this._send("direct", { [playerId]: [command, params] });
     } else {
@@ -140,7 +146,8 @@ class LiveSession {
    * @private
    */
   _handleMessage({ data }: MessageEvent) {
-    let command: string = "", params: unknown;
+    let command: string = "",
+      params: unknown;
     try {
       [command, params] = JSON.parse(data);
     } catch (err) {
@@ -152,22 +159,37 @@ class LiveSession {
         this.sendGamestate(params as string | undefined, false);
         break;
       case "edition":
-        this._updateEdition(params as { edition: RootState["edition"]; roles?: Array<Role | Record<string, unknown>> });
+        this._updateEdition(
+          params as {
+            edition: RootState["edition"];
+            roles?: Array<Role | Record<string, unknown>>;
+          },
+        );
         break;
       case "fabled":
-        this._updateFabled(params as Array<Role | { id: string; isCustom?: boolean }>)
+        this._updateFabled(
+          params as Array<Role | { id: string; isCustom?: boolean }>,
+        );
         break;
       case "gs":
         this._updateGamestate(params as Record<string, unknown>);
         break;
       case "player":
-        this._updatePlayer(params as { index: number; property: keyof Player | "role"; value: unknown });
+        this._updatePlayer(
+          params as {
+            index: number;
+            property: keyof Player;
+            value: unknown;
+          },
+        );
         break;
       case "claim":
         this._updateSeat(params as [number, string]);
         break;
       case "ping":
-        this._handlePing(params as [(number | undefined)?, unknown?] | undefined);
+        this._handlePing(
+          params as [(number | undefined)?, unknown?] | undefined,
+        );
         break;
       case "nomination":
         if (!this._isSpectator) return;
@@ -177,12 +199,18 @@ class LiveSession {
             players: this._store.state.players.players,
             isOrganVoteMode: this._store.state.grimoire.isOrganVoteMode,
             localeTexts: {
-              exile: (this._store.getters['t'] as (key: string) => string)('modal.voteHistory.exile'),
-              execution: (this._store.getters['t'] as (key: string) => string)('modal.voteHistory.execution')
-            }
+              exile: (this._store.getters["t"] as (key: string) => string)(
+                "modal.voteHistory.exile",
+              ),
+              execution: (this._store.getters["t"] as (key: string) => string)(
+                "modal.voteHistory.execution",
+              ),
+            },
           });
         }
-        this._store.commit("session/nomination", { nomination: params as Nomination | null });
+        this._store.commit("session/nomination", {
+          nomination: params as Nomination | null,
+        });
         break;
       case "swap":
         if (!this._isSpectator) return;
@@ -397,17 +425,35 @@ class LiveSession {
       const currentPlayers = this._store.state.players.players;
       const player = currentPlayers[x];
       const { roleId } = st;
-      (['name', 'id', 'isDead', 'voteToken', 'pronouns'] as const).forEach((property) => {
-        const value = st[property];
-        if (player && (player as unknown as Record<string, unknown>)[property] !== value) {
-          this._store.commit("players/update", { player, property, value });
-        }
-      });
+      (["name", "id", "isDead", "voteToken", "pronouns"] as const).forEach(
+        (property) => {
+          const value = st[property];
+          if (
+            player &&
+            (player as unknown as Record<string, unknown>)[property] !== value
+          ) {
+            this._store.commit("players/update", { player, property, value });
+          }
+        },
+      );
       if (player && roleId && player.role.id !== roleId) {
-        const role = this._store.state.roles.get(roleId) || (this._store.getters['rolesJSONbyId'] as Map<string, Role>).get(roleId);
-        if (role) this._store.commit("players/update", { player, property: "role", value: role });
+        const role =
+          this._store.state.roles.get(roleId) ||
+          (this._store.getters["rolesJSONbyId"] as Map<string, Role>).get(
+            roleId,
+          );
+        if (role)
+          this._store.commit("players/update", {
+            player,
+            property: "role",
+            value: role,
+          });
       } else if (player && !roleId && player.role.team === "traveler") {
-        this._store.commit("players/update", { player, property: "role", value: {} });
+        this._store.commit("players/update", {
+          player,
+          property: "role",
+          value: {},
+        });
       }
     });
     if (!isLightweight) {
@@ -439,7 +485,7 @@ class LiveSession {
     const { edition } = this._store.state;
     let roles;
     if (edition && !edition.isOfficial) {
-      roles = this._store.getters['customRolesStripped'];
+      roles = this._store.getters["customRolesStripped"];
     }
     this._sendDirect(playerId, "edition", {
       edition: edition && edition.isOfficial ? { id: edition.id } : edition,
@@ -453,18 +499,29 @@ class LiveSession {
    * @param roles
    * @private
    */
-  _updateEdition({ edition, roles }: { edition: RootState["edition"]; roles?: Array<Role | Record<string, unknown>> }) {
+  _updateEdition({
+    edition,
+    roles,
+  }: {
+    edition: RootState["edition"];
+    roles?: Array<Role | Record<string, unknown>>;
+  }) {
     if (!this._isSpectator) return;
     this._store.commit("setEdition", edition);
     if (roles) {
       this._store.commit("setCustomRoles", roles);
       if (this._store.state.roles.size !== roles.length) {
         const missing: string[] = [];
-        roles.forEach((r) => { const id = (r as Role).id || (r as unknown as Record<string, unknown>)["id"] as string; if (!this._store.state.roles.get(id)) missing.push(id); });
+        roles.forEach((r) => {
+          const id =
+            (r as Role).id ||
+            ((r as unknown as Record<string, unknown>)["id"] as string);
+          if (!this._store.state.roles.get(id)) missing.push(id);
+        });
         alert(
           `This session contains custom characters that can't be found. ` +
-          `Please load them before joining! ` +
-          `Missing roles: ${missing.join(", ")}`,
+            `Please load them before joining! ` +
+            `Missing roles: ${missing.join(", ")}`,
         );
         this.disconnect();
         this._store.commit("toggleModal", "edition");
@@ -502,7 +559,15 @@ class LiveSession {
    * @param property
    * @param value
    */
-  sendPlayer({ player, property, value }: { player: Player; property: keyof Player | "role"; value: unknown }) {
+  sendPlayer({
+    player,
+    property,
+    value,
+  }: {
+    player: Player;
+    property: keyof Player | "role";
+    value: unknown;
+  }) {
     if (this._isSpectator || property === "reminders") return;
     const index = this._store.state.players.players.indexOf(player);
     if (property === "role") {
@@ -532,7 +597,15 @@ class LiveSession {
    * @param value
    * @private
    */
-  _updatePlayer({ index, property, value }: { index: number; property: keyof Player | "role"; value: unknown }) {
+  _updatePlayer({
+    index,
+    property,
+    value,
+  }: {
+    index: number;
+    property: keyof Player | "role";
+    value: unknown;
+  }) {
     if (!this._isSpectator) return;
     const player = this._store.state.players.players[index];
     if (!player) return;
@@ -547,7 +620,12 @@ class LiveSession {
         });
       } else {
         // load role, first from session, the global, then fail gracefully
-        const role = this._store.state.roles.get(value as string) || (this._store.getters['rolesJSONbyId'] as Map<string, Role>).get(value as string) || {};
+        const role =
+          this._store.state.roles.get(value as string) ||
+          (this._store.getters["rolesJSONbyId"] as Map<string, Role>).get(
+            value as string,
+          ) ||
+          {};
         this._store.commit("players/update", {
           player,
           property: "role",
@@ -566,7 +644,15 @@ class LiveSession {
    * @param value
    * @param isFromSockets
    */
-  sendPlayerPronouns({ player, value, isFromSockets }: { player: Player; value: string; isFromSockets: boolean }) {
+  sendPlayerPronouns({
+    player,
+    value,
+    isFromSockets,
+  }: {
+    player: Player;
+    value: string;
+    isFromSockets: boolean;
+  }) {
     //send pronoun only for the seated player or storyteller
     //Do not re-send pronoun data for an update that was recieved from the sockets layer
     if (
@@ -601,12 +687,18 @@ class LiveSession {
    * @param latency
    * @private
    */
-  _handlePing([playerIdOrCount = 0, latency]: [(number | undefined)?, unknown?] = []) {
+  _handlePing([playerIdOrCount = 0, latency]: [
+    (number | undefined)?,
+    unknown?,
+  ] = []) {
     const now = new Date().getTime();
     if (!this._isSpectator) {
       // remove players that haven't sent a ping in twice the timespan
       for (let player in this._players) {
-        if (this._players[player] && now - this._players[player] > this._pingInterval * 2) {
+        if (
+          this._players[player] &&
+          now - this._players[player] > this._pingInterval * 2
+        ) {
           delete this._players[player];
           delete this._pings[player];
         }
@@ -710,17 +802,23 @@ class LiveSession {
    */
   distributeRoles() {
     if (this._isSpectator) return;
-    const message: Record<string, unknown[]> = {};
+    const messageRole: Record<string, unknown[]> = {};
+    const messageAlignment: Record<string, unknown[]> = {};
     this._store.state.players.players.forEach((player, index) => {
       if (player.id && player.role) {
-        message[player.id] = [
+        messageRole[player.id] = [
           "player",
           { index, property: "role", value: player.role.id },
         ];
+        messageAlignment[player.id] = [
+          "player",
+          { index, property: "alignment", value: player.alignment },
+        ];
       }
     });
-    if (Object.keys(message).length) {
-      this._send("direct", message);
+    if (Object.keys(messageRole).length) {
+      this._send("direct", messageRole);
+      this._send("direct", messageAlignment);
     }
   }
 
@@ -732,9 +830,18 @@ class LiveSession {
    */
   nomination(payload: Nomination | null) {
     if (this._isSpectator) return;
-    const nomination = payload ? (payload as unknown as { nomination?: Nomination }).nomination || payload : payload;
+    const nomination = payload
+      ? (payload as unknown as { nomination?: Nomination }).nomination ||
+        payload
+      : payload;
     const players = this._store.state.players.players;
-    if (!nomination || ((typeof nomination.nominator !== "number" || players.length > nomination.nominator) && (typeof nomination.nominee !== "number" || players.length > nomination.nominee))) {
+    if (
+      !nomination ||
+      ((typeof nomination.nominator !== "number" ||
+        players.length > nomination.nominator) &&
+        (typeof nomination.nominee !== "number" ||
+          players.length > nomination.nominee))
+    ) {
       this.setVotingSpeed(this._store.state.session.votingSpeed);
       this._send("nomination", nomination);
     }
@@ -877,7 +984,9 @@ class LiveSession {
     const { lockedVote, votes, nomination } = this._store.state.session;
     const { players } = this._store.state.players;
     const index =
-      ((typeof nomination?.nominee == "number" ? nomination.nominee : (nomination?.nominator as number) || 0) +
+      ((typeof nomination?.nominee == "number"
+        ? nomination.nominee
+        : (nomination?.nominator as number) || 0) +
         lockedVote -
         1) %
       players.length;
@@ -897,7 +1006,9 @@ class LiveSession {
       const { lockedVote, nomination } = this._store.state.session;
       const { players } = this._store.state.players;
       const index =
-        ((typeof nomination?.nominee == "number" ? nomination.nominee : (nomination?.nominator as number) || 0) +
+        ((typeof nomination?.nominee == "number"
+          ? nomination.nominee
+          : (nomination?.nominator as number) || 0) +
           lockedVote -
           1) %
         players.length;
@@ -940,95 +1051,117 @@ export default (store: StoreLike<RootState>) => {
   const session = new LiveSession(store);
 
   // listen to mutations
-  store.subscribe(({ type, payload }: { type: string; payload?: unknown }, state: RootState) => {
-    switch (type) {
-      case "session/setSessionId":
-        if (state.session.sessionId) {
-          session.connect(state.session.sessionId);
-        } else {
-          window.location.hash = "";
-          session.disconnect();
+  store.subscribe(
+    (
+      { type, payload }: { type: string; payload?: unknown },
+      state: RootState,
+    ) => {
+      switch (type) {
+        case "session/setSessionId":
+          if (state.session.sessionId) {
+            session.connect(state.session.sessionId);
+          } else {
+            window.location.hash = "";
+            session.disconnect();
+          }
+          break;
+        case "session/claimSeat":
+          session.claimSeat(payload as number);
+          break;
+        case "session/distributeRoles":
+          if (payload) {
+            session.distributeRoles();
+          }
+          break;
+        case "session/nomination":
+        case "session/setNomination":
+          session.nomination(payload as Nomination | null);
+          break;
+        case "session/setVoteInProgress":
+          session.setVoteInProgress();
+          break;
+        case "session/voteSync":
+          session.vote(payload as [number]);
+          break;
+        case "session/lockVote":
+          session.lockVote();
+          break;
+        case "session/setVotingSpeed":
+          session.setVotingSpeed(payload as number);
+          break;
+        case "session/clearVoteHistory":
+          session.clearVoteHistory();
+          break;
+        case "session/setVoteHistoryAllowed":
+          session.setVoteHistoryAllowed();
+          break;
+        case "toggleNight":
+          session.setIsNight();
+          break;
+        case "toggleOrganVoteMode":
+          session.setIsOrganVoteMode();
+          break;
+        case "toggleRinging":
+          session.setIsRinging();
+          break;
+        case "toggleRooster":
+          session.setIsRooster();
+          break;
+        case "setTimer":
+          session.setTimer();
+          break;
+        case "setEdition":
+          session.sendEdition();
+          break;
+        case "players/setFabled":
+          session.sendFabled();
+          break;
+        case "session/setMarkedPlayer":
+          session.setMarked(payload as number);
+          break;
+        case "players/swap":
+          session.swapPlayer(payload as [number, number]);
+          break;
+        case "players/move":
+          session.movePlayer(payload as [number, number]);
+          break;
+        case "players/remove":
+          session.removePlayer(payload as number);
+          break;
+        case "players/set":
+        case "players/clear":
+        case "players/add":
+          session.sendGamestate("", true);
+          break;
+        case "players/update": {
+          const updatePayload = payload as {
+            property: string;
+            player: Player;
+            value: unknown;
+            isFromSockets?: boolean;
+          };
+          if (updatePayload.property === "pronouns") {
+            session.sendPlayerPronouns(
+              updatePayload as {
+                player: Player;
+                value: string;
+                isFromSockets: boolean;
+              },
+            );
+          } else {
+            session.sendPlayer(
+              updatePayload as {
+                player: Player;
+                property: keyof Player | "role";
+                value: unknown;
+              },
+            );
+          }
+          break;
         }
-        break;
-      case "session/claimSeat":
-        session.claimSeat(payload as number);
-        break;
-      case "session/distributeRoles":
-        if (payload) {
-          session.distributeRoles();
-        }
-        break;
-      case "session/nomination":
-      case "session/setNomination":
-        session.nomination(payload as Nomination | null);
-        break;
-      case "session/setVoteInProgress":
-        session.setVoteInProgress();
-        break;
-      case "session/voteSync":
-        session.vote(payload as [number]);
-        break;
-      case "session/lockVote":
-        session.lockVote();
-        break;
-      case "session/setVotingSpeed":
-        session.setVotingSpeed(payload as number);
-        break;
-      case "session/clearVoteHistory":
-        session.clearVoteHistory();
-        break;
-      case "session/setVoteHistoryAllowed":
-        session.setVoteHistoryAllowed();
-        break;
-      case "toggleNight":
-        session.setIsNight();
-        break;
-      case "toggleOrganVoteMode":
-        session.setIsOrganVoteMode();
-        break;
-      case "toggleRinging":
-        session.setIsRinging();
-        break;
-      case "toggleRooster":
-        session.setIsRooster();
-        break;
-      case "setTimer":
-        session.setTimer();
-        break;
-      case "setEdition":
-        session.sendEdition();
-        break;
-      case "players/setFabled":
-        session.sendFabled();
-        break;
-      case "session/setMarkedPlayer":
-        session.setMarked(payload as number);
-        break;
-      case "players/swap":
-        session.swapPlayer(payload as [number, number]);
-        break;
-      case "players/move":
-        session.movePlayer(payload as [number, number]);
-        break;
-      case "players/remove":
-        session.removePlayer(payload as number);
-        break;
-      case "players/set":
-      case "players/clear":
-      case "players/add":
-        session.sendGamestate("", true);
-        break;
-      case "players/update": {
-        const updatePayload = payload as { property: string; player: Player; value: unknown; isFromSockets?: boolean };
-        if (updatePayload.property === "pronouns") {
-          session.sendPlayerPronouns(updatePayload as { player: Player; value: string; isFromSockets: boolean });
-        } else {
-          session.sendPlayer(updatePayload as { player: Player; property: keyof Player | "role"; value: unknown });
-        }
-        break;
       }
-    }
-  });
+    },
+  );
 
   // check for session Id in hash
   const sessionId = window.location.hash.slice(1);

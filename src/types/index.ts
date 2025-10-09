@@ -12,6 +12,7 @@ export interface Player {
   name: string;
   id: string;
   role: Role;
+  alignment?: "good" | "evil" | null;
   reminders: Reminder[];
   voteToken: boolean;
   isDead: boolean;
@@ -314,6 +315,7 @@ export interface LocaleModule {
 // RootState used by Vuex store and socket/persistence plugins
 export interface RootState {
   grimoire: GrimoireState;
+  playersMenu: PlayersMenuState;
   modals: Modals;
   edition?: Edition; // optional — may be undefined initially
   editions: EditionsJSON;
@@ -324,6 +326,16 @@ export interface RootState {
   locale: LocaleModule;
   players: PlayersState;
   session: SessionState;
+}
+
+export interface PlayersMenuState {
+  changePronouns: boolean;
+  changeName: boolean;
+  movePlayer: boolean;
+  swapPlayers: boolean;
+  removePlayer: boolean;
+  swapAlignment: boolean;
+  specialVote: boolean;
 }
 
 // Minimal Vuex-like interfaces used to type JS plugins without explicit any

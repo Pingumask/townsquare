@@ -33,7 +33,7 @@
         </span>
       </div>
 
-      <Token :role="props.player.role" @set-role="$emit('trigger', ['openRoleModal'])" />
+      <Token :role="props.player.role" :player="props.player" @set-role="$emit('trigger', ['openRoleModal'])" />
 
       <!-- Overlay icons -->
       <div class="overlay">
@@ -98,26 +98,26 @@
       <transition name="fold">
         <ul v-if="isMenuOpen" class="menu">
           <li v-if="
-            !session.isSpectator ||
+            (!session.isSpectator && playersMenu.changePronouns) ||
             (session.isSpectator && props.player.id === session.playerId)
           " @click="changePronouns">
             <font-awesome-icon icon="venus-mars" class="fa fa-venus-mars" />
             {{ t('player.changePronouns') }}
           </li>
           <template v-if="!session.isSpectator">
-            <li @click="changeName">
+            <li v-if="playersMenu.changeName" @click="changeName">
               <font-awesome-icon icon="user-edit" class="fa fa-user-edit" />
               {{ t('player.changeName') }}
             </li>
-            <li :class="{ disabled: session.lockedVote }" @click="movePlayer()">
+            <li v-if="playersMenu.movePlayer" :class="{ disabled: session.lockedVote }" @click="movePlayer()">
               <font-awesome-icon icon="redo-alt" class="fa fa-redo-alt" />
               {{ t('player.movePlayer') }}
             </li>
-            <li :class="{ disabled: session.lockedVote }" @click="swapPlayer()">
+            <li v-if="playersMenu.swapPlayers" :class="{ disabled: session.lockedVote }" @click="swapPlayer()">
               <font-awesome-icon icon="exchange-alt" class="fa fa-exchange-alt" />
               {{ t('player.swapPlayers') }}
             </li>
-            <li :class="{ disabled: session.lockedVote }" @click="removePlayer">
+            <li v-if="playersMenu.removePlayer" :class="{ disabled: session.lockedVote }" @click="removePlayer">
               <font-awesome-icon icon="times-circle" class="fa fa-times-circle" />
               {{ t('player.removePlayer') }}
             </li>
@@ -125,13 +125,18 @@
               <font-awesome-icon icon="chair" class="fa fa-chair" />
               {{ t('player.emptySeat') }}
             </li>
+            <li v-if="props.player.role.id && (props.player.role.team == 'traveler' || playersMenu.swapAlignment)"
+              @click="switchAlignment">
+              <font-awesome-icon icon="yin-yang" class="fa fa-yin-yang" />
+              {{ t('player.swapAlignment') }}
+            </li>
             <template v-if="!session.nomination">
               <li @click="nominatePlayer()">
                 <font-awesome-icon icon="hand-point-right" class="fa fa-hand-point-right" />
                 {{ t('player.nomination') }}
               </li>
             </template>
-            <template v-if="!session.nomination">
+            <template v-if="!session.nomination && playersMenu.specialVote">
               <li @click="specialVote()">
                 <font-awesome-icon icon="vote-yea" class="fa fa-vote-yea" />
                 {{ t('player.specialVote') }}
@@ -147,9 +152,7 @@
             <template v-else-if="props.player.id === session.playerId">
               {{ t('player.vacateSeat') }}
             </template>
-            <template v-else>
-              {{ t('player.occupiedSeat') }}
-            </template>
+            <template v-else> {{ t('player.occupiedSeat') }}</template>
           </li>
         </ul>
       </transition>
@@ -193,7 +196,8 @@ const emit = defineEmits<{
 }>();
 
 const store = useStore();
-const players = computed(() => store.state.players.players);
+const players = computed<Player[]>(() => store.state.players.players);
+const playersMenu = computed(() => store.state.playersMenu);
 const grimoire = computed(() => store.state.grimoire);
 const session = computed(() => store.state.session);
 const nightOrder = computed(() => store.getters["players/nightOrder"]);
@@ -272,6 +276,24 @@ function toggleStatus() {
   }
 }
 
+function switchAlignment() {
+  let selectedPlayer = players.value.find(player => player === props.player);
+  if (!selectedPlayer) return;
+  if (selectedPlayer.alignment === undefined || selectedPlayer.alignment === null) {
+    if (selectedPlayer.role.team === "townsfolk" || selectedPlayer.role.team === "outsider") {
+      selectedPlayer.alignment = "evil";
+    } else {
+      selectedPlayer.alignment = "good";
+    }
+  } else if (selectedPlayer.alignment === "good") {
+    selectedPlayer.alignment = "evil";
+  } else if (selectedPlayer.role.team === "traveler") {
+    selectedPlayer.alignment = null;
+  } else {
+    selectedPlayer.alignment = "good";
+  }
+}
+
 function changeName() {
   if (session.value.isSpectator) return;
   const name = prompt("Player name", props.player.name) || props.player.name;
@@ -284,7 +306,7 @@ function removeReminder(reminder: Reminder) {
   updatePlayer("reminders", reminders, true);
 }
 
-function updatePlayer(property: string, value: unknown, closeMenu = false) {
+function updatePlayer(property: keyof Player, value: unknown, closeMenu = false) {
   if (
     session.value.isSpectator &&
     property !== "reminders" &&
@@ -1012,5 +1034,11 @@ li.move:not(.from) .player .overlay svg.move {
 #townsquare.public .reminder {
   opacity: 0;
   pointer-events: none;
+
+
+}
+
+picture>* {
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
 }
 </style>
