@@ -1,7 +1,7 @@
 # Release Notes
 
 ## Upcomming Version
-
+- Fixed : Generic icons in night order modal
 
 
 ## 5.1.1

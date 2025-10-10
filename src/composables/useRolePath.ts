@@ -7,12 +7,6 @@ export function useRolePath() {
   const grimoire = computed(() => store.state.grimoire);
 
   const rolePath = (role: Role) => {
-    if (role.image && grimoire.value.isImageOptIn) {
-      return role.image;
-    }
-    if (role.image && !grimoire.value.isImageOptIn) {
-      return new URL(`../assets/icons/${role.team}.png`, import.meta.url).href;
-    }
     if (
       [
         "dusk",
@@ -25,6 +19,12 @@ export function useRolePath() {
       ].includes(role.id)
     ) {
       return new URL(`../assets/icons/${role.id}.png`, import.meta.url).href;
+    }
+    if (role.image && grimoire.value.isImageOptIn) {
+      return role.image;
+    }
+    if (role.image && !grimoire.value.isImageOptIn) {
+      return new URL(`../assets/icons/${role.team}.png`, import.meta.url).href;
     }
     return new URL(`../assets/icons/${role.id}.svg`, import.meta.url).href;
   };
