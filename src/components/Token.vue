@@ -93,7 +93,6 @@ function setRole() {
 .evil {
   --color: #ff6900;
   --blend: multiply;
-  ;
 }
 
 .token {

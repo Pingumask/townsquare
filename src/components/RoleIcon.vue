@@ -8,7 +8,6 @@
 <script setup lang="ts">
 import type { Role, Player } from '@/types';
 import { computed } from 'vue';
-import { useStore } from 'vuex';
 import InlineSvg from 'vue-inline-svg';
 import { useRolePath } from '@/composables';
 
@@ -17,9 +16,6 @@ const props = defineProps<{
   role: Role;
   player?: Player | undefined;
 }>();
-
-const store = useStore();
-const grimoire = computed(() => store.state.grimoire);
 
 const role = computed(() => props.role);
 const player = computed(() => props.player);
