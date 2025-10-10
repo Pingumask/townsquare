@@ -1,7 +1,7 @@
 # Release Notes
 
 ## Upcomming Version
-
+- Updating the jinxes
 
 ## 5.1.2
 - Fixed : Generic icons in night order modal
