@@ -3,11 +3,13 @@
 ## Upcomming Version
 - Features:
   - Server : Configurable allowed origins for the websocket server in docker-compose file
+  - Updating the jinxes
 - Bugfixes:
   - Unwanted space at the bottom or reference role modal
   - Outsider ability misplaced in night order modal
 - Localization :
 - Technical :
+
 
 
 ## 5.4.0
