@@ -2,10 +2,10 @@
   <Modal v-if="modals.reminder && availableReminders.length && players[playerIndex]" @close="toggleModal('reminder')">
     <h3>{{ t('modal.reminder.title') }}</h3>
     <ul class="reminders">
-      <li v-for="reminder in availableReminders" :key="reminder.role + ' ' + reminder.name" class="reminder"
-        :class="[reminder.role]" @click="addReminder(reminder)">
-        <picture>
-          <img v-if="reminder.image" :src="reminder.image" :alt="reminder.name" />
+      <li v-for="reminder in availableReminders" :key="reminder.role.id + ' ' + reminder.name" class="reminder"
+        :class="[reminder.role.id]" @click="addReminder(reminder)">
+        <picture :class="reminder.role?.team">
+          <RoleIcon :role="reminder.role" />
         </picture>
         <span class="text">{{ reminder.name }}</span>
       </li>
@@ -14,11 +14,13 @@
 </template>
 
 <script setup lang="ts">
-import type { Reminder, Role, Player } from "@/types";
+import type { Reminder, Role, Player } from "../../types";
+import { SPECIAL_REMINDER_ROLES } from "@/utils/special-roles";
 import { computed } from "vue";
 import { useStore } from "vuex";
 import Modal from "./Modal.vue";
 import { useRolePath, useTranslation } from '@/composables';
+import RoleIcon from "../RoleIcon.vue";
 
 const { t } = useTranslation();
 const { rolePath } = useRolePath();
@@ -26,7 +28,7 @@ const { rolePath } = useRolePath();
 const mapReminder =
   (role: Role) =>
     (name: string): Reminder => ({
-      role: role.id,
+      role: role,
       image: role.image || rolePath(role),
       imageAlt: role.imageAlt || '',
       name,
@@ -75,44 +77,37 @@ const availableReminders = computed((): Reminder[] => {
 
   reminders.push({
     id: "good",
-    role: "good",
-    image: new URL('@/assets/icons/good.svg', import.meta.url).href,
+    role: SPECIAL_REMINDER_ROLES.good,
     name: t('modal.reminder.good'),
   });
   reminders.push({
     id: "evil",
-    role: "evil",
-    image: new URL('@/assets/icons/evil.svg', import.meta.url).href,
+    role: SPECIAL_REMINDER_ROLES.evil,
     name: t('modal.reminder.evil'),
   });
   reminders.push({
     id: "townsfolk",
-    role: "townsfolk",
-    image: new URL('@/assets/icons/townsfolk.png', import.meta.url).href,
+    role: SPECIAL_REMINDER_ROLES.townsfolk,
     name: t('modal.reminder.townsfolk'),
   });
   reminders.push({
     id: "outsider",
-    role: "outsider",
-    image: new URL('@/assets/icons/outsider.png', import.meta.url).href,
+    role: SPECIAL_REMINDER_ROLES.outsider,
     name: t('modal.reminder.outsider'),
   });
   reminders.push({
     id: "minion",
-    role: "minion",
-    image: new URL('@/assets/icons/minion.png', import.meta.url).href,
+    role: SPECIAL_REMINDER_ROLES.minion,
     name: t('modal.reminder.minion'),
   });
   reminders.push({
     id: "demon",
-    role: "demon",
-    image: new URL('@/assets/icons/demon.png', import.meta.url).href,
+    role: SPECIAL_REMINDER_ROLES.demon,
     name: t('modal.reminder.demon'),
   });
   reminders.push({
     id: "custom",
-    role: "custom",
-    image: new URL('@/assets/icons/custom.png', import.meta.url).href,
+    role: SPECIAL_REMINDER_ROLES.custom,
     name: t('modal.reminder.custom'),
   });
   return reminders;
@@ -121,10 +116,10 @@ const availableReminders = computed((): Reminder[] => {
 function addReminder(reminder: Reminder) {
   const player = store.state.players.players[props.playerIndex];
   let value;
-  if (reminder.role === "custom") {
+  if (reminder.role.id === "custom") {
     const name = prompt(t('prompt.customNote'));
     if (!name) return;
-    value = [...player.reminders, { role: "custom", name }];
+    value = [...player.reminders, { role: SPECIAL_REMINDER_ROLES.custom, name }];
   } else {
     value = [...player.reminders, reminder];
   }

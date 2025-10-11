@@ -1,9 +1,9 @@
-import type { Role } from './roles';
+import type { Role } from "./roles";
 
 // Player reminder interface
 export interface Reminder {
   id: string;
-  role: string;
+  role: Role;
   name: string;
   image?: string;
   imageAlt?: string;
