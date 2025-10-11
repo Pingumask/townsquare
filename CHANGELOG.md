@@ -1,7 +1,7 @@
 # Release Notes
 
 ## Upcomming Version
-
+- Correcting French Lord of Typhon's description
 
 ## 5.1.2
 - Fixed : Generic icons in night order modal

@@ -2309,7 +2309,7 @@
       "Mort"
     ],
     "setup": true,
-    "ability": "Chaque nuit*, désignez un joueur : il meurt. [Les joueurs mauvais sont en ligne, avec vous au milieu. +1 Sbire. -? à +? Marginaux]"
+    "ability": "Chaque nuit*, désignez un joueur : il meurt. [Les personnages mauvais sont en ligne. Vous êtes au milieu. +1 Sbire. -? à +? Marginaux]"
   },
   {
     "id": "gangster",
