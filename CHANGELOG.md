@@ -2,6 +2,8 @@
 
 ## Upcomming Version
 - Correcting French Lord of Typhon's description
+- Bug correction:
+  - Printing the correct type of the special votes (for now only CL) in the vote history
 
 ## 5.1.2
 - Fixed : Generic icons in night order modal
