@@ -176,11 +176,10 @@
 
 <script setup lang="ts">
 import type { Player, Reminder } from "@/types";
-import { isActiveNomination } from "@/types";
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import Token from "./Token.vue";
-import { useTranslation } from '@/composables';
+import { useTranslation, isActiveNomination } from '@/composables';
 
 const { t } = useTranslation();
 interface Props {

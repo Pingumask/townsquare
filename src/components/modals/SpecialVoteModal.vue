@@ -24,11 +24,10 @@
 
 <script setup lang="ts">
 import type { Nomination } from '@/types';
-import { createSpecialVote } from '@/types';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
 import Modal from './Modal.vue';
-import { useTranslation } from '@/composables';
+import { useTranslation, createSpecialVote } from '@/composables';
 
 const { t } = useTranslation();
 const store = useStore();

@@ -115,10 +115,9 @@
 
 <script setup lang="ts">
 import type { Player } from '@/types';
-import { isActiveNomination } from '@/types';
 import { computed, onUnmounted, ref } from "vue";
 import { useStore } from "vuex";
-import { useTranslation } from '@/composables';
+import { useTranslation, isActiveNomination } from '@/composables';
 import Countdown from "./Countdown.vue";
 
 const store = useStore();

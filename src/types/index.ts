@@ -230,55 +230,6 @@ export interface SpecialVoteData {
   buttonLabel?: string; // Label for the timer button (e.g., "Cult")
 }
 
-// Type guards for nomination data
-export function isActiveNomination(
-  nomination: Nomination | null,
-): nomination is Nomination {
-  return nomination !== null && typeof nomination === "object";
-}
-
-export function isStandardNomination(
-  nomination: Nomination | null,
-): nomination is Nomination & { nominator: number; nominee: number } {
-  return (
-    isActiveNomination(nomination) &&
-    typeof nomination.nominator === "number" &&
-    typeof nomination.nominee === "number" &&
-    !nomination.specialVote
-  );
-}
-
-export function isSpecialVote(
-  nomination: Nomination | null,
-): nomination is Nomination & { specialVote: SpecialVoteData } {
-  return isActiveNomination(nomination) && !!nomination.specialVote;
-}
-
-export function istravelerExile(
-  nomination: Nomination | null,
-  players: Player[],
-): boolean {
-  if (!isStandardNomination(nomination)) return false;
-  const nominee = players[nomination.nominee];
-  return nominee?.role?.team === "traveler";
-}
-
-// Helper functions to create nominations
-export function createStandardNomination(
-  nominator: number,
-  nominee: number,
-): Nomination {
-  return { nominator, nominee };
-}
-
-export function createSpecialVote(
-  nominator: number | string | null,
-  nominee: number | string | null,
-  specialVoteData: SpecialVoteData,
-): Nomination {
-  return { nominator, nominee, specialVote: specialVoteData };
-}
-
 // Utility types
 export type TeamType =
   | "townsfolk"
