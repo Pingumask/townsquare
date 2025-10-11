@@ -8,21 +8,21 @@
           : t('modal.role.bluff')
       }}
     </h3>
-    <ul v-if="tab === 'editionRoles' || !othertravellers.size" class="tokens">
+    <ul v-if="tab === 'editionRoles' || !othertravelers.size" class="tokens">
       <li v-for="role in availableRoles" :key="role.id" :class="[role.team]" @click="setRole(role)">
         <Token :role="role" />
       </li>
     </ul>
-    <ul v-if="tab === 'othertravellers' && othertravellers.size" class="tokens">
-      <li v-for="role in othertravellers.values()" :key="role.id" :class="[role.team]" @click="setRole(role)">
+    <ul v-if="tab === 'othertravelers' && othertravelers.size" class="tokens">
+      <li v-for="role in othertravelers.values()" :key="role.id" :class="[role.team]" @click="setRole(role)">
         <Token :role="role" />
       </li>
     </ul>
-    <div v-if="playerIndex >= 0 && othertravellers.size && !session.isSpectator" class="button-group">
+    <div v-if="playerIndex >= 0 && othertravelers.size && !session.isSpectator" class="button-group">
       <span class="button" :class="{ townsfolk: tab === 'editionRoles' }" @click="tab = 'editionRoles'">{{
         t('modal.role.editionRoles') }}</span>
-      <span class="button" :class="{ townsfolk: tab === 'othertravellers' }" @click="tab = 'othertravellers'">{{
-        t('modal.role.othertravellers') }}</span>
+      <span class="button" :class="{ townsfolk: tab === 'othertravelers' }" @click="tab = 'othertravelers'">{{
+        t('modal.role.othertravelers') }}</span>
     </div>
   </Modal>
 </template>
@@ -33,7 +33,7 @@ import { computed, ref } from 'vue';
 import { useStore } from 'vuex';
 import Token from '../Token.vue';
 import Modal from './Modal.vue';
-import { useTranslation } from '@/composables/useTranslation';
+import { useTranslation } from '@/composables';
 
 const { t } = useTranslation();
 const props = defineProps<{
@@ -61,18 +61,10 @@ const availableRoles = computed((): Role[] => {
     id: 'empty',
     name: '',
     team: 'townsfolk',
-    ability: '',
     isCustom: false,
-    edition: '',
-    firstNight: 0,
-    otherNight: 0,
-    firstNightReminder: '',
-    otherNightReminder: '',
     reminders: [],
     remindersGlobal: [],
     setup: false,
-    image: '',
-    imageAlt: '',
     forbidden: false
   } as Role);
   return availableRoles;
@@ -81,7 +73,7 @@ const availableRoles = computed((): Role[] => {
 const modals = computed(() => store.state.modals);
 const session = computed(() => store.state.session);
 const players = computed(() => store.state.players.players);
-const othertravellers = computed(() => store.state.othertravellers);
+const othertravelers = computed(() => store.state.othertravelers);
 
 const setRole = (role: Role) => {
   if (props.playerIndex < 0) {
@@ -91,7 +83,7 @@ const setRole = (role: Role) => {
       role,
     });
   } else {
-    if (session.value.isSpectator && role.team === 'traveller') return;
+    if (session.value.isSpectator && role.team === 'traveler') return;
     // assign to player
     const player = store.state.players.players[props.playerIndex];
     store.commit('players/update', {
@@ -143,10 +135,10 @@ ul.tokens li {
       0 0 10px $demon;
   }
 
-  &.traveller {
+  &.traveler {
     box-shadow:
-      0 0 10px $traveller,
-      0 0 10px $traveller;
+      0 0 10px $traveler,
+      0 0 10px $traveler;
   }
 
   &:hover {
@@ -155,7 +147,7 @@ ul.tokens li {
   }
 }
 
-#townsquare.spectator ul.tokens li.traveller {
+#townsquare.spectator ul.tokens li.traveler {
   display: none;
 }
 </style>

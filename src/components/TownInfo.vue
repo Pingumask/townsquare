@@ -7,7 +7,7 @@
     <li class="edition" :class="['edition-' + edition.id]" :style="{
       backgroundImage: 'url(' + logoUrl + ')',
     }" />
-    <li v-if="players.length - teams.traveller < 5">
+    <li v-if="players.length - teams.traveler < 5">
       {{ t('towninfo.addPlayers') }}
     </li>
     <li>
@@ -22,7 +22,7 @@
         {{ teams.alive }}
         <font-awesome-icon icon="heartbeat" class="alive fa-heartbeat" />
       </span>
-      <span v-if="teams.traveller > 0">
+      <span v-if="teams.traveler > 0">
         {{ teams.aliveNT }}
         <font-awesome-icon icon="house-user" class="alive fa-house-user" />
       </span>
@@ -30,7 +30,7 @@
         {{ teams.votes }} <font-awesome-icon icon="vote-yea" class="votes fa-vote-yea" />
       </span>
     </li>
-    <li v-if="players.length - teams.traveller >= 5">
+    <li v-if="players.length - teams.traveler >= 5">
       <span>
         {{ teams.townsfolk }}
         <font-awesome-icon icon="user-friends" class="townsfolk fa-user-friends" />
@@ -47,9 +47,9 @@
         {{ teams.demon }}
         <font-awesome-icon class="demon" :icon="(teams.demon || 0) > 1 ? 'user-friends' : 'user'" />
       </span>
-      <span v-if="teams.traveller">
-        {{ teams.traveller }}
-        <font-awesome-icon class="traveller" :icon="teams.traveller > 1 ? 'user-friends' : 'user'" />
+      <span v-if="teams.traveler">
+        {{ teams.traveler }}
+        <font-awesome-icon class="traveler" :icon="teams.traveler > 1 ? 'user-friends' : 'user'" />
       </span>
     </li>
     <li v-if="grimoire.isNight">
@@ -86,7 +86,7 @@ import { computed } from 'vue';
 import { useStore } from 'vuex';
 import gameJSON from '../game.json';
 import Countdown from './Countdown.vue';
-import { useTranslation } from '@/composables/useTranslation';
+import { useTranslation } from '@/composables';
 
 const { t } = useTranslation();
 const store = useStore();
@@ -113,14 +113,14 @@ const logoUrl = computed(() => {
 });
 
 const teams = computed(() => {
-  const nontravellers = store.getters['players/nontravellers'];
+  const nontravelers = store.getters['players/nontravelers'];
   const alive = players.value.filter((player: Player) => player.isDead !== true).length;
   const aliveNT = players.value.filter(
-    (player: Player) => player.isDead !== true && player.role.team !== 'traveller'
+    (player: Player) => player.isDead !== true && player.role.team !== 'traveler'
   ).length;
   return {
-    ...gameJSON[nontravellers - 5],
-    traveller: players.value.length - nontravellers,
+    ...gameJSON[nontravelers - 5],
+    traveler: players.value.length - nontravelers,
     alive,
     aliveNT,
     votes: players.value.filter(
@@ -202,8 +202,8 @@ const teams = computed(() => {
       color: $demon;
     }
 
-    .traveller {
-      color: $traveller;
+    .traveler {
+      color: $traveler;
     }
   }
 

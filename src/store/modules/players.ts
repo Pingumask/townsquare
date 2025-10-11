@@ -20,11 +20,11 @@ const getters = {
   alive({ players }: PlayersState): number {
     return players.filter((player) => !player.isDead).length;
   },
-  nontravellers({ players }: PlayersState): number {
-    const nontravellers = players.filter(
-      (player) => player.role.team !== "traveller",
+  nontravelers({ players }: PlayersState): number {
+    const nontravelers = players.filter(
+      (player) => player.role.team !== "traveler",
     );
-    return Math.min(nontravellers.length, 15);
+    return Math.min(nontravelers.length, 15);
   },
   // calculate a Map of player => night order
   nightOrder({ players, fabled }: PlayersState, _getters: unknown, { edition }: { edition: Edition }) {
@@ -105,7 +105,7 @@ const actions = {
     let players: Player[];
     if (rootState.session.isSpectator) {
       players = state.players.map((player: Player) => {
-        if (player.role.team !== "traveller") {
+        if (player.role.team !== "traveler") {
           player.role = {} as Role;
         }
         player.reminders = [];

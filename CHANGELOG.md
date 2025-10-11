@@ -1,10 +1,30 @@
 # Release Notes
 
 ## Upcomming Version
-
+- Correcting French Lord of Typhon's description
 - Bug correction:
   - Printing the correct type of the special votes (for now only CL) in the vote history
 
+## 5.1.2
+- Fixed : Generic icons in night order modal
+
+## 5.1.1
+- Further adjustments to token font sizes
+- French translations role name changes :
+  - Vendeur de jouets -> Fabricant de jouets 
+  - Libraire infernal -> Bibliothécaire de l'Enfer 
+  - Ami des corbeaux -> Gardien des corbeaux 
+  - Charmeur -> Charmeur de Serpents 
+  - Mercenaire -> Chasseur de primes 
+  - Maître de Typhon -> Seigneur de Typhon
+
+## 5.1.0
+- Removed copyrighted role icons and replaced with svg versions
+- Reactive font sizes (smaller text on smaller screens)
+  - Smaller text on mobile devices
+  - Token name adjusts to role name length better
+- Bug correction:
+  - Now possible to launch Trouble Brewing Advanced
 
 ## 5.0.2
 - Fixed : Missing translation for organ grinder votes 

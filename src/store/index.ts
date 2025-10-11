@@ -5,6 +5,7 @@ import type {
   FabledJSON,
   JinxesJSON,
   LocaleModule,
+  PlayersMenuState,
   Role,
   RolesJSON,
   RootState,
@@ -19,20 +20,21 @@ import persistence from "./persistence";
 const editionJSON = editionJSONRaw as unknown as EditionsJSON;
 
 // helpers
-const set = (key: keyof RootState["grimoire"]) => (state: RootState, value: unknown) => {
-  state.grimoire[key] = value as never;
-};
+const set =
+  (key: keyof RootState["grimoire"]) => (state: RootState, value: unknown) => {
+    state.grimoire[key] = value as never;
+  };
 
 const toggle =
   (key: keyof RootState["grimoire"]) =>
-    ({ grimoire }: RootState, val?: boolean) => {
-      if (val === true || val === false) {
-        grimoire[key] = val as never;
-      } else {
-        // flip boolean at runtime; type-safe cast
-        grimoire[key] = (!grimoire[key] as unknown) as never;
-      }
-    };
+  ({ grimoire }: RootState, val?: boolean) => {
+    if (val === true || val === false) {
+      grimoire[key] = val as never;
+    } else {
+      // flip boolean at runtime; type-safe cast
+      grimoire[key] = !grimoire[key] as unknown as never;
+    }
+  };
 
 const loadLocale = async (): Promise<{
   locale: LocaleModule;
@@ -43,51 +45,81 @@ const loadLocale = async (): Promise<{
   const { locale, rolesJSON, jinxesJSON, fabledJSON } = await import(
     "./modules/locale"
   );
-  return { locale: locale as LocaleModule, rolesJSON: rolesJSON as RolesJSON, jinxesJSON: jinxesJSON as JinxesJSON, fabledJSON: fabledJSON as FabledJSON };
+  return {
+    locale: locale as LocaleModule,
+    rolesJSON: rolesJSON as RolesJSON,
+    jinxesJSON: jinxesJSON as JinxesJSON,
+    fabledJSON: fabledJSON as FabledJSON,
+  };
 };
 
 const defaultEdition = (): Edition =>
-  editionJSON.official[0] ?? { id: "custom", name: "Custom", isOfficial: false, roles: [] };
+  editionJSON.official[0] ?? {
+    id: "custom",
+    name: "Custom",
+    isOfficial: false,
+    roles: [],
+  };
 
 const initializeStore = async () => {
   const { locale, rolesJSON, jinxesJSON, fabledJSON } = await loadLocale();
 
   // Load master locale (English) for fallback
-  const masterLocale = (await import("./locale/en/ui.json")) as unknown as LocaleModule;
+  const masterLocale = (await import(
+    "./locale/en/ui.json"
+  )) as unknown as LocaleModule;
 
   const getRolesByEdition = (edition: Edition = defaultEdition()) => {
     return new Map(
       rolesJSON.default
-        .filter((r) => r.edition === edition.id || (edition.roles || []).includes(r.id))
+        .filter(
+          (r) =>
+            r.edition === edition.id || (edition.roles || []).includes(r.id),
+        )
         .sort((a, b) => String(b.team).localeCompare(String(a.team)))
         .map((role) => [role.id, role] as const),
     );
   };
 
-  const gettravellersNotInEdition = (edition: Edition = defaultEdition()) => {
+  const gettravelersNotInEdition = (edition: Edition = defaultEdition()) => {
     return new Map(
       rolesJSON.default
         .filter(
-          (r) => r.team === "traveller" && r.edition !== edition.id && !(edition.roles || []).includes(r.id),
+          (r) =>
+            r.team === "traveler" &&
+            r.edition !== edition.id &&
+            !(edition.roles || []).includes(r.id),
         )
         .map((role) => [role.id, role] as const),
     );
   };
 
-  const clean = (id: string) => id.toLocaleLowerCase().replace(/[^a-z0-9]/g, "");
+  const clean = (id: string) =>
+    id.toLocaleLowerCase().replace(/[^a-z0-9]/g, "");
 
-  const editionJSONbyId = new Map(editionJSON.official.map((edition) => [edition.id, edition] as const));
-  const rolesJSONbyId = new Map(rolesJSON.default.map((role) => [role.id, role] as const));
-  const fabled = new Map(fabledJSON.default.map((role) => [role.id, role] as const));
+  const editionJSONbyId = new Map(
+    editionJSON.official.map((edition) => [edition.id, edition] as const),
+  );
+  const rolesJSONbyId = new Map(
+    rolesJSON.default.map((role) => [role.id, role] as const),
+  );
+  const fabled = new Map(
+    fabledJSON.default.map((role) => [role.id, role] as const),
+  );
 
   // jinxes
   let jinxes: Map<string, Map<string, string>> = new Map();
   try {
     jinxes = new Map(
-      jinxesJSON.default.map(({ id, hatred }) => [
-        clean(id),
-        new Map(hatred.map(({ id, reason }) => [clean(id), reason] as const)),
-      ] as const),
+      jinxesJSON.default.map(
+        ({ id, hatred }) =>
+          [
+            clean(id),
+            new Map(
+              hatred.map(({ id, reason }) => [clean(id), reason] as const),
+            ),
+          ] as const,
+      ),
     );
   } catch (e) {
     console.error("couldn't load jinxes", e);
@@ -111,7 +143,9 @@ const initializeStore = async () => {
     isCustom: true,
   };
 
-  return new (Vuex as unknown as { Store: new (...args: unknown[]) => unknown }).Store({
+  return new (
+    Vuex as unknown as { Store: new (...args: unknown[]) => unknown }
+  ).Store({
     modules: {
       players,
       session,
@@ -136,6 +170,15 @@ const initializeStore = async () => {
           duration: 0,
         },
       },
+      playersMenu: {
+        changePronouns: false,
+        changeName: true,
+        movePlayer: true,
+        swapPlayers: false,
+        removePlayer: true,
+        swapAlignment: false,
+        specialVote: false,
+      },
       modals: {
         edition: false,
         fabled: false,
@@ -151,7 +194,7 @@ const initializeStore = async () => {
       edition: editionJSONbyId.get("tb"),
       editions: editionJSON,
       roles: getRolesByEdition(),
-      othertravellers: gettravellersNotInEdition(),
+      othertravelers: gettravelersNotInEdition(),
       fabled,
       jinxes,
       locale,
@@ -160,46 +203,48 @@ const initializeStore = async () => {
       /**
        * Translation function that traverses locale objects using dot notation
        */
-      t:
-        (state: RootState) =>
-          (key: string) => {
-            if (!key || typeof key !== "string") return key;
+      t: (state: RootState) => (key: string) => {
+        if (!key || typeof key !== "string") return key;
 
-            const keys = key.split(".");
+        const keys = key.split(".");
 
-            // Helper function to traverse nested object
-            const traverse = (obj: Record<string, unknown>, keyPath: string[]) => {
-              let current: unknown = obj;
-              for (const k of keyPath) {
-                if (
-                  current &&
-                  typeof current === "object" &&
-                  !Array.isArray(current) &&
-                  k in (current as Record<string, unknown>)
-                ) {
-                  current = (current as Record<string, unknown>)[k];
-                } else {
-                  return null;
-                }
-              }
-              return current as string | null;
-            };
-
-            // First try the current locale
-            let result = traverse(state.locale.default, keys);
-
-            // If not found, try the master locale (English)
-            if (result === null) {
-              result = traverse((masterLocale as LocaleModule).default, keys);
+        // Helper function to traverse nested object
+        const traverse = (obj: Record<string, unknown>, keyPath: string[]) => {
+          let current: unknown = obj;
+          for (const k of keyPath) {
+            if (
+              current &&
+              typeof current === "object" &&
+              !Array.isArray(current) &&
+              k in (current as Record<string, unknown>)
+            ) {
+              current = (current as Record<string, unknown>)[k];
+            } else {
+              return null;
             }
+          }
+          return current as string | null;
+        };
 
-            // If still not found, return the original key
-            return result !== null ? result : key;
-          },
+        // First try the current locale
+        let result = traverse(state.locale.default, keys);
+
+        // If not found, try the master locale (English)
+        if (result === null) {
+          result = traverse((masterLocale as LocaleModule).default, keys);
+        }
+
+        // If still not found, return the original key
+        return result !== null ? result : key;
+      },
       customRolesStripped: ({ roles }: { roles: Map<string, Role> }) => {
         const customRoles: Array<Record<string, unknown> | { id: string }> = [];
         const customKeys = Object.keys(customRole) as string[];
-        const strippedProps = ["firstNightReminder", "otherNightReminder", "isCustom"] as const;
+        const strippedProps = [
+          "firstNightReminder",
+          "otherNightReminder",
+          "isCustom",
+        ] as const;
         roles.forEach((role) => {
           if (!role.isCustom) {
             customRoles.push({ id: role.id });
@@ -208,10 +253,14 @@ const initializeStore = async () => {
             const roleObj = role as unknown as Record<string, unknown>;
             const customObj = customRole as unknown as Record<string, unknown>;
             for (const prop in roleObj) {
-              if (strippedProps.includes(prop as typeof strippedProps[number])) continue;
+              if (
+                strippedProps.includes(prop as (typeof strippedProps)[number])
+              )
+                continue;
               const value = roleObj[prop];
               if (customKeys.includes(prop) && value !== customObj[prop]) {
-                strippedRole[String(customKeys[customKeys.indexOf(prop)])] = value;
+                strippedRole[String(customKeys[customKeys.indexOf(prop)])] =
+                  value;
               }
             }
             customRoles.push(strippedRole);
@@ -236,7 +285,12 @@ const initializeStore = async () => {
       toggleStreamerMode: toggle("isStreamerMode"),
       toggleOrganVoteMode: toggle("isOrganVoteMode"),
       setTimer(state: RootState, timer: { name?: string; duration?: number }) {
-        state.grimoire.timer = timer as Required<Pick<RootState["grimoire"]["timer"], "name" | "duration">>;
+        state.grimoire.timer = timer as Required<
+          Pick<RootState["grimoire"]["timer"], "name" | "duration">
+        >;
+      },
+      togglePlayersMenu(state: RootState, name: keyof PlayersMenuState) {
+        state.playersMenu[name] = !state.playersMenu[name];
       },
       toggleModal({ modals }: RootState, name?: keyof RootState["modals"]) {
         if (name) {
@@ -247,7 +301,10 @@ const initializeStore = async () => {
           modals[modal as keyof RootState["modals"]] = false;
         }
       },
-      setCustomRoles(state: RootState, roles: Array<Role | Record<string, unknown>>) {
+      setCustomRoles(
+        state: RootState,
+        roles: Array<Role | Record<string, unknown>>,
+      ) {
         const processedRoles = roles
           .map((role) => {
             if (Array.isArray(role) && (role as unknown[])[0]) {
@@ -255,7 +312,9 @@ const initializeStore = async () => {
               const mappedRole: Record<string, unknown> = {};
               const roleObj = role as unknown as Record<string, unknown>;
               for (const prop in roleObj) {
-                const key = (customKeys as unknown as Record<string, string>)[prop];
+                const key = (customKeys as unknown as Record<string, string>)[
+                  prop
+                ];
                 if (key) {
                   mappedRole[key] = roleObj[prop];
                 }
@@ -270,19 +329,25 @@ const initializeStore = async () => {
             r["id"] = clean(String(r["id"]));
             return r as unknown as Role;
           })
-          .map((role) => (rolesJSONbyId.get(role.id) || state.roles.get(role.id) || { ...customRole, ...role }))
+          .map(
+            (role) =>
+              rolesJSONbyId.get(role.id) ||
+              state.roles.get(role.id) || { ...customRole, ...role },
+          )
           .map((role) => {
             if (rolesJSONbyId.get(role.id)) return role;
             const r = role as unknown as Record<string, unknown>;
             r["imageAlt"] =
-              ({
-                townsfolk: "townsfolk",
-                outsider: "outsider",
-                minion: "minion",
-                demon: "demon",
-                fabled: "fabled",
-                traveller: "traveller",
-              } as Record<string, string>)[String(role.team)] || "custom";
+              (
+                {
+                  townsfolk: "townsfolk",
+                  outsider: "outsider",
+                  minion: "minion",
+                  demon: "demon",
+                  fabled: "fabled",
+                  traveler: "traveler",
+                } as Record<string, string>
+              )[String(role.team)] || "custom";
             role.firstNight = Math.abs(Number(role.firstNight));
             role.otherNight = Math.abs(Number(role.otherNight));
             return role;
@@ -290,16 +355,26 @@ const initializeStore = async () => {
           .filter((role) => role.name && role.ability && role.team)
           .sort((a, b) => String(b.team).localeCompare(String(a.team)));
 
-        state.roles = new Map(processedRoles.filter((role) => role.team !== "fabled").map((role) => [role.id, role] as const));
+        state.roles = new Map(
+          processedRoles
+            .filter((role) => role.team !== "fabled")
+            .map((role) => [role.id, role] as const),
+        );
 
         state.fabled = new Map([
-          ...processedRoles.filter((r) => r.team === "fabled").map((r) => [r.id, r] as const),
+          ...processedRoles
+            .filter((r) => r.team === "fabled")
+            .map((r) => [r.id, r] as const),
           ...fabledJSON.default.map((role) => [role.id, role] as const),
         ]);
 
-        state.othertravellers = new Map(
+        state.othertravelers = new Map(
           rolesJSON.default
-            .filter((r) => r.team === "traveller" && !roles.some((i) => (i as Role).id === r.id))
+            .filter(
+              (r) =>
+                r.team === "traveler" &&
+                !roles.some((i) => (i as Role).id === r.id),
+            )
             .map((role) => [role.id, role] as const),
         );
       },
@@ -307,7 +382,7 @@ const initializeStore = async () => {
         if (editionJSONbyId.has(edition.id)) {
           state.edition = editionJSONbyId.get(edition.id) as Edition;
           state.roles = getRolesByEdition(state.edition!);
-          state.othertravellers = gettravellersNotInEdition(state.edition!);
+          state.othertravelers = gettravelersNotInEdition(state.edition!);
         } else {
           state.edition = edition;
         }

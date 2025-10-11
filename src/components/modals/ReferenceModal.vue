@@ -13,12 +13,7 @@
       </aside>
       <ul>
         <li v-for="role in teamRoles" :key="role.id" :class="[team]">
-          <span v-if="role.id" class="icon" :style="{
-            backgroundImage: `url(${role.image && grimoire.isImageOptIn
-              ? role.image
-              : rolePath(role)
-              })`,
-          }" />
+          <RoleIcon :role="role" class="icon" />
           <div class="role">
             <span v-if="Object.keys(playersByRole).length" class="player">
               {{ playersByRole[role.id] ? playersByRole[role.id]?.join(", ") : "" }}
@@ -38,12 +33,8 @@
       </aside>
       <ul>
         <li v-for="(jinx, index) in jinxed" :key="index">
-          <span class="icon" :style="{
-            backgroundImage: 'url(' + rolePath(jinx.first) + ')',
-          }" />
-          <span class="icon" :style="{
-            backgroundImage: 'url(' + rolePath(jinx.second) + ')',
-          }" />
+          <RoleIcon :role="jinx.first" />
+          <RoleIcon :role="jinx.second" />
           <div class="role">
             <span class="name">{{ jinx.first.name }} & {{ jinx.second.name }}</span>
             <span class="ability">{{ jinx.reason }}</span>
@@ -64,7 +55,9 @@ import type { Role, Player, JinxInfo } from '@/types';
 import { computed } from "vue";
 import { useStore } from "vuex";
 import Modal from "./Modal.vue";
-import { useTranslation } from '@/composables/useTranslation';
+import { useTranslation } from '@/composables';
+
+import RoleIcon from '../RoleIcon.vue';
 
 const { t } = useTranslation();
 const store = useStore();
@@ -72,7 +65,6 @@ const store = useStore();
 const roles = computed(() => store.state.roles);
 const modals = computed(() => store.state.modals);
 const edition = computed(() => store.state.edition);
-const grimoire = computed(() => store.state.grimoire);
 const jinxes = computed(() => store.state.jinxes);
 const players = computed(() => store.state.players.players);
 
@@ -107,14 +99,14 @@ const rolesGrouped = computed(() => {
     }
     grouped[role.team || 'default']?.push(role);
   });
-  delete grouped["traveller"];
+  delete grouped["traveler"];
   return grouped;
 });
 
 const playersByRole = computed(() => {
   const playersMap: Record<string, string[]> = {};
   players.value.forEach(({ name, role }: Player) => {
-    if (role && role.id && role.team !== "traveller") {
+    if (role && role.id && role.team !== "traveler") {
       if (!playersMap[role.id]) {
         playersMap[role.id] = [];
       }
@@ -123,13 +115,6 @@ const playersByRole = computed(() => {
   });
   return playersMap;
 });
-
-const rolePath = (role: Role) => {
-  return new URL(
-    `../../assets/icons/${role.imageAlt || role.id}.png`,
-    import.meta.url,
-  ).href;
-};
 
 const toggleModal = (modalName: string) => {
   store.commit("toggleModal", modalName);
@@ -166,6 +151,29 @@ h3 {
   aside {
     background: linear-gradient(-90deg, $townsfolk, transparent);
   }
+}
+
+.icon {
+  &.townsfolk {
+    --color: #1f65ff;
+  }
+
+  &.outsider {
+    --color: #46d5ff;
+  }
+
+  &.minion {
+    --color: #ff6900;
+  }
+
+  &.demon {
+    --color: #ce0100;
+  }
+
+  top: 0;
+  width: 4rem;
+  height: 4rem;
+  text-align: right;
 }
 
 .outsider {

@@ -17,7 +17,7 @@
       <br>
       <em v-if="
         !grimoire.isOrganVoteMode ||
-        (nominee && nominee.role.team == 'traveller') ||
+        (nominee && nominee.role.team == 'traveler') ||
         !session.isSpectator
       " class="blue">
         {{ voters?.length }} {{ t('vote.votes') }}
@@ -25,7 +25,7 @@
       <em v-else class="blue"> ? {{ t('vote.votes') }} </em>
       {{ t('vote.inFavor') }}
       <em v-if="
-        (nominee && nominee.role.team !== 'traveller') ||
+        (nominee && nominee.role.team !== 'traveler') ||
         (session.nomination && typeof session.nomination.nominee === 'string')
       ">
         ({{ t('vote.majorityIs') }} {{ Math.ceil(alive / 2) }})
@@ -38,7 +38,7 @@
         <br>
         <em v-if="
           grimoire.isOrganVoteMode &&
-          ((nominee && nominee.role.team !== 'traveller') ||
+          ((nominee && nominee.role.team !== 'traveler') ||
             (session.nomination && typeof session.nomination.nominee === 'string'))
         " class="orange">
           {{ t('vote.secretBallot') }}
@@ -70,7 +70,7 @@
         </div>
         <div v-if="
           !shouldHideNominee &&
-          (!nominee || nominee.role.team !== 'traveller')
+          (!nominee || nominee.role.team !== 'traveler')
         " class="button-group mark">
           <div class="button" :class="{
             disabled: session.nomination?.nominee === session.markedPlayer,
@@ -118,7 +118,7 @@ import type { Player } from '@/types';
 import { isActiveNomination } from '@/types';
 import { computed, onUnmounted, ref } from "vue";
 import { useStore } from "vuex";
-import { useTranslation } from '@/composables/useTranslation';
+import { useTranslation } from '@/composables';
 import Countdown from "./Countdown.vue";
 
 const store = useStore();
@@ -195,7 +195,7 @@ const isFreeVote = computed(() => {
   if (!isActiveNomination(session.value.nomination)) return false;
   return (
     session.value.nomination.nominee === null
-    || nominee.value?.role.team === 'traveller'
+    || nominee.value?.role.team === 'traveler'
   )
 });
 
@@ -250,8 +250,8 @@ const voteAction = computed(() => {
     return nomination.specialVote.timerText;
   }
 
-  // Check if it's a traveller exile
-  if (nominee.value?.role?.team === 'traveller') {
+  // Check if it's a traveler exile
+  if (nominee.value?.role?.team === 'traveler') {
     return t('vote.callexile');
   }
 
