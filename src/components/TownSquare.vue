@@ -102,14 +102,14 @@
             nightOrder.get(role).first &&
             (grimoire.isNightOrder || !session.isSpectator)
           " class="night-order first">
-            <em>{{ nightOrder.get(role).first }}.</em>
+            <em>{{ nightOrder.get(role).first }}</em>
             <span v-if="role.firstNightReminder">{{ role.firstNightReminder }}</span>
           </div>
           <div v-if="
             nightOrder.get(role).other &&
             (grimoire.isNightOrder || !session.isSpectator)
           " class="night-order other">
-            <em>{{ nightOrder.get(role).other }}.</em>
+            <em>{{ nightOrder.get(role).other }}</em>
             <span v-if="role.otherNightReminder">{{ role.otherNightReminder }}</span>
           </div>
           <Token :role="role" />
@@ -123,7 +123,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Player as PlayerType } from '@/types';
+import type { Player as PlayerType } from '../types';
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import { useTranslation, isActiveNomination } from '@/composables';
@@ -925,8 +925,10 @@ const stopTimer = () => {
   em {
     font-style: normal;
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 1.5em;
+    height: 1.5em;
+    max-width: 40px;
+    max-height: 40px;
     border-radius: 50%;
     border: 3px solid black;
     filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.5));

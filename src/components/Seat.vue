@@ -18,7 +18,7 @@
         nightOrder.get(props.player).first &&
         (grimoire.isNightOrder || !session.isSpectator)
       " class="night-order first">
-        <em>{{ nightOrder.get(props.player).first }}.</em>
+        <em>{{ nightOrder.get(props.player).first }}</em>
         <span v-if="props.player.role.firstNightReminder">
           {{ props.player.role.firstNightReminder }}
         </span>
@@ -27,7 +27,7 @@
         nightOrder.get(props.player).other &&
         (grimoire.isNightOrder || !session.isSpectator)
       " class="night-order other">
-        <em>{{ nightOrder.get(props.player).other }}.</em>
+        <em>{{ nightOrder.get(props.player).other }}</em>
         <span v-if="props.player.role.otherNightReminder">
           {{ props.player.role.otherNightReminder }}
         </span>
