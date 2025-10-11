@@ -428,8 +428,7 @@ picture {
 }
 
 picture * {
-  max-width: 100%;
-  max-height: 100%;
+  width: 12vmin;
 }
 
 /***** Player token *****/

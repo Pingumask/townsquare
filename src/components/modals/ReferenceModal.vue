@@ -172,6 +172,12 @@ h3 {
     --color: #ce0100;
   }
 
+  picture,
+  picture svg {
+    width: 12vmin;
+    text-align: left;
+  }
+
   top: 0;
   width: 4rem;
   height: 4rem;
@@ -209,12 +215,22 @@ h3 {
 }
 
 .jinxed {
+  .role {
+    --blend: normal;
+  }
+
   .name {
     color: $fabled;
   }
 
   aside {
     background: linear-gradient(-90deg, $fabled, transparent);
+  }
+
+  ul li {
+    display: grid;
+    grid-template-columns: 6vmin 6vmin 1fr;
+    align-items: center;
   }
 }
 
@@ -274,9 +290,10 @@ ul {
   padding: 15px 5px;
 
   li {
-    display: flex;
-    align-items: center;
-    max-width: 100%;
+    display: grid;
+    align-items: start;
+    padding-bottom: 1rem;
+    grid-template-columns: 12vmin 1fr;
     text-align: justify;
 
     .icon {
