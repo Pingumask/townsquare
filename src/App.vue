@@ -127,6 +127,7 @@ function keyup({ key, ctrlKey, metaKey }: KeyboardEvent) {
 
 <style lang="scss">
 @use "vars" as *;
+@use "media" as *;
 
 @font-face {
   font-family: "Papyrus";
@@ -149,7 +150,7 @@ function keyup({ key, ctrlKey, metaKey }: KeyboardEvent) {
 
 html,
 body {
-  font-size: clamp(16px, calc(-1.1429rem + 4.2857vw), 28px);
+  font-size: 1.2em;
   line-height: 1.4;
   background: url("assets/background.jpg") center center;
   background-size: cover;
@@ -186,7 +187,6 @@ h5 {
   font-family: PiratesBay, sans-serif;
   letter-spacing: 1px;
   font-weight: normal;
-  font-size: 1em;
 }
 
 ul {
