@@ -1,9 +1,14 @@
 # Release Notes
 
 ## Upcomming Version
-- Correcting French Lord of Typhon's description
-- Bug correction:
+- Bug fixes :
+  - Reminders match the color of their role's team
   - Printing the correct type of the special votes (for now only CL) in the vote history
+- Code quality :
+  - Moved functions from types folder to composables folder
+  - Use full Role instead of Role['id'] for reminders
+- French Translation :
+  - Correcting French Lord of Typhon's description to match recent rules clarifications
 
 ## 5.1.2
 - Fixed : Generic icons in night order modal
