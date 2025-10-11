@@ -33,7 +33,7 @@ const { rolePath } = useRolePath();
   position: relative;
   z-index: 0;
   margin-top: 0.3em;
-  mix-blend-mode: var(--blend);
+  mix-blend-mode: var(--blend, normal);
 }
 
 .role img,

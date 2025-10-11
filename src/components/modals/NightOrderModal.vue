@@ -75,7 +75,7 @@
 </template>
 
 <script setup lang="ts">
-import type { NightOrderRole, Role, Player } from "@/types";
+import type { NightOrderRole, Role, Player } from "../../types";
 import { computed } from "vue";
 import { useStore } from "vuex";
 import Modal from "./Modal.vue";
@@ -306,6 +306,9 @@ h4 {
 }
 
 .townsfolk {
+  --blend: normal;
+  --color: #1f65ff;
+
   .name {
     background: linear-gradient(90deg, $townsfolk, transparent 35%);
 
@@ -316,6 +319,9 @@ h4 {
 }
 
 .outsider {
+  --blend: normal;
+  --color: #46d5ff;
+
   .name {
     background: linear-gradient(90deg, $outsider, transparent 35%);
 
@@ -326,6 +332,9 @@ h4 {
 }
 
 .minion {
+  --blend: normal;
+  --color: #ff6900;
+
   .name {
     background: linear-gradient(90deg, $minion, transparent 35%);
 
@@ -336,6 +345,9 @@ h4 {
 }
 
 .demon {
+  --blend: normal;
+  --color: #ce0100;
+
   .name {
     background: linear-gradient(90deg, $demon, transparent 35%);
 
@@ -495,24 +507,6 @@ ul {
       text-align: left;
       border-right: 0;
     }
-  }
-}
-
-.icon {
-  &.townsfolk {
-    --color: #1f65ff;
-  }
-
-  &.outsider {
-    --color: #46d5ff;
-  }
-
-  &.minion {
-    --color: #ff6900;
-  }
-
-  &.demon {
-    --color: #ce0100;
   }
 }
 

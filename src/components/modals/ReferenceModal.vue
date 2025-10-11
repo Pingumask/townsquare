@@ -51,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Role, Player, JinxInfo } from '@/types';
+import type { Role, Player, JinxInfo } from '../../types';
 import { computed } from "vue";
 import { useStore } from "vuex";
 import Modal from "./Modal.vue";
@@ -154,6 +154,8 @@ h3 {
 }
 
 .icon {
+  --blend: normal;
+
   &.townsfolk {
     --color: #1f65ff;
   }
