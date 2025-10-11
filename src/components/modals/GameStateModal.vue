@@ -19,7 +19,7 @@ import type { Role, Player } from '@/types';
 import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
 import Modal from "./Modal.vue";
-import { useTranslation } from '@/composables/useTranslation';
+import { useTranslation } from '@/composables';
 
 const { t } = useTranslation();
 // Types for game state data

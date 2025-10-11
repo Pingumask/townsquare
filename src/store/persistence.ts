@@ -1,173 +1,226 @@
 // Minimal Root-like shape for persistence use; we avoid tight coupling
-import type { StoreLike, RootState, Role, Player } from '@/types';
+import type { StoreLike, RootState, Role, Player } from "@/types";
 
 function parseJSON<T>(raw: string | null): T | null {
-  try { return raw ? (JSON.parse(raw) as T) : null; } catch { return null; }
+  try {
+    return raw ? (JSON.parse(raw) as T) : null;
+  } catch {
+    return null;
+  }
 }
 
 export default (store: StoreLike<RootState>) => {
   const updatePagetitle = (isPublic: boolean) =>
-    (document.title = `Blood on the Clocktower ${isPublic ? 'Town Square' : 'Grimoire'}`);
+    (document.title = `Blood on the Clocktower ${isPublic ? "Town Square" : "Grimoire"}`);
 
   // initialize data
-  const bg = localStorage.getItem('background');
+  const bg = localStorage.getItem("background");
   if (bg) {
-    store.commit('setBackground', bg);
+    store.commit("setBackground", bg);
   }
-  if (localStorage.getItem('muted')) {
-    store.commit('toggleMuted', true);
+  if (localStorage.getItem("muted")) {
+    store.commit("toggleMuted", true);
   }
-  if (localStorage.getItem('static')) {
-    store.commit('toggleStatic', true);
+  if (localStorage.getItem("static")) {
+    store.commit("toggleStatic", true);
   }
-  if (localStorage.getItem('imageOptIn')) {
-    store.commit('toggleImageOptIn', true);
+  if (localStorage.getItem("imageOptIn")) {
+    store.commit("toggleImageOptIn", true);
   }
-  if (localStorage.getItem('streamerMode')) {
-    store.commit('toggleStreamerMode', true);
+  if (localStorage.getItem("streamerMode")) {
+    store.commit("toggleStreamerMode", true);
   }
-  if (localStorage.getItem('organVoteMode')) {
-    store.commit('toggleOrganVoteMode', true);
+  if (localStorage.getItem("organVoteMode")) {
+    store.commit("toggleOrganVoteMode", true);
   }
-  const zoom = localStorage.getItem('zoom');
+  if (localStorage.getItem("nightOrder")) {
+    store.commit("toggleNightOrder", true);
+  }
+  if (localStorage.getItem("playersMenu.changePronouns") === "1") {
+    store.commit("togglePlayersMenu", "changePronouns");
+  }
+  if (localStorage.getItem("playersMenu.swapPlayers") === "1") {
+    store.commit("togglePlayersMenu", "swapPlayers");
+  }
+  if (localStorage.getItem("playersMenu.swapAlignment") === "1") {
+    store.commit("togglePlayersMenu", "swapAlignment");
+  }
+  if (localStorage.getItem("playersMenu.specialVote") === "1") {
+    store.commit("togglePlayersMenu", "specialVote");
+  }
+  if (localStorage.getItem("playersMenu.changeName") === "0") {
+    store.commit("togglePlayersMenu", "changeName");
+  }
+  if (localStorage.getItem("playersMenu.movePlayer") === "0") {
+    store.commit("togglePlayersMenu", "movePlayer");
+  }
+  if (localStorage.getItem("playersMenu.removePlayer") === "0") {
+    store.commit("togglePlayersMenu", "removePlayer");
+  }
+  const zoom = localStorage.getItem("zoom");
   if (zoom) {
-    store.commit('setZoom', parseFloat(zoom));
+    store.commit("setZoom", parseFloat(zoom));
   }
-  if (localStorage.getItem('isGrimoire')) {
-    store.commit('toggleGrimoire', false);
+  if (localStorage.getItem("isGrimoire")) {
+    store.commit("toggleGrimoire", false);
     updatePagetitle(false);
   }
-  const rolesRaw = localStorage.getItem('roles');
+  const rolesRaw = localStorage.getItem("roles");
   if (rolesRaw !== null) {
-    store.commit('setCustomRoles', parseJSON(rolesRaw) ?? []);
-    store.commit('setEdition', { id: 'custom' });
+    store.commit("setCustomRoles", parseJSON(rolesRaw) ?? []);
+    store.commit("setEdition", { id: "custom" });
   }
-  const edRaw = localStorage.getItem('edition');
+  const edRaw = localStorage.getItem("edition");
   if (edRaw !== null) {
     // this will initialize state.roles for official editions
-    store.commit('setEdition', JSON.parse(edRaw));
+    store.commit("setEdition", JSON.parse(edRaw));
   }
-  const bluffsRaw = localStorage.getItem('bluffs');
+  const bluffsRaw = localStorage.getItem("bluffs");
   if (bluffsRaw !== null) {
     (parseJSON<string[]>(bluffsRaw) ?? []).forEach((roleId, index) => {
-      const role = store.state.roles.get(roleId) ?? { id: '' } as Role;
-      store.commit('players/setBluff', { index, role });
+      const role = store.state.roles.get(roleId) ?? ({ id: "" } as Role);
+      store.commit("players/setBluff", { index, role });
     });
   }
-  const fabledRaw = localStorage.getItem('fabled');
+  const fabledRaw = localStorage.getItem("fabled");
   if (fabledRaw !== null) {
-    const list = parseJSON<Array<{ id: string; isCustom?: boolean }>>(fabledRaw) ?? [];
-    store.commit('players/setFabled', {
-      fabled: list.map((f) => store.state.fabled.get(f.id) ?? (f as unknown as Role)),
+    const list =
+      parseJSON<Array<{ id: string; isCustom?: boolean }>>(fabledRaw) ?? [];
+    store.commit("players/setFabled", {
+      fabled: list.map(
+        (f) => store.state.fabled.get(f.id) ?? (f as unknown as Role),
+      ),
     });
   }
-  const playersRaw = localStorage.getItem('players');
+  const playersRaw = localStorage.getItem("players");
   if (playersRaw) {
-    const parsed = parseJSON<Array<Player & { role: string }>>(playersRaw) ?? [];
-    const rolesJSONbyId = store.getters['rolesJSONbyId'] as Map<string, Role>;
+    const parsed =
+      parseJSON<Array<Player & { role: string }>>(playersRaw) ?? [];
+    const rolesJSONbyId = store.getters["rolesJSONbyId"] as Map<string, Role>;
     const players = parsed.map((player) => ({
       ...player,
-      role: store.state.roles.get(player.role) || rolesJSONbyId.get(player.role) || ({ id: '' } as Role),
+      role:
+        store.state.roles.get(player.role) ||
+        rolesJSONbyId.get(player.role) ||
+        ({ id: "" } as Role),
     }));
-    store.commit('players/set', players);
+    store.commit("players/set", players);
   }
   /**** Session related data *****/
-  const playerId = localStorage.getItem('playerId');
+  const playerId = localStorage.getItem("playerId");
   if (playerId) {
-    store.commit('session/setPlayerId', playerId);
+    store.commit("session/setPlayerId", playerId);
   }
-  const sessionRaw = localStorage.getItem('session');
+  const sessionRaw = localStorage.getItem("session");
   if (sessionRaw && !window.location.hash.slice(1)) {
     const data = parseJSON<[boolean, string]>(sessionRaw);
     if (data) {
       const [spectator, sessionId] = data;
-      store.commit('session/setSpectator', spectator);
-      store.commit('session/setSessionId', sessionId);
+      store.commit("session/setSpectator", spectator);
+      store.commit("session/setSessionId", sessionId);
     }
   }
 
   // listen to mutations
   store.subscribe(({ type, payload }, state) => {
     switch (type) {
-      case 'toggleGrimoire':
+      case "toggleGrimoire":
         if (!state.grimoire.isPublic) {
-          localStorage.setItem('isGrimoire', '1');
+          localStorage.setItem("isGrimoire", "1");
         } else {
-          localStorage.removeItem('isGrimoire');
+          localStorage.removeItem("isGrimoire");
         }
         updatePagetitle(state.grimoire.isPublic);
         break;
-      case 'setBackground':
+      case "setBackground":
         if (payload) {
-          localStorage.setItem('background', String(payload));
+          localStorage.setItem("background", String(payload));
         } else {
-          localStorage.removeItem('background');
+          localStorage.removeItem("background");
         }
         break;
-      case 'toggleMuted':
+      case "toggleMuted":
         if (state.grimoire.isMuted) {
-          localStorage.setItem('muted', '1');
+          localStorage.setItem("muted", "1");
         } else {
-          localStorage.removeItem('muted');
+          localStorage.removeItem("muted");
         }
         break;
-      case 'toggleStatic':
+      case "toggleStatic":
         if (state.grimoire.isStatic) {
-          localStorage.setItem('static', '1');
+          localStorage.setItem("static", "1");
         } else {
-          localStorage.removeItem('static');
+          localStorage.removeItem("static");
         }
         break;
-      case 'toggleImageOptIn':
+      case "toggleImageOptIn":
         if (state.grimoire.isImageOptIn) {
-          localStorage.setItem('imageOptIn', '1');
+          localStorage.setItem("imageOptIn", "1");
         } else {
-          localStorage.removeItem('imageOptIn');
+          localStorage.removeItem("imageOptIn");
         }
         break;
-      case 'toggleStreamerMode':
+      case "toggleStreamerMode":
         if (state.grimoire.isStreamerMode) {
-          localStorage.setItem('streamerMode', '1');
+          localStorage.setItem("streamerMode", "1");
         } else {
-          localStorage.removeItem('streamerMode');
+          localStorage.removeItem("streamerMode");
         }
         break;
-      case 'toggleOrganVoteMode':
+      case "toggleOrganVoteMode":
         if (state.grimoire.isOrganVoteMode) {
-          localStorage.setItem('organVoteMode', '1');
+          localStorage.setItem("organVoteMode", "1");
         } else {
-          localStorage.removeItem('organVoteMode');
+          localStorage.removeItem("organVoteMode");
         }
         break;
-      case 'setZoom':
+      case "toggleNightOrder":
+        if (state.grimoire.isNightOrder) {
+          localStorage.setItem("nightOrder", "1");
+        } else {
+          localStorage.removeItem("nightOrder");
+        }
+        break;
+      case "togglePlayersMenu": {
+        const menuKey = `playersMenu.${payload as string}`;
+        const menuValue =
+          state.playersMenu[payload as keyof typeof state.playersMenu];
+        if (menuValue) {
+          localStorage.setItem(menuKey, "1");
+        } else {
+          localStorage.setItem(menuKey, "0");
+        }
+        break;
+      }
+      case "setZoom":
         if (payload !== 0) {
-          localStorage.setItem('zoom', String(payload));
+          localStorage.setItem("zoom", String(payload));
         } else {
-          localStorage.removeItem('zoom');
+          localStorage.removeItem("zoom");
         }
         break;
-      case 'setEdition':
-        localStorage.setItem('edition', JSON.stringify(payload));
+      case "setEdition":
+        localStorage.setItem("edition", JSON.stringify(payload));
         if (state.edition?.isOfficial) {
-          localStorage.removeItem('roles');
+          localStorage.removeItem("roles");
         }
         break;
-      case 'setCustomRoles':
+      case "setCustomRoles":
         if (!Array.isArray(payload) || payload.length === 0) {
-          localStorage.removeItem('roles');
+          localStorage.removeItem("roles");
         } else {
-          localStorage.setItem('roles', JSON.stringify(payload));
+          localStorage.setItem("roles", JSON.stringify(payload));
         }
         break;
-      case 'players/setBluff':
+      case "players/setBluff":
         localStorage.setItem(
-          'bluffs',
+          "bluffs",
           JSON.stringify(state.players.bluffs.map(({ id }) => id)),
         );
         break;
-      case 'players/setFabled':
+      case "players/setFabled":
         localStorage.setItem(
-          'fabled',
+          "fabled",
           JSON.stringify(
             state.players.fabled.map((fabled) =>
               fabled.isCustom ? fabled : { id: fabled.id },
@@ -175,16 +228,16 @@ export default (store: StoreLike<RootState>) => {
           ),
         );
         break;
-      case 'players/add':
-      case 'players/update':
-      case 'players/remove':
-      case 'players/clear':
-      case 'players/set':
-      case 'players/swap':
-      case 'players/move':
+      case "players/add":
+      case "players/update":
+      case "players/remove":
+      case "players/clear":
+      case "players/set":
+      case "players/swap":
+      case "players/move":
         if (state.players.players.length) {
           localStorage.setItem(
-            'players',
+            "players",
             JSON.stringify(
               state.players.players.map((player) => ({
                 ...player,
@@ -194,24 +247,24 @@ export default (store: StoreLike<RootState>) => {
             ),
           );
         } else {
-          localStorage.removeItem('players');
+          localStorage.removeItem("players");
         }
         break;
-      case 'session/setSessionId':
+      case "session/setSessionId":
         if (payload) {
           localStorage.setItem(
-            'session',
+            "session",
             JSON.stringify([state.session.isSpectator, payload as string]),
           );
         } else {
-          localStorage.removeItem('session');
+          localStorage.removeItem("session");
         }
         break;
-      case 'session/setPlayerId':
+      case "session/setPlayerId":
         if (payload) {
-          localStorage.setItem('playerId', String(payload));
+          localStorage.setItem("playerId", String(payload));
         } else {
-          localStorage.removeItem('playerId');
+          localStorage.removeItem("playerId");
         }
         break;
     }

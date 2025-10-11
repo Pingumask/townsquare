@@ -1,5 +1,5 @@
 import type { SessionState, VoteHistoryEntry, Player, Nomination } from "../../types";
-import { isActiveNomination, istravellerExile } from "../../types";
+import { isActiveNomination, istravelerExile } from "../../types";
 
 /**
  * Handle a vote request.
@@ -95,7 +95,7 @@ const mutations = {
     if (!isActiveNomination(state.nomination) || state.lockedVote <= players.length) return;
 
     const nomination = state.nomination;
-    const isExile = istravellerExile(nomination, players);
+    const isExile = istravelerExile(nomination, players);
     const organGrinder = isOrganVoteMode && !isExile;
 
     // Default locale texts if not provided

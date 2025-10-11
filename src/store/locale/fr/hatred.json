@@ -4,11 +4,11 @@
     "hatred": [
       {
         "id": "Philosopher",
-        "reason": "Si le Philosophe gagne la capacité du Mercenaire, il se peut qu'un Villageois devienne mauvais."
+        "reason": "Si le Philosophe gagne la capacité du Chasseur de primes, il se peut qu'un Villageois devienne mauvais."
       },
       {
         "id": "Kazali",
-        "reason": "Un Villageois ne devient mauvais que si le Mercenaire est toujours en jeu après l'action du Kazali"
+        "reason": "Un Villageois ne devient mauvais que si le Chasseur de primes est toujours en jeu après l'action du Kazali"
       }
     ]
   },
@@ -358,7 +358,7 @@
       },
       {
         "id": "Lord of Typhon",
-        "reason": "Si l'Invocateur créé un Maître de Typhon, ce Maître de Typhon doit être voisin d'un Sbire. Son autre voisin devient un mauvais Sbire qui n'était pas en jeu."
+        "reason": "Si l'Invocateur créé un Seigneur de Typhon, ce Seigneur de Typhon doit être voisin d'un Sbire. Son autre voisin devient un mauvais Sbire qui n'était pas en jeu."
       }
     ]
   },
@@ -590,7 +590,7 @@
       },
       {
         "id": "Ravenkeeper",
-        "reason": "Chaque nuit*, le Léviathan désigne un bon joueur vivant (différent de toutes les nuits précédentes) : un Ami des Corbeaux ainsi désigné utilise sa capacité mais ne meurt pas."
+        "reason": "Chaque nuit*, le Léviathan désigne un bon joueur vivant (différent de toutes les nuits précédentes) : un Gardien des Corbeaux ainsi désigné utilise sa capacité mais ne meurt pas."
       },
       {
         "id": "Sage",
@@ -647,7 +647,7 @@
       },
       {
         "id": "Ravenkeeper",
-        "reason": "Chaque nuit*, l'Émeute désigne un bon joueur vivant (différent de toutes les nuits précédentes) : un Ami des Corbeaux ainsi désigné utilise sa capacité mais ne meurt pas."
+        "reason": "Chaque nuit*, l'Émeute désigne un bon joueur vivant (différent de toutes les nuits précédentes) : un Gardien des Corbeaux ainsi désigné utilise sa capacité mais ne meurt pas."
       },
       {
         "id": "Sage",

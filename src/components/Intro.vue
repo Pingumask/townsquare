@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { useStore } from 'vuex';
-import { useTranslation } from '@/composables/useTranslation';
+import { useTranslation } from '@/composables';
 
 const store = useStore();
 const { t } = useTranslation();
@@ -33,7 +33,7 @@ const toggleMenu = (): void => {
 .intro {
   text-align: center;
   width: 50%;
-  font-size: 120%;
+  font-size: clamp(16px, calc(-1.1429rem + 4.2857vw), 28px);
   position: absolute;
   padding: 10px;
   background: rgba(0, 0, 0, 0.5);

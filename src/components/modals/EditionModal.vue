@@ -104,7 +104,7 @@ import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import Token from "../Token.vue";
 import Modal from "./Modal.vue";
-import { useTranslation } from '@/composables/useTranslation';
+import { useTranslation } from '@/composables';
 
 const { t } = useTranslation();
 const store = useStore();
@@ -319,7 +319,7 @@ ul.editions {
     background-repeat: no-repeat;
     width: 30%;
     margin: 5px;
-    font-size: 120%;
+    font-size: clamp(16px, calc(-1.1429rem + 4.2857vw), 28px);
     text-shadow:
       -1px -1px 0 #000,
       1px -1px 0 #000,
@@ -381,7 +381,7 @@ input[type="file"] {
 .scripts {
   margin-block: 1em;
   list-style-type: disc;
-  font-size: 120%;
+  font-size: clamp(16px, calc(-1.1429rem + 4.2857vw), 28px);
   cursor: pointer;
   display: flex;
   gap: 0.75em 1em;
@@ -445,7 +445,7 @@ input[type="file"] {
     }
 
     div {
-      font-size: 1.1rem;
+      font-size: clamp(12px, 0.4rem + 1.6vh, 20px);
       text-align: center;
       rotate: 90deg;
     }
