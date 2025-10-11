@@ -1,5 +1,10 @@
-import type { SessionState, VoteHistoryEntry, Player, Nomination } from "../../types";
-import { isActiveNomination, istravelerExile } from "../../types";
+import type {
+  SessionState,
+  VoteHistoryEntry,
+  Player,
+  Nomination,
+} from "../../types";
+import { isActiveNomination, isTravelerExile } from "../../composables";
 
 /**
  * Handle a vote request.
@@ -8,7 +13,10 @@ import { isActiveNomination, istravelerExile } from "../../types";
  * @param index seat of the player in the circle
  * @param vote true or false
  */
-const handleVote = (state: SessionState, [index, vote]: [number, boolean | undefined]) => {
+const handleVote = (
+  state: SessionState,
+  [index, vote]: [number, boolean | undefined],
+) => {
   if (!state.nomination) return;
   state.votes = [...state.votes];
   state.votes[index] = vote === undefined ? !state.votes[index] : vote;
@@ -39,9 +47,11 @@ const getters = {};
 const actions = {};
 
 // mutations helper functions
-const set = <K extends keyof SessionState>(key: K) => (state: SessionState, val: SessionState[K]) => {
-  state[key] = val;
-};
+const set =
+  <K extends keyof SessionState>(key: K) =>
+  (state: SessionState, val: SessionState[K]) => {
+    state[key] = val;
+  };
 
 const mutations = {
   setPlayerId: set("playerId"),
@@ -65,7 +75,13 @@ const mutations = {
   },
   nomination(
     state: SessionState,
-    { nomination, votes, votingSpeed, lockedVote, isVoteInProgress }: {
+    {
+      nomination,
+      votes,
+      votingSpeed,
+      lockedVote,
+      isVoteInProgress,
+    }: {
       nomination?: Nomination | null;
       votes?: boolean[];
       votingSpeed?: number;
@@ -84,22 +100,29 @@ const mutations = {
    * Only stores votes that were completed.
    * If the Organ Grinder is active, save the votes only for the Story Teller
    */
-  addHistory(state: SessionState, payload: {
-    players: Player[];
-    isOrganVoteMode?: boolean;
-    localeTexts?: { exile: string; execution: string }
-  }) {
+  addHistory(
+    state: SessionState,
+    payload: {
+      players: Player[];
+      isOrganVoteMode?: boolean;
+      localeTexts?: { exile: string; execution: string };
+    },
+  ) {
     const { players, isOrganVoteMode = false, localeTexts } = payload;
 
     if (!state.isVoteHistoryAllowed && state.isSpectator) return;
-    if (!isActiveNomination(state.nomination) || state.lockedVote <= players.length) return;
+    if (
+      !isActiveNomination(state.nomination) ||
+      state.lockedVote <= players.length
+    )
+      return;
 
     const nomination = state.nomination;
-    const isExile = istravelerExile(nomination, players);
+    const isExile = isTravelerExile(nomination, players);
     const organGrinder = isOrganVoteMode && !isExile;
 
     // Default locale texts if not provided
-    const defaultTexts = { exile: 'Exile', execution: 'Execution' };
+    const defaultTexts = { exile: "Exile", execution: "Execution" };
     const texts = localeTexts || defaultTexts;
 
     const entry: VoteHistoryEntry = {
@@ -124,8 +147,8 @@ const mutations = {
         organGrinder && state.isSpectator
           ? null
           : players
-            .filter((_player, index) => state.votes[index])
-            .map(({ name }) => name),
+              .filter((_player, index) => state.votes[index])
+              .map(({ name }) => name),
     };
 
     state.voteHistory = [...state.voteHistory, entry];

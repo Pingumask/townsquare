@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Player, Role } from '@/types';
+import type { Player, Role } from '../types';
 import { computed } from 'vue';
 import RoleIcon from './RoleIcon.vue';
 

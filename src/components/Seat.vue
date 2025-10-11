@@ -159,10 +159,10 @@
     </div>
 
     <template v-if="props.player.reminders">
-      <div v-for="reminder in props.player.reminders" :key="reminder.role + ' ' + reminder.name" class="reminder"
-        :class="[reminder.role]" @click="removeReminder(reminder)">
-        <picture>
-          <img v-if="reminder.image" :src="reminder.image" :alt="reminder.name" />
+      <div v-for="reminder in props.player.reminders" :key="reminder.role.id + ' ' + reminder.name" class="reminder"
+        :class="[reminder.role.id]" @click="removeReminder(reminder)">
+        <picture :class="reminder.role?.team">
+          <RoleIcon :role="reminder.role" />
         </picture>
         <span class="text">{{ reminder.name }}</span>
       </div>
@@ -175,12 +175,12 @@
 </template>
 
 <script setup lang="ts">
-import type { Player, Reminder } from "@/types";
-import { isActiveNomination } from "@/types";
+import type { Player, Reminder } from "../types";
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import Token from "./Token.vue";
-import { useTranslation } from '@/composables';
+import { useTranslation, isActiveNomination } from '@/composables';
+import RoleIcon from "./RoleIcon.vue";
 
 const { t } = useTranslation();
 interface Props {
@@ -370,6 +370,43 @@ function vote() {
 
 <style lang="scss">
 @use "../vars.scss" as *;
+
+.townsfolk {
+  --color: #1f65ff;
+  --blend: multiply;
+}
+
+.outsider,
+.outsider.good {
+  --color: #46d5ff;
+  --blend: normal;
+  filter: drop-shadow(#000c 0 0 8px);
+}
+
+.minion {
+  --color: #ff6900;
+  --blend: multiply;
+}
+
+.demon,
+.demon.evil {
+  --color: #ce0100;
+  --blend: multiply;
+}
+
+.traveler {
+  --blend: multiply;
+}
+
+.good {
+  --color: #2956b8;
+  --blend: multiply;
+}
+
+.evil {
+  --color: #ff6900;
+  --blend: multiply;
+}
 
 .fold-enter-active,
 .fold-leave-active {

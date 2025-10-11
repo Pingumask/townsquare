@@ -68,7 +68,7 @@
       <audio :autoplay="!grimoire.isMuted" :muted="grimoire.isMuted">
         <source src="../assets/sounds/rooster.mp3">
       </audio>
-      <img src="../assets/icons/dawn.png" style="height: 2em">
+      <img src="../assets/icons/dawn.png" alt="dawn" style="height: 2em">
     </li>
     <li v-if="markedStoryteller" class="marked">
       <font-awesome-icon icon="skull" class="fa fa-skull" />
@@ -81,7 +81,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Player } from '@/types';
+import type { Player } from '../types';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
 import gameJSON from '../game.json';

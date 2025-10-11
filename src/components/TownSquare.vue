@@ -124,10 +124,9 @@
 
 <script setup lang="ts">
 import type { Player as PlayerType } from '@/types';
-import { isActiveNomination } from '@/types';
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
-import { useTranslation } from '@/composables';
+import { useTranslation, isActiveNomination } from '@/composables';
 import Seat from "./Seat.vue";
 import Token from "./Token.vue";
 import ReminderModal from "./modals/ReminderModal.vue";
