@@ -274,7 +274,7 @@
     "otherNightReminder": "Montrez le Grimoire à l'Espion aussi longtemps qu'il en a besoin.",
     "reminders": [],
     "setup": false,
-    "ability": "Chaque nuit, vous voyez le Grimoire. Il se peut que vous apparaissiez comme bon et comme Villageois ou Marginal, même après votre mort"
+    "ability": "Chaque nuit, vous voyez le Grimoire. Il se peut que vous apparaissiez comme bon et comme Villageois ou Marginal, même après votre mort."
   },
   {
     "id": "scarletwoman",
@@ -318,7 +318,7 @@
       "Diablotin"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, désignez un joueur : il meurt. Si vous vous suicidez de cette façon, un Sbire devient le Diablotin"
+    "ability": "Chaque nuit*, désignez un joueur : il meurt. Si vous vous suicidez de cette façon, un Sbire devient le Diablotin."
   },
   {
     "id": "bureaucrat",
@@ -885,7 +885,7 @@
       "Empoisonné"
     ],
     "setup": false,
-    "ability": "Chaque nuit, désignez un joueur vivant : s'il est Démon, vous échangez de personnage et d'équipe avec lui, puis il est empoisonné."
+    "ability": "Chaque nuit, désignez un joueur vivant : s'il est Démon, vous échangez de personnage et d'alignement avec lui, puis il est empoisonné."
   },
   {
     "id": "mathematician",
@@ -1261,7 +1261,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Chaque jour, après la première exécution, vous pouvez accuser de nouveau"
+    "ability": "Chaque jour, après la première exécution, vous pouvez accuser de nouveau."
   },
   {
     "id": "bonecollector",
