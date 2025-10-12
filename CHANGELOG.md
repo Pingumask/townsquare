@@ -6,6 +6,7 @@
   - Better Jinx display in the reference modal
   - Select all button in script builder
   - Better handling of roles that officially changed names (gipsy & mephit)
+  - Better playerMenu positioning
 - Bug fixes :
   - Reminders match the color of their role's team
   - Printing the correct type of the special votes (for now only CL) in the vote history

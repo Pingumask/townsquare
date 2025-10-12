@@ -593,63 +593,100 @@ const stopTimer = () => {
     &:nth-child(#{$i}) {
       transform: rotate($rot * 1deg);
 
-      @if $i - 1 <=math.div($item-count, 2) {
-        // first half of players
-        z-index: $item-count - $i + 1;
+      $quarter: math.div($item-count, 4);
+      $position: $i - 1;
 
-        // open menu on the left
+      .player>.menu {
+        left: -50%;
+        right: -50%;
+      }
+
+      @if ($position < $quarter) {
         .player>.menu {
-          left: auto;
-          right: 110%;
-          margin-right: 15px;
-
-          &:before {
-            border-left-color: black;
-            border-right-color: transparent;
-            right: auto;
-            left: 100%;
-          }
-        }
-
-        .fold-enter-active,
-        .fold-leave-active {
-          transform-origin: right center;
-        }
-
-        .fold-enter,
-        .fold-leave-to {
-          transform: perspective(200px) rotateY(-90deg);
-        }
-
-        // show ability tooltip on the left
-        .ability {
-          right: 120%;
-          left: auto;
-
-          &:before {
-            border-right-color: transparent;
-            border-left-color: black;
-            right: auto;
-            left: 100%;
-          }
-        }
-
-        .pronouns {
-          left: 110%;
+          top: calc(100% + 0.25em);
+          bottom: auto;
           right: auto;
+          left: -20%;
+        }
 
-          &:before {
-            border-left-color: transparent;
-            border-right-color: black;
-            left: auto;
-            right: 100%;
-          }
+        .fold-enter-from,
+        .fold-leave-to {
+          transform: perspective(200px) rotateX(-90deg);
+        }
+      }
+
+      @else if ($position <=$quarter * 2) {
+        .player>.menu {
+          transform-origin: center bottom;
+          bottom: 1.52em;
+          top: auto;
+          right: auto;
+          left: -20%;
+        }
+
+        .fold-enter-from,
+        .fold-leave-to {
+          transform: perspective(200px) rotateX(90deg);
+        }
+      }
+
+      @else if ($position <=$quarter * 3) {
+        .player>.menu {
+          transform-origin: center bottom;
+          bottom: 1.52em;
+          top: auto;
+          right: -10%;
+          left: auto;
+        }
+
+        .fold-enter-from,
+        .fold-leave-to {
+          transform: perspective(200px) rotateX(90deg);
         }
       }
 
       @else {
-        // second half of players
-        z-index: $i - 1;
+        .player>.menu {
+          transform-origin: center top;
+          top: calc(100% + 0.25em);
+          bottom: auto;
+          right: -10%;
+          left: auto;
+        }
+
+        .fold-enter-from,
+        .fold-leave-to {
+          transform: perspective(200px) rotateX(-90deg);
+        }
+      }
+
+      @if ($position ==0) {
+        .player>ul.menu {
+          top: calc(100% + 0.25em);
+          bottom: auto;
+          left: -50%;
+          right: -40%;
+        }
+
+        .fold-enter-from,
+        .fold-leave-to {
+          transform: perspective(200px) rotateX(-90deg);
+        }
+      }
+
+      @else if ($position ==$quarter*2) {
+        .player>.menu {
+          transform-origin: center bottom;
+          bottom: 1.52em;
+          top: auto;
+          right: -40%;
+          left: -50%;
+        }
+
+        .fold-enter-from,
+        .fold-leave-to {
+          transform: perspective(200px) rotateX(90deg);
+        }
       }
 
       >* {
