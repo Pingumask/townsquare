@@ -169,6 +169,16 @@ const initializeStore = async () => {
           name: "",
           duration: 0,
         },
+        timerDurations: {
+          daytime: 6,
+          nominations: 2,
+          dusk: 1,
+          accusation: 0.5,
+          defense: 0.5,
+          debate: 1,
+          custom: 1,
+          customDebate: 1,
+        },
       },
       playersMenu: {
         changePronouns: false,
@@ -288,6 +298,27 @@ const initializeStore = async () => {
         state.grimoire.timer = timer as Required<
           Pick<RootState["grimoire"]["timer"], "name" | "duration">
         >;
+      },
+      setTimerDuration(
+        state: RootState,
+        {
+          type,
+          duration,
+        }: {
+          type: keyof RootState["grimoire"]["timerDurations"];
+          duration: number;
+        },
+      ) {
+        state.grimoire.timerDurations[type] = duration;
+      },
+      setTimerDurations(
+        state: RootState,
+        durations: Partial<RootState["grimoire"]["timerDurations"]>,
+      ) {
+        state.grimoire.timerDurations = {
+          ...state.grimoire.timerDurations,
+          ...durations,
+        };
       },
       togglePlayersMenu(state: RootState, name: keyof PlayersMenuState) {
         state.playersMenu[name] = !state.playersMenu[name];

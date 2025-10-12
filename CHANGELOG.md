@@ -1,6 +1,8 @@
 # Release Notes
 
 ## Upcomming Version
+- Feature :
+  - Timer duration is now saved for each timer type
 - Bug fixes :
   - Reminders match the color of their role's team
   - Printing the correct type of the special votes (for now only CL) in the vote history

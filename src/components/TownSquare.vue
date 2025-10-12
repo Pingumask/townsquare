@@ -123,7 +123,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Player as PlayerType } from '../types';
+import type { Player } from '../types';
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import { useTranslation, isActiveNomination } from '@/composables';
@@ -173,6 +173,7 @@ const timerName = ref("Timer");
 const timerDuration = ref(1);
 const timerOn = ref(false);
 const timerEnder = ref<ReturnType<typeof setTimeout> | null>(null);
+const currentTimerType = ref<keyof typeof grimoire.value.timerDurations | null>(null);
 // Methods converted to functions
 const toggleBluffs = () => {
   isBluffsOpen.value = !isBluffsOpen.value;
@@ -284,7 +285,7 @@ const removePlayer = (playerIndex: number) => {
   }
   store.commit("players/remove", playerIndex);
 };
-const swapPlayer = (from: number, to?: PlayerType) => {
+const swapPlayer = (from: number, to?: Player) => {
   if (session.value.isSpectator || session.value.lockedVote) return;
   if (to === undefined) {
     cancel();
@@ -312,7 +313,7 @@ const swapPlayer = (from: number, to?: PlayerType) => {
     cancel();
   }
 };
-const movePlayer = (from: number, to?: PlayerType) => {
+const movePlayer = (from: number, to?: Player) => {
   if (session.value.isSpectator || session.value.lockedVote) return;
   if (to === undefined) {
     cancel();
@@ -342,7 +343,7 @@ const movePlayer = (from: number, to?: PlayerType) => {
   }
 };
 
-const nominatePlayer = (from: number, to?: PlayerType) => {
+const nominatePlayer = (from: number, to?: Player) => {
   if (session.value.isSpectator || session.value.lockedVote) return;
   if (to === undefined) {
     cancel();
@@ -378,22 +379,26 @@ const renameTimer = () => {
 };
 
 const setDaytimeTimer = () => {
-  timerDuration.value = 8;
+  currentTimerType.value = 'daytime';
+  timerDuration.value = grimoire.value.timerDurations.daytime;
   timerName.value = t('townsquare.timer.daytime.text');
 };
 
 const setNominationTimer = () => {
-  timerDuration.value = 2;
+  currentTimerType.value = 'nominations';
+  timerDuration.value = grimoire.value.timerDurations.nominations;
   timerName.value = t('townsquare.timer.nominations.text');
 };
 
 const setDuskTimer = () => {
-  timerDuration.value = 1;
+  currentTimerType.value = 'dusk';
+  timerDuration.value = grimoire.value.timerDurations.dusk;
   timerName.value = t('townsquare.timer.dusk.text');
 };
 const setAccusationTimer = () => {
   if (!isActiveNomination(session.value.nomination)) return;
 
+  currentTimerType.value = 'accusation';
   timerDuration.value = 1;
   const nomination = session.value.nomination;
 
@@ -418,10 +423,12 @@ const setAccusationTimer = () => {
   timerName.value = timerText;
 };
 
+
 const setDefenseTimer = () => {
   if (!isActiveNomination(session.value.nomination)) return;
 
-  timerDuration.value = 1;
+  currentTimerType.value = 'defense';
+  timerDuration.value = grimoire.value.timerDurations.defense;
   const nomination = session.value.nomination;
 
   let timerText = t('townsquare.timer.defense.text');
@@ -444,10 +451,12 @@ const setDefenseTimer = () => {
 
   timerName.value = timerText;
 };
+
 const setDebateTimer = () => {
   if (!isActiveNomination(session.value.nomination)) return;
 
-  timerDuration.value = 2;
+  currentTimerType.value = 'debate';
+  timerDuration.value = grimoire.value.timerDurations.debate;
   const nomination = session.value.nomination;
 
   let timerText = t('townsquare.timer.debate.text');
@@ -464,7 +473,8 @@ const setDebateTimer = () => {
 const setSpecialVoteTimer = () => {
   if (!isActiveNomination(session.value.nomination)) return;
 
-  timerDuration.value = 1;
+  currentTimerType.value = 'custom';
+  timerDuration.value = grimoire.value.timerDurations.custom;
   const nomination = session.value.nomination;
 
   // Get nominator name
@@ -482,7 +492,8 @@ const setSpecialVoteTimer = () => {
 const setSpecialDebateTimer = () => {
   if (!isActiveNomination(session.value.nomination)) return;
 
-  timerDuration.value = 2;
+  currentTimerType.value = 'customDebate';
+  timerDuration.value = grimoire.value.timerDurations.customDebate;
   const nomination = session.value.nomination;
 
   // Get the debate text
@@ -497,12 +508,19 @@ const setSpecialDebateTimer = () => {
   timerName.value = timerText;
 };
 const setTimer = () => {
-  let newDuration = prompt(t('townsquare.timer.prompt.duration'));
+  const newDuration = prompt(t('townsquare.timer.prompt.duration'));
   if (isNaN(Number(newDuration))) {
     return alert(t('townsquare.timer.prompt.durationError'));
   }
   if (Number(newDuration) > 0) {
     timerDuration.value = Number(newDuration);
+    // Save the new duration for the current timer type
+    if (currentTimerType.value) {
+      store.commit('setTimerDuration', {
+        type: currentTimerType.value,
+        duration: Number(newDuration)
+      });
+    }
   }
 };
 

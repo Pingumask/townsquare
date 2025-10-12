@@ -65,6 +65,13 @@ export default (store: StoreLike<RootState>) => {
     store.commit("toggleGrimoire", false);
     updatePagetitle(false);
   }
+  const timerDurationsRaw = localStorage.getItem("timerDurations");
+  if (timerDurationsRaw) {
+    const timerDurations = parseJSON(timerDurationsRaw);
+    if (timerDurations) {
+      store.commit("setTimerDurations", timerDurations);
+    }
+  }
   const rolesRaw = localStorage.getItem("roles");
   if (rolesRaw !== null) {
     store.commit("setCustomRoles", parseJSON(rolesRaw) ?? []);
@@ -198,6 +205,13 @@ export default (store: StoreLike<RootState>) => {
         } else {
           localStorage.removeItem("zoom");
         }
+        break;
+      case "setTimerDuration":
+      case "setTimerDurations":
+        localStorage.setItem(
+          "timerDurations",
+          JSON.stringify(state.grimoire.timerDurations),
+        );
         break;
       case "setEdition":
         localStorage.setItem("edition", JSON.stringify(payload));
