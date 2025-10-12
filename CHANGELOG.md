@@ -9,6 +9,7 @@
 - Bug fixes :
   - Reminders match the color of their role's team
   - Printing the correct type of the special votes (for now only CL) in the vote history
+  - Role picker now correctly displays a scrollbar when needed (whalebuffet becomes playable)
 - Code quality :
   - Moved functions from types folder to composables folder
   - Use full Role instead of Role['id'] for reminders
