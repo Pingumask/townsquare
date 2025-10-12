@@ -1,6 +1,10 @@
 # Release Notes
 
 ## Upcomming Version
+
+
+
+## 5.2.0
 - Feature :
   - Timer duration is now saved for each timer type
   - Better Jinx display in the reference modal
