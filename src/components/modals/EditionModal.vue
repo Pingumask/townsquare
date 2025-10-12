@@ -144,7 +144,7 @@ function toggleRole(id: string) {
 }
 
 function rolesForTeam(team: string) {
-  return draftPool.value?.filter((role: ToggleableRole) => role.team === team && !role.outOfDate) ?? [];
+  return draftPool.value?.filter((role: ToggleableRole) => role.team === team) ?? [];
 }
 
 function selectedInTeam(team: string) {

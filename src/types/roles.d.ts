@@ -1,6 +1,7 @@
 import type { Player } from "./players";
 export interface Role {
   id: string;
+  alternates?: string[]; // Alternate ids for roles that used to have a different official name
   name?: string;
   team?:
     | "townsfolk"
@@ -42,7 +43,6 @@ export interface SelectableRole extends Role {
 
 export interface ToggleableRole extends Role {
   selected?: boolean;
-  outOfDate?: boolean;
 }
 
 // Role grouping

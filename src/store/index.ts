@@ -97,6 +97,22 @@ const initializeStore = async () => {
   const clean = (id: string) =>
     id.toLocaleLowerCase().replace(/[^a-z0-9]/g, "");
 
+  // Create a map for alternate role names to main role IDs
+  const alternateRoleMap = new Map<string, string>();
+  rolesJSON.default.forEach((role) => {
+    if (role.alternates) {
+      role.alternates.forEach((alternate) => {
+        alternateRoleMap.set(clean(alternate), role.id);
+      });
+    }
+  });
+
+  // Helper function to resolve role ID, checking for alternates
+  const resolveRoleId = (id: string): string => {
+    const cleanId = clean(id);
+    return alternateRoleMap.get(cleanId) || cleanId;
+  };
+
   const editionJSONbyId = new Map(
     editionJSON.official.map((edition) => [edition.id, edition] as const),
   );
@@ -357,7 +373,9 @@ const initializeStore = async () => {
           })
           .map((role) => {
             const r = role as unknown as Record<string, unknown>;
-            r["id"] = clean(String(r["id"]));
+            const originalId = String(r["id"]);
+            const resolvedId = resolveRoleId(originalId);
+            r["id"] = resolvedId;
             return r as unknown as Role;
           })
           .map(

@@ -604,6 +604,9 @@
   },
   {
     "id": "moonchild",
+    "alternates": [
+      "gipsy"
+    ],
     "name": "Enfant de la lune",
     "edition": "bmr",
     "team": "outsider",
@@ -1957,24 +1960,10 @@
     "ability": "Si vous révélez publiquement être le Gobelin quand vous êtes accusé et que vous êtes exécuté durant ce même jour, votre équipe gagne."
   },
   {
-    "id": "mephit",
-    "outOfDate": true,
-    "name": "Mezepheles",
-    "edition": "",
-    "team": "minion",
-    "firstNight": 40,
-    "firstNightReminder": "Indiquez au Mezepheles son mot secret.",
-    "otherNight": 25,
-    "otherNightReminder": "Si un joueur Bon a pronnoncé le mot secret aujourd'hui, réveillez-le et informez-le qu'il fait maintenant partie de l'équipe des Mauvais.",
-    "reminders": [
-      "Mauvais",
-      "Épuisé"
-    ],
-    "setup": false,
-    "ability": "Vous commencez en sachant un mot secret. Le premier joueur bon à prononcer ce mot devient mauvais cette nuit."
-  },
-  {
     "id": "mezepheles",
+    "alternates": [
+      "mephit"
+    ],
     "name": "Mezepheles",
     "edition": "",
     "team": "minion",
