@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import type { Reminder, Role, Player } from "../../types";
-import { SPECIAL_REMINDER_ROLES } from "@/utils/special-roles";
+import { SPECIAL_REMINDER_ROLES } from "@/store/modules/players";
 import { computed } from "vue";
 import { useStore } from "vuex";
 import Modal from "./Modal.vue";
