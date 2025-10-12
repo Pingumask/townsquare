@@ -60,7 +60,7 @@
     "setup": false,
     "name": "Révolutionnaire",
     "team": "fabled",
-    "ability": "2 joueurs voisins désignés avant la partie sont obligatoirement du même alignement. Une fois par partie, l'un d'eux peut apparaitre avec un rôle de l'alignement opposé."
+    "ability": "Deux joueurs voisins connus sont du même alignement. Une fois par partie, l'un d'eux peut apparaître faussement."
   },
   {
     "id": "fiddler",
@@ -76,7 +76,7 @@
     "id": "toymaker",
     "firstNightReminder": "",
     "otherNight": 31,
-    "otherNightReminder": "Si le Démon pourrait terminer la partie cette nuit, mais qu'il a toujours son marqueur 'nuit sans attaque', il n'agit pas cette nuit (ne le réveillez pas)",
+    "otherNightReminder": "Si le Démon pourrait terminer la partie cette nuit, mais qu'il a toujours son marqueur 'Nuit sans attaque', il n'agit pas cette nuit (ne le réveillez pas)",
     "reminders": [
       "Nuit sans attaque"
     ],
@@ -109,7 +109,7 @@
     "setup": false,
     "name": "Duchesse",
     "team": "fabled",
-    "ability": "Chaque jour, 3 joueurs peuvent vous rendre visite. Chaque nuit*, chaque visiteur apprend combien de joueurs étaient Mauvais parmi eux. L'un d'eux apprend une fausse information."
+    "ability": "Chaque jour, 3 joueurs peuvent vous rendre visite. La nuit*, chacun apprend combien sont mauvais parmi eux, mais l'un a une fausse info."
   },
   {
     "id": "sentinel",
@@ -147,7 +147,7 @@
   {
     "id": "stormcatcher",
     "firstNight": 13,
-    "firstNightReminder": "Réveillez chaque joueur Mauvais et indiquez-lui quel joueur est marqué comme \"Protégé\".",
+    "firstNightReminder": "Réveillez chaque joueur mauvais et indiquez-lui quel joueur est marqué comme \"Protégé\".",
     "otherNightReminder": "",
     "reminders": [
       "Sûr"
@@ -155,7 +155,7 @@
     "setup": false,
     "name": "Chasseur de tempêtes",
     "team": "fabled",
-    "ability": "Désignez un rôle de gentil. S'il est en jeu, il ne peut mourrir que par exécution, mais les joueurs mauvais savent qui a ce rôle."
+    "ability": "Désignez un personnage bon. S'il est en jeu, il ne peut mourir que par exécution, mais les joueurs mauvais savent qui a ce rôle."
   },
   {
     "id": "deusexfiasco",
@@ -204,6 +204,6 @@
     "setup": false,
     "name": "Contrebandier",
     "team": "fabled",
-    "ability": "Ce script possède des rôles ou des règles faits-maison."
+    "ability": "Ce script possède des personnages ou des règles faits-maison."
   }
 ]
