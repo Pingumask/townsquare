@@ -15,6 +15,7 @@ const faIcons = [
   "BookOpen",
   "BookDead",
   "Chair",
+  "CkeckDouble",
   "CheckSquare",
   "CloudMoon",
   "Cog",
@@ -63,7 +64,7 @@ const faIcons = [
   "WindowMinimize",
   "YinYang",
 ];
-const fabIcons = ["Github", "Discord"];
+const fabIcons = ["Github", "Discord", "Docker"];
 
 const fasMap = fas as unknown as Record<string, IconDefinition>;
 const fabMap = fab as unknown as Record<string, IconDefinition>;

@@ -83,6 +83,9 @@
           <div class="button" @click="resetBuilt">
             <font-awesome-icon :icon="['fas', 'trash-alt']" />
           </div>
+          <div class="button" @click="selectAll">
+            <font-awesome-icon :icon="['fab', 'docker']" />
+          </div>
           <div class="button" @click="initPool">
             <font-awesome-icon :icon="['fas', 'redo-alt']" />
           </div>
@@ -153,6 +156,12 @@ function selectedInTeam(team: string) {
 function resetBuilt() {
   for (let role of draftPool.value) {
     role.selected = false;
+  }
+
+}
+function selectAll() {
+  for (let role of draftPool.value) {
+    role.selected = true;
   }
 }
 
