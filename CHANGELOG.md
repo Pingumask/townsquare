@@ -9,6 +9,8 @@
 - Code quality :
   - Moved functions from types folder to composables folder
   - Use full Role instead of Role['id'] for reminders
+  - Modernized components imports
+  - Better accessibility for background videos
 - French Translation :
   - Correcting French Lord of Typhon's description to match recent rules clarifications
 

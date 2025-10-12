@@ -6,7 +6,11 @@
     backgroundImage: `url('${background}')`,
     backgroundColor: `${backgroundColor}`,
   }" @keyup="keyup">
-    <video v-if="background && background.match(/\.(mp4|webm)$/i)" id="background" :src="background" autoplay loop />
+    <video v-if="background && background.match(/\.(mp4|webm)$/i)" id="background" :src="background" autoplay loop
+      tabindex="-1" aria-hidden="true" aria-label="Decorative background video">
+      <track kind="captions" src="" default
+        label="This is a user imported background video, it mostly has no sound or only ambient sounds" />
+    </video>
     <div class="backdrop" />
 
     <Intro v-if="!players.length" />
@@ -32,20 +36,22 @@
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import app from "../package.json";
-import Gradients from "./components/Gradients.vue";
-import Intro from "./components/Intro.vue";
-import Menu from "./components/Menu.vue";
-import EditionModal from "./components/modals/EditionModal.vue";
-import FabledModal from "./components/modals/FabledModal.vue";
-import GameStateModal from "./components/modals/GameStateModal.vue";
-import NightOrderModal from "./components/modals/NightOrderModal.vue";
-import ReferenceModal from "./components/modals/ReferenceModal.vue";
-import RolesModal from "./components/modals/RolesModal.vue";
-import SpecialVoteModal from "./components/modals/SpecialVoteModal.vue";
-import VoteHistoryModal from "./components/modals/VoteHistoryModal.vue";
-import TownInfo from "./components/TownInfo.vue";
-import TownSquare from "./components/TownSquare.vue";
-import Vote from "./components/Vote.vue";
+import {
+  Gradients,
+  Intro,
+  Menu,
+  TownInfo,
+  Vote,
+  EditionModal,
+  FabledModal,
+  GameStateModal,
+  NightOrderModal,
+  ReferenceModal,
+  RolesModal,
+  SpecialVoteModal,
+  TownSquare,
+  VoteHistoryModal,
+} from "@/components";
 
 const store = useStore();
 const version = app.version;

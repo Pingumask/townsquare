@@ -5,12 +5,10 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-interface Props {
+const props = defineProps<{
   timerName?: string;
   timerDuration?: number;
-}
-
-const props = defineProps<Props>();
+}>();
 
 const style = computed(() => `--timer: ${props.timerDuration}`);
 </script>

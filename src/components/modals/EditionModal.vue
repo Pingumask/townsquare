@@ -102,8 +102,7 @@
 import type { Role, Edition, ToggleableRole, ParsedRole, ScriptMeta } from "@/types";
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
-import Token from "../Token.vue";
-import Modal from "./Modal.vue";
+import { Modal, Token } from "@/components";
 import { useTranslation } from '@/composables';
 
 const { t } = useTranslation();

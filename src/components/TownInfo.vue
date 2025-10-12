@@ -81,12 +81,12 @@
 </template>
 
 <script setup lang="ts">
-import type { Player } from '../types';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import gameJSON from '../game.json';
-import Countdown from './Countdown.vue';
+import gameJSON from '@/game.json';
+import { Countdown } from '@/components';
 import { useTranslation } from '@/composables';
+import type { Player } from '@/types';
 
 const { t } = useTranslation();
 const store = useStore();

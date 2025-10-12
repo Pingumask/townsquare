@@ -123,14 +123,11 @@
 </template>
 
 <script setup lang="ts">
-import type { Player } from '../types';
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
+import { ReminderModal, RoleModal, Seat, Token } from '@/components';
 import { useTranslation, isActiveNomination } from '@/composables';
-import Seat from "./Seat.vue";
-import Token from "./Token.vue";
-import ReminderModal from "./modals/ReminderModal.vue";
-import RoleModal from "./modals/RoleModal.vue";
+import type { Player } from '@/types';
 
 const store = useStore();
 const { t } = useTranslation();

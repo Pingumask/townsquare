@@ -6,11 +6,10 @@
 </template>
 
 <script setup lang="ts">
-import type { Role, Player } from '@/types';
-import { computed } from 'vue';
 import InlineSvg from 'vue-inline-svg';
+import { computed } from 'vue';
 import { useRolePath } from '@/composables';
-
+import type { Role, Player } from '@/types';
 
 const props = defineProps<{
   role: Role;

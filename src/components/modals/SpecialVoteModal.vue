@@ -23,11 +23,11 @@
 </template>
 
 <script setup lang="ts">
-import type { Nomination } from '@/types';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import Modal from './Modal.vue';
+import { Modal } from '@/components';
 import { useTranslation, createSpecialVote } from '@/composables';
+import type { Nomination } from '@/types';
 
 const { t } = useTranslation();
 const store = useStore();
@@ -110,7 +110,6 @@ button {
   background-color: #66027f;
   border: none;
   border-radius: 10px;
-  display: block;
   margin-left: auto;
   margin-right: auto;
   width: 35%;

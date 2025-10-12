@@ -114,11 +114,11 @@
 </template>
 
 <script setup lang="ts">
-import type { Player } from '@/types';
 import { computed, onUnmounted, ref } from "vue";
 import { useStore } from "vuex";
+import { Countdown } from '@/components';
 import { useTranslation, isActiveNomination } from '@/composables';
-import Countdown from "./Countdown.vue";
+import type { Player } from '@/types';
 
 const store = useStore();
 const { t } = useTranslation();

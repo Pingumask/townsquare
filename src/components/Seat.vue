@@ -175,12 +175,11 @@
 </template>
 
 <script setup lang="ts">
-import type { Player, Reminder } from "../types";
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
-import Token from "./Token.vue";
+import { RoleIcon, Token } from "@/components";
 import { useTranslation, isActiveNomination } from '@/composables';
-import RoleIcon from "./RoleIcon.vue";
+import type { Player, Reminder } from "@/types";
 
 const { t } = useTranslation();
 interface Props {

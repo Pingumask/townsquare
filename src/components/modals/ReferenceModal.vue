@@ -51,11 +51,11 @@
 </template>
 
 <script setup lang="ts">
-import type { Role, Player, JinxInfo } from '../../types';
 import { computed } from "vue";
 import { useStore } from "vuex";
-import Modal from "./Modal.vue";
+import { Modal } from '@/components';
 import { useTranslation } from '@/composables';
+import type { Role, Player, JinxInfo } from '@/types';
 
 import RoleIcon from '../RoleIcon.vue';
 
