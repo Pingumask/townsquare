@@ -1,8 +1,14 @@
-import type { Timer, Edition } from "./game";
-import type { Nomination, VoteHistoryEntry } from "./voting";
-import type { PlayersState } from "./players";
-import type { EditionsJSON, LocaleModule } from "./data";
-import type { Role } from "./roles";
+import type {
+  Edition,
+  EditionsJSON,
+  GamePhase,
+  LocaleModule,
+  Nomination,
+  PlayersState,
+  Role,
+  Timer,
+  VoteHistoryEntry,
+} from "./";
 
 // Timer durations for different timer types
 export interface TimerDurations {

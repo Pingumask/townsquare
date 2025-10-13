@@ -408,9 +408,11 @@ function vote() {
   --blend: multiply;
   --color1: #1f65ff;
   --color2: #ff6900;
+
   .good {
     --color2: #4e4e4e;
   }
+
   .evil {
     --color1: #4e4e4e;
   }
