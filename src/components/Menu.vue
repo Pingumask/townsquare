@@ -473,7 +473,7 @@ const leaveSession = () => {
 const addPlayer = () => {
   if (session.value.isSpectator) return;
   if (players.value.length >= 20) return;
-  const name = prompt(t('prompt.addPlayer'));
+  const name = prompt(t('prompt.addPlayer'), " "); // This is a FIGURE SPACE (&numsp;) U+2007
   if (name) {
     store.commit('players/add', name);
   }

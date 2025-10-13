@@ -250,6 +250,7 @@ ul {
   justify-content: center;
   align-content: center;
 
+  button,
   .button {
     margin: 5px 0;
     border-radius: 0;
@@ -266,7 +267,10 @@ ul {
   }
 }
 
+button,
 .button {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 1.2rem;
   padding: 0;
   border: solid 0.125em transparent;
   border-radius: 15px;
@@ -290,9 +294,10 @@ ul {
     color: red;
   }
 
+  &[disabled],
   &.disabled {
     color: gray;
-    cursor: default;
+    cursor: not-allowed;
     opacity: 0.75;
   }
 
@@ -315,6 +320,7 @@ ul {
       inset 0 1px 1px #002c9c,
       0 0 10px #000;
 
+    &hover:not([disabled]),
     &:hover:not(.disabled) {
       color: #008cf7;
     }
