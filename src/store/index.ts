@@ -257,7 +257,7 @@ const initializeStore = async () => {
 
         // If not found, try the master locale (English)
         if (result === null) {
-          result = traverse((masterLocale as LocaleModule).default, keys);
+          result = traverse(masterLocale.default, keys);
         }
 
         // If still not found, return the original key

@@ -1,7 +1,8 @@
 # Release Notes
 
 ## Upcomming Version
-
+- Bugfix :
+  - Fallback to master language for missing translation tags
 
 
 ## 5.2.0
@@ -29,11 +30,11 @@
 ## 5.1.1
 - Further adjustments to token font sizes
 - French translations role name changes :
-  - Vendeur de jouets -> Fabricant de jouets 
-  - Libraire infernal -> Bibliothécaire de l'Enfer 
-  - Ami des corbeaux -> Gardien des corbeaux 
-  - Charmeur -> Charmeur de Serpents 
-  - Mercenaire -> Chasseur de primes 
+  - Vendeur de jouets -> Fabricant de jouets
+  - Libraire infernal -> Bibliothécaire de l'Enfer
+  - Ami des corbeaux -> Gardien des corbeaux
+  - Charmeur -> Charmeur de Serpents
+  - Mercenaire -> Chasseur de primes
   - Maître de Typhon -> Seigneur de Typhon
 
 ## 5.1.0
@@ -45,7 +46,7 @@
   - Now possible to launch Trouble Brewing Advanced
 
 ## 5.0.2
-- Fixed : Missing translation for organ grinder votes 
+- Fixed : Missing translation for organ grinder votes
 - Fixed : Custom role incorrectly formated when sent to players
 - Fixed : Custom traveler roles not being automatically shown to players
 
