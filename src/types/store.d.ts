@@ -25,7 +25,6 @@ export interface TimerDurations {
 // Grimoire state
 export interface GrimoireState {
   gamePhase: GamePhase;
-  isNight: boolean;
   isNightOrder: boolean;
   isRinging: boolean;
   isRooster: boolean;

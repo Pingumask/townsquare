@@ -1,12 +1,13 @@
 <template>
   <aside ref="sideMenu" class="sideMenu" :class="{ closed: !isSideMenuOpen }">
-    <div v-if="!session.isSpectator">
+    <div>
       <h3>
-        <span>{{ t('townsquare.storytellerTools') }}</span>
+        <span v-if="!session.isSpectator">{{ t('townsquare.storytellerTools') }}</span>
+        <span v-if="session.isSpectator && grimoire.gamePhase !== 'day'">{{ t('modal.nightOrder.title') }}</span>
         <font-awesome-icon icon="times-circle" class="fa fa-times-circle" @click.stop="toggleSideMenu" />
         <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="toggleSideMenu" />
       </h3>
-      <div v-if="!grimoire.isNight">
+      <div v-if="grimoire.gamePhase === 'day'">
         <div class="button-group">
           <div class="button" @click="setTimer()">
             🕑 {{ timerDuration }} min
@@ -50,15 +51,18 @@
           </div>
         </div>
       </div>
-      <div class="button-group">
-        <div class="button" :class="{ disabled: grimoire.isNight }" @click="toggleNight()">
-          ☀
-        </div>
-        <div class="button" :class="{ disabled: !grimoire.isNight }" @click="toggleNight()">
+      <div v-if="!session.isSpectator" class="button-group">
+        <div class="button" :disabled="grimoire.gamePhase !== 'day'" @click="setGamePhase('firstNight')">
           ☽
         </div>
+        <div class="button" :disabled="grimoire.gamePhase === 'day'" @click="setGamePhase('day')">
+          ☀
+        </div>
+        <div class="button" :disabled="grimoire.gamePhase !== 'day'" @click="setGamePhase('otherNight')">
+          ☾
+        </div>
       </div>
-      <div class="button-group">
+      <div v-if="!session.isSpectator" class="button-group">
         <div class="button" @click="toggleRinging()">
           <font-awesome-icon :icon="['fas', 'bell']" />
         </div>
@@ -71,6 +75,7 @@
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import { useTranslation, isActiveNomination } from '@/composables';
+import type { GamePhase } from '@/types';
 
 const store = useStore();
 const { t } = useTranslation();
@@ -99,9 +104,9 @@ const toggleSideMenu = () => {
   isSideMenuOpen.value = !isSideMenuOpen.value;
 };
 
-const toggleNight = () => {
-  store.commit("toggleNight");
-  if (grimoire.value.isNight) {
+const setGamePhase = (phase: GamePhase) => {
+  store.commit("setGamePhase", phase);
+  if (grimoire.value.gamePhase !== "day") {
     store.commit("session/setMarkedPlayer", -1);
   }
   else {

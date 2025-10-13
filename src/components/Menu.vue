@@ -40,15 +40,6 @@
             </template>
             <em>[G]</em>
           </li>
-          <li v-if="!session.isSpectator" @click="toggleNight">
-            <template v-if="!grimoire.isNight">
-              {{ t('menu.grimoire.nightSwitch') }}
-            </template>
-            <template v-if="grimoire.isNight">
-              {{ t('menu.grimoire.daySwitch') }}
-            </template>
-            <em>[S]</em>
-          </li>
           <li v-if="!session.isSpectator" @click="toggleRinging">
             {{ t('menu.grimoire.ringBell') }}
             <em>[B]</em>
@@ -492,17 +483,6 @@ const clearRoles = () => {
   }
 };
 
-const toggleNight = () => {
-  store.commit('toggleNight');
-  if (grimoire.value.isNight) {
-    store.commit('session/setMarkedPlayer', -1);
-  }
-  else {
-    store.commit('toggleRooster', true);
-    setTimeout(() => store.commit('toggleRooster', false), 4000);
-  }
-};
-
 const toggleOrganVoteMode = () => {
   store.commit('toggleOrganVoteMode');
 };
@@ -530,7 +510,6 @@ defineExpose({
   addPlayer,
   hostSession,
   joinSession,
-  toggleNight,
   toggleRinging,
 });
 </script>

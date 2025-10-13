@@ -15,7 +15,7 @@ export interface GameInfo {
 }
 
 // Game phases
-export type GamePhase = "setup" | "night" | "day" | "vote" | "ended";
+export type GamePhase = "firstNight" | "day" | "otherNight";
 
 // Timer
 export interface Timer {

@@ -113,17 +113,6 @@ const removeFabled = (index: number) => {
   store.commit("players/setFabled", { index });
 };
 
-const toggleNight = () => {
-  store.commit("toggleNight");
-  if (grimoire.value.isNight) {
-    store.commit("session/setMarkedPlayer", -1);
-  }
-  else {
-    store.commit("toggleRooster", true);
-    setTimeout(() => store.commit("toggleRooster", false), 4000);
-  }
-};
-
 const toggleRinging = () => {
   store.commit("toggleRinging", true);
   setTimeout(() => store.commit("toggleRinging", false), 4000);
@@ -142,7 +131,6 @@ const handleTrigger = (playerIndex: number, event: string | [string] | [string, 
     toggleBluffs,
     toggleFabled,
     removeFabled,
-    toggleNight,
     toggleRinging,
   };
 

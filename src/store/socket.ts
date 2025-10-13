@@ -1,4 +1,11 @@
-import type { StoreLike, RootState, Player, Role, Nomination } from "@/types";
+import type {
+  GamePhase,
+  Nomination,
+  Player,
+  Role,
+  RootState,
+  StoreLike,
+} from "@/types";
 
 // Lightweight, typed WebSocket plugin ported from the JS implementation.
 // Maintains parity with the original behavior while avoiding explicit any.
@@ -53,7 +60,7 @@ class LiveSession {
       this._wss +
         channel +
         "/" +
-        (this._isSpectator ? this._store.state.session.playerId : "host"),
+        (this._isSpectator ? this._store.state.session.playerId : "host")
     );
     this._socket.addEventListener("message", this._handleMessage.bind(this));
     this._socket.onopen = this._onOpen.bind(this);
@@ -66,7 +73,7 @@ class LiveSession {
         this._store.commit("session/setReconnecting", true);
         this._reconnectTimer = setTimeout(
           () => this.connect(channel),
-          3 * 1000,
+          3 * 1000
         );
       } else {
         this._store.commit("session/setSessionId", "");
@@ -98,7 +105,7 @@ class LiveSession {
   _sendDirect(
     playerId: string | undefined | null,
     command: string,
-    params: unknown,
+    params: unknown
   ) {
     if (playerId) {
       this._send("direct", { [playerId]: [command, params] });
@@ -116,7 +123,7 @@ class LiveSession {
       this._sendDirect(
         "host",
         "getGamestate",
-        this._store.state.session.playerId,
+        this._store.state.session.playerId
       );
     } else {
       this.sendGamestate();
@@ -163,12 +170,12 @@ class LiveSession {
           params as {
             edition: RootState["edition"];
             roles?: Array<Role | Record<string, unknown>>;
-          },
+          }
         );
         break;
       case "fabled":
         this._updateFabled(
-          params as Array<Role | { id: string; isCustom?: boolean }>,
+          params as Array<Role | { id: string; isCustom?: boolean }>
         );
         break;
       case "gs":
@@ -180,7 +187,7 @@ class LiveSession {
             index: number;
             property: keyof Player;
             value: unknown;
-          },
+          }
         );
         break;
       case "claim":
@@ -188,7 +195,7 @@ class LiveSession {
         break;
       case "ping":
         this._handlePing(
-          params as [(number | undefined)?, unknown?] | undefined,
+          params as [(number | undefined)?, unknown?] | undefined
         );
         break;
       case "nomination":
@@ -200,10 +207,10 @@ class LiveSession {
             isOrganVoteMode: this._store.state.grimoire.isOrganVoteMode,
             localeTexts: {
               exile: (this._store.getters["t"] as (key: string) => string)(
-                "modal.voteHistory.exile",
+                "modal.voteHistory.exile"
               ),
               execution: (this._store.getters["t"] as (key: string) => string)(
-                "modal.voteHistory.execution",
+                "modal.voteHistory.execution"
               ),
             },
           });
@@ -228,9 +235,9 @@ class LiveSession {
         if (!this._isSpectator) return;
         this._store.commit("session/setMarkedPlayer", params);
         break;
-      case "isNight":
+      case "gamePhase":
         if (!this._isSpectator) return;
-        this._store.commit("toggleNight", !!params);
+        this._store.commit("setGamePhase", params);
         break;
       case "isOrganVoteMode":
         if (!this._isSpectator) return;
@@ -289,7 +296,7 @@ class LiveSession {
     if (!this._store.state.session.playerId) {
       this._store.commit(
         "session/setPlayerId",
-        Math.random().toString(36).substr(2),
+        Math.random().toString(36).substr(2)
       );
     }
     this._pings = {};
@@ -346,7 +353,7 @@ class LiveSession {
       this.sendEdition(playerId);
       this._sendDirect(playerId, "gs", {
         gamestate: this._gamestate,
-        isNight: grimoire.isNight,
+        gamePhase: grimoire.gamePhase,
         isRinging: grimoire.isRinging,
         isRooster: grimoire.isRooster,
         timer: grimoire.timer,
@@ -373,7 +380,7 @@ class LiveSession {
     const {
       gamestate,
       isLightweight,
-      isNight,
+      gamePhase,
       isVoteHistoryAllowed,
       isRinging,
       isOrganVoteMode,
@@ -395,7 +402,7 @@ class LiveSession {
         roleId?: string;
       }>;
       isLightweight?: boolean;
-      isNight?: boolean;
+      gamePhase: GamePhase;
       isVoteHistoryAllowed?: boolean;
       isRinging?: boolean;
       isOrganVoteMode?: boolean;
@@ -434,13 +441,13 @@ class LiveSession {
           ) {
             this._store.commit("players/update", { player, property, value });
           }
-        },
+        }
       );
       if (player && roleId && player.role.id !== roleId) {
         const role =
           this._store.state.roles.get(roleId) ||
           (this._store.getters["rolesJSONbyId"] as Map<string, Role>).get(
-            roleId,
+            roleId
           );
         if (role)
           this._store.commit("players/update", {
@@ -459,7 +466,7 @@ class LiveSession {
     if (!isLightweight) {
       this._store.commit("timer", timer);
       this._store.commit("toggleRinging", !!isRinging);
-      this._store.commit("toggleNight", !!isNight);
+      this._store.commit("setGamePhase", gamePhase);
       this._store.commit("session/setVoteHistoryAllowed", isVoteHistoryAllowed);
       this._store.commit("toggleOrganVoteMode", !!isOrganVoteMode);
       this._store.commit("session/nomination", {
@@ -521,7 +528,7 @@ class LiveSession {
         alert(
           `This session contains custom characters that can't be found. ` +
             `Please load them before joining! ` +
-            `Missing roles: ${missing.join(", ")}`,
+            `Missing roles: ${missing.join(", ")}`
         );
         this.disconnect();
         this._store.commit("toggleModal", "edition");
@@ -537,7 +544,7 @@ class LiveSession {
     const { fabled } = this._store.state.players;
     this._send(
       "fabled",
-      fabled.map((f) => (f.isCustom ? f : { id: f.id })),
+      fabled.map((f) => (f.isCustom ? f : { id: f.id }))
     );
   }
 
@@ -623,7 +630,7 @@ class LiveSession {
         const role =
           this._store.state.roles.get(value as string) ||
           (this._store.getters["rolesJSONbyId"] as Map<string, Role>).get(
-            value as string,
+            value as string
           ) ||
           {};
         this._store.commit("players/update", {
@@ -689,7 +696,7 @@ class LiveSession {
    */
   _handlePing([playerIdOrCount = 0, latency]: [
     (number | undefined)?,
-    unknown?,
+    unknown?
   ] = []) {
     const now = new Date().getTime();
     if (!this._isSpectator) {
@@ -723,7 +730,7 @@ class LiveSession {
           const pings = Object.values(this._pings);
           this._store.commit(
             "session/setPing",
-            Math.round(pings.reduce((a, b) => a + b, 0) / pings.length),
+            Math.round(pings.reduce((a, b) => a + b, 0) / pings.length)
           );
         }
       }
@@ -735,7 +742,7 @@ class LiveSession {
     if (!this._isSpectator || playerIdOrCount) {
       this._store.commit(
         "session/setPlayerCount",
-        this._isSpectator ? playerIdOrCount : Object.keys(this._players).length,
+        this._isSpectator ? playerIdOrCount : Object.keys(this._players).length
       );
     }
   }
@@ -750,7 +757,7 @@ class LiveSession {
     delete this._players[playerId];
     this._store.commit(
       "session/setPlayerCount",
-      Object.keys(this._players).length,
+      Object.keys(this._players).length
     );
   }
 
@@ -856,11 +863,11 @@ class LiveSession {
   }
 
   /**
-   * Send the isNight status. ST only
+   * Send the gamePhase status. ST only
    */
-  setIsNight() {
+  setGamePhase() {
     if (this._isSpectator) return;
-    this._send("isNight", this._store.state.grimoire.isNight);
+    this._send("gamePhase", this._store.state.grimoire.gamePhase);
   }
 
   /**
@@ -902,7 +909,7 @@ class LiveSession {
     if (this._isSpectator) return;
     this._send(
       "isVoteHistoryAllowed",
-      this._store.state.session.isVoteHistoryAllowed,
+      this._store.state.session.isVoteHistoryAllowed
     );
   }
 
@@ -1054,7 +1061,7 @@ export default (store: StoreLike<RootState>) => {
   store.subscribe(
     (
       { type, payload }: { type: string; payload?: unknown },
-      state: RootState,
+      state: RootState
     ) => {
       switch (type) {
         case "session/setSessionId":
@@ -1095,8 +1102,8 @@ export default (store: StoreLike<RootState>) => {
         case "session/setVoteHistoryAllowed":
           session.setVoteHistoryAllowed();
           break;
-        case "toggleNight":
-          session.setIsNight();
+        case "setGamePhaset":
+          session.setGamePhase();
           break;
         case "toggleOrganVoteMode":
           session.setIsOrganVoteMode();
@@ -1146,7 +1153,7 @@ export default (store: StoreLike<RootState>) => {
                 player: Player;
                 value: string;
                 isFromSockets: boolean;
-              },
+              }
             );
           } else {
             session.sendPlayer(
@@ -1154,13 +1161,13 @@ export default (store: StoreLike<RootState>) => {
                 player: Player;
                 property: keyof Player | "role";
                 value: unknown;
-              },
+              }
             );
           }
           break;
         }
       }
-    },
+    }
   );
 
   // check for session Id in hash

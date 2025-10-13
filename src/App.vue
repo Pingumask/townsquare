@@ -1,6 +1,6 @@
 <template>
   <div id="app" tabindex="-1" :class="{
-    night: grimoire.isNight,
+    night: grimoire.gamePhase !== 'day',
     static: grimoire.isStatic,
   }" :style="{
     backgroundImage: `url('${background}')`,
@@ -61,7 +61,6 @@ interface MenuRef {
   addPlayer: () => void;
   hostSession: () => void;
   joinSession: () => void;
-  toggleNight: () => void;
   toggleRinging: () => void;
 }
 
@@ -116,10 +115,6 @@ function keyup({ key, ctrlKey, metaKey }: KeyboardEvent) {
       if (session.value.voteHistory.length || !session.value.isSpectator) {
         store.commit("toggleModal", "voteHistory");
       }
-      break;
-    case "s":
-      if (session.value.isSpectator) return;
-      menuRef.value?.toggleNight();
       break;
     case "b":
       if (session.value.isSpectator) return;
@@ -286,7 +281,8 @@ ul {
     color: red;
   }
 
-  &.disabled {
+  &.disabled,
+  &[disabled=true] {
     color: gray;
     cursor: default;
     opacity: 0.75;

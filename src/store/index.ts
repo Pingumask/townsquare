@@ -3,6 +3,7 @@ import type {
   Edition,
   EditionsJSON,
   FabledJSON,
+  GamePhase,
   JinxesJSON,
   LocaleModule,
   PlayersMenuState,
@@ -74,10 +75,10 @@ const initializeStore = async () => {
       rolesJSON.default
         .filter(
           (r) =>
-            r.edition === edition.id || (edition.roles || []).includes(r.id),
+            r.edition === edition.id || (edition.roles || []).includes(r.id)
         )
         .sort((a, b) => String(b.team).localeCompare(String(a.team)))
-        .map((role) => [role.id, role] as const),
+        .map((role) => [role.id, role] as const)
     );
   };
 
@@ -88,9 +89,9 @@ const initializeStore = async () => {
           (r) =>
             r.team === "traveler" &&
             r.edition !== edition.id &&
-            !(edition.roles || []).includes(r.id),
+            !(edition.roles || []).includes(r.id)
         )
-        .map((role) => [role.id, role] as const),
+        .map((role) => [role.id, role] as const)
     );
   };
 
@@ -114,13 +115,13 @@ const initializeStore = async () => {
   };
 
   const editionJSONbyId = new Map(
-    editionJSON.official.map((edition) => [edition.id, edition] as const),
+    editionJSON.official.map((edition) => [edition.id, edition] as const)
   );
   const rolesJSONbyId = new Map(
-    rolesJSON.default.map((role) => [role.id, role] as const),
+    rolesJSON.default.map((role) => [role.id, role] as const)
   );
   const fabled = new Map(
-    fabledJSON.default.map((role) => [role.id, role] as const),
+    fabledJSON.default.map((role) => [role.id, role] as const)
   );
 
   // jinxes
@@ -132,10 +133,10 @@ const initializeStore = async () => {
           [
             clean(id),
             new Map(
-              hatred.map(({ id, reason }) => [clean(id), reason] as const),
+              hatred.map(({ id, reason }) => [clean(id), reason] as const)
             ),
-          ] as const,
-      ),
+          ] as const
+      )
     );
   } catch (e) {
     console.error("couldn't load jinxes", e);
@@ -168,7 +169,7 @@ const initializeStore = async () => {
     },
     state: {
       grimoire: {
-        isNight: false,
+        gamePhase: "day",
         isNightOrder: false,
         isRinging: false,
         isRooster: false,
@@ -279,9 +280,7 @@ const initializeStore = async () => {
             const roleObj = role as unknown as Record<string, unknown>;
             const customObj = customRole as unknown as Record<string, unknown>;
             for (const prop in roleObj) {
-              if (
-                strippedProps.includes(prop as (typeof strippedProps)[number])
-              )
+              if (strippedProps.includes(prop as typeof strippedProps[number]))
                 continue;
               const value = roleObj[prop];
               if (customKeys.includes(prop) && value !== customObj[prop]) {
@@ -303,13 +302,15 @@ const initializeStore = async () => {
       toggleMenu: toggle("isMenuOpen"),
       toggleNightOrder: toggle("isNightOrder"),
       toggleStatic: toggle("isStatic"),
-      toggleNight: toggle("isNight"),
       toggleRinging: toggle("isRinging"),
       toggleRooster: toggle("isRooster"),
       toggleGrimoire: toggle("isPublic"),
       toggleImageOptIn: toggle("isImageOptIn"),
       toggleStreamerMode: toggle("isStreamerMode"),
       toggleOrganVoteMode: toggle("isOrganVoteMode"),
+      setGamePhase: (state: RootState, phase: GamePhase) => {
+        state.grimoire.gamePhase = phase;
+      },
       setTimer(state: RootState, timer: { name?: string; duration?: number }) {
         state.grimoire.timer = timer as Required<
           Pick<RootState["grimoire"]["timer"], "name" | "duration">
@@ -323,13 +324,13 @@ const initializeStore = async () => {
         }: {
           type: keyof RootState["grimoire"]["timerDurations"];
           duration: number;
-        },
+        }
       ) {
         state.grimoire.timerDurations[type] = duration;
       },
       setTimerDurations(
         state: RootState,
-        durations: Partial<RootState["grimoire"]["timerDurations"]>,
+        durations: Partial<RootState["grimoire"]["timerDurations"]>
       ) {
         state.grimoire.timerDurations = {
           ...state.grimoire.timerDurations,
@@ -350,7 +351,7 @@ const initializeStore = async () => {
       },
       setCustomRoles(
         state: RootState,
-        roles: Array<Role | Record<string, unknown>>,
+        roles: Array<Role | Record<string, unknown>>
       ) {
         const processedRoles = roles
           .map((role) => {
@@ -381,7 +382,7 @@ const initializeStore = async () => {
           .map(
             (role) =>
               rolesJSONbyId.get(role.id) ||
-              state.roles.get(role.id) || { ...customRole, ...role },
+              state.roles.get(role.id) || { ...customRole, ...role }
           )
           .map((role) => {
             if (rolesJSONbyId.get(role.id)) return role;
@@ -407,7 +408,7 @@ const initializeStore = async () => {
         state.roles = new Map(
           processedRoles
             .filter((role) => role.team !== "fabled")
-            .map((role) => [role.id, role] as const),
+            .map((role) => [role.id, role] as const)
         );
 
         state.fabled = new Map([
@@ -422,9 +423,9 @@ const initializeStore = async () => {
             .filter(
               (r) =>
                 r.team === "traveler" &&
-                !roles.some((i) => (i as Role).id === r.id),
+                !roles.some((i) => (i as Role).id === r.id)
             )
-            .map((role) => [role.id, role] as const),
+            .map((role) => [role.id, role] as const)
         );
       },
       setEdition(state: RootState, edition: Edition) {
