@@ -14,6 +14,7 @@ const faIcons = [
   "Bell",
   "BookOpen",
   "BookDead",
+  "Bug",
   "Chair",
   "CkeckDouble",
   "CheckSquare",

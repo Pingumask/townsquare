@@ -55,7 +55,8 @@
       "nightOrder": "Night Order Sheet",
       "gameState": "Game State JSON",
       "discord": "Join Discord",
-      "source": "Source code"
+      "source": "Source code",
+      "issues": "Report bug / request feature"
     }
   },
   "prompt": {

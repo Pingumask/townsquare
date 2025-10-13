@@ -1,7 +1,9 @@
 # Release Notes
 
 ## Upcomming Version
-- Bugfix :
+- Feature :
+  - Add link to github issues- Bugfix :
+- Bugfix
   - Fallback to master language for missing translation tags
 
 
