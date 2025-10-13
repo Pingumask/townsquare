@@ -4,6 +4,7 @@ export { default as Intro } from "./Intro.vue";
 export { default as Menu } from "./Menu.vue";
 export { default as RoleIcon } from "./RoleIcon.vue";
 export { default as Seat } from "./Seat.vue";
+export { default as SideMenu } from "./SideMenu.vue";
 export { default as Token } from "./Token.vue";
 export { default as TownInfo } from "./TownInfo.vue";
 export { default as TownSquare } from "./TownSquare.vue";
