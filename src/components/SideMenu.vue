@@ -2,10 +2,10 @@
   <aside ref="sideMenu" class="sideMenu" :class="{ closed: !isSideMenuOpen }">
     <div>
       <h3>
-        <span v-if="!session.isSpectator">{{ t('townsquare.storytellerTools') }}</span>
-        <span v-if="session.isSpectator && grimoire.gamePhase !== 'day'">{{ t('modal.nightOrder.title') }}</span>
         <font-awesome-icon icon="times-circle" class="fa fa-times-circle" @click.stop="toggleSideMenu" />
         <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="toggleSideMenu" />
+        <span v-if="!session.isSpectator">{{ t('townsquare.storytellerTools') }}</span>
+        <span v-if="session.isSpectator && grimoire.gamePhase !== 'day'">{{ t('modal.nightOrder.title') }}</span>
       </h3>
       <div v-if="grimoire.gamePhase === 'day'">
         <div class="button-group">
@@ -51,6 +51,12 @@
           </div>
         </div>
       </div>
+      <div v-if="grimoire.gamePhase === 'firstNight'" class="night-order-container">
+        <NightOrderTable night-type="first" />
+      </div>
+      <div v-if="grimoire.gamePhase === 'otherNight'" class="night-order-container">
+        <NightOrderTable night-type="other" />
+      </div>
       <div v-if="!session.isSpectator" class="button-group">
         <div class="button" :disabled="grimoire.gamePhase !== 'day'" @click="setGamePhase('firstNight')">
           ☽
@@ -74,6 +80,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
+import { NightOrderTable } from '@/components';
 import { useTranslation, isActiveNomination } from '@/composables';
 import type { GamePhase } from '@/types';
 
@@ -351,6 +358,31 @@ const stopTimer = () => {
     transition: all 250ms;
   }
 
+  .night-order-container {
+    max-height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 5px;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
+
   &.closed {
     svg.fa-times-circle {
       display: none;
@@ -361,7 +393,9 @@ const stopTimer = () => {
     }
 
     .button-group,
-    .button-group * {
+    .button-group *,
+    .night-order-container,
+    .night-order-container * {
       width: 0px;
       height: 0px;
       scale: 0;

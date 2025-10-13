@@ -370,39 +370,39 @@ function vote() {
 <style lang="scss">
 @use "../vars.scss" as *;
 
-.townsfolk {
+.townsfolk .token {
   --color: #1f65ff;
   --blend: multiply;
 }
 
-.outsider,
-.outsider.good {
+.outsider .token,
+.outsider.good .token {
   --color: #46d5ff;
   --blend: normal;
   filter: drop-shadow(#000c 0 0 8px);
 }
 
-.minion {
+.minion .token {
   --color: #ff6900;
   --blend: multiply;
 }
 
-.demon,
-.demon.evil {
+.demon .token,
+.demon.evil .token {
   --color: #ce0100;
   --blend: multiply;
 }
 
-.traveler {
+.traveler .token {
   --blend: multiply;
 }
 
-.good {
+.good .token {
   --color: #2956b8;
   --blend: multiply;
 }
 
-.evil {
+.evil .token {
   --color: #ff6900;
   --blend: multiply;
 }
