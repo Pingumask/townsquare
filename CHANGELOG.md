@@ -6,6 +6,7 @@
 - Bugfixes:
   - Unwanted space at the bottom or reference role modal
   - Outsider ability misplaced in night order modal
+  - Allowing alive players to vote even if Voudon is in play
 - Localization :
 - Technical :
 
