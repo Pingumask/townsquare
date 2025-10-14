@@ -287,12 +287,6 @@ const canVote = computed(() => {
     && !voudonInPlay.value
   ) return false;
 
-  if (
-    !player.value.isDead
-    && voudonInPlay.value
-    && !isFreeVote.value
-  ) return false; // Player is alive and a voudon is in play on a classic vote
-
   const sessionData = session.value;
   const playersCount = players.value.length;
   const index = players.value.indexOf(player.value);
