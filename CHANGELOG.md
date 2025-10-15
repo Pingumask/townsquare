@@ -6,6 +6,8 @@
   - Changing the name of the option for hidden votes
 - Bugfix
   - Fallback to master language for missing translation tags
+- Translation:
+  - French translation of "Something bad" reminder
 
 
 ## 5.2.0
