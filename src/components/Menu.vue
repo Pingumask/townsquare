@@ -1,6 +1,6 @@
 <template>
   <div id="controls">
-    <span v-show="session.voteHistory.length && session.sessionId" class="nomlog-summary"
+    <span v-show="session.sessionId && (session.isVoteHistoryAllowed || !session.isSpectator)" class="nomlog-summary"
       :title="`${session.voteHistory.length} recent ${session.voteHistory.length == 1 ? 'nomination' : 'nominations'}`"
       @click="toggleModal('voteHistory')">
       <font-awesome-icon icon="book-dead" class="fa fa-book-dead" />
@@ -135,7 +135,7 @@
               {{ t('menu.session.sendRoles') }}
               <em><font-awesome-icon icon="theater-masks" class="fa fa-theater-masks" /></em>
             </li>
-            <li v-if="session.voteHistory.length || !session.isSpectator" @click="toggleModal('voteHistory')">
+            <li v-if="session.isVoteHistoryAllowed || !session.isSpectator" @click="toggleModal('voteHistory')">
               {{ t('menu.session.voteHistory') }}<em>[V]</em>
             </li>
             <li v-if="!session.isSpectator" @click="toggleOrganVoteMode">
