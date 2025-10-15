@@ -272,7 +272,7 @@
       "voters": "Voters",
       "execution": "Execution",
       "exile": "Exile",
-      "hiddenVote": "The result is hidden because of the Organ Grinder"
+      "hiddenVote": "The result is hidden"
     },
     "specialvote": {
       "title": "Choose a vote type:",
