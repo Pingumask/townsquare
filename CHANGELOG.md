@@ -3,6 +3,7 @@
 ## Upcomming Version
 - Feature :
   - Add link to github issues- Bugfix :
+  - Making vote history by default unaccessible to players
 - Bugfix
   - Fallback to master language for missing translation tags
 
