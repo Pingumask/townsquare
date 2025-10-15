@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 - Features:
-
+  - Making vote history by default unaccessible to players
 - Bugfixes:
 
 - Localization :
