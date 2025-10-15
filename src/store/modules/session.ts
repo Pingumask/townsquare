@@ -38,7 +38,7 @@ const state = (): SessionState => ({
   voteHistory: [],
   markedPlayer: -1,
   playerForSpecialVote: -1,
-  isVoteHistoryAllowed: true,
+  isVoteHistoryAllowed: false,
   isRolesDistributed: false,
 });
 
@@ -110,7 +110,6 @@ const mutations = {
   ) {
     const { players, isOrganVoteMode = false, localeTexts } = payload;
 
-    if (!state.isVoteHistoryAllowed && state.isSpectator) return;
     if (
       !isActiveNomination(state.nomination) ||
       state.lockedVote <= players.length
