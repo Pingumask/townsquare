@@ -273,7 +273,7 @@
       "voters": "Votants",
       "execution": "Exécution",
       "exile": "Exil",
-      "hiddenVote": "Résultat caché par l'Organiste barbare"
+      "hiddenVote": "Le résultat est caché"
     },
     "specialvote": {
       "title": "Sélectionnez un type de vote :",
