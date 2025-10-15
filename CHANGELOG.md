@@ -5,6 +5,7 @@
   - Add link to github issues- Bugfix :
 - Bugfix
   - Fallback to master language for missing translation tags
+  - Allowing alive players to vote even if Voudon is in play
 
 
 ## 5.2.0
