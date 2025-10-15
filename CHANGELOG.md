@@ -5,6 +5,8 @@
   - Add link to github issues- Bugfix :
 - Bugfix
   - Fallback to master language for missing translation tags
+- Translation:
+  - French translation of Spirit of Ivory's reminder
 
 
 ## 5.2.0
