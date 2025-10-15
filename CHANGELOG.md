@@ -5,6 +5,8 @@
   - Add link to github issues- Bugfix :
 - Bugfix
   - Fallback to master language for missing translation tags
+- Translation:
+  - French translation of "Something bad" reminder
 
 
 ## 5.2.0
