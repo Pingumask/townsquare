@@ -3,6 +3,7 @@
 ## Upcomming Version
 - Feature :
   - Add link to github issues- Bugfix :
+  - Updating order of the roles (for the script creator)
 - Bugfix
   - Fallback to master language for missing translation tags
 
