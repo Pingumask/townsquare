@@ -3,10 +3,9 @@
 ## Upcomming Version
 - Feature :
   - Add link to github issues- Bugfix :
+  - Updating messages of hidden votes
 - Bugfix
   - Fallback to master language for missing translation tags
-- Translation:
-  - Updating french message of hidden votes, to match more recent Organ Grinder's name
 
 
 ## 5.2.0
