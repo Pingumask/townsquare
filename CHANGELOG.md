@@ -25,6 +25,7 @@
   - Better accessibility for background videos
 - French Translation :
   - Correcting French Lord of Typhon's description to match recent rules clarifications
+  - Uniformizing lower and upper cases to use the same logic as the original version
 
 ## 5.1.2
 - Fixed : Generic icons in night order modal
