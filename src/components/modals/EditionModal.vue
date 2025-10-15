@@ -83,6 +83,9 @@
           <div class="button" @click="resetBuilt">
             <font-awesome-icon :icon="['fas', 'trash-alt']" />
           </div>
+          <div class="button" @click="selectAll">
+            <font-awesome-icon :icon="['fab', 'docker']" />
+          </div>
           <div class="button" @click="initPool">
             <font-awesome-icon :icon="['fas', 'redo-alt']" />
           </div>
@@ -102,8 +105,7 @@
 import type { Role, Edition, ToggleableRole, ParsedRole, ScriptMeta } from "@/types";
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
-import Token from "../Token.vue";
-import Modal from "./Modal.vue";
+import { Modal, Token } from "@/components";
 import { useTranslation } from '@/composables';
 
 const { t } = useTranslation();
@@ -142,7 +144,7 @@ function toggleRole(id: string) {
 }
 
 function rolesForTeam(team: string) {
-  return draftPool.value?.filter((role: ToggleableRole) => role.team === team && !role.outOfDate) ?? [];
+  return draftPool.value?.filter((role: ToggleableRole) => role.team === team) ?? [];
 }
 
 function selectedInTeam(team: string) {
@@ -154,6 +156,12 @@ function selectedInTeam(team: string) {
 function resetBuilt() {
   for (let role of draftPool.value) {
     role.selected = false;
+  }
+
+}
+function selectAll() {
+  for (let role of draftPool.value) {
+    role.selected = true;
   }
 }
 

@@ -28,12 +28,11 @@
 </template>
 
 <script setup lang="ts">
-import type { Role, Player } from '@/types';
 import { computed, ref } from 'vue';
 import { useStore } from 'vuex';
-import Token from '../Token.vue';
-import Modal from './Modal.vue';
+import { Modal, Token } from '@/components';
 import { useTranslation } from '@/composables';
+import type { Role, Player } from '@/types';
 
 const { t } = useTranslation();
 const props = defineProps<{

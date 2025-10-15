@@ -13,8 +13,7 @@
 import type { Role } from '@/types';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import Token from '../Token.vue';
-import Modal from './Modal.vue';
+import { Modal, Token } from '@/components';
 import { useTranslation } from '@/composables';
 
 const { t } = useTranslation();

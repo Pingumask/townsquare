@@ -21,9 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import type { Player, Role } from '../types';
+import type { Player, Role } from '@/types';
 import { computed } from 'vue';
-import RoleIcon from './RoleIcon.vue';
+import { RoleIcon } from '@/components';
 
 const props = withDefaults(defineProps<{
   role?: Role;
@@ -58,43 +58,6 @@ function setRole() {
 </script>
 
 <style scoped lang="scss">
-.townsfolk {
-  --color: #1f65ff;
-  --blend: multiply;
-}
-
-.outsider,
-.outsider.good {
-  --color: #46d5ff;
-  --blend: normal;
-  filter: drop-shadow(#000c 0 0 8px);
-}
-
-.minion {
-  --color: #ff6900;
-  --blend: multiply;
-}
-
-.demon,
-.demon.evil {
-  --color: #ce0100;
-  --blend: multiply;
-}
-
-.traveler {
-  --blend: multiply;
-}
-
-.good {
-  --color: #2956b8;
-  --blend: multiply;
-}
-
-.evil {
-  --color: #ff6900;
-  --blend: multiply;
-}
-
 .token {
   border-radius: 50%;
   width: 100%;

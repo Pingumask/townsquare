@@ -97,6 +97,22 @@ const initializeStore = async () => {
   const clean = (id: string) =>
     id.toLocaleLowerCase().replace(/[^a-z0-9]/g, "");
 
+  // Create a map for alternate role names to main role IDs
+  const alternateRoleMap = new Map<string, string>();
+  rolesJSON.default.forEach((role) => {
+    if (role.alternates) {
+      role.alternates.forEach((alternate) => {
+        alternateRoleMap.set(clean(alternate), role.id);
+      });
+    }
+  });
+
+  // Helper function to resolve role ID, checking for alternates
+  const resolveRoleId = (id: string): string => {
+    const cleanId = clean(id);
+    return alternateRoleMap.get(cleanId) || cleanId;
+  };
+
   const editionJSONbyId = new Map(
     editionJSON.official.map((edition) => [edition.id, edition] as const),
   );
@@ -169,6 +185,16 @@ const initializeStore = async () => {
           name: "",
           duration: 0,
         },
+        timerDurations: {
+          daytime: 6,
+          nominations: 2,
+          dusk: 1,
+          accusation: 0.5,
+          defense: 0.5,
+          debate: 1,
+          custom: 1,
+          customDebate: 1,
+        },
       },
       playersMenu: {
         changePronouns: false,
@@ -231,7 +257,7 @@ const initializeStore = async () => {
 
         // If not found, try the master locale (English)
         if (result === null) {
-          result = traverse((masterLocale as LocaleModule).default, keys);
+          result = traverse(masterLocale.default, keys);
         }
 
         // If still not found, return the original key
@@ -289,6 +315,27 @@ const initializeStore = async () => {
           Pick<RootState["grimoire"]["timer"], "name" | "duration">
         >;
       },
+      setTimerDuration(
+        state: RootState,
+        {
+          type,
+          duration,
+        }: {
+          type: keyof RootState["grimoire"]["timerDurations"];
+          duration: number;
+        },
+      ) {
+        state.grimoire.timerDurations[type] = duration;
+      },
+      setTimerDurations(
+        state: RootState,
+        durations: Partial<RootState["grimoire"]["timerDurations"]>,
+      ) {
+        state.grimoire.timerDurations = {
+          ...state.grimoire.timerDurations,
+          ...durations,
+        };
+      },
       togglePlayersMenu(state: RootState, name: keyof PlayersMenuState) {
         state.playersMenu[name] = !state.playersMenu[name];
       },
@@ -326,7 +373,9 @@ const initializeStore = async () => {
           })
           .map((role) => {
             const r = role as unknown as Record<string, unknown>;
-            r["id"] = clean(String(r["id"]));
+            const originalId = String(r["id"]);
+            const resolvedId = resolveRoleId(originalId);
+            r["id"] = resolvedId;
             return r as unknown as Role;
           })
           .map(

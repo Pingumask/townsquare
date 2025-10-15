@@ -55,7 +55,8 @@
       "nightOrder": "Ordre Nocturne",
       "gameState": "Etat JSON du jeu",
       "discord": "Rejoindre Discord",
-      "source": "Code Source"
+      "source": "Code Source",
+      "issues": "Signaler un bug / Proposer une fonctionnalité"
     }
   },
   "prompt": {

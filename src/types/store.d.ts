@@ -1,8 +1,20 @@
-import type { Timer, Edition } from './game';
-import type { Nomination, VoteHistoryEntry } from './voting';
-import type { PlayersState } from './players';
-import type { EditionsJSON, LocaleModule } from './data';
-import type { Role } from './roles';
+import type { Timer, Edition } from "./game";
+import type { Nomination, VoteHistoryEntry } from "./voting";
+import type { PlayersState } from "./players";
+import type { EditionsJSON, LocaleModule } from "./data";
+import type { Role } from "./roles";
+
+// Timer durations for different timer types
+export interface TimerDurations {
+  daytime: number;
+  nominations: number;
+  dusk: number;
+  accusation: number;
+  defense: number;
+  debate: number;
+  custom: number;
+  customDebate: number;
+}
 
 // Grimoire state
 export interface GrimoireState {
@@ -20,6 +32,7 @@ export interface GrimoireState {
   zoom: number;
   background: string;
   timer: Timer;
+  timerDurations: TimerDurations;
 }
 
 // Modals state

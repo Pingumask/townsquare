@@ -14,13 +14,12 @@
 </template>
 
 <script setup lang="ts">
-import type { Reminder, Role, Player } from "../../types";
-import { SPECIAL_REMINDER_ROLES } from "@/utils/special-roles";
 import { computed } from "vue";
 import { useStore } from "vuex";
-import Modal from "./Modal.vue";
+import { Modal, RoleIcon } from '@/components';
 import { useRolePath, useTranslation } from '@/composables';
-import RoleIcon from "../RoleIcon.vue";
+import { SPECIAL_REMINDER_ROLES } from "@/store/modules/players";
+import type { Reminder, Role, Player } from "@/types";
 
 const { t } = useTranslation();
 const { rolePath } = useRolePath();

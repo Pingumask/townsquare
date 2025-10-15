@@ -123,14 +123,11 @@
 </template>
 
 <script setup lang="ts">
-import type { Player as PlayerType } from '../types';
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
+import { ReminderModal, RoleModal, Seat, Token } from '@/components';
 import { useTranslation, isActiveNomination } from '@/composables';
-import Seat from "./Seat.vue";
-import Token from "./Token.vue";
-import ReminderModal from "./modals/ReminderModal.vue";
-import RoleModal from "./modals/RoleModal.vue";
+import type { Player } from '@/types';
 
 const store = useStore();
 const { t } = useTranslation();
@@ -173,6 +170,7 @@ const timerName = ref("Timer");
 const timerDuration = ref(1);
 const timerOn = ref(false);
 const timerEnder = ref<ReturnType<typeof setTimeout> | null>(null);
+const currentTimerType = ref<keyof typeof grimoire.value.timerDurations | null>(null);
 // Methods converted to functions
 const toggleBluffs = () => {
   isBluffsOpen.value = !isBluffsOpen.value;
@@ -284,7 +282,7 @@ const removePlayer = (playerIndex: number) => {
   }
   store.commit("players/remove", playerIndex);
 };
-const swapPlayer = (from: number, to?: PlayerType) => {
+const swapPlayer = (from: number, to?: Player) => {
   if (session.value.isSpectator || session.value.lockedVote) return;
   if (to === undefined) {
     cancel();
@@ -312,7 +310,7 @@ const swapPlayer = (from: number, to?: PlayerType) => {
     cancel();
   }
 };
-const movePlayer = (from: number, to?: PlayerType) => {
+const movePlayer = (from: number, to?: Player) => {
   if (session.value.isSpectator || session.value.lockedVote) return;
   if (to === undefined) {
     cancel();
@@ -342,7 +340,7 @@ const movePlayer = (from: number, to?: PlayerType) => {
   }
 };
 
-const nominatePlayer = (from: number, to?: PlayerType) => {
+const nominatePlayer = (from: number, to?: Player) => {
   if (session.value.isSpectator || session.value.lockedVote) return;
   if (to === undefined) {
     cancel();
@@ -378,22 +376,26 @@ const renameTimer = () => {
 };
 
 const setDaytimeTimer = () => {
-  timerDuration.value = 8;
+  currentTimerType.value = 'daytime';
+  timerDuration.value = grimoire.value.timerDurations.daytime;
   timerName.value = t('townsquare.timer.daytime.text');
 };
 
 const setNominationTimer = () => {
-  timerDuration.value = 2;
+  currentTimerType.value = 'nominations';
+  timerDuration.value = grimoire.value.timerDurations.nominations;
   timerName.value = t('townsquare.timer.nominations.text');
 };
 
 const setDuskTimer = () => {
-  timerDuration.value = 1;
+  currentTimerType.value = 'dusk';
+  timerDuration.value = grimoire.value.timerDurations.dusk;
   timerName.value = t('townsquare.timer.dusk.text');
 };
 const setAccusationTimer = () => {
   if (!isActiveNomination(session.value.nomination)) return;
 
+  currentTimerType.value = 'accusation';
   timerDuration.value = 1;
   const nomination = session.value.nomination;
 
@@ -418,10 +420,12 @@ const setAccusationTimer = () => {
   timerName.value = timerText;
 };
 
+
 const setDefenseTimer = () => {
   if (!isActiveNomination(session.value.nomination)) return;
 
-  timerDuration.value = 1;
+  currentTimerType.value = 'defense';
+  timerDuration.value = grimoire.value.timerDurations.defense;
   const nomination = session.value.nomination;
 
   let timerText = t('townsquare.timer.defense.text');
@@ -444,10 +448,12 @@ const setDefenseTimer = () => {
 
   timerName.value = timerText;
 };
+
 const setDebateTimer = () => {
   if (!isActiveNomination(session.value.nomination)) return;
 
-  timerDuration.value = 2;
+  currentTimerType.value = 'debate';
+  timerDuration.value = grimoire.value.timerDurations.debate;
   const nomination = session.value.nomination;
 
   let timerText = t('townsquare.timer.debate.text');
@@ -464,7 +470,8 @@ const setDebateTimer = () => {
 const setSpecialVoteTimer = () => {
   if (!isActiveNomination(session.value.nomination)) return;
 
-  timerDuration.value = 1;
+  currentTimerType.value = 'custom';
+  timerDuration.value = grimoire.value.timerDurations.custom;
   const nomination = session.value.nomination;
 
   // Get nominator name
@@ -482,7 +489,8 @@ const setSpecialVoteTimer = () => {
 const setSpecialDebateTimer = () => {
   if (!isActiveNomination(session.value.nomination)) return;
 
-  timerDuration.value = 2;
+  currentTimerType.value = 'customDebate';
+  timerDuration.value = grimoire.value.timerDurations.customDebate;
   const nomination = session.value.nomination;
 
   // Get the debate text
@@ -497,12 +505,19 @@ const setSpecialDebateTimer = () => {
   timerName.value = timerText;
 };
 const setTimer = () => {
-  let newDuration = prompt(t('townsquare.timer.prompt.duration'));
+  const newDuration = prompt(t('townsquare.timer.prompt.duration'));
   if (isNaN(Number(newDuration))) {
     return alert(t('townsquare.timer.prompt.durationError'));
   }
   if (Number(newDuration) > 0) {
     timerDuration.value = Number(newDuration);
+    // Save the new duration for the current timer type
+    if (currentTimerType.value) {
+      store.commit('setTimerDuration', {
+        type: currentTimerType.value,
+        duration: Number(newDuration)
+      });
+    }
   }
 };
 
@@ -578,63 +593,100 @@ const stopTimer = () => {
     &:nth-child(#{$i}) {
       transform: rotate($rot * 1deg);
 
-      @if $i - 1 <=math.div($item-count, 2) {
-        // first half of players
-        z-index: $item-count - $i + 1;
+      $quarter: math.div($item-count, 4);
+      $position: $i - 1;
 
-        // open menu on the left
+      .player>.menu {
+        left: -50%;
+        right: -50%;
+      }
+
+      @if ($position < $quarter) {
         .player>.menu {
-          left: auto;
-          right: 110%;
-          margin-right: 15px;
-
-          &:before {
-            border-left-color: black;
-            border-right-color: transparent;
-            right: auto;
-            left: 100%;
-          }
-        }
-
-        .fold-enter-active,
-        .fold-leave-active {
-          transform-origin: right center;
-        }
-
-        .fold-enter,
-        .fold-leave-to {
-          transform: perspective(200px) rotateY(-90deg);
-        }
-
-        // show ability tooltip on the left
-        .ability {
-          right: 120%;
-          left: auto;
-
-          &:before {
-            border-right-color: transparent;
-            border-left-color: black;
-            right: auto;
-            left: 100%;
-          }
-        }
-
-        .pronouns {
-          left: 110%;
+          top: calc(100% + 0.25em);
+          bottom: auto;
           right: auto;
+          left: -20%;
+        }
 
-          &:before {
-            border-left-color: transparent;
-            border-right-color: black;
-            left: auto;
-            right: 100%;
-          }
+        .fold-enter-from,
+        .fold-leave-to {
+          transform: perspective(200px) rotateX(-90deg);
+        }
+      }
+
+      @else if ($position <=$quarter * 2) {
+        .player>.menu {
+          transform-origin: center bottom;
+          bottom: 1.52em;
+          top: auto;
+          right: auto;
+          left: -20%;
+        }
+
+        .fold-enter-from,
+        .fold-leave-to {
+          transform: perspective(200px) rotateX(90deg);
+        }
+      }
+
+      @else if ($position <=$quarter * 3) {
+        .player>.menu {
+          transform-origin: center bottom;
+          bottom: 1.52em;
+          top: auto;
+          right: -10%;
+          left: auto;
+        }
+
+        .fold-enter-from,
+        .fold-leave-to {
+          transform: perspective(200px) rotateX(90deg);
         }
       }
 
       @else {
-        // second half of players
-        z-index: $i - 1;
+        .player>.menu {
+          transform-origin: center top;
+          top: calc(100% + 0.25em);
+          bottom: auto;
+          right: -10%;
+          left: auto;
+        }
+
+        .fold-enter-from,
+        .fold-leave-to {
+          transform: perspective(200px) rotateX(-90deg);
+        }
+      }
+
+      @if ($position ==0) {
+        .player>ul.menu {
+          top: calc(100% + 0.25em);
+          bottom: auto;
+          left: -50%;
+          right: -40%;
+        }
+
+        .fold-enter-from,
+        .fold-leave-to {
+          transform: perspective(200px) rotateX(-90deg);
+        }
+      }
+
+      @else if ($position ==$quarter*2) {
+        .player>.menu {
+          transform-origin: center bottom;
+          bottom: 1.52em;
+          top: auto;
+          right: -40%;
+          left: -50%;
+        }
+
+        .fold-enter-from,
+        .fold-leave-to {
+          transform: perspective(200px) rotateX(90deg);
+        }
       }
 
       >* {

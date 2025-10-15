@@ -343,6 +343,16 @@
               </a>
             </em>
           </li>
+          <li>
+            <a href="https://github.com/Pingumask/townsquare/issues" target="_blank">
+              {{ t('menu.help.issues') }}
+            </a>
+            <em>
+              <a href="https://github.com/Pingumask/townsquare/issues" target="_blank">
+                <font-awesome-icon :icon="['fa', 'bug']" />
+              </a>
+            </em>
+          </li>
         </template>
       </ul>
     </div>

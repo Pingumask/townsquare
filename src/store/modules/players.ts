@@ -1,5 +1,53 @@
 import type { Player, Role, PlayersState, Edition } from "../../types";
 
+export const SPECIAL_REMINDER_ROLES = {
+  good: {
+    id: "good",
+    name: "Good",
+    team: "townsfolk",
+  } as Role,
+
+  evil: {
+    id: "evil",
+    name: "Evil",
+    team: "minion",
+  } as Role,
+
+  townsfolk: {
+    id: "townsfolk",
+    name: "Townsfolk",
+    team: "townsfolk",
+    image: new URL("@/assets/icons/townsfolk.png", import.meta.url).href,
+  } as Role,
+
+  outsider: {
+    id: "outsider",
+    name: "Outsider",
+    team: "outsider",
+    image: new URL("@/assets/icons/outsider.png", import.meta.url).href,
+  } as Role,
+
+  minion: {
+    id: "minion",
+    name: "Minion",
+    team: "minion",
+    image: new URL("@/assets/icons/minion.png", import.meta.url).href,
+  } as Role,
+
+  demon: {
+    id: "demon",
+    name: "Demon",
+    team: "demon",
+    image: new URL("@/assets/icons/demon.png", import.meta.url).href,
+  } as Role,
+
+  custom: {
+    id: "custom",
+    name: "Custom",
+    team: "default",
+  } as Role,
+};
+
 const NEWPLAYER: Player = {
   name: "",
   id: "",
@@ -27,8 +75,11 @@ const getters = {
     return Math.min(nontravelers.length, 15);
   },
   // calculate a Map of player => night order
-  nightOrder({ players, fabled }: PlayersState, _getters: unknown, { edition }: { edition: Edition }) {
-
+  nightOrder(
+    { players, fabled }: PlayersState,
+    _getters: unknown,
+    { edition }: { edition: Edition },
+  ) {
     // gives the index of the first night for a player. This function supposes that, if they are called, "player" has an attribute "role".
     function getFirstNight(player: Player, officialEdition: boolean): number {
       if (officialEdition && player.role.firstNightEdition) {
@@ -44,7 +95,6 @@ const getters = {
       }
       return player.role.otherNight || 0;
     }
-
 
     const firstNight: (Player | Role | number)[] = [0];
     const otherNight: (Player | Role | number)[] = [0];
@@ -68,15 +118,26 @@ const getters = {
     // Else, (meaning x is instead a Fabled), to know their night order we look at x.firstNight or x.otherNight
     firstNight.sort(
       (a, b) =>
-        ((a as Player).role ? getFirstNight(a as Player, edition.isOfficial || false) : (a as Role).firstNight || 0) -
-        ((b as Player).role ? getFirstNight(b as Player, edition.isOfficial || false) : (b as Role).firstNight || 0),
+        ((a as Player).role
+          ? getFirstNight(a as Player, edition.isOfficial || false)
+          : (a as Role).firstNight || 0) -
+        ((b as Player).role
+          ? getFirstNight(b as Player, edition.isOfficial || false)
+          : (b as Role).firstNight || 0),
     );
     otherNight.sort(
       (a, b) =>
-        ((a as Player).role ? getOtherNight(a as Player, edition.isOfficial || false) : (a as Role).otherNight || 0) -
-        ((b as Player).role ? getOtherNight(b as Player, edition.isOfficial || false) : (b as Role).otherNight || 0),
+        ((a as Player).role
+          ? getOtherNight(a as Player, edition.isOfficial || false)
+          : (a as Role).otherNight || 0) -
+        ((b as Player).role
+          ? getOtherNight(b as Player, edition.isOfficial || false)
+          : (b as Role).otherNight || 0),
     );
-    const nightOrder = new Map<Player | Role, { first: number; other: number }>();
+    const nightOrder = new Map<
+      Player | Role,
+      { first: number; other: number }
+    >();
     players.forEach((player: Player) => {
       const first = Math.max(firstNight.indexOf(player), 0);
       const other = Math.max(otherNight.indexOf(player), 0);
@@ -92,8 +153,13 @@ const getters = {
 };
 
 const actions = {
-
-  randomize({ state, commit }: { state: PlayersState; commit: (mutation: string, payload?: unknown) => void }) {
+  randomize({
+    state,
+    commit,
+  }: {
+    state: PlayersState;
+    commit: (mutation: string, payload?: unknown) => void;
+  }) {
     const players = state.players
       .map((a: Player) => [Math.random(), a] as [number, Player])
       .sort((a, b) => a[0] - b[0])
@@ -101,7 +167,15 @@ const actions = {
     commit("set", players);
   },
 
-  clearRoles({ state, commit, rootState }: { state: PlayersState; commit: (mutation: string, payload?: unknown) => void; rootState: { session: { isSpectator: boolean } } }) {
+  clearRoles({
+    state,
+    commit,
+    rootState,
+  }: {
+    state: PlayersState;
+    commit: (mutation: string, payload?: unknown) => void;
+    rootState: { session: { isSpectator: boolean } };
+  }) {
     let players: Player[];
     if (rootState.session.isSpectator) {
       players = state.players.map((player: Player) => {
@@ -142,10 +216,18 @@ const mutations = {
   in socket.js.
    */
 
-  update(state: PlayersState, { player, property, value }: { player: Player; property: keyof Player; value: unknown }) {
+  update(
+    state: PlayersState,
+    {
+      player,
+      property,
+      value,
+    }: { player: Player; property: keyof Player; value: unknown },
+  ) {
     const index = state.players.indexOf(player);
     if (index >= 0) {
-      (state.players[index] as unknown as Record<string, unknown>)[property] = value;
+      (state.players[index] as unknown as Record<string, unknown>)[property] =
+        value;
     }
   },
   add(state: PlayersState, name: string) {
@@ -170,14 +252,20 @@ const mutations = {
   move(state: PlayersState, [from, to]: [number, number]) {
     state.players.splice(to, 0, state.players.splice(from, 1)[0]!);
   },
-  setBluff(state: PlayersState, { index, role }: { index?: number; role?: Role } = {}) {
+  setBluff(
+    state: PlayersState,
+    { index, role }: { index?: number; role?: Role } = {},
+  ) {
     if (index !== undefined) {
       state.bluffs.splice(index, 1, role!);
     } else {
       state.bluffs = [];
     }
   },
-  setFabled(state: PlayersState, { index, fabled }: { index?: number; fabled?: Role | Role[] } = {}) {
+  setFabled(
+    state: PlayersState,
+    { index, fabled }: { index?: number; fabled?: Role | Role[] } = {},
+  ) {
     if (index !== undefined) {
       state.fabled.splice(index, 1);
     } else if (fabled) {

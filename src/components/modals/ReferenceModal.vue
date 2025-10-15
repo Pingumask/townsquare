@@ -32,7 +32,7 @@
         <h4>{{ t('modal.reference.jinxed') }}</h4>
       </aside>
       <ul>
-        <li v-for="(jinx, index) in jinxed" :key="index">
+        <li v-for="(jinx, index) in jinxed" :key="index" class="jinxed">
           <RoleIcon :role="jinx.first" />
           <RoleIcon :role="jinx.second" />
           <div class="role">
@@ -51,11 +51,11 @@
 </template>
 
 <script setup lang="ts">
-import type { Role, Player, JinxInfo } from '../../types';
 import { computed } from "vue";
 import { useStore } from "vuex";
-import Modal from "./Modal.vue";
+import { Modal } from '@/components';
 import { useTranslation } from '@/composables';
+import type { Role, Player, JinxInfo } from '@/types';
 
 import RoleIcon from '../RoleIcon.vue';
 
@@ -232,6 +232,18 @@ h3 {
     grid-template-columns: 6vmin 6vmin 1fr;
     align-items: center;
   }
+
+  picture:first-of-type {
+    position: relative;
+    left: 0.5rem;
+    top: -0.75rem;
+  }
+
+  picture:last-of-type {
+    position: relative;
+    right: 0.5rem;
+    bottom: -0.75rem;
+  }
 }
 
 .asterisk {
@@ -276,8 +288,11 @@ h3 {
   }
 
   &.jinxed {
-    .icon {
+
+    .icon,
+    picture {
       width: 6vmin;
+      height: 6vmin
     }
   }
 }

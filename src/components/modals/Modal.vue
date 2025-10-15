@@ -54,6 +54,9 @@ const close = () => {
   flex-direction: column;
   width: 90vw;
   max-width: 1800px;
+  max-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   .editions &,
   .vote-history &,

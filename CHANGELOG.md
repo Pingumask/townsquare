@@ -1,12 +1,28 @@
 # Release Notes
 
 ## Upcomming Version
+- Feature :
+  - Add link to github issues- Bugfix :
+- Bugfix
+  - Fallback to master language for missing translation tags
+
+
+## 5.2.0
+- Feature :
+  - Timer duration is now saved for each timer type
+  - Better Jinx display in the reference modal
+  - Select all button in script builder
+  - Better handling of roles that officially changed names (gipsy & mephit)
+  - Better playerMenu positioning
 - Bug fixes :
   - Reminders match the color of their role's team
   - Printing the correct type of the special votes (for now only CL) in the vote history
+  - Role picker now correctly displays a scrollbar when needed (whalebuffet becomes playable)
 - Code quality :
   - Moved functions from types folder to composables folder
   - Use full Role instead of Role['id'] for reminders
+  - Modernized components imports
+  - Better accessibility for background videos
 - French Translation :
   - Correcting French Lord of Typhon's description to match recent rules clarifications
   - Uniformizing lower and upper cases to use the same logic as the original version
@@ -17,11 +33,11 @@
 ## 5.1.1
 - Further adjustments to token font sizes
 - French translations role name changes :
-  - Vendeur de jouets -> Fabricant de jouets 
-  - Libraire infernal -> Bibliothécaire de l'Enfer 
-  - Ami des corbeaux -> Gardien des corbeaux 
-  - Charmeur -> Charmeur de Serpents 
-  - Mercenaire -> Chasseur de primes 
+  - Vendeur de jouets -> Fabricant de jouets
+  - Libraire infernal -> Bibliothécaire de l'Enfer
+  - Ami des corbeaux -> Gardien des corbeaux
+  - Charmeur -> Charmeur de Serpents
+  - Mercenaire -> Chasseur de primes
   - Maître de Typhon -> Seigneur de Typhon
 
 ## 5.1.0
@@ -33,7 +49,7 @@
   - Now possible to launch Trouble Brewing Advanced
 
 ## 5.0.2
-- Fixed : Missing translation for organ grinder votes 
+- Fixed : Missing translation for organ grinder votes
 - Fixed : Custom role incorrectly formated when sent to players
 - Fixed : Custom traveler roles not being automatically shown to players
 

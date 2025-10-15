@@ -90,7 +90,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useStore } from "vuex";
-import Modal from "./Modal.vue";
+import { Modal } from '@/components';
 import { useTranslation } from '@/composables';
 
 const { t } = useTranslation();

@@ -18,7 +18,7 @@
 import type { Role, Player } from '@/types';
 import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
-import Modal from "./Modal.vue";
+import { Modal } from '@/components';
 import { useTranslation } from '@/composables';
 
 const { t } = useTranslation();

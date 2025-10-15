@@ -175,12 +175,11 @@
 </template>
 
 <script setup lang="ts">
-import type { Player, Reminder } from "../types";
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
-import Token from "./Token.vue";
+import { RoleIcon, Token } from "@/components";
 import { useTranslation, isActiveNomination } from '@/composables';
-import RoleIcon from "./RoleIcon.vue";
+import type { Player, Reminder } from "@/types";
 
 const { t } = useTranslation();
 interface Props {
@@ -411,13 +410,8 @@ function vote() {
 .fold-enter-active,
 .fold-leave-active {
   transition: transform 250ms ease-in-out;
-  transform-origin: left center;
-  transform: perspective(200px);
-}
-
-.fold-enter,
-.fold-leave-to {
-  transform: perspective(200px) rotateY(90deg);
+  transform-origin: center top;
+  transform: perspective(200px) rotate-X(0deg);
 }
 
 picture {
@@ -885,6 +879,7 @@ li.move:not(.from) .player .overlay svg.move {
 
 /***** Player menu *****/
 .player>.menu {
+  z-index: 10;
   position: absolute;
   left: 110%;
   bottom: -5px;
@@ -898,18 +893,6 @@ li.move:not(.from) .player .overlay svg.move {
   cursor: pointer;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   user-select: none;
-
-  &:before {
-    content: " ";
-    width: 0;
-    height: 0;
-    position: absolute;
-    border: 10px solid transparent;
-    border-right-color: black;
-    right: 100%;
-    bottom: 5px;
-    margin-right: 2px;
-  }
 
   li:hover {
     color: red;

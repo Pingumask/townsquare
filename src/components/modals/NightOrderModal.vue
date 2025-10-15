@@ -75,12 +75,11 @@
 </template>
 
 <script setup lang="ts">
-import type { NightOrderRole, Role, Player } from "../../types";
 import { computed } from "vue";
 import { useStore } from "vuex";
-import Modal from "./Modal.vue";
 import { useTranslation } from '@/composables';
-import RoleIcon from "../RoleIcon.vue";
+import { Modal, RoleIcon } from '@/components';
+import type { NightOrderRole, Role, Player } from "@/types";
 
 const { t } = useTranslation();
 const store = useStore();
