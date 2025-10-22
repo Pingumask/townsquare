@@ -1865,6 +1865,21 @@
     "ability": "If there are 5 or more players alive, you must vote for every nomination."
   },
   {
+    "id": "ogre",
+    "name": "Ogre",
+    "edition": "",
+    "team": "outsider",
+    "firstNight": 66,
+    "firstNightReminder": "The Ogre points to a player (not themselves) and becomes their alignment.",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [
+      "Friend"
+    ],
+    "setup": false,
+    "ability": "On your 1st night, choose a player (not yourself): you become their alignment (you don't know which) even if drunk or poisoned."
+  },
+  {
     "id": "hermit",
     "name": "Hermit",
     "edition": "",
@@ -1880,21 +1895,6 @@
     ],
     "setup": true,
     "ability": "You have all Outsider abilities. [-0 or -1 Outsiders]"
-  },
-  {
-    "id": "ogre",
-    "name": "Ogre",
-    "edition": "",
-    "team": "outsider",
-    "firstNight": 66,
-    "firstNightReminder": "The Ogre points to a player (not themselves) and becomes their alignment.",
-    "otherNight": 0,
-    "otherNightReminder": "",
-    "reminders": [
-      "Friend"
-    ],
-    "setup": false,
-    "ability": "On your 1st night, choose a player (not yourself): you become their alignment (you don't know which) even if drunk or poisoned."
   },
   {
     "id": "widow",
