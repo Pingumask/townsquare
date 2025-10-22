@@ -2025,22 +2025,6 @@
     "ability": "Les votes sont à bulletin secret et les résultats ne sont pas annoncés. Chaque nuit, choisissez si vous êtes ivre jusqu'au crépuscule."
   },
   {
-    "id": "harpy",
-    "name": "Harpie",
-    "edition": "",
-    "team": "minion",
-    "firstNight": 39,
-    "firstNightReminder": "Réveillez la Harpie. Elle désigne deux joueurs, l'un après l'autre. Réveillez le premier joueur, et lui révéler qu'il est persuadé par la Harpie que le second est mauvais.",
-    "otherNight": 24,
-    "otherNightReminder": "Réveillez la Harpie. Elle désigne deux joueurs, l'un après l'autre. Réveillez le premier joueur, et lui révéler qu'il est persuadé par la Harpie que le second est mauvais.",
-    "reminders": [
-      "Persuadé",
-      "2nd"
-    ],
-    "setup": false,
-    "ability": "Chaque nuit, désignez deux joueurs : demain, le premier sera persuadé que le second est mauvais, ou il se peut que l'un ou les deux meurent."
-  },
-  {
     "id": "summoner",
     "name": "Invocateur",
     "edition": "",
@@ -2069,6 +2053,22 @@
     "reminders": [],
     "setup": false,
     "ability": "Tous les joueurs savent que vous êtes le Vizir. Vous ne pouvez mourir le jour. Si un bon vote, vous pouvez choisir d'exécuter immédiatement."
+  },
+  {
+    "id": "harpy",
+    "name": "Harpie",
+    "edition": "",
+    "team": "minion",
+    "firstNight": 39,
+    "firstNightReminder": "Réveillez la Harpie. Elle désigne deux joueurs, l'un après l'autre. Réveillez le premier joueur, et lui révéler qu'il est persuadé par la Harpie que le second est mauvais.",
+    "otherNight": 24,
+    "otherNightReminder": "Réveillez la Harpie. Elle désigne deux joueurs, l'un après l'autre. Réveillez le premier joueur, et lui révéler qu'il est persuadé par la Harpie que le second est mauvais.",
+    "reminders": [
+      "Persuadé",
+      "2nd"
+    ],
+    "setup": false,
+    "ability": "Chaque nuit, désignez deux joueurs : demain, le premier sera persuadé que le second est mauvais, ou il se peut que l'un ou les deux meurent."
   },
   {
     "id": "xaan",
