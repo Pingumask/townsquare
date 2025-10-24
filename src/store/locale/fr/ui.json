@@ -249,7 +249,8 @@
       "title": "Choisissez un personnage pour",
       "bluff": "bluffer",
       "editionRoles": "Rôles de ce Scénario",
-      "othertravelers": "Autres Voyageurs"
+      "othertravelers": "Autres Voyageurs",
+      "search": "Chercher parmi les personnages & capacités"
     },
     "roles": {
       "titleStart": "Selectionner les personnages pour ",

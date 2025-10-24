@@ -4,6 +4,7 @@
 - Feature :
   - Add link to github issues
   - Handle Loric characters (moved Gardener, Stormcatcher, Bootlegger to Loric team). Loric characters are still loaded from fabled.json and handled in the same way as Fabled characters, the change is mainly visual.
+  - Search bar in role picker (searches in character name, id, ability, first night reminder & other night reminder)
 - Bugfix
   - Changing the name of the option for hidden votes to be more generic
   - Fallback to master language for missing translation tags

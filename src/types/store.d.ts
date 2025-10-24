@@ -18,6 +18,7 @@ export interface TimerDurations {
 
 // Grimoire state
 export interface GrimoireState {
+  disableHotkeys: boolean;
   isNight: boolean;
   isNightOrder: boolean;
   isRinging: boolean;

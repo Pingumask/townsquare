@@ -248,7 +248,8 @@
       "title": "Choose a new character for",
       "bluff": "bluffing",
       "editionRoles": "Edition Roles",
-      "othertravelers": "Other travelers"
+      "othertravelers": "Other travelers",
+      "search": "Search characters & abilities"
     },
     "roles": {
       "titleStart": "Select the characters for ",

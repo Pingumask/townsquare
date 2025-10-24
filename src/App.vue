@@ -84,7 +84,7 @@ const backgroundColor = computed(() => {
 });
 
 function keyup({ key, ctrlKey, metaKey }: KeyboardEvent) {
-  if (ctrlKey || metaKey) return;
+  if (ctrlKey || metaKey || grimoire.value.disableHotkeys) return;
   switch (key.toLocaleLowerCase()) {
     case "g":
       store.commit("toggleGrimoire");
