@@ -295,11 +295,27 @@ h4 {
 }
 
 .fabled {
+  --blend: normal;
+  --color: #ffe91f;
+
   .name {
     background: linear-gradient(90deg, $fabled, transparent 35%);
 
     .night .other & {
       background: linear-gradient(-90deg, $fabled, transparent 35%);
+    }
+  }
+}
+
+.loric {
+  --blend: normal;
+  --color: #4fda66;
+
+  .name {
+    background: linear-gradient(90deg, $loric, transparent 35%);
+
+    .night .other & {
+      background: linear-gradient(-90deg, $loric, transparent 35%);
     }
   }
 }

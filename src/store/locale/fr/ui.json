@@ -46,7 +46,7 @@
       "title": "Personnages",
       "selectEdition": "Choisir Scénario",
       "assign": "Attribuer Rôles",
-      "addFabled": "Ajouter Fabuleux",
+      "addFabled": "Mythes/Légendes",
       "removeAll": "Effacer Rôles"
     },
     "help": {
@@ -103,7 +103,7 @@
   "townsquare": {
     "others": "Autres Rôles",
     "bluffs": "Bluffs de Démon",
-    "fabled": "Fabuleux",
+    "fabled": "Mythes & Légendes",
     "storytellerTools": "Narration",
     "timer": {
       "default": {
@@ -199,7 +199,7 @@
       }
     },
     "fabled": {
-      "title": "Choisissez un personnage fabuleux à ajouter à la partie"
+      "title": "Choisissez un mythe ou une légende à ajouter à la partie"
     },
     "gameState": {
       "title": "État Actuel de la Partie",

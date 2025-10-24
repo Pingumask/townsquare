@@ -46,7 +46,7 @@
       "title": "Characters",
       "selectEdition": "Select Edition",
       "assign": "Choose & Assign",
-      "addFabled": "Add Fabled",
+      "addFabled": "Add Fabled or Loric",
       "removeAll": "Remove all"
     },
     "help": {
@@ -103,7 +103,7 @@
   "townsquare": {
     "others": "Other characters",
     "bluffs": "Demon bluffs",
-    "fabled": "Fabled",
+    "fabled": "Fabled & Lorics",
     "storytellerTools": "Storytelling",
     "timer": {
       "default": {
@@ -198,7 +198,7 @@
       }
     },
     "fabled": {
-      "title": "Choose a fabled character to add to the game "
+      "title": "Choose a fabled or loric to add to the game "
     },
     "gameState": {
       "title": "Current Game State",

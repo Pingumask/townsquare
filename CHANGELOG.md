@@ -3,11 +3,14 @@
 ## Upcomming Version
 - Feature :
   - Add link to github issues
+  - Handle Loric characters (moved Gardener, Stormcatcher, Bootlegger to Loric team). Loric characters are still loaded from fabled.json and handled in the same way as Fabled characters, the change is mainly visual.
 - Bugfix
   - Changing the name of the option for hidden votes to be more generic
   - Fallback to master language for missing translation tags
 - Translation:
-  - French translation of "Something bad" reminder
+  - Fr:
+    - Prédicateur reminder : Catastrophe -> Malédiction
+    - Fabuleux -> Mythes
 - Technical :
   - Upgraded version of Vite (fixes 2 moderate vulnerabilities in dev environments)
 
