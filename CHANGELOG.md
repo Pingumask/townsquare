@@ -1,6 +1,10 @@
 # Release Notes
 
 ## Upcomming Version
+
+
+
+## 5.3.0
 - Feature :
   - Add link to github issues
   - Handle Loric characters (moved Gardener, Stormcatcher, Bootlegger to Loric team). Loric characters are still loaded from fabled.json and handled in the same way as Fabled characters, the change is mainly visual.
