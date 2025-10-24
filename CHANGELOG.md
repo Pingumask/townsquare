@@ -2,12 +2,14 @@
 
 ## Upcomming Version
 - Feature :
-  - Add link to github issues- Bugfix :
-  - Changing the name of the option for hidden votes
+  - Add link to github issues
 - Bugfix
+  - Changing the name of the option for hidden votes to be more generic
   - Fallback to master language for missing translation tags
 - Translation:
   - French translation of "Something bad" reminder
+- Technical :
+  - Upgraded version of Vite (fixes 2 moderate vulnerabilities in dev environments)
 
 
 ## 5.2.0
