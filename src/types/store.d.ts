@@ -62,6 +62,7 @@ export interface SessionState {
   votes: boolean[];
   lockedVote: number;
   votingSpeed: number;
+  allowSelfNaming: boolean;
   isVoteInProgress: boolean;
   voteHistory: VoteHistoryEntry[];
   markedPlayer: number;

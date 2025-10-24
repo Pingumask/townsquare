@@ -104,11 +104,14 @@
             <font-awesome-icon icon="venus-mars" class="fa fa-venus-mars" />
             {{ t('player.changePronouns') }}
           </li>
+          <li v-if="
+            !session.isSpectator ||
+            (session.allowSelfNaming && session.isSpectator && player.id === session.playerId)
+          " @click="changeName">
+            <font-awesome-icon icon="user-edit" class="fa fa-user-edit" />
+            {{ t('player.changeName') }}
+          </li>
           <template v-if="!session.isSpectator">
-            <li v-if="playersMenu.changeName" @click="changeName">
-              <font-awesome-icon icon="user-edit" class="fa fa-user-edit" />
-              {{ t('player.changeName') }}
-            </li>
             <li v-if="playersMenu.movePlayer" :class="{ disabled: session.lockedVote }" @click="movePlayer()">
               <font-awesome-icon icon="redo-alt" class="fa fa-redo-alt" />
               {{ t('player.movePlayer') }}
@@ -294,9 +297,11 @@ function switchAlignment() {
 }
 
 function changeName() {
-  if (session.value.isSpectator) return;
-  const name = prompt("Player name", props.player.name) || props.player.name;
-  updatePlayer("name", name, true);
+  if (session.value.isSpectator && props.player.id !== session.value.playerId) return;
+  const name = prompt(t('prompt.addPlayer'), props.player.name) || props.player.name;
+  if (name !== null && name !== "") {
+    updatePlayer("name", name, true);
+  }
 }
 
 function removeReminder(reminder: Reminder) {
@@ -309,7 +314,8 @@ function updatePlayer(property: keyof Player, value: unknown, closeMenu = false)
   if (
     session.value.isSpectator &&
     property !== "reminders" &&
-    property !== "pronouns"
+    property !== "pronouns" &&
+    property !== "name"
   )
     return;
   store.commit("players/update", {
@@ -355,6 +361,11 @@ function cancel() {
 function claimSeat() {
   isMenuOpen.value = false;
   emit("trigger", ["claimSeat"]);
+  if (props.player.name === " ") {
+    setTimeout(() => {
+      changeName();
+    }, 100);
+  }
 }
 
 function vote() {

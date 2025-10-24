@@ -30,11 +30,13 @@
       "sendRoles": "Envoyer les rôles",
       "voteHistory": "Historique Votes",
       "secretVote": "Vote secret",
+      "selfNaming": "Auto-Renommage",
       "leave": "Quitter Session"
     },
     "players": {
       "title": "Joueurs",
-      "add": "Ajouter",
+      "add": "Ajouter Siège",
+      "addMany": "Ajouter Sièges",
       "randomize": "Mélanger Sièges",
       "removeAll": "Retirer Joueurs"
     },

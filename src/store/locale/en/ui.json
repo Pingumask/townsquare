@@ -30,11 +30,13 @@
       "sendRoles": "Send Characters",
       "voteHistory": "Vote history",
       "secretVote": "Hidden Vote",
+      "selfNaming": "Allow self-naming",
       "leave": "Leave Session"
     },
     "players": {
       "title": "Players",
-      "add": "Add",
+      "add": "Add Seat",
+      "addMany": "Add Seats",
       "randomize": "Randomize",
       "removeAll": "Remove all"
     },
