@@ -1,0 +1,7 @@
+.git
+.editorconfig
+.eslint.config.js
+.gitignore
+.github
+.vscode
+dist

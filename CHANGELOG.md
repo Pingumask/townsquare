@@ -13,6 +13,7 @@
     - Fabuleux -> Mythes
 - Technical :
   - Upgraded version of Vite (fixes 2 moderate vulnerabilities in dev environments)
+  - Added a .dockerignore file
 
 
 ## 5.2.0
