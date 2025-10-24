@@ -40,6 +40,7 @@ const state = (): SessionState => ({
   playerForSpecialVote: -1,
   isVoteHistoryAllowed: true,
   isRolesDistributed: false,
+  isSecretVote: false,
 });
 
 const getters = {};
@@ -65,6 +66,7 @@ const mutations = {
   setPlayerForSpecialVote: set("playerForSpecialVote"),
   setNomination: set("nomination"),
   setVoteHistoryAllowed: set("isVoteHistoryAllowed"),
+  setSecretVote: set("isSecretVote"),
   claimSeat: set("claimedSeat"),
   distributeRoles: set("isRolesDistributed"),
   setSessionId(state: SessionState, sessionId: string) {
@@ -166,6 +168,9 @@ const mutations = {
   voteSync: handleVote,
   lockVote(state: SessionState, lock?: number) {
     state.lockedVote = lock !== undefined ? lock : state.lockedVote + 1;
+  },
+  toggleSecretVote(state: SessionState, value?: boolean) {
+    state.isSecretVote = value !== undefined ? value : !state.isSecretVote;
   },
 };
 
