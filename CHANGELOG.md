@@ -14,7 +14,7 @@
 - Technical :
   - Upgraded version of Vite (fixes 2 moderate vulnerabilities in dev environments)
   - Added a .dockerignore file
-
+  - Removed apk update from Dokerfile (useless as no apk install follows)
 
 ## 5.2.0
 - Feature :
