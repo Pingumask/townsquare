@@ -1,7 +1,9 @@
 # Release Notes
 
 ## Upcomming Version
-
+- Features:
+  - Moved hidden votes option to the session menu
+  - Added hidden votes option to the storytelling tools
 
 
 ## 5.3.0

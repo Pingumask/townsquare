@@ -84,6 +84,12 @@
         </div>
       </div>
       <div class="button-group">
+        <div class="button" :class="{ disabled: grimoire.isNight }" @click="toggleHiddenVote()">
+          <font-awesome-icon v-if="grimoire.isOrganVoteMode" :icon="['fas', 'eye-slash']" />
+          <font-awesome-icon v-if="!grimoire.isOrganVoteMode" :icon="['fas', 'eye']" />
+        </div>
+      </div>
+      <div class="button-group">
         <div class="button" @click="toggleRinging()">
           <font-awesome-icon :icon="['fas', 'bell']" />
         </div>
@@ -198,6 +204,10 @@ const toggleNight = () => {
     store.commit("toggleRooster", true);
     setTimeout(() => store.commit("toggleRooster", false), 4000);
   }
+};
+
+const toggleHiddenVote = () => {
+  store.commit("toggleOrganVoteMode");
 };
 
 const toggleRinging = () => {
