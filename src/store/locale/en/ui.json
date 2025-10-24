@@ -30,6 +30,7 @@
       "link": "Copy player link",
       "sendRoles": "Send Characters",
       "voteHistory": "Vote history",
+      "selfNaming": "Allow self-naming",
       "leave": "Leave Session"
     },
     "players": {

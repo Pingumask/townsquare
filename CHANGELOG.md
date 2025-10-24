@@ -1,7 +1,8 @@
 # Release Notes
 
 ## Upcomming Version
-
+- Features:
+  - Allow self renames
 
 
 ## 5.3.0

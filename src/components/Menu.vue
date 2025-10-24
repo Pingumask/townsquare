@@ -144,6 +144,13 @@
             <li v-if="session.voteHistory.length || !session.isSpectator" @click="toggleModal('voteHistory')">
               {{ t('menu.session.voteHistory') }}<em>[V]</em>
             </li>
+            <li v-if="!session.isSpectator" @click="toggleSelfNaming">
+              {{ t('menu.session.selfNaming') }}
+              <em><font-awesome-icon :icon="[
+                'fas',
+                session.allowSelfNaming ? 'check-square' : 'square',
+              ]" /></em>
+            </li>
             <li @click="leaveSession">
               {{ t('menu.session.leave') }}
               <em>{{ session.sessionId }}</em>
@@ -501,6 +508,14 @@ const toggleNight = () => {
     store.commit('toggleRooster', true);
     setTimeout(() => store.commit('toggleRooster', false), 4000);
   }
+};
+
+const toggleSelfNaming = () => {
+  if (session.value.isSpectator) return;
+  store.commit(
+    "session/setAllowSelfNaming",
+    !session.value.allowSelfNaming
+  );
 };
 
 const toggleOrganVoteMode = () => {

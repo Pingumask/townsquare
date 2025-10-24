@@ -15,7 +15,7 @@ import { isActiveNomination, isTravelerExile } from "../../composables";
  */
 const handleVote = (
   state: SessionState,
-  [index, vote]: [number, boolean | undefined],
+  [index, vote]: [number, boolean | undefined]
 ) => {
   if (!state.nomination) return;
   state.votes = [...state.votes];
@@ -34,6 +34,7 @@ const state = (): SessionState => ({
   votes: [],
   lockedVote: 0,
   votingSpeed: 1000,
+  allowSelfNaming: false,
   isVoteInProgress: false,
   voteHistory: [],
   markedPlayer: -1,
@@ -64,6 +65,7 @@ const mutations = {
   setMarkedPlayer: set("markedPlayer"),
   setPlayerForSpecialVote: set("playerForSpecialVote"),
   setNomination: set("nomination"),
+  setAllowSelfNaming: set("allowSelfNaming"),
   setVoteHistoryAllowed: set("isVoteHistoryAllowed"),
   claimSeat: set("claimedSeat"),
   distributeRoles: set("isRolesDistributed"),
@@ -87,7 +89,7 @@ const mutations = {
       votingSpeed?: number;
       lockedVote?: number;
       isVoteInProgress?: boolean;
-    } = {},
+    } = {}
   ) {
     state.nomination = nomination ?? null;
     state.votes = votes || [];
@@ -106,7 +108,7 @@ const mutations = {
       players: Player[];
       isOrganVoteMode?: boolean;
       localeTexts?: { exile: string; execution: string };
-    },
+    }
   ) {
     const { players, isOrganVoteMode = false, localeTexts } = payload;
 
@@ -141,7 +143,7 @@ const mutations = {
           ? texts.exile
           : texts.execution + (organGrinder && !state.isSpectator ? "*" : "")),
       majority: Math.ceil(
-        players.filter((player) => !player.isDead || isExile).length / 2,
+        players.filter((player) => !player.isDead || isExile).length / 2
       ),
       votes:
         organGrinder && state.isSpectator
