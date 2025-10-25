@@ -1,7 +1,7 @@
 # Release Notes
 
 ## Upcomming Version
-
+- Updating the jinxes
 
 
 ## 5.3.0
