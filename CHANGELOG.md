@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 
-
+- Adding upper cases to "Fabled" and "Loric"
 
 ## 5.3.0
 - Feature :
