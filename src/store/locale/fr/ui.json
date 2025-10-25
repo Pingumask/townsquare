@@ -196,6 +196,13 @@
         "clipboard": "Presse-papier",
         "back": "Retour",
         "startDraft": "Démarrer un draft"
+      },
+      "build": {
+        "resetBuilt": "Tout supprimer",
+        "selectAll": "Whale bucket (tous les rôles)",
+        "initPool": "Réinitialiser",
+        "randomizeBuilt": "Rôle aléatoires",
+        "startBuilt": "Jouer le script"
       }
     },
     "fabled": {

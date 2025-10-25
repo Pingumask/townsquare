@@ -195,6 +195,13 @@
         "url": "Enter URL",
         "clipboard": "Use JSON from Clipboard",
         "back": "Back"
+      },
+      "build": {
+        "resetBuilt": "Delete all",
+        "selectAll": "Whale bucket (all roles)",
+        "initPool": "Reset",
+        "randomizeBuilt": "Random roles",
+        "startBuilt": "Play the script"
       }
     },
     "fabled": {

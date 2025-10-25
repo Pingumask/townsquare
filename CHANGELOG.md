@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 
-
+- In the script builder, adding titles to the buttons
 
 ## 5.3.0
 - Feature :
