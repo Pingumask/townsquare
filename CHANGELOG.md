@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 
-
+- Making the Travelers icons two-colored
 
 ## 5.3.0
 - Feature :
