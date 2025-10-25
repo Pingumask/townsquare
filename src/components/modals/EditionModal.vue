@@ -80,19 +80,19 @@
           </ul>
         </section>
         <div class="button-group">
-          <div class="button" @click="resetBuilt" :title="t(`modal.edition.build.resetBuilt`)">
+          <div class="button" :title="t(`modal.edition.build.resetBuilt`)" @click="resetBuilt">
             <font-awesome-icon :icon="['fas', 'trash-alt']" />
           </div>
-          <div class="button" @click="selectAll" :title="t(`modal.edition.build.selectAll`)">
+          <div class="button" :title="t(`modal.edition.build.selectAll`)" @click="selectAll">
             <font-awesome-icon :icon="['fab', 'docker']" />
           </div>
-          <div class="button" @click="initPool" :title="t(`modal.edition.build.initPool`)">
+          <div class="button" :title="t(`modal.edition.build.initPool`)" @click="initPool">
             <font-awesome-icon :icon="['fas', 'redo-alt']" />
           </div>
-          <div class="button" @click="randomizeBuilt" :title="t(`modal.edition.build.randomizeBuilt`)">
+          <div class="button" :title="t(`modal.edition.build.randomizeBuilt`)" @click="randomizeBuilt">
             <font-awesome-icon :icon="['fas', 'random']" />
           </div>
-          <div class="button" @click="startBuilt" :title="t(`modal.edition.build.startBuilt`)">
+          <div class="button" :title="t(`modal.edition.build.startBuilt`)" @click="startBuilt">
             <font-awesome-icon :icon="['fas', 'play']" />
           </div>
         </div>
