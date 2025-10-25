@@ -138,7 +138,9 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNightReminder": "",
-    "reminders": [],
+    "reminders": [
+      "?"
+    ],
     "setup": false,
     "name": "Djinn",
     "team": "fabled",
@@ -187,7 +189,9 @@
     "firstNightReminder": "If applicable, use homebrew rule(s).",
     "otherNight": 3,
     "otherNightReminder": "If applicable, use homebrew rule(s).",
-    "reminders": [],
+    "reminders": [
+      "?"
+    ],
     "setup": false,
     "name": "Bootlegger",
     "team": "loric",

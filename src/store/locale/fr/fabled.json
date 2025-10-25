@@ -138,7 +138,9 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNightReminder": "",
-    "reminders": [],
+    "reminders": [
+      "?"
+    ],
     "setup": false,
     "name": "Djinn",
     "team": "fabled",
@@ -187,7 +189,9 @@
     "firstNightReminder": "Si applicables, utilisez la (les) règle(s) faite(s)-maison.",
     "otherNight": 3,
     "otherNightReminder": "Si applicables, utilisez la (les) règle(s) faite(s)-maison.",
-    "reminders": [],
+    "reminders": [
+      "?"
+    ],
     "setup": false,
     "name": "Contrebandier",
     "team": "loric",

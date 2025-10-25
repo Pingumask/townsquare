@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 
-
+- Adding custom reminder tokens for Amnesiac, Wizard, Bootlegger and Djinn
 
 ## 5.3.0
 - Feature :
