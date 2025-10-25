@@ -58,11 +58,11 @@
       },
       {
         "id": "Mastermind",
-        "reason": "Un Alchimiste-Conspirateur n'a pas la capacité du Conspirateur, et le Conspirateur est en jeu."
+        "reason": "Un Alchimiste-Conspirateur n'a pas la capacité du Conspirateur, et le Conspirateur n'est pas en jeu."
       },
       {
         "id": "Organ Grinder",
-        "reason": "Si l'Alchiste a la capacité de l'Organiste barbare, l'Organiste barbare est en jeu. S'ils ont tous les deux sobres, il deviennent tous les deux ivres."
+        "reason": "Si l'Alchiste a la capacité de l'Organiste barbare, l'Organiste barbare est en jeu. S'ils sont tous les deux sobres, il deviennent tous les deux ivres."
       },
       {
         "id": "Boffin",
@@ -247,7 +247,7 @@
     "hatred": [
       {
         "id": "Village Idiot",
-        "reason": "S'il y a moins de trois Idiots de Village, la Guenaude peut en créer un nouveau. S'il le fait, il se peut que l'Idiot du Village ivre change."
+        "reason": "S'il y a moins de trois Idiots de Village, la Guenaude peut en créer un nouveau. Si elle le fait, il se peut que l'Idiot du Village ivre change."
       },
       {
         "id": "Cult Leader",
@@ -418,7 +418,7 @@
     "hatred": [
       {
         "id": "Village Idiot",
-        "reason": "S'il y a moins de trois Idiots de Village, le Spécialiste peut donner au Démon la capacité de l'Idiot du Village."
+        "reason": "S'il y a moins de trois Idiots du Village, le Spécialiste peut donner au Démon la capacité de l'Idiot du Village."
       },
       {
         "id": "Cult Leader",
@@ -476,7 +476,7 @@
       },
       {
         "id": "Scarlet Woman",
-        "reason": "Si le Bébé monstre lorsqu'au moins 5 joueurs sont en vie, la Gourgandine récupère la garde du Bébé monstre pour le reste de la partie."
+        "reason": "Si le Bébé monstre meurt lorsqu'au moins 5 joueurs sont en vie, la Gourgandine récupère la garde du Bébé monstre pour le reste de la partie."
       },
       {
         "id": "Vizier",
@@ -506,7 +506,7 @@
       },
       {
         "id": "Minstrel",
-        "reason": "Si un membre de la Légion est mort par exécution aujourd'hui, la Légion garde sa capacité mais il se peut que le Prêcheur apprenne que ce joueur est Légion."
+        "reason": "Si un membre de la Légion est mort par exécution aujourd'hui, la Légion garde sa capacité mais il se peut que le Ménestrel apprenne que ce joueur est Légion."
       },
       {
         "id": "Hatter",
@@ -593,7 +593,7 @@
       },
       {
         "id": "Banshee",
-        "reason": "Chaque nuit*, le Léviathan désigne un joueur bon vivant (différent des nuits précédentes) : une Banshee désigné meurt et gagne sa capacité."
+        "reason": "Chaque nuit*, le Léviathan désigne un joueur bon vivant (différent des nuits précédentes) : une Banshee désignée meurt et gagne sa capacité."
       },
       {
         "id": "Mayor",
@@ -650,7 +650,7 @@
       },
       {
         "id": "Banshee",
-        "reason": "Chaque nuit*, l'Émeute désigne un joueur bon vivant (différent des nuits précédentes) : une Banshee désigné meurt et gagne sa capacité."
+        "reason": "Chaque nuit*, l'Émeute désigne un joueur bon vivant (différent des nuits précédentes) : une Banshee désignée meurt et gagne sa capacité."
       },
       {
         "id": "Mayor",
@@ -658,7 +658,7 @@
       },
       {
         "id": "Atheist",
-        "reason": "Pendant une émeute, si le Narrateur est accusé, les joeuurs votent. S'il est condamné, la partie prend immédiatement fin. Sinon, il accuse à son tour."
+        "reason": "Pendant une émeute, si le Narrateur est accusé, les joueurs votent. S'il est condamné, la partie prend immédiatement fin. Sinon, il accuse à son tour."
       }
     ]
   }
