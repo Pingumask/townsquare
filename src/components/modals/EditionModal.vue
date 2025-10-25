@@ -80,19 +80,19 @@
           </ul>
         </section>
         <div class="button-group">
-          <div class="button" @click="resetBuilt">
+          <div class="button" @click="resetBuilt" :title="t(`modal.edition.build.resetBuilt`)">
             <font-awesome-icon :icon="['fas', 'trash-alt']" />
           </div>
-          <div class="button" @click="selectAll">
+          <div class="button" @click="selectAll" :title="t(`modal.edition.build.selectAll`)">
             <font-awesome-icon :icon="['fab', 'docker']" />
           </div>
-          <div class="button" @click="initPool">
+          <div class="button" @click="initPool" :title="t(`modal.edition.build.initPool`)">
             <font-awesome-icon :icon="['fas', 'redo-alt']" />
           </div>
-          <div class="button" @click="randomizeBuilt">
+          <div class="button" @click="randomizeBuilt" :title="t(`modal.edition.build.randomizeBuilt`)">
             <font-awesome-icon :icon="['fas', 'random']" />
           </div>
-          <div class="button" @click="startBuilt">
+          <div class="button" @click="startBuilt" :title="t(`modal.edition.build.startBuilt`)">
             <font-awesome-icon :icon="['fas', 'play']" />
           </div>
         </div>
