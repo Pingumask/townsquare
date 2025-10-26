@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 
-
+- Bugfix: Printing the "custom.png" icon on custom reminders
 
 ## 5.3.0
 - Feature :
