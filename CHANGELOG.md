@@ -16,6 +16,7 @@
   - Updating order of the roles (for the script builder)
 - Localization :
   - Updating messages of hidden votes
+  - French translation of Spirit of Ivory's reminder
 
 ## 5.3.0
 - Feature :
