@@ -164,7 +164,7 @@
     <template v-if="props.player.reminders">
       <div v-for="reminder in props.player.reminders" :key="reminder.role.id + ' ' + reminder.name" class="reminder"
         :class="[reminder.role.id]" @click="removeReminder(reminder)">
-        <picture :class="reminder.role?.team" v-if="reminder.role.id !== 'custom'">
+        <picture v-if="reminder.role.id !== 'custom'" :class="reminder.role?.team">
           <RoleIcon :role="reminder.role" />
         </picture>
         <span class="text">{{ reminder.name }}</span>
