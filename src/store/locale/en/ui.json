@@ -76,7 +76,9 @@
     "clearRoles": "Are you sure you want to remove all player roles?",
     "customUrl": "Enter URL to a custom-script?json file",
     "customError": "Error loading custom script",
-    "customNote": "Add a custom reminder node"
+    "customNote": "Add a custom reminder node",
+    "customScriptName": "Customized script name",
+    "defaultScriptName": "Custom Script"
   },
   "vote": {
     "nominates": "nominates",

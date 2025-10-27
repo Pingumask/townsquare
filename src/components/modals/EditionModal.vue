@@ -185,6 +185,9 @@ function randomizeBuilt() {
 
 function startBuilt() {
   const selected = draftPool.value.filter((role: ToggleableRole) => role.selected);
+  const scriptName = prompt(t('prompt.customScriptName'), t('prompt.defaultScriptName'));
+  if (!scriptName) return;
+  selected.push({ id: "_meta", name: scriptName, edition: "custom" });
   parseRoles(selected);
 }
 

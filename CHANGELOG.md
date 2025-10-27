@@ -9,6 +9,7 @@
   - Adding customizable reminder tokens for Amnesiac, Wizard, Bootlegger and Djinn
   - Add several player seats at once (without names)
   - Allow self renames (Even if this option is unchecked, players are prompted for a name if they claim an unnamed seat)
+  - Prompt for script name when starting a custom script from script builder
 - Bugfixes:
   - Printing the "custom.png" icon on custom reminders
   - Adding upper cases to "Fabled" and "Loric"
