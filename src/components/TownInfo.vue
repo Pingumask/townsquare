@@ -97,7 +97,7 @@ const session = computed(() => store.state.session);
 const players = computed(() => store.state.players.players);
 
 const markedStoryteller = computed(() => {
-  return typeof session.value.markedPlayer == 'string' && !(session.value.isSpectator && grimoire.value.isOrganVoteMode)
+  return typeof session.value.markedPlayer == 'string' && !(session.value.isSpectator && session.value.isSecretVote)
 });
 
 const logoUrl = computed(() => {

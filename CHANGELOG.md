@@ -1,8 +1,16 @@
 # Release Notes
 
 ## Upcomming Version
+- Features:
+  - Moved hidden votes option to the session menu
+  - Added hidden votes option to the storytelling tools
+  - Making the Travelers icons two-colored
+  - In the script builder, adding titles to the buttons
+  - Adding customizable reminder tokens for Amnesiac, Wizard, Bootlegger and Djinn
+- Bugfixes: 
+  - Printing the "custom.png" icon on custom reminders
+  - Adding upper cases to "Fabled" and "Loric"
 
-- Adding custom reminder tokens for Amnesiac, Wizard, Bootlegger and Djinn
 
 ## 5.3.0
 - Feature :

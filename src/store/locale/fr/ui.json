@@ -13,8 +13,7 @@
       "streamerMode": "Mode Streamer",
       "animations": "Effets réduits",
       "mute": "Silencieux",
-      "ringBell": "Sonner Clocher",
-      "organGrinder": "Vote secret"
+      "ringBell": "Sonner Clocher"
     },
     "session": {
       "title": {
@@ -30,6 +29,7 @@
       "link": "Copier Lien Joueurs",
       "sendRoles": "Envoyer les rôles",
       "voteHistory": "Historique Votes",
+      "secretVote": "Vote secret",
       "leave": "Quitter Session"
     },
     "players": {
@@ -196,10 +196,17 @@
         "clipboard": "Presse-papier",
         "back": "Retour",
         "startDraft": "Démarrer un draft"
+      },
+      "build": {
+        "resetBuilt": "Tout supprimer",
+        "selectAll": "Whale bucket (tous les rôles)",
+        "initPool": "Réinitialiser",
+        "randomizeBuilt": "Rôle aléatoires",
+        "startBuilt": "Jouer le script"
       }
     },
     "fabled": {
-      "title": "Choisissez un mythe ou une légende à ajouter à la partie"
+      "title": "Choisissez un Mythe ou une Légende à ajouter à la partie"
     },
     "gameState": {
       "title": "État Actuel de la Partie",
