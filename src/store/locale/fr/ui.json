@@ -76,7 +76,9 @@
     "clearRoles": "Êtes-vous sur de vouloir effacer tous les rôles ?",
     "customUrl": "Entrer l'URL du fichier JSON de personnalisation de script",
     "customError": "Erreur lors du chargement du script",
-    "customNote": "Ajouter une note personnalisée"
+    "customNote": "Ajouter une note personnalisée",
+    "customScriptName": "Nom du scénario personnalisé",
+    "defaultScriptName": "Scénario personnalisé"
   },
   "vote": {
     "nominates": "accuse",
