@@ -16,7 +16,7 @@
       {{ t('vote.exclam') }}
       <br>
       <em v-if="
-        !grimoire.isOrganVoteMode ||
+        !session.isSecretVote ||
         (nominee && nominee.role.team == 'traveler') ||
         !session.isSpectator
       " class="blue">
@@ -37,7 +37,7 @@
       <template v-if="!session.isSpectator">
         <br>
         <em v-if="
-          grimoire.isOrganVoteMode &&
+          session.isSecretVote &&
           ((nominee && nominee.role.team !== 'traveler') ||
             (session.nomination && typeof session.nomination.nominee === 'string'))
         " class="orange">
@@ -401,7 +401,7 @@ const finish = () => {
   }
   store.commit("session/addHistory", {
     players: players.value,
-    isOrganVoteMode: grimoire.value.isOrganVoteMode,
+    isOrganVoteMode: session.value.isSecretVote,
     localeTexts: {
       exile: t('modal.voteHistory.exile'),
       execution: t('modal.voteHistory.execution')

@@ -53,15 +53,6 @@
             {{ t('menu.grimoire.ringBell') }}
             <em>[B]</em>
           </li>
-          <li v-if="!session.isSpectator" @click="toggleOrganVoteMode">
-            {{ t('menu.grimoire.organGrinder') }}
-            <em>
-              <font-awesome-icon :icon="[
-                'fas',
-                grimoire.isOrganVoteMode ? 'check-square' : 'square',
-              ]" />
-            </em>
-          </li>
           <li v-if="session.isSpectator" @click="toggleNightOrder">
             {{ t('menu.grimoire.order') }}
             <em>
@@ -143,6 +134,15 @@
             </li>
             <li v-if="session.voteHistory.length || !session.isSpectator" @click="toggleModal('voteHistory')">
               {{ t('menu.session.voteHistory') }}<em>[V]</em>
+            </li>
+            <li v-if="!session.isSpectator" @click="toggleOrganVoteMode">
+              {{ t('menu.session.secretVote') }}
+              <em>
+                <font-awesome-icon :icon="[
+                  'fas',
+                  session.isSecretVote ? 'check-square' : 'square',
+                ]" />
+              </em>
             </li>
             <li @click="leaveSession">
               {{ t('menu.session.leave') }}
@@ -504,7 +504,7 @@ const toggleNight = () => {
 };
 
 const toggleOrganVoteMode = () => {
-  store.commit('toggleOrganVoteMode');
+  store.commit('session/toggleSecretVote');
 };
 
 const togglePlayersMenu = (name: string) => {

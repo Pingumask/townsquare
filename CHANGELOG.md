@@ -1,8 +1,13 @@
 # Release Notes
 
 ## Upcomming Version
+- Features:
+  - Moved hidden votes option to the session menu
+  - Added hidden votes option to the storytelling tools
+  - Making the Travelers icons two-colored
+- Bugfixes: 
+  - Printing the "custom.png" icon on custom reminders
 
-- Making the Travelers icons two-colored
 
 ## 5.3.0
 - Feature :
