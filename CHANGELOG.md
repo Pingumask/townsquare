@@ -10,6 +10,7 @@
 - Bugfixes: 
   - Printing the "custom.png" icon on custom reminders
   - Adding upper cases to "Fabled" and "Loric"
+  - Updating order of the roles (for the script builder)
 - Localization :
   - Updating messages of hidden votes
 
