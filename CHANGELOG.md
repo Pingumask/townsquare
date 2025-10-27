@@ -10,7 +10,7 @@
   - Add several player seats at once (without names)
   - Allow self renames (Even if this option is unchecked, players are prompted for a name if they claim an unnamed seat)
 - Bugfixes:
-  - Printing the "custom.png" icon on custom reminders
+  - Printing the "custom.png" icon on custom reminders in the reminders menu
   - Adding upper cases to "Fabled" and "Loric"
   - Updating order of the roles (for the script builder)
 - Localization :
