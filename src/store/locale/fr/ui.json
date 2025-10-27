@@ -13,8 +13,7 @@
       "streamerMode": "Mode Streamer",
       "animations": "Effets réduits",
       "mute": "Silencieux",
-      "ringBell": "Sonner Clocher",
-      "organGrinder": "Vote d'Organiste"
+      "ringBell": "Sonner Clocher"
     },
     "session": {
       "title": {
@@ -30,6 +29,7 @@
       "link": "Copier Lien Joueurs",
       "sendRoles": "Envoyer les rôles",
       "voteHistory": "Historique Votes",
+      "secretVote": "Vote secret",
       "leave": "Quitter Session"
     },
     "players": {
@@ -46,7 +46,7 @@
       "title": "Personnages",
       "selectEdition": "Choisir Scénario",
       "assign": "Attribuer Rôles",
-      "addFabled": "Ajouter Fabuleux",
+      "addFabled": "Mythes/Légendes",
       "removeAll": "Effacer Rôles"
     },
     "help": {
@@ -103,7 +103,7 @@
   "townsquare": {
     "others": "Autres Rôles",
     "bluffs": "Bluffs de Démon",
-    "fabled": "Fabuleux",
+    "fabled": "Mythes & Légendes",
     "storytellerTools": "Narration",
     "timer": {
       "default": {
@@ -196,10 +196,17 @@
         "clipboard": "Presse-papier",
         "back": "Retour",
         "startDraft": "Démarrer un draft"
+      },
+      "build": {
+        "resetBuilt": "Tout supprimer",
+        "selectAll": "Whale bucket (tous les rôles)",
+        "initPool": "Réinitialiser",
+        "randomizeBuilt": "Rôle aléatoires",
+        "startBuilt": "Jouer le script"
       }
     },
     "fabled": {
-      "title": "Choisissez un personnage fabuleux à ajouter à la partie"
+      "title": "Choisissez un Mythe ou une Légende à ajouter à la partie"
     },
     "gameState": {
       "title": "État Actuel de la Partie",
@@ -249,7 +256,8 @@
       "title": "Choisissez un personnage pour",
       "bluff": "bluffer",
       "editionRoles": "Rôles de ce Scénario",
-      "othertravelers": "Autres Voyageurs"
+      "othertravelers": "Autres Voyageurs",
+      "search": "Chercher parmi les personnages & capacités"
     },
     "roles": {
       "titleStart": "Selectionner les personnages pour ",

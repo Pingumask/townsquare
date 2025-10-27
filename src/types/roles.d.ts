@@ -3,14 +3,7 @@ export interface Role {
   id: string;
   alternates?: string[]; // Alternate ids for roles that used to have a different official name
   name?: string;
-  team?:
-    | "townsfolk"
-    | "outsider"
-    | "minion"
-    | "demon"
-    | "traveler"
-    | "fabled"
-    | "default";
+  team?: TeamType;
   ability?: string;
   isCustom?: boolean;
   edition?: string;
@@ -71,4 +64,6 @@ export type TeamType =
   | "minion"
   | "demon"
   | "traveler"
-  | "fabled";
+  | "fabled"
+  | "default"
+  | "loric";
