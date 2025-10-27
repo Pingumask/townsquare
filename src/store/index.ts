@@ -179,7 +179,7 @@ const initializeStore = async () => {
         isMuted: false,
         isImageOptIn: false,
         isStreamerMode: false,
-        isOrganVoteMode: false,
+
         zoom: 0,
         background: "",
         timer: {
@@ -308,7 +308,7 @@ const initializeStore = async () => {
       toggleGrimoire: toggle("isPublic"),
       toggleImageOptIn: toggle("isImageOptIn"),
       toggleStreamerMode: toggle("isStreamerMode"),
-      toggleOrganVoteMode: toggle("isOrganVoteMode"),
+
       setTimer(state: RootState, timer: { name?: string; duration?: number }) {
         state.grimoire.timer = timer as Required<
           Pick<RootState["grimoire"]["timer"], "name" | "duration">

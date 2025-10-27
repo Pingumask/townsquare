@@ -13,8 +13,7 @@
       "streamerMode": "Streamer Mode",
       "animations": "Disable Animations",
       "mute": "Mute Sounds",
-      "ringBell": "Ring Bell",
-      "organGrinder": "Hidden Vote"
+      "ringBell": "Ring Bell"
     },
     "session": {
       "title": {
@@ -30,6 +29,7 @@
       "link": "Copy player link",
       "sendRoles": "Send Characters",
       "voteHistory": "Vote history",
+      "secretVote": "Hidden Vote",
       "leave": "Leave Session"
     },
     "players": {
@@ -195,6 +195,13 @@
         "url": "Enter URL",
         "clipboard": "Use JSON from Clipboard",
         "back": "Back"
+      },
+      "build": {
+        "resetBuilt": "Delete all",
+        "selectAll": "Whale bucket (all roles)",
+        "initPool": "Reset",
+        "randomizeBuilt": "Random roles",
+        "startBuilt": "Play the script"
       }
     },
     "fabled": {

@@ -29,7 +29,6 @@ export interface GrimoireState {
   isMuted: boolean;
   isImageOptIn: boolean;
   isStreamerMode: boolean;
-  isOrganVoteMode: boolean;
   zoom: number;
   background: string;
   timer: Timer;
@@ -69,6 +68,7 @@ export interface SessionState {
   playerForSpecialVote: number;
   isVoteHistoryAllowed: boolean;
   isRolesDistributed: boolean;
+  isSecretVote: boolean;
 }
 
 // Players menu state
