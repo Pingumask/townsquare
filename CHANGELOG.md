@@ -2,6 +2,13 @@
 
 ## Upcomming Version
 - Features:
+- Bugfixes:
+- Localization :
+- Technical :
+
+
+## 5.4.0
+- Features:
   - Moved hidden votes option to the session menu
   - Added hidden votes option to the storytelling tools
   - Making the Travelers icons two-colored
