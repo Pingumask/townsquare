@@ -281,7 +281,7 @@
       "voters": "Votants",
       "execution": "Exécution",
       "exile": "Exil",
-      "hiddenVote": "Résultat caché par l'Organiste"
+      "hiddenVote": "Le résultat est caché"
     },
     "specialvote": {
       "title": "Sélectionnez un type de vote :",
