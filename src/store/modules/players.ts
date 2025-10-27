@@ -45,6 +45,7 @@ export const SPECIAL_REMINDER_ROLES = {
     id: "custom",
     name: "Custom",
     team: "default",
+    image: new URL("@/assets/icons/custom.png", import.meta.url).href,
   } as Role,
 };
 

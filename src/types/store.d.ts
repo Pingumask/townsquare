@@ -18,6 +18,7 @@ export interface TimerDurations {
 
 // Grimoire state
 export interface GrimoireState {
+  disableHotkeys: boolean;
   isNight: boolean;
   isNightOrder: boolean;
   isRinging: boolean;
@@ -28,7 +29,6 @@ export interface GrimoireState {
   isMuted: boolean;
   isImageOptIn: boolean;
   isStreamerMode: boolean;
-  isOrganVoteMode: boolean;
   zoom: number;
   background: string;
   timer: Timer;
@@ -68,6 +68,7 @@ export interface SessionState {
   playerForSpecialVote: number;
   isVoteHistoryAllowed: boolean;
   isRolesDistributed: boolean;
+  isSecretVote: boolean;
 }
 
 // Players menu state

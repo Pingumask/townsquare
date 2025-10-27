@@ -119,6 +119,10 @@ function addReminder(reminder: Reminder) {
     const name = prompt(t('prompt.customNote'));
     if (!name) return;
     value = [...player.reminders, { role: SPECIAL_REMINDER_ROLES.custom, name }];
+  } else if (reminder.name === "?") {
+    let name = prompt(t('prompt.customNote'));
+	if (!name) name = "?";
+    value = [...player.reminders, { role: reminder.role, name }];
   } else {
     value = [...player.reminders, reminder];
   }

@@ -17,7 +17,7 @@
     "otherNightReminder": "",
     "reminders": [
       "Protégé",
-      "Catastrophe"
+      "Malédiction"
     ],
     "setup": false,
     "name": "Ange",
@@ -41,7 +41,7 @@
     "firstNightReminder": "",
     "otherNightReminder": "",
     "reminders": [
-      "Catastrophe"
+      "Malédiction"
     ],
     "setup": false,
     "name": "Bibliothécaire de l'enfer",
@@ -138,24 +138,13 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNightReminder": "",
-    "reminders": [],
+    "reminders": [
+      "?"
+    ],
     "setup": false,
     "name": "Djinn",
     "team": "fabled",
     "ability": "Utilisez la règle spéciale du Djinn. Tous les joueurs connaissent cette règle."
-  },
-  {
-    "id": "stormcatcher",
-    "firstNight": 13,
-    "firstNightReminder": "Réveillez chaque joueur mauvais et indiquez-lui quel joueur est marqué comme \"Protégé\".",
-    "otherNightReminder": "",
-    "reminders": [
-      "Sûr"
-    ],
-    "setup": false,
-    "name": "Chasseur de tempêtes",
-    "team": "fabled",
-    "ability": "Désignez un personnage bon. S'il est en jeu, il ne peut mourir que par exécution, mais les joueurs mauvais savent qui a ce rôle."
   },
   {
     "id": "deusexfiasco",
@@ -191,7 +180,7 @@
     ],
     "setup": false,
     "name": "Jardinier",
-    "team": "fabled",
+    "team": "loric",
     "ability": "Le Narrateur choisit le rôle d’un ou de plusieurs joueurs."
   },
   {
@@ -200,10 +189,25 @@
     "firstNightReminder": "Si applicables, utilisez la (les) règle(s) faite(s)-maison.",
     "otherNight": 3,
     "otherNightReminder": "Si applicables, utilisez la (les) règle(s) faite(s)-maison.",
-    "reminders": [],
+    "reminders": [
+      "?"
+    ],
     "setup": false,
     "name": "Contrebandier",
-    "team": "fabled",
+    "team": "loric",
     "ability": "Ce script possède des personnages ou des règles faits-maison."
+  },
+  {
+    "id": "stormcatcher",
+    "firstNight": 13,
+    "firstNightReminder": "Réveillez chaque joueur mauvais et indiquez-lui quel joueur est marqué comme \"Protégé\".",
+    "otherNightReminder": "",
+    "reminders": [
+      "Sûr"
+    ],
+    "setup": false,
+    "name": "Chasseur de tempêtes",
+    "team": "loric",
+    "ability": "Désignez un personnage bon. S'il est en jeu, il ne peut mourir que par exécution, mais les joueurs mauvais savent qui a ce rôle."
   }
 ]

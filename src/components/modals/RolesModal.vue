@@ -249,6 +249,12 @@ ul.tokens {
         0 0 10px $fabled;
     }
 
+    &.loric {
+      box-shadow:
+        0 0 10px $loric,
+        0 0 10px $loric;
+    }
+
     &:hover {
       transform: scale(1.2);
       z-index: 10;

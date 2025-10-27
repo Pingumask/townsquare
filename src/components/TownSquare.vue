@@ -84,6 +84,12 @@
         </div>
       </div>
       <div class="button-group">
+        <div class="button" @click="toggleHiddenVote()">
+          <font-awesome-icon v-if="session.isSecretVote" :icon="['fas', 'eye-slash']" />
+          <font-awesome-icon v-if="!session.isSecretVote" :icon="['fas', 'eye']" />
+        </div>
+      </div>
+      <div class="button-group">
         <div class="button" @click="toggleRinging()">
           <font-awesome-icon :icon="['fas', 'bell']" />
         </div>
@@ -97,7 +103,7 @@
         <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="toggleFabled" />
       </h3>
       <ul>
-        <li v-for="(role, index) in fabled" :key="index" @click="removeFabled(index)">
+        <li v-for="(role, index) in fabled" :key="index" :class="role.team" @click="removeFabled(index)">
           <div v-if="
             nightOrder.get(role).first &&
             (grimoire.isNightOrder || !session.isSpectator)
@@ -198,6 +204,10 @@ const toggleNight = () => {
     store.commit("toggleRooster", true);
     setTimeout(() => store.commit("toggleRooster", false), 4000);
   }
+};
+
+const toggleHiddenVote = () => {
+  store.commit("session/toggleSecretVote");
 };
 
 const toggleRinging = () => {
@@ -876,6 +886,16 @@ const stopTimer = () => {
   transition: opacity 250ms;
   background-image: url("../assets/icons/x.png");
   z-index: 2;
+}
+
+.fabled {
+  --color: #D4AF37;
+  --blend: hard-light;
+}
+
+.loric {
+  --color: #267933;
+  --blend: multiply;
 }
 
 /**** Night reminders ****/

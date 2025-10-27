@@ -38,24 +38,24 @@
       <!-- Overlay icons -->
       <div class="overlay">
         <font-awesome-icon v-if="
-          !grimoire.isOrganVoteMode ||
+          !session.isSecretVote ||
           isSpecialVoteWithMessages ||
           !session.isSpectator ||
           props.player.id == session.playerId
         " icon="hand-paper" class="fa fa-hand-paper vote" :title="t('player.handUp')" @click="vote()" />
         <font-awesome-icon v-if="
-          grimoire.isOrganVoteMode &&
+          session.isSecretVote &&
           !isSpecialVoteWithMessages &&
           session.isSpectator &&
           props.player.id !== session.playerId
         " icon="question" class="fa fa-question vote" :title="t('player.handUp')" @click="vote()" />
         <font-awesome-icon v-if="
-          !grimoire.isOrganVoteMode ||
+          !session.isSecretVote ||
           !session.isSpectator ||
           props.player.id == session.playerId
         " icon="times" class="fa fa-times vote" :title="t('player.handDown')" @click="vote()" />
         <font-awesome-icon v-if="
-          grimoire.isOrganVoteMode &&
+          session.isSecretVote &&
           !isSpecialVoteWithMessages &&
           session.isSpectator &&
           props.player.id !== session.playerId
@@ -85,7 +85,7 @@
 
       <!-- On block icon -->
       <div class="marked">
-        <font-awesome-icon v-if="!(session.isSpectator && grimoire.isOrganVoteMode)" icon="skull" class="fa fa-skull" />
+        <font-awesome-icon v-if="!(session.isSpectator && session.isSecretVote)" icon="skull" class="fa fa-skull" />
       </div>
       <div class="name" :class="{ active: isMenuOpen }" @click="isMenuOpen = !isMenuOpen">
         <span>{{ props.player.name }}</span>
@@ -395,6 +395,14 @@ function vote() {
 
 .traveler {
   --blend: multiply;
+  --color1: #1f65ff;
+  --color2: #ff6900;
+  .good {
+    --color2: #4e4e4e;
+  }
+  .evil {
+    --color1: #4e4e4e;
+  }
 }
 
 .good {
