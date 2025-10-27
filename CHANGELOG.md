@@ -5,6 +5,7 @@
   - Moved hidden votes option to the session menu
   - Added hidden votes option to the storytelling tools
   - Making the Travelers icons two-colored
+  - In the script builder, adding titles to the buttons
 - Bugfixes: 
   - Printing the "custom.png" icon on custom reminders
 
