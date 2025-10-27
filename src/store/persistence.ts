@@ -31,7 +31,7 @@ export default (store: StoreLike<RootState>) => {
     store.commit("toggleStreamerMode", true);
   }
   if (localStorage.getItem("organVoteMode")) {
-    store.commit("toggleOrganVoteMode", true);
+    store.commit("session/toggleSecretVote", true);
   }
   if (localStorage.getItem("nightOrder")) {
     store.commit("toggleNightOrder", true);
@@ -175,7 +175,8 @@ export default (store: StoreLike<RootState>) => {
         }
         break;
       case "toggleOrganVoteMode":
-        if (state.grimoire.isOrganVoteMode) {
+      case "session/toggleSecretVote":
+        if (state.session.isSecretVote) {
           localStorage.setItem("organVoteMode", "1");
         } else {
           localStorage.removeItem("organVoteMode");
