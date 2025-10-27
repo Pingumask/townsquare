@@ -26,6 +26,8 @@ const faIcons = [
   "Dragon",
   "ExchangeAlt",
   "ExclamationTriangle",
+  "Eye",
+  "EyeSlash",
   "FileCode",
   "FileUpload",
   "HandPaper",

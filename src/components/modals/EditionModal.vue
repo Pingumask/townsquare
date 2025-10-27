@@ -80,19 +80,19 @@
           </ul>
         </section>
         <div class="button-group">
-          <div class="button" @click="resetBuilt">
+          <div class="button" :title="t(`modal.edition.build.resetBuilt`)" @click="resetBuilt">
             <font-awesome-icon :icon="['fas', 'trash-alt']" />
           </div>
-          <div class="button" @click="selectAll">
+          <div class="button" :title="t(`modal.edition.build.selectAll`)" @click="selectAll">
             <font-awesome-icon :icon="['fab', 'docker']" />
           </div>
-          <div class="button" @click="initPool">
+          <div class="button" :title="t(`modal.edition.build.initPool`)" @click="initPool">
             <font-awesome-icon :icon="['fas', 'redo-alt']" />
           </div>
-          <div class="button" @click="randomizeBuilt">
+          <div class="button" :title="t(`modal.edition.build.randomizeBuilt`)" @click="randomizeBuilt">
             <font-awesome-icon :icon="['fas', 'random']" />
           </div>
-          <div class="button" @click="startBuilt">
+          <div class="button" :title="t(`modal.edition.build.startBuilt`)" @click="startBuilt">
             <font-awesome-icon :icon="['fas', 'play']" />
           </div>
         </div>
@@ -185,6 +185,9 @@ function randomizeBuilt() {
 
 function startBuilt() {
   const selected = draftPool.value.filter((role: ToggleableRole) => role.selected);
+  const scriptName = prompt(t('prompt.customScriptName'), t('prompt.defaultScriptName'));
+  if (!scriptName) return;
+  selected.push({ id: "_meta", name: scriptName, edition: "custom" });
   parseRoles(selected);
 }
 

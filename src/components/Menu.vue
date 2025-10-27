@@ -53,15 +53,6 @@
             {{ t('menu.grimoire.ringBell') }}
             <em>[B]</em>
           </li>
-          <li v-if="!session.isSpectator" @click="toggleOrganVoteMode">
-            {{ t('menu.grimoire.organGrinder') }}
-            <em>
-              <font-awesome-icon :icon="[
-                'fas',
-                grimoire.isOrganVoteMode ? 'check-square' : 'square',
-              ]" />
-            </em>
-          </li>
           <li v-if="session.isSpectator" @click="toggleNightOrder">
             {{ t('menu.grimoire.order') }}
             <em>
@@ -144,6 +135,22 @@
             <li v-if="session.voteHistory.length || !session.isSpectator" @click="toggleModal('voteHistory')">
               {{ t('menu.session.voteHistory') }}<em>[V]</em>
             </li>
+            <li v-if="!session.isSpectator" @click="toggleOrganVoteMode">
+              {{ t('menu.session.secretVote') }}
+              <em>
+                <font-awesome-icon :icon="[
+                  'fas',
+                  session.isSecretVote ? 'check-square' : 'square',
+                ]" />
+              </em>
+            </li>
+            <li v-if="!session.isSpectator" @click="toggleSelfNaming">
+              {{ t('menu.session.selfNaming') }}
+              <em><font-awesome-icon :icon="[
+                'fas',
+                session.allowSelfNaming ? 'check-square' : 'square',
+              ]" /></em>
+            </li>
             <li @click="leaveSession">
               {{ t('menu.session.leave') }}
               <em>{{ session.sessionId }}</em>
@@ -158,6 +165,9 @@
           </li>
           <li v-if="players.length < 20" @click="addPlayer">
             {{ t('menu.players.add') }}<em>[A]</em>
+          </li>
+          <li v-if="players.length < 19" @click="addPlayers">
+            {{ t('menu.players.addMany') }}<em>[P]</em>
           </li>
           <li v-if="players.length > 2" @click="randomizeSeatings">
             {{ t('menu.players.randomize') }}
@@ -469,6 +479,20 @@ const addPlayer = () => {
   }
 };
 
+const addPlayers = () => {
+  if (session.value.isSpectator) return;
+  if (players.value.length >= 20) return;
+  const nb = Number(prompt(t('prompt.addPlayers')));
+  if (isNaN(nb)) {
+    alert('Please enter a number');
+    return;
+  };
+  for (let i = 0; i < nb; i++) {
+    store.commit('players/add', " "); // This is a FIGURE SPACE (&numsp;) U+2007
+    if (players.value.length >= 20) return;
+  }
+};
+
 const randomizeSeatings = () => {
   if (session.value.isSpectator) return;
   if (confirm(t('prompt.randomizeSeatings'))) {
@@ -503,8 +527,16 @@ const toggleNight = () => {
   }
 };
 
+const toggleSelfNaming = () => {
+  if (session.value.isSpectator) return;
+  store.commit(
+    "session/setAllowSelfNaming",
+    !session.value.allowSelfNaming
+  );
+};
+
 const toggleOrganVoteMode = () => {
-  store.commit('toggleOrganVoteMode');
+  store.commit('session/toggleSecretVote');
 };
 
 const togglePlayersMenu = (name: string) => {

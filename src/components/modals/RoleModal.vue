@@ -8,22 +8,24 @@
           : t('modal.role.bluff')
       }}
     </h3>
-    <ul v-if="tab === 'editionRoles' || !othertravelers.size" class="tokens">
+    <ul v-if="tab === 'editionRoles' || !othertravelers.length" class="tokens">
       <li v-for="role in availableRoles" :key="role.id" :class="[role.team]" @click="setRole(role)">
         <Token :role="role" />
       </li>
     </ul>
-    <ul v-if="tab === 'othertravelers' && othertravelers.size" class="tokens">
+    <ul v-if="tab === 'othertravelers' && othertravelers.length" class="tokens">
       <li v-for="role in othertravelers.values()" :key="role.id" :class="[role.team]" @click="setRole(role)">
         <Token :role="role" />
       </li>
     </ul>
-    <div v-if="playerIndex >= 0 && othertravelers.size && !session.isSpectator" class="button-group">
+    <div v-if="playerIndex >= 0 && othertravelers.length && !session.isSpectator" class="button-group">
       <span class="button" :class="{ townsfolk: tab === 'editionRoles' }" @click="tab = 'editionRoles'">{{
         t('modal.role.editionRoles') }}</span>
       <span class="button" :class="{ townsfolk: tab === 'othertravelers' }" @click="tab = 'othertravelers'">{{
         t('modal.role.othertravelers') }}</span>
     </div>
+    <input v-model="rolefilter" type="search" :placeholder="t('modal.role.search')"
+      @focus="grimoire.disableHotkeys = true" @blur="grimoire.disableHotkeys = false" />
   </Modal>
 </template>
 
@@ -41,6 +43,9 @@ const props = defineProps<{
 const store = useStore();
 
 const tab = ref('editionRoles');
+const rolefilter = ref('');
+
+const grimoire = computed(() => store.state.grimoire);
 
 const availableRoles = computed((): Role[] => {
   const availableRoles: Role[] = [];
@@ -48,9 +53,17 @@ const availableRoles = computed((): Role[] => {
   store.state.roles.forEach((role: Role) => {
     // don't show bluff roles that are already assigned to players
     if (
-      props.playerIndex >= 0 ||
-      (props.playerIndex < 0 &&
-        !players.some((player: Player) => player.role.id === role.id))
+      (
+        props.playerIndex >= 0 ||
+        (props.playerIndex < 0 &&
+          !players.some((player: Player) => player.role.id === role.id))
+      ) && (
+        role.name?.toLowerCase().includes(rolefilter.value?.toLowerCase()) ||
+        role.id?.toLowerCase().includes(rolefilter.value?.toLowerCase()) ||
+        role.ability?.toLowerCase().includes(rolefilter.value?.toLowerCase()) ||
+        role.firstNightReminder?.toLowerCase().includes(rolefilter.value?.toLowerCase()) ||
+        role.otherNightReminder?.toLowerCase().includes(rolefilter.value?.toLowerCase())
+      )
     ) {
       availableRoles.push(role);
     }
@@ -72,7 +85,21 @@ const availableRoles = computed((): Role[] => {
 const modals = computed(() => store.state.modals);
 const session = computed(() => store.state.session);
 const players = computed(() => store.state.players.players);
-const othertravelers = computed(() => store.state.othertravelers);
+const othertravelers = computed((): Role[] => {
+  const available = [] as Role[];
+  store.state.othertravelers.forEach((role: Role) => {
+    if (
+      role.name?.toLowerCase().includes(rolefilter.value?.toLowerCase()) ||
+      role.id?.toLowerCase().includes(rolefilter.value?.toLowerCase()) ||
+      role.ability?.toLowerCase().includes(rolefilter.value?.toLowerCase()) ||
+      role.firstNightReminder?.toLowerCase().includes(rolefilter.value?.toLowerCase()) ||
+      role.otherNightReminder?.toLowerCase().includes(rolefilter.value?.toLowerCase())
+    ) {
+      available.push(role);
+    }
+  })
+  return available;
+});
 
 const setRole = (role: Role) => {
   if (props.playerIndex < 0) {
@@ -103,6 +130,19 @@ const close = () => {
 
 <style scoped lang="scss">
 @use "../../vars.scss" as *;
+
+input[type=search] {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: solid #fff;
+  border-width: 0 0 1px 0;
+  outline: none;
+  color: #fff;
+  font-size: 1em;
+  touch-action: none;
+  border-bottom-color: #777;
+}
 
 ul.tokens li {
   border-radius: 50%;

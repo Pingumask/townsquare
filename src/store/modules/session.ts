@@ -15,7 +15,7 @@ import { isActiveNomination, isTravelerExile } from "../../composables";
  */
 const handleVote = (
   state: SessionState,
-  [index, vote]: [number, boolean | undefined],
+  [index, vote]: [number, boolean | undefined]
 ) => {
   if (!state.nomination) return;
   state.votes = [...state.votes];
@@ -34,12 +34,14 @@ const state = (): SessionState => ({
   votes: [],
   lockedVote: 0,
   votingSpeed: 1000,
+  allowSelfNaming: false,
   isVoteInProgress: false,
   voteHistory: [],
   markedPlayer: -1,
   playerForSpecialVote: -1,
   isVoteHistoryAllowed: true,
   isRolesDistributed: false,
+  isSecretVote: false,
 });
 
 const getters = {};
@@ -64,7 +66,9 @@ const mutations = {
   setMarkedPlayer: set("markedPlayer"),
   setPlayerForSpecialVote: set("playerForSpecialVote"),
   setNomination: set("nomination"),
+  setAllowSelfNaming: set("allowSelfNaming"),
   setVoteHistoryAllowed: set("isVoteHistoryAllowed"),
+  setSecretVote: set("isSecretVote"),
   claimSeat: set("claimedSeat"),
   distributeRoles: set("isRolesDistributed"),
   setSessionId(state: SessionState, sessionId: string) {
@@ -87,7 +91,7 @@ const mutations = {
       votingSpeed?: number;
       lockedVote?: number;
       isVoteInProgress?: boolean;
-    } = {},
+    } = {}
   ) {
     state.nomination = nomination ?? null;
     state.votes = votes || [];
@@ -106,7 +110,7 @@ const mutations = {
       players: Player[];
       isOrganVoteMode?: boolean;
       localeTexts?: { exile: string; execution: string };
-    },
+    }
   ) {
     const { players, isOrganVoteMode = false, localeTexts } = payload;
 
@@ -141,7 +145,7 @@ const mutations = {
           ? texts.exile
           : texts.execution + (organGrinder && !state.isSpectator ? "*" : "")),
       majority: Math.ceil(
-        players.filter((player) => !player.isDead || isExile).length / 2,
+        players.filter((player) => !player.isDead || isExile).length / 2
       ),
       votes:
         organGrinder && state.isSpectator
@@ -166,6 +170,9 @@ const mutations = {
   voteSync: handleVote,
   lockVote(state: SessionState, lock?: number) {
     state.lockedVote = lock !== undefined ? lock : state.lockedVote + 1;
+  },
+  toggleSecretVote(state: SessionState, value?: boolean) {
+    state.isSecretVote = value !== undefined ? value : !state.isSecretVote;
   },
 };
 

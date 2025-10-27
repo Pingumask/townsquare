@@ -13,8 +13,7 @@
       "streamerMode": "Streamer Mode",
       "animations": "Disable Animations",
       "mute": "Mute Sounds",
-      "ringBell": "Ring Bell",
-      "organGrinder": "Organ Grinder Vote"
+      "ringBell": "Ring Bell"
     },
     "session": {
       "title": {
@@ -30,11 +29,14 @@
       "link": "Copy player link",
       "sendRoles": "Send Characters",
       "voteHistory": "Vote history",
+      "secretVote": "Hidden Vote",
+      "selfNaming": "Allow self-naming",
       "leave": "Leave Session"
     },
     "players": {
       "title": "Players",
-      "add": "Add",
+      "add": "Add Seat",
+      "addMany": "Add Seats",
       "randomize": "Randomize",
       "removeAll": "Remove all"
     },
@@ -46,7 +48,7 @@
       "title": "Characters",
       "selectEdition": "Select Edition",
       "assign": "Choose & Assign",
-      "addFabled": "Add Fabled",
+      "addFabled": "Add Fabled or Loric",
       "removeAll": "Remove all"
     },
     "help": {
@@ -74,7 +76,9 @@
     "clearRoles": "Are you sure you want to remove all player roles?",
     "customUrl": "Enter URL to a custom-script?json file",
     "customError": "Error loading custom script",
-    "customNote": "Add a custom reminder node"
+    "customNote": "Add a custom reminder node",
+    "customScriptName": "Customized script name",
+    "defaultScriptName": "Custom Script"
   },
   "vote": {
     "nominates": "nominates",
@@ -103,7 +107,7 @@
   "townsquare": {
     "others": "Other characters",
     "bluffs": "Demon bluffs",
-    "fabled": "Fabled",
+    "fabled": "Fabled & Lorics",
     "storytellerTools": "Storytelling",
     "timer": {
       "default": {
@@ -195,10 +199,17 @@
         "url": "Enter URL",
         "clipboard": "Use JSON from Clipboard",
         "back": "Back"
+      },
+      "build": {
+        "resetBuilt": "Delete all",
+        "selectAll": "Whale bucket (all roles)",
+        "initPool": "Reset",
+        "randomizeBuilt": "Random roles",
+        "startBuilt": "Play the script"
       }
     },
     "fabled": {
-      "title": "Choose a fabled character to add to the game "
+      "title": "Choose a Fabled or Loric to add to the game "
     },
     "gameState": {
       "title": "Current Game State",
@@ -248,7 +259,8 @@
       "title": "Choose a new character for",
       "bluff": "bluffing",
       "editionRoles": "Edition Roles",
-      "othertravelers": "Other travelers"
+      "othertravelers": "Other travelers",
+      "search": "Search characters & abilities"
     },
     "roles": {
       "titleStart": "Select the characters for ",
@@ -272,7 +284,7 @@
       "voters": "Voters",
       "execution": "Execution",
       "exile": "Exile",
-      "hiddenVote": "The result is hidden because of the Organ Grinder"
+      "hiddenVote": "The result is hidden"
     },
     "specialvote": {
       "title": "Choose a vote type:",

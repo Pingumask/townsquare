@@ -138,24 +138,13 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNightReminder": "",
-    "reminders": [],
+    "reminders": [
+      "?"
+    ],
     "setup": false,
     "name": "Djinn",
     "team": "fabled",
     "ability": "Use the Djinn's special rule. All players know what it is."
-  },
-  {
-    "id": "stormcatcher",
-    "firstNight": 13,
-    "firstNightReminder": "Show each evil player which player is marked as \"Safe\".",
-    "otherNightReminder": "",
-    "reminders": [
-      "Safe"
-    ],
-    "setup": false,
-    "name": "Storm Catcher",
-    "team": "fabled",
-    "ability": "Name a good character. If in play, they can only die by execution, but evil players learn which player it is."
   },
   {
     "id": "deusexfiasco",
@@ -191,7 +180,7 @@
     ],
     "setup": false,
     "name": "Gardener",
-    "team": "fabled",
+    "team": "loric",
     "ability": "The Storyteller assigns 1 or more players' characters."
   },
   {
@@ -200,10 +189,25 @@
     "firstNightReminder": "If applicable, use homebrew rule(s).",
     "otherNight": 3,
     "otherNightReminder": "If applicable, use homebrew rule(s).",
-    "reminders": [],
+    "reminders": [
+      "?"
+    ],
     "setup": false,
     "name": "Bootlegger",
-    "team": "fabled",
+    "team": "loric",
     "ability": "This script has homebrew characters or rules."
+  },
+  {
+    "id": "stormcatcher",
+    "firstNight": 13,
+    "firstNightReminder": "Show each evil player which player is marked as \"Safe\".",
+    "otherNightReminder": "",
+    "reminders": [
+      "Safe"
+    ],
+    "setup": false,
+    "name": "Storm Catcher",
+    "team": "loric",
+    "ability": "Name a good character. If in play, they can only die by execution, but evil players learn which player it is."
   }
 ]

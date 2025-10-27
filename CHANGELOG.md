@@ -1,13 +1,39 @@
 # Release Notes
 
 ## Upcomming Version
-- Feature :
-  - Add link to github issues- Bugfix :
-- Bugfix
-  - Fallback to master language for missing translation tags
-- Translation:
+- Features:
+  - Moved hidden votes option to the session menu
+  - Added hidden votes option to the storytelling tools
+  - Making the Travelers icons two-colored
+  - In the script builder, adding titles to the buttons
+  - Adding customizable reminder tokens for Amnesiac, Wizard, Bootlegger and Djinn
+  - Add several player seats at once (without names)
+  - Allow self renames (Even if this option is unchecked, players are prompted for a name if they claim an unnamed seat)
+  - Prompt for script name when starting a custom script from script builder
+- Bugfixes:
+  - Printing the "custom.png" icon on custom reminders
+  - Adding upper cases to "Fabled" and "Loric"
+  - Updating order of the roles (for the script builder)
+- Localization :
+  - Updating messages of hidden votes
   - French translation of Spirit of Ivory's reminder
 
+## 5.3.0
+- Feature :
+  - Add link to github issues
+  - Handle Loric characters (moved Gardener, Stormcatcher, Bootlegger to Loric team). Loric characters are still loaded from fabled.json and handled in the same way as Fabled characters, the change is mainly visual.
+  - Search bar in role picker (searches in character name, id, ability, first night reminder & other night reminder)
+- Bugfix
+  - Changing the name of the option for hidden votes to be more generic
+  - Fallback to master language for missing translation tags
+- Translation:
+  - Fr:
+    - Prédicateur reminder : Catastrophe -> Malédiction
+    - Fabuleux -> Mythes
+- Technical :
+  - Upgraded version of Vite (fixes 2 moderate vulnerabilities in dev environments)
+  - Added a .dockerignore file
+  - Removed apk update from Dokerfile (useless as no apk install follows)
 
 ## 5.2.0
 - Feature :

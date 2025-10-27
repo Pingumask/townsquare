@@ -197,7 +197,7 @@ class LiveSession {
           // create vote history record
           this._store.commit("session/addHistory", {
             players: this._store.state.players.players,
-            isOrganVoteMode: this._store.state.grimoire.isOrganVoteMode,
+            isOrganVoteMode: this._store.state.session.isSecretVote,
             localeTexts: {
               exile: (this._store.getters["t"] as (key: string) => string)(
                 "modal.voteHistory.exile",
@@ -232,9 +232,14 @@ class LiveSession {
         if (!this._isSpectator) return;
         this._store.commit("toggleNight", !!params);
         break;
-      case "isOrganVoteMode":
+      case "allowSelfNaming":
         if (!this._isSpectator) return;
-        this._store.commit("toggleOrganVoteMode", params);
+        this._store.commit("session/setAllowSelfNaming", !!params);
+        break;
+      case "isOrganVoteMode":
+      case "isSecretVote":
+        if (!this._isSpectator) return;
+        this._store.commit("session/toggleSecretVote", params);
         break;
       case "isRinging":
         if (!this._isSpectator) return;
@@ -276,6 +281,9 @@ class LiveSession {
         break;
       case "pronouns":
         this._updatePlayerPronouns(params as [number, string]);
+        break;
+      case "name":
+        this._updatePlayerName(params as [number, string]);
         break;
     }
   }
@@ -350,8 +358,9 @@ class LiveSession {
         isRinging: grimoire.isRinging,
         isRooster: grimoire.isRooster,
         timer: grimoire.timer,
+        allowSelfNaming: session.allowSelfNaming,
         isVoteHistoryAllowed: session.isVoteHistoryAllowed,
-        isOrganVoteMode: grimoire.isOrganVoteMode,
+        isOrganVoteMode: session.isSecretVote,
         nomination: session.nomination,
         votingSpeed: session.votingSpeed,
         lockedVote: session.lockedVote,
@@ -374,6 +383,7 @@ class LiveSession {
       gamestate,
       isLightweight,
       isNight,
+      allowSelfNaming,
       isVoteHistoryAllowed,
       isRinging,
       isOrganVoteMode,
@@ -396,6 +406,7 @@ class LiveSession {
       }>;
       isLightweight?: boolean;
       isNight?: boolean;
+      allowSelfNaming?: boolean;
       isVoteHistoryAllowed?: boolean;
       isRinging?: boolean;
       isOrganVoteMode?: boolean;
@@ -460,8 +471,9 @@ class LiveSession {
       this._store.commit("timer", timer);
       this._store.commit("toggleRinging", !!isRinging);
       this._store.commit("toggleNight", !!isNight);
+      this._store.commit("session/setAllowSelfNaming", !!allowSelfNaming);
       this._store.commit("session/setVoteHistoryAllowed", isVoteHistoryAllowed);
-      this._store.commit("toggleOrganVoteMode", !!isOrganVoteMode);
+      this._store.commit("session/toggleSecretVote", !!isOrganVoteMode);
       this._store.commit("session/nomination", {
         nomination,
         votes,
@@ -664,6 +676,25 @@ class LiveSession {
     this._send("pronouns", [index, value]);
   }
 
+  sendPlayerName({
+    player,
+    value,
+    isFromSockets,
+  }: {
+    player: Player;
+    value: string;
+    isFromSockets: boolean;
+  }) : void {
+    //send name only for the seated player or storyteller
+    //Do not re-send name data for an update that was recieved from the sockets layer
+    if (
+      isFromSockets ||
+      (this._isSpectator && this._store.state.session.playerId !== player.id)
+    ) return;
+    const index = this._store.state.players.players.indexOf(player);
+    this._send("name", [index, value]);
+  }
+
   /**
    * Update a pronouns based on incoming data.
    * @param index
@@ -676,6 +707,17 @@ class LiveSession {
     this._store.commit("players/update", {
       player,
       property: "pronouns",
+      value,
+      isFromSockets: true,
+    });
+  }
+
+  _updatePlayerName([index, value]: [number, string]) {
+    const player = this._store.state.players.players[index];
+
+    this._store.commit("players/update", {
+      player,
+      property: "name",
       value,
       isFromSockets: true,
     });
@@ -880,11 +922,20 @@ class LiveSession {
   }
 
   /**
+   * Send the isSecretVote status. ST only
+   */
+  setIsSecretVote() {
+    if (this._isSpectator) return;
+    this._send("isSecretVote", this._store.state.session.isSecretVote);
+  }
+
+  /**
    * Send the isOrganVoteMode status. ST only
+   * @deprecated Use setIsSecretVote instead
    */
   setIsOrganVoteMode() {
     if (this._isSpectator) return;
-    this._send("isOrganVoteMode", this._store.state.grimoire.isOrganVoteMode);
+    this._send("isOrganVoteMode", this._store.state.session.isSecretVote);
   }
 
   /**
@@ -904,6 +955,11 @@ class LiveSession {
       "isVoteHistoryAllowed",
       this._store.state.session.isVoteHistoryAllowed,
     );
+  }
+
+  setAllowSelfNaming() {
+    if (this._isSpectator) return;
+    this._send("allowSelfNaming", this._store.state.session.allowSelfNaming);
   }
 
   /**
@@ -1092,6 +1148,9 @@ export default (store: StoreLike<RootState>) => {
         case "session/clearVoteHistory":
           session.clearVoteHistory();
           break;
+        case "session/setAllowSelfNaming":
+          session.setAllowSelfNaming();
+          break;
         case "session/setVoteHistoryAllowed":
           session.setVoteHistoryAllowed();
           break;
@@ -1099,7 +1158,8 @@ export default (store: StoreLike<RootState>) => {
           session.setIsNight();
           break;
         case "toggleOrganVoteMode":
-          session.setIsOrganVoteMode();
+        case "session/toggleSecretVote":
+          session.setIsSecretVote();
           break;
         case "toggleRinging":
           session.setIsRinging();
@@ -1147,6 +1207,14 @@ export default (store: StoreLike<RootState>) => {
                 value: string;
                 isFromSockets: boolean;
               },
+            );
+          } else if (updatePayload.property === "name") {
+            session.sendPlayerName(
+              updatePayload as {
+                player: Player;
+                value: string;
+                isFromSockets: boolean;
+              }
             );
           } else {
             session.sendPlayer(
