@@ -20,13 +20,12 @@ if (process.env.NODE_ENV !== "development") {
 }
 
 const server = https.createServer(options);
+const allowedOrigins = new RegExp(process.env.NODE_ALLOWED_ORIGINS || "^http://localhost");
 const wss = new WebSocket.Server({
   ...(process.env.NODE_ENV === "development" ? { port: 8081 } : { server }),
   verifyClient: (info) =>
     info.origin &&
-    !!info.origin.match(
-      /^https?:\/\/([^.]+\.github\.io|localhost|clocktower\.online|eddbra1nprivatetownsquare\.xyz)/i,
-    ),
+    allowedOrigins.test(info.origin),
 });
 
 function noop() {}

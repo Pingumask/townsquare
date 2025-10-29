@@ -1,0 +1,83 @@
+services:
+  beta_townsquare:
+    container_name: beta_townsquare
+    build:
+      context: "."
+      dockerfile: Dockerfile
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.beta.rule=Host(`beta.clocktower.tf`)
+      - traefik.http.routers.beta.entrypoints=http,https
+      - traefik.http.routers.beta.tls.certresolver=tlschallenge
+      - traefik.http.routers.beta.tls=true
+      - traefik.http.services.beta.loadbalancer.server.port=5173
+    volumes:
+      - ./public:/app/townsquare/public
+      - ./src:/app/townsquare/src
+      - ./index.html:/app/townsquare/index.html
+      - ./package.json:/app/townsquare/package.json
+      - ./package-lock.json:/app/townsquare/package-lock.json
+      - ./eslint.config.js:/app/townsquare/eslint.config.js
+      - ./tsconfig.json:/app/townsquare/tsconfig.json
+      - ./tsconfig.node.json:/app/townsquare/tsconfig.node.json
+      - ./vite.config.ts:/app/townsquare/vite.config.ts
+    environment:
+      NODE_ENV: development
+      NODE_HOSTNAME: beta.clocktower.tf
+      VITE_SERVER_URL: wss://ws.clocktower.tf/
+    working_dir: /app/townsquare
+    networks:
+      - traefik
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+
+  townsquare:
+    container_name: townsquare
+    image: nginx:alpine
+    volumes:
+      - ./dist:/usr/share/nginx/html
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.townsquare.rule=Host(`clocktower.tf`)
+      - traefik.http.routers.townsquare.entrypoints=http,https
+      - traefik.http.routers.townsquare.tls.certresolver=tlschallenge
+      - traefik.http.routers.townsquare.tls=true
+    environment:
+      VITE_SERVER_URL: wss://ws.clocktower.tf/
+    networks:
+      - traefik
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+
+  ws_server:
+    container_name: ws_server
+    build:
+      context: "."
+      dockerfile: Dockerfile.server
+    command: "node index.js"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.websocket.rule=Host(`ws.clocktower.tf`)
+      - traefik.http.routers.websocket.entrypoints=http,https
+      - traefik.http.routers.websocket.tls.certresolver=tlschallenge
+      - traefik.http.routers.websocket.tls=true
+      - traefik.http.services.websocket.loadbalancer.server.port=8081
+    environment:
+      NODE_ENV: development
+      NODE_ALLOWED_ORIGINS: "^https?://(.*\\.?clocktower\\.tf|.*\\.?\\.localhost)"
+    working_dir: /app/server
+    networks:
+      - traefik
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+
+networks:
+  traefik:
+    name: traefik
+    external: true

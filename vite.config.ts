@@ -36,4 +36,7 @@ export default defineConfig({
     },
     target: "ESNext",
   },
+  server: {
+    allowedHosts: [process.env.NODE_HOSTNAME],
+  }
 });

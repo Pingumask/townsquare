@@ -4,7 +4,17 @@ services:
     build:
       context: "."
       dockerfile: Dockerfile
-    command: "npm run dev"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.townsquare.rule=Host(`townsquare.botc.localhost`)
+      - traefik.http.routers.townsquare.entrypoints=http
+      - traefik.http.services.townsquare.loadbalancer.server.port=5173
+    ports:
+      - 5173:5173
+      - 8079:5173
+      - 8078:5173
+      - 8077:5173
+      - 8076:5173
     develop:
       watch:
         - action: sync
@@ -25,17 +35,14 @@ services:
           path: package-lock.json
         - action: rebuild
           path: Dockerfile
-        - action: rebuild
-          path: docker-compose.yml
     environment:
       NODE_ENV: development
-      # VITE_SERVER_URL: ws://localhost:8078/
-      VITE_SERVER_URL: wss://live.clocktower.online:8080/
-    ports:
-      - "8080:5173"
+      NODE_HOSTNAME: townsquare.botc.localhost
+      VITE_SERVER_URL: ws://ws.botc.localhost/
+      # VITE_SERVER_URL: wss://live.clocktower.online:8080/
     working_dir: /app/townsquare
     networks:
-      - townsquare-network
+      - proxy
     logging:
       driver: "json-file"
       options:
@@ -47,6 +54,11 @@ services:
       context: "."
       dockerfile: Dockerfile.server
     command: "node index.js"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.websocket.rule=Host(`ws.botc.localhost`)
+      - traefik.http.routers.ws.service=ws
+      - traefik.http.services.ws.loadbalancer.server.port=8081
     develop:
       watch:
         - action: sync+restart
@@ -54,24 +66,23 @@ services:
           target: /app/server
           ignore:
             - server/node_modules/
-            - server/certs/
         - action: rebuild
           path: Dockerfile.server
-        - action: rebuild
-          path: docker-compose.yml
     environment:
       NODE_ENV: development
-      ALLOWED_ORIGINS: "([^.]+\\.github\\.io|localhost|clocktower\\.online|eddbra1nprivatetownsquare\\.xyz)"
+      # NODE_ALLOWED_ORIGINS: ".*"
+      NODE_ALLOWED_ORIGINS: "^https?://(.*\\.?localhost)"
     ports:
-      - "8078:8081"
+      - "8081:8081"
     working_dir: /app/server
     networks:
-      - townsquare-network
+      - proxy
     logging:
       driver: "json-file"
       options:
         max-size: "200k"
 
 networks:
-  townsquare-network:
-    driver: bridge
+  proxy:
+    name: proxy
+    external: true

@@ -2,6 +2,7 @@
 
 ## Upcomming Version
 - Features:
+  - Server : Configurable allowed origins for the websocket server in docker-compose file
 - Bugfixes:
 - Localization :
 - Technical :
