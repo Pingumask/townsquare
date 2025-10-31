@@ -8,7 +8,7 @@
       },
       {
         "id": "Kazali",
-        "reason": "An evil Townsfolk is only created if the Bounty Hunter is still in play after the Kazali acts."
+        "reason": "If the Kazali turns the Bounty Hunter into a Minion, an evil Townsfolk is not created."
       }
     ]
   },
@@ -17,11 +17,19 @@
     "hatred": [
       {
         "id": "Chambermaid",
-        "reason": "The Chambermaid learns if the Mathematician wakes tonight or not, even though the Chambermaid wakes first."
+        "reason": "The Chambermaid can detect if the Mathematician will wake tonight."
+      },
+      {
+        "id": "Drunk",
+        "reason": "The Mathematician might learn if the Drunk's ability yielded false info or failed to work properly."
       },
       {
         "id": "Lunatic",
-        "reason": "The Mathematician learns if the Lunatic attacks a different player(s) than the real Demon attacked."
+        "reason": "The Mathematician might learn if the Lunatic attacks a different player than the real Demon attacked."
+      },
+      {
+        "id": "Marionette",
+        "reason": "The Mathematician might learn if the Marionette's ability yielded false info or failed to work properly."
       }
     ]
   },
@@ -30,11 +38,11 @@
     "hatred": [
       {
         "id": "Spy",
-        "reason": "If the Alchemist has the Spy ability, they do not, and a Spy is in play. Each day, after the execution phase, the living Alchemist may publicly guess a living player as the Spy. If correct, the Demon must choose the Spy tonight."
+        "reason": "An Alchemist-Spy has no Spy ability & a Spy is in play. After each execution, a living Alchemist-Spy may publicly guess a living player as the Spy. If correct, the Demon must choose the Spy tonight."
       },
       {
         "id": "Widow",
-        "reason": "If the Alchemist has the Widow ability, they do not, and a Widow is in play. Each day, after the execution phase, the living Alchemist may publicly guess a living player as the Widow. If correct, the Demon must choose the Widow tonight."
+        "reason": "An Alchemist-Widow has no Widow ability & a Widow is in play. After each execution, a living Alchemist-Widow may publicly guess a living player as the Widow. If correct, the Demon must choose the Widow tonight."
       },
       {
         "id": "Marionette",
@@ -42,7 +50,7 @@
       },
       {
         "id": "Wraith",
-        "reason": "If the Alchemist has the Wraith ability, they do not, and a Wraith is in play. Each day, after the execution phase, the living Alchemist may publicly guess a living player as the Wraith: if correct, the Demon must choose the Wraith tonight."
+        "reason": "An Alchemist-Wraith has no Wraith ability & a Wraith is in play. After each execution, a living Alchemist-Wraith may publicly guess a living player as the Wraith. If correct, the Demon must choose the Wraith tonight."
       },
       {
         "id": "Summoner",
@@ -54,7 +62,7 @@
       },
       {
         "id": "Organ Grinder",
-        "reason": "If the Alchemist has the Organ Grinder ability, the Organ Grinder is in play & if both the Alchemist and Organ Grinder are sober, both are drunk."
+        "reason": "If the Alchemist has the Organ Grinder ability, the Organ Grinder is in play. If both are sober, both are drunk."
       },
       {
         "id": "Boffin",
@@ -99,16 +107,20 @@
         "reason": "When the Widow sees the Grimoire, the Demon and Magician's character tokens are removed."
       },
       {
+        "id": "Marionette",
+        "reason": "If the Magician is alive, the Demon doesn't know which neighbor is the Marionette."
+      },
+      {
         "id": "Wraith",
-        "reason": "Each day, after the execution phase, the living Magician may publicly guess a living player as the Wraith: if correct, the Demon must choose the Wraith tonight."
+        "reason": "After each execution, the living Magician may publicly guess a living player as the Wraith. If correct, the Demon must choose the Wraith tonight."
       },
       {
         "id": "Vizier",
-        "reason": "If the Vizier and Magician are both in play, the Demon does not learn the Minions."
+        "reason": "If the Vizier is in play, the Magician has no ability but is immune to the Vizier's ability."
       },
       {
-        "id": "Lil' Monsta",
-        "reason": "Each night, the Magician chooses a Minion: if that Minion & Lil' Monsta are alive, that Minion babysits Lil’ Monsta."
+        "id": "Legion",
+        "reason": "The Magician wakes with Legion and might register as evil. Legion knows if a Magician is in play, but not which player it is."
       }
     ]
   },
@@ -122,11 +134,56 @@
     ]
   },
   {
-    "id": "Ogre",
+    "id": "Recluse",
     "hatred": [
       {
-        "id": "Recluse",
+        "id": "Sage",
+        "reason": "The Recluse might register as the Demon to the Sage."
+      },
+      {
+        "id": "Ogre",
         "reason": "If the Recluse registers as evil to the Ogre, the Ogre learns that they are evil."
+      }
+    ]
+  },
+  {
+    "id": "Plague Doctor",
+    "hatred": [
+      {
+        "id": "Spy",
+        "reason": "If the Storyteller would gain the Spy ability, a Minion gains it, and learns this."
+      },
+      {
+        "id": "Fearmonger",
+        "reason": "If the Storyteller would gain the Fearmonger ability, a Minion gains it, and learns this."
+      },
+      {
+        "id": "Marionette",
+        "reason": "If the Storyteller would gain the Marionette ability, one of the Demon's good neighbors becomes the Marionette."
+      },
+      {
+        "id": "Wraith",
+        "reason": "If the Storyteller would gain the Wraith ability, a Minion gains it, and learns this."
+      },
+      {
+        "id": "Evil Twin",
+        "reason": "If the Storyteller would gain the Evil Twin ability, a player becomes the Evil Twin."
+      },
+      {
+        "id": "Goblin",
+        "reason": "If the Storyteller would gain the Goblin ability, a Minion gains it, and learns this."
+      },
+      {
+        "id": "Boomdandy",
+        "reason": "If the Storyteller would gain the Boomdandy ability, a player becomes the Boomdandy."
+      },
+      {
+        "id": "Scarlet Woman",
+        "reason": "If the Storyteller would gain the Scarlet Woman ability, a Minion gains it, and learns this."
+      },
+      {
+        "id": "Baron",
+        "reason": "If the Storyteller would gain the Baron ability, up to two players become Outsiders."
       }
     ]
   },
@@ -143,64 +200,19 @@
       },
       {
         "id": "Pit-Hag",
-        "reason": "A Pit-Hag cannot create a Heretic."
+        "reason": "Only 1 jinxed character can be in play."
       },
       {
         "id": "Widow",
         "reason": "Only 1 jinxed character can be in play."
       },
       {
-        "id": "Boffin",
-        "reason": "The Demon cannot have the Heretic ability."
-      },
-      {
         "id": "Baron",
-        "reason": "The Baron might only add 1 Outsider, not 2."
+        "reason": "Only 1 jinxed character can be in play."
       },
       {
         "id": "Lleech",
-        "reason": "If the Lleech has poisoned the Heretic then the Lleech dies, the Heretic remains poisoned."
-      }
-    ]
-  },
-  {
-    "id": "Plague Doctor",
-    "hatred": [
-      {
-        "id": "Spy",
-        "reason": "If the Plague Doctor dies, a living Minion gains the Spy ability in addition to their own ability, and learns this."
-      },
-      {
-        "id": "Fearmonger",
-        "reason": "If the Plague Doctor dies, a living Minion gains the Fearmonger ability in addition to their own ability, and learns this."
-      },
-      {
-        "id": "Marionette",
-        "reason": "If the Demon has a neighbor who is alive and a Townsfolk or Outsider when the Plague Doctor dies, that player becomes an evil Marionette. If there is already an extra evil player, this does not happen."
-      },
-      {
-        "id": "Wraith",
-        "reason": "If the Plague Doctor dies, a living Minion gains the Wraith ability in addition to their own ability, and learns this."
-      },
-      {
-        "id": "Evil Twin",
-        "reason": "The Storyteller cannot gain the Evil Twin ability if the Plague Doctor dies."
-      },
-      {
-        "id": "Goblin",
-        "reason": "If the Plague Doctor dies, a living Minion gains the Goblin ability in addition to their own ability, and learns this."
-      },
-      {
-        "id": "Boomdandy",
-        "reason": "If the Plague Doctor is executed and the Storyteller would gain the Boomdandy ability, the Boomdandy ability triggers immediately."
-      },
-      {
-        "id": "Scarlet Woman",
-        "reason": "If the Plague Doctor dies, a living Minion gains the Scarlet Woman ability in addition to their own ability, and learns this."
-      },
-      {
-        "id": "Baron",
-        "reason": "If the Storyteller gains the Baron ability, up to two players become out-of-play Outsiders."
+        "reason": "Only 1 jinxed character can be in play."
       }
     ]
   },
@@ -209,7 +221,7 @@
     "hatred": [
       {
         "id": "Poppy Grower",
-        "reason": "If the Poppy Grower is in play, the Spy does not see the Grimoire until the Poppy Grower dies."
+        "reason": "If the Poppy Grower has their ability, the Spy does not see the Grimoire."
       },
       {
         "id": "Ogre",
@@ -264,7 +276,7 @@
     "hatred": [
       {
         "id": "Poppy Grower",
-        "reason": "If the Poppy Grower is in play, the Widow does not see the Grimoire until the Poppy Grower dies."
+        "reason": "If the Poppy Grower has their ability, the Widow does not see the Grimoire."
       },
       {
         "id": "Damsel",
@@ -277,31 +289,23 @@
     "hatred": [
       {
         "id": "Balloonist",
-        "reason": "If the Marionette thinks that they are the Balloonist, +1 Outsider might have been added."
+        "reason": "If the Marionette thinks that they are the Balloonist, an Outsider might have been added during setup."
       },
       {
         "id": "Huntsman",
-        "reason": "If the Marionette thinks that they are the Huntsman, the Damsel was added."
+        "reason": "If the Marionette thinks that they are the Huntsman, the Damsel was added during setup."
       },
       {
-        "id": "Poppy Grower",
-        "reason": "When the Poppy Grower dies, the Demon learns the Marionette but the Marionette learns nothing."
-      },
-      {
-        "id": "Damsel",
-        "reason": "The Marionette does not learn that a Damsel is in play."
-      },
-      {
-        "id": "Snitch",
-        "reason": "The Marionette does not learn 3 not in-play characters. The Demon learns an extra 3 instead."
-      },
-      {
-        "id": "Wraith",
-        "reason": "The Wraith does not wake with the Marionette."
+        "id": "Summoner",
+        "reason": "If there would be a Marionette in play, they enter play after the Demon & must start as their neighbor."
       },
       {
         "id": "Lil' Monsta",
-        "reason": "The Marionette neighbors a Minion, not the Demon. The Marionette is not woken to choose who takes the Lil' Monsta token, and does not learn they are the Marionette if they have the Lil' Monsta token."
+        "reason": "If there would be a Marionette in play, they enter play after the Demon & must start as their neighbor."
+      },
+      {
+        "id": "Kazali",
+        "reason": "If there would be a Marionette in play, they enter play after the Demon & must start as their neighbor."
       }
     ]
   },
@@ -310,55 +314,47 @@
     "hatred": [
       {
         "id": "Clockmaker",
-        "reason": "If the Summoner is in play, the Clockmaker does not receive their information until a Demon is created."
+        "reason": "The Summoner registers as the Demon to the Clockmaker."
       },
       {
         "id": "Preacher",
-        "reason": "If the Preacher chose the Summoner on or before the 3rd night, the Summoner chooses which Demon, but the Storyteller chooses which player."
+        "reason": "If the living Summoner has no ability, the Storyteller has the Summoner ability."
       },
       {
         "id": "Engineer",
-        "reason": "If the Engineer removes a Summoner from play before that Summoner uses their ability, the Summoner uses their ability immediately."
+        "reason": "If the living Summoner is removed from play, the Storyteller has the Summoner ability."
       },
       {
         "id": "Courtier",
-        "reason": "If the Summoner is drunk on the 3rd night, the Summoner chooses which Demon, but the Storyteller chooses which player."
+        "reason": "If the living Summoner has no ability, the Storyteller has the Summoner ability."
       },
       {
         "id": "Poppy Grower",
-        "reason": "If the Poppy Grower is alive when the Summoner acts, the Summoner chooses which Demon, but the Storyteller chooses which player."
+        "reason": "If the Poppy Grower is alive on the 3rd night, the Summoner chooses which Demon but not which player."
       },
       {
         "id": "Hatter",
-        "reason": "The Summoner cannot create an in-play Demon. If the Summoner creates a not-in-play Demon, deaths tonight are arbitrary."
+        "reason": "If the Summoner creates a second living Demon, deaths tonight are arbitrary."
       },
       {
         "id": "Pit-Hag",
-        "reason": "The Summoner cannot create an in-play Demon. If the Summoner creates a not-in-play Demon, deaths tonight are arbitrary."
-      },
-      {
-        "id": "Marionette",
-        "reason": "The Marionette neighbours the Summoner. The Summoner knows who the Marionette is."
+        "reason": "If the Summoner creates a second living Demon, deaths tonight are arbitrary."
       },
       {
         "id": "Pukka",
-        "reason": "The Summoner may choose a player to become the Pukka on the 2nd night."
+        "reason": "The Summoner may summon a Pukka on the 2nd night instead of the 3rd."
       },
       {
         "id": "Kazali",
-        "reason": "The Summoner cannot create an in-play Demon. If the Summoner creates a not-in-play Demon, deaths tonight are arbitrary."
+        "reason": "If the Summoner creates a second living Demon, deaths tonight are arbitrary."
       },
       {
         "id": "Zombuul",
-        "reason": "If the Summoner turns a dead player into the Zombuul, the Storyteller treats that player as a Zombuul that has died once."
-      },
-      {
-        "id": "Legion",
-        "reason": "If the Summoner creates Legion, most players (including all evil players) become evil Legion."
+        "reason": "If the Summoner summons a dead player into the Zombuul, the Zombuul has already \"died once\"."
       },
       {
         "id": "Lord of Typhon",
-        "reason": "If the Summoner creates a Lord of Typhon, the Lord of Typhon must neighbor a Minion. The other neighbor becomes a not-in-play evil Minion."
+        "reason": "If a Lord of Typhon is summoned, they must neighbor a Minion & their other neighbor becomes an evil Minion."
       }
     ]
   },
@@ -366,8 +362,8 @@
     "id": "Mastermind",
     "hatred": [
       {
-        "id": "Al-Hadikhia",
-        "reason": "If the Al-Hadikhia dies by execution, and the Mastermind is alive, the Al-Hadikhia chooses 3 good players tonight: if all 3 choose to live, evil wins. Otherwise, good wins."
+        "id": "Vigormortis",
+        "reason": "A Mastermind that has their ability keeps it if the Vigormortis dies."
       }
     ]
   },
@@ -376,11 +372,11 @@
     "hatred": [
       {
         "id": "Fang Gu",
-        "reason": "If the Fang Gu chooses an Outsider and dies, the Scarlet Woman does not become the Fang Gu."
+        "reason": "If there would be two Demons, one of which was the Scarlet Woman, the Scarlet Woman remains the Scarlet Woman."
       },
       {
         "id": "Al-Hadikhia",
-        "reason": "If there are two living Al-Hadikhias, the Scarlet Woman Al-Hadikhia becomes the Scarlet Woman again."
+        "reason": "If there would be two Demons, one of which was the Scarlet Woman, the Scarlet Woman becomes the Scarlet Woman again."
       }
     ]
   },
@@ -389,19 +385,19 @@
     "hatred": [
       {
         "id": "Investigator",
-        "reason": "If the Investigator learns that the Vizier is in play, the existence of the Vizier is not announced by the Storyteller."
+        "reason": "The Storyteller doesn't declare the Vizier is in play."
       },
       {
         "id": "Preacher",
-        "reason": "If the Vizier loses their ability, they learn this. If the Vizier is executed while they have their ability, their team wins."
+        "reason": "If the Vizier loses their ability, they learn this, and cannot die during the day."
       },
       {
         "id": "Alsaahir",
-        "reason": "If the Vizier is in play, the Alsaahir must also guess which Demon(s) are in play."
+        "reason": "The Storyteller doesn't declare the Vizier is in play."
       },
       {
         "id": "Courtier",
-        "reason": "If the Vizier loses their ability, they learn this. If the Vizier is executed while they have their ability, their team wins."
+        "reason": "If the Vizier loses their ability, they learn this, and cannot die during the day."
       },
       {
         "id": "Politician",
@@ -438,11 +434,15 @@
       },
       {
         "id": "Drunk",
-        "reason": "If the Demon would have the Drunk ability, the Boffin chooses a Townsfolk player to have this ability instead."
+        "reason": "The Demon cannot have the Drunk ability."
       },
       {
         "id": "Politician",
         "reason": "The Demon cannot have the Politician ability."
+      },
+      {
+        "id": "Heretic",
+        "reason": "The Demon cannot have the Heretic ability."
       }
     ]
   },
@@ -451,7 +451,7 @@
     "hatred": [
       {
         "id": "Exorcist",
-        "reason": "If the Exorcist chooses the Yaggababble, the Yaggababble ability does not kill tonight."
+        "reason": "If the Exorcist chooses the Yaggababble, the Yaggababble does not kill tonight."
       }
     ]
   },
@@ -459,45 +459,28 @@
     "id": "Lil' Monsta",
     "hatred": [
       {
+        "id": "Magician",
+        "reason": "If the Magician is alive, the Storyteller chooses which Minion babysits Lil' Monsta."
+      },
+      {
         "id": "Poppy Grower",
-        "reason": "If the Poppy Grower is in play, Minions don't wake together. They are woken one by one, until one of them chooses to take the Lil' Monsta token."
+        "reason": "If Lil' Monsta & the Poppy Grower are alive, Minions wake one by one, until one of them chooses to take the Lil' Monsta token."
       },
       {
         "id": "Hatter",
-        "reason": "If a Demon chooses Lil' Monsta, they also choose a Minion to become and babysit Lil' Monsta tonight."
+        "reason": "If the Hatter dies & the Demon chooses Lil' Monsta, they also choose a Minion to become."
+      },
+      {
+        "id": "Psychopath",
+        "reason": "If the Psychopath is babysitting Lil' Monsta, they die when executed."
       },
       {
         "id": "Scarlet Woman",
-        "reason": "If there are five or more players alive and the player holding the Lil' Monsta token dies, the Scarlet Woman is given the Lil' Monsta token tonight."
+        "reason": "If Lil' Monsta dies with 5 or more players alive, the Scarlet Woman babysits Lil' Monsta for the rest of the game."
       },
       {
         "id": "Vizier",
-        "reason": "The Vizier can die by execution if they are babysitting Lil' Monsta."
-      }
-    ]
-  },
-  {
-    "id": "Kazali",
-    "hatred": [
-      {
-        "id": "Huntsman",
-        "reason": "If the Kazali chooses the Damsel to become a Minion, and a Huntsman is in play, a good player becomes the Damsel."
-      },
-      {
-        "id": "Soldier",
-        "reason": "The Kazali can choose that the Soldier player is one of their evil Minions."
-      },
-      {
-        "id": "Choirboy",
-        "reason": "The Kazali can not choose the King to become a Minion if a Choirboy is in play."
-      },
-      {
-        "id": "Goon",
-        "reason": "The Kazali can choose that the Goon player is one of their evil Minions."
-      },
-      {
-        "id": "Marionette",
-        "reason": "If the Kazali chooses to create a Marionette, they must choose one of their neighbors."
+        "reason": "If the Vizier is babysitting Lil' Monsta, they die when executed."
       }
     ]
   },
@@ -506,7 +489,7 @@
     "hatred": [
       {
         "id": "Banshee",
-        "reason": "If the Vortox is in play and the Demon kills the Banshee, the players still learn that the Banshee has died."
+        "reason": "If the Vortox kills the Banshee, all players learn that the Banshee has died."
       }
     ]
   },
@@ -519,7 +502,7 @@
       },
       {
         "id": "Engineer",
-        "reason": "Legion and the Engineer cannot both be in play at the start of the game. If the Engineer creates Legion, most players (including all evil players) become evil Legion."
+        "reason": "If Legion is created, all evil players become Legion. If Legion is in play, the Engineer starts knowing this but has no ability."
       },
       {
         "id": "Minstrel",
@@ -527,11 +510,19 @@
       },
       {
         "id": "Hatter",
-        "reason": "If the Hatter dies and Legion is in play, nothing happens. If the Hatter dies and an evil player chooses Legion, all current evil players become Legion."
+        "reason": "If Legion is created, all evil players become Legion. If Legion is in play, the Hatter has no ability."
+      },
+      {
+        "id": "Politician",
+        "reason": "The Politician might register as evil to Legion."
       },
       {
         "id": "Zealot",
-        "reason": "The Zealot might register as evil to Legion’s ability."
+        "reason": "The Zealot might register as evil to Legion."
+      },
+      {
+        "id": "Summoner",
+        "reason": "If Legion is summoned, all evil players become Legion. "
       }
     ]
   },
@@ -540,11 +531,11 @@
     "hatred": [
       {
         "id": "Slayer",
-        "reason": "If the Slayer shoots the Lleech's host, the host dies."
+        "reason": "If the Slayer slays the Lleech host, the host dies."
       },
       {
         "id": "Mastermind",
-        "reason": "If the Mastermind is alive and the Lleech's host dies by execution, the Lleech lives but loses their ability."
+        "reason": "If the Mastermind is alive and the Lleech host dies by execution, the Lleech lives but loses their ability."
       }
     ]
   },
@@ -553,7 +544,11 @@
     "hatred": [
       {
         "id": "Princess",
-        "reason": "If the Princess nominated & executed a player on their 1st day, no one dies to the Al-Hadikhia ability tonight."
+        "reason": "If the Princess nominated & executed a player on their 1st day, no one dies to the Al-Hadikhia tonight."
+      },
+      {
+        "id": "Mastermind",
+        "reason": "If the Al-Hadikhia dies by execution, and the Mastermind is alive, the Al-Hadikhia chooses 3 good players tonight: if all 3 choose to live, evil wins. Otherwise, good wins."
       }
     ]
   },
@@ -562,7 +557,7 @@
     "hatred": [
       {
         "id": "Grandmother",
-        "reason": "If Leviathan is in play and the Grandchild dies by execution, evil wins."
+        "reason": "If the Leviathan is in play and the Grandchild dies by execution, evil wins."
       },
       {
         "id": "King",
@@ -570,19 +565,19 @@
       },
       {
         "id": "Innkeeper",
-        "reason": "If the Leviathan is in play, the Innkeeper-protected-players are safe from all evil abilities."
+        "reason": "If the Leviathan nominates and executes an Innkeeper-protected player, good wins."
       },
       {
         "id": "Monk",
-        "reason": "If the Leviathan is in play, the Monk-protected-player is safe from all evil abilities."
+        "reason": "If the Leviathan nominates and executes the Monk-protected player, good wins."
       },
       {
         "id": "Exorcist",
-        "reason": "Evil does not win when more than 1 good player has been executed, if the Exorcist is alive and has ever successfully chosen the Leviathan."
+        "reason": "If the Leviathan nominates and executes the Exorcist-chosen player, good wins."
       },
       {
         "id": "Soldier",
-        "reason": "If the Leviathan is in play, the Soldier is safe from all evil abilities."
+        "reason": "If the Leviathan nominates and executes the Soldier, good wins."
       },
       {
         "id": "Farmer",
@@ -602,15 +597,15 @@
       },
       {
         "id": "Mayor",
-        "reason": "If Leviathan is in play and no execution occurs on day 5, good wins."
+        "reason": "If the Leviathan and the Mayor are alive on day 5 & no execution occurs, good wins."
       },
       {
         "id": "Hatter",
-        "reason": "If the Hatter dies on or after day 5, the Demon cannot choose Leviathan."
+        "reason": "The Leviathan cannot enter play after day 5."
       },
       {
         "id": "Pit-Hag",
-        "reason": "After day 5, the Pit-Hag cannot choose Leviathan."
+        "reason": "The Leviathan cannot enter play after day 5."
       }
     ]
   },
@@ -619,7 +614,7 @@
     "hatred": [
       {
         "id": "Grandmother",
-        "reason": "If Riot is in play and the Grandchild dies during the day, the Grandmother dies too."
+        "reason": "If Riot is in play and the Grandchild dies by execution, evil wins."
       },
       {
         "id": "King",
@@ -627,19 +622,19 @@
       },
       {
         "id": "Innkeeper",
-        "reason": "If Riot is in play, the Innkeeper-protected player is safe from all evil abilities."
+        "reason": "If Riot nominates and executes an Innkeeper-protected player, good wins."
       },
       {
         "id": "Monk",
-        "reason": "If Riot is in play, the Monk-protected player is safe from all evil abilities."
+        "reason": "If Riot nominates and executes the Monk-protected player, good wins."
       },
       {
         "id": "Exorcist",
-        "reason": "If the Exorcist chooses Riot on the 3rd night, Minions do not become Riot."
+        "reason": "If Riot nominates and executes the Exorcist-chosen player, good wins."
       },
       {
         "id": "Soldier",
-        "reason": "If Riot is in play, the Soldier is safe from all evil abilities."
+        "reason": "If Riot nominates and executes the Soldier, good wins."
       },
       {
         "id": "Farmer",
@@ -659,7 +654,11 @@
       },
       {
         "id": "Mayor",
-        "reason": "The Mayor may choose to stop nominations. If they do so when only 1 Riot is alive, good wins. Otherwise, evil wins."
+        "reason": "The Mayor may choose to stop the riot. If they do so when only 1 Riot is alive, good wins. Otherwise, evil wins."
+      },
+      {
+        "id": "Atheist",
+        "reason": "During a riot, if the Storyteller is nominated, players vote. If they are \"about to die\", the game ends. If not, they nominate again."
       }
     ]
   }
