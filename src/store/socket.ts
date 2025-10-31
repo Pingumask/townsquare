@@ -256,7 +256,6 @@ class LiveSession {
       case "isVoteHistoryAllowed":
         if (!this._isSpectator) return;
         this._store.commit("session/setVoteHistoryAllowed", params);
-        this._store.commit("session/clearVoteHistory");
         break;
       case "votingSpeed":
         if (!this._isSpectator) return;

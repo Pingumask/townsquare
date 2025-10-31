@@ -3,6 +3,7 @@
 ## Upcomming Version
 - Features:
   - Server : Configurable allowed origins for the websocket server in docker-compose file
+  - Making vote history by default unaccessible to players
 - Bugfixes:
   - Unwanted space at the bottom or reference role modal
   - Outsider ability misplaced in night order modal
