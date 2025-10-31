@@ -301,13 +301,11 @@ ul {
   flex-grow: 1;
   display: grid;
   width: calc(100% - 35px);
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  padding: 15px 5px;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 0.5rem;
 
   li {
     display: grid;
-    align-items: start;
-    padding-bottom: 1rem;
     grid-template-columns: 12vmin 1fr;
     text-align: justify;
 
@@ -318,14 +316,6 @@ ul {
       background-repeat: no-repeat;
       flex-shrink: 0;
       flex-grow: 0;
-      position: relative;
-      top: 0.5em;
-
-      &:after {
-        content: " ";
-        display: block;
-        padding-top: 75%;
-      }
     }
 
     .role {

@@ -47,7 +47,7 @@ const close = () => {
 
 .modal {
   background: rgba(0, 0, 0, 0.8);
-  padding: 10px 20px;
+  padding: 10px 20px 0 20px;
   border-radius: 10px;
   box-shadow: 2px 2px 20px 1px #000;
   display: flex;
