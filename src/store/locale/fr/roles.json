@@ -97,12 +97,12 @@
     "firstNightReminder": "",
     "otherNight": 68,
     "otherNightEdition": 65.5,
-    "otherNightReminder": "Si un joueur est mort par execution aujourd'hui, indiquez le personnage du joueur exécuté.",
+    "otherNightReminder": "Si un joueur est mort par execution ce jour, indiquez le personnage du joueur exécuté.",
     "reminders": [
-      "Mort aujourd'hui"
+      "Mort ce jour"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, vous apprenez quel personnage est mort par exécution aujourd’hui."
+    "ability": "Chaque nuit*, vous apprenez quel personnage est mort par exécution ce jour."
   },
   {
     "id": "monk",
@@ -453,13 +453,13 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 70,
-    "otherNightReminder": "Indiquez si le Démon a voté ou non aujourd'hui.",
+    "otherNightReminder": "Indiquez si le Démon a voté ou non ce jour.",
     "reminders": [
       "Démon a voté",
       "Démon n'a pas voté"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, vous apprenez si un Démon a voté aujourd'hui."
+    "ability": "Chaque nuit*, vous apprenez si un Démon a voté ce jour."
   },
   {
     "id": "towncrier",
@@ -469,13 +469,13 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 71,
-    "otherNightReminder": "Indiquez si un Sbire a accusé aujourd'hui",
+    "otherNightReminder": "Indiquez si un Sbire a accusé ce jour",
     "reminders": [
       "A Accusé",
       "N'a pas accusé"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, vous apprenez si un Sbire a accusé aujourd'hui."
+    "ability": "Chaque nuit*, vous apprenez si un Sbire a accusé ce jour."
   },
   {
     "id": "oracle",
@@ -559,7 +559,7 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 74,
-    "otherNightReminder": "Si aujourd'hui était le premier jour du Jongleur, indiquez-lui combien de ses prédictions étaient justes.",
+    "otherNightReminder": "Si ce jour était le premier jour du Jongleur, indiquez-lui combien de ses prédictions étaient justes.",
     "reminders": [
       "Correct",
       "Faux"
@@ -601,7 +601,7 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 54,
-    "otherNightReminder": "Si la Dulcinée est morte aujourd'hui, choisissez un joueur qui sera désormais ivre.",
+    "otherNightReminder": "Si la Dulcinée vient de mourir, choisissez un joueur qui sera désormais ivre.",
     "reminders": [
       "Ivre"
     ],
@@ -616,12 +616,12 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 53,
-    "otherNightReminder": "Si le Barbier est mort aujourd'hui, réveillez le Démon. Le Démon désigne 2 joueurs : reveillez ces joueurs et informez-les de leur nouveau personnage.",
+    "otherNightReminder": "Si le Barbier est mort ce jour ou cette nuit, réveillez le Démon. Le Démon désigne 2 joueurs : reveillez ces joueurs et informez-les de leur nouveau personnage.",
     "reminders": [
       "Rasage cette nuit"
     ],
     "setup": false,
-    "ability": "Si vous êtes mort aujourd'hui (de jour ou de nuit), le Démon peut désigner 2 joueurs (pas 1 autre Démon) et échanger leur personnage."
+    "ability": "Si vous êtes mort ce jour ou cette nuit, le Démon peut désigner 2 joueurs (pas 1 autre Démon) et échanger leur personnage."
   },
   {
     "id": "klutz",
@@ -835,7 +835,7 @@
       "Drôle"
     ],
     "setup": false,
-    "ability": "Si vous avez été drôle aujourd'hui, vous ne pouvez pas mourir par exil."
+    "ability": "Si vous avez été drôle ce jour, vous ne pouvez pas mourir par exil."
   },
   {
     "id": "grandmother",
@@ -936,7 +936,7 @@
     "firstNightReminder": "",
     "otherNight": 51,
     "otherNightEdition": 60,
-    "otherNightReminder": "Si l'annonce publique de la Commère était vraie aujourd'hui, choisissez un joueur. Ce joueur meurt.",
+    "otherNightReminder": "Si l'annonce publique de la Commère était vraie ce jour, choisissez un joueur. Ce joueur meurt.",
     "reminders": [
       "Mort"
     ],
@@ -1109,13 +1109,13 @@
     "firstNight": 32,
     "firstNightReminder": "Dévoilez les rôles de Marginaux en jeu.",
     "otherNight": 50,
-    "otherNightReminder": "Si un Marginal est mort aujourd'hui, le Parrain désigne un joueur. Ce joueur meurt.",
+    "otherNightReminder": "Si un Marginal est mort ce jour, le Parrain désigne un joueur. Ce joueur meurt.",
     "reminders": [
-      "Mort aujourd'hui",
+      "Mort ce jour",
       "Mort"
     ],
     "setup": true,
-    "ability": "Vous commencez en sachant les Marginaux en jeu. Si l'un est mort aujourd'hui, désignez un joueur cette nuit : il meurt. [-1 ou +1 Marginal]"
+    "ability": "Vous commencez en sachant les Marginaux en jeu. Si l'un est mort ce jour, désignez un joueur cette nuit : il meurt. [-1 ou +1 Marginal]"
   },
   {
     "id": "devilsadvocate",
@@ -1169,13 +1169,13 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 34,
-    "otherNightReminder": "Si personne n'est mort aujourd'hui, Le Zombuul désigne un joueur. Ce joueur meurt.",
+    "otherNightReminder": "Si personne n'est mort ce jour, Le Zombuul désigne un joueur. Ce joueur meurt.",
     "reminders": [
-      "Mort aujourd'hui",
+      "Mort ce jour",
       "Mort"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, s'il n'y a pas eu de mort aujourd'hui, désignez un joueur : il meurt. Après votre 1re mort, vous vivez mais apparaissez mort."
+    "ability": "Chaque nuit*, s'il n'y a pas eu de mort ce jour, désignez un joueur : il meurt. Après votre 1ère mort, vous vivez mais apparaissez mort."
   },
   {
     "id": "pukka",
@@ -1531,7 +1531,7 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 61,
-    "otherNightReminder": "Si le Fermier est mort aujourd'hui, réveillez un bon joueur vivant et indiquez-lui qu'il est devenu le Fermier.",
+    "otherNightReminder": "Si le Fermier est mort cette nuit, réveillez un bon joueur vivant et indiquez-lui qu'il est devenu le Fermier.",
     "reminders": [],
     "setup": false,
     "ability": "Quand vous mourez la nuit, un bon joueur vivant devient Fermier."
@@ -1731,7 +1731,7 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 31,
-    "otherNightReminder": "Si aujourd'hui était le premier jour de la Princesse, et si elle a accusé et exécuté un joueur, le Démon ne tue pas (réveillez quand même le Démon).",
+    "otherNightReminder": "Si ce jour était le premier jour de la Princesse, et si elle a accusé et exécuté un joueur, le Démon ne tue pas (réveillez quand même le Démon).",
     "reminders": [
       "Ne tue pas"
     ],
@@ -1851,7 +1851,7 @@
       "Thé cette nuit"
     ],
     "setup": false,
-    "ability": "Si vous êtes mort aujourd'hui (de jour comme de nuit), les Sbires et Démons peuvent choisir de devenir d'autres Sbires et Démons."
+    "ability": "Si vous êtes mort ce jour ou cette nuit, les Sbires et Démons peuvent choisir de devenir d'autres Sbires et Démons."
   },
   {
     "id": "zealot",
@@ -1970,7 +1970,7 @@
     "firstNight": 40,
     "firstNightReminder": "Indiquez au Mezepheles son mot secret.",
     "otherNight": 25,
-    "otherNightReminder": "Si un joueur bon a pronnoncé le mot secret aujourd'hui, réveillez-le et informez-le qu'il fait maintenant partie de l'équipe des mauvais.",
+    "otherNightReminder": "Reveillez le premier joueur bon qui a pronnoncé le mot secret et informez-le qu'il fait maintenant partie de l'équipe des mauvais.",
     "reminders": [
       "Mauvais",
       "Épuisé"
@@ -2253,7 +2253,7 @@
       "Mort"
     ],
     "setup": false,
-    "ability": "Vous commencez en sachant une phrase. Pour chaque fois que vous l'avez dite publiquement aujourd'hui, il se peut qu'un joueur meure."
+    "ability": "Vous commencez en sachant une phrase. Pour chaque fois que vous l'avez dite publiquement ce jour, il se peut qu'un joueur meure."
   },
   {
     "id": "kazali",
