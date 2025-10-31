@@ -5,6 +5,7 @@
   - Server : Configurable allowed origins for the websocket server in docker-compose file
 - Bugfixes:
   - Unwanted space at the bottom or reference role modal
+  - Outsider ability misplaced in night order modal
 - Localization :
 - Technical :
 

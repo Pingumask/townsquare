@@ -397,6 +397,7 @@ ul {
     display: flex;
     width: 100%;
     margin-bottom: 3px;
+    filter: unset;
 
     .icon {
       max-width: 5vh;
