@@ -1,6 +1,6 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
-import { Role, Player } from "../types";
+import { Role } from "../types";
 
 
 function default_alignment(team, alignment) {
