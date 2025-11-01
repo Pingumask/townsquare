@@ -46,10 +46,8 @@ export function useRolePath() {
         switch(role.image.length) {
           case 0 :
             return teamIcon(role.team, alignment);
-            break;
           case 1 :
             return role.image[0];
-            break;
           case 2 :
             if (default_alignment(role.team, alignment)) {
               return role.image[0];
@@ -57,7 +55,6 @@ export function useRolePath() {
             else {
               return role.image[1];
             }
-            break;
           default :
             if (alignment == "good") {
               return role.image[1];
@@ -68,7 +65,6 @@ export function useRolePath() {
             else {
               return role.image[0];
             }
-            break;
         }
       } 
       else {
