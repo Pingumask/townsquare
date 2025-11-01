@@ -3,7 +3,7 @@ import { useStore } from "vuex";
 import { Role } from "../types";
 
 
-function default_alignment(team: string, alignment: string | null | undefined) {
+function default_alignment(team: string | undefined, alignment: string | null | undefined) {
   if (alignment == "good") {
     return (team == "townsfolk" || team == "outsider");
   }
@@ -14,7 +14,7 @@ function default_alignment(team: string, alignment: string | null | undefined) {
 }
 
 
-function teamIcon(team: string, alignment: string | null | undefined) {  
+function teamIcon(team: string | undefined, alignment: string | null | undefined) {  
   
   if (!default_alignment(team, alignment)) {
     return new URL(`../assets/icons/${team}_${alignment}.png`, import.meta.url).href;
