@@ -3,7 +3,7 @@ import { useStore } from "vuex";
 import { Role } from "../types";
 
 
-function default_alignment(team, alignment) {
+function default_alignment(team: string, alignment: string) {
   if (alignment == "good") {
     return (team == "townsfolk" || team == "outsider");
   }
@@ -14,7 +14,7 @@ function default_alignment(team, alignment) {
 }
 
 
-function teamIcon(team, alignment) {  
+function teamIcon(team: string, alignment: string) {  
   
   if (!default_alignment(team, alignment)) {
     return new URL(`../assets/icons/${team}_${alignment}.png`, import.meta.url).href;
@@ -27,7 +27,7 @@ export function useRolePath() {
   const store = useStore();
   const grimoire = computed(() => store.state.grimoire);
 
-  const rolePath = (role: Role, alignment=null) => {
+  const rolePath = (role: Role, alignment: string = null) => {
     if (
       [
         "dusk",
