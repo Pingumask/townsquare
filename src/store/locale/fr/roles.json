@@ -99,10 +99,10 @@
     "otherNightEdition": 65.5,
     "otherNightReminder": "Si un joueur est mort par execution aujourd'hui, indiquez le personnage du joueur exécuté.",
     "reminders": [
-      "Mort aujourd'hui"
+      "Mort ce jour"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, vous apprenez quel personnage est mort par exécution aujourd’hui."
+    "ability": "Chaque nuit*, vous apprenez quel personnage est mort par exécution ce jour."
   },
   {
     "id": "monk",
@@ -453,13 +453,13 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 70,
-    "otherNightReminder": "Indiquez si le Démon a voté ou non aujourd'hui.",
+    "otherNightReminder": "Indiquez si le Démon a voté ou non ce jour.",
     "reminders": [
       "Démon a voté",
       "Démon n'a pas voté"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, vous apprenez si un Démon a voté aujourd'hui."
+    "ability": "Chaque nuit*, vous apprenez si un Démon a voté ce jour."
   },
   {
     "id": "towncrier",
@@ -469,13 +469,13 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 71,
-    "otherNightReminder": "Indiquez si un Sbire a accusé aujourd'hui",
+    "otherNightReminder": "Indiquez si un Sbire a accusé ce jour",
     "reminders": [
       "A Accusé",
       "N'a pas accusé"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, vous apprenez si un Sbire a accusé aujourd'hui."
+    "ability": "Chaque nuit*, vous apprenez si un Sbire a accusé ce jour."
   },
   {
     "id": "oracle",
@@ -621,7 +621,7 @@
       "Rasage cette nuit"
     ],
     "setup": false,
-    "ability": "Si vous êtes mort aujourd'hui (de jour ou de nuit), le Démon peut désigner 2 joueurs (pas 1 autre Démon) et échanger leur personnage."
+    "ability": "Si vous êtes mort ce jour ou cette nuit, le Démon peut désigner 2 joueurs (pas un autre Démon) et échanger leur personnage."
   },
   {
     "id": "klutz",
@@ -835,7 +835,7 @@
       "Drôle"
     ],
     "setup": false,
-    "ability": "Si vous avez été drôle aujourd'hui, vous ne pouvez pas mourir par exil."
+    "ability": "Si vous avez été drôle ce jour, vous ne pouvez pas mourir par exil."
   },
   {
     "id": "grandmother",
@@ -1109,13 +1109,13 @@
     "firstNight": 32,
     "firstNightReminder": "Dévoilez les rôles de Marginaux en jeu.",
     "otherNight": 50,
-    "otherNightReminder": "Si un Marginal est mort aujourd'hui, le Parrain désigne un joueur. Ce joueur meurt.",
+    "otherNightReminder": "Si un Marginal est mort ce jour, le Parrain désigne un joueur. Ce joueur meurt.",
     "reminders": [
-      "Mort aujourd'hui",
+      "Mort ce jour",
       "Mort"
     ],
     "setup": true,
-    "ability": "Vous commencez en sachant les Marginaux en jeu. Si l'un est mort aujourd'hui, désignez un joueur cette nuit : il meurt. [-1 ou +1 Marginal]"
+    "ability": "Vous commencez en sachant les Marginaux en jeu. Si l'un est mort ce jour, désignez un joueur cette nuit : il meurt. [-1 ou +1 Marginal]"
   },
   {
     "id": "devilsadvocate",
@@ -1169,13 +1169,13 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 34,
-    "otherNightReminder": "Si personne n'est mort aujourd'hui, Le Zombuul désigne un joueur. Ce joueur meurt.",
+    "otherNightReminder": "Si personne n'est mort ce jour, Le Zombuul désigne un joueur. Ce joueur meurt.",
     "reminders": [
-      "Mort aujourd'hui",
+      "Mort ce jour",
       "Mort"
     ],
     "setup": false,
-    "ability": "Chaque nuit*, s'il n'y a pas eu de mort aujourd'hui, désignez un joueur : il meurt. Après votre 1re mort, vous vivez mais apparaissez mort."
+    "ability": "Chaque nuit*, s'il n'y a pas eu de mort ce jour, désignez un joueur : il meurt. Après votre 1ère mort, vous vivez mais apparaissez mort."
   },
   {
     "id": "pukka",
@@ -1851,7 +1851,7 @@
       "Thé cette nuit"
     ],
     "setup": false,
-    "ability": "Si vous êtes mort aujourd'hui (de jour comme de nuit), les Sbires et Démons peuvent choisir de devenir d'autres Sbires et Démons."
+    "ability": "Si vous êtes mort ce jour ou cette nuit, les Sbires et Démons peuvent choisir de devenir d'autres Sbires et Démons."
   },
   {
     "id": "zealot",
@@ -2253,7 +2253,7 @@
       "Mort"
     ],
     "setup": false,
-    "ability": "Vous commencez en sachant une phrase. Pour chaque fois que vous l'avez dite publiquement aujourd'hui, il se peut qu'un joueur meure."
+    "ability": "Vous commencez en sachant une phrase. Pour chaque fois que vous l'avez dite publiquement ce jour, il se peut qu'un joueur meure."
   },
   {
     "id": "kazali",
