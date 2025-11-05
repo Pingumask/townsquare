@@ -7,6 +7,7 @@
   - Unwanted space at the bottom or reference role modal
   - Outsider ability misplaced in night order modal
 - Localization :
+  - Changing Slayer's French name
 - Technical :
 
 
