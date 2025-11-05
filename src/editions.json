@@ -1,250 +1,242 @@
-{
-  "official": [
-    {
-      "id": "tb",
-      "name": "Trouble Brewing",
-      "author": "The Pandemonium Institute",
-      "description": "Clouds roll in over Ravenswood Bluff, engulfing this sleepy town and its superstitious inhabitants in foreboding shadow. Freshly-washed clothes dance eerily on lines strung between cottages. Chimneys cough plumes of smoke into the air. Exotic scents waft through cracks in windows and under doors, as hidden cauldrons lay bubbling. An unusually warm Autumn breeze wraps around vine-covered walls and whispers ominously to those brave enough to walk the cobbled streets.\n\nAnxious mothers call their children home from play, as thunder begins to clap on the horizon. If you listen more closely, however, noises stranger still can be heard echoing from the neighbouring forest. Under the watchful eye of a looming monastery, silhouetted figures skip from doorway to doorway. Those who can read the signs know there is... Trouble Brewing.",
-      "level": "Beginner",
-      "roles": [],
-      "logo": "tb",
-      "isOfficial": true
-    },
-    {
-      "id": "snv",
-      "name": "Sects & Violets",
-      "author": "The Pandemonium Institute",
-      "description": "Vibrant spring gives way to a warm and inviting summer. Flowers of every description blossom as far as the eye can see, tenderly nurtured in public gardens and window boxes overlooking the lavish promenade. Birds sing, artists paint and philosophers ponder life's greatest mysteries inside a bustling tavern as a circus pitches its endearingly ragged tent on the edge of town.\n\nAs the townsfolk bask in frivolity and mischief, indulging themselves in fine entertainment and even finer wine, dark and clandestine forces are assembling. Witches and cults lurk in majestic ruins on the fringes of the community, hosting secret meetings in underground caves and malevolently plotting the downfall of Ravenswood Bluff and its revelers.\n\nThe time is ripe for... Sects & Violets.",
-      "level": "Intermediate",
-      "roles": [],
-      "logo": "snv",
-      "isOfficial": true
-    },
-    {
-      "id": "bmr",
-      "name": "Bad Moon Rising",
-      "author": "The Pandemonium Institute",
-      "description": "The sun is swallowed by a jagged horizon as another winter's day surrenders to the night. Flecks of orange and red decay into deeper browns, the forest transforming in silent anticipation of the coming snow.\n\nRavenous wolves howl from the bowels of a rocky crevasse beyond the town borders, sending birds scattering from their cozy rooks. travelers hurry into the inn, seeking shelter from the gathering chill. They warm themselves with hot tea, sweet strains of music and hearty ale, unaware that strange and nefarious eyes stalk them from the ruins of this once great city.\n\nTonight, even the livestock know there is a... Bad Moon Rising.",
-      "level": "Intermediate",
-      "roles": [],
-      "logo": "bmr",
-      "isOfficial": true
-    }
-  ],
-  "popular": [
-    [
-      "Anonymous Dishonesty",
-      "anonymous_dishonesty.json"
+[
+  {
+    "id": "tb",
+    "name": "Trouble Brewing",
+    "color": "#AB0D27",
+    "themes": 6,
+    "level": "beginner",
+    "isOfficial": true,
+    "roles": [
+      "washerwoman",
+      "librarian",
+      "investigator",
+      "chef",
+      "empath",
+      "fortuneteller",
+      "undertaker",
+      "monk",
+      "ravenkeeper",
+      "virgin",
+      "slayer",
+      "soldier",
+      "mayor",
+      "butler",
+      "drunk",
+      "recluse",
+      "saint",
+      "baron",
+      "poisoner",
+      "scarletwoman",
+      "spy",
+      "imp"
     ],
-    [
-      "Boozling",
-      "boozling.json"
+    "firstNight": [
+      "dusk",
+      "bureaucrat",
+      "thief",
+      "apprentice",
+      "barista",
+      "minioninfo",
+      "demoninfo",
+      "poisoner",
+      "spy",
+      "washerwoman",
+      "librarian",
+      "investigator",
+      "chef",
+      "empath",
+      "fortuneteller",
+      "butler",
+      "dawn"
     ],
-    [
-      "Catfishing",
-      "catfishing.json"
-    ],
-    [
-      "Chef's Deluxe",
-      "chefs_deluxe.json"
-    ],
-    [
-      "Church of Spies",
-      "church_of_spies.json"
-    ],
-    [
-      "Contempt",
-      "contempt.json"
-    ],
-    [
-      "Cultists of Atlantis",
-      "cultists_of_atlantis.json"
-    ],
-    [
-      "Deadly Penance Day",
-      "deadly_penance_day.json"
-    ],
-    [
-      "Devout Theists",
-      "devout_theists.json"
-    ],
-    [
-      "Dusk in the House of the Damned",
-      "dusk_in_the_house_of_the_damned.json"
-    ],
-    [
-      "Extension Cord",
-      "extension_cord.json"
-    ],
-    [
-      "A Grimm Chorus",
-      "grimm_chorus.json"
-    ],
-    [
-      "Harold Holt's Revenge",
-      "harold_holts_revenge.json"
-    ],
-    [
-      "Hide & Seek",
-      "hide_and_seek.json"
-    ],
-    [
-      "The Horrifying Spectacle of Public Executions",
-      "the_horrifying_spectacle_of_public_executions.json"
-    ],
-    [
-      "Insanity & Intuition",
-      "insanity_and_intuition.json"
-    ],
-    [
-      "Irrational Behaviour",
-      "irrational_behaviour.json"
-    ],
-    [
-      "Knowing me, Knowing you",
-      "knowing_me_knowing_you.json"
-    ],
-    [
-      "Lunar Eclipse",
-      "lunar_eclipse.json"
-    ],
-    [
-      "Midnight Oasis",
-      "midnight_oasis.json"
-    ],
-    [
-      "Monkey Do Math",
-      "monkey_do_math.json"
-    ],
-    [
-      "No roles barred",
-      "no_roles_barred.json"
-    ],
-    [
-      "One in one out",
-      "one_in_one_out.json"
-    ],
-    [
-      "The Ones You Least Expect",
-      "the_ones_you_least_expect.json"
-    ],
-    [
-      "Poppyganda",
-      "poppyganda.json"
-    ],
-    [
-      "Punchy",
-      "punchy.json"
-    ],
-    [
-      "Quick Maths",
-      "quick_maths.json"
-    ],
-    [
-      "Reptiles !",
-      "reptiles.json"
-    ],
-    [
-      "Reptiles II : Lizard in the city",
-      "reptiles2.json"
-    ],
-    [
-      "Revenge of the Martian Vampires",
-      "revenge_of_the_martian_vampires.json"
-    ],
-    [
-      "Reykjavik's Scheme",
-      "reykjaviks_scheme.json"
-    ],
-    [
-      "Rochambeau",
-      "rochambeau.json"
-    ],
-    [
-      "Separation Of Church and State",
-      "separation_church_state.json"
-    ],
-    [
-      "Simpletown Village",
-      "simpletown_village.json"
-    ],
-    [
-      "Storyteller's Vengeance",
-      "storytellers_vengeance.json"
-    ],
-    [
-      "Trouble Brewing Advanced",
-      "trouble_brewing_advanced.json"
-    ],
-    [
-      "Trouble with Violets",
-      "trouble_with_violets.json"
-    ],
-    [
-      "Uncertain Death",
-      "uncertain_death.json"
-    ],
-    [
-      "Visitors",
-      "visitors.json"
-    ],
-    [
-      "Whose Cult is it Anyway",
-      "whose_cult_is_it_anyway.json"
+    "otherNight": [
+      "dusk",
+      "bureaucrat",
+      "thief",
+      "barista",
+      "bonecollector",
+      "harlot",
+      "poisoner",
+      "monk",
+      "spy",
+      "scarletwoman",
+      "imp",
+      "ravenkeeper",
+      "undertaker",
+      "empath",
+      "fortuneteller",
+      "butler",
+      "dawn"
     ]
-  ],
-  "teensyville": [
-    [
-      "Comrade Demon",
-      "comrade_demon.json"
+  },
+  {
+    "id": "bmr",
+    "name": "Bad Moon Rising",
+    "color": "#EC9834",
+    "themes": 6,
+    "level": "intermediate",
+    "isOfficial": true,
+    "roles": [
+      "grandmother",
+      "sailor",
+      "chambermaid",
+      "exorcist",
+      "innkeeper",
+      "gambler",
+      "gossip",
+      "courtier",
+      "professor",
+      "minstrel",
+      "tealady",
+      "pacifist",
+      "fool",
+      "goon",
+      "lunatic",
+      "tinker",
+      "moonchild",
+      "godfather",
+      "devilsadvocate",
+      "assassin",
+      "mastermind",
+      "zombuul",
+      "pukka",
+      "shabaloth",
+      "po"
     ],
-    [
-      "Frankenstein's Mayor",
-      "frankensteins_mayor.json"
+    "firstNight": [
+      "dusk",
+      "bureaucrat",
+      "thief",
+      "apprentice",
+      "barista",
+      "minioninfo",
+      "lunatic",
+      "demoninfo",
+      "sailor",
+      "courtier",
+      "godfather",
+      "devilsadvocate",
+      "pukka",
+      "grandmother",
+      "chambermaid",
+      "dawn"
     ],
-    [
-      "Laissez un faire",
-      "laissez_un_faire.json"
-    ],
-    [
-      "Late night drive by",
-      "late_night_drive_by.json"
-    ],
-    [
-      "A Lleech of Distrust",
-      "a_lleech_of_distrust.json"
-    ],
-    [
-      "Minion is Angel Protected & the Demon Has 2 Bluffs",
-      "minion_is_angel_protected_and_the_demon_has_2_bluffs.json"
-    ],
-    [
-      "No greater joy",
-      "no_greater_joy.json"
-    ],
-    [
-      "On thin ice",
-      "on_thin_ice.json"
-    ],
-    [
-      "Over the River",
-      "over_the_river.json"
-    ],
-    [
-      "Race to the bottom",
-      "race_to_the_bottom.json"
-    ],
-    [
-      "Spooky tea",
-      "spooky_tea.json"
-    ],
-    [
-      "Spooky tea 2 : Very spooky",
-      "spooky_tea2.json"
-    ],
-    [
-      "Vigormortis High school",
-      "vigormortis_high_school.json"
+    "otherNight": [
+      "dusk",
+      "bureaucrat",
+      "thief",
+      "barista",
+      "bonecollector",
+      "harlot",
+      "sailor",
+      "innkeeper",
+      "courtier",
+      "gambler",
+      "devilsadvocate",
+      "lunatic",
+      "exorcist",
+      "zombuul",
+      "pukka",
+      "shabaloth",
+      "po",
+      "assassin",
+      "godfather",
+      "professor",
+      "gossip",
+      "tinker",
+      "moonchild",
+      "grandmother",
+      "chambermaid",
+      "dawn"
     ]
-  ]
-}
+  },
+  {
+    "id": "snv",
+    "name": "Sects & Violets",
+    "color": "#8D57AA",
+    "themes": 6,
+    "level": "intermediate",
+    "isOfficial": true,
+    "roles": [
+      "clockmaker",
+      "snakecharmer",
+      "flowergirl",
+      "oracle",
+      "seamstress",
+      "artist",
+      "sage",
+      "dreamer",
+      "mathematician",
+      "towncrier",
+      "savant",
+      "philosopher",
+      "juggler",
+      "mutant",
+      "barber",
+      "sweetheart",
+      "klutz",
+      "eviltwin",
+      "cerenovus",
+      "witch",
+      "pithag",
+      "fanggu",
+      "nodashii",
+      "vigormortis",
+      "vortox"
+    ],
+    "firstNight": [
+      "dusk",
+      "bureaucrat",
+      "thief",
+      "apprentice",
+      "barista",
+      "minioninfo",
+      "demoninfo",
+      "philosopher",
+      "snakecharmer",
+      "eviltwin",
+      "witch",
+      "cerenovus",
+      "clockmaker",
+      "dreamer",
+      "seamstress",
+      "mathematician",
+      "dawn"
+    ],
+    "otherNight": [
+      "dusk",
+      "bureaucrat",
+      "thief",
+      "barista",
+      "bonecollector",
+      "harlot",
+      "philosopher",
+      "snakecharmer",
+      "witch",
+      "cerenovus",
+      "pithag",
+      "fanggu",
+      "vigormortis",
+      "nodashii",
+      "vortox",
+      "barber",
+      "sweetheart",
+      "sage",
+      "dreamer",
+      "flowergirl",
+      "towncrier",
+      "oracle",
+      "seamstress",
+      "juggler",
+      "mathematician",
+      "dawn"
+    ]
+  },
+  {
+    "id": "custom",
+    "color": "#58D7FB",
+    "themes": 8,
+    "level": "various",
+    "isOfficial": false
+  }
+]
