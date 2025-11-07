@@ -7,8 +7,9 @@
   - Unwanted space at the bottom or reference role modal
   - Outsider ability misplaced in night order modal
 - Localization :
+  - FR : Changing Slayer's name from "Tueur" to "Pourfendeur"
   - FR : less ambiguous translation of "today" => "ce jour"
-  - FR : shorter translation of "today or tonight" => "ce jour oucette nuit"
+  - FR : shorter translation of "today or tonight" => "ce jour ou cette nuit"
 - Technical :
 
 
