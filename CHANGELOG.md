@@ -7,6 +7,7 @@
 - Bugfixes:
   - Unwanted space at the bottom or reference role modal
   - Outsider ability misplaced in night order modal
+  - Allowing alive players to vote even if Voudon is in play
 - Localization :
   - FR : Changing Slayer's name from "Tueur" to "Pourfendeur"
   - FR : less ambiguous translation of "today" => "ce jour"
