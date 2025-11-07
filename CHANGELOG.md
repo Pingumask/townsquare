@@ -2,6 +2,16 @@
 
 ## Upcomming Version
 - Features:
+
+- Bugfixes:
+
+- Localization :
+
+- Technical :
+
+
+## 5.5.0
+- Features:
   - Server : Configurable allowed origins for the websocket server in docker-compose file
   - Updating the jinxes
 - Bugfixes:
@@ -12,9 +22,6 @@
   - FR : Changing Slayer's name from "Tueur" to "Pourfendeur"
   - FR : less ambiguous translation of "today" => "ce jour"
   - FR : shorter translation of "today or tonight" => "ce jour ou cette nuit"
-- Technical :
-
-
 
 ## 5.4.0
 - Features:
