@@ -4,7 +4,8 @@
 - Features:
 
 - Bugfixes:
-
+  - [P] Hotkey for adding multiple players
+  - Missing message for add multiple players prompt
 - Localization :
 
 - Technical :

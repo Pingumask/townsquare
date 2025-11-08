@@ -560,6 +560,7 @@ const toggleModal = (modal: string) => store.commit('toggleModal', modal);
 
 defineExpose({
   addPlayer,
+  addPlayers,
   hostSession,
   joinSession,
   toggleNight,

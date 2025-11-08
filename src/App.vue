@@ -59,6 +59,7 @@ const version = app.version;
 // Type for Menu component exposed methods
 interface MenuRef {
   addPlayer: () => void;
+  addPlayers: () => void;
   hostSession: () => void;
   joinSession: () => void;
   toggleNight: () => void;
@@ -91,6 +92,9 @@ function keyup({ key, ctrlKey, metaKey }: KeyboardEvent) {
       break;
     case "a":
       menuRef.value?.addPlayer();
+      break;
+    case "p":
+      menuRef.value?.addPlayers();
       break;
     case "h":
       menuRef.value?.hostSession();

@@ -71,6 +71,7 @@
     "joinSession": "Enter the channel number / name of the session you want to join",
     "leaveSession": "Are you sure you want to leave the active live game?",
     "addPlayer": "Player name",
+    "addPlayers": "Number of players to add",
     "randomizeSeatings": "Are you sure you want to randomize seatings?",
     "clearPlayers": "Are you sure you want to remove all players?",
     "clearRoles": "Are you sure you want to remove all player roles?",
