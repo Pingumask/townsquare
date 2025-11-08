@@ -209,5 +209,25 @@
     "name": "Chasseur de tempêtes",
     "team": "loric",
     "ability": "Désignez un personnage bon. S'il est en jeu, il ne peut mourir que par exécution, mais les joueurs mauvais savent qui a ce rôle."
+  },
+  {
+    "id": "bigwig",
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "name": "Magistrat",
+    "team": "loric",
+    "ability": "Chaque accusé désigne un joueur. Jusqu'au vote, seul ce joueur peut parler, et il est persuadé que l'accusé est bon ou il se peut qu'il meure."
+  },
+  {
+    "id": "tor",
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "name": "Tor",
+    "team": "loric",
+    "ability": "Les joueurs ne savent pas leur personnage ni leur alignement. Ils l'apprennent lorsqu'ils meurent."
   }
 ]

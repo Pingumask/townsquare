@@ -25,6 +25,7 @@
 - Features:
   - Server : Configurable allowed origins for the websocket server in docker-compose file
   - Updating the jinxes
+  - Adding new Lorics
 - Bugfixes:
   - Unwanted space at the bottom or reference role modal
   - Outsider ability misplaced in night order modal
