@@ -3,8 +3,9 @@ import type {
   VoteHistoryEntry,
   Player,
   Nomination,
-} from "../../types";
-import { isActiveNomination, isTravelerExile } from "../../composables";
+  GamePhase,
+} from "@/types";
+import { isActiveNomination, isTravelerExile } from "@/composables";
 
 /**
  * Handle a vote request.
@@ -42,6 +43,7 @@ const state = (): SessionState => ({
   isVoteHistoryAllowed: true,
   isRolesDistributed: false,
   isSecretVote: false,
+  gamePhase: "pregame",
 });
 
 const getters = {};
@@ -71,6 +73,9 @@ const mutations = {
   setSecretVote: set("isSecretVote"),
   claimSeat: set("claimedSeat"),
   distributeRoles: set("isRolesDistributed"),
+  setGamePhase(state: SessionState, gamePhase: GamePhase) {
+    state.gamePhase = gamePhase;
+  },
   setSessionId(state: SessionState, sessionId: string) {
     state.sessionId = sessionId
       .toLocaleLowerCase()

@@ -1,5 +1,6 @@
 <template>
-  <aside ref="sideMenu" class="sideMenu" :class="{ closed: !isSideMenuOpen }">
+  <aside v-if="!session.isSpectator || grimoire.isNight" ref="sideMenu" class="sideMenu"
+    :class="{ closed: !isSideMenuOpen }">
     <div>
       <h3>
         <font-awesome-icon icon="times-circle" class="fa fa-times-circle" @click.stop="toggleSideMenu" />
@@ -10,11 +11,17 @@
 
       <div v-if="!session.isSpectator">
         <div class="button-group">
-          <button class="button" :disabled="!grimoire.isNight" @click="toggleNight()">
+          <button class="button" :disabled="session.gamePhase === 'firstNight'"
+            :title="t('menu.grimoire.firstNightSwitch')" @click="setGamePhase('firstNight')">
+            ☽
+          </button>
+          <button class="button" :disabled="session.gamePhase === 'day'" :title="t('menu.grimoire.daySwitch')"
+            @click="setGamePhase('day')">
             ☀
           </button>
-          <button class="button" :disabled="grimoire.isNight" @click="toggleNight()">
-            ☽
+          <button class="button" :disabled="session.gamePhase === 'otherNight'" :title="t('menu.grimoire.nightSwitch')"
+            @click="setGamePhase('otherNight')">
+            ☾
           </button>
         </div>
         <div v-if="!grimoire.isNight">
@@ -75,7 +82,7 @@
         </div>
       </div>
       <div v-if="grimoire.isNight" class="night-order-container">
-        <NightOrderTable night-type="other" />
+        <NightOrderTable :night-type="session.gamePhase" />
       </div>
     </div>
   </aside>
@@ -86,6 +93,7 @@ import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import { NightOrderTable } from '@/components';
 import { useTranslation, isActiveNomination } from '@/composables';
+import { GamePhase } from "@/types";
 
 const store = useStore();
 const { t } = useTranslation();
@@ -114,15 +122,16 @@ const toggleSideMenu = () => {
   isSideMenuOpen.value = !isSideMenuOpen.value;
 };
 
-const toggleNight = () => {
-  store.commit("toggleNight");
-  if (grimoire.value.isNight) {
-    store.commit("session/setMarkedPlayer", -1);
-  }
-  else {
+const setGamePhase = (gamePhase: GamePhase) => {
+  if (gamePhase === "day") {
+    store.commit("toggleNight", false);
     store.commit("toggleRooster", true);
     setTimeout(() => store.commit("toggleRooster", false), 4000);
+  } else if (gamePhase === "otherNight" || gamePhase === "firstNight") {
+    store.commit("session/setMarkedPlayer", -1);
+    store.commit("toggleNight", true);
   }
+  store.commit("session/setGamePhase", gamePhase);
 };
 
 const toggleHiddenVote = () => {

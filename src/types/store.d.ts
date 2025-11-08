@@ -76,6 +76,7 @@ export interface SessionState {
   isVoteHistoryAllowed: boolean;
   isRolesDistributed: boolean;
   isSecretVote: boolean;
+  gamePhase: GamePhase;
 }
 
 // Players menu state

@@ -123,6 +123,13 @@ function keyup({ key, ctrlKey, metaKey }: KeyboardEvent) {
       break;
     case "s":
       if (session.value.isSpectator) return;
+      if (session.value.gamePhase === "pregame") {
+        store.commit("session/setGamePhase", "firstNight");
+      } else if (session.value.gamePhase === "firstNight" || session.value.gamePhase === "otherNight") {
+        store.commit("session/setGamePhase", "day");
+      } else if (session.value.gamePhase === "day") {
+        store.commit("session/setGamePhase", "otherNight");
+      }
       menuRef.value?.toggleNight();
       break;
     case "b":

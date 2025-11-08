@@ -8,8 +8,8 @@
       {{ edition.name || t('modal.nightOrder.custom') }}
     </h3>
     <div class="night">
-      <NightOrderTable night-type="first" />
-      <NightOrderTable night-type="other" />
+      <NightOrderTable night-type="firstNight" />
+      <NightOrderTable night-type="otherNight" />
     </div>
   </Modal>
 </template>

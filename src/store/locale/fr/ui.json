@@ -4,6 +4,7 @@
       "title": "Grimoire",
       "hide": "Cacher",
       "show": "Montrer",
+      "firstNightSwitch": "Passer à la première nuit",
       "nightSwitch": "Passer à la nuit",
       "daySwitch": "Passer au jour",
       "order": "Ordre Nocturne",

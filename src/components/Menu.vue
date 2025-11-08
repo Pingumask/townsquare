@@ -41,11 +41,14 @@
             <em>[G]</em>
           </li>
           <li v-if="!session.isSpectator" @click="toggleNight">
-            <template v-if="!grimoire.isNight">
-              {{ t('menu.grimoire.nightSwitch') }}
+            <template v-if="session.gamePhase === 'pregame'">
+              {{ t('menu.grimoire.firstNightSwitch') }}
             </template>
-            <template v-if="grimoire.isNight">
+            <template v-if="session.gamePhase === 'firstNight' || session.gamePhase === 'otherNight'">
               {{ t('menu.grimoire.daySwitch') }}
+            </template>
+            <template v-if="session.gamePhase === 'day'">
+              {{ t('menu.grimoire.nightSwitch') }}
             </template>
             <em>[S]</em>
           </li>

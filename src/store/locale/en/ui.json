@@ -4,6 +4,7 @@
       "title": "Grimoire",
       "hide": "Hide",
       "show": "Show",
+      "firstNightSwitch": "Switch to First Night",
       "nightSwitch": "Switch to Night",
       "daySwitch": "Switch to Day",
       "order": "Night order",

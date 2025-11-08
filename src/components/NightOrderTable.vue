@@ -1,10 +1,10 @@
 <template>
   <ul :class="nightType">
     <li class="headline">
-      {{ nightType === 'first' ? t('modal.nightOrder.firstNight') : t('modal.nightOrder.otherNights') }}
+      {{ nightType === 'firstNight' ? t('modal.nightOrder.firstNight') : t('modal.nightOrder.otherNights') }}
     </li>
     <li v-for="role in roles" :key="role.id" :class="[role.team]">
-      <span v-if="nightType === 'first' && role.id && role.id != 'empty'" class="icon" :class="role.team">
+      <span v-if="nightType === 'firstNight' && role.id && role.id != 'empty'" class="icon" :class="role.team">
         <RoleIcon :role="role" />
       </span>
       <span class="name">
@@ -25,13 +25,13 @@
           <small />
         </span>
       </span>
-      <span v-if="nightType === 'other' && role.id && role.id != 'empty'" class="icon" :class="role.team">
+      <span v-if="nightType === 'otherNight' && role.id && role.id != 'empty'" class="icon" :class="role.team">
         <RoleIcon :role="role" />
       </span>
-      <span v-if="nightType === 'first' && role.firstNightReminder" class="reminder">
+      <span v-if="nightType === 'firstNight' && role.firstNightReminder" class="reminder">
         {{ role.firstNightReminder }}
       </span>
-      <span v-if="nightType === 'other' && role.otherNightReminder" class="reminder">
+      <span v-if="nightType === 'otherNight' && role.otherNightReminder" class="reminder">
         {{ role.otherNightReminder }}
       </span>
     </li>
@@ -46,7 +46,7 @@ import { RoleIcon } from '@/components';
 import type { NightOrderRole, Role, Player } from "@/types";
 
 interface Props {
-  nightType: 'first' | 'other';
+  nightType: 'firstNight' | 'otherNight';
 }
 
 const props = defineProps<Props>();
@@ -61,7 +61,7 @@ const rolesStore = computed(() => store.state.roles);
 
 const roles = computed(() => {
   function nightIndex(role: Role, officialEdition: boolean): number {
-    if (props.nightType === 'first') {
+    if (props.nightType === 'firstNight') {
       if (officialEdition && role.firstNightEdition) {
         return role.firstNightEdition;
       }
@@ -77,7 +77,7 @@ const roles = computed(() => {
   const nightRoles: NightOrderRole[] = [];
 
   // Add dusk and dawn markers
-  if (props.nightType === 'first') {
+  if (props.nightType === 'firstNight') {
     nightRoles.push(
       {
         id: "dusk",
@@ -124,9 +124,9 @@ const roles = computed(() => {
   // Add fabled characters
   let toymaker = false;
   fabled.value.forEach((fabledRole: Role) => {
-    if (props.nightType === 'first' && fabledRole.firstNight) {
+    if (props.nightType === 'firstNight' && fabledRole.firstNight) {
       nightRoles.push({ players: [], ...fabledRole });
-    } else if (props.nightType === 'other' && fabledRole.otherNight) {
+    } else if (props.nightType === 'otherNight' && fabledRole.otherNight) {
       nightRoles.push({ players: [], ...fabledRole });
     } else if (fabledRole.id === "toymaker") {
       toymaker = true;
@@ -135,7 +135,7 @@ const roles = computed(() => {
 
   // Add regular roles (non-travelers)
   rolesStore.value.forEach((role: Role) => {
-    const hasNightAction = props.nightType === 'first' ? role.firstNight : role.otherNight;
+    const hasNightAction = props.nightType === 'firstNight' ? role.firstNight : role.otherNight;
     if (hasNightAction && role.team !== "traveler") {
       const roleWithPlayers: NightOrderRole = {
         ...role,
@@ -151,7 +151,7 @@ const roles = computed(() => {
   players.value.forEach((player: Player) => {
     if (player.role.team === "traveler") {
       nbTravelers++;
-      const hasNightAction = props.nightType === 'first' ? player.role.firstNight : player.role.otherNight;
+      const hasNightAction = props.nightType === 'firstNight' ? player.role.firstNight : player.role.otherNight;
       if (hasNightAction && !seenTravelers.includes(player.role.id)) {
         seenTravelers.push(player.role.id);
         const activePlayers = players.value.filter((p: Player) => p.role.id === player.role.id);
@@ -161,7 +161,7 @@ const roles = computed(() => {
   });
 
   // Add Minions/Demon info (first night only)
-  if (props.nightType === 'first' && (players.value.length - nbTravelers > 6 || toymaker)) {
+  if (props.nightType === 'firstNight' && (players.value.length - nbTravelers > 6 || toymaker)) {
     nightRoles.push(
       {
         id: "minion",
