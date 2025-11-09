@@ -1,6 +1,6 @@
 <template>
   <div id="app" tabindex="-1" :class="{
-    night: grimoire.isNight,
+    night: (session.gamePhase === 'firstNight' || session.gamePhase === 'otherNight'),
     static: grimoire.isStatic,
   }" :style="{
     backgroundImage: `url('${background}')`,

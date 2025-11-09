@@ -169,7 +169,6 @@ const initializeStore = async () => {
     state: {
       grimoire: {
         disableHotkeys: false,
-        isNight: false,
         isNightOrder: false,
         isRinging: false,
         isRooster: false,
@@ -297,25 +296,6 @@ const initializeStore = async () => {
     },
     actions: {
       /**
-       * Toggle night/day and handle related side effects
-       */
-      toggleNight({
-        commit,
-        state,
-      }: {
-        commit: (mutation: string, payload?: unknown) => void;
-        state: RootState;
-      }) {
-        commit("toggleNight");
-        if (state.grimoire.isNight) {
-          commit("session/setMarkedPlayer", -1);
-        } else {
-          commit("toggleRooster", true);
-          setTimeout(() => commit("toggleRooster", false), 4000);
-        }
-      },
-
-      /**
        * Trigger the bell ringing animation
        */
       toggleRinging({
@@ -334,7 +314,6 @@ const initializeStore = async () => {
       toggleMenu: toggle("isMenuOpen"),
       toggleNightOrder: toggle("isNightOrder"),
       toggleStatic: toggle("isStatic"),
-      toggleNight: toggle("isNight"),
       toggleRinging: toggle("isRinging"),
       toggleRooster: toggle("isRooster"),
       toggleGrimoire: toggle("isPublic"),

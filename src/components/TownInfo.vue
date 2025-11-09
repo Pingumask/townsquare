@@ -52,7 +52,7 @@
         <font-awesome-icon class="traveler" :icon="teams.traveler > 1 ? 'user-friends' : 'user'" />
       </span>
     </li>
-    <li v-if="grimoire.isNight">
+    <li v-if="session.gamePhase === 'firstNight' || session.gamePhase === 'otherNight'">
       <font-awesome-icon :icon="['fas', 'cloud-moon']" />
       {{ t('towninfo.nightPhase') }}
     </li>

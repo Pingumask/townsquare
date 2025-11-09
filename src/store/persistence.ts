@@ -129,6 +129,9 @@ export default (store: StoreLike<RootState>) => {
       store.commit("session/setSessionId", sessionId);
     }
   }
+  if (localStorage.getItem("gamePhase")) {
+    store.commit("session/setGamePhase", localStorage.getItem("gamePhase"));
+  }
 
   // listen to mutations
   store.subscribe(({ type, payload }, state) => {

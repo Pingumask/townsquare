@@ -239,10 +239,6 @@ class LiveSession {
         if (!this._isSpectator) return;
         this._store.commit("session/setGamePhase", params as GamePhase);
         break;
-      case "isNight":
-        if (!this._isSpectator) return;
-        this._store.commit("toggleNight", !!params);
-        break;
       case "allowSelfNaming":
         if (!this._isSpectator) return;
         this._store.commit("session/setAllowSelfNaming", !!params);
@@ -365,7 +361,7 @@ class LiveSession {
       this.sendEdition(playerId);
       this._sendDirect(playerId, "gs", {
         gamestate: this._gamestate,
-        isNight: grimoire.isNight,
+        gamePhase: session.gamePhase,
         isRinging: grimoire.isRinging,
         isRooster: grimoire.isRooster,
         timer: grimoire.timer,
@@ -393,7 +389,7 @@ class LiveSession {
     const {
       gamestate,
       isLightweight,
-      isNight,
+      gamePhase,
       allowSelfNaming,
       isVoteHistoryAllowed,
       isRinging,
@@ -405,7 +401,6 @@ class LiveSession {
       lockedVote,
       isVoteInProgress,
       markedPlayer,
-      gamePhase,
       fabled,
     } = data as {
       gamestate: Array<{
@@ -417,7 +412,7 @@ class LiveSession {
         roleId?: string;
       }>;
       isLightweight?: boolean;
-      isNight?: boolean;
+      gamePhase?: GamePhase;
       allowSelfNaming?: boolean;
       isVoteHistoryAllowed?: boolean;
       isRinging?: boolean;
@@ -429,7 +424,6 @@ class LiveSession {
       lockedVote?: number;
       isVoteInProgress?: boolean;
       markedPlayer?: number;
-      gamePhase?: GamePhase;
       fabled: Array<{ id: string; isCustom?: boolean }>;
     };
     const players = this._store.state.players.players;
@@ -483,7 +477,6 @@ class LiveSession {
     if (!isLightweight) {
       this._store.commit("timer", timer);
       this._store.commit("toggleRinging", !!isRinging);
-      this._store.commit("toggleNight", !!isNight);
       this._store.commit("session/setAllowSelfNaming", !!allowSelfNaming);
       this._store.commit("session/setVoteHistoryAllowed", isVoteHistoryAllowed);
       this._store.commit("session/toggleSecretVote", !!isOrganVoteMode);
@@ -913,14 +906,6 @@ class LiveSession {
   }
 
   /**
-   * Send the isNight status. ST only
-   */
-  setIsNight() {
-    if (this._isSpectator) return;
-    this._send("isNight", this._store.state.grimoire.isNight);
-  }
-
-  /**
    * Send the isRinging status. ST only
    */
   setIsRinging() {
@@ -1173,9 +1158,6 @@ export default (store: StoreLike<RootState>) => {
           break;
         case "session/setVoteHistoryAllowed":
           session.setVoteHistoryAllowed();
-          break;
-        case "toggleNight":
-          session.setIsNight();
           break;
         case "toggleOrganVoteMode":
         case "session/toggleSecretVote":

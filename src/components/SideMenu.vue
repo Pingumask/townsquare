@@ -1,13 +1,15 @@
 <template>
-  <aside v-if="!session.isSpectator || grimoire.isNight" ref="sideMenu" class="sideMenu"
-    :class="{ closed: !isSideMenuOpen }">
+  <aside v-if="!session.isSpectator || session.gamePhase === 'firstNight' || session.gamePhase === 'otherNight'"
+    ref="sideMenu" class="sideMenu" :class="{ closed: !isSideMenuOpen }">
     <div>
       <h3>
         <font-awesome-icon icon="times-circle" class="fa fa-times-circle" @click.stop="toggleSideMenu" />
         <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="toggleSideMenu" />
         <span v-if="!session.sessionId">{{ t('townsquare.disconnected') }}</span>
         <span v-else-if="!session.isSpectator">{{ t('townsquare.storytellerTools') }}</span>
-        <span v-else-if="session.isSpectator && grimoire.isNight">{{ t('modal.nightOrder.title') }}</span>
+        <span
+          v-else-if="session.isSpectator && session.gamePhase === 'firstNight' || session.gamePhase === 'otherNight'">{{
+            t('modal.nightOrder.title') }}</span>
       </h3>
 
       <div v-if="session.sessionId && !session.isSpectator">
@@ -25,7 +27,7 @@
             ☾
           </button>
         </div>
-        <div v-if="!session.isSpectator && !grimoire.isNight">
+        <div v-if="!session.isSpectator && session.gamePhase !== 'firstNight' && session.gamePhase !== 'otherNight'">
           <div class="button-group">
             <button @click="setTimer()">
               🕑 {{ timerDuration }} min
@@ -82,7 +84,8 @@
           </div>
         </div>
       </div>
-      <div v-if="grimoire.isNight" class="night-order-container">
+      <div v-if="session.gamePhase === 'firstNight' || session.gamePhase === 'otherNight'"
+        class="night-order-container">
         <NightOrderTable :night-type="session.gamePhase" />
       </div>
       <div v-if="!session.sessionId">
