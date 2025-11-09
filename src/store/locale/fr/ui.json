@@ -111,6 +111,7 @@
     "bluffs": "Bluffs de Démon",
     "fabled": "Mythes & Légendes",
     "storytellerTools": "Narration",
+    "disconnected": "Non connecté",
     "timer": {
       "default": {
         "text": "Compte à rebours"

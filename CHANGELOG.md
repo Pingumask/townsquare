@@ -3,6 +3,7 @@
 ## Upcomming Version
 - Features:
   - Night order in the side menu for both players and storyteller
+  - Join/Host buttons in side menu when disconnected
 - Bugfixes:
   - [P] Hotkey for adding multiple players
   - Missing message for add multiple players prompt

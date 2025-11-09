@@ -111,6 +111,7 @@
     "bluffs": "Demon bluffs",
     "fabled": "Fabled & Lorics",
     "storytellerTools": "Storytelling",
+    "disconnected": "Not connected",
     "timer": {
       "default": {
         "text": "Timer"
