@@ -48,7 +48,91 @@ const state = (): SessionState => ({
 
 const getters = {};
 
-const actions = {};
+const actions = {
+  /**
+   * Host a new session
+   */
+  hostSession({
+    commit,
+    state,
+    rootGetters,
+  }: {
+    commit: (mutation: string, payload?: unknown) => void;
+    state: SessionState;
+    rootGetters: { t: (key: string) => string };
+  }) {
+    if (state.sessionId) return;
+    const t = rootGetters.t;
+    const sessionId = prompt(
+      t("prompt.createSession"),
+      String(Math.round(Math.random() * 10000))
+    );
+    if (sessionId) {
+      commit("clearVoteHistory");
+      commit("setSpectator", false);
+      commit("setSessionId", sessionId);
+      commit("toggleGrimoire", false);
+      // Copy session URL to clipboard
+      const url = window.location.href.split("#")[0];
+      const link = url + "#" + sessionId;
+      navigator.clipboard.writeText(link);
+    }
+  },
+
+  /**
+   * Join an existing session
+   */
+  joinSession({
+    commit,
+    state,
+    dispatch,
+    rootGetters,
+  }: {
+    commit: (mutation: string, payload?: unknown) => void;
+    state: SessionState;
+    dispatch: (action: string) => void;
+    rootGetters: { t: (key: string) => string };
+  }) {
+    if (state.sessionId) return dispatch("leaveSession");
+    const t = rootGetters.t;
+    let sessionId = prompt(t("prompt.joinSession"));
+    if (sessionId && sessionId.match(/^https?:\/\//i)) {
+      sessionId = sessionId.split("#").pop() || null;
+    }
+    if (sessionId) {
+      commit("clearVoteHistory");
+      commit("setSpectator", true);
+      commit("toggleGrimoire", false);
+      commit("setSessionId", sessionId);
+    }
+  },
+
+  /**
+   * Leave the current session
+   */
+  leaveSession({
+    commit,
+    rootGetters,
+  }: {
+    commit: (mutation: string, payload?: unknown) => void;
+    rootGetters: { t: (key: string) => string };
+  }) {
+    const t = rootGetters.t;
+    if (confirm(t("prompt.leaveSession"))) {
+      commit("setSpectator", false);
+      commit("setSessionId", "");
+    }
+  },
+
+  /**
+   * Copy the session URL to clipboard
+   */
+  copySessionUrl({ state }: { state: SessionState }) {
+    const url = window.location.href.split("#")[0];
+    const link = url + "#" + state.sessionId;
+    navigator.clipboard.writeText(link);
+  },
+};
 
 // mutations helper functions
 const set =

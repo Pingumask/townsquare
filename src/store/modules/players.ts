@@ -71,7 +71,7 @@ const getters = {
   },
   nontravelers({ players }: PlayersState): number {
     const nontravelers = players.filter(
-      (player) => player.role.team !== "traveler",
+      (player) => player.role.team !== "traveler"
     );
     return Math.min(nontravelers.length, 15);
   },
@@ -79,7 +79,7 @@ const getters = {
   nightOrder(
     { players, fabled }: PlayersState,
     _getters: unknown,
-    { edition }: { edition: Edition },
+    { edition }: { edition: Edition }
   ) {
     // gives the index of the first night for a player. This function supposes that, if they are called, "player" has an attribute "role".
     function getFirstNight(player: Player, officialEdition: boolean): number {
@@ -124,7 +124,7 @@ const getters = {
           : (a as Role).firstNight || 0) -
         ((b as Player).role
           ? getFirstNight(b as Player, edition.isOfficial || false)
-          : (b as Role).firstNight || 0),
+          : (b as Role).firstNight || 0)
     );
     otherNight.sort(
       (a, b) =>
@@ -133,7 +133,7 @@ const getters = {
           : (a as Role).otherNight || 0) -
         ((b as Player).role
           ? getOtherNight(b as Player, edition.isOfficial || false)
-          : (b as Role).otherNight || 0),
+          : (b as Role).otherNight || 0)
     );
     const nightOrder = new Map<
       Player | Role,
@@ -154,6 +154,57 @@ const getters = {
 };
 
 const actions = {
+  /**
+   * Add a single player
+   */
+  addPlayer({
+    state,
+    commit,
+    rootState,
+    rootGetters,
+  }: {
+    state: PlayersState;
+    commit: (mutation: string, payload?: unknown) => void;
+    rootState: { session: { isSpectator: boolean } };
+    rootGetters: { t: (key: string) => string };
+  }) {
+    if (rootState.session.isSpectator) return;
+    if (state.players.length >= 20) return;
+    const t = rootGetters.t;
+    const name = prompt(t("prompt.addPlayer"), " "); // This is a FIGURE SPACE (&numsp;) U+2007
+    if (name) {
+      commit("add", name);
+    }
+  },
+
+  /**
+   * Add multiple players
+   */
+  addPlayers({
+    state,
+    commit,
+    rootState,
+    rootGetters,
+  }: {
+    state: PlayersState;
+    commit: (mutation: string, payload?: unknown) => void;
+    rootState: { session: { isSpectator: boolean } };
+    rootGetters: { t: (key: string) => string };
+  }) {
+    if (rootState.session.isSpectator) return;
+    if (state.players.length >= 20) return;
+    const t = rootGetters.t;
+    const nb = Number(prompt(t("prompt.addPlayers")));
+    if (isNaN(nb)) {
+      alert("Please enter a number");
+      return;
+    }
+    for (let i = 0; i < nb; i++) {
+      commit("add", " "); // This is a FIGURE SPACE (&numsp;) U+2007
+      if (state.players.length >= 20) return;
+    }
+  },
+
   randomize({
     state,
     commit,
@@ -223,7 +274,7 @@ const mutations = {
       player,
       property,
       value,
-    }: { player: Player; property: keyof Player; value: unknown },
+    }: { player: Player; property: keyof Player; value: unknown }
   ) {
     const index = state.players.indexOf(player);
     if (index >= 0) {
@@ -255,7 +306,7 @@ const mutations = {
   },
   setBluff(
     state: PlayersState,
-    { index, role }: { index?: number; role?: Role } = {},
+    { index, role }: { index?: number; role?: Role } = {}
   ) {
     if (index !== undefined) {
       state.bluffs.splice(index, 1, role!);
@@ -265,7 +316,7 @@ const mutations = {
   },
   setFabled(
     state: PlayersState,
-    { index, fabled }: { index?: number; fabled?: Role | Role[] } = {},
+    { index, fabled }: { index?: number; fabled?: Role | Role[] } = {}
   ) {
     if (index !== undefined) {
       state.fabled.splice(index, 1);

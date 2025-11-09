@@ -18,7 +18,7 @@
     <Vote v-if="session.nomination" />
 
     <TownSquare />
-    <Menu ref="menuRef" />
+    <Menu />
     <EditionModal />
     <FabledModal />
     <RolesModal />
@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { useStore } from "vuex";
 import app from "../package.json";
 import {
@@ -55,18 +55,6 @@ import {
 
 const store = useStore();
 const version = app.version;
-
-// Type for Menu component exposed methods
-interface MenuRef {
-  addPlayer: () => void;
-  addPlayers: () => void;
-  hostSession: () => void;
-  joinSession: () => void;
-  toggleNight: () => void;
-  toggleRinging: () => void;
-}
-
-const menuRef = ref<MenuRef | null>(null);
 
 const grimoire = computed(() => store.state.grimoire);
 const session = computed(() => store.state.session);
@@ -91,16 +79,16 @@ function keyup({ key, ctrlKey, metaKey }: KeyboardEvent) {
       store.commit("toggleGrimoire");
       break;
     case "a":
-      menuRef.value?.addPlayer();
+      store.dispatch("players/addPlayer");
       break;
     case "p":
-      menuRef.value?.addPlayers();
+      store.dispatch("players/addPlayers");
       break;
     case "h":
-      menuRef.value?.hostSession();
+      store.dispatch("session/hostSession");
       break;
     case "j":
-      menuRef.value?.joinSession();
+      store.dispatch("session/joinSession");
       break;
     case "r":
       store.commit("toggleModal", "reference");
@@ -130,11 +118,11 @@ function keyup({ key, ctrlKey, metaKey }: KeyboardEvent) {
       } else if (session.value.gamePhase === "day") {
         store.commit("session/setGamePhase", "otherNight");
       }
-      menuRef.value?.toggleNight();
+      store.dispatch("toggleNight");
       break;
     case "b":
       if (session.value.isSpectator) return;
-      menuRef.value?.toggleRinging();
+      store.dispatch("toggleRinging");
       break;
     case "escape":
       store.commit("toggleModal");

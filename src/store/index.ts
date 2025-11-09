@@ -295,6 +295,38 @@ const initializeStore = async () => {
       },
       rolesJSONbyId: () => rolesJSONbyId,
     },
+    actions: {
+      /**
+       * Toggle night/day and handle related side effects
+       */
+      toggleNight({
+        commit,
+        state,
+      }: {
+        commit: (mutation: string, payload?: unknown) => void;
+        state: RootState;
+      }) {
+        commit("toggleNight");
+        if (state.grimoire.isNight) {
+          commit("session/setMarkedPlayer", -1);
+        } else {
+          commit("toggleRooster", true);
+          setTimeout(() => commit("toggleRooster", false), 4000);
+        }
+      },
+
+      /**
+       * Trigger the bell ringing animation
+       */
+      toggleRinging({
+        commit,
+      }: {
+        commit: (mutation: string, payload?: unknown) => void;
+      }) {
+        commit("toggleRinging", true);
+        setTimeout(() => commit("toggleRinging", false), 4000);
+      },
+    },
     mutations: {
       setZoom: set("zoom"),
       setBackground: set("background"),

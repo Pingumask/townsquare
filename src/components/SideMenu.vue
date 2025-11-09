@@ -132,45 +132,11 @@ const toggleSideMenu = () => {
 };
 
 const hostSession = () => {
-  if (session.value.sessionId) return;
-  const sessionId = prompt(
-    t('prompt.createSession'),
-    String(Math.round(Math.random() * 10000)),
-  );
-  if (sessionId) {
-    store.commit('session/clearVoteHistory');
-    store.commit('session/setSpectator', false);
-    store.commit('session/setSessionId', sessionId);
-    store.commit('toggleGrimoire', false);
-    copySessionUrl();
-  }
+  store.dispatch('session/hostSession');
 };
 
 const joinSession = () => {
-  if (session.value.sessionId) return leaveSession();
-  let sessionId = prompt(t('prompt.joinSession'));
-  if (sessionId && sessionId.match(/^https?:\/\//i)) {
-    sessionId = sessionId.split('#').pop() || null;
-  }
-  if (sessionId) {
-    store.commit('session/clearVoteHistory');
-    store.commit('session/setSpectator', true);
-    store.commit('toggleGrimoire', false);
-    store.commit('session/setSessionId', sessionId);
-  }
-};
-
-const leaveSession = () => {
-  if (confirm(t('prompt.leaveSession'))) {
-    store.commit('session/setSpectator', false);
-    store.commit('session/setSessionId', '');
-  }
-};
-
-const copySessionUrl = () => {
-  const url = window.location.href.split('#')[0];
-  const link = url + '#' + session.value.sessionId;
-  navigator.clipboard.writeText(link);
+  store.dispatch('session/joinSession');
 };
 
 const setGamePhase = (gamePhase: GamePhase) => {
@@ -190,8 +156,7 @@ const toggleHiddenVote = () => {
 };
 
 const toggleRinging = () => {
-  store.commit("toggleRinging", true);
-  setTimeout(() => store.commit("toggleRinging", false), 4000);
+  store.dispatch("toggleRinging");
 };
 
 const renameTimer = () => {
