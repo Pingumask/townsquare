@@ -335,9 +335,9 @@ ul {
     .reminder {
       position: fixed;
       padding: 5px 10px;
-      right: 25vw;
+      right: 30vw;
       bottom: 10%;
-      width: 50vw;
+      width: 40vw;
       z-index: 25;
       background: rgba(0, 0, 0, 0.75);
       border-radius: 10px;
