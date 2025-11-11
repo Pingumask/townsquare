@@ -256,6 +256,10 @@ class LiveSession {
         if (!this._isSpectator) return;
         this._store.commit("toggleRooster", params);
         break;
+      case "isGavel":
+        if (!this._isSpectator) return;
+        this._store.commit("toggleGavel", params);
+        break;
       case "setTimer":
         if (!this._isSpectator) return;
         this._store.commit("setTimer", params);
@@ -364,6 +368,7 @@ class LiveSession {
         gamePhase: session.gamePhase,
         isRinging: grimoire.isRinging,
         isRooster: grimoire.isRooster,
+        isGavel: grimoire.isGavel,
         timer: grimoire.timer,
         allowSelfNaming: session.allowSelfNaming,
         isVoteHistoryAllowed: session.isVoteHistoryAllowed,
@@ -922,6 +927,14 @@ class LiveSession {
   }
 
   /**
+   * Send the isGavel status. ST only
+   */
+  setIsGavel() {
+    if (this._isSpectator) return;
+    this._send("isGavel", this._store.state.grimoire.isGavel);
+  }
+
+  /**
    * Send the isSecretVote status. ST only
    */
   setIsSecretVote() {
@@ -1171,6 +1184,9 @@ export default (store: StoreLike<RootState>) => {
           break;
         case "toggleRooster":
           session.setIsRooster();
+          break;
+        case "toggleGavel":
+          session.setIsGavel();
           break;
         case "setTimer":
           session.setTimer();

@@ -28,6 +28,7 @@ export interface GrimoireState {
   isNightOrder: boolean;
   isRinging: boolean;
   isRooster: boolean;
+  isGavel: boolean;
   isPublic: boolean;
   isMenuOpen: boolean;
   isStatic: boolean;

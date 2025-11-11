@@ -120,6 +120,7 @@ const actions = {
     const t = rootGetters.t;
     if (confirm(t("prompt.leaveSession"))) {
       commit("setSpectator", false);
+      commit("setGamePhase", "pregame");
       commit("setSessionId", "");
     }
   },
@@ -131,6 +132,50 @@ const actions = {
     const url = window.location.href.split("#")[0];
     const link = url + "#" + state.sessionId;
     navigator.clipboard.writeText(link);
+  },
+
+  /**
+   * Distribute roles to players
+   */
+  distributeRoles({
+    state,
+    commit,
+    rootState,
+    rootGetters,
+  }: {
+    state: SessionState;
+    commit: (mutation: string, payload?: unknown) => void;
+    rootState: { players: { players: Player[] } };
+    rootGetters: { t: (key: string) => string };
+  }) {
+    if (state.isSpectator) return;
+    const t = rootGetters.t;
+    const popup = t("prompt.sendRoles");
+    if (!confirm(popup)) return;
+
+    // Checking all players to see if one of them has a forbidden role
+    let forbiddenRole = "";
+    const players = rootState.players.players;
+    for (let i = 0; i < players.length && !forbiddenRole; i++) {
+      const player = players[i];
+      if (player?.role?.forbidden) {
+        forbiddenRole = player.role.name || "";
+      }
+    }
+    let confirmedDistribution = forbiddenRole === "";
+    if (!confirmedDistribution) {
+      const forbiddenPopup =
+        t("prompt.sendRolesWithForbidden1") +
+        forbiddenRole +
+        t("prompt.sendRolesWithForbidden2");
+      confirmedDistribution = confirm(forbiddenPopup);
+    }
+    if (confirmedDistribution) {
+      commit("distributeRoles", true);
+      setTimeout(() => {
+        commit("distributeRoles", false);
+      }, 2000);
+    }
   },
 };
 

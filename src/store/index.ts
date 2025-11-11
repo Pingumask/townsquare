@@ -295,9 +295,6 @@ const initializeStore = async () => {
       rolesJSONbyId: () => rolesJSONbyId,
     },
     actions: {
-      /**
-       * Trigger the bell ringing animation
-       */
       toggleRinging({
         commit,
       }: {
@@ -305,6 +302,22 @@ const initializeStore = async () => {
       }) {
         commit("toggleRinging", true);
         setTimeout(() => commit("toggleRinging", false), 4000);
+      },
+      toggleRooster({
+        commit,
+      }: {
+        commit: (mutation: string, payload?: unknown) => void;
+      }) {
+        commit("toggleRooster", true);
+        setTimeout(() => commit("toggleRooster", false), 3000);
+      },
+      toggleGavel({
+        commit,
+      }: {
+        commit: (mutation: string, payload?: unknown) => void;
+      }) {
+        commit("toggleGavel", true);
+        setTimeout(() => commit("toggleGavel", false), 1500);
       },
     },
     mutations: {
@@ -316,6 +329,7 @@ const initializeStore = async () => {
       toggleStatic: toggle("isStatic"),
       toggleRinging: toggle("isRinging"),
       toggleRooster: toggle("isRooster"),
+      toggleGavel: toggle("isGavel"),
       toggleGrimoire: toggle("isPublic"),
       toggleImageOptIn: toggle("isImageOptIn"),
       toggleStreamerMode: toggle("isStreamerMode"),

@@ -200,7 +200,7 @@ const actions = {
       return;
     }
     for (let i = 0; i < nb; i++) {
-      commit("add", " "); // This is a FIGURE SPACE (&numsp;) U+2007
+      commit("add", "");
       if (state.players.length >= 20) return;
     }
   },
@@ -217,6 +217,32 @@ const actions = {
       .sort((a, b) => a[0] - b[0])
       .map((a) => a[1]);
     commit("set", players);
+  },
+
+  /**
+   * Clear all players
+   */
+  clearPlayers({
+    commit,
+    rootState,
+    rootGetters,
+  }: {
+    commit: (
+      mutation: string,
+      payload?: unknown,
+      options?: { root?: boolean }
+    ) => void;
+    rootState: { session: { isSpectator: boolean; nomination: unknown } };
+    rootGetters: { t: (key: string) => string };
+  }) {
+    if (rootState.session.isSpectator) return;
+    const t = rootGetters.t;
+    if (confirm(t("prompt.clearPlayers"))) {
+      if (rootState.session.nomination) {
+        commit("session/nomination", undefined, { root: true });
+      }
+      commit("clear");
+    }
   },
 
   clearRoles({

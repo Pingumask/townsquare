@@ -3,6 +3,7 @@
     <audio preload="auto">
       <source src="../assets/sounds/countdown.mp3">
       <source src="../assets/sounds/rooster.mp3">
+      <source src="../assets/sounds/gavel.mp3">
     </audio>
     <li class="edition" :class="['edition-' + edition.id]" :style="{
       backgroundImage: 'url(' + logoUrl + ')',
@@ -69,6 +70,12 @@
         <source src="../assets/sounds/rooster.mp3">
       </audio>
       <img src="../assets/icons/dawn.png" alt="dawn" style="height: 2em">
+    </li>
+    <li v-if="grimoire.isGavel">
+      <audio :autoplay="!grimoire.isMuted" :muted="grimoire.isMuted">
+        <source src="../assets/sounds/gavel.mp3">
+      </audio>
+      <font-awesome-icon :icon="['fas', 'gavel']" />
     </li>
     <li v-if="markedStoryteller" class="marked">
       <font-awesome-icon icon="skull" class="fa fa-skull" />

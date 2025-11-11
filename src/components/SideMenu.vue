@@ -1,17 +1,17 @@
 <template>
   <aside v-if="!session.isSpectator || session.gamePhase === 'firstNight' || session.gamePhase === 'otherNight'"
     ref="sideMenu" class="sideMenu" :class="{ closed: !isSideMenuOpen }">
-    <div>
-      <h3>
-        <font-awesome-icon icon="times-circle" class="fa fa-times-circle" @click.stop="toggleSideMenu" />
-        <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="toggleSideMenu" />
-        <span v-if="!session.sessionId">{{ t('townsquare.disconnected') }}</span>
-        <span v-else-if="!session.isSpectator">{{ t('townsquare.storytellerTools') }}</span>
-        <span
-          v-else-if="session.isSpectator && session.gamePhase === 'firstNight' || session.gamePhase === 'otherNight'">{{
-            t('modal.nightOrder.title') }}</span>
-      </h3>
 
+    <h3>
+      <font-awesome-icon icon="times-circle" class="fa fa-times-circle" @click.stop="toggleSideMenu" />
+      <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="toggleSideMenu" />
+      <span v-if="!session.sessionId">{{ t('townsquare.disconnected') }}</span>
+      <span v-else-if="!session.isSpectator">{{ t('townsquare.storytellerTools') }}</span>
+      <span
+        v-else-if="session.isSpectator && session.gamePhase === 'firstNight' || session.gamePhase === 'otherNight'">{{
+          t('modal.nightOrder.title') }}</span>
+    </h3>
+    <div class="content">
       <div v-if="session.sessionId && !session.isSpectator">
         <div class="button-group">
           <button class="button" :disabled="session.gamePhase === 'firstNight'"
@@ -27,7 +27,46 @@
             ☾
           </button>
         </div>
-        <div v-if="!session.isSpectator && session.gamePhase !== 'firstNight' && session.gamePhase !== 'otherNight'">
+        <div class="button-group">
+          <button @click="toggleRinging()">
+            <font-awesome-icon :icon="['fas', 'bell']" />
+          </button>
+          <button @click="toggleRooster()">
+            🐔
+          </button>
+          <button @click="toggleGavel()">
+            <font-awesome-icon :icon="['fas', 'gavel']" />
+          </button>
+        </div>
+        <div class="button-group">
+          <button @click="toggleHiddenVote()">
+            <font-awesome-icon v-if="session.isSecretVote" :icon="['fas', 'eye-slash']" />
+            <font-awesome-icon v-if="!session.isSecretVote" :icon="['fas', 'eye']" />
+          </button>
+        </div>
+        <div v-if="session.gamePhase === 'pregame'">
+          <div class="button-group">
+            <button @click="toggleModal('edition')">
+              {{ t('menu.characters.selectEdition') }}
+            </button>
+          </div>
+          <div class="button-group">
+            <button @click="addPlayers()">
+              {{ t('menu.players.addMany') }}
+            </button>
+          </div>
+          <div class="button-group">
+            <button @click="toggleModal('roles')">
+              {{ t('menu.characters.assign') }}
+            </button>
+          </div>
+          <div class="button-group">
+            <button @click="distributeRoles()">
+              {{ t('menu.session.sendRoles') }}
+            </button>
+          </div>
+        </div>
+        <div v-if="session.gamePhase === 'day'">
           <div class="button-group">
             <button @click="setTimer()">
               🕑 {{ timerDuration }} min
@@ -69,17 +108,6 @@
             </button>
             <button @click="setDuskTimer()">
               {{ t('townsquare.timer.dusk.button') }}
-            </button>
-          </div>
-          <div class="button-group">
-            <button @click="toggleHiddenVote()">
-              <font-awesome-icon v-if="session.isSecretVote" :icon="['fas', 'eye-slash']" />
-              <font-awesome-icon v-if="!session.isSecretVote" :icon="['fas', 'eye']" />
-            </button>
-          </div>
-          <div class="button-group">
-            <button @click="toggleRinging()">
-              <font-awesome-icon :icon="['fas', 'bell']" />
             </button>
           </div>
         </div>
@@ -144,12 +172,10 @@ const joinSession = () => {
 
 const setGamePhase = (gamePhase: GamePhase) => {
   if (gamePhase === "day") {
-    store.commit("toggleNight", false);
     store.commit("toggleRooster", true);
     setTimeout(() => store.commit("toggleRooster", false), 4000);
   } else if (gamePhase === "otherNight" || gamePhase === "firstNight") {
     store.commit("session/setMarkedPlayer", -1);
-    store.commit("toggleNight", true);
   }
   store.commit("session/setGamePhase", gamePhase);
 };
@@ -160,6 +186,26 @@ const toggleHiddenVote = () => {
 
 const toggleRinging = () => {
   store.dispatch("toggleRinging");
+};
+
+const toggleRooster = () => {
+  store.dispatch("toggleRooster");
+};
+
+const toggleGavel = () => {
+  store.dispatch("toggleGavel");
+};
+
+const toggleModal = (modal: string) => {
+  store.commit("toggleModal", modal);
+};
+
+const addPlayers = () => {
+  store.dispatch("players/addPlayers");
+};
+
+const distributeRoles = () => {
+  store.dispatch("session/distributeRoles");
 };
 
 const renameTimer = () => {
@@ -340,6 +386,32 @@ const stopTimer = () => {
 
 .sideMenu {
   position: absolute;
+
+  .content {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 85vh;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
+
+
   bottom: 10px;
   left: auto;
   right: 10px;
@@ -394,28 +466,7 @@ const stopTimer = () => {
   }
 
   .night-order-container {
-    max-height: 70vh;
-    overflow-y: auto;
-    overflow-x: hidden;
     margin: 5px;
-
-    &::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 4px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 4px;
-
-      &:hover {
-        background: rgba(255, 255, 255, 0.5);
-      }
-    }
   }
 
   &.closed {

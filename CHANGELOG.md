@@ -4,6 +4,9 @@
 - Features:
   - Night order in the side menu for both players and storyteller
   - Join/Host buttons in side menu when disconnected
+  - Storyteller controlles for pregame in side menu (choose edition, add players, pick roles, send roles)
+  - Soundboard in storyteller sidemenu (ringing, rooster, gavel)
+  - Secret votes option toggleable from side menu for storyteller
 - Bugfixes:
   - [P] Hotkey for adding multiple players
   - Missing message for add multiple players prompt

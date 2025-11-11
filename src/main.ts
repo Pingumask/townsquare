@@ -30,6 +30,7 @@ const faIcons = [
   "EyeSlash",
   "FileCode",
   "FileUpload",
+  "Gavel",
   "HandPaper",
   "HandPointRight",
   "Heartbeat",

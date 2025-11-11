@@ -404,28 +404,7 @@ const copySessionUrl = () => {
 };
 
 const distributeRoles = () => {
-  if (session.value.isSpectator) return;
-  const popup = t('prompt.sendRoles');
-  if (confirm(popup)) {
-    // Checking all players to see if one of them has a forbidden role
-    let forbiddenRole = "";
-    for (let i = 0; i < players.value.length && !forbiddenRole; i++) {
-      if (players.value[i].role.forbidden) {
-        forbiddenRole = players.value[i].role.name;
-      }
-    }
-    let confirmedDistribution = (forbiddenRole == "");
-    if (!confirmedDistribution) {
-      const forbiddenPopup = t('prompt.sendRolesWithForbidden1') + forbiddenRole + t('prompt.sendRolesWithForbidden2');
-      confirmedDistribution = confirm(forbiddenPopup);
-    }
-    if (confirmedDistribution) {
-      store.commit('session/distributeRoles', true);
-      setTimeout(() => {
-        store.commit('session/distributeRoles', false);
-      }, 2000);
-    }
-  }
+  store.dispatch('session/distributeRoles');
 };
 
 const imageOptIn = () => {
@@ -457,20 +436,11 @@ const addPlayers = () => {
 
 const randomizeSeatings = () => {
   if (session.value.isSpectator) return;
-  const name = prompt(t('prompt.addPlayer'), " "); // This is a FIGURE SPACE (&numsp;) U+2007
-  if (name) {
-    store.commit('players/add', name);
-  }
+  store.dispatch('players/randomize');
 };
 
 const clearPlayers = () => {
-  if (session.value.isSpectator) return;
-  if (confirm(t('prompt.clearPlayers'))) {
-    if (session.value.nomination) {
-      store.commit('session/nomination');
-    }
-    store.commit('players/clear');
-  }
+  store.dispatch('players/clearPlayers');
 };
 
 const clearRoles = () => {
