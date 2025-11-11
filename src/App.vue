@@ -1,6 +1,6 @@
 <template>
   <div id="app" tabindex="-1" :class="{
-    night: grimoire.isNight,
+    night: (session.gamePhase === 'firstNight' || session.gamePhase === 'otherNight'),
     static: grimoire.isStatic,
   }" :style="{
     backgroundImage: `url('${background}')`,
@@ -18,7 +18,7 @@
     <Vote v-if="session.nomination" />
 
     <TownSquare />
-    <Menu ref="menuRef" />
+    <Menu />
     <EditionModal />
     <FabledModal />
     <RolesModal />
@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { useStore } from "vuex";
 import app from "../package.json";
 import {
@@ -55,18 +55,6 @@ import {
 
 const store = useStore();
 const version = app.version;
-
-// Type for Menu component exposed methods
-interface MenuRef {
-  addPlayer: () => void;
-  addPlayers: () => void;
-  hostSession: () => void;
-  joinSession: () => void;
-  toggleNight: () => void;
-  toggleRinging: () => void;
-}
-
-const menuRef = ref<MenuRef | null>(null);
 
 const grimoire = computed(() => store.state.grimoire);
 const session = computed(() => store.state.session);
@@ -91,16 +79,16 @@ function keyup({ key, ctrlKey, metaKey }: KeyboardEvent) {
       store.commit("toggleGrimoire");
       break;
     case "a":
-      menuRef.value?.addPlayer();
+      store.dispatch("players/addPlayer");
       break;
     case "p":
-      menuRef.value?.addPlayers();
+      store.dispatch("players/addPlayers");
       break;
     case "h":
-      menuRef.value?.hostSession();
+      store.dispatch("session/hostSession");
       break;
     case "j":
-      menuRef.value?.joinSession();
+      store.dispatch("session/joinSession");
       break;
     case "r":
       store.commit("toggleModal", "reference");
@@ -123,11 +111,18 @@ function keyup({ key, ctrlKey, metaKey }: KeyboardEvent) {
       break;
     case "s":
       if (session.value.isSpectator) return;
-      menuRef.value?.toggleNight();
+      if (session.value.gamePhase === "pregame") {
+        store.commit("session/setGamePhase", "firstNight");
+      } else if (session.value.gamePhase === "firstNight" || session.value.gamePhase === "otherNight") {
+        store.commit("session/setGamePhase", "day");
+      } else if (session.value.gamePhase === "day") {
+        store.commit("session/setGamePhase", "otherNight");
+      }
+      store.dispatch("toggleNight");
       break;
     case "b":
       if (session.value.isSpectator) return;
-      menuRef.value?.toggleRinging();
+      store.dispatch("toggleRinging");
       break;
     case "escape":
       store.commit("toggleModal");
@@ -250,6 +245,7 @@ ul {
   justify-content: center;
   align-content: center;
 
+  button,
   .button {
     margin: 5px 0;
     border-radius: 0;
@@ -266,7 +262,10 @@ ul {
   }
 }
 
+button,
 .button {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 1.2rem;
   padding: 0;
   border: solid 0.125em transparent;
   border-radius: 15px;
@@ -290,9 +289,10 @@ ul {
     color: red;
   }
 
+  &[disabled],
   &.disabled {
     color: gray;
-    cursor: default;
+    cursor: not-allowed;
     opacity: 0.75;
   }
 
@@ -315,6 +315,7 @@ ul {
       inset 0 1px 1px #002c9c,
       0 0 10px #000;
 
+    &hover:not([disabled]),
     &:hover:not(.disabled) {
       color: #008cf7;
     }

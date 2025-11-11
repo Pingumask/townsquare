@@ -88,7 +88,7 @@
         <font-awesome-icon v-if="!(session.isSpectator && session.isSecretVote)" icon="skull" class="fa fa-skull" />
       </div>
       <div class="name" :class="{ active: isMenuOpen }" @click="isMenuOpen = !isMenuOpen">
-        <span>{{ props.player.name }}</span>
+        <span>{{ props.player.name || " " }}</span>
         <font-awesome-icon v-if="props.player.pronouns" icon="venus-mars" class="fa fa-venus-mars" />
         <div v-if="props.player.pronouns" class="pronouns">
           <span>{{ props.player.pronouns }}</span>
@@ -106,7 +106,7 @@
           </li>
           <li v-if="
             !session.isSpectator ||
-            (session.allowSelfNaming && session.isSpectator && player.id === session.playerId)
+            ((session.allowSelfNaming || props.player.name === '') && session.isSpectator && player.id === session.playerId)
           " @click="changeName">
             <font-awesome-icon icon="user-edit" class="fa fa-user-edit" />
             {{ t('player.changeName') }}
@@ -361,7 +361,7 @@ function cancel() {
 function claimSeat() {
   isMenuOpen.value = false;
   emit("trigger", ["claimSeat"]);
-  if (props.player.name === " ") {
+  if (props.player.name === "") {
     setTimeout(() => {
       changeName();
     }, 100);
@@ -408,9 +408,11 @@ function vote() {
   --blend: multiply;
   --color1: #1f65ff;
   --color2: #ff6900;
+
   .good {
     --color2: #4e4e4e;
   }
+
   .evil {
     --color1: #4e4e4e;
   }

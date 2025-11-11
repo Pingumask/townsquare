@@ -4,6 +4,7 @@
       "title": "Grimoire",
       "hide": "Hide",
       "show": "Show",
+      "firstNightSwitch": "Switch to First Night",
       "nightSwitch": "Switch to Night",
       "daySwitch": "Switch to Day",
       "order": "Night order",
@@ -110,6 +111,7 @@
     "bluffs": "Demon bluffs",
     "fabled": "Fabled & Lorics",
     "storytellerTools": "Storytelling",
+    "disconnected": "Not connected",
     "timer": {
       "default": {
         "text": "Timer"

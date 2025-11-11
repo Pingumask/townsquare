@@ -27,74 +27,7 @@
       </ul>
     </div>
 
-    <div v-if="!session.isSpectator" ref="storytelling" class="storytelling" :class="{ closed: !isTimeControlsOpen }">
-      <h3>
-        <span>{{ t('townsquare.storytellerTools') }}</span>
-        <font-awesome-icon icon="times-circle" class="fa fa-times-circle" @click.stop="toggleTimeControls" />
-        <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="toggleTimeControls" />
-      </h3>
-      <div class="button-group">
-        <div class="button" @click="setTimer()">
-          🕑 {{ timerDuration }} min
-        </div>
-        <div class="button" @click="renameTimer()">
-          🗏 {{ timerName }}
-        </div>
-        <div class="button demon" :class="{ disabled: !timerOn }" @click="stopTimer()">
-          ■
-        </div>
-        <div class="button townfolk" :class="{ disabled: timerOn }" @click="startTimer()">
-          ⏵
-        </div>
-      </div>
-      <div v-if="session.nomination" class="button-group">
-        <div v-if="!isSpecialVoteWithMessages" class="button" @click="setAccusationTimer()">
-          {{ t('townsquare.timer.accusation.button') }}
-        </div>
-        <div v-else class="button" @click="setSpecialVoteTimer()">
-          {{ session.nomination.specialVote?.buttonLabel || session.nomination.specialVote?.type || 'Special Vote' }}
-        </div>
-        <div v-if="!isSpecialVoteWithMessages" class="button" @click="setDefenseTimer()">
-          {{ t('townsquare.timer.defense.button') }}
-        </div>
-        <div v-if="!isSpecialVoteWithMessages" class="button" @click="setDebateTimer()">
-          {{ t('townsquare.timer.debate.button') }}
-        </div>
-        <div v-else class="button" @click="setSpecialDebateTimer()">
-          {{ t('townsquare.timer.debate.button') }}
-        </div>
-      </div>
-      <div v-else class="button-group">
-        <div class="button" @click="setDaytimeTimer()">
-          {{ t('townsquare.timer.daytime.button') }}
-        </div>
-        <div class="button" @click="setNominationTimer()">
-          {{ t('townsquare.timer.nominations.button') }}
-        </div>
-        <div class="button" @click="setDuskTimer()">
-          {{ t('townsquare.timer.dusk.button') }}
-        </div>
-      </div>
-      <div class="button-group">
-        <div class="button" :class="{ disabled: grimoire.isNight }" @click="toggleNight()">
-          ☀
-        </div>
-        <div class="button" :class="{ disabled: !grimoire.isNight }" @click="toggleNight()">
-          ☽
-        </div>
-      </div>
-      <div class="button-group">
-        <div class="button" @click="toggleHiddenVote()">
-          <font-awesome-icon v-if="session.isSecretVote" :icon="['fas', 'eye-slash']" />
-          <font-awesome-icon v-if="!session.isSecretVote" :icon="['fas', 'eye']" />
-        </div>
-      </div>
-      <div class="button-group">
-        <div class="button" @click="toggleRinging()">
-          <font-awesome-icon :icon="['fas', 'bell']" />
-        </div>
-      </div>
-    </div>
+    <SideMenu />
 
     <div v-if="fabled.length" class="fabled" :class="{ closed: !isFabledOpen }">
       <h3>
@@ -131,8 +64,8 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
-import { ReminderModal, RoleModal, Seat, Token } from '@/components';
-import { useTranslation, isActiveNomination } from '@/composables';
+import { ReminderModal, RoleModal, Seat, SideMenu, Token } from '@/components';
+import { useTranslation } from '@/composables';
 import type { Player } from '@/types';
 
 const store = useStore();
@@ -145,12 +78,6 @@ const session = computed(() => store.state.session);
 const players = computed(() => store.state.players.players);
 const bluffs = computed(() => store.state.players.bluffs);
 const fabled = computed(() => store.state.players.fabled);
-
-const isSpecialVoteWithMessages = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return false;
-  const nomination = session.value.nomination;
-  return !!nomination.specialVote?.timerText;
-});
 
 // Used in CSS v-bind
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
@@ -171,12 +98,7 @@ const move = ref(-1);
 const nominate = ref(-1);
 const isBluffsOpen = ref(true);
 const isFabledOpen = ref(true);
-const isTimeControlsOpen = ref(false);
-const timerName = ref("Timer");
-const timerDuration = ref(1);
-const timerOn = ref(false);
-const timerEnder = ref<ReturnType<typeof setTimeout> | null>(null);
-const currentTimerType = ref<keyof typeof grimoire.value.timerDurations | null>(null);
+
 // Methods converted to functions
 const toggleBluffs = () => {
   isBluffsOpen.value = !isBluffsOpen.value;
@@ -186,33 +108,17 @@ const toggleFabled = () => {
   isFabledOpen.value = !isFabledOpen.value;
 };
 
-const toggleTimeControls = () => {
-  isTimeControlsOpen.value = !isTimeControlsOpen.value;
-};
-
 const removeFabled = (index: number) => {
   if (session.value.isSpectator) return;
   store.commit("players/setFabled", { index });
 };
 
 const toggleNight = () => {
-  store.commit("toggleNight");
-  if (grimoire.value.isNight) {
-    store.commit("session/setMarkedPlayer", -1);
-  }
-  else {
-    store.commit("toggleRooster", true);
-    setTimeout(() => store.commit("toggleRooster", false), 4000);
-  }
-};
-
-const toggleHiddenVote = () => {
-  store.commit("session/toggleSecretVote");
+  store.dispatch("toggleNight");
 };
 
 const toggleRinging = () => {
-  store.commit("toggleRinging", true);
-  setTimeout(() => store.commit("toggleRinging", false), 4000);
+  store.dispatch("toggleRinging");
 };
 const handleTrigger = (playerIndex: number, event: string | [string] | [string, unknown]) => {
   // Handle both string events and array events
@@ -227,22 +133,9 @@ const handleTrigger = (playerIndex: number, event: string | [string] | [string, 
     nominatePlayer,
     toggleBluffs,
     toggleFabled,
-    toggleTimeControls,
     removeFabled,
     toggleNight,
     toggleRinging,
-    renameTimer,
-    setDaytimeTimer,
-    setNominationTimer,
-    setDuskTimer,
-    setAccusationTimer,
-    setDefenseTimer,
-    setDebateTimer,
-    setSpecialVoteTimer,
-    setSpecialDebateTimer,
-    setTimer,
-    startTimer,
-    stopTimer,
   };
 
   if (typeof methodMap[method] === "function") {
@@ -371,179 +264,6 @@ const cancel = () => {
   move.value = -1;
   swap.value = -1;
   nominate.value = -1;
-};
-const renameTimer = () => {
-  let newName = prompt(
-    t('townsquare.timer.prompt.name'),
-    timerName.value,
-  );
-  if (newName === "") {
-    newName = t('townsquare.timer.default.text');
-  }
-  if (newName) {
-    timerName.value = newName.trim();
-  }
-};
-
-const setDaytimeTimer = () => {
-  currentTimerType.value = 'daytime';
-  timerDuration.value = grimoire.value.timerDurations.daytime;
-  timerName.value = t('townsquare.timer.daytime.text');
-};
-
-const setNominationTimer = () => {
-  currentTimerType.value = 'nominations';
-  timerDuration.value = grimoire.value.timerDurations.nominations;
-  timerName.value = t('townsquare.timer.nominations.text');
-};
-
-const setDuskTimer = () => {
-  currentTimerType.value = 'dusk';
-  timerDuration.value = grimoire.value.timerDurations.dusk;
-  timerName.value = t('townsquare.timer.dusk.text');
-};
-const setAccusationTimer = () => {
-  if (!isActiveNomination(session.value.nomination)) return;
-
-  currentTimerType.value = 'accusation';
-  timerDuration.value = 1;
-  const nomination = session.value.nomination;
-
-  let timerText = t('townsquare.timer.accusation.text');
-
-  // Get nominator name for $accusator placeholder
-  const nominatorName = typeof nomination.nominator === 'number'
-    ? players.value[nomination.nominator]?.name || ''
-    : typeof nomination.nominator === 'string'
-      ? nomination.nominator.charAt(0).toUpperCase() + nomination.nominator.slice(1)
-      : '';
-
-  // Get nominee name for $accusee placeholder
-  const nomineeName = typeof nomination.nominee === 'number'
-    ? players.value[nomination.nominee]?.name || ''
-    : nomination.nominee || '';
-
-  timerText = timerText
-    .replace("$accusator", nominatorName)
-    .replace("$accusee", nomineeName);
-
-  timerName.value = timerText;
-};
-
-
-const setDefenseTimer = () => {
-  if (!isActiveNomination(session.value.nomination)) return;
-
-  currentTimerType.value = 'defense';
-  timerDuration.value = grimoire.value.timerDurations.defense;
-  const nomination = session.value.nomination;
-
-  let timerText = t('townsquare.timer.defense.text');
-
-  // Get nominee name for $accusee placeholder
-  const nomineeName = typeof nomination.nominee === 'number'
-    ? players.value[nomination.nominee]?.name || ''
-    : typeof nomination.nominee === 'string'
-      ? nomination.nominee.charAt(0).toUpperCase() + nomination.nominee.slice(1)
-      : '';
-
-  // Get nominator name for $accusator placeholder
-  const nominatorName = typeof nomination.nominator === 'number'
-    ? players.value[nomination.nominator]?.name || ''
-    : nomination.nominator || '';
-
-  timerText = timerText
-    .replace("$accusee", nomineeName)
-    .replace("$accusator", nominatorName);
-
-  timerName.value = timerText;
-};
-
-const setDebateTimer = () => {
-  if (!isActiveNomination(session.value.nomination)) return;
-
-  currentTimerType.value = 'debate';
-  timerDuration.value = grimoire.value.timerDurations.debate;
-  const nomination = session.value.nomination;
-
-  let timerText = t('townsquare.timer.debate.text');
-
-  // Get nominee name for $accusee placeholder
-  const nomineeName = typeof nomination.nominee === 'number'
-    ? players.value[nomination.nominee]?.name || ''
-    : nomination.nominee || '';
-
-  timerText = timerText.replace("$accusee", nomineeName);
-  timerName.value = timerText;
-};
-
-const setSpecialVoteTimer = () => {
-  if (!isActiveNomination(session.value.nomination)) return;
-
-  currentTimerType.value = 'custom';
-  timerDuration.value = grimoire.value.timerDurations.custom;
-  const nomination = session.value.nomination;
-
-  // Get nominator name
-  const nominatorName = typeof nomination.nominator === 'number'
-    ? players.value[nomination.nominator]?.name || ''
-    : nomination.nominator || '';
-
-  // Get the timer text
-  const message = nomination.specialVote?.timerText || '';
-
-  const timerText = `${nominatorName} ${message}`;
-  timerName.value = timerText;
-};
-
-const setSpecialDebateTimer = () => {
-  if (!isActiveNomination(session.value.nomination)) return;
-
-  currentTimerType.value = 'customDebate';
-  timerDuration.value = grimoire.value.timerDurations.customDebate;
-  const nomination = session.value.nomination;
-
-  // Get the debate text
-  let timerText = nomination.specialVote?.debateText || '';
-
-  // Replace $player placeholder with nominator name
-  const nominatorName = typeof nomination.nominator === 'number'
-    ? players.value[nomination.nominator]?.name || ''
-    : nomination.nominator || '';
-
-  timerText = timerText.replace("$player", nominatorName);
-  timerName.value = timerText;
-};
-const setTimer = () => {
-  const newDuration = prompt(t('townsquare.timer.prompt.duration'));
-  if (isNaN(Number(newDuration))) {
-    return alert(t('townsquare.timer.prompt.durationError'));
-  }
-  if (Number(newDuration) > 0) {
-    timerDuration.value = Number(newDuration);
-    // Save the new duration for the current timer type
-    if (currentTimerType.value) {
-      store.commit('setTimerDuration', {
-        type: currentTimerType.value,
-        duration: Number(newDuration)
-      });
-    }
-  }
-};
-
-const startTimer = () => {
-  let timer = { name: timerName.value, duration: timerDuration.value * 60 };
-  store.commit("setTimer", timer);
-  timerOn.value = true;
-  timerEnder.value = setTimeout(stopTimer, timer.duration * 1000);
-};
-
-const stopTimer = () => {
-  store.commit("setTimer", {});
-  timerOn.value = false;
-  if (timerEnder.value) {
-    clearTimeout(timerEnder.value);
-  }
 };
 </script>
 
@@ -742,8 +462,7 @@ const stopTimer = () => {
 
 /***** Demon bluffs / Fabled *******/
 #townsquare>.bluffs,
-#townsquare>.fabled,
-#townsquare>.storytelling {
+#townsquare>.fabled {
   position: absolute;
   left: 10px;
 
@@ -753,13 +472,6 @@ const stopTimer = () => {
 
   &.fabled {
     top: 10px;
-  }
-
-  &.storytelling {
-    bottom: 10px;
-    left: auto;
-    right: 10px;
-    width: min-content;
   }
 
   background: rgba(0, 0, 0, 0.5);

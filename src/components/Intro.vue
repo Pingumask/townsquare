@@ -3,9 +3,9 @@
     <img src="/apple-icon.png" alt="" class="logo">
     <div>
       {{ t('intro.header') }}
-      <span class="button" @click="toggleMenu">
+      <button @click="toggleMenu">
         <font-awesome-icon icon="cog" class="fa fa-cog" /> {{ t('intro.menu') }}
-      </span>
+      </button>
       {{ t('intro.body') }}
       <div class="footer">
         {{ t('intro.footerStart') }}
