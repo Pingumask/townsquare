@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 - Features:
-
+  - Hide session ID in streamer mode
 - Bugfixes:
   - [P] Hotkey for adding multiple players
   - Missing message for add multiple players prompt

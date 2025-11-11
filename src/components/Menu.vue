@@ -153,7 +153,7 @@
             </li>
             <li @click="leaveSession">
               {{ t('menu.session.leave') }}
-              <em>{{ session.sessionId }}</em>
+              <em>{{ grimoire.isStreamerMode ? "(hidden)" : session.sessionId }}</em>
             </li>
           </template>
         </template>
