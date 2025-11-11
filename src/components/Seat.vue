@@ -88,7 +88,10 @@
         <font-awesome-icon v-if="!(session.isSpectator && session.isSecretVote)" icon="skull" class="fa fa-skull" />
       </div>
       <div class="name" :class="{ active: isMenuOpen }" @click="isMenuOpen = !isMenuOpen">
-        <span>{{ props.player.name || " " }}</span>
+        <span>{{
+          // eslint-disable-next-line no-irregular-whitespace
+          props.player.name || " "
+          }}</span>
         <font-awesome-icon v-if="props.player.pronouns" icon="venus-mars" class="fa fa-venus-mars" />
         <div v-if="props.player.pronouns" class="pronouns">
           <span>{{ props.player.pronouns }}</span>
