@@ -28,7 +28,7 @@ const mapReminder =
   (role: Role) =>
     (name: string): Reminder => ({
       role: role,
-      image: role.image || rolePath(role),
+      image: rolePath(role) || '', // Ensure we always have a string
       imageAlt: role.imageAlt || '',
       name,
       id: `${role.id}-${name}`,
@@ -121,7 +121,7 @@ function addReminder(reminder: Reminder) {
     value = [...player.reminders, { role: SPECIAL_REMINDER_ROLES.custom, name }];
   } else if (reminder.name === "?") {
     let name = prompt(t('prompt.customNote'));
-	if (!name) name = "?";
+    if (!name) name = "?";
     value = [...player.reminders, { role: reminder.role, name }];
   } else {
     value = [...player.reminders, reminder];

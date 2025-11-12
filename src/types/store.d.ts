@@ -92,6 +92,10 @@ export interface PlayersMenuState {
 
 // Root state used by Vuex store and socket/persistence plugins
 export interface RootState {
+  nightOrder: {
+    firstNight: string[];
+    otherNight: string[];
+  };
   grimoire: GrimoireState;
   playersMenu: PlayersMenuState;
   modals: Modals;

@@ -10,13 +10,16 @@ import type {
   RolesJSON,
   RootState,
   StoreLike,
+  UnifiedDataJSON,
 } from "@/types";
 import * as Vuex from "vuex";
+import unifiedDataRaw from "../data.json";
 import editionJSONRaw from "../editions.json";
 import players from "./modules/players";
 import session from "./modules/session";
 import persistence from "./persistence";
 
+const unifiedData = unifiedDataRaw as unknown as UnifiedDataJSON;
 const editionJSON = editionJSONRaw as unknown as EditionsJSON;
 
 // helpers
@@ -38,22 +41,32 @@ const toggle =
 
 const loadLocale = async (): Promise<{
   locale: LocaleModule;
-  rolesJSON: RolesJSON;
-  jinxesJSON: JinxesJSON;
-  fabledJSON: FabledJSON;
+  rolesJSON?: RolesJSON; // Made optional for backward compatibility
+  jinxesJSON?: JinxesJSON; // Made optional for backward compatibility
+  fabledJSON?: FabledJSON; // Made optional for backward compatibility
 }> => {
-  const { locale, rolesJSON, jinxesJSON, fabledJSON } = await import(
-    "./modules/locale"
-  );
-  return {
-    locale: locale as LocaleModule,
-    rolesJSON: rolesJSON as RolesJSON,
-    jinxesJSON: jinxesJSON as JinxesJSON,
-    fabledJSON: fabledJSON as FabledJSON,
-  };
+  try {
+    // Try to load legacy locale files for backward compatibility
+    const { locale, rolesJSON, jinxesJSON, fabledJSON } = await import(
+      "./modules/locale"
+    );
+    return {
+      locale: locale as LocaleModule,
+      rolesJSON: rolesJSON as RolesJSON,
+      jinxesJSON: jinxesJSON as JinxesJSON,
+      fabledJSON: fabledJSON as FabledJSON,
+    };
+  } catch (error) {
+    // Fallback to just loading locale if other files don't exist
+    const { locale } = await import("./modules/locale");
+    return {
+      locale: locale as LocaleModule,
+    };
+  }
 };
 
 const defaultEdition = (): Edition =>
+  unifiedData.editions[0] ??
   editionJSON.official[0] ?? {
     id: "custom",
     name: "Custom",
@@ -69,9 +82,14 @@ const initializeStore = async () => {
     "./locale/en/ui.json"
   )) as unknown as LocaleModule;
 
+  // Use unified data for structural info, locale files for role data
+  const allRoles = rolesJSON?.default || [];
+  const allEditions = unifiedData.editions || editionJSON.official || [];
+  const allFabled = fabledJSON?.default || [];
+
   const getRolesByEdition = (edition: Edition = defaultEdition()) => {
     return new Map(
-      rolesJSON.default
+      allRoles
         .filter(
           (r) =>
             r.edition === edition.id || (edition.roles || []).includes(r.id)
@@ -83,7 +101,7 @@ const initializeStore = async () => {
 
   const gettravelersNotInEdition = (edition: Edition = defaultEdition()) => {
     return new Map(
-      rolesJSON.default
+      allRoles
         .filter(
           (r) =>
             r.team === "traveler" &&
@@ -99,7 +117,7 @@ const initializeStore = async () => {
 
   // Create a map for alternate role names to main role IDs
   const alternateRoleMap = new Map<string, string>();
-  rolesJSON.default.forEach((role) => {
+  allRoles.forEach((role) => {
     if (role.alternates) {
       role.alternates.forEach((alternate) => {
         alternateRoleMap.set(clean(alternate), role.id);
@@ -114,29 +132,42 @@ const initializeStore = async () => {
   };
 
   const editionJSONbyId = new Map(
-    editionJSON.official.map((edition) => [edition.id, edition] as const)
+    allEditions.map((edition) => [edition.id, edition] as const)
   );
   const rolesJSONbyId = new Map(
-    rolesJSON.default.map((role) => [role.id, role] as const)
+    allRoles.map((role) => [role.id, role] as const)
   );
   const fabled = new Map(
-    fabledJSON.default.map((role) => [role.id, role] as const)
+    allFabled.map((role) => [role.id, role] as const)
   );
 
-  // jinxes
+  // jinxes - use embedded jinxes from roles or fall back to legacy
   let jinxes: Map<string, Map<string, string>> = new Map();
   try {
-    jinxes = new Map(
-      jinxesJSON.default.map(
-        ({ id, hatred }) =>
-          [
-            clean(id),
-            new Map(
-              hatred.map(({ id, reason }) => [clean(id), reason] as const)
-            ),
-          ] as const
-      )
-    );
+    if (allRoles.some((role) => role.jinxes)) {
+      // Use embedded jinxes from roles
+      allRoles.forEach((role) => {
+        if (role.jinxes && role.jinxes.length > 0) {
+          const roleJinxes = new Map(
+            role.jinxes.map(({ id, reason }) => [clean(id), reason] as const)
+          );
+          jinxes.set(clean(role.id), roleJinxes);
+        }
+      });
+    } else if (jinxesJSON?.default) {
+      // Fall back to legacy jinxes structure
+      jinxes = new Map(
+        jinxesJSON.default.map(
+          ({ id, hatred }) =>
+            [
+              clean(id),
+              new Map(
+                hatred.map(({ id, reason }) => [clean(id), reason] as const)
+              ),
+            ] as const
+        )
+      );
+    }
   } catch (e) {
     console.error("couldn't load jinxes", e);
   }
@@ -148,9 +179,7 @@ const initializeStore = async () => {
     image: "",
     ability: "",
     edition: "custom",
-    firstNight: 0,
     firstNightReminder: "",
-    otherNight: 0,
     otherNightReminder: "",
     reminders: [],
     remindersGlobal: [],
@@ -167,6 +196,7 @@ const initializeStore = async () => {
       session,
     },
     state: {
+      nightOrder: unifiedData.nightOrder,
       grimoire: {
         disableHotkeys: false,
         isNightOrder: false,
@@ -421,8 +451,7 @@ const initializeStore = async () => {
                   traveler: "traveler",
                 } as Record<string, string>
               )[String(role.team)] || "custom";
-            role.firstNight = Math.abs(Number(role.firstNight));
-            role.otherNight = Math.abs(Number(role.otherNight));
+            // Night order is now determined by data.json, not individual role properties
             return role;
           })
           .filter((role) => role.name && role.ability && role.team)
@@ -438,11 +467,11 @@ const initializeStore = async () => {
           ...processedRoles
             .filter((r) => r.team === "fabled")
             .map((r) => [r.id, r] as const),
-          ...fabledJSON.default.map((role) => [role.id, role] as const),
+          ...allFabled.map((role) => [role.id, role] as const),
         ]);
 
         state.othertravelers = new Map(
-          rolesJSON.default
+          allRoles
             .filter(
               (r) =>
                 r.team === "traveler" &&

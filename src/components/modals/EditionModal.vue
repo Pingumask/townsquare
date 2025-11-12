@@ -187,8 +187,18 @@ function startBuilt() {
   const selected = draftPool.value.filter((role: ToggleableRole) => role.selected);
   const scriptName = prompt(t('prompt.customScriptName'), t('prompt.defaultScriptName'));
   if (!scriptName) return;
-  selected.push({ id: "_meta", name: scriptName, edition: "custom" });
-  parseRoles(selected);
+  // Convert ToggleableRole[] to ParsedRole[] format
+  const parsedRoles: ParsedRole[] = selected.map((role: ToggleableRole) => {
+    const parsed: ParsedRole = { id: role.id };
+    if (role.edition) parsed.edition = role.edition;
+    if (role.image) {
+      const imageValue = Array.isArray(role.image) ? role.image[0] : role.image;
+      if (imageValue) parsed.image = imageValue;
+    }
+    return parsed;
+  });
+  parsedRoles.push({ id: "_meta", edition: "custom", name: scriptName } as any);
+  parseRoles(parsedRoles);
 }
 
 function openUpload() {

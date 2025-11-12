@@ -3369,52 +3369,6 @@
       "flavor": "With thunder as my voice and lightning as my blade, I, the eternal guardian, feast upon the fools who dare approach the forbidden gate. Behold, my sacred goal! To purge the beetle from the belly of the rocky earth, to ensnare it in a net of stars, on the hilltop where heaven meets earth."
     }
   ],
-  "servers": [
-    {
-      "host": "eu",
-      "name": "EU1 Central"
-    },
-    {
-      "host": "eu2",
-      "name": "EU2 West"
-    },
-    {
-      "host": "eu3",
-      "name": "EU3 West "
-    },
-    {
-      "host": "eu4",
-      "name": "EU4 East"
-    },
-    {
-      "host": "eu6",
-      "name": "EU6 West "
-    },
-    {
-      "host": "sg",
-      "name": "SG1 Singapore"
-    },
-    {
-      "host": "us",
-      "name": "US1 East"
-    },
-    {
-      "host": "us2",
-      "name": "US2 West"
-    },
-    {
-      "host": "us3",
-      "name": "US3 East"
-    },
-    {
-      "host": "us4",
-      "name": "US4 East"
-    },
-    {
-      "host": "us5",
-      "name": "US5 West"
-    }
-  ],
   "nightOrder": {
     "firstNight": [
       "dusk",

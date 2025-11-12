@@ -21,7 +21,8 @@ export function useRolePath() {
       return new URL(`../assets/icons/${role.id}.png`, import.meta.url).href;
     }
     if (role.image && grimoire.value.isImageOptIn) {
-      return role.image;
+      // Handle both string and string[] types
+      return Array.isArray(role.image) ? role.image[0] : role.image;
     }
     if (role.image && !grimoire.value.isImageOptIn) {
       return new URL(`../assets/icons/${role.team}.png`, import.meta.url).href;

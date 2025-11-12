@@ -1,4 +1,4 @@
-import type { Player, Role, PlayersState, Edition } from "../../types";
+import type { Player, Role, PlayersState } from "../../types";
 
 export const SPECIAL_REMINDER_ROLES = {
   good: {
@@ -75,65 +75,60 @@ const getters = {
     );
     return Math.min(nontravelers.length, 15);
   },
-  // calculate a Map of player => night order
+  // calculate a Map of player => night order using data.json
   nightOrder(
     { players, fabled }: PlayersState,
     _getters: unknown,
-    { edition }: { edition: Edition }
+    rootState: { nightOrder: { firstNight: string[]; otherNight: string[] } }
   ) {
-    // gives the index of the first night for a player. This function supposes that, if they are called, "player" has an attribute "role".
-    function getFirstNight(player: Player, officialEdition: boolean): number {
-      if (officialEdition && player.role.firstNightEdition) {
-        return player.role.firstNightEdition;
-      }
-      return player.role.firstNight || 0;
-    }
-
-    // gives the index of the other nights (not the first one) for a player. This function supposes that, if they are called, "player" has an attribute "role".
-    function getOtherNight(player: Player, officialEdition: boolean): number {
-      if (officialEdition && player.role.otherNightEdition) {
-        return player.role.otherNightEdition;
-      }
-      return player.role.otherNight || 0;
+    // Get night order position from data.json
+    function getNightOrderPosition(roleId: string, isFirstNight: boolean): number {
+      const nightOrder = isFirstNight ? rootState.nightOrder.firstNight : rootState.nightOrder.otherNight;
+      const position = nightOrder.indexOf(roleId);
+      return position >= 0 ? position + 1 : 0; // 1-based indexing, 0 if not found
     }
 
     const firstNight: (Player | Role | number)[] = [0];
     const otherNight: (Player | Role | number)[] = [0];
+
+    // Add fabled characters that have night actions
     fabled.forEach((role: Role) => {
-      if (role.firstNight) {
+      if (getNightOrderPosition(role.id, true) > 0) {
         firstNight.push(role);
       }
-      if (role.otherNight) {
+      if (getNightOrderPosition(role.id, false) > 0) {
         otherNight.push(role);
       }
     });
+
+    // Add players that have night actions
     players.forEach((player: Player) => {
-      if (player.role.firstNight) {
+      if (getNightOrderPosition(player.role.id, true) > 0) {
         firstNight.push(player);
       }
-      if (player.role.otherNight) {
+      if (getNightOrderPosition(player.role.id, false) > 0) {
         otherNight.push(player);
       }
     });
-    // If x has an attribute 'role' (meaning x is a player), then, to know their night order, we use the getter functions above.
-    // Else, (meaning x is instead a Fabled), to know their night order we look at x.firstNight or x.otherNight
+
+    // Sort by night order position from data.json
     firstNight.sort(
       (a, b) =>
         ((a as Player).role
-          ? getFirstNight(a as Player, edition.isOfficial || false)
-          : (a as Role).firstNight || 0) -
+          ? getNightOrderPosition((a as Player).role.id, true)
+          : getNightOrderPosition((a as Role).id, true)) -
         ((b as Player).role
-          ? getFirstNight(b as Player, edition.isOfficial || false)
-          : (b as Role).firstNight || 0)
+          ? getNightOrderPosition((b as Player).role.id, true)
+          : getNightOrderPosition((b as Role).id, true))
     );
     otherNight.sort(
       (a, b) =>
         ((a as Player).role
-          ? getOtherNight(a as Player, edition.isOfficial || false)
-          : (a as Role).otherNight || 0) -
+          ? getNightOrderPosition((a as Player).role.id, false)
+          : getNightOrderPosition((a as Role).id, false)) -
         ((b as Player).role
-          ? getOtherNight(b as Player, edition.isOfficial || false)
-          : (b as Role).otherNight || 0)
+          ? getNightOrderPosition((b as Player).role.id, false)
+          : getNightOrderPosition((b as Role).id, false))
     );
     const nightOrder = new Map<
       Player | Role,

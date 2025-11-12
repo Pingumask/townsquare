@@ -30,8 +30,13 @@ export interface Edition {
   author?: string;
   logo?: string;
   background?: string;
+  color?: string; // New field from unified data structure
+  themes?: number; // New field from unified data structure
+  level?: string; // New field from unified data structure
   isOfficial?: boolean;
   roles?: string[];
+  firstNight?: string[]; // New field for night order
+  otherNight?: string[]; // New field for night order
 }
 
 // Gradient for UI

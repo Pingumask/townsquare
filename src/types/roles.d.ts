@@ -5,21 +5,19 @@ export interface Role {
   name?: string;
   team?: TeamType;
   ability?: string;
+  flavor?: string; // New field from unified data structure
   isCustom?: boolean;
   edition?: string;
-  firstNight?: number;
-  otherNight?: number;
-  firstNightEdition?: number;
-  otherNightEdition?: number;
   firstNightReminder?: string;
   otherNightReminder?: string;
   reminders?: string[];
   remindersGlobal?: string[];
   setup?: boolean;
-  image?: string;
+  image?: string | string[];
   imageAlt?: string;
   forbidden?: boolean;
   multiple?: boolean;
+  jinxes?: JinxEntry[]; // New field for embedded jinxes
 }
 
 // Extended role interfaces
@@ -51,6 +49,11 @@ export interface ParsedRole {
 }
 
 // Jinx-related types
+export interface JinxEntry {
+  id: string;
+  reason: string;
+}
+
 export interface JinxInfo {
   first: Role;
   second: Role;

@@ -10,7 +10,21 @@ export interface LocaleModule {
   default: Record<string, unknown>;
 }
 
-// Shared JSON/module shapes used across store and plugins
+// New unified data structure
+export interface UnifiedDataJSON {
+  editions: Edition[];
+  nightOrder: {
+    firstNight: string[];
+    otherNight: string[];
+  };
+}
+
+export interface ServerConfig {
+  host: string;
+  name: string;
+}
+
+// Legacy JSON/module shapes (kept for backward compatibility during migration)
 export interface EditionsJSON {
   official: Edition[];
   popular: [string, string][];

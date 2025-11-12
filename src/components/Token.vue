@@ -1,8 +1,8 @@
 <template>
   <div class="token" :class="[role.id, { unchecked: unchecked }]" @click="setRole">
     <RoleIcon :role="role" :player="player" />
-    <span v-if="role.firstNight || role.firstNightReminder" class="leaf-left" />
-    <span v-if="role.otherNight || role.otherNightReminder" class="leaf-right" />
+    <span v-if="hasFirstNightAction || role.firstNightReminder" class="leaf-left" />
+    <span v-if="hasOtherNightAction || role.otherNightReminder" class="leaf-right" />
     <span v-if="reminderLeaves" :class="['leaf-top' + reminderLeaves]" />
     <span v-if="role.setup" class="leaf-orange" />
     <svg viewBox="0 0 150 150" class="name">
@@ -23,6 +23,7 @@
 <script setup lang="ts">
 import type { Player, Role } from '@/types';
 import { computed } from 'vue';
+import { useStore } from 'vuex';
 import { RoleIcon } from '@/components';
 
 const props = withDefaults(defineProps<{
@@ -38,6 +39,17 @@ const props = withDefaults(defineProps<{
 const emit = defineEmits<{
   'set-role': [role: Role];
 }>();
+
+const store = useStore();
+const nightOrder = computed(() => store.state.nightOrder);
+
+const hasFirstNightAction = computed(() => {
+  return props.role?.id && nightOrder.value.firstNight.includes(props.role.id);
+});
+
+const hasOtherNightAction = computed(() => {
+  return props.role?.id && nightOrder.value.otherNight.includes(props.role.id);
+});
 
 const reminderLeaves = computed(() => {
   return (

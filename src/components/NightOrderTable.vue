@@ -53,90 +53,82 @@ const props = defineProps<Props>();
 const { t } = useTranslation();
 const store = useStore();
 
-const edition = computed(() => store.state.edition);
 const session = computed(() => store.state.session);
 const players = computed(() => store.state.players.players);
 const fabled = computed(() => store.state.players.fabled);
 const rolesStore = computed(() => store.state.roles);
 
 const roles = computed(() => {
-  function nightIndex(role: Role, officialEdition: boolean): number {
-    if (props.nightType === 'firstNight') {
-      if (officialEdition && role.firstNightEdition) {
-        return role.firstNightEdition;
-      }
-      return role.firstNight || 0;
-    } else {
-      if (officialEdition && role.otherNightEdition) {
-        return role.otherNightEdition;
-      }
-      return role.otherNight || 0;
-    }
-  }
+  // Get night order from data.json
+  const nightOrder = props.nightType === 'firstNight'
+    ? store.state.nightOrder.firstNight
+    : store.state.nightOrder.otherNight;
 
   const nightRoles: NightOrderRole[] = [];
 
-  // Add dusk and dawn markers
-  if (props.nightType === 'firstNight') {
-    nightRoles.push(
-      {
+  // Process roles in night order from data.json
+  nightOrder.forEach((roleId: string) => {
+    // Handle special markers
+    if (roleId === 'dusk') {
+      nightRoles.push({
         id: "dusk",
         name: t('modal.nightOrder.dusk'),
         team: "default",
-        firstNight: 2,
         players: [],
-        firstNightReminder: t('modal.nightOrder.duskDescription1'),
+        firstNightReminder: props.nightType === 'firstNight' ? t('modal.nightOrder.duskDescription1') : '',
+        otherNightReminder: props.nightType === 'otherNight' ? t('modal.nightOrder.duskDescription2') : '',
         image: new URL('@/assets/icons/dusk.png', import.meta.url).href,
-      },
-      {
-        id: "dawn",
-        name: t('modal.nightOrder.dawn'),
-        firstNight: 1000,
-        team: "default",
-        players: [],
-        firstNightReminder: t('modal.nightOrder.dawnDescription1'),
-        image: new URL('@/assets/icons/dawn.png', import.meta.url).href,
-      }
-    );
-  } else {
-    nightRoles.push(
-      {
-        id: "dusk",
-        name: t('modal.nightOrder.dusk'),
-        team: "default",
-        otherNight: 2,
-        players: [],
-        otherNightReminder: t('modal.nightOrder.duskDescription2'),
-        image: new URL('@/assets/icons/dusk.png', import.meta.url).href,
-      },
-      {
-        id: "dawn",
-        name: t('modal.nightOrder.dawn'),
-        team: "default",
-        otherNight: 1000,
-        players: [],
-        otherNightReminder: t('modal.nightOrder.dawnDescription2'),
-        image: new URL('@/assets/icons/dawn.png', import.meta.url).href,
-      }
-    );
-  }
-
-  // Add fabled characters
-  let toymaker = false;
-  fabled.value.forEach((fabledRole: Role) => {
-    if (props.nightType === 'firstNight' && fabledRole.firstNight) {
-      nightRoles.push({ players: [], ...fabledRole });
-    } else if (props.nightType === 'otherNight' && fabledRole.otherNight) {
-      nightRoles.push({ players: [], ...fabledRole });
-    } else if (fabledRole.id === "toymaker") {
-      toymaker = true;
+      });
+      return;
     }
-  });
 
-  // Add regular roles (non-travelers)
-  rolesStore.value.forEach((role: Role) => {
-    const hasNightAction = props.nightType === 'firstNight' ? role.firstNight : role.otherNight;
-    if (hasNightAction && role.team !== "traveler") {
+    if (roleId === 'dawn') {
+      nightRoles.push({
+        id: "dawn",
+        name: t('modal.nightOrder.dawn'),
+        team: "default",
+        players: [],
+        firstNightReminder: props.nightType === 'firstNight' ? t('modal.nightOrder.dawnDescription1') : '',
+        otherNightReminder: props.nightType === 'otherNight' ? t('modal.nightOrder.dawnDescription2') : '',
+        image: new URL('@/assets/icons/dawn.png', import.meta.url).href,
+      });
+      return;
+    }
+
+    // Handle special info roles for first night
+    if (roleId === 'minioninfo') {
+      if (props.nightType === 'firstNight') {
+        nightRoles.push({
+          id: "minion",
+          name: t('modal.nightOrder.minionInfo'),
+          team: "minion",
+          players: players.value.filter((p: Player) => p.role.team === "minion"),
+          firstNightReminder: t('modal.nightOrder.minionInfoDescription'),
+          otherNightReminder: '',
+          image: new URL('@/assets/icons/minion.png', import.meta.url).href,
+        });
+      }
+      return;
+    }
+
+    if (roleId === 'demoninfo') {
+      if (props.nightType === 'firstNight') {
+        nightRoles.push({
+          id: "demon",
+          name: t('modal.nightOrder.demonInfo'),
+          team: "demon",
+          players: players.value.filter((p: Player) => p.role.team === "demon"),
+          firstNightReminder: t('modal.nightOrder.demonInfoDescription'),
+          otherNightReminder: '',
+          image: new URL('@/assets/icons/demon.png', import.meta.url).href,
+        });
+      }
+      return;
+    }
+
+    // Find the role in our stores
+    const role = rolesStore.value.get(roleId) || fabled.value.find((f: Role) => f.id === roleId);
+    if (role) {
       const roleWithPlayers: NightOrderRole = {
         ...role,
         players: players.value.filter((p: Player) => p.role.id === role.id)
@@ -145,50 +137,7 @@ const roles = computed(() => {
     }
   });
 
-  // Add travelers (duplicates only once)
-  const seenTravelers: string[] = [];
-  let nbTravelers = 0;
-  players.value.forEach((player: Player) => {
-    if (player.role.team === "traveler") {
-      nbTravelers++;
-      const hasNightAction = props.nightType === 'firstNight' ? player.role.firstNight : player.role.otherNight;
-      if (hasNightAction && !seenTravelers.includes(player.role.id)) {
-        seenTravelers.push(player.role.id);
-        const activePlayers = players.value.filter((p: Player) => p.role.id === player.role.id);
-        nightRoles.push({ players: activePlayers, ...player.role });
-      }
-    }
-  });
-
-  // Add Minions/Demon info (first night only)
-  if (props.nightType === 'firstNight' && (players.value.length - nbTravelers > 6 || toymaker)) {
-    nightRoles.push(
-      {
-        id: "minion",
-        name: t('modal.nightOrder.minionInfo'),
-        firstNight: 12,
-        team: "minion",
-        players: players.value.filter((p: Player) => p.role.team === "minion"),
-        firstNightReminder: t('modal.nightOrder.minionInfoDescription'),
-        image: new URL('@/assets/icons/minion.png', import.meta.url).href,
-      },
-      {
-        id: "demon",
-        name: t('modal.nightOrder.demonInfo'),
-        firstNight: 18,
-        team: "demon",
-        players: players.value.filter((p: Player) => p.role.team === "demon"),
-        firstNightReminder: t('modal.nightOrder.demonInfoDescription'),
-        image: new URL('@/assets/icons/demon.png', import.meta.url).href,
-      }
-    );
-  }
-
-  // Sort by night order
-  nightRoles.sort((a: NightOrderRole, b: NightOrderRole) =>
-    nightIndex(a, edition.value.isOfficial) - nightIndex(b, edition.value.isOfficial)
-  );
-
+  // Roles are already in the correct order from data.json
   return nightRoles;
 });
 </script>
