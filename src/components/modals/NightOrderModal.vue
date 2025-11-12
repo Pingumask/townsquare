@@ -8,68 +8,8 @@
       {{ edition.name || t('modal.nightOrder.custom') }}
     </h3>
     <div class="night">
-      <ul class="first">
-        <li class="headline">
-          {{ t('modal.nightOrder.firstNight') }}
-        </li>
-        <li v-for="role in rolesFirstNight" :key="role.id" :class="[role.team]">
-          <span class="name">
-            {{ role.name }}
-            <span v-if="role.players.length" class="player">
-              <br>
-              <small v-for="(player, index) in role.players" :key="index" :class="{ dead: player.isDead }">
-                {{ player.name + (role.players.length > index + 1 ? "," : "") }}
-              </small>
-            </span>
-            <span v-if="
-              (role.team == 'default' || role.team == 'fabled') &&
-              !session.isSpectator &&
-              players.length &&
-              players[0].role.id
-            " class="player">
-              <br>
-              <small />
-            </span>
-          </span>
-          <span v-if="role.id && role.id != 'empty'" class="icon" :class="role.team">
-            <RoleIcon :role="role" />
-          </span>
-          <span v-if="role.firstNightReminder" class="reminder">
-            {{ role.firstNightReminder }}
-          </span>
-        </li>
-      </ul>
-      <ul class="other">
-        <li class="headline">
-          {{ t('modal.nightOrder.otherNights') }}
-        </li>
-        <li v-for="role in rolesOtherNight" :key="role.id" :class="[role.team]">
-          <span v-if="role.id && role.id != 'empty'" class="icon" :class="role.team">
-            <RoleIcon :role="role" />
-          </span>
-          <span class="name">
-            {{ role.name }}
-            <span v-if="role.players.length" class="player">
-              <br>
-              <small v-for="(player, index) in role.players" :key="index" :class="{ dead: player.isDead }">
-                {{ player.name + (role.players.length > index + 1 ? "," : "") }}
-              </small>
-            </span>
-            <span v-if="
-              (role.team == 'default' || role.team == 'fabled') &&
-              !session.isSpectator &&
-              players.length &&
-              players[0].role.id
-            " class="player">
-              <br>
-              <small />
-            </span>
-          </span>
-          <span v-if="role.otherNightReminder" class="reminder">
-            {{ role.otherNightReminder }}
-          </span>
-        </li>
-      </ul>
+      <NightOrderTable night-type="firstNight" />
+      <NightOrderTable night-type="otherNight" />
     </div>
   </Modal>
 </template>
@@ -78,169 +18,13 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
 import { useTranslation } from '@/composables';
-import { Modal, RoleIcon } from '@/components';
-import type { NightOrderRole, Role, Player } from "@/types";
+import { Modal, NightOrderTable } from '@/components';
 
 const { t } = useTranslation();
 const store = useStore();
 
-const rolesFirstNight = computed(() => {
-
-  function nightIndex(role: Role, officialEdition: boolean): number {
-    if (officialEdition && role.firstNightEdition) {
-      return role.firstNightEdition;
-    }
-    return role.firstNight || 0;
-  }
-
-  const rolesFirstNight: NightOrderRole[] = [
-    {
-      id: "dusk",
-      name: t('modal.nightOrder.dusk'),
-      team: "default",
-      firstNight: 2,
-      players: [],
-      firstNightReminder: t('modal.nightOrder.duskDescription1'),
-      image: new URL('@/assets/icons/dusk.png', import.meta.url).href,
-    },
-    {
-      id: "dawn",
-      name: t('modal.nightOrder.dawn'),
-      firstNight: 1000,
-      team: "default",
-      players: [],
-      firstNightReminder: t('modal.nightOrder.dawnDescription1'),
-      image: new URL('@/assets/icons/dawn.png', import.meta.url).href,
-    },
-  ];
-  let toymaker = false;
-  // Adding Fabled characters
-  fabled.value.forEach((fabled: Role) => {
-    if (fabled.firstNight) {
-      rolesFirstNight.push({ players: [], ...fabled });
-    } else if (fabled.id == "toymaker") {
-      toymaker = true;
-    }
-  });
-  roles.value.forEach((role: Role) => {
-    if (role.firstNight && (role.team !== "traveler")) {
-      const roleWithPlayers: NightOrderRole = {
-        ...role,
-        players: players.value.filter((p: Player) => p.role.id === role.id)
-      };
-      rolesFirstNight.push(roleWithPlayers);
-    }
-  });
-  // Adding travelers (duplicates only once)
-  const seentravelers: string[] = [];
-  let nbtravelers = 0;
-  players.value.forEach((player: Player) => {
-    if (player.role.team == "traveler") {
-      nbtravelers++;
-      if (!seentravelers.includes(player.role.id)) {
-        seentravelers.push(player.role.id);
-        if (player.role.firstNight) {
-          const activePlayers = players.value.filter(
-            (p: Player) => p.role.id === player.role.id,
-          );
-          rolesFirstNight.push({ players: activePlayers, ...player.role });
-        }
-      }
-    }
-  });
-  // Adding Minions/Demon info
-  if (players.value.length - nbtravelers > 6 || toymaker) {
-    rolesFirstNight.push(
-      {
-        id: "minion",
-        name: t('modal.nightOrder.minionInfo'),
-        firstNight: 12,
-        team: "minion",
-        players: players.value.filter((p: Player) => p.role.team === "minion"),
-        firstNightReminder:
-          t('modal.nightOrder.minionInfoDescription'),
-        image: new URL('@/assets/icons/minion.png', import.meta.url).href,
-      },
-      {
-        id: "demon",
-        name: t('modal.nightOrder.demonInfo'),
-        firstNight: 18,
-        team: "demon",
-        players: players.value.filter((p: Player) => p.role.team === "demon"),
-        firstNightReminder:
-          t('modal.nightOrder.demonInfoDescription'),
-        image: new URL('@/assets/icons/demon.png', import.meta.url).href,
-      },
-    );
-  }
-  rolesFirstNight.sort((a: NightOrderRole, b: NightOrderRole) => nightIndex(a, edition.value.isOfficial) - nightIndex(b, edition.value.isOfficial));
-  return rolesFirstNight;
-});
-
-const rolesOtherNight = computed(() => {
-
-  function nightIndex(role: Role, officialEdition: boolean): number {
-    if (officialEdition && role.otherNightEdition) {
-      return role.otherNightEdition;
-    }
-    return role.otherNight || 0;
-  }
-
-  const rolesOtherNight: NightOrderRole[] = [{
-    id: "dusk",
-    name: t('modal.nightOrder.dusk'),
-    team: "default",
-    otherNight: 2,
-    players: [],
-    otherNightReminder: t('modal.nightOrder.duskDescription2'),
-    image: new URL('@/assets/icons/dusk.png', import.meta.url).href,
-  },
-  {
-    id: "dawn",
-    name: t('modal.nightOrder.dawn'),
-    team: "default",
-    otherNight: 1000,
-    players: [],
-    otherNightReminder: t('modal.nightOrder.dawnDescription2'),
-    image: new URL('@/assets/icons/dawn.png', import.meta.url).href,
-  },
-  ];
-  fabled.value.filter(({ otherNight }: Role) => otherNight)
-    .forEach((fabled: Role) => {
-      rolesOtherNight.push({ players: [], ...fabled });
-    });
-  roles.value.forEach((role: Role) => {
-    if (role.otherNight && role.team !== "traveler") {
-      const roleWithPlayers: NightOrderRole = {
-        ...role,
-        players: players.value.filter((p: Player) => p.role.id === role.id)
-      };
-      rolesOtherNight.push(roleWithPlayers);
-    }
-  });
-  // Adding travelers (duplicates only once)
-  const seentravelers: string[] = [];
-  players.value.forEach((player: Player) => {
-    if (
-      player.role.otherNight &&
-      player.role.team == "traveler" &&
-      !seentravelers.includes(player.role.id)
-    ) {
-      const activePlayers = players.value.filter(
-        (p: Player) => p.role.id === player.role.id,
-      );
-      seentravelers.push(player.role.id);
-      rolesOtherNight.push({ players: activePlayers, ...player.role });
-    }
-  });
-  rolesOtherNight.sort((a: NightOrderRole, b: NightOrderRole) => nightIndex(a, edition.value.isOfficial) - nightIndex(b, edition.value.isOfficial));
-  return rolesOtherNight;
-});
 
 const edition = computed(() => store.state.edition);
-const session = computed(() => store.state.session);
-const players = computed(() => store.state.players.players);
-const fabled = computed(() => store.state.players.fabled);
 const modals = computed(() => store.state.modals);
 const roles = computed(() => store.state.roles);
 
@@ -446,9 +230,11 @@ ul {
     .reminder {
       position: fixed;
       padding: 5px 10px;
-      left: 50%;
+      left: auto;
+      right: auto;
+      width: 50ch;
+      min-width: 50ch;
       bottom: 10%;
-      width: 500px;
       z-index: 25;
       background: rgba(0, 0, 0, 0.75);
       border-radius: 10px;
@@ -458,7 +244,7 @@ ul {
       pointer-events: none;
       opacity: 0;
       transition: opacity 200ms ease-in-out;
-      margin-left: -250px;
+      margin-left: -150px;
     }
 
     &:hover .reminder {

@@ -11,7 +11,9 @@ function parseJSON<T>(raw: string | null): T | null {
 
 export default (store: StoreLike<RootState>) => {
   const updatePagetitle = (isPublic: boolean) =>
-    (document.title = `Blood on the Clocktower ${isPublic ? "Town Square" : "Grimoire"}`);
+    (document.title = `Blood on the Clocktower ${
+      isPublic ? "Town Square" : "Grimoire"
+    }`);
 
   // initialize data
   const bg = localStorage.getItem("background");
@@ -95,7 +97,7 @@ export default (store: StoreLike<RootState>) => {
       parseJSON<Array<{ id: string; isCustom?: boolean }>>(fabledRaw) ?? [];
     store.commit("players/setFabled", {
       fabled: list.map(
-        (f) => store.state.fabled.get(f.id) ?? (f as unknown as Role),
+        (f) => store.state.fabled.get(f.id) ?? (f as unknown as Role)
       ),
     });
   }
@@ -126,6 +128,9 @@ export default (store: StoreLike<RootState>) => {
       store.commit("session/setSpectator", spectator);
       store.commit("session/setSessionId", sessionId);
     }
+  }
+  if (localStorage.getItem("gamePhase")) {
+    store.commit("session/setGamePhase", localStorage.getItem("gamePhase"));
   }
 
   // listen to mutations
@@ -189,6 +194,9 @@ export default (store: StoreLike<RootState>) => {
           localStorage.removeItem("nightOrder");
         }
         break;
+      case "session/setGamePhase":
+        localStorage.setItem("gamePhase", payload as string);
+        break;
       case "togglePlayersMenu": {
         const menuKey = `playersMenu.${payload as string}`;
         const menuValue =
@@ -211,7 +219,7 @@ export default (store: StoreLike<RootState>) => {
       case "setTimerDurations":
         localStorage.setItem(
           "timerDurations",
-          JSON.stringify(state.grimoire.timerDurations),
+          JSON.stringify(state.grimoire.timerDurations)
         );
         break;
       case "setEdition":
@@ -230,7 +238,7 @@ export default (store: StoreLike<RootState>) => {
       case "players/setBluff":
         localStorage.setItem(
           "bluffs",
-          JSON.stringify(state.players.bluffs.map(({ id }) => id)),
+          JSON.stringify(state.players.bluffs.map(({ id }) => id))
         );
         break;
       case "players/setFabled":
@@ -238,9 +246,9 @@ export default (store: StoreLike<RootState>) => {
           "fabled",
           JSON.stringify(
             state.players.fabled.map((fabled) =>
-              fabled.isCustom ? fabled : { id: fabled.id },
-            ),
-          ),
+              fabled.isCustom ? fabled : { id: fabled.id }
+            )
+          )
         );
         break;
       case "players/add":
@@ -258,8 +266,8 @@ export default (store: StoreLike<RootState>) => {
                 ...player,
                 // simplify the stored data
                 role: player.role.id || {},
-              })),
-            ),
+              }))
+            )
           );
         } else {
           localStorage.removeItem("players");
@@ -269,7 +277,7 @@ export default (store: StoreLike<RootState>) => {
         if (payload) {
           localStorage.setItem(
             "session",
-            JSON.stringify([state.session.isSpectator, payload as string]),
+            JSON.stringify([state.session.isSpectator, payload as string])
           );
         } else {
           localStorage.removeItem("session");

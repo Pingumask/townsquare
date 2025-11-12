@@ -39,7 +39,7 @@
       {{ t('modal.roles.allowMultiple') }}
     </label>
     <div class="button-group">
-      <div class="button" :class="{
+      <button class="button" :class="{
         disabled: selectedRoles > nontravelers || !selectedRoles,
       }" @click="assignRoles">
         <font-awesome-icon icon="people-arrows" class="fa fa-people-arrows" />
@@ -48,7 +48,7 @@
           selectedRoles +
           t('modal.roles.assignEnd')
         }}
-      </div>
+      </button>
       <div class="button" @click="selectRandomRoles">
         <font-awesome-icon icon="random" class="fa fa-random" />
         {{ t('modal.roles.shuffle') }}

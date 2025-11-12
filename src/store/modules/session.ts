@@ -3,8 +3,9 @@ import type {
   VoteHistoryEntry,
   Player,
   Nomination,
-} from "../../types";
-import { isActiveNomination, isTravelerExile } from "../../composables";
+  GamePhase,
+} from "@/types";
+import { isActiveNomination, isTravelerExile } from "@/composables";
 
 /**
  * Handle a vote request.
@@ -42,11 +43,141 @@ const state = (): SessionState => ({
   isVoteHistoryAllowed: true,
   isRolesDistributed: false,
   isSecretVote: false,
+  gamePhase: "pregame",
 });
 
 const getters = {};
 
-const actions = {};
+const actions = {
+  /**
+   * Host a new session
+   */
+  hostSession({
+    commit,
+    state,
+    rootGetters,
+  }: {
+    commit: (mutation: string, payload?: unknown) => void;
+    state: SessionState;
+    rootGetters: { t: (key: string) => string };
+  }) {
+    if (state.sessionId) return;
+    const t = rootGetters.t;
+    const sessionId = prompt(
+      t("prompt.createSession"),
+      String(Math.round(Math.random() * 10000))
+    );
+    if (sessionId) {
+      commit("clearVoteHistory");
+      commit("setSpectator", false);
+      commit("setSessionId", sessionId);
+      commit("toggleGrimoire", false);
+      // Copy session URL to clipboard
+      const url = window.location.href.split("#")[0];
+      const link = url + "#" + sessionId;
+      navigator.clipboard.writeText(link);
+    }
+  },
+
+  /**
+   * Join an existing session
+   */
+  joinSession({
+    commit,
+    state,
+    dispatch,
+    rootGetters,
+  }: {
+    commit: (mutation: string, payload?: unknown) => void;
+    state: SessionState;
+    dispatch: (action: string) => void;
+    rootGetters: { t: (key: string) => string };
+  }) {
+    if (state.sessionId) return dispatch("leaveSession");
+    const t = rootGetters.t;
+    let sessionId = prompt(t("prompt.joinSession"));
+    if (sessionId && sessionId.match(/^https?:\/\//i)) {
+      sessionId = sessionId.split("#").pop() || null;
+    }
+    if (sessionId) {
+      commit("clearVoteHistory");
+      commit("setSpectator", true);
+      commit("toggleGrimoire", false);
+      commit("setSessionId", sessionId);
+    }
+  },
+
+  /**
+   * Leave the current session
+   */
+  leaveSession({
+    commit,
+    rootGetters,
+  }: {
+    commit: (mutation: string, payload?: unknown) => void;
+    rootGetters: { t: (key: string) => string };
+  }) {
+    const t = rootGetters.t;
+    if (confirm(t("prompt.leaveSession"))) {
+      commit("setSpectator", false);
+      commit("setGamePhase", "pregame");
+      commit("setSessionId", "");
+    }
+  },
+
+  /**
+   * Copy the session URL to clipboard
+   */
+  copySessionUrl({ state }: { state: SessionState }) {
+    const url = window.location.href.split("#")[0];
+    const link = url + "#" + state.sessionId;
+    navigator.clipboard.writeText(link);
+  },
+
+  /**
+   * Distribute roles to players
+   */
+  distributeRoles({
+    state,
+    commit,
+    rootState,
+    rootGetters,
+  }: {
+    state: SessionState;
+    commit: (mutation: string, payload?: unknown) => void;
+    rootState: { players: { players: Player[] } };
+    rootGetters: { t: (key: string) => string };
+  }) {
+    if (state.isSpectator) return;
+    const t = rootGetters.t;
+    const popup = t("prompt.sendRoles");
+    if (!confirm(popup)) return;
+
+    // Checking all players to see if one of them has a forbidden role
+    let forbiddenRole = "";
+    const players = rootState.players.players;
+    for (let i = 0; i < players.length && !forbiddenRole; i++) {
+      const player = players[i];
+      if (player?.role?.forbidden) {
+        forbiddenRole = player.role.name || "";
+      }
+    }
+    let confirmedDistribution = forbiddenRole === "";
+    if (!confirmedDistribution) {
+      const forbiddenPopup =
+        t("prompt.sendRolesWithForbidden1") +
+        forbiddenRole +
+        t("prompt.sendRolesWithForbidden2");
+      confirmedDistribution = confirm(forbiddenPopup);
+    }
+    if (confirmedDistribution) {
+      commit("distributeRoles", true);
+      setTimeout(() => {
+        commit("distributeRoles", false);
+      }, 2000);
+    }
+  },
+};
 
 // mutations helper functions
 const set =
@@ -71,6 +202,9 @@ const mutations = {
   setSecretVote: set("isSecretVote"),
   claimSeat: set("claimedSeat"),
   distributeRoles: set("isRolesDistributed"),
+  setGamePhase(state: SessionState, gamePhase: GamePhase) {
+    state.gamePhase = gamePhase;
+  },
   setSessionId(state: SessionState, sessionId: string) {
     state.sessionId = sessionId
       .toLocaleLowerCase()

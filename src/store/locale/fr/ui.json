@@ -4,6 +4,7 @@
       "title": "Grimoire",
       "hide": "Cacher",
       "show": "Montrer",
+      "firstNightSwitch": "Passer à la première nuit",
       "nightSwitch": "Passer à la nuit",
       "daySwitch": "Passer au jour",
       "order": "Ordre Nocturne",
@@ -71,6 +72,7 @@
     "joinSession": "Entrez le nom ou numéro de la session que vous souhaitez rejoindre",
     "leaveSession": "Êtes-vous sur de vouloir quitter la partie en cours ?",
     "addPlayer": "Nom du joueur",
+    "addPlayers": "Nombre de joueurs à ajouter",
     "randomizeSeatings": "Êtes-vous sur de vouloir mélanger les sièges ?",
     "clearPlayers": "Êtes-vous sur de vouloir supprimer tous les joueurs ?",
     "clearRoles": "Êtes-vous sur de vouloir effacer tous les rôles ?",
@@ -109,6 +111,7 @@
     "bluffs": "Bluffs de Démon",
     "fabled": "Mythes & Légendes",
     "storytellerTools": "Narration",
+    "disconnected": "Non connecté",
     "timer": {
       "default": {
         "text": "Compte à rebours"

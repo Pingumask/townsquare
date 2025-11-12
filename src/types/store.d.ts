@@ -1,8 +1,14 @@
-import type { Timer, Edition } from "./game";
-import type { Nomination, VoteHistoryEntry } from "./voting";
-import type { PlayersState } from "./players";
-import type { EditionsJSON, LocaleModule } from "./data";
-import type { Role } from "./roles";
+import type {
+  Edition,
+  EditionsJSON,
+  GamePhase,
+  LocaleModule,
+  Nomination,
+  PlayersState,
+  Role,
+  Timer,
+  VoteHistoryEntry,
+} from "./";
 
 // Timer durations for different timer types
 export interface TimerDurations {
@@ -19,10 +25,10 @@ export interface TimerDurations {
 // Grimoire state
 export interface GrimoireState {
   disableHotkeys: boolean;
-  isNight: boolean;
   isNightOrder: boolean;
   isRinging: boolean;
   isRooster: boolean;
+  isGavel: boolean;
   isPublic: boolean;
   isMenuOpen: boolean;
   isStatic: boolean;
@@ -70,6 +76,7 @@ export interface SessionState {
   isVoteHistoryAllowed: boolean;
   isRolesDistributed: boolean;
   isSecretVote: boolean;
+  gamePhase: GamePhase;
 }
 
 // Players menu state

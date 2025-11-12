@@ -169,7 +169,6 @@ const initializeStore = async () => {
     state: {
       grimoire: {
         disableHotkeys: false,
-        isNight: false,
         isNightOrder: false,
         isRinging: false,
         isRooster: false,
@@ -295,6 +294,32 @@ const initializeStore = async () => {
       },
       rolesJSONbyId: () => rolesJSONbyId,
     },
+    actions: {
+      toggleRinging({
+        commit,
+      }: {
+        commit: (mutation: string, payload?: unknown) => void;
+      }) {
+        commit("toggleRinging", true);
+        setTimeout(() => commit("toggleRinging", false), 4000);
+      },
+      toggleRooster({
+        commit,
+      }: {
+        commit: (mutation: string, payload?: unknown) => void;
+      }) {
+        commit("toggleRooster", true);
+        setTimeout(() => commit("toggleRooster", false), 3000);
+      },
+      toggleGavel({
+        commit,
+      }: {
+        commit: (mutation: string, payload?: unknown) => void;
+      }) {
+        commit("toggleGavel", true);
+        setTimeout(() => commit("toggleGavel", false), 1500);
+      },
+    },
     mutations: {
       setZoom: set("zoom"),
       setBackground: set("background"),
@@ -302,9 +327,9 @@ const initializeStore = async () => {
       toggleMenu: toggle("isMenuOpen"),
       toggleNightOrder: toggle("isNightOrder"),
       toggleStatic: toggle("isStatic"),
-      toggleNight: toggle("isNight"),
       toggleRinging: toggle("isRinging"),
       toggleRooster: toggle("isRooster"),
+      toggleGavel: toggle("isGavel"),
       toggleGrimoire: toggle("isPublic"),
       toggleImageOptIn: toggle("isImageOptIn"),
       toggleStreamerMode: toggle("isStreamerMode"),
