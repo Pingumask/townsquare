@@ -96,6 +96,10 @@ export interface RootState {
     firstNight: string[];
     otherNight: string[];
   };
+  baseNightOrder: {
+    firstNight: string[];
+    otherNight: string[];
+  };
   grimoire: GrimoireState;
   playersMenu: PlayersMenuState;
   modals: Modals;

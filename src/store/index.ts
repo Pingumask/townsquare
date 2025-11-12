@@ -87,6 +87,11 @@ const initializeStore = async () => {
   const allEditions = unifiedData.editions || editionJSON.official || [];
   const allFabled = fabledJSON?.default || [];
 
+  // Create a map of roles from unified data for accessing flavor text and other structural data
+  const unifiedRolesById = new Map(
+    unifiedData.roles.map((role) => [role.id, role] as const)
+  );
+
   const getRolesByEdition = (edition: Edition = defaultEdition()) => {
     return new Map(
       allRoles
@@ -197,6 +202,7 @@ const initializeStore = async () => {
     },
     state: {
       nightOrder: unifiedData.nightOrder,
+      baseNightOrder: unifiedData.nightOrder, // Keep the base night order for fallback
       grimoire: {
         disableHotkeys: false,
         isNightOrder: false,
@@ -432,11 +438,25 @@ const initializeStore = async () => {
             r["id"] = resolvedId;
             return r as unknown as Role;
           })
-          .map(
-            (role) =>
-              rolesJSONbyId.get(role.id) ||
-              state.roles.get(role.id) || { ...customRole, ...role }
-          )
+          .map((role) => {
+            // Get localized role data
+            const localizedRole = rolesJSONbyId.get(role.id) || state.roles.get(role.id) || { ...customRole, ...role };
+
+            // Get structural data from unified data.json (including flavor text)
+            const unifiedRole = unifiedRolesById.get(role.id);
+
+            // Merge localized data with structural data, prioritizing flavor from unified data
+            if (unifiedRole && localizedRole) {
+              const mergedRole = { ...localizedRole };
+              // Only set flavor if it exists in unified data
+              if (unifiedRole.flavor) {
+                mergedRole.flavor = unifiedRole.flavor;
+              }
+              return mergedRole;
+            }
+
+            return localizedRole;
+          })
           .map((role) => {
             if (rolesJSONbyId.get(role.id)) return role;
             const r = role as unknown as Record<string, unknown>;
@@ -488,7 +508,26 @@ const initializeStore = async () => {
         } else {
           state.edition = edition;
         }
+
+        // Update night order if edition has its own night order
+        if (state.edition && 'firstNight' in state.edition && 'otherNight' in state.edition) {
+          state.nightOrder = {
+            firstNight: state.edition.firstNight as string[],
+            otherNight: state.edition.otherNight as string[]
+          };
+        } else {
+          // Fall back to base night order
+          state.nightOrder = { ...state.baseNightOrder };
+        }
+
         state.modals.edition = false;
+      },
+      setNightOrder(state: RootState, nightOrder: { firstNight: string[]; otherNight: string[] }) {
+        state.nightOrder = nightOrder;
+      },
+      resetNightOrder(state: RootState) {
+        // Reset to base night order from data.json
+        state.nightOrder = { ...state.baseNightOrder };
       },
     },
     plugins: [persistence, socket],

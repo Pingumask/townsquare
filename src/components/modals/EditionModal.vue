@@ -274,7 +274,22 @@ function parseRoles(pickedRoles: (string | ParsedRole)[]) {
   const metaIndex = processedRoles.findIndex(({ id }: ParsedRole) => id === "_meta");
   const meta: ScriptMeta = metaIndex > -1 ? processedRoles.splice(metaIndex, 1).pop() || {} : {};
   store.commit("setCustomRoles", processedRoles);
-  store.commit("setEdition", { ...meta, id: "custom" });
+
+  // Create edition with script metadata, including potential nightOrder
+  const customEdition = { ...meta, id: "custom" };
+  store.commit("setEdition", customEdition);
+
+  // Handle script-specific night order
+  if (meta.firstNight && meta.otherNight) {
+    // Script has its own night order, use it
+    store.commit("setNightOrder", {
+      firstNight: meta.firstNight,
+      otherNight: meta.otherNight
+    });
+  } else {
+    // Script doesn't have night order, fall back to main night order from data.json
+    store.commit("resetNightOrder");
+  }
   const fabled: Role[] = [];
   let djinnAdded = false;
   let djinnNeeded = false;

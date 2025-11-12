@@ -12,12 +12,15 @@ export interface LocaleModule {
 
 // New unified data structure
 export interface UnifiedDataJSON {
+  roles: Role[];
   editions: Edition[];
   nightOrder: {
     firstNight: string[];
     otherNight: string[];
   };
 }
+
+
 
 export interface ServerConfig {
   host: string;

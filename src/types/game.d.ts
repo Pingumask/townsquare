@@ -52,4 +52,10 @@ export interface ScriptMeta {
   name?: string;
   author?: string;
   logo?: string;
+  hideTitle?: boolean;
+  background?: string;
+  almanach?: string;
+  bootlegger: string[];
+  firstNight?: string[];
+  otherNight?: string[];
 }

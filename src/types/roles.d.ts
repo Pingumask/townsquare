@@ -20,7 +20,6 @@ export interface Role {
   jinxes?: JinxEntry[]; // New field for embedded jinxes
 }
 
-// Extended role interfaces
 export interface NightOrderRole extends Role {
   players: Player[];
   firstNightReminder?: string;
