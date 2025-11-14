@@ -4,6 +4,7 @@
 - Features:
   - Handle Lorics in custom scripts
   - Add Tor & Big Wig Lorics
+  - Added "copy link" button to the pregame side menu
 - Bugfixes:
   - Gavel sound ending too soon
 - Localization :

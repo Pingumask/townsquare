@@ -46,13 +46,18 @@
         </div>
         <div v-if="session.gamePhase === 'pregame'">
           <div class="button-group">
-            <button @click="toggleModal('edition')">
-              {{ t('menu.characters.selectEdition') }}
+            <button @click="copySessionUrl()">
+              {{ t('menu.session.link') }}
             </button>
           </div>
           <div class="button-group">
             <button @click="addPlayers()">
               {{ t('menu.players.addMany') }}
+            </button>
+          </div>
+          <div class="button-group">
+            <button @click="toggleModal('edition')">
+              {{ t('menu.characters.selectEdition') }}
             </button>
           </div>
           <div class="button-group">
@@ -198,6 +203,10 @@ const toggleGavel = () => {
 
 const toggleModal = (modal: string) => {
   store.commit("toggleModal", modal);
+};
+
+const copySessionUrl = () => {
+  store.dispatch('session/copySessionUrl');
 };
 
 const addPlayers = () => {
