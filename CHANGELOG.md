@@ -2,7 +2,8 @@
 
 ## Upcomming Version
 - Features:
-
+  - Handle Lorics in custom scripts
+  - Add Tor & Big Wig Lorics
 - Bugfixes:
   - Gavel sound ending too soon
 - Localization :
