@@ -317,7 +317,7 @@ const initializeStore = async () => {
         commit: (mutation: string, payload?: unknown) => void;
       }) {
         commit("toggleGavel", true);
-        setTimeout(() => commit("toggleGavel", false), 1500);
+        setTimeout(() => commit("toggleGavel", false), 2000);
       },
     },
     mutations: {

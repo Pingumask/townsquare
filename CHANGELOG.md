@@ -4,7 +4,7 @@
 - Features:
 
 - Bugfixes:
-
+  - Gavel sound ending too soon
 - Localization :
 
 - Technical :
