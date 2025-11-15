@@ -35,7 +35,11 @@
 ## 5.5.0
 - Features:
   - Server : Configurable allowed origins for the websocket server in docker-compose file
+<<<<<<< HEAD
   - Updating the jinxes
+=======
+  - Allowing shownig an alignment change on a custom role
+>>>>>>> cb82fc9 (Update CHANGELOG.md)
 - Bugfixes:
   - Unwanted space at the bottom or reference role modal
   - Outsider ability misplaced in night order modal
