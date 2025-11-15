@@ -317,7 +317,7 @@ const initializeStore = async () => {
         commit: (mutation: string, payload?: unknown) => void;
       }) {
         commit("toggleGavel", true);
-        setTimeout(() => commit("toggleGavel", false), 1500);
+        setTimeout(() => commit("toggleGavel", false), 2000);
       },
     },
     mutations: {
@@ -430,13 +430,13 @@ const initializeStore = async () => {
 
         state.roles = new Map(
           processedRoles
-            .filter((role) => role.team !== "fabled")
+            .filter((role) => role.team !== "fabled" && role.team !== "loric")
             .map((role) => [role.id, role] as const)
         );
 
         state.fabled = new Map([
           ...processedRoles
-            .filter((r) => r.team === "fabled")
+            .filter((r) => r.team === "fabled" || r.team === "loric")
             .map((r) => [r.id, r] as const),
           ...fabledJSON.default.map((role) => [role.id, role] as const),
         ]);

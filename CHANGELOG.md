@@ -9,6 +9,17 @@
 
 - Technical :
 
+
+## 5.7.0
+- Features:
+  - Handle Lorics in custom scripts
+  - Add Tor & Big Wig Lorics
+  - Added "copy link" button to the pregame side menu
+- Bugfixes:
+  - Gavel sound ending too soon
+- Technical :
+  - Updated dependencies (1 moderate vulnerability)
+
 ## 5.6.0
 - Features:
   - Hide session ID in streamer mode
