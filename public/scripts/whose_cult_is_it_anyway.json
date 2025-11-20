@@ -2,7 +2,9 @@
   {
     "id": "_meta",
     "name": "Whose Cult Is It Anyway?",
-    "author": "Aero"
+    "author": "Aero",
+    "stormcaught":"cultleader",
+    "version" : "2.5.2"
   },
   {
     "id": "noble"

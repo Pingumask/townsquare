@@ -3,7 +3,8 @@
     "id": "_meta",
     "name": "Catfishing",
     "author": "Emily",
-    "logo": "catfishing"
+    "logo": "catfishing",
+    "version" : "11.1.1"
   },
   {
     "id": "investigator"

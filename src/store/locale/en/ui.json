@@ -246,7 +246,23 @@
         "minion": "minions",
         "demon": "demons"
       },
-      "nightOrder": "Show Night Order"
+      "nightOrder": "Show Night Order",
+      "specialRules": [
+        "Nominators may choose to die after making a nomination. If they do, their nominee's ability works twice until dusk tomorrow.",
+        "(A  character who already used their once-per-game ability cannot use it again this way. However, if they did not used it then receive a buff, they will be able to use it twice.)",
+        "Players cannot sacrifice themselves to the Djinn if only 3 players are alive.",
+        "Ignore the Legion/Magician jinx.",
+        "If the Cannibal eats the drunk Village Idiot, the Cannibal is drunk.",
+        "If the Poppy Grower dies while poisoned, their ability still functions.",
+        "The Kazali selects everyone’s roles to make a legal setup (+0 Outsider, no Damsel), up to 3 changes can be made by the Storyteller. If Outsider count is less 1 than usual, a Damsel is made after ST choices",
+        "All players are in a revolutionary pair.",
+        "(Only use the miss registration feature of Revolutionary once per game)",
+        "When announcing the Al-Hadikhia targets each night, the Storyteller musts make fake lightning sounds.",
+        "The Pit-Hag + Leviathan jinx is ignored.",
+        "Seat 7 remains empty. It's choices are arbitrary. Once per game the storyteller may speak on it's behalf.",
+        "The Demon gets 2 bluffs - meaning they learn 2 not-in-play characters.",
+        "The Minion is protected by the Angel. This means that the Minion is publicly known from the very beginning of the game (the start of the first night), but killing them invokes the wrath of the Angel."
+      ]
     },
     "reminder": {
       "title": "Choose a reminder token:",

@@ -3,7 +3,9 @@
         "id": "_meta",
         "logo": "reptiles",
         "name": "Reptiles!",
-        "author": "Aero"
+        "author": "Aero",
+        "stormcaught": "drunk",
+        "version" : "1.4.1"
     },
     {
         "id": "chef"
