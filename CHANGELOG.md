@@ -2,6 +2,7 @@
 
 ## Upcomming Version
 - Features:
+  - Adding more informations on the roles' reference sheet (script version, Bootlegger rule, Stormcaught character)
 
 - Bugfixes:
 
@@ -36,7 +37,6 @@
 - Features:
   - Server : Configurable allowed origins for the websocket server in docker-compose file
   - Updating the jinxes
-  - Adding new Lorics
 - Bugfixes:
   - Unwanted space at the bottom or reference role modal
   - Outsider ability misplaced in night order modal
