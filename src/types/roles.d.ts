@@ -20,6 +20,7 @@ export interface Role {
   imageAlt?: string;
   forbidden?: boolean;
   multiple?: boolean;
+  anyScript?: boolean;
 }
 
 // Extended role interfaces
