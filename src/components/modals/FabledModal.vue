@@ -6,7 +6,7 @@
         <Token :role="role" />
       </li>
     </ul>
-      <h3 @click="togglePrintAll" class="printAll">
+      <h3 class="printAll" @click="togglePrintAll">
         {{ t('modal.fabled.printAll') }}
         <font-awesome-icon :icon="[
           'fas',
