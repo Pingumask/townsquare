@@ -5,13 +5,13 @@
       <source src="../assets/sounds/rooster.mp3">
       <source src="../assets/sounds/gavel.mp3">
     </audio>
-    <li class="edition" :class="['edition-' + edition.id]" :style="{
+    <li v-if="edition" class="edition" :class="['edition-' + edition.id]" :style="{
       backgroundImage: 'url(' + logoUrl + ')',
     }" />
     <li v-if="players.length - teams.traveler < 5">
       {{ t('towninfo.addPlayers') }}
     </li>
-    <li>
+    <li v-if="edition">
       <span v-if="!edition.isOfficial" class="meta">
         {{ edition.name }}
         {{ edition.author ? " ©" + edition.author : "" }}
@@ -89,30 +89,32 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useStore } from 'vuex';
 import gameJSON from '@/game.json';
 import { Countdown } from '@/components';
 import { useTranslation } from '@/composables';
 import type { Player } from '@/types';
+import { useGrimoireStore, useSessionStore, usePlayersStore } from "@/stores";
 
 const { t } = useTranslation();
-const store = useStore();
+const grimoireStore = useGrimoireStore();
+const sessionStore = useSessionStore();
+const playersStore = usePlayersStore();
 
-const edition = computed(() => store.state.edition);
-const grimoire = computed(() => store.state.grimoire);
-const session = computed(() => store.state.session);
-const players = computed(() => store.state.players.players);
+const edition = computed(() => grimoireStore.edition);
+const grimoire = grimoireStore;
+const session = sessionStore;
+const players = computed(() => playersStore.players);
 
 const markedStoryteller = computed(() => {
-  return typeof session.value.markedPlayer == 'string' && !(session.value.isSpectator && session.value.isSecretVote)
+  return typeof session.markedPlayer == 'string' && !(session.isSpectator && session.isSecretVote)
 });
 
 const logoUrl = computed(() => {
-  if (edition.value.logo && !edition.value.logo.includes('.')) {
+  if (edition.value?.logo && !edition.value.logo.includes('.')) {
     return new URL(`../assets/logos/${edition.value.logo}.png`, import.meta.url).href;
   }
 
-  if (edition.value.logo && grimoire.value.isImageOptIn) {
+  if (edition.value?.logo && grimoire.isImageOptIn) {
     return edition.value.logo;
   }
 
@@ -120,7 +122,7 @@ const logoUrl = computed(() => {
 });
 
 const teams = computed(() => {
-  const nontravelers = store.getters['players/nontravelers'];
+  const nontravelers = playersStore.nontravelers;
   const alive = players.value.filter((player: Player) => player.isDead !== true).length;
   const aliveNT = players.value.filter(
     (player: Player) => player.isDead !== true && player.role.team !== 'traveler'

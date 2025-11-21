@@ -2,11 +2,7 @@
   <Modal v-if="modals.role && availableRoles.length" @close="close">
     <h3>
       {{ t('modal.role.title') }}
-      {{
-        playerIndex >= 0 && players.length
-          ? players[playerIndex].name
-          : t('modal.role.bluff')
-      }}
+      {{ playerName }}
     </h3>
     <ul v-if="tab === 'editionRoles' || !othertravelers.length" class="tokens">
       <li v-for="role in availableRoles" :key="role.id" :class="[role.team]" @click="setRole(role)">
@@ -31,26 +27,39 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { useStore } from 'vuex';
 import { Modal, Token } from '@/components';
 import { useTranslation } from '@/composables';
+import { usePlayersStore, useSessionStore, useGrimoireStore } from "@/stores";
 import type { Role, Player } from '@/types';
 
 const { t } = useTranslation();
 const props = defineProps<{
   playerIndex: number;
 }>();
-const store = useStore();
+
+const playersStore = usePlayersStore();
+const grimoireStore = useGrimoireStore();
+const sessionStore = useSessionStore();
 
 const tab = ref('editionRoles');
 const rolefilter = ref('');
 
-const grimoire = computed(() => store.state.grimoire);
+const playerName = computed(() => {
+  if (props.playerIndex >= 0 && playersStore.players.length > props.playerIndex) {
+    const player = playersStore.players[props.playerIndex];
+    return player ? player.name : t('modal.role.bluff');
+  }
+  return t('modal.role.bluff');
+});
+
+const grimoire = grimoireStore; // Direct access or storeToRefs if reactivity needed for properties not accessed via computed?
+// In template it uses grimoire.disableHotkeys = true.
+// grimoireStore is reactive, so this should work.
 
 const availableRoles = computed((): Role[] => {
   const availableRoles: Role[] = [];
-  const players = store.state.players.players;
-  store.state.roles.forEach((role: Role) => {
+  const players = playersStore.players;
+  grimoireStore.roles.forEach((role: Role) => {
     // don't show bluff roles that are already assigned to players
     if (
       (
@@ -82,12 +91,11 @@ const availableRoles = computed((): Role[] => {
   return availableRoles;
 });
 
-const modals = computed(() => store.state.modals);
-const session = computed(() => store.state.session);
-const players = computed(() => store.state.players.players);
+const modals = computed(() => grimoireStore.modals);
+const session = sessionStore;
 const othertravelers = computed((): Role[] => {
   const available = [] as Role[];
-  store.state.othertravelers.forEach((role: Role) => {
+  grimoireStore.othertravelers.forEach((role: Role) => {
     if (
       role.name?.toLowerCase().includes(rolefilter.value?.toLowerCase()) ||
       role.id?.toLowerCase().includes(rolefilter.value?.toLowerCase()) ||
@@ -104,27 +112,28 @@ const othertravelers = computed((): Role[] => {
 const setRole = (role: Role) => {
   if (props.playerIndex < 0) {
     // assign to bluff slot (index < 0)
-    store.commit('players/setBluff', {
+    playersStore.setBluff({
       index: props.playerIndex * -1 - 1,
       role,
     });
   } else {
-    if (session.value.isSpectator && role.team === 'traveler') return;
+    if (sessionStore.isSpectator && role.team === 'traveler') return;
     // assign to player
-    const player = store.state.players.players[props.playerIndex];
-    store.commit('players/update', {
+    const player = playersStore.players[props.playerIndex];
+    if (!player) return;
+    playersStore.update({
       player,
       property: 'role',
       value: role,
     });
   }
   tab.value = 'editionRoles';
-  store.commit('toggleModal', 'role');
+  grimoireStore.toggleModal('role');
 };
 
 const close = () => {
   tab.value = 'editionRoles';
-  store.commit('toggleModal', 'role');
+  grimoireStore.toggleModal('role');
 };
 </script>
 

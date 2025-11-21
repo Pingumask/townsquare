@@ -5,7 +5,7 @@
     <h3>
       {{ t('modal.reference.title') }}
       <font-awesome-icon icon="address-card" class="fa fa-address-card" />
-      {{ edition.name || "Custom Script" }}
+      {{ edition?.name || "Custom Script" }}
     </h3>
     <div v-for="(teamRoles, team) in rolesGrouped" :key="team" :class="['team', team]">
       <aside :aria-label="t(`modal.reference.teamNames.${team}`)">
@@ -52,21 +52,22 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useStore } from "vuex";
 import { Modal } from '@/components';
 import { useTranslation } from '@/composables';
-import type { Role, Player, JinxInfo } from '@/types';
+import type { Role, Player, JinxInfo, Modals } from '@/types';
+import { useGrimoireStore, usePlayersStore } from "@/stores";
 
 import RoleIcon from '../RoleIcon.vue';
 
 const { t } = useTranslation();
-const store = useStore();
+const grimoireStore = useGrimoireStore();
+const playersStore = usePlayersStore();
 
-const roles = computed(() => store.state.roles);
-const modals = computed(() => store.state.modals);
-const edition = computed(() => store.state.edition);
-const jinxes = computed(() => store.state.jinxes);
-const players = computed(() => store.state.players.players);
+const roles = computed(() => grimoireStore.roles);
+const modals = computed(() => grimoireStore.modals);
+const edition = computed(() => grimoireStore.edition);
+const jinxes = computed(() => grimoireStore.jinxes);
+const players = computed(() => playersStore.players);
 
 /**
      * Return a list of jinxes in the form of role IDs and a reason
@@ -76,7 +77,7 @@ const jinxed = computed((): JinxInfo[] => {
   const jinxedList: JinxInfo[] = [];
   roles.value.forEach((role: Role) => {
     if (jinxes.value.get(role.id)) {
-      jinxes.value.get(role.id).forEach((reason: string, second: string) => {
+      jinxes.value.get(role.id)?.forEach((reason: string, second: string) => {
         const secondRole = roles.value.get(second);
         if (secondRole) {
           jinxedList.push({
@@ -116,8 +117,8 @@ const playersByRole = computed(() => {
   return playersMap;
 });
 
-const toggleModal = (modalName: string) => {
-  store.commit("toggleModal", modalName);
+const toggleModal = (modalName: keyof Modals) => {
+  grimoireStore.toggleModal(modalName);
 };
 </script>
 

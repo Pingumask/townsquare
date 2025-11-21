@@ -1,10 +1,10 @@
 import { computed } from "vue";
-import { useStore } from "vuex";
+import { useGrimoireStore } from "@/stores";
 import { Role } from "../types";
 
 export function useRolePath() {
-  const store = useStore();
-  const grimoire = computed(() => store.state.grimoire);
+  const grimoireStore = useGrimoireStore();
+  const grimoire = computed(() => grimoireStore);
 
   const rolePath = (role: Role) => {
     if (

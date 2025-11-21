@@ -77,7 +77,7 @@
             {{ t('menu.grimoire.background') }}
             <em><font-awesome-icon icon="image" class="fa fa-image" /></em>
           </li>
-          <li v-if="!edition.isOfficial" @click="imageOptIn">
+          <li v-if="!edition?.isOfficial" @click="imageOptIn">
             <small>{{ t('menu.grimoire.customImages') }}</small>
             <em><font-awesome-icon :icon="[
               'fas',
@@ -374,42 +374,47 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { useStore } from 'vuex';
 import { useTranslation } from '@/composables';
+import { useGrimoireStore, useSessionStore, usePlayersStore, usePlayersMenuStore } from "@/stores";
+import type { Modals, PlayersMenuState } from "@/types/store-types";
+
 const { t } = useTranslation();
 
-const store = useStore();
+const grimoireStore = useGrimoireStore();
+const sessionStore = useSessionStore();
+const playersStore = usePlayersStore();
+const playersMenuStore = usePlayersMenuStore();
 
-const grimoire = computed(() => store.state.grimoire);
-const playersMenu = computed(() => store.state.playersMenu);
-const session = computed(() => store.state.session);
-const edition = computed(() => store.state.edition);
-const players = computed(() => store.state.players.players);
+const grimoire = grimoireStore;
+const playersMenu = playersMenuStore;
+const session = sessionStore;
+const edition = computed(() => grimoireStore.edition);
+const players = computed(() => playersStore.players);
 
 const tab = ref('grimoire');
 
 const setBackground = () => {
   const background = prompt(t('prompt.background'));
   if (background || background === '') {
-    store.commit('setBackground', background);
+    grimoireStore.setBackground(background);
   }
 };
 
 const hostSession = () => {
-  store.dispatch('session/hostSession');
+  sessionStore.hostSession();
 };
 
 const copySessionUrl = () => {
-  store.dispatch('session/copySessionUrl');
+  sessionStore.copySessionUrl();
 };
 
 const distributeRoles = () => {
-  store.dispatch('session/distributeRoles');
+  sessionStore.distributeRolesAction();
 };
 
 const imageOptIn = () => {
   const popup = t('prompt.imageOptIn');
-  if (grimoire.value.isImageOptIn || confirm(popup)) {
+  if (grimoire.isImageOptIn || confirm(popup)) {
     toggleImageOptIn();
   }
 };
@@ -419,69 +424,68 @@ const streamerMode = () => {
 };
 
 const joinSession = () => {
-  store.dispatch('session/joinSession');
+  sessionStore.joinSession();
 };
 
 const leaveSession = () => {
-  store.dispatch('session/leaveSession');
+  sessionStore.leaveSession();
 };
 
 const addPlayer = () => {
-  store.dispatch('players/addPlayer');
+  playersStore.addPlayerAction();
 };
 
 const addPlayers = () => {
-  store.dispatch('players/addPlayers');
+  playersStore.addPlayersAction();
 };
 
 const randomizeSeatings = () => {
-  if (session.value.isSpectator) return;
-  store.dispatch('players/randomize');
+  if (session.isSpectator) return;
+  playersStore.randomize();
 };
 
 const clearPlayers = () => {
-  store.dispatch('players/clearPlayers');
+  playersStore.clearPlayersAction();
 };
 
 const clearRoles = () => {
   if (confirm(t('prompt.clearRoles'))) {
-    store.dispatch('players/clearRoles');
+    playersStore.clearRolesAction();
   }
 };
 
 const toggleNight = () => {
-  store.dispatch('toggleNight');
+  sessionStore.toggleNight();
 };
 
 const toggleSelfNaming = () => {
-  if (session.value.isSpectator) return;
-  store.commit(
-    "session/setAllowSelfNaming",
-    !session.value.allowSelfNaming
-  );
+  if (session.isSpectator) return;
+  sessionStore.setAllowSelfNaming(!session.allowSelfNaming);
 };
 
 const toggleOrganVoteMode = () => {
-  store.commit('session/toggleSecretVote');
+  sessionStore.toggleSecretVote();
 };
 
-const togglePlayersMenu = (name: string) => {
-  store.commit('togglePlayersMenu', name);
+const togglePlayersMenu = (name: keyof PlayersMenuState) => {
+  playersMenuStore.togglePlayersMenu(name);
 };
 
 const toggleRinging = () => {
-  store.dispatch('toggleRinging');
+  grimoireStore.toggleRinging();
 };
 
-const toggleGrimoire = () => store.commit('toggleGrimoire');
-const toggleMenu = () => store.commit('toggleMenu');
-const toggleImageOptIn = () => store.commit('toggleImageOptIn');
-const toggleStreamerMode = () => store.commit('toggleStreamerMode');
-const toggleMuted = () => store.commit('toggleMuted');
-const toggleNightOrder = () => store.commit('toggleNightOrder');
-const toggleStatic = () => store.commit('toggleStatic');
-const setZoom = (zoom: number) => store.commit('setZoom', zoom);
-const toggleModal = (modal: string) => store.commit('toggleModal', modal);
+const toggleGrimoire = () => grimoireStore.toggleGrimoire();
+const toggleMenu = () => grimoireStore.toggleMenu();
+const toggleImageOptIn = () => grimoireStore.toggleImageOptIn();
+const toggleStreamerMode = () => grimoireStore.toggleStreamerMode();
+const toggleMuted = () => grimoireStore.toggleMuted();
+const toggleNightOrder = () => grimoireStore.toggleNightOrder();
+const toggleStatic = () => grimoireStore.toggleStatic();
+const setZoom = (zoom: number) => grimoireStore.setZoom(zoom);
+const toggleModal = (name: keyof Modals) => {
+  grimoireStore.toggleModal(name);
+};
 </script>
 
 <style scoped lang="scss">

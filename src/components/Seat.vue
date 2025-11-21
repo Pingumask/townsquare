@@ -182,10 +182,10 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { useStore } from "vuex";
 import { RoleIcon, Token } from "@/components";
 import { useTranslation, isActiveNomination } from '@/composables';
 import type { Player, Reminder } from "@/types";
+import { useGrimoireStore, useSessionStore, usePlayersStore, usePlayersMenuStore } from "@/stores";
 
 const { t } = useTranslation();
 interface Props {
@@ -200,18 +200,22 @@ const emit = defineEmits<{
   'trigger': [action: string | [string, unknown] | [string]];
 }>();
 
-const store = useStore();
-const players = computed<Player[]>(() => store.state.players.players);
-const playersMenu = computed(() => store.state.playersMenu);
-const grimoire = computed(() => store.state.grimoire);
-const session = computed(() => store.state.session);
-const nightOrder = computed(() => store.getters["players/nightOrder"]);
+const grimoireStore = useGrimoireStore();
+const sessionStore = useSessionStore();
+const playersStore = usePlayersStore();
+const playersMenuStore = usePlayersMenuStore();
+
+const players = computed<Player[]>(() => playersStore.players);
+const playersMenu = playersMenuStore;
+const grimoire = grimoireStore;
+const session = sessionStore;
+const nightOrder = computed(() => playersStore.nightOrder);
 
 const index = computed(() => players.value.indexOf(props.player));
 const voteLocked = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return false;
+  if (!isActiveNomination(session.nomination)) return false;
 
-  const nomination = session.value.nomination;
+  const nomination = session.nomination;
   const playersCount = players.value.length;
 
   // Determine the reference player index for vote locking
@@ -226,31 +230,31 @@ const voteLocked = computed(() => {
 
   const indexAdjusted =
     (index.value - 1 + playersCount - referenceIndex) % playersCount;
-  return indexAdjusted < session.value.lockedVote - 1;
+  return indexAdjusted < session.lockedVote - 1;
 });
 
 const isSpecialVoteWithMessages = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return false;
-  const nomination = session.value.nomination;
+  if (!isActiveNomination(session.nomination)) return false;
+  const nomination = session.nomination;
   return !!nomination.specialVote?.timerText;
 });
 
 const zoom = computed(() => {
   if (players.value.length < 7) {
-    return { width: 18 + grimoire.value.zoom + "vmin" };
+    return { width: 18 + grimoire.zoom + "vmin" };
   } else if (players.value.length <= 10) {
-    return { width: 16 + grimoire.value.zoom + "vmin" };
+    return { width: 16 + grimoire.zoom + "vmin" };
   } else if (players.value.length <= 15) {
-    return { width: 14 + grimoire.value.zoom + "vmin" };
+    return { width: 14 + grimoire.zoom + "vmin" };
   } else {
-    return { width: 12 + grimoire.value.zoom + "vmin" };
+    return { width: 12 + grimoire.zoom + "vmin" };
   }
 });
 
 const isMenuOpen = ref(false);
 
 function changePronouns() {
-  if (session.value.isSpectator && props.player.id !== session.value.playerId) return;
+  if (session.isSpectator && props.player.id !== session.playerId) return;
   const pronouns = prompt("Player pronouns", props.player.pronouns);
   if (pronouns !== null) {
     updatePlayer("pronouns", pronouns, true);
@@ -258,11 +262,11 @@ function changePronouns() {
 }
 
 function toggleStatus() {
-  if (grimoire.value.isPublic) {
+  if (grimoire.isPublic) {
     if (!props.player.isDead) {
       updatePlayer("isDead", true);
-      if (session.value.markedPlayer === index.value) {
-        store.commit("session/setMarkedPlayer", -1);
+      if (session.markedPlayer === index.value) {
+        sessionStore.setMarkedPlayer(-1);
       }
     } else if (!props.player.voteToken) {
       updatePlayer("voteToken", true);
@@ -272,8 +276,8 @@ function toggleStatus() {
     }
   } else {
     updatePlayer("isDead", !props.player.isDead);
-    if (session.value.markedPlayer === index.value) {
-      store.commit("session/setMarkedPlayer", -1);
+    if (session.markedPlayer === index.value) {
+      sessionStore.setMarkedPlayer(-1);
     }
     if (props.player.voteToken != props.player.isDead) {
       updatePlayer("voteToken", !props.player.voteToken);
@@ -300,7 +304,7 @@ function switchAlignment() {
 }
 
 function changeName() {
-  if (session.value.isSpectator && props.player.id !== session.value.playerId) return;
+  if (session.isSpectator && props.player.id !== session.playerId) return;
   const name = prompt(t('prompt.addPlayer'), props.player.name) || props.player.name;
   if (name !== null && name !== "") {
     updatePlayer("name", name, true);
@@ -315,13 +319,13 @@ function removeReminder(reminder: Reminder) {
 
 function updatePlayer(property: keyof Player, value: unknown, closeMenu = false) {
   if (
-    session.value.isSpectator &&
+    session.isSpectator &&
     property !== "reminders" &&
     property !== "pronouns" &&
     property !== "name"
   )
     return;
-  store.commit("players/update", {
+  playersStore.update({
     player: props.player,
     property,
     value,
@@ -353,8 +357,8 @@ function nominatePlayer(player?: Player) {
 
 function specialVote() {
   isMenuOpen.value = false;
-  store.commit("session/setPlayerForSpecialVote", players.value.indexOf(props.player));
-  store.commit("toggleModal", "specialVote");
+  sessionStore.setPlayerForSpecialVote(players.value.indexOf(props.player));
+  grimoireStore.toggleModal("specialVote");
 }
 
 function cancel() {
@@ -372,11 +376,11 @@ function claimSeat() {
 }
 
 function vote() {
-  if (session.value.isSpectator) return;
+  if (session.isSpectator) return;
   if (!voteLocked.value) return;
-  store.commit("session/voteSync", [
+  sessionStore.voteSync([
     index.value,
-    !session.value.votes[index.value],
+    !session.votes[index.value],
   ]);
 }
 </script>

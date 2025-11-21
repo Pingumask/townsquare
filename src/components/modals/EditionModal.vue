@@ -104,16 +104,18 @@
 <script setup lang="ts">
 import type { Role, Edition, ToggleableRole, ParsedRole, ScriptMeta } from "@/types";
 import { computed, ref } from "vue";
-import { useStore } from "vuex";
 import { Modal, Token } from "@/components";
 import { useTranslation } from '@/composables';
+import { useGrimoireStore, usePlayersStore } from "@/stores";
+import type { Modals } from "@/types";
 
 const { t } = useTranslation();
-const store = useStore();
+const grimoireStore = useGrimoireStore();
+const playersStore = usePlayersStore();
 const tab = ref("official");
 
 // Get rolesJSON from the store's getters
-const rolesJSON = computed(() => store.getters.rolesJSONbyId || new Map());
+const rolesJSON = computed(() => grimoireStore.rolesJSONbyId || new Map());
 const draftPool = ref<ToggleableRole[]>([]);
 const teams = ["townsfolk", "outsider", "minion", "demon"] as const;
 const recommendedTeamSize: Record<string, number> = {
@@ -123,10 +125,10 @@ const recommendedTeamSize: Record<string, number> = {
   demon: 4,
 };
 
-const modals = computed(() => store.state.modals);
-const editions = computed(() => store.state.editions);
-const roles = computed(() => store.state.roles);
-const jinxes = computed(() => store.state.jinxes);
+const modals = computed(() => grimoireStore.modals);
+const editions = computed(() => grimoireStore.editions);
+const roles = computed(() => grimoireStore.roles);
+const jinxes = computed(() => grimoireStore.jinxes);
 
 function initPool() {
   draftPool.value = Array.from(rolesJSON.value.values()) as ToggleableRole[];
@@ -263,30 +265,30 @@ function parseRoles(pickedRoles: (string | ParsedRole)[]) {
   );
   const metaIndex = processedRoles.findIndex(({ id }: ParsedRole) => id === "_meta");
   const meta: ScriptMeta = metaIndex > -1 ? processedRoles.splice(metaIndex, 1).pop() || {} : {};
-  store.commit("setCustomRoles", processedRoles);
-  store.commit("setEdition", { ...meta, id: "custom" });
+  grimoireStore.setEdition({ name: "Custom Script", ...meta, id: "custom" });
+  grimoireStore.setCustomRoles(processedRoles);
   const fabled: Role[] = [];
   let djinnAdded = false;
   let djinnNeeded = false;
   let bootleggerAdded = false;
   let bootleggerNedded = false;
   processedRoles.forEach((role: ParsedRole) => {
-    if (store.state.fabled.has(role.id || role)) {
-      fabled.push(store.state.fabled.get(role.id || role));
-      if ((role.id || role) == "djinn") {
+    if (grimoireStore.fabled.has(role.id)) {
+      fabled.push(grimoireStore.fabled.get(role.id)!);
+      if (role.id == "djinn") {
         djinnAdded = true;
-      } else if ((role.id || role) == "bootlegger") {
+      } else if (role.id == "bootlegger") {
         bootleggerAdded = true;
       }
     } else if (role.edition == "custom" || role.image) {
       /* If the role isn't fabled, but detected as custom, we will need a Bootlegger
-           * NB: The actual version isn't perfect, since they only detect custom roles with an image or with the argument "edition":"custom".
-           * The code will could be changed later, when all non-custom roles will have an attribute "edition"
-           */
+      * NB: The actual version isn't perfect, since they only detect custom roles with an image or with the argument "edition":"custom".
+      * The code will could be changed later, when all non-custom roles will have an attribute "edition"
+      */
       bootleggerNedded = true;
     } else if (!djinnAdded && !djinnNeeded && jinxes.value.get(role.id)) {
       // If the role isn't fabled, neither custom, and if we neither added a Djinn neither planned to add a Djinn, we look if this role is jinxed
-      jinxes.value.get(role.id).forEach((_reason: string, second: string) => {
+      jinxes.value.get(role.id)?.forEach((_reason: string, second: string) => {
         if (roles.value.get(second)) {
           djinnNeeded = true;
         }
@@ -294,22 +296,22 @@ function parseRoles(pickedRoles: (string | ParsedRole)[]) {
     }
   });
   if (djinnNeeded && !djinnAdded) {
-    fabled.push(store.state.fabled.get("djinn"));
+    fabled.push(grimoireStore.fabled.get("djinn")!);
   }
   if (bootleggerNedded && !bootleggerAdded) {
-    fabled.push(store.state.fabled.get("bootlegger"));
+    fabled.push(grimoireStore.fabled.get("bootlegger")!);
   }
-  store.commit("players/setFabled", { fabled });
+  playersStore.setFabled({ fabled });
 }
 
 function runEdition(edition: Edition) {
-  store.commit("setEdition", edition);
-  store.commit("players/setFabled", { fabled: [] });
+  grimoireStore.setEdition(edition);
+  playersStore.setFabled({ fabled: [] });
 }
 
-function toggleModal(modal: string) {
-  store.commit('toggleModal', modal);
-}
+const toggleModal = (modal: keyof Modals) => {
+  grimoireStore.toggleModal(modal);
+};
 </script>
 
 <style scoped lang="scss">

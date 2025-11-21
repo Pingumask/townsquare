@@ -19,7 +19,7 @@
           (role.team == 'default' || role.team == 'fabled') &&
           !session.isSpectator &&
           players.length &&
-          players[0].role.id
+          players[0]?.role?.id
         " class="player">
           <br>
           <small />
@@ -40,10 +40,10 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useStore } from "vuex";
 import { useTranslation } from '@/composables';
 import { RoleIcon } from '@/components';
 import type { NightOrderRole, Role, Player } from "@/types";
+import { useGrimoireStore, useSessionStore, usePlayersStore } from "@/stores";
 
 interface Props {
   nightType: 'firstNight' | 'otherNight';
@@ -51,13 +51,15 @@ interface Props {
 
 const props = defineProps<Props>();
 const { t } = useTranslation();
-const store = useStore();
+const grimoireStore = useGrimoireStore();
+const sessionStore = useSessionStore();
+const playersStore = usePlayersStore();
 
-const edition = computed(() => store.state.edition);
-const session = computed(() => store.state.session);
-const players = computed(() => store.state.players.players);
-const fabled = computed(() => store.state.players.fabled);
-const rolesStore = computed(() => store.state.roles);
+const edition = computed(() => grimoireStore.edition);
+const session = sessionStore;
+const players = computed(() => playersStore.players);
+const fabled = computed(() => playersStore.fabled);
+const rolesStore = computed(() => grimoireStore.roles);
 
 const roles = computed(() => {
   function nightIndex(role: Role, officialEdition: boolean): number {
@@ -186,7 +188,7 @@ const roles = computed(() => {
 
   // Sort by night order
   nightRoles.sort((a: NightOrderRole, b: NightOrderRole) =>
-    nightIndex(a, edition.value.isOfficial) - nightIndex(b, edition.value.isOfficial)
+    nightIndex(a, !!edition.value?.isOfficial) - nightIndex(b, !!edition.value?.isOfficial)
   );
 
   return nightRoles;

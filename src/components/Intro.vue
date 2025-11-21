@@ -17,14 +17,14 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from 'vuex';
+import { useGrimoireStore } from '@/stores';
 import { useTranslation } from '@/composables';
 
-const store = useStore();
+const grimoireStore = useGrimoireStore();
 const { t } = useTranslation();
 
 const toggleMenu = (): void => {
-  store.commit('toggleMenu');
+  grimoireStore.toggleMenu();
 };
 </script>
 

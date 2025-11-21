@@ -59,11 +59,11 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue';
-import { useStore } from 'vuex';
 import gameJSON from "@/game.json";
 import { Modal, Token } from '@/components';
 import { useTranslation } from '@/composables';
-import type { GameComposition, Role, RoleGroup, SelectableRole, Player } from "@/types";
+import type { GameComposition, Role, RoleGroup, SelectableRole, Player, Modals } from "@/types";
+import { useGrimoireStore, usePlayersStore } from "@/stores";
 
 const { t } = useTranslation();
 const randomElement = <T>(arr: T[]): T => {
@@ -71,17 +71,18 @@ const randomElement = <T>(arr: T[]): T => {
   return arr[Math.floor(Math.random() * arr.length)]!;
 };
 
-const store = useStore();
+const grimoireStore = useGrimoireStore();
+const playersStore = usePlayersStore();
 
 const roleSelection = ref<RoleGroup>({});
 const game = ref<GameComposition[]>(gameJSON);
 const allowMultiple = ref(false);
 
-const roles = computed(() => store.state.roles);
-const modals = computed(() => store.state.modals);
-const players = computed(() => store.state.players.players);
-const fabled = computed(() => store.state.players.fabled);
-const nontravelers = computed(() => store.getters['players/nontravelers']);
+const roles = computed(() => grimoireStore.roles);
+const modals = computed(() => grimoireStore.modals);
+const players = computed(() => playersStore.players);
+const fabled = computed(() => playersStore.fabled);
+const nontravelers = computed(() => playersStore.nontravelers);
 
 const selectedRoles = computed(() => {
   return Object.values(roleSelection.value)
@@ -156,24 +157,24 @@ const assignRoles = () => {
     players.value.forEach((player: Player) => {
       if (player.role.team !== "traveler" && roles.length) {
         const value = roles.pop();
-        store.commit("players/update", {
+        playersStore.update({
           player,
           property: "role",
           value,
         });
       }
-      store.commit("players/update", {
+      playersStore.update({
         player,
         property: "alignment",
         value: null,
       });
     });
-    store.commit("toggleModal", "roles");
+    grimoireStore.toggleModal("roles");
   }
 };
 
-const toggleModal = (modal: string) => {
-  store.commit("toggleModal", modal);
+const toggleModal = (modal: keyof Modals) => {
+  grimoireStore.toggleModal(modal);
 };
 
 onMounted(() => {

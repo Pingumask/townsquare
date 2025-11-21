@@ -1,11 +1,11 @@
-import { useStore } from 'vuex';
+import { useGrimoireStore } from "@/stores";
 
 /**
  * Composable that provides a clean translation function
  * @returns {Function} t - Translation function that takes a dot-notation key
  */
 export function useTranslation() {
-  const store = useStore();
+  const grimoireStore = useGrimoireStore();
 
   /**
    * Translation function that traverses locale objects using dot notation
@@ -13,7 +13,7 @@ export function useTranslation() {
    * @returns {string} Translated string with fallback support
    */
   const t = (key: string): string => {
-    return store.getters.t(key);
+    return grimoireStore.t(key);
   };
 
   return { t };

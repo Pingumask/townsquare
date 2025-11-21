@@ -135,22 +135,24 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { useStore } from "vuex";
 import { NightOrderTable } from '@/components';
 import { useTranslation, isActiveNomination } from '@/composables';
-import { GamePhase } from "@/types";
+import { GamePhase, Modals } from "@/types";
+import { useGrimoireStore, usePlayersStore, useSessionStore } from "@/stores";
 
-const store = useStore();
+const grimoireStore = useGrimoireStore();
+const sessionStore = useSessionStore();
+const playersStore = usePlayersStore();
 const { t } = useTranslation();
 
 // Computed properties from store
-const grimoire = computed(() => store.state.grimoire);
-const session = computed(() => store.state.session);
-const players = computed(() => store.state.players.players);
+const grimoire = grimoireStore;
+const session = sessionStore;
+const players = computed(() => playersStore.players);
 
 const isSpecialVoteWithMessages = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return false;
-  const nomination = session.value.nomination;
+  if (!isActiveNomination(session.nomination)) return false;
+  const nomination = session.nomination;
   return !!nomination.specialVote?.timerText;
 });
 
@@ -160,7 +162,7 @@ const timerName = ref("Timer");
 const timerDuration = ref(1);
 const timerOn = ref(false);
 const timerEnder = ref<ReturnType<typeof setTimeout> | null>(null);
-const currentTimerType = ref<keyof typeof grimoire.value.timerDurations | null>(null);
+const currentTimerType = ref<keyof typeof grimoire.timerDurations | null>(null);
 
 // Methods
 const toggleSideMenu = () => {
@@ -168,53 +170,53 @@ const toggleSideMenu = () => {
 };
 
 const hostSession = () => {
-  store.dispatch('session/hostSession');
+  sessionStore.hostSession();
 };
 
 const joinSession = () => {
-  store.dispatch('session/joinSession');
+  sessionStore.joinSession();
 };
 
 const setGamePhase = (gamePhase: GamePhase) => {
   if (gamePhase === "day") {
-    store.commit("toggleRooster", true);
-    setTimeout(() => store.commit("toggleRooster", false), 4000);
+    grimoireStore.toggleRooster(true);
+    setTimeout(() => grimoireStore.toggleRooster(false), 4000);
   } else if (gamePhase === "otherNight" || gamePhase === "firstNight") {
-    store.commit("session/setMarkedPlayer", -1);
+    sessionStore.setMarkedPlayer(-1);
   }
-  store.commit("session/setGamePhase", gamePhase);
+  sessionStore.setGamePhase(gamePhase);
 };
 
 const toggleHiddenVote = () => {
-  store.commit("session/toggleSecretVote");
+  sessionStore.toggleSecretVote();
 };
 
 const toggleRinging = () => {
-  store.dispatch("toggleRinging");
+  grimoireStore.toggleRinging();
 };
 
 const toggleRooster = () => {
-  store.dispatch("toggleRooster");
+  grimoireStore.toggleRooster();
 };
 
 const toggleGavel = () => {
-  store.dispatch("toggleGavel");
+  grimoireStore.toggleGavel();
 };
 
-const toggleModal = (modal: string) => {
-  store.commit("toggleModal", modal);
+const toggleModal = (modal: keyof Modals) => {
+  grimoireStore.toggleModal(modal);
 };
 
 const copySessionUrl = () => {
-  store.dispatch('session/copySessionUrl');
+  sessionStore.copySessionUrl();
 };
 
 const addPlayers = () => {
-  store.dispatch("players/addPlayers");
+  playersStore.addPlayersAction();
 };
 
 const distributeRoles = () => {
-  store.dispatch("session/distributeRoles");
+  sessionStore.distributeRolesAction();
 };
 
 const renameTimer = () => {
@@ -229,28 +231,28 @@ const renameTimer = () => {
 
 const setDaytimeTimer = () => {
   currentTimerType.value = 'daytime';
-  timerDuration.value = grimoire.value.timerDurations.daytime;
+  timerDuration.value = grimoire.timerDurations.daytime;
   timerName.value = t('townsquare.timer.daytime.text');
 };
 
 const setNominationTimer = () => {
   currentTimerType.value = 'nominations';
-  timerDuration.value = grimoire.value.timerDurations.nominations;
+  timerDuration.value = grimoire.timerDurations.nominations;
   timerName.value = t('townsquare.timer.nominations.text');
 };
 
 const setDuskTimer = () => {
   currentTimerType.value = 'dusk';
-  timerDuration.value = grimoire.value.timerDurations.dusk;
+  timerDuration.value = grimoire.timerDurations.dusk;
   timerName.value = t('townsquare.timer.dusk.text');
 };
 
 const setAccusationTimer = () => {
-  if (!isActiveNomination(session.value.nomination)) return;
+  if (!isActiveNomination(session.nomination)) return;
 
   currentTimerType.value = 'accusation';
   timerDuration.value = 1;
-  const nomination = session.value.nomination;
+  const nomination = session.nomination;
 
   let timerText = t('townsquare.timer.accusation.text');
 
@@ -274,11 +276,11 @@ const setAccusationTimer = () => {
 };
 
 const setDefenseTimer = () => {
-  if (!isActiveNomination(session.value.nomination)) return;
+  if (!isActiveNomination(session.nomination)) return;
 
   currentTimerType.value = 'defense';
-  timerDuration.value = grimoire.value.timerDurations.defense;
-  const nomination = session.value.nomination;
+  timerDuration.value = grimoire.timerDurations.defense;
+  const nomination = session.nomination;
 
   let timerText = t('townsquare.timer.defense.text');
 
@@ -302,11 +304,11 @@ const setDefenseTimer = () => {
 };
 
 const setDebateTimer = () => {
-  if (!isActiveNomination(session.value.nomination)) return;
+  if (!isActiveNomination(session.nomination)) return;
 
   currentTimerType.value = 'debate';
-  timerDuration.value = grimoire.value.timerDurations.debate;
-  const nomination = session.value.nomination;
+  timerDuration.value = grimoire.timerDurations.debate;
+  const nomination = session.nomination;
 
   let timerText = t('townsquare.timer.debate.text');
 
@@ -320,11 +322,11 @@ const setDebateTimer = () => {
 };
 
 const setSpecialVoteTimer = () => {
-  if (!isActiveNomination(session.value.nomination)) return;
+  if (!isActiveNomination(session.nomination)) return;
 
   currentTimerType.value = 'custom';
-  timerDuration.value = grimoire.value.timerDurations.custom;
-  const nomination = session.value.nomination;
+  timerDuration.value = grimoire.timerDurations.custom;
+  const nomination = session.nomination;
 
   // Get nominator name
   const nominatorName = typeof nomination.nominator === 'number'
@@ -339,11 +341,11 @@ const setSpecialVoteTimer = () => {
 };
 
 const setSpecialDebateTimer = () => {
-  if (!isActiveNomination(session.value.nomination)) return;
+  if (!isActiveNomination(session.nomination)) return;
 
   currentTimerType.value = 'customDebate';
-  timerDuration.value = grimoire.value.timerDurations.customDebate;
-  const nomination = session.value.nomination;
+  timerDuration.value = grimoire.timerDurations.customDebate;
+  const nomination = session.nomination;
 
   // Get the debate text
   let timerText = nomination.specialVote?.debateText || '';
@@ -366,7 +368,7 @@ const setTimer = () => {
     timerDuration.value = Number(newDuration);
     // Save the new duration for the current timer type
     if (currentTimerType.value) {
-      store.commit('setTimerDuration', {
+      grimoireStore.setTimerDuration({
         type: currentTimerType.value,
         duration: Number(newDuration)
       });
@@ -376,13 +378,13 @@ const setTimer = () => {
 
 const startTimer = () => {
   const timer = { name: timerName.value, duration: timerDuration.value * 60 };
-  store.commit("setTimer", timer);
+  grimoireStore.setTimer(timer);
   timerOn.value = true;
   timerEnder.value = setTimeout(stopTimer, timer.duration * 1000);
 };
 
 const stopTimer = () => {
-  store.commit("setTimer", {});
+  grimoireStore.setTimer({});
   timerOn.value = false;
   if (timerEnder.value) {
     clearTimeout(timerEnder.value);
