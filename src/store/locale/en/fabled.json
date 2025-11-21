@@ -229,5 +229,20 @@
     "name": "Tor",
     "team": "loric",
     "ability": "Players don't know their character or alignment. They learn them when they die."
+  },
+  {
+    "id": "zenomancer",
+    "firstNight": 3,
+    "firstNightReminder": "You may give a goal to any player(s)",
+    "otherNight": 3,
+    "otherNightReminder": "You may give a goal to any player(s).",
+    "reminders": [
+      "Goal",
+      "?"
+    ],
+    "setup": false,
+    "name": "Zenomancer",
+    "team": "loric",
+    "ability": "One or more players each have a goal. When achieved, that player learns a piece of true info."
   }
 ]

@@ -2,6 +2,7 @@
 
 ## Upcomming Version
 - Features:
+  - Adding the Zenomancer
 
 - Bugfixes:
 
