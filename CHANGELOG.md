@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 - Features:
-
+  - Filter starting Fabled
 - Bugfixes:
 
 - Localization :
