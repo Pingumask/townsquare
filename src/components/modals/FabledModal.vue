@@ -6,15 +6,25 @@
         <Token :role="role" />
       </li>
     </ul>
+      <h3 @click="togglePrintAll" class="printAll">
+        {{ t('modal.fabled.printAll') }}
+        <font-awesome-icon :icon="[
+          'fas',
+          printAll ? 'check-square' : 'square',
+        ]" />
+      </h3>
+      
   </Modal>
 </template>
 
 <script setup lang="ts">
 import type { Role } from '@/types';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useStore } from 'vuex';
 import { Modal, Token } from '@/components';
 import { useTranslation } from '@/composables';
+
+const printAll = ref(false);
 
 const { t } = useTranslation();
 const store = useStore();
@@ -22,10 +32,27 @@ const store = useStore();
 const modals = computed(() => store.state.modals);
 
 const fabled = computed((): Role[] => {
-  return (Array.from(store.state.fabled.values()) as Role[]).filter((role: Role) =>
-    !store.state.players.fabled.some((fable: Role) => fable.id === role.id)
-  );
+  let allFabled = Array.from(store.state.fabled.values()) as Role[];
+  let res = Array() ;
+  allFabled.forEach(function(role) {
+    if(
+      !store.state.players.fabled.some((fable: Role) => fable.id === role.id) &&
+      (
+        role.team == "loric" ||
+        role.anyScript ||
+        printAll.value
+      )
+    ) {
+      res.push(role);
+    }
+  });
+  return res;
 });
+
+
+const togglePrintAll = () => {
+  printAll.value = !printAll.value;
+};
 
 function setFabled(role: Role) {
   store.commit('players/setFabled', { fabled: role });
@@ -51,4 +78,18 @@ ul.tokens li {
     z-index: 10;
   }
 }
+
+
+.printAll {
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  padding-top: 5%;
+  font-size: 100%;
+  
+  &:hover {
+    color: red;
+  }
+}
+
 </style>

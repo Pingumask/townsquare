@@ -7,6 +7,7 @@
       "Used"
     ],
     "setup": false,
+    "anyScript": true,
     "name": "Doomsayer",
     "team": "fabled",
     "ability": "If 4 or more players live, each living player may publicly choose (once per game) that a player of their own alignment dies."
@@ -20,6 +21,7 @@
       "Something Bad"
     ],
     "setup": false,
+    "anyScript": true,
     "name": "Angel",
     "team": "fabled",
     "ability": "Something bad might happen to whoever is most responsible for the death of a new player."
@@ -32,6 +34,7 @@
       "Veteran"
     ],
     "setup": false,
+    "anyScript": true,
     "name": "Buddhist",
     "team": "fabled",
     "ability": "For the first 2 minutes of each day, veteran players may not talk."
@@ -44,6 +47,7 @@
       "Something Bad"
     ],
     "setup": false,
+    "anyScript": true,
     "name": "Hell's Librarian",
     "team": "fabled",
     "ability": "Something bad might happen to whoever talks when the Storyteller has asked for silence."
@@ -58,6 +62,7 @@
       "Used"
     ],
     "setup": false,
+    "anyScript": true,
     "name": "Revolutionary",
     "team": "fabled",
     "ability": "2 neighboring players are known to be the same alignment. Once per game, one of them registers falsely."
@@ -68,6 +73,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
+    "anyScript": true,
     "name": "Fiddler",
     "team": "fabled",
     "ability": "Once per game, the Demon secretly chooses an opposing player: all players choose which of these 2 players win."
@@ -81,6 +87,7 @@
       "Final Night: No Attack"
     ],
     "setup": false,
+    "anyScript": true,
     "name": "Toymaker",
     "team": "fabled",
     "ability": "The Demon may choose not to attack & must do this at least once per game. Evil players get normal starting info."
@@ -94,6 +101,7 @@
     ],
     "setup": false,
     "name": "Fibbin",
+    "anyScript": false,
     "team": "fabled",
     "ability": "Once per game, 1 good player might get false information."
   },
@@ -107,6 +115,7 @@
       "False Info"
     ],
     "setup": false,
+    "anyScript": false,
     "name": "Duchess",
     "team": "fabled",
     "ability": "Each day, 3 players may choose to visit you. At night*, each visitor learns how many visitors are evil, but 1 gets false info."
@@ -117,6 +126,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": true,
+    "anyScript": false,
     "name": "Sentinel",
     "team": "fabled",
     "ability": "There might be 1 extra or 1 fewer Outsider in play."
@@ -129,6 +139,7 @@
       "No extra evil"
     ],
     "setup": false,
+    "anyScript": false,
     "name": "Spirit of Ivory",
     "team": "fabled",
     "ability": "There can't be more than 1 extra evil player."
@@ -142,6 +153,7 @@
       "?"
     ],
     "setup": false,
+    "anyScript": false,
     "name": "Djinn",
     "team": "fabled",
     "ability": "Use the Djinn's special rule. All players know what it is."
@@ -155,6 +167,7 @@
       "Whoopsie"
     ],
     "setup": false,
+    "anyScript": true,
     "name": "Deus ex Fiasco",
     "team": "fabled",
     "ability": "At least once per game, the Storyteller will make a mistake, correct it, and publicly admit to it."
@@ -166,6 +179,7 @@
     "otherNightReminder": "If it's the last day, return each dead player's vote token.",
     "reminders": [],
     "setup": false,
+    "anyScript": true,
     "name": "Ferryman",
     "team": "fabled",
     "ability": "On the final day, all dead players regain their vote token."
