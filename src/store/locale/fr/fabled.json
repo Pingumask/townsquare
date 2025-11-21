@@ -9,6 +9,7 @@
       "Utilisé"
     ],
     "setup": false,
+    "anyScript": true,
     "ability": "Si 4 joueurs ou plus sont en vie, chaque joueur vivant peut, une fois par partie, décider qu'un joueur de son propre alignement meure."
   },
   {
@@ -20,6 +21,7 @@
       "Malédiction"
     ],
     "setup": false,
+    "anyScript": true,
     "name": "Ange",
     "team": "fabled",
     "ability": "Il se peut que quelque chose de mauvais arrive à tout joueur qui est le principal responsable de la mort d'un nouveau joueur."
@@ -32,6 +34,7 @@
       "Vétéran"
     ],
     "setup": false,
+    "anyScript": true,
     "name": "Bouddhiste",
     "team": "fabled",
     "ability": "Chaque jour, les joueurs vétérans ne peuvent pas parler pendant les 2 premières minutes."
@@ -44,6 +47,7 @@
       "Malédiction"
     ],
     "setup": false,
+    "anyScript": true,
     "name": "Bibliothécaire de l'enfer",
     "team": "fabled",
     "ability": "Il se peut que quelque chose de mauvais arrive à tout joueur qui parle alors que le Narrateur appelle au silence."
@@ -58,6 +62,7 @@
       "Utilisé"
     ],
     "setup": false,
+    "anyScript": true,
     "name": "Révolutionnaire",
     "team": "fabled",
     "ability": "Deux joueurs voisins connus sont du même alignement. Une fois par partie, l'un d'eux peut apparaître faussement."
@@ -68,6 +73,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
+    "anyScript": true,
     "name": "Violoniste",
     "team": "fabled",
     "ability": "Une fois par partie, le Démon choisit un joueur adverse en secret : tous les joueurs choisissent l'équipe duquel de ces deux joueurs gagne."
@@ -81,6 +87,7 @@
       "Nuit sans attaque"
     ],
     "setup": false,
+    "anyScript": true,
     "name": "Fabricant de jouets",
     "team": "fabled",
     "ability": "Le Démon peut choisir de ne pas attaquer et doit le faire au moins une fois par partie. Les mauvais ont leurs infos de début normales."
@@ -93,6 +100,7 @@
       "Utilisé"
     ],
     "setup": false,
+    "anyScript": false,
     "name": "Baratineur",
     "team": "fabled",
     "ability": "Une fois par partie, il se peut qu’un joueur bon reçoive une information incorrecte."
@@ -107,6 +115,7 @@
       "Fausse Info"
     ],
     "setup": false,
+    "anyScript": false,
     "name": "Duchesse",
     "team": "fabled",
     "ability": "Chaque jour, 3 joueurs peuvent vous rendre visite. La nuit*, chacun apprend combien sont mauvais parmi eux, mais l'un a une fausse info."
@@ -117,6 +126,7 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": true,
+    "anyScript": false,
     "name": "Sentinelle",
     "team": "fabled",
     "ability": "Il se peut qu’il y ait un Marginal de plus ou de moins."
@@ -129,6 +139,7 @@
       "Pas de mauvais supplémentaire"
     ],
     "setup": false,
+    "anyScript": false,
     "name": "Esprit d'Ivoire",
     "team": "fabled",
     "ability": "Il ne peut pas y avoir plus d'un joueur mauvais supplémentaire."
@@ -142,6 +153,7 @@
       "?"
     ],
     "setup": false,
+    "anyScript": false,
     "name": "Djinn",
     "team": "fabled",
     "ability": "Utilisez la règle spéciale du Djinn. Tous les joueurs connaissent cette règle."
@@ -155,6 +167,7 @@
       "Oups"
     ],
     "setup": false,
+    "anyScript": true,
     "name": "Deus ex Fiasco",
     "team": "fabled",
     "ability": "Au moins une fois par partie, le Narrateur fera une erreur, la corrigera, et l’admettra publiquement."
@@ -166,6 +179,7 @@
     "otherNightReminder": "Si c'est le dernier jour, rendez à chaque joueur mort son jeton de vote.",
     "reminders": [],
     "setup": false,
+    "anyScript": true,
     "name": "Passeur",
     "team": "fabled",
     "ability": "Le dernier jour, tous les morts regagnent leur jeton de vote."
