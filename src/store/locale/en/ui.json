@@ -212,7 +212,9 @@
       }
     },
     "fabled": {
-      "title": "Choose a Fabled or Loric to add to the game "
+      "title": "Choose a Fabled or Loric to add to the game ",
+      "printAll": "Print all Fabled",
+      "infoPrintAll": "Some Fabled are designed to be used only in scripts specifically designed for those Fabled. By default, only Fabled that can be used in all scripts are displayed."
     },
     "gameState": {
       "title": "Current Game State",

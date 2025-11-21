@@ -2,6 +2,7 @@
 
 ## Upcomming Version
 - Features:
+  - When choosing a Fabled, allowing printing only necessary Fabled
 
 - Bugfixes:
 

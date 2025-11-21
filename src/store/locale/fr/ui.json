@@ -213,7 +213,9 @@
       }
     },
     "fabled": {
-      "title": "Choisissez un Mythe ou une Légende à ajouter à la partie"
+      "title": "Choisissez un Mythe ou une Légende à ajouter à la partie",
+      "printAll": "Afficher tous les Mythes",
+      "infoPrintAll": "Certains Mythes sont conçus pour n'être utilisés que dans les scripts spécialement conçus pour ces Mythes. Par défaut, seuls sont affichés les Mythes pouvant être utilisés dans tous les scripts."
     },
     "gameState": {
       "title": "État Actuel de la Partie",
