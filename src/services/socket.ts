@@ -503,6 +503,16 @@ export class LiveSession {
   }
 
   /**
+   * Request the current gamestate from the host.
+   */
+  requestGamestate() {
+    const sessionStore = useSessionStore();
+    if (this._isSpectator && sessionStore.sessionId) {
+      this._sendDirect("host", "getGamestate", sessionStore.playerId);
+    }
+  }
+
+  /**
    * Publish the current gamestate.
    * Optional param to reduce traffic. (send only player data)
    * @param playerId
@@ -1341,8 +1351,6 @@ export class LiveSession {
     if (this._isSpectator) return;
     this._send("remove", payload);
   }
-
-
 }
 
 export default new LiveSession();

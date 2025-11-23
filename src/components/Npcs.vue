@@ -29,14 +29,14 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { usePlayersStore, useSessionStore, useGrimoireStore } from "@/stores";
-import { useTranslation } from "@/composables";
+import { usePlayersStore, useSessionStore, useGrimoireStore, useLocaleStore } from "@/stores";
 import { Token } from "@/components";
 
 const playersStore = usePlayersStore();
 const sessionStore = useSessionStore();
 const grimoireStore = useGrimoireStore();
-const { t } = useTranslation();
+const locale = useLocaleStore();
+const t = locale.t;
 
 const isFabledOpen = ref(true);
 

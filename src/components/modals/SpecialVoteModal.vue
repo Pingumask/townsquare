@@ -25,22 +25,22 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { Modal } from '@/components';
-import { useTranslation, createSpecialVote } from '@/composables';
-import type { Nomination, Modals } from '@/types';
-import { useGrimoireStore, usePlayersStore, useSessionStore } from "@/stores";
+import { createSpecialVote } from '@/services';
+import { useGrimoireStore, useLocaleStore, usePlayersStore, useSessionStore } from "@/stores";
+import type { Modals, Nomination } from '@/types';
 
-const { t } = useTranslation();
-const grimoireStore = useGrimoireStore();
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
 const playersStore = usePlayersStore();
-const sessionStore = useSessionStore();
+const session = useSessionStore();
 
-const modals = computed(() => grimoireStore.modals);
-const session = sessionStore;
+const modals = computed(() => grimoire.modals);
 const players = computed(() => playersStore.players);
 
 function launchVote(nomination: Nomination) {
-  sessionStore.setNomination(nomination);
-  grimoireStore.toggleModal('specialVote');
+  session.setNomination(nomination);
+  grimoire.toggleModal('specialVote');
 }
 
 function bishopVote() {
@@ -97,7 +97,7 @@ function customVote() {
 }
 
 function toggleModal(modalName: keyof Modals) {
-  grimoireStore.toggleModal(modalName);
+  grimoire.toggleModal(modalName);
 }
 </script>
 

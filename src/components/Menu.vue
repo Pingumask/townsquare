@@ -2,18 +2,18 @@
   <div id="controls">
     <span v-show="session.voteHistory.length && session.sessionId" class="nomlog-summary"
       :title="`${session.voteHistory.length} recent ${session.voteHistory.length == 1 ? 'nomination' : 'nominations'}`"
-      @click="toggleModal('voteHistory')">
+      @click="grimoire.toggleModal('voteHistory')">
       <font-awesome-icon icon="book-dead" class="fa fa-book-dead" />
       {{ session.voteHistory.length }}
     </span>
     <span v-if="session.sessionId" class="session"
       :title="`${session.playerCount} other players in this session${session.ping ? ' (' + session.ping + 'ms latency)' : ''}`"
-      :class="{ spectator: session.isSpectator, reconnecting: session.isReconnecting }" @click="leaveSession">
+      :class="{ spectator: session.isSpectator, reconnecting: session.isReconnecting }" @click="session.leaveSession">
       <font-awesome-icon :icon="['fas', 'tower-broadcast']" class="fa fa-tower-broadcast" />
       {{ session.playerCount }}
     </span>
     <div class="menu" :class="{ open: grimoire.isMenuOpen }">
-      <font-awesome-icon icon="cog" class="fa fa-cog" @click="toggleMenu" />
+      <font-awesome-icon icon="cog" class="fa fa-cog" @click="grimoire.toggleMenu()" />
       <ul>
         <li class="tabs" :class="tab">
           <font-awesome-icon icon="book-open" class="fa fa-book-open" @click="tab = 'grimoire'" />
@@ -31,7 +31,7 @@
           <li class="headline">
             {{ t('menu.grimoire.title') }}
           </li>
-          <li v-if="players.length" @click="toggleGrimoire">
+          <li v-if="players.length" @click="grimoire.toggleGrimoire()">
             <template v-if="!grimoire.isPublic">
               {{ t('menu.grimoire.hide') }}
             </template>
@@ -40,7 +40,7 @@
             </template>
             <em>[G]</em>
           </li>
-          <li v-if="!session.isSpectator" @click="toggleNight">
+          <li v-if="!session.isSpectator" @click="session.toggleNight">
             <template v-if="session.gamePhase === 'pregame'">
               {{ t('menu.grimoire.firstNightSwitch') }}
             </template>
@@ -52,11 +52,11 @@
             </template>
             <em>[S]</em>
           </li>
-          <li v-if="!session.isSpectator" @click="toggleRinging">
+          <li v-if="!session.isSpectator" @click="grimoire.toggleRinging()">
             {{ t('menu.grimoire.ringBell') }}
             <em>[B]</em>
           </li>
-          <li v-if="session.isSpectator" @click="toggleNightOrder">
+          <li v-if="session.isSpectator" @click="grimoire.toggleNightOrder()">
             {{ t('menu.grimoire.order') }}
             <em>
               <font-awesome-icon :icon="[
@@ -68,12 +68,14 @@
           <li v-if="players.length">
             {{ t('menu.grimoire.zoom') }}
             <em>
-              <font-awesome-icon icon="search-minus" class="fa fa-search-minus" @click="setZoom(grimoire.zoom - 1)" />
+              <font-awesome-icon icon="search-minus" class="fa fa-search-minus"
+                @click="grimoire.setZoom(grimoire.zoom - 1)" />
               {{ Math.round(100 + grimoire.zoom * 10) }}%
-              <font-awesome-icon icon="search-plus" class="fa fa-search-plus" @click="setZoom(grimoire.zoom + 1)" />
+              <font-awesome-icon icon="search-plus" class="fa fa-search-plus"
+                @click="grimoire.setZoom(grimoire.zoom + 1)" />
             </em>
           </li>
-          <li @click="setBackground">
+          <li @click="setBackground()">
             {{ t('menu.grimoire.background') }}
             <em><font-awesome-icon icon="image" class="fa fa-image" /></em>
           </li>
@@ -84,18 +86,18 @@
               grimoire.isImageOptIn ? 'check-square' : 'square',
             ]" /></em>
           </li>
-          <li @click="streamerMode">
+          <li @click="grimoire.toggleStreamerMode()">
             <small>{{ t('menu.grimoire.streamerMode') }}</small>
             <em><font-awesome-icon :icon="[
               'fas',
               grimoire.isStreamerMode ? 'check-square' : 'square',
             ]" /></em>
           </li>
-          <li @click="toggleStatic">
+          <li @click="grimoire.toggleStatic()">
             {{ t('menu.grimoire.animations') }}
             <em><font-awesome-icon :icon="['fas', grimoire.isStatic ? 'check-square' : 'square']" /></em>
           </li>
-          <li @click="toggleMuted">
+          <li @click="grimoire.toggleMuted()">
             {{ t('menu.grimoire.mute') }}
             <em><font-awesome-icon :icon="['fas', grimoire.isMuted ? 'volume-mute' : 'volume-up']" /></em>
           </li>
@@ -114,10 +116,10 @@
             {{ t('menu.session.title.create') }}
           </li>
           <template v-if="!session.sessionId">
-            <li @click="hostSession">
+            <li @click="session.hostSession">
               {{ t('menu.session.storyteller') }}<em>[H]</em>
             </li>
-            <li @click="joinSession">
+            <li @click="session.joinSession">
               {{ t('menu.session.player') }}<em>[J]</em>
             </li>
           </template>
@@ -127,18 +129,18 @@
               {{ session.isSpectator ? t('menu.session.host') : t('menu.session.players') }}
               <em>{{ session.ping }}ms</em>
             </li>
-            <li @click="copySessionUrl">
+            <li @click="session.copySessionUrl">
               {{ t('menu.session.link') }}
               <em><font-awesome-icon icon="copy" class="fa fa-copy" /></em>
             </li>
-            <li v-if="!session.isSpectator" @click="distributeRoles">
+            <li v-if="!session.isSpectator" @click="session.distributeRolesAction()">
               {{ t('menu.session.sendRoles') }}
               <em><font-awesome-icon icon="theater-masks" class="fa fa-theater-masks" /></em>
             </li>
-            <li v-if="session.voteHistory.length || !session.isSpectator" @click="toggleModal('voteHistory')">
+            <li v-if="session.voteHistory.length || !session.isSpectator" @click="grimoire.toggleModal('voteHistory')">
               {{ t('menu.session.voteHistory') }}<em>[V]</em>
             </li>
-            <li v-if="!session.isSpectator" @click="toggleOrganVoteMode">
+            <li v-if="!session.isSpectator" @click="session.toggleSecretVote()">
               {{ t('menu.session.secretVote') }}
               <em>
                 <font-awesome-icon :icon="[
@@ -147,14 +149,14 @@
                 ]" />
               </em>
             </li>
-            <li v-if="!session.isSpectator" @click="toggleSelfNaming">
+            <li v-if="!session.isSpectator" @click="session.setAllowSelfNaming(!session.allowSelfNaming)">
               {{ t('menu.session.selfNaming') }}
               <em><font-awesome-icon :icon="[
                 'fas',
                 session.allowSelfNaming ? 'check-square' : 'square',
               ]" /></em>
             </li>
-            <li @click="leaveSession">
+            <li @click="session.leaveSession()">
               {{ t('menu.session.leave') }}
               <em>{{ grimoire.isStreamerMode ? "(hidden)" : session.sessionId }}</em>
             </li>
@@ -166,17 +168,17 @@
           <li class="headline">
             {{ t('menu.players.title') }}
           </li>
-          <li v-if="players.length < 20" @click="addPlayer">
+          <li v-if="players.length < 20" @click="playersStore.addPlayer()">
             {{ t('menu.players.add') }}<em>[A]</em>
           </li>
-          <li v-if="players.length < 19" @click="addPlayers">
+          <li v-if="players.length < 19" @click="playersStore.addPlayers()">
             {{ t('menu.players.addMany') }}<em>[P]</em>
           </li>
-          <li v-if="players.length > 2" @click="randomizeSeatings">
+          <li v-if="players.length > 2" @click="playersStore.randomize()">
             {{ t('menu.players.randomize') }}
             <em><font-awesome-icon icon="dice" class="fa fa-dice" /></em>
           </li>
-          <li v-if="players.length" @click="clearPlayers">
+          <li v-if="players.length" @click="playersStore.clear">
             {{ t('menu.players.removeAll') }}
             <em><font-awesome-icon icon="trash-alt" class="fa fa-trash-alt" /></em>
           </li>
@@ -185,7 +187,7 @@
         <template v-if="tab === 'playersMenu' && !session.isSpectator">
           <!-- Players' Menu -->
           <li class="headline">{{ t('menu.playersMenu.title') }}</li>
-          <li @click="togglePlayersMenu('changePronouns')">
+          <li @click="playersMenu.changePronouns = !playersMenu.changePronouns">
             <small>
               <div>
                 <font-awesome-icon icon="venus-mars" class="fa fa-venus-mars" />
@@ -199,7 +201,7 @@
               ]" />
             </em>
           </li>
-          <li @click="togglePlayersMenu('changeName')">
+          <li @click="playersMenu.changeName = !playersMenu.changeName">
             <small>
               <div>
                 <font-awesome-icon icon="user-edit" class="fa fa-user-edit" />
@@ -213,7 +215,7 @@
               ]" />
             </em>
           </li>
-          <li @click="togglePlayersMenu('movePlayer')">
+          <li @click="playersMenu.movePlayer = !playersMenu.movePlayer">
             <small>
               <div>
                 <font-awesome-icon icon="redo-alt" class="fa fa-redo-alt" />
@@ -227,7 +229,7 @@
               ]" />
             </em>
           </li>
-          <li @click="togglePlayersMenu('swapPlayers')">
+          <li @click="playersMenu.swapPlayers = !playersMenu.swapPlayers">
             <small>
               <div>
                 <font-awesome-icon icon="exchange-alt" class="fa fa-exchange-alt" />
@@ -241,7 +243,7 @@
               ]" />
             </em>
           </li>
-          <li @click="togglePlayersMenu('removePlayer')">
+          <li @click="playersMenu.removePlayer = !playersMenu.removePlayer">
             <small>
               <div>
                 <font-awesome-icon icon="times-circle" class="fa fa-times-circle" />
@@ -255,7 +257,7 @@
               ]" />
             </em>
           </li>
-          <li @click="togglePlayersMenu('swapAlignment')">
+          <li @click="playersMenu.swapAlignment = !playersMenu.swapAlignment">
             <small>
               <div>
                 <font-awesome-icon icon="yin-yang" class="fa fa-yin-yang" />
@@ -280,7 +282,7 @@
               <font-awesome-icon icon="check-square" class="fa fa-check-square" />
             </em>
           </li>
-          <li @click="togglePlayersMenu('specialVote')">
+          <li @click="playersMenu.specialVote = !playersMenu.specialVote">
             <small>
               <div>
                 <font-awesome-icon icon="vote-yea" class="fa fa-vote-yea" />
@@ -301,19 +303,19 @@
           <li class="headline">
             {{ t('menu.characters.title') }}
           </li>
-          <li v-if="!session.isSpectator" @click="toggleModal('edition')">
+          <li v-if="!session.isSpectator" @click="grimoire.toggleModal('edition')">
             {{ t('menu.characters.selectEdition') }}
             <em>[E]</em>
           </li>
-          <li v-if="!session.isSpectator && players.length > 4" @click="toggleModal('roles')">
+          <li v-if="!session.isSpectator && players.length > 4" @click="grimoire.toggleModal('roles')">
             {{ t('menu.characters.assign') }}
             <em>[C]</em>
           </li>
-          <li v-if="!session.isSpectator" @click="toggleModal('fabled')">
+          <li v-if="!session.isSpectator" @click="grimoire.toggleModal('fabled')">
             {{ t('menu.characters.addFabled') }}
             <em><font-awesome-icon icon="dragon" class="fa fa-dragon" /></em>
           </li>
-          <li v-if="players.length" @click="clearRoles">
+          <li v-if="players.length" @click="playersStore.clearRoles">
             {{ t('menu.characters.removeAll') }}
             <em><font-awesome-icon icon="trash-alt" class="fa fa-trash-alt" /></em>
           </li>
@@ -324,15 +326,15 @@
           <li class="headline">
             {{ t('menu.help.title') }}
           </li>
-          <li @click="toggleModal('reference')">
+          <li @click="grimoire.toggleModal('reference')">
             {{ t('menu.help.reference') }}
             <em>[R]</em>
           </li>
-          <li @click="toggleModal('nightOrder')">
+          <li @click="grimoire.toggleModal('nightOrder')">
             {{ t('menu.help.nightOrder') }}
             <em>[N]</em>
           </li>
-          <li @click="toggleModal('gameState')">
+          <li @click="grimoire.toggleModal('gameState')">
             {{ t('menu.help.gameState') }}
             <em><font-awesome-icon icon="file-code" class="fa fa-file-code" /></em>
           </li>
@@ -374,21 +376,16 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { useTranslation } from '@/composables';
-import { useGrimoireStore, useSessionStore, usePlayersStore, usePlayersMenuStore } from "@/stores";
-import type { Modals, PlayersMenuState } from "@/types/store-types";
+import { useGrimoireStore, useLocaleStore, usePlayersStore, usePlayersMenuStore, useSessionStore } from "@/stores";
 
-const { t } = useTranslation();
-
-const grimoireStore = useGrimoireStore();
-const sessionStore = useSessionStore();
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
 const playersStore = usePlayersStore();
-const playersMenuStore = usePlayersMenuStore();
+const playersMenu = usePlayersMenuStore();
+const session = useSessionStore();
 
-const grimoire = grimoireStore;
-const playersMenu = playersMenuStore;
-const session = sessionStore;
-const edition = computed(() => grimoireStore.edition);
+const edition = computed(() => grimoire.edition);
 const players = computed(() => playersStore.players);
 
 const tab = ref('grimoire');
@@ -396,95 +393,15 @@ const tab = ref('grimoire');
 const setBackground = () => {
   const background = prompt(t('prompt.background'));
   if (background || background === '') {
-    grimoireStore.setBackground(background);
+    grimoire.setBackground(background);
   }
-};
-
-const hostSession = () => {
-  sessionStore.hostSession();
-};
-
-const copySessionUrl = () => {
-  sessionStore.copySessionUrl();
-};
-
-const distributeRoles = () => {
-  sessionStore.distributeRolesAction();
 };
 
 const imageOptIn = () => {
   const popup = t('prompt.imageOptIn');
   if (grimoire.isImageOptIn || confirm(popup)) {
-    toggleImageOptIn();
+    grimoire.toggleImageOptIn();
   }
-};
-
-const streamerMode = () => {
-  toggleStreamerMode();
-};
-
-const joinSession = () => {
-  sessionStore.joinSession();
-};
-
-const leaveSession = () => {
-  sessionStore.leaveSession();
-};
-
-const addPlayer = () => {
-  playersStore.addPlayerAction();
-};
-
-const addPlayers = () => {
-  playersStore.addPlayersAction();
-};
-
-const randomizeSeatings = () => {
-  if (session.isSpectator) return;
-  playersStore.randomize();
-};
-
-const clearPlayers = () => {
-  playersStore.clearPlayersAction();
-};
-
-const clearRoles = () => {
-  if (confirm(t('prompt.clearRoles'))) {
-    playersStore.clearRolesAction();
-  }
-};
-
-const toggleNight = () => {
-  sessionStore.toggleNight();
-};
-
-const toggleSelfNaming = () => {
-  if (session.isSpectator) return;
-  sessionStore.setAllowSelfNaming(!session.allowSelfNaming);
-};
-
-const toggleOrganVoteMode = () => {
-  sessionStore.toggleSecretVote();
-};
-
-const togglePlayersMenu = (name: keyof PlayersMenuState) => {
-  playersMenuStore.togglePlayersMenu(name);
-};
-
-const toggleRinging = () => {
-  grimoireStore.toggleRinging();
-};
-
-const toggleGrimoire = () => grimoireStore.toggleGrimoire();
-const toggleMenu = () => grimoireStore.toggleMenu();
-const toggleImageOptIn = () => grimoireStore.toggleImageOptIn();
-const toggleStreamerMode = () => grimoireStore.toggleStreamerMode();
-const toggleMuted = () => grimoireStore.toggleMuted();
-const toggleNightOrder = () => grimoireStore.toggleNightOrder();
-const toggleStatic = () => grimoireStore.toggleStatic();
-const setZoom = (zoom: number) => grimoireStore.setZoom(zoom);
-const toggleModal = (name: keyof Modals) => {
-  grimoireStore.toggleModal(name);
 };
 </script>
 

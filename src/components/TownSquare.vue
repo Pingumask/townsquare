@@ -1,8 +1,8 @@
 <template>
   <div id="townsquare" class="square" :class="{
-    public: grimoireStore.isPublic,
-    spectator: sessionStore.isSpectator,
-    vote: sessionStore.nomination,
+    public: grimoire.isPublic,
+    spectator: session.isSpectator,
+    vote: session.nomination,
   }">
     <ul class="circle" :class="['size-' + players.length]">
       <Seat v-for="(player, index) in players" :key="index" :player="player" :class="{
@@ -12,13 +12,9 @@
         nominate: nominate > -1,
       }" @trigger="handleTrigger(index, $event)" />
     </ul>
-
     <Bluffs @open-role-modal="openRoleModal" />
-
     <SideMenu />
-
     <Npcs />
-
     <ReminderModal :player-index="selectedPlayer" />
     <RoleModal :player-index="selectedPlayer" />
   </div>
@@ -26,43 +22,38 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { useTranslation } from '@/composables';
 import { ReminderModal, RoleModal, Seat, SideMenu } from '@/components';
 import Bluffs from "./Bluffs.vue";
 import Npcs from "./Npcs.vue";
-import { usePlayersStore, useSessionStore, useGrimoireStore, usePlayersMenuStore } from "@/stores";
+import { usePlayersStore, useSessionStore, useGrimoireStore, usePlayersMenuStore, useLocaleStore } from "@/stores";
 import type { Player } from "@/types";
 
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
 const playersStore = usePlayersStore();
-const sessionStore = useSessionStore();
-const grimoireStore = useGrimoireStore();
 const playersMenuStore = usePlayersMenuStore();
-const { t } = useTranslation();
+const session = useSessionStore();
 
-// Computed properties from store
 const players = computed(() => playersStore.players);
-// const nontravelers = computed(() => playersStore.nontravelers);
 
-const firstMessage = computed(() => t('modal.nightOrder.firstNight'));
-const otherMessage = computed(() => t('modal.nightOrder.otherNights'));
+const firstMessage = computed(() => t('modal.nightOrder.firstNight'));// eslint-disable-line @typescript-eslint/no-unused-vars, no-unused-vars
+const otherMessage = computed(() => t('modal.nightOrder.otherNights'));// eslint-disable-line @typescript-eslint/no-unused-vars, no-unused-vars
 
-// Reactive data
-const selectedPlayer = ref(0);
-const swap = ref(-1);
 const move = ref(-1);
 const nominate = ref(-1);
+const selectedPlayer = ref(0);
+const swap = ref(-1);
 
-// Methods converted to functions
 const toggleNight = () => {
-  grimoireStore.toggleNightOrder();
+  grimoire.toggleNightOrder();
 };
 
 const toggleRinging = () => {
-  grimoireStore.toggleRinging();
+  grimoire.toggleRinging();
 };
 
 const handleTrigger = (playerIndex: number, event: string | [string] | [string, unknown]) => {
-  // Handle both string events and array events
   const [method, params] = Array.isArray(event) ? [event[0], event[1]] : [event, undefined];
   const methodMap: Record<string, Function> = {
     claimSeat,
@@ -82,25 +73,25 @@ const handleTrigger = (playerIndex: number, event: string | [string] | [string, 
 };
 
 const claimSeat = (playerIndex: number) => {
-  if (!sessionStore.isSpectator) return;
+  if (!session.isSpectator) return;
   const player = players.value[playerIndex];
-  if (player && sessionStore.playerId === player.id) {
-    sessionStore.claimSeat(-1);
+  if (player && session.playerId === player.id) {
+    session.claimSeat(-1);
   } else {
-    sessionStore.claimSeat(playerIndex);
+    session.claimSeat(playerIndex);
   }
 };
 
 const openReminderModal = (playerIndex: number) => {
   selectedPlayer.value = playerIndex;
-  grimoireStore.toggleModal("reminder");
+  grimoire.toggleModal("reminder");
 };
 
 const openRoleModal = (playerIndex: number) => {
   const player = players.value[playerIndex];
-  if (sessionStore.isSpectator && player && player.role.team === "traveler")
+  if (session.isSpectator && player && player.role.team === "traveler")
     return; selectedPlayer.value = playerIndex;
-  grimoireStore.toggleModal("role");
+  grimoire.toggleModal("role");
 };
 
 const cancel = () => {
@@ -110,25 +101,25 @@ const cancel = () => {
 };
 
 const removePlayer = (playerIndex: number) => {
-  if (sessionStore.isSpectator || sessionStore.lockedVote) return;
+  if (session.isSpectator || session.lockedVote) return;
   if (!playersMenuStore.removePlayer) return;
 
   const player = players.value[playerIndex];
   if (!player || !confirm(`Do you really want to remove ${player.name}?`)) return;
 
-  const nomination = sessionStore.nomination;
+  const nomination = session.nomination;
   if (nomination) {
     const nominator = Number(nomination.nominator);
     const nominee = Number(nomination.nominee);
     if (nominator === playerIndex || nominee === playerIndex) {
       // abort vote if removed player is either nominator or nominee
-      sessionStore.setNomination(null);
+      session.setNomination(null);
     } else if (
       nominator > playerIndex ||
       nominee > playerIndex
     ) {
       // update nomination array if removed player has lower index
-      sessionStore.setNomination({
+      session.setNomination({
         nominator: nominator > playerIndex ? nominator - 1 : nominator,
         nominee: nominee > playerIndex ? nominee - 1 : nominee,
       });
@@ -138,17 +129,17 @@ const removePlayer = (playerIndex: number) => {
 };
 
 const swapPlayer = (from: number, to?: Player) => {
-  if (sessionStore.isSpectator || sessionStore.lockedVote) return;
+  if (session.isSpectator || session.lockedVote) return;
   if (!playersMenuStore.swapPlayers) return;
 
   if (to === undefined) {
     cancel();
     swap.value = from;
   } else {
-    if (sessionStore.nomination) {
+    if (session.nomination) {
       // update nomination if one of the involved players is swapped
       const swapTo = players.value.indexOf(to);
-      const currentNomination = sessionStore.nomination;
+      const currentNomination = session.nomination;
 
       let newNominator = Number(currentNomination.nominator);
       let newNominee = Number(currentNomination.nominee);
@@ -163,7 +154,7 @@ const swapPlayer = (from: number, to?: Player) => {
         Number(currentNomination.nominator) !== newNominator ||
         Number(currentNomination.nominee) !== newNominee
       ) {
-        sessionStore.setNomination({
+        session.setNomination({
           nominator: newNominator,
           nominee: newNominee
         });
@@ -178,17 +169,17 @@ const swapPlayer = (from: number, to?: Player) => {
 };
 
 const movePlayer = (from: number, to?: Player) => {
-  if (sessionStore.isSpectator || sessionStore.lockedVote) return;
+  if (session.isSpectator || session.lockedVote) return;
   if (!playersMenuStore.movePlayer) return;
 
   if (to === undefined) {
     cancel();
     move.value = from;
   } else {
-    if (sessionStore.nomination) {
+    if (session.nomination) {
       // update nomination if it is affected by the move
       const moveTo = players.value.indexOf(to);
-      const currentNomination = sessionStore.nomination;
+      const currentNomination = session.nomination;
 
       const mapIndex = (idx: number) => {
         if (idx === move.value) return moveTo;
@@ -204,7 +195,7 @@ const movePlayer = (from: number, to?: Player) => {
         Number(currentNomination.nominator) !== newNominator ||
         Number(currentNomination.nominee) !== newNominee
       ) {
-        sessionStore.setNomination({
+        session.setNomination({
           nominator: newNominator,
           nominee: newNominee
         });
@@ -219,14 +210,14 @@ const movePlayer = (from: number, to?: Player) => {
 };
 
 const nominatePlayer = (from: number, to?: Player) => {
-  if (sessionStore.isSpectator || sessionStore.lockedVote) return;
+  if (session.isSpectator || session.lockedVote) return;
   if (to === undefined) {
     cancel();
     if (from !== nominate.value) {
       nominate.value = from;
     }
   } else {
-    sessionStore.setNomination({
+    session.setNomination({
       nominator: nominate.value,
       nominee: players.value.indexOf(to)
     });

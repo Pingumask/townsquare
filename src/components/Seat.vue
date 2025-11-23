@@ -91,7 +91,7 @@
         <span>{{
           // eslint-disable-next-line no-irregular-whitespace
           props.player.name || " "
-          }}</span>
+        }}</span>
         <font-awesome-icon v-if="props.player.pronouns" icon="venus-mars" class="fa fa-venus-mars" />
         <div v-if="props.player.pronouns" class="pronouns">
           <span>{{ props.player.pronouns }}</span>
@@ -183,11 +183,12 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { RoleIcon, Token } from "@/components";
-import { useTranslation, isActiveNomination } from '@/composables';
+import { isActiveNomination } from '@/services/nomination';
 import type { Player, Reminder } from "@/types";
-import { useGrimoireStore, useSessionStore, usePlayersStore, usePlayersMenuStore } from "@/stores";
+import { useGrimoireStore, useSessionStore, usePlayersStore, usePlayersMenuStore, useLocaleStore } from "@/stores";
 
-const { t } = useTranslation();
+const locale = useLocaleStore();
+const t = locale.t;
 interface Props {
   player: Player;
   unchecked?: boolean;

@@ -28,45 +28,45 @@
           </button>
         </div>
         <div class="button-group">
-          <button @click="toggleRinging()">
+          <button @click="grimoire.toggleRinging()">
             <font-awesome-icon :icon="['fas', 'bell']" />
           </button>
-          <button @click="toggleRooster()">
+          <button @click="grimoire.toggleRooster()">
             🐔
           </button>
-          <button @click="toggleGavel()">
+          <button @click="grimoire.toggleGavel()">
             <font-awesome-icon :icon="['fas', 'gavel']" />
           </button>
         </div>
         <div class="button-group">
-          <button @click="toggleHiddenVote()">
+          <button @click="session.toggleSecretVote()">
             <font-awesome-icon v-if="session.isSecretVote" :icon="['fas', 'eye-slash']" />
             <font-awesome-icon v-if="!session.isSecretVote" :icon="['fas', 'eye']" />
           </button>
         </div>
         <div v-if="session.gamePhase === 'pregame'">
           <div class="button-group">
-            <button @click="copySessionUrl()">
+            <button @click="session.copySessionUrl()">
               {{ t('menu.session.link') }}
             </button>
           </div>
           <div class="button-group">
-            <button @click="addPlayers()">
+            <button @click="playersStore.addPlayers()">
               {{ t('menu.players.addMany') }}
             </button>
           </div>
           <div class="button-group">
-            <button @click="toggleModal('edition')">
+            <button @click="grimoire.toggleModal('edition')">
               {{ t('menu.characters.selectEdition') }}
             </button>
           </div>
           <div class="button-group">
-            <button @click="toggleModal('roles')">
+            <button @click="grimoire.toggleModal('roles')">
               {{ t('menu.characters.assign') }}
             </button>
           </div>
           <div class="button-group">
-            <button @click="distributeRoles()">
+            <button @click="session.distributeRolesAction()">
               {{ t('menu.session.sendRoles') }}
             </button>
           </div>
@@ -123,10 +123,10 @@
       </div>
       <div v-if="!session.sessionId">
         <div class="button-group">
-          <button @click="hostSession">{{ t('menu.session.storyteller') }}</button>
+          <button @click="session.hostSession">{{ t('menu.session.storyteller') }}</button>
         </div>
         <div class="button-group">
-          <button @click="joinSession">{{ t('menu.session.player') }}</button>
+          <button @click="session.joinSession">{{ t('menu.session.player') }}</button>
         </div>
       </div>
     </div>
@@ -136,18 +136,16 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { NightOrderTable } from '@/components';
-import { useTranslation, isActiveNomination } from '@/composables';
-import { GamePhase, Modals } from "@/types";
-import { useGrimoireStore, usePlayersStore, useSessionStore } from "@/stores";
+import { isActiveNomination } from '@/services';
+import { useGrimoireStore, useLocaleStore, usePlayersStore, useSessionStore } from "@/stores";
+import { GamePhase } from "@/types";
 
-const grimoireStore = useGrimoireStore();
-const sessionStore = useSessionStore();
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
 const playersStore = usePlayersStore();
-const { t } = useTranslation();
+const session = useSessionStore();
 
-// Computed properties from store
-const grimoire = grimoireStore;
-const session = sessionStore;
 const players = computed(() => playersStore.players);
 
 const isSpecialVoteWithMessages = computed(() => {
@@ -169,54 +167,14 @@ const toggleSideMenu = () => {
   isSideMenuOpen.value = !isSideMenuOpen.value;
 };
 
-const hostSession = () => {
-  sessionStore.hostSession();
-};
-
-const joinSession = () => {
-  sessionStore.joinSession();
-};
-
 const setGamePhase = (gamePhase: GamePhase) => {
   if (gamePhase === "day") {
-    grimoireStore.toggleRooster(true);
-    setTimeout(() => grimoireStore.toggleRooster(false), 4000);
+    grimoire.toggleRooster(true);
+    setTimeout(() => grimoire.toggleRooster(false), 4000);
   } else if (gamePhase === "otherNight" || gamePhase === "firstNight") {
-    sessionStore.setMarkedPlayer(-1);
+    session.setMarkedPlayer(-1);
   }
-  sessionStore.setGamePhase(gamePhase);
-};
-
-const toggleHiddenVote = () => {
-  sessionStore.toggleSecretVote();
-};
-
-const toggleRinging = () => {
-  grimoireStore.toggleRinging();
-};
-
-const toggleRooster = () => {
-  grimoireStore.toggleRooster();
-};
-
-const toggleGavel = () => {
-  grimoireStore.toggleGavel();
-};
-
-const toggleModal = (modal: keyof Modals) => {
-  grimoireStore.toggleModal(modal);
-};
-
-const copySessionUrl = () => {
-  sessionStore.copySessionUrl();
-};
-
-const addPlayers = () => {
-  playersStore.addPlayersAction();
-};
-
-const distributeRoles = () => {
-  sessionStore.distributeRolesAction();
+  session.setGamePhase(gamePhase);
 };
 
 const renameTimer = () => {
@@ -368,7 +326,7 @@ const setTimer = () => {
     timerDuration.value = Number(newDuration);
     // Save the new duration for the current timer type
     if (currentTimerType.value) {
-      grimoireStore.setTimerDuration({
+      grimoire.setTimerDuration({
         type: currentTimerType.value,
         duration: Number(newDuration)
       });
@@ -378,13 +336,13 @@ const setTimer = () => {
 
 const startTimer = () => {
   const timer = { name: timerName.value, duration: timerDuration.value * 60 };
-  grimoireStore.setTimer(timer);
+  grimoire.setTimer(timer);
   timerOn.value = true;
   timerEnder.value = setTimeout(stopTimer, timer.duration * 1000);
 };
 
 const stopTimer = () => {
-  grimoireStore.setTimer({});
+  grimoire.setTimer({});
   timerOn.value = false;
   if (timerEnder.value) {
     clearTimeout(timerEnder.value);

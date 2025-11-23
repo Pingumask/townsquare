@@ -102,15 +102,14 @@
 </template>
 
 <script setup lang="ts">
-import type { Role, Edition, ToggleableRole, ParsedRole, ScriptMeta } from "@/types";
 import { computed, ref } from "vue";
 import { Modal, Token } from "@/components";
-import { useTranslation } from '@/composables';
-import { useGrimoireStore, usePlayersStore } from "@/stores";
-import type { Modals } from "@/types";
+import { useGrimoireStore, useLocaleStore, usePlayersStore } from "@/stores";
+import type { Edition, Modals, ParsedRole, Role, ScriptMeta, ToggleableRole } from "@/types";
 
-const { t } = useTranslation();
 const grimoireStore = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
 const playersStore = usePlayersStore();
 const tab = ref("official");
 

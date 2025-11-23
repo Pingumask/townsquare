@@ -10,14 +10,14 @@
 </template>
 
 <script setup lang="ts">
-import type { Role, Modals } from "@/types";
 import { computed } from 'vue';
 import { Modal, Token } from '@/components';
-import { useTranslation } from '@/composables';
-import { useGrimoireStore, usePlayersStore } from "@/stores";
+import { useGrimoireStore, useLocaleStore, usePlayersStore } from "@/stores";
+import type { Modals, Role } from "@/types";
 
-const { t } = useTranslation();
 const grimoireStore = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
 const playersStore = usePlayersStore();
 
 const modals = computed(() => grimoireStore.modals);

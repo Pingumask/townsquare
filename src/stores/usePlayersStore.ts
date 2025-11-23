@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import type { Player, Role, PlayersState } from "@/types";
-import { useGrimoireStore, useSessionStore } from "@/stores";
+import { useGrimoireStore, useSessionStore, useLocaleStore } from "@/stores";
 
 export const SPECIAL_REMINDER_ROLES = {
   good: {
@@ -222,26 +222,23 @@ export const usePlayersStore = defineStore("players", {
         }
       }
     },
-
-    // Player actions
-    addPlayerAction() {
+    addPlayer() {
       const sessionStore = useSessionStore();
-      const grimoireStore = useGrimoireStore();
+      const localeStore = useLocaleStore();
+      const t = localeStore.t;
       if (sessionStore.isSpectator) return;
       if (this.players.length >= 20) return;
-      const t = grimoireStore.t;
       const name = prompt(t("prompt.addPlayer"), "");
-      if (name) {
+      if (name !== null) {
         this.add(name);
       }
     },
-
-    addPlayersAction() {
+    addPlayers() {
       const sessionStore = useSessionStore();
-      const grimoireStore = useGrimoireStore();
+      const localeStore = useLocaleStore();
+      const t = localeStore.t;
       if (sessionStore.isSpectator) return;
       if (this.players.length >= 20) return;
-      const t = grimoireStore.t;
       const nb = Number(prompt(t("prompt.addPlayers")));
       if (isNaN(nb)) {
         alert("Please enter a number");
@@ -254,6 +251,8 @@ export const usePlayersStore = defineStore("players", {
     },
 
     randomize() {
+      const sessionStore = useSessionStore();
+      if (sessionStore.isSpectator) return;
       const players = this.players
         .map((a: Player) => [Math.random(), a] as [number, Player])
         .sort((a, b) => a[0] - b[0])
@@ -263,9 +262,9 @@ export const usePlayersStore = defineStore("players", {
 
     clearPlayersAction() {
       const sessionStore = useSessionStore();
-      const grimoireStore = useGrimoireStore();
+      const localeStore = useLocaleStore();
+      const t = localeStore.t;
       if (sessionStore.isSpectator) return;
-      const t = grimoireStore.t;
       if (confirm(t("prompt.clearPlayers"))) {
         if (sessionStore.nomination) {
           sessionStore.setNomination(null);
@@ -274,13 +273,17 @@ export const usePlayersStore = defineStore("players", {
       }
     },
 
-    clearRolesAction() {
+    clearRoles() {
+      const localeStore = useLocaleStore();
+      const t = localeStore.t;
+      if (confirm(t('prompt.clearRoles'))) return;
       const sessionStore = useSessionStore();
       let players: Player[];
       if (sessionStore.isSpectator) {
         players = this.players.map((player: Player) => {
           if (player.role.team !== "traveler") {
             player.role = {} as Role;
+            delete player.alignment;
           }
           player.reminders = [];
           return player;
@@ -297,4 +300,39 @@ export const usePlayersStore = defineStore("players", {
       this.setBluff();
     },
   },
+  persist: {
+    paths: ["players", "bluffs", "fabled"],
+    serializer: {
+      serialize: (state: PlayersState) => {
+        const s = state;
+        return JSON.stringify({
+          ...s,
+          players: s.players.map((player) => ({
+            ...player,
+            role: player.role.id || {},
+          })),
+          bluffs: s.bluffs.map((role) => role.id),
+          fabled: s.fabled.map((role) => (role.isCustom ? role : { id: role.id })),
+        });
+      },
+      deserialize: (value: string) => {
+        const state = JSON.parse(value);
+        const grimoireStore = useGrimoireStore();
+        const rolesJSONbyId = grimoireStore.rolesJSONbyId;
+
+        return {
+          ...state,
+          players: state.players.map((player: any) => ({// eslint-disable-line @typescript-eslint/no-explicit-any
+            ...player,
+            role:
+              grimoireStore.roles.get(player.role) ||
+              rolesJSONbyId.get(player.role) ||
+              ({ id: "" } as Role),
+          })),
+          bluffs: state.bluffs.map((id: string) => grimoireStore.roles.get(id) || ({ id } as Role)),
+          fabled: state.fabled.map((f: any) => grimoireStore.fabled.get(f.id) || f),// eslint-disable-line @typescript-eslint/no-explicit-any
+        };
+      },
+    },
+  } as any, // eslint-disable-line @typescript-eslint/no-explicit-any
 });

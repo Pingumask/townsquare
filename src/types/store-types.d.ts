@@ -82,7 +82,6 @@ export interface GrimoireState {
   othertravelers: Map<string, Role>;
   fabled: Map<string, Role>;
   jinxes: Map<string, Map<string, string>>;
-  locale: LocaleModule;
   rolesJSONbyId: Map<string, Role>;
   modals: Modals;
 }

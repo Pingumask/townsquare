@@ -6,33 +6,14 @@ import type {
   Edition,
   EditionsJSON,
   Role,
-  LocaleModule,
-  JinxesJSON,
-  RolesJSON,
-  FabledJSON,
   Modals,
+  GameComposition,
 } from "@/types";
 import editionJSONRaw from "@/editions.json";
 
 const editionJSON = editionJSONRaw as unknown as EditionsJSON;
 
-// Helper to load locale
-const loadLocale = async (): Promise<{
-  locale: LocaleModule;
-  rolesJSON: RolesJSON;
-  jinxesJSON: JinxesJSON;
-  fabledJSON: FabledJSON;
-}> => {
-  const { locale, rolesJSON, jinxesJSON, fabledJSON } = await import(
-    "../locale/loader"
-  );
-  return {
-    locale: locale as LocaleModule,
-    rolesJSON: rolesJSON as RolesJSON,
-    jinxesJSON: jinxesJSON as JinxesJSON,
-    fabledJSON: fabledJSON as FabledJSON,
-  };
-};
+import { useLocaleStore } from "./useLocaleStore";
 
 const defaultEdition = (): Edition =>
   editionJSON.official[0] ?? {
@@ -42,6 +23,8 @@ const defaultEdition = (): Edition =>
     roles: [],
   };
 
+// ... (imports)
+
 export const useGrimoireStore = defineStore("grimoire", {
   state: (): GrimoireState & {
     edition?: Edition | undefined;
@@ -50,7 +33,7 @@ export const useGrimoireStore = defineStore("grimoire", {
     othertravelers: Map<string, Role>;
     fabled: Map<string, Role>;
     jinxes: Map<string, Map<string, string>>;
-    locale: LocaleModule;
+    // locale removed
     rolesJSONbyId: Map<string, Role>;
     alternateRoleMap: Map<string, string>;
     modals: Modals;
@@ -89,7 +72,7 @@ export const useGrimoireStore = defineStore("grimoire", {
     othertravelers: new Map(),
     fabled: new Map(),
     jinxes: new Map(),
-    locale: { default: {} },
+    // locale removed
     rolesJSONbyId: new Map(),
     alternateRoleMap: new Map(),
     modals: {
@@ -107,41 +90,13 @@ export const useGrimoireStore = defineStore("grimoire", {
   }),
 
   getters: {
-    t: (state) => (key: string) => {
-      if (!key || typeof key !== "string") return key;
-
-      const keys = key.split(".");
-
-      // Helper function to traverse nested object
-      const traverse = (obj: Record<string, unknown>, keyPath: string[]) => {
-        let current: unknown = obj;
-        for (const k of keyPath) {
-          if (
-            current &&
-            typeof current === "object" &&
-            !Array.isArray(current) &&
-            k in (current as Record<string, unknown>)
-          ) {
-            current = (current as Record<string, unknown>)[k];
-          } else {
-            return null;
-          }
-        }
-        return current as string | null;
-      };
-
-      // First try the current locale
-      let result = traverse(state.locale.default, keys);
-
-      // If not found, try the master locale (English) - we might need to load this differently or assume it's available
-      // For now, we'll just return the key if not found in current locale,
-      // or we could load master locale in state as well.
-      // Assuming masterLocale is loaded or we fallback to key.
-
-      return result !== null ? result : key;
+    t: () => {
+      const localeStore = useLocaleStore();
+      return localeStore.t;
     },
 
     customRolesStripped: (state) => {
+      // ... (keep existing logic)
       const customRoles: Array<Record<string, unknown> | { id: string }> = [];
       const customRoleBase: Role = {
         id: "",
@@ -191,8 +146,12 @@ export const useGrimoireStore = defineStore("grimoire", {
 
   actions: {
     async initialize() {
-      const { locale, rolesJSON, jinxesJSON, fabledJSON } = await loadLocale();
-      this.locale = locale;
+      const localeStore = useLocaleStore();
+      await localeStore.initialize();
+
+      const rolesJSON = localeStore.rolesJSON;
+      const jinxesJSON = localeStore.jinxesJSON;
+      const fabledJSON = localeStore.fabledJSON;
 
       const clean = (id: string) => id.toLocaleLowerCase().replace(/[^a-z0-9]/g, "");
 
@@ -485,6 +444,72 @@ export const useGrimoireStore = defineStore("grimoire", {
           )
           .map((role) => [role.id, role] as const)
       );
-    }
+    },
+
+    getGameComposition(playerCount: number): GameComposition {
+      playerCount = Math.max(playerCount, 5);
+      let townsfolk = 0;
+      let outsider = 0;
+      let minion = 0;
+      let demon = 1;
+
+      if (playerCount >= 7) {
+        outsider = (playerCount - 7) % 3;
+        minion = 1 + Math.floor((playerCount - 7) / 3);
+      } else {
+        minion = 1;
+        outsider = playerCount % 2 ? 1 : 0;
+      }
+      townsfolk = playerCount - demon - minion - outsider;
+
+      return {
+        townsfolk,
+        outsider,
+        minion,
+        demon
+      };
+    },
   },
+  persist: {
+    paths: [
+      "background",
+      "isMuted",
+      "isStatic",
+      "isImageOptIn",
+      "isStreamerMode",
+      "isNightOrder",
+      "zoom",
+      "timerDurations",
+      "edition",
+      "roles",
+      "fabled",
+      "othertravelers",
+      "isPublic",
+    ],
+    serializer: {
+      serialize: (state: GrimoireState) => {
+        const s = state;
+        return JSON.stringify({
+          ...s,
+          roles: Array.from(s.roles.entries()),
+          fabled: Array.from(s.fabled.entries()),
+          othertravelers: Array.from(s.othertravelers.entries()),
+        });
+      },
+      deserialize: (value: string) => {
+        const state = JSON.parse(value);
+        return {
+          ...state,
+          roles: new Map(state.roles),
+          fabled: new Map(state.fabled),
+          othertravelers: new Map(state.othertravelers),
+        };
+      },
+    },
+    afterRestore: (ctx: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+      if (ctx.store.isPublic) localStorage.removeItem("isGrimoire");
+      else localStorage.setItem("isGrimoire", "1");
+      document.title = `Blood on the Clocktower ${ctx.store.isPublic ? "Town Square" : "Grimoire"}`;
+    }
+  } as any,// eslint-disable-line @typescript-eslint/no-explicit-any
 });

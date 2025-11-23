@@ -16,18 +16,18 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { Modal, RoleIcon } from '@/components';
-import { useRolePath, useTranslation } from '@/composables';
-import { useGrimoireStore, usePlayersStore, SPECIAL_REMINDER_ROLES } from "@/stores";
-import type { Reminder, Role, Player, Modals } from "@/types";
+import { getRoleImage } from '@/services';
+import { useGrimoireStore, useLocaleStore, usePlayersStore, SPECIAL_REMINDER_ROLES } from "@/stores";
+import type { Player, Modals, Reminder, Role } from "@/types";
 
-const { t } = useTranslation();
-const { rolePath } = useRolePath();
+const locale = useLocaleStore();
+const t = locale.t;
 
 const mapReminder =
   (role: Role) =>
     (name: string): Reminder => ({
       role: role,
-      image: role.image || rolePath(role),
+      image: role.image || getRoleImage(role),
       imageAlt: role.imageAlt || '',
       name,
       id: `${role.id}-${name}`,

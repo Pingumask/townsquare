@@ -16,4 +16,5 @@ export const usePlayersMenuStore = defineStore("playersMenu", {
       this[name] = !this[name];
     },
   },
+  persist: true,
 });

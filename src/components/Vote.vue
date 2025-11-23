@@ -5,9 +5,6 @@
       <span v-if="nominator" class="nominator" :style="nominatorStyle" />
     </div>
     <div class="overlay">
-      <audio preload="auto">
-        <source src="../assets/sounds/countdown.mp3">
-      </audio>
       <em class="blue">{{ nominatorDisplayName }}</em>
       {{ voteAction }}
       <em v-if="!shouldHideNominee">
@@ -100,6 +97,7 @@
       </div>
       <Countdown v-if="grimoire.timer.duration" :timer-name="grimoire.timer.name"
         :timer-duration="grimoire.timer.duration" />
+      <Jukebox />
     </div>
     <div v-if="session.isVoteInProgress && !session.lockedVote" class="countdown">
       <span>3</span>
@@ -115,20 +113,19 @@
 
 <script setup lang="ts">
 import { computed, onUnmounted, ref } from "vue";
-import { Countdown } from '@/components';
-import { useTranslation, isActiveNomination } from '@/composables';
+import { Countdown, Jukebox } from '@/components';
+import { isActiveNomination } from '@/services';
+import { useGrimoireStore, useLocaleStore, usePlayersStore, useSessionStore } from "@/stores";
 import type { Player } from '@/types';
-import { usePlayersStore, useSessionStore, useGrimoireStore } from "@/stores";
 
-const { t } = useTranslation();
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
 const playersStore = usePlayersStore();
-const sessionStore = useSessionStore();
-const grimoireStore = useGrimoireStore();
+const session = useSessionStore();
 
-const players = computed(() => playersStore.players);
-const session = sessionStore;
-const grimoire = grimoireStore;
 const alive = computed(() => playersStore.alive);
+const players = computed(() => playersStore.players);
 
 const voteTimer = ref<ReturnType<typeof setInterval> | null>(null);
 
@@ -341,26 +338,26 @@ const voters = computed(() => {
 });
 
 const countdown = () => {
-  sessionStore.lockVote(0);
-  sessionStore.setVoteInProgress(true);
+  session.lockVote(0);
+  session.setVoteInProgress(true);
   voteTimer.value = setInterval(() => {
     start();
   }, 4000);
 };
 
 const start = () => {
-  sessionStore.lockVote(1);
-  sessionStore.setVoteInProgress(true);
+  session.lockVote(1);
+  session.setVoteInProgress(true);
   if (voteTimer.value) {
     clearInterval(voteTimer.value);
   }
   voteTimer.value = setInterval(() => {
-    sessionStore.lockVote();
+    session.lockVote();
     if (session.lockedVote > players.value.length) {
       if (voteTimer.value) {
         clearInterval(voteTimer.value);
       }
-      sessionStore.setVoteInProgress(false);
+      session.setVoteInProgress(false);
     }
   }, session.votingSpeed);
 };
@@ -371,12 +368,12 @@ const pause = () => {
     voteTimer.value = null;
   } else {
     voteTimer.value = setInterval(() => {
-      sessionStore.lockVote();
+      session.lockVote();
       if (session.lockedVote > players.value.length) {
         if (voteTimer.value) {
           clearInterval(voteTimer.value);
         }
-        sessionStore.setVoteInProgress(false);
+        session.setVoteInProgress(false);
       }
     }, session.votingSpeed);
   }
@@ -387,15 +384,15 @@ const stop = () => {
     clearInterval(voteTimer.value);
   }
   voteTimer.value = null;
-  sessionStore.setVoteInProgress(false);
-  sessionStore.lockVote(0);
+  session.setVoteInProgress(false);
+  session.lockVote(0);
 };
 
 const finish = () => {
   if (voteTimer.value) {
     clearInterval(voteTimer.value);
   }
-  sessionStore.addHistory({
+  session.addHistory({
     players: players.value,
     isOrganVoteMode: session.isSecretVote,
     localeTexts: {
@@ -403,14 +400,14 @@ const finish = () => {
       execution: t('modal.voteHistory.execution')
     }
   });
-  sessionStore.setNomination(null);
+  session.setNomination(null);
 };
 
 const vote = (vote: boolean): boolean => {
   if (!canVote.value) return false;
   const index = players.value.findIndex((p: Player) => p.id === session.playerId);
   if (index >= 0 && !!session.votes[index] !== vote) {
-    sessionStore.voteSync([index, vote]);
+    session.voteSync([index, vote]);
     return true;
   }
   return false;
@@ -419,16 +416,16 @@ const vote = (vote: boolean): boolean => {
 const setVotingSpeed = (diff: number) => {
   const speed = Math.round(session.votingSpeed + diff);
   if (speed >= 0) {
-    sessionStore.setVotingSpeed(speed);
+    session.setVotingSpeed(speed);
   }
 };
 
 const setMarked = () => {
-  sessionStore.setMarkedPlayer(session.nomination?.nominee as number);
+  session.setMarkedPlayer(session.nomination?.nominee as number);
 };
 
 const removeMarked = () => {
-  sessionStore.setMarkedPlayer(-1);
+  session.setMarkedPlayer(-1);
 };
 
 onUnmounted(() => {

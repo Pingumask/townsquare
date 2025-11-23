@@ -1,10 +1,5 @@
 <template>
   <ul class="info">
-    <audio preload="auto">
-      <source src="../assets/sounds/countdown.mp3">
-      <source src="../assets/sounds/rooster.mp3">
-      <source src="../assets/sounds/gavel.mp3">
-    </audio>
     <li v-if="edition" class="edition" :class="['edition-' + edition.id]" :style="{
       backgroundImage: 'url(' + logoUrl + ')',
     }" />
@@ -57,26 +52,6 @@
       <font-awesome-icon :icon="['fas', 'cloud-moon']" />
       {{ t('towninfo.nightPhase') }}
     </li>
-    <li v-if="grimoire.isRinging">
-      <audio :autoplay="!grimoire.isMuted" :muted="grimoire.isMuted">
-        <source src="../assets/sounds/countdown.mp3">
-      </audio>
-      <font-awesome-icon :icon="['fas', 'music']" />
-      <font-awesome-icon :icon="['fas', 'bell']" />
-      <font-awesome-icon :icon="['fas', 'music']" />
-    </li>
-    <li v-else-if="grimoire.isRooster">
-      <audio :autoplay="!grimoire.isMuted" :muted="grimoire.isMuted">
-        <source src="../assets/sounds/rooster.mp3">
-      </audio>
-      <img src="../assets/icons/dawn.png" alt="dawn" style="height: 2em">
-    </li>
-    <li v-if="grimoire.isGavel">
-      <audio :autoplay="!grimoire.isMuted" :muted="grimoire.isMuted">
-        <source src="../assets/sounds/gavel.mp3">
-      </audio>
-      <font-awesome-icon :icon="['fas', 'gavel']" />
-    </li>
     <li v-if="markedStoryteller" class="marked">
       <font-awesome-icon icon="skull" class="fa fa-skull" />
     </li>
@@ -84,25 +59,23 @@
       <Countdown v-if="grimoire.timer.duration" :timer-name="grimoire.timer.name"
         :timer-duration="grimoire.timer.duration" class="timer" />
     </li>
+    <Jukebox />
   </ul>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import gameJSON from '@/game.json';
-import { Countdown } from '@/components';
-import { useTranslation } from '@/composables';
+import { Countdown, Jukebox } from '@/components';
+import { useGrimoireStore, useLocaleStore, usePlayersStore, useSessionStore } from "@/stores";
 import type { Player } from '@/types';
-import { useGrimoireStore, useSessionStore, usePlayersStore } from "@/stores";
 
-const { t } = useTranslation();
-const grimoireStore = useGrimoireStore();
-const sessionStore = useSessionStore();
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
 const playersStore = usePlayersStore();
+const session = useSessionStore();
 
-const edition = computed(() => grimoireStore.edition);
-const grimoire = grimoireStore;
-const session = sessionStore;
+const edition = computed(() => grimoire.edition);
 const players = computed(() => playersStore.players);
 
 const markedStoryteller = computed(() => {
@@ -128,7 +101,7 @@ const teams = computed(() => {
     (player: Player) => player.isDead !== true && player.role.team !== 'traveler'
   ).length;
   return {
-    ...gameJSON[nontravelers - 5],
+    ...grimoire.getGameComposition(nontravelers),
     traveler: players.value.length - nontravelers,
     alive,
     aliveNT,

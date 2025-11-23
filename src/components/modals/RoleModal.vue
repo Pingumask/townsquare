@@ -28,21 +28,21 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { Modal, Token } from '@/components';
-import { useTranslation } from '@/composables';
-import { usePlayersStore, useSessionStore, useGrimoireStore } from "@/stores";
-import type { Role, Player } from '@/types';
+import { useGrimoireStore, useLocaleStore, usePlayersStore, useSessionStore } from "@/stores";
+import type { Player, Role } from '@/types';
 
-const { t } = useTranslation();
 const props = defineProps<{
   playerIndex: number;
 }>();
 
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
 const playersStore = usePlayersStore();
-const grimoireStore = useGrimoireStore();
-const sessionStore = useSessionStore();
+const session = useSessionStore();
 
-const tab = ref('editionRoles');
 const rolefilter = ref('');
+const tab = ref('editionRoles');
 
 const playerName = computed(() => {
   if (props.playerIndex >= 0 && playersStore.players.length > props.playerIndex) {
@@ -52,14 +52,10 @@ const playerName = computed(() => {
   return t('modal.role.bluff');
 });
 
-const grimoire = grimoireStore; // Direct access or storeToRefs if reactivity needed for properties not accessed via computed?
-// In template it uses grimoire.disableHotkeys = true.
-// grimoireStore is reactive, so this should work.
-
 const availableRoles = computed((): Role[] => {
   const availableRoles: Role[] = [];
   const players = playersStore.players;
-  grimoireStore.roles.forEach((role: Role) => {
+  grimoire.roles.forEach((role: Role) => {
     // don't show bluff roles that are already assigned to players
     if (
       (
@@ -91,11 +87,10 @@ const availableRoles = computed((): Role[] => {
   return availableRoles;
 });
 
-const modals = computed(() => grimoireStore.modals);
-const session = sessionStore;
+const modals = computed(() => grimoire.modals);
 const othertravelers = computed((): Role[] => {
   const available = [] as Role[];
-  grimoireStore.othertravelers.forEach((role: Role) => {
+  grimoire.othertravelers.forEach((role: Role) => {
     if (
       role.name?.toLowerCase().includes(rolefilter.value?.toLowerCase()) ||
       role.id?.toLowerCase().includes(rolefilter.value?.toLowerCase()) ||
@@ -117,7 +112,7 @@ const setRole = (role: Role) => {
       role,
     });
   } else {
-    if (sessionStore.isSpectator && role.team === 'traveler') return;
+    if (session.isSpectator && role.team === 'traveler') return;
     // assign to player
     const player = playersStore.players[props.playerIndex];
     if (!player) return;
@@ -128,12 +123,12 @@ const setRole = (role: Role) => {
     });
   }
   tab.value = 'editionRoles';
-  grimoireStore.toggleModal('role');
+  grimoire.toggleModal('role');
 };
 
 const close = () => {
   tab.value = 'editionRoles';
-  grimoireStore.toggleModal('role');
+  grimoire.toggleModal('role');
 };
 </script>
 

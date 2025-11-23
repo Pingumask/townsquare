@@ -16,20 +16,20 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useTranslation } from '@/composables';
 import { Modal, NightOrderTable } from '@/components';
-import { useGrimoireStore } from "@/stores";
+import { useGrimoireStore, useLocaleStore } from "@/stores";
 import type { Modals } from "@/types";
 
-const { t } = useTranslation();
-const grimoireStore = useGrimoireStore();
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
 
-const edition = computed(() => grimoireStore.edition);
-const modals = computed(() => grimoireStore.modals);
-const roles = computed(() => grimoireStore.roles);
+const edition = computed(() => grimoire.edition);
+const modals = computed(() => grimoire.modals);
+const roles = computed(() => grimoire.roles);
 
 const toggleModal = (modal: keyof Modals) => {
-  grimoireStore.toggleModal(modal);
+  grimoire.toggleModal(modal);
 };
 </script>
 

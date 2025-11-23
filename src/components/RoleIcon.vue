@@ -8,7 +8,7 @@
 <script setup lang="ts">
 import InlineSvg from 'vue-inline-svg';
 import { computed } from 'vue';
-import { useRolePath } from '@/composables';
+import { getRoleImage } from '@/services/assets';
 import type { Role, Player } from '@/types';
 
 const props = defineProps<{
@@ -19,7 +19,7 @@ const props = defineProps<{
 const role = computed(() => props.role);
 const player = computed(() => props.player);
 
-const { rolePath } = useRolePath();
+const rolePath = (role: Role) => getRoleImage(role);
 </script>
 
 <style scoped lang="scss">

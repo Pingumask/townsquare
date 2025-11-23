@@ -6,8 +6,8 @@ import type {
   Nomination,
   GamePhase,
 } from "@/types";
-import { isActiveNomination, isTravelerExile } from "@/composables";
-import { usePlayersStore, useGrimoireStore } from "@/stores";
+import { isActiveNomination, isTravelerExile } from "@/services/nomination";
+import { usePlayersStore, useGrimoireStore, useLocaleStore } from "@/stores";
 
 export const useSessionStore = defineStore("session", {
   state: (): SessionState => ({
@@ -68,6 +68,7 @@ export const useSessionStore = defineStore("session", {
       this.isVoteInProgress = false;
     },
     setAllowSelfNaming(allowSelfNaming: boolean) {
+      if (this.isSpectator) return;
       this.allowSelfNaming = allowSelfNaming;
     },
     setVoteHistoryAllowed(isVoteHistoryAllowed: boolean) {
@@ -91,7 +92,6 @@ export const useSessionStore = defineStore("session", {
         .replace(/[^0-9a-z]/g, "")
         .substring(0, 10);
     },
-
     updateNomination({
       nomination,
       votes,
@@ -111,13 +111,14 @@ export const useSessionStore = defineStore("session", {
       this.lockedVote = lockedVote || 0;
       this.isVoteInProgress = isVoteInProgress || false;
     },
-
     addHistory(payload: {
       players: Player[];
       isOrganVoteMode?: boolean;
       localeTexts?: { exile: string; execution: string };
     }) {
       const { players, isOrganVoteMode = false, localeTexts } = payload;
+      const localeStore = useLocaleStore();
+      const t = localeStore.t;
 
       if (!this.isVoteHistoryAllowed && this.isSpectator) return;
       if (
@@ -130,8 +131,7 @@ export const useSessionStore = defineStore("session", {
       const isExile = isTravelerExile(nomination, players);
       const organGrinder = isOrganVoteMode && !isExile;
 
-      // Default locale texts if not provided
-      const defaultTexts = { exile: "Exile", execution: "Execution" };
+      const defaultTexts = { exile: t("modal.voteHistory.exile"), execution: t("modal.voteHistory.execution") };
       const texts = localeTexts || defaultTexts;
 
       const entry: VoteHistoryEntry = {
@@ -193,7 +193,8 @@ export const useSessionStore = defineStore("session", {
     hostSession() {
       if (this.sessionId) return;
       const grimoireStore = useGrimoireStore();
-      const t = grimoireStore.t;
+      const localeStore = useLocaleStore();
+      const t = localeStore.t;
       const sessionId = prompt(
         t("prompt.createSession"),
         String(Math.round(Math.random() * 10000))
@@ -213,7 +214,8 @@ export const useSessionStore = defineStore("session", {
     joinSession() {
       if (this.sessionId) return this.leaveSession();
       const grimoireStore = useGrimoireStore();
-      const t = grimoireStore.t;
+      const localeStore = useLocaleStore();
+      const t = localeStore.t;
       let sessionId = prompt(t("prompt.joinSession"));
       if (sessionId && sessionId.match(/^https?:\/\//i)) {
         sessionId = sessionId.split("#").pop() || null;
@@ -227,8 +229,8 @@ export const useSessionStore = defineStore("session", {
     },
 
     leaveSession() {
-      const grimoireStore = useGrimoireStore();
-      const t = grimoireStore.t;
+      const localeStore = useLocaleStore();
+      const t = localeStore.t;
       if (confirm(t("prompt.leaveSession"))) {
         this.setSpectator(false);
         this.setGamePhase("pregame");
@@ -244,9 +246,9 @@ export const useSessionStore = defineStore("session", {
 
     distributeRolesAction() {
       if (this.isSpectator) return;
-      const grimoireStore = useGrimoireStore();
       const playersStore = usePlayersStore();
-      const t = grimoireStore.t;
+      const localeStore = useLocaleStore();
+      const t = localeStore.t;
       const popup = t("prompt.sendRoles");
       if (!confirm(popup)) return;
 
@@ -281,6 +283,8 @@ export const useSessionStore = defineStore("session", {
         this.setGamePhase("firstNight");
       } else if (this.gamePhase === "firstNight" || this.gamePhase === "otherNight") {
         this.setGamePhase("day");
+        const grimoire = useGrimoireStore();
+        grimoire.toggleRooster(true);
       } else if (this.gamePhase === "day") {
         this.setGamePhase("otherNight");
       }

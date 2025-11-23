@@ -15,13 +15,11 @@
 </template>
 
 <script setup lang="ts">
-import type { Role, Player, Edition, Modals } from '@/types';
-import { ref, computed } from 'vue';
+import { computed, ref } from 'vue';
 import { Modal } from '@/components';
-import { useTranslation } from '@/composables';
-import { useGrimoireStore, usePlayersStore, useSessionStore } from "@/stores";
+import { useGrimoireStore, useLocaleStore, usePlayersStore, useSessionStore } from "@/stores";
+import type { Edition, Player, Modals, Role } from '@/types';
 
-const { t } = useTranslation();
 // Types for game state data
 interface GameStateData {
   bluffs?: string[];
@@ -31,16 +29,18 @@ interface GameStateData {
   players?: Partial<Player>[];
 }
 
-const grimoireStore = useGrimoireStore();
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
 const playersStore = usePlayersStore();
 const sessionStore = useSessionStore();
 const input = ref("");
 
-const modals = computed(() => grimoireStore.modals);
+const modals = computed(() => grimoire.modals);
 const players = computed(() => playersStore.players);
 const bluffs = computed(() => playersStore.bluffs);
 const fabled = computed(() => playersStore.fabled);
-const edition = computed(() => grimoireStore.edition);
+const edition = computed(() => grimoire.edition);
 const session = sessionStore;
 
 const gamestate = computed(() => {
@@ -51,7 +51,7 @@ const gamestate = computed(() => {
       : edition.value,
     roles: edition.value?.isOfficial
       ? ""
-      : grimoireStore.customRolesStripped,
+      : grimoire.customRolesStripped,
     fabled: fabled.value.map((fabled: Role) =>
       fabled.isCustom ? fabled : { id: fabled.id },
     ),
@@ -72,13 +72,13 @@ const load = () => {
     const data: GameStateData = JSON.parse(input.value || gamestate.value);
     const { bluffs, edition, roles, fabled, players } = data;
 
-    if (roles) grimoireStore.setCustomRoles(roles as (Role | Record<string, unknown>)[]);
-    if (edition) grimoireStore.setEdition(edition as Edition);
+    if (roles) grimoire.setCustomRoles(roles as (Role | Record<string, unknown>)[]);
+    if (edition) grimoire.setEdition(edition as Edition);
     if (bluffs && bluffs.length) {
       bluffs.forEach((role: string, index: number) => {
         playersStore.setBluff({
           index,
-          role: grimoireStore.roles.get(role) || {} as Role,
+          role: grimoire.roles.get(role) || {} as Role,
         });
       });
     }
@@ -86,8 +86,8 @@ const load = () => {
       playersStore.setFabled({
         fabled: fabled.map((f: string | Role) =>
           typeof f === 'string'
-            ? grimoireStore.fabled.get(f) || {} as Role
-            : grimoireStore.fabled.get(f.id) || f
+            ? grimoire.fabled.get(f) || {} as Role
+            : grimoire.fabled.get(f.id) || f
         ),
       });
     }
@@ -95,7 +95,7 @@ const load = () => {
       playersStore.set(players.map((player: Partial<Player>) => ({
         ...player,
         role: typeof player.role === 'string'
-          ? grimoireStore.roles.get(player.role) || grimoireStore.rolesJSONbyId.get(player.role) || {} as Role
+          ? grimoire.roles.get(player.role) || grimoire.rolesJSONbyId.get(player.role) || {} as Role
           : player.role || {} as Role,
       })) as Player[]);
     }
@@ -106,7 +106,7 @@ const load = () => {
 };
 
 const toggleModal = (modal: keyof Modals) => {
-  grimoireStore.toggleModal(modal);
+  grimoire.toggleModal(modal);
 };
 </script>
 

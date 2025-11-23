@@ -81,10 +81,10 @@ function keyup({ key, ctrlKey, metaKey }: KeyboardEvent) {
       grimoireStore.toggleGrimoire();
       break;
     case "a":
-      playersStore.addPlayerAction();
+      playersStore.addPlayer();
       break;
     case "p":
-      playersStore.addPlayersAction();
+      playersStore.addPlayers();
       break;
     case "h":
       sessionStore.hostSession();
@@ -161,6 +161,7 @@ body {
   padding: 0;
   margin: 0;
   overflow: hidden;
+  font-size: clamp(16px, calc(-1.1429rem + 4.2857vw), 28px);
 }
 
 * {
@@ -259,7 +260,7 @@ ul {
 button,
 .button {
   font-family: "Roboto Condensed", sans-serif;
-  font-size: 1.2rem;
+  font-size: clamp(16px, calc(-1.1429rem + 4.2857vw), 28px);
   padding: 0;
   border: solid 0.125em transparent;
   border-radius: 15px;

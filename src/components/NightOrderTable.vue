@@ -40,26 +40,26 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useTranslation } from '@/composables';
+
 import { RoleIcon } from '@/components';
-import type { NightOrderRole, Role, Player } from "@/types";
-import { useGrimoireStore, useSessionStore, usePlayersStore } from "@/stores";
+import type { NightOrderRole, Player, Role } from "@/types";
+import { useGrimoireStore, useLocaleStore, usePlayersStore, useSessionStore } from "@/stores";
 
 interface Props {
   nightType: 'firstNight' | 'otherNight';
 }
 
 const props = defineProps<Props>();
-const { t } = useTranslation();
-const grimoireStore = useGrimoireStore();
-const sessionStore = useSessionStore();
-const playersStore = usePlayersStore();
 
-const edition = computed(() => grimoireStore.edition);
-const session = sessionStore;
-const players = computed(() => playersStore.players);
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
+const playersStore = usePlayersStore();
+const session = useSessionStore();
+
+const edition = computed(() => grimoire.edition);
 const fabled = computed(() => playersStore.fabled);
-const rolesStore = computed(() => grimoireStore.roles);
+const players = computed(() => playersStore.players);
 
 const roles = computed(() => {
   function nightIndex(role: Role, officialEdition: boolean): number {
@@ -136,7 +136,7 @@ const roles = computed(() => {
   });
 
   // Add regular roles (non-travelers)
-  rolesStore.value.forEach((role: Role) => {
+  grimoire.roles.forEach((role: Role) => {
     const hasNightAction = props.nightType === 'firstNight' ? role.firstNight : role.otherNight;
     if (hasNightAction && role.team !== "traveler") {
       const roleWithPlayers: NightOrderRole = {

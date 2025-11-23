@@ -3,7 +3,7 @@
     <img src="/apple-icon.png" alt="" class="logo">
     <div>
       {{ t('intro.header') }}
-      <button @click="toggleMenu">
+      <button @click="grimoire.toggleMenu()">
         <font-awesome-icon icon="cog" class="fa fa-cog" /> {{ t('intro.menu') }}
       </button>
       {{ t('intro.body') }}
@@ -17,15 +17,11 @@
 </template>
 
 <script setup lang="ts">
-import { useGrimoireStore } from '@/stores';
-import { useTranslation } from '@/composables';
+import { useGrimoireStore, useLocaleStore } from '@/stores';
 
-const grimoireStore = useGrimoireStore();
-const { t } = useTranslation();
-
-const toggleMenu = (): void => {
-  grimoireStore.toggleMenu();
-};
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
 </script>
 
 <style scoped lang="scss">

@@ -90,27 +90,26 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { Modal } from '@/components';
-import { useTranslation } from '@/composables';
-import { useGrimoireStore, useSessionStore } from "@/stores";
+import { useGrimoireStore, useSessionStore, useLocaleStore } from "@/stores";
 import type { Modals } from "@/types";
 
-const { t } = useTranslation();
-const grimoireStore = useGrimoireStore();
-const sessionStore = useSessionStore();
+const locale = useLocaleStore();
+const t = locale.t;
+const grimoire = useGrimoireStore();
+const session = useSessionStore();
 
-const session = sessionStore;
-const modals = computed(() => grimoireStore.modals);
+const modals = computed(() => grimoire.modals);
 
 const clearVoteHistory = () => {
-  sessionStore.clearVoteHistory();
+  session.clearVoteHistory();
 };
 
 const setRecordVoteHistory = () => {
-  sessionStore.setVoteHistoryAllowed(!session.isVoteHistoryAllowed);
+  session.setVoteHistoryAllowed(!session.isVoteHistoryAllowed);
 };
 
 const toggleModal = (modal: keyof Modals) => {
-  grimoireStore.toggleModal(modal);
+  grimoire.toggleModal(modal);
 };
 </script>
 

@@ -16,29 +16,29 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { usePlayersStore, useSessionStore } from "@/stores";
-import { useTranslation } from "@/composables";
 import { Token } from "@/components";
+import { usePlayersStore, useSessionStore, useLocaleStore } from "@/stores";
 
 const emit = defineEmits(["openRoleModal"]);
 
+const locale = useLocaleStore();
+const t = locale.t;
 const playersStore = usePlayersStore();
 const sessionStore = useSessionStore();
-const { t } = useTranslation();
 
-const isBluffsOpen = ref(true);
 const bluffSize = ref(3);
+const isBluffsOpen = ref(true);
 
-const players = computed(() => playersStore.players);
 const bluffs = computed(() => playersStore.bluffs);
 const isSpectator = computed(() => sessionStore.isSpectator);
-
-const toggleBluffs = () => {
-  isBluffsOpen.value = !isBluffsOpen.value;
-};
+const players = computed(() => playersStore.players);
 
 const openRoleModal = (index: number) => {
   emit("openRoleModal", index);
+};
+
+const toggleBluffs = () => {
+  isBluffsOpen.value = !isBluffsOpen.value;
 };
 </script>
 
@@ -78,17 +78,15 @@ const openRoleModal = (index: number) => {
 }
 
 .bluffs h3 {
-  margin: 5px 1vh 0;
   display: flex;
   align-items: center;
   align-content: center;
   justify-content: center;
-  font-size: 1.2em;
+  font-size: 1.17em;
 }
 
 .bluffs h3 .fa {
   cursor: pointer;
-  font-size: 0.8em;
 }
 
 .bluffs h3 .fa-times-circle {
@@ -107,7 +105,6 @@ const openRoleModal = (index: number) => {
 
 .bluffs.closed h3 .fa-plus-circle {
   display: block;
-  font-size: 1.5em;
 }
 
 .bluffs ul {

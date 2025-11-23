@@ -52,21 +52,19 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { Modal } from '@/components';
-import { useTranslation } from '@/composables';
-import type { Role, Player, JinxInfo, Modals } from '@/types';
-import { useGrimoireStore, usePlayersStore } from "@/stores";
+import { Modal, RoleIcon } from '@/components';
+import { useGrimoireStore, useLocaleStore, usePlayersStore } from "@/stores";
+import type { JinxInfo, Modals, Player, Role } from '@/types';
 
-import RoleIcon from '../RoleIcon.vue';
-
-const { t } = useTranslation();
-const grimoireStore = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
+const grimoire = useGrimoireStore();
 const playersStore = usePlayersStore();
 
-const roles = computed(() => grimoireStore.roles);
-const modals = computed(() => grimoireStore.modals);
-const edition = computed(() => grimoireStore.edition);
-const jinxes = computed(() => grimoireStore.jinxes);
+const roles = computed(() => grimoire.roles);
+const modals = computed(() => grimoire.modals);
+const edition = computed(() => grimoire.edition);
+const jinxes = computed(() => grimoire.jinxes);
 const players = computed(() => playersStore.players);
 
 /**
@@ -118,7 +116,7 @@ const playersByRole = computed(() => {
 });
 
 const toggleModal = (modalName: keyof Modals) => {
-  grimoireStore.toggleModal(modalName);
+  grimoire.toggleModal(modalName);
 };
 </script>
 
