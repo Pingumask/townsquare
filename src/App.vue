@@ -34,8 +34,8 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useStore } from "vuex";
 import app from "../package.json";
+import { useGrimoireStore, useSessionStore, usePlayersStore } from "@/stores";
 import {
   Gradients,
   Intro,
@@ -53,79 +53,73 @@ import {
   VoteHistoryModal,
 } from "@/components";
 
-const store = useStore();
+const grimoireStore = useGrimoireStore();
+const sessionStore = useSessionStore();
+const playersStore = usePlayersStore();
 const version = app.version;
 
-const grimoire = computed(() => store.state.grimoire);
-const session = computed(() => store.state.session);
-const edition = computed(() => store.state.edition);
-const players = computed(() => store.state.players.players);
+const grimoire = grimoireStore;
+const session = sessionStore;
+const edition = computed(() => grimoireStore.edition);
+const players = computed(() => playersStore.players);
 
 const background = computed(() => {
-  if (grimoire.value.isStreamerMode) {
+  if (grimoire.isStreamerMode) {
     return "none";
   }
-  return grimoire.value.background || edition.value.background || "none";
+  return grimoire.background || edition.value?.background || "none";
 });
 
 const backgroundColor = computed(() => {
-  return grimoire.value.isStreamerMode ? "#000000" : "transparent";
+  return grimoire.isStreamerMode ? "#000000" : "transparent";
 });
 
 function keyup({ key, ctrlKey, metaKey }: KeyboardEvent) {
-  if (ctrlKey || metaKey || grimoire.value.disableHotkeys) return;
+  if (ctrlKey || metaKey || grimoire.disableHotkeys) return;
   switch (key.toLocaleLowerCase()) {
     case "g":
-      store.commit("toggleGrimoire");
+      grimoireStore.toggleGrimoire();
       break;
     case "a":
-      store.dispatch("players/addPlayer");
+      playersStore.addPlayer();
       break;
     case "p":
-      store.dispatch("players/addPlayers");
+      playersStore.addPlayers();
       break;
     case "h":
-      store.dispatch("session/hostSession");
+      sessionStore.hostSession();
       break;
     case "j":
-      store.dispatch("session/joinSession");
+      sessionStore.joinSession();
       break;
     case "r":
-      store.commit("toggleModal", "reference");
+      grimoireStore.toggleModal("reference");
       break;
     case "n":
-      store.commit("toggleModal", "nightOrder");
+      grimoireStore.toggleModal("nightOrder");
       break;
     case "e":
-      if (session.value.isSpectator) return;
-      store.commit("toggleModal", "edition");
+      if (session.isSpectator) return;
+      grimoireStore.toggleModal("edition");
       break;
     case "c":
-      if (session.value.isSpectator) return;
-      store.commit("toggleModal", "roles");
+      if (session.isSpectator) return;
+      grimoireStore.toggleModal("roles");
       break;
     case "v":
-      if (session.value.voteHistory.length || !session.value.isSpectator) {
-        store.commit("toggleModal", "voteHistory");
+      if (session.voteHistory.length || !session.isSpectator) {
+        grimoireStore.toggleModal("voteHistory");
       }
       break;
     case "s":
-      if (session.value.isSpectator) return;
-      if (session.value.gamePhase === "pregame") {
-        store.commit("session/setGamePhase", "firstNight");
-      } else if (session.value.gamePhase === "firstNight" || session.value.gamePhase === "otherNight") {
-        store.commit("session/setGamePhase", "day");
-      } else if (session.value.gamePhase === "day") {
-        store.commit("session/setGamePhase", "otherNight");
-      }
-      store.dispatch("toggleNight");
+      sessionStore.toggleNight();
       break;
     case "b":
-      if (session.value.isSpectator) return;
-      store.dispatch("toggleRinging");
+      if (session.isSpectator) return;
+      grimoireStore.toggleRinging();
       break;
     case "escape":
-      store.commit("toggleModal");
+      grimoireStore.toggleModal();
   }
 }
 </script>
@@ -167,6 +161,7 @@ body {
   padding: 0;
   margin: 0;
   overflow: hidden;
+  font-size: clamp(16px, calc(-1.1429rem + 4.2857vw), 28px);
 }
 
 * {
@@ -265,7 +260,7 @@ ul {
 button,
 .button {
   font-family: "Roboto Condensed", sans-serif;
-  font-size: 1.2rem;
+  font-size: clamp(16px, calc(-1.1429rem + 4.2857vw), 28px);
   padding: 0;
   border: solid 0.125em transparent;
   border-radius: 15px;

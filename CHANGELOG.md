@@ -9,6 +9,19 @@
 
 - Technical :
 
+# 6.0.0
+- Features:
+
+- Bugfixes:
+  - Soundboard buttons now work during nominations
+  - Toggling gamephase to day now triggers the Rooster sound correctly when done via the "s" hotkey
+- Localization :
+
+- Technical:
+  - Replaced Vuex with Pinia stores
+  - Added persistence plugin to Pinia for much simpler persistence (except for session where loading order matters too much)
+  - Lots of code refactoring (generally simpler and more maintainable)
+  - Updated dependencies
 
 ## 5.7.0
 - Features:

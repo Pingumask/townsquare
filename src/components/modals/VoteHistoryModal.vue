@@ -89,26 +89,27 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useStore } from "vuex";
 import { Modal } from '@/components';
-import { useTranslation } from '@/composables';
+import { useGrimoireStore, useSessionStore, useLocaleStore } from "@/stores";
+import type { Modals } from "@/types";
 
-const { t } = useTranslation();
-const store = useStore();
+const locale = useLocaleStore();
+const t = locale.t;
+const grimoire = useGrimoireStore();
+const session = useSessionStore();
 
-const session = computed(() => store.state.session);
-const modals = computed(() => store.state.modals);
+const modals = computed(() => grimoire.modals);
 
 const clearVoteHistory = () => {
-  store.commit("session/clearVoteHistory");
+  session.clearVoteHistory();
 };
 
 const setRecordVoteHistory = () => {
-  store.commit("session/setVoteHistoryAllowed", !session.value.isVoteHistoryAllowed);
+  session.setVoteHistoryAllowed(!session.isVoteHistoryAllowed);
 };
 
-const toggleModal = (modalName: string) => {
-  store.commit("toggleModal", modalName);
+const toggleModal = (modal: keyof Modals) => {
+  grimoire.toggleModal(modal);
 };
 </script>
 

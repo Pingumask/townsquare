@@ -10,7 +10,7 @@
     <ul v-for="(teamRoles, team) in roleSelection" :key="team" class="tokens">
       <li class="count" :class="[team]">
         {{ getTeamRoleCount(teamRoles) }} /
-        {{ game[nontravelers - 5]?.[team as keyof typeof game[0]] }}
+        {{ composition?.[team as keyof GameComposition] }}
       </li>
       <li v-for="role in teamRoles" :key="role.id" :class="[role.team, role.selected ? 'selected' : '']"
         @click="role.selected = role.selected ? 0 : 1">
@@ -59,29 +59,31 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue';
-import { useStore } from 'vuex';
-import gameJSON from "@/game.json";
 import { Modal, Token } from '@/components';
-import { useTranslation } from '@/composables';
-import type { GameComposition, Role, RoleGroup, SelectableRole, Player } from "@/types";
+import { useGrimoireStore, useLocaleStore, usePlayersStore } from "@/stores";
+import type { GameComposition, Modals, Player, Role, RoleGroup, SelectableRole } from "@/types";
 
-const { t } = useTranslation();
+const locale = useLocaleStore();
+const t = locale.t;
+
 const randomElement = <T>(arr: T[]): T => {
   if (arr.length === 0) throw new Error('Cannot select from empty array');
   return arr[Math.floor(Math.random() * arr.length)]!;
 };
 
-const store = useStore();
+const grimoire = useGrimoireStore();
+const playersStore = usePlayersStore();
 
-const roleSelection = ref<RoleGroup>({});
-const game = ref<GameComposition[]>(gameJSON);
 const allowMultiple = ref(false);
+const roleSelection = ref<RoleGroup>({});
 
-const roles = computed(() => store.state.roles);
-const modals = computed(() => store.state.modals);
-const players = computed(() => store.state.players.players);
-const fabled = computed(() => store.state.players.fabled);
-const nontravelers = computed(() => store.getters['players/nontravelers']);
+const fabled = computed(() => playersStore.fabled);
+const modals = computed(() => grimoire.modals);
+const nontravelers = computed(() => playersStore.nontravelers);
+const players = computed(() => playersStore.players);
+const roles = computed(() => grimoire.roles);
+
+const composition = computed(() => grimoire.getGameComposition(nontravelers.value));
 
 const selectedRoles = computed(() => {
   return Object.values(roleSelection.value)
@@ -120,12 +122,10 @@ const selectRandomRoles = () => {
     roleSelection.value[role.team || 'unknown']?.push(selectableRole);
   });
   delete roleSelection.value["traveler"];
-  const playerCount = Math.max(5, nontravelers.value);
-  const composition = game.value[playerCount - 5];
-  if (composition) {
-    Object.keys(composition).forEach((team: string) => {
+  if (composition.value) {
+    Object.keys(composition.value).forEach((team: string) => {
       const teamKey = team as keyof GameComposition;
-      for (let x = 0; x < composition[teamKey]; x++) {
+      for (let x = 0; x < composition.value[teamKey]; x++) {
         if (roleSelection.value[team]) {
           const available = roleSelection.value[team].filter(
             (role: SelectableRole) => !role.selected,
@@ -156,24 +156,24 @@ const assignRoles = () => {
     players.value.forEach((player: Player) => {
       if (player.role.team !== "traveler" && roles.length) {
         const value = roles.pop();
-        store.commit("players/update", {
+        playersStore.update({
           player,
           property: "role",
           value,
         });
       }
-      store.commit("players/update", {
+      playersStore.update({
         player,
         property: "alignment",
         value: null,
       });
     });
-    store.commit("toggleModal", "roles");
+    grimoire.toggleModal("roles");
   }
 };
 
-const toggleModal = (modal: string) => {
-  store.commit("toggleModal", modal);
+const toggleModal = (modal: keyof Modals) => {
+  grimoire.toggleModal(modal);
 };
 
 onMounted(() => {

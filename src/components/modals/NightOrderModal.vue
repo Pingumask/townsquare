@@ -5,7 +5,7 @@
     <h3>
       {{ t('modal.nightOrder.title') }}
       <font-awesome-icon icon="cloud-moon" class="fa fa-cloud-moon" />
-      {{ edition.name || t('modal.nightOrder.custom') }}
+      {{ edition?.name || t('modal.nightOrder.custom') }}
     </h3>
     <div class="night">
       <NightOrderTable night-type="firstNight" />
@@ -16,20 +16,20 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useStore } from "vuex";
-import { useTranslation } from '@/composables';
 import { Modal, NightOrderTable } from '@/components';
+import { useGrimoireStore, useLocaleStore } from "@/stores";
+import type { Modals } from "@/types";
 
-const { t } = useTranslation();
-const store = useStore();
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
 
+const edition = computed(() => grimoire.edition);
+const modals = computed(() => grimoire.modals);
+const roles = computed(() => grimoire.roles);
 
-const edition = computed(() => store.state.edition);
-const modals = computed(() => store.state.modals);
-const roles = computed(() => store.state.roles);
-
-const toggleModal = (modal: string) => {
-  store.commit("toggleModal", modal);
+const toggleModal = (modal: keyof Modals) => {
+  grimoire.toggleModal(modal);
 };
 </script>
 

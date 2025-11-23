@@ -5,9 +5,6 @@
       <span v-if="nominator" class="nominator" :style="nominatorStyle" />
     </div>
     <div class="overlay">
-      <audio preload="auto">
-        <source src="../assets/sounds/countdown.mp3">
-      </audio>
       <em class="blue">{{ nominatorDisplayName }}</em>
       {{ voteAction }}
       <em v-if="!shouldHideNominee">
@@ -100,6 +97,7 @@
       </div>
       <Countdown v-if="grimoire.timer.duration" :timer-name="grimoire.timer.name"
         :timer-duration="grimoire.timer.duration" />
+      <Jukebox />
     </div>
     <div v-if="session.isVoteInProgress && !session.lockedVote" class="countdown">
       <span>3</span>
@@ -115,25 +113,26 @@
 
 <script setup lang="ts">
 import { computed, onUnmounted, ref } from "vue";
-import { useStore } from "vuex";
-import { Countdown } from '@/components';
-import { useTranslation, isActiveNomination } from '@/composables';
+import { Countdown, Jukebox } from '@/components';
+import { isActiveNomination } from '@/services';
+import { useGrimoireStore, useLocaleStore, usePlayersStore, useSessionStore } from "@/stores";
 import type { Player } from '@/types';
 
-const store = useStore();
-const { t } = useTranslation();
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
+const playersStore = usePlayersStore();
+const session = useSessionStore();
 
-const players = computed(() => store.state.players.players);
-const session = computed(() => store.state.session);
-const grimoire = computed(() => store.state.grimoire);
-const alive = computed(() => store.getters["players/alive"]);
+const alive = computed(() => playersStore.alive);
+const players = computed(() => playersStore.players);
 
 const voteTimer = ref<ReturnType<typeof setInterval> | null>(null);
 
 const nominator = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return null;
+  if (!isActiveNomination(session.nomination)) return null;
 
-  const nominatorRef = session.value.nomination.nominator;
+  const nominatorRef = session.nomination.nominator;
   if (typeof nominatorRef === 'number') {
     return players.value[nominatorRef] || null;
   }
@@ -141,33 +140,33 @@ const nominator = computed(() => {
 });
 
 const nominatorStyle = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return {};
+  if (!isActiveNomination(session.nomination)) return {};
 
   const playersCount = players.value.length;
-  const nominatorRef = session.value.nomination.nominator;
+  const nominatorRef = session.nomination.nominator;
 
   if (typeof nominatorRef !== 'number') return {};
 
   if (nominee.value) {
     return {
       transform: `rotate(${Math.round((nominatorRef / playersCount) * 360)}deg)`,
-      transitionDuration: session.value.votingSpeed - 100 + "ms",
+      transitionDuration: session.votingSpeed - 100 + "ms",
     };
   } else {
-    const lock = session.value.lockedVote;
+    const lock = session.lockedVote;
     const rotation =
       (360 * (nominatorRef + Math.min(lock, playersCount))) / playersCount;
     return {
       transform: `rotate(${Math.round(rotation)}deg)`,
-      transitionDuration: session.value.votingSpeed - 100 + "ms",
+      transitionDuration: session.votingSpeed - 100 + "ms",
     };
   }
 });
 
 const nominee = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return null;
+  if (!isActiveNomination(session.nomination)) return null;
 
-  const nomineeRef = session.value.nomination.nominee;
+  const nomineeRef = session.nomination.nominee;
   if (typeof nomineeRef === 'number') {
     return players.value[nomineeRef] || null;
   }
@@ -175,47 +174,47 @@ const nominee = computed(() => {
 });
 
 const nomineeStyle = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return {};
+  if (!isActiveNomination(session.nomination)) return {};
 
   const playersCount = players.value.length;
-  const nomineeRef = session.value.nomination.nominee;
+  const nomineeRef = session.nomination.nominee;
 
   if (typeof nomineeRef !== 'number') return {};
 
-  const lock = session.value.lockedVote;
+  const lock = session.lockedVote;
   const rotation = (360 * (nomineeRef + Math.min(lock, playersCount))) / playersCount;
   return {
     transform: `rotate(${Math.round(rotation)}deg)`,
-    transitionDuration: session.value.votingSpeed - 100 + "ms",
+    transitionDuration: session.votingSpeed - 100 + "ms",
   };
 });
 
 const isFreeVote = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return false;
+  if (!isActiveNomination(session.nomination)) return false;
   return (
-    session.value.nomination.nominee === null
+    session.nomination.nominee === null
     || nominee.value?.role.team === 'traveler'
   )
 });
 
 const player = computed(() => {
-  return players.value.find((p: Player) => p.id === session.value.playerId);
+  return players.value.find((p: Player) => p.id === session.playerId);
 });
 
 const currentVote = computed(() => {
-  const index = players.value.findIndex((p: Player) => p.id === session.value.playerId);
-  return index >= 0 ? !!session.value.votes[index] : undefined;
+  const index = players.value.findIndex((p: Player) => p.id === session.playerId);
+  return index >= 0 ? !!session.votes[index] : undefined;
 });
 
 // Type-safe computed properties for nomination handling
 const nominatorDisplayName = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return '';
+  if (!isActiveNomination(session.nomination)) return '';
 
   if (nominator.value) {
     return nominator.value.name;
   }
 
-  const nominatorRef = session.value.nomination.nominator;
+  const nominatorRef = session.nomination.nominator;
   if (typeof nominatorRef === 'string') {
     return nominatorRef.charAt(0).toUpperCase() + nominatorRef.slice(1);
   }
@@ -224,13 +223,13 @@ const nominatorDisplayName = computed(() => {
 });
 
 const nomineeDisplayName = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return '';
+  if (!isActiveNomination(session.nomination)) return '';
 
   if (nominee.value) {
     return nominee.value.name;
   }
 
-  const nomineeRef = session.value.nomination.nominee;
+  const nomineeRef = session.nomination.nominee;
   if (typeof nomineeRef === 'string') {
     // Capitalize string nominees (like "storyteller")
     return nomineeRef.charAt(0).toUpperCase() + nomineeRef.slice(1);
@@ -240,9 +239,9 @@ const nomineeDisplayName = computed(() => {
 });
 
 const voteAction = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return '';
+  if (!isActiveNomination(session.nomination)) return '';
 
-  const nomination = session.value.nomination;
+  const nomination = session.nomination;
 
   // Check if it's a special vote with custom action text
   if (nomination.specialVote?.timerText) {
@@ -259,9 +258,9 @@ const voteAction = computed(() => {
 });
 
 const shouldHideNominee = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return false;
+  if (!isActiveNomination(session.nomination)) return false;
 
-  const nomination = session.value.nomination;
+  const nomination = session.nomination;
 
   // Hide nominee if it's a special vote with custom timer text (like cultleader, custom)
   // but show nominee for special votes like bishop/atheist that have string nominees
@@ -276,9 +275,9 @@ const voudonInPlay = computed(() => {
 });
 
 const canVote = computed(() => {
-  if (!player.value || !isActiveNomination(session.value.nomination)) return false;
+  if (!player.value || !isActiveNomination(session.nomination)) return false;
 
-  const nomination = session.value.nomination;
+  const nomination = session.nomination;
 
   if ( // Dead player without a token or voudon
     (player.value.isDead || player.value.role.id == "beggar")
@@ -287,7 +286,7 @@ const canVote = computed(() => {
     && !voudonInPlay.value
   ) return false;
 
-  const sessionData = session.value;
+  const sessionData = session;
   const playersCount = players.value.length;
   const index = players.value.indexOf(player.value);
 
@@ -307,9 +306,9 @@ const canVote = computed(() => {
 });
 
 const voters = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return [];
+  if (!isActiveNomination(session.nomination)) return [];
 
-  const nomination = session.value.nomination;
+  const nomination = session.nomination;
 
   // Determine reference player index for vote ordering
   let referenceIndex: number;
@@ -325,42 +324,42 @@ const voters = computed(() => {
   const votersList = Array(players.value.length)
     .fill("")
     .map((_, index) =>
-      session.value.votes[index] ? players.value[index].name : "",
+      session.votes[index] && players.value[index] ? players.value[index].name : "",
     );
   const reorder = [
     ...votersList.slice(referenceIndex + 1),
     ...votersList.slice(0, referenceIndex + 1),
   ];
   return (
-    session.value.lockedVote
-      ? reorder.slice(0, session.value.lockedVote - 1)
+    session.lockedVote
+      ? reorder.slice(0, session.lockedVote - 1)
       : reorder
   ).filter((n) => !!n);
 });
 
 const countdown = () => {
-  store.commit("session/lockVote", 0);
-  store.commit("session/setVoteInProgress", true);
+  session.lockVote(0);
+  session.setVoteInProgress(true);
   voteTimer.value = setInterval(() => {
     start();
   }, 4000);
 };
 
 const start = () => {
-  store.commit("session/lockVote", 1);
-  store.commit("session/setVoteInProgress", true);
+  session.lockVote(1);
+  session.setVoteInProgress(true);
   if (voteTimer.value) {
     clearInterval(voteTimer.value);
   }
   voteTimer.value = setInterval(() => {
-    store.commit("session/lockVote");
-    if (session.value.lockedVote > players.value.length) {
+    session.lockVote();
+    if (session.lockedVote > players.value.length) {
       if (voteTimer.value) {
         clearInterval(voteTimer.value);
       }
-      store.commit("session/setVoteInProgress", false);
+      session.setVoteInProgress(false);
     }
-  }, session.value.votingSpeed);
+  }, session.votingSpeed);
 };
 
 const pause = () => {
@@ -369,14 +368,14 @@ const pause = () => {
     voteTimer.value = null;
   } else {
     voteTimer.value = setInterval(() => {
-      store.commit("session/lockVote");
-      if (session.value.lockedVote > players.value.length) {
+      session.lockVote();
+      if (session.lockedVote > players.value.length) {
         if (voteTimer.value) {
           clearInterval(voteTimer.value);
         }
-        store.commit("session/setVoteInProgress", false);
+        session.setVoteInProgress(false);
       }
-    }, session.value.votingSpeed);
+    }, session.votingSpeed);
   }
 };
 
@@ -385,48 +384,48 @@ const stop = () => {
     clearInterval(voteTimer.value);
   }
   voteTimer.value = null;
-  store.commit("session/setVoteInProgress", false);
-  store.commit("session/lockVote", 0);
+  session.setVoteInProgress(false);
+  session.lockVote(0);
 };
 
 const finish = () => {
   if (voteTimer.value) {
     clearInterval(voteTimer.value);
   }
-  store.commit("session/addHistory", {
+  session.addHistory({
     players: players.value,
-    isOrganVoteMode: session.value.isSecretVote,
+    isOrganVoteMode: session.isSecretVote,
     localeTexts: {
       exile: t('modal.voteHistory.exile'),
       execution: t('modal.voteHistory.execution')
     }
   });
-  store.commit("session/nomination");
+  session.setNomination(null);
 };
 
 const vote = (vote: boolean): boolean => {
   if (!canVote.value) return false;
-  const index = players.value.findIndex((p: Player) => p.id === session.value.playerId);
-  if (index >= 0 && !!session.value.votes[index] !== vote) {
-    store.commit("session/voteSync", [index, vote]);
+  const index = players.value.findIndex((p: Player) => p.id === session.playerId);
+  if (index >= 0 && !!session.votes[index] !== vote) {
+    session.voteSync([index, vote]);
     return true;
   }
   return false;
 };
 
 const setVotingSpeed = (diff: number) => {
-  const speed = Math.round(session.value.votingSpeed + diff);
+  const speed = Math.round(session.votingSpeed + diff);
   if (speed >= 0) {
-    store.commit("session/setVotingSpeed", speed);
+    session.setVotingSpeed(speed);
   }
 };
 
 const setMarked = () => {
-  store.commit("session/setMarkedPlayer", session.value.nomination.nominee);
+  session.setMarkedPlayer(session.nomination?.nominee as number);
 };
 
 const removeMarked = () => {
-  store.commit("session/setMarkedPlayer", -1);
+  session.setMarkedPlayer(-1);
 };
 
 onUnmounted(() => {

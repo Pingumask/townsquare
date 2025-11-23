@@ -24,34 +24,36 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useStore } from 'vuex';
 import { Modal } from '@/components';
-import { useTranslation, createSpecialVote } from '@/composables';
-import type { Nomination } from '@/types';
+import { createSpecialVote } from '@/services';
+import { useGrimoireStore, useLocaleStore, usePlayersStore, useSessionStore } from "@/stores";
+import type { Modals, Nomination } from '@/types';
 
-const { t } = useTranslation();
-const store = useStore();
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
+const playersStore = usePlayersStore();
+const session = useSessionStore();
 
-const modals = computed(() => store.state.modals);
-const session = computed(() => store.state.session);
-const players = computed(() => store.state.players.players);
+const modals = computed(() => grimoire.modals);
+const players = computed(() => playersStore.players);
 
 function launchVote(nomination: Nomination) {
-  store.commit('session/nomination', { nomination });
-  store.commit('toggleModal', 'specialVote');
+  session.setNomination(nomination);
+  grimoire.toggleModal('specialVote');
 }
 
 function bishopVote() {
   launchVote(createSpecialVote(
     t('modal.specialvote.st'),
-    session.value.playerForSpecialVote,
+    session.playerForSpecialVote,
     { type: 'bishop' }
   ));
 }
 
 function atheistVote() {
   launchVote(createSpecialVote(
-    session.value.playerForSpecialVote,
+    session.playerForSpecialVote,
     t('modal.specialvote.st'),
     { type: 'atheist' }
   ));
@@ -59,7 +61,7 @@ function atheistVote() {
 
 function cultleaderVote() {
   launchVote(createSpecialVote(
-    session.value.playerForSpecialVote,
+    session.playerForSpecialVote,
     null, // Cult leader votes don't have a specific nominee
     {
       type: 'cultleader',
@@ -71,7 +73,9 @@ function cultleaderVote() {
 }
 
 function customVote() {
-  const playerName = players.value[session.value.playerForSpecialVote].name;
+  const player = players.value[session.playerForSpecialVote];
+  if (!player) return;
+  const playerName = player.name;
   const input = prompt(
     t('modal.specialvote.complete') +
     playerName +
@@ -81,7 +85,7 @@ function customVote() {
   if (!input) return;
 
   launchVote(createSpecialVote(
-    session.value.playerForSpecialVote,
+    session.playerForSpecialVote,
     null, // Custom votes don't have a specific nominee
     {
       type: 'custom',
@@ -92,8 +96,8 @@ function customVote() {
   ));
 }
 
-function toggleModal(modalName: string) {
-  store.commit('toggleModal', modalName);
+function toggleModal(modalName: keyof Modals) {
+  grimoire.toggleModal(modalName);
 }
 </script>
 

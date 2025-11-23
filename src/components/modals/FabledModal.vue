@@ -10,31 +10,32 @@
 </template>
 
 <script setup lang="ts">
-import type { Role } from '@/types';
 import { computed } from 'vue';
-import { useStore } from 'vuex';
 import { Modal, Token } from '@/components';
-import { useTranslation } from '@/composables';
+import { useGrimoireStore, useLocaleStore, usePlayersStore } from "@/stores";
+import type { Modals, Role } from "@/types";
 
-const { t } = useTranslation();
-const store = useStore();
+const grimoireStore = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
+const playersStore = usePlayersStore();
 
-const modals = computed(() => store.state.modals);
+const modals = computed(() => grimoireStore.modals);
 
 const fabled = computed((): Role[] => {
-  return (Array.from(store.state.fabled.values()) as Role[]).filter((role: Role) =>
-    !store.state.players.fabled.some((fable: Role) => fable.id === role.id)
+  return (Array.from(grimoireStore.fabled.values()) as Role[]).filter((role: Role) =>
+    !playersStore.fabled.some((fable: Role) => fable.id === role.id)
   );
 });
 
 function setFabled(role: Role) {
-  store.commit('players/setFabled', { fabled: role });
-  store.commit('toggleModal', 'fabled');
+  playersStore.setFabled({ fabled: role });
+  grimoireStore.toggleModal('fabled');
 }
 
-function toggleModal(modal: string) {
-  store.commit('toggleModal', modal);
-}
+const toggleModal = (modal: keyof Modals) => {
+  grimoireStore.toggleModal(modal);
+};
 </script>
 
 <style scoped lang="scss">

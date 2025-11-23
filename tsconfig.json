@@ -26,7 +26,8 @@
     },
     "types": [
       "node",
-      "vite/client"
+      "vite/client",
+      "pinia-plugin-persistedstate"
     ],
     "noImplicitAny": true,
     "noImplicitReturns": true,

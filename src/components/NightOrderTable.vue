@@ -19,7 +19,7 @@
           (role.team == 'default' || role.team == 'fabled') &&
           !session.isSpectator &&
           players.length &&
-          players[0].role.id
+          players[0]?.role?.id
         " class="player">
           <br>
           <small />
@@ -40,24 +40,26 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useStore } from "vuex";
-import { useTranslation } from '@/composables';
+
 import { RoleIcon } from '@/components';
-import type { NightOrderRole, Role, Player } from "@/types";
+import type { NightOrderRole, Player, Role } from "@/types";
+import { useGrimoireStore, useLocaleStore, usePlayersStore, useSessionStore } from "@/stores";
 
 interface Props {
   nightType: 'firstNight' | 'otherNight';
 }
 
 const props = defineProps<Props>();
-const { t } = useTranslation();
-const store = useStore();
 
-const edition = computed(() => store.state.edition);
-const session = computed(() => store.state.session);
-const players = computed(() => store.state.players.players);
-const fabled = computed(() => store.state.players.fabled);
-const rolesStore = computed(() => store.state.roles);
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
+const playersStore = usePlayersStore();
+const session = useSessionStore();
+
+const edition = computed(() => grimoire.edition);
+const fabled = computed(() => playersStore.fabled);
+const players = computed(() => playersStore.players);
 
 const roles = computed(() => {
   function nightIndex(role: Role, officialEdition: boolean): number {
@@ -134,7 +136,7 @@ const roles = computed(() => {
   });
 
   // Add regular roles (non-travelers)
-  rolesStore.value.forEach((role: Role) => {
+  grimoire.roles.forEach((role: Role) => {
     const hasNightAction = props.nightType === 'firstNight' ? role.firstNight : role.otherNight;
     if (hasNightAction && role.team !== "traveler") {
       const roleWithPlayers: NightOrderRole = {
@@ -186,7 +188,7 @@ const roles = computed(() => {
 
   // Sort by night order
   nightRoles.sort((a: NightOrderRole, b: NightOrderRole) =>
-    nightIndex(a, edition.value.isOfficial) - nightIndex(b, edition.value.isOfficial)
+    nightIndex(a, !!edition.value?.isOfficial) - nightIndex(b, !!edition.value?.isOfficial)
   );
 
   return nightRoles;
