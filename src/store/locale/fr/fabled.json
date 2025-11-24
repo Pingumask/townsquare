@@ -229,5 +229,20 @@
     "name": "Tor",
     "team": "loric",
     "ability": "Les joueurs ne savent pas leur personnage ni leur alignement. Ils l'apprennent lorsqu'ils meurent."
+  },
+  {
+    "id": "zenomancer",
+    "firstNight": 3,
+    "firstNightReminder": "Vous pouvez donner un objectif à n'importe quel(s) joueur(s).",
+    "otherNight": 3,
+    "otherNightReminder": "Vous pouvez donner un objectif à n'importe quel(s) joueur(s).",
+    "reminders": [
+      "Objectif",
+      "?"
+    ],
+    "setup": false,
+    "name": "Zénomancien",
+    "team": "loric",
+    "ability": "Un (ou plusieurs) joueurs ont chacun un objectif. Si un joueur le remplit, il apprend une information vraie."
   }
 ]
