@@ -2,14 +2,17 @@
 
 ## Upcomming Version
 - Features:
-  - Adding the Zenomancer
-  - Display "beta" in version if in dev environment
+
 - Bugfixes:
 
 - Localization :
 
 - Technical :
 
+## 5.8.0
+- Features:
+  - Adding the Zenomancer
+  - Display "beta" in version if in dev environment
 
 ## 5.7.0
 - Features:
