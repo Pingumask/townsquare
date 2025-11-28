@@ -3,7 +3,8 @@
         "id": "_meta",
         "logo": "midnight_oasis",
         "name": "The Midnight Oasis",
-        "author": "Zets"
+        "author": "Zets",
+        "version" : "3.8.0"
     },
     {
         "id": "noble"

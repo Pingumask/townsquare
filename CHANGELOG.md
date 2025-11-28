@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 - Features:
-
+  - Adding more informations on the roles' reference sheet (script version, Bootlegger rule, Stormcaught character)
 - Bugfixes:
 
 - Localization :

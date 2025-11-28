@@ -2,7 +2,8 @@
     {
         "id": "_meta",
         "name": "Cultists of Atlantis",
-        "author": "Zets"
+        "author": "Zets",
+        "version" : "2.0.1"
     },
     {
         "id": "noble"

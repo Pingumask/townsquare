@@ -269,20 +269,24 @@ function parseRoles(pickedRoles: (string | ParsedRole)[]) {
   let djinnAdded = false;
   let djinnNeeded = false;
   let bootleggerAdded = false;
-  let bootleggerNedded = false;
+  let bootleggerNedded = store.state.edition.bootlegger;
+  let stormcatcherAdded = false;
+  let stormcatcherNeeded = store.state.edition.stormcaught;
   processedRoles.forEach((role: ParsedRole) => {
     if (store.state.fabled.has(role.id || role)) {
       fabled.push(store.state.fabled.get(role.id || role));
       if ((role.id || role) == "djinn") {
         djinnAdded = true;
+      } else if ((role.id || role) == "stormcatcher") {
+        stormcatcherAdded = true;
       } else if ((role.id || role) == "bootlegger") {
         bootleggerAdded = true;
       }
     } else if (role.edition == "custom" || role.image) {
       /* If the role isn't fabled, but detected as custom, we will need a Bootlegger
-           * NB: The actual version isn't perfect, since they only detect custom roles with an image or with the argument "edition":"custom".
-           * The code will could be changed later, when all non-custom roles will have an attribute "edition"
-           */
+       * NB: The actual version isn't perfect, since they only detect custom roles with an image or with the argument "edition":"custom".
+       * The code will could be changed later, when all non-custom roles will have an attribute "edition"
+       */
       bootleggerNedded = true;
     } else if (!djinnAdded && !djinnNeeded && jinxes.value.get(role.id)) {
       // If the role isn't fabled, neither custom, and if we neither added a Djinn neither planned to add a Djinn, we look if this role is jinxed
@@ -295,6 +299,9 @@ function parseRoles(pickedRoles: (string | ParsedRole)[]) {
   });
   if (djinnNeeded && !djinnAdded) {
     fabled.push(store.state.fabled.get("djinn"));
+  }
+  if (stormcatcherNeeded && !stormcatcherAdded) {
+    fabled.push(store.state.fabled.get("stormcatcher"));
   }
   if (bootleggerNedded && !bootleggerAdded) {
     fabled.push(store.state.fabled.get("bootlegger"));
