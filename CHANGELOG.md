@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 - Features:
-
+  - Allowing showing an alignment change on a custom role
 - Bugfixes:
 
 - Localization :
