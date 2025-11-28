@@ -3,7 +3,7 @@
 ## Upcomming Version
 - Features:
   - Adding the Zenomancer
-
+  - Display "beta" in version if in dev environment
 - Bugfixes:
 
 - Localization :

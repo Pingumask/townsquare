@@ -28,7 +28,7 @@
     <GameStateModal />
     <SpecialVoteModal />
     <Gradients />
-    <span id="version">v{{ version }}</span>
+    <span id="version">v{{ version }}{{ isBeta ? '-beta' : '' }}</span>
   </div>
 </template>
 
@@ -71,6 +71,8 @@ const background = computed(() => {
 const backgroundColor = computed(() => {
   return grimoire.value.isStreamerMode ? "#000000" : "transparent";
 });
+
+const isBeta = computed(() => import.meta.env.MODE === "development");
 
 function keyup({ key, ctrlKey, metaKey }: KeyboardEvent) {
   if (ctrlKey || metaKey || grimoire.value.disableHotkeys) return;

@@ -4,7 +4,7 @@
   "description": "Blood on the Clocktower Town Square",
   "author": "Pingumask",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
+    "dev": "vite --host 0.0.0.0 --mode development",
     "build": "vue-tsc && vite build",
     "serve": "vite preview",
     "lint": "eslint src --fix",
