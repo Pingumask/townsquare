@@ -58,7 +58,7 @@
       },
       {
         "id": "Mastermind",
-        "reason": "Un Alchimiste-Conspirateur n'a pas la capacité du Conspirateur, et le Conspirateur n'est pas en jeu."
+        "reason": "Un Alchimiste-Génie du mal n'a pas la capacité du Génie du mal, et le Génie du mal n'est pas en jeu."
       },
       {
         "id": "Organ Grinder",
@@ -363,7 +363,7 @@
     "hatred": [
       {
         "id": "Vigormortis",
-        "reason": "Un Conspirateur qui a sa capacité la garde si le Vigormortis meurt."
+        "reason": "Un Génie du mal qui a sa capacité la garde si le Vigormortis meurt."
       }
     ]
   },
@@ -460,27 +460,27 @@
     "hatred": [
       {
         "id": "Magician",
-        "reason": "Si le Magicien est en vie, le Narrateur choisit quel Sbire a la garde du Bébé monstre."
+        "reason": "Si le Magicien est en vie, le Narrateur choisit quel Sbire a la garde du P'tit monstre."
       },
       {
         "id": "Poppy Grower",
-        "reason": "Si le Bébé monstre et le Planteur de pavot sont en vie, les Sbires sont réveillés un par un, jusqu'à ce que l'un d'eux accepte de prendre la garde du Bébé monstre."
+        "reason": "Si le P'tit monstre et le Planteur de pavot sont en vie, les Sbires sont réveillés un par un, jusqu'à ce que l'un d'eux accepte de prendre la garde du P'tit monstre."
       },
       {
         "id": "Hatter",
-        "reason": "Si le Chapelier meurt et le Démon choisit de devenir Bébé monstre, il choisit aussi un rôle de Sbire et le devient."
+        "reason": "Si le Chapelier meurt et le Démon choisit de devenir P'tit monstre, il choisit aussi un rôle de Sbire et le devient."
       },
       {
         "id": "Psychopath",
-        "reason": "Si le Psychopathe a la garde du Bébé monstre, il meurt lorsqu'exécuté."
+        "reason": "Si le Psychopathe a la garde du P'tit monstre, il meurt lorsqu'exécuté."
       },
       {
         "id": "Scarlet Woman",
-        "reason": "Si le Bébé monstre meurt lorsqu'au moins 5 joueurs sont en vie, la Gourgandine récupère la garde du Bébé monstre pour le reste de la partie."
+        "reason": "Si le P'tit monstre meurt lorsqu'au moins 5 joueurs sont en vie, la Gourgandine récupère la garde du P'tit monstre pour le reste de la partie."
       },
       {
         "id": "Vizier",
-        "reason": "Si le Vizir a la garde du Bébé monstre, il meurt lorsqu'exécuté."
+        "reason": "Si le Vizir a la garde du P'tit monstre, il meurt lorsqu'exécuté."
       }
     ]
   },
@@ -535,7 +535,7 @@
       },
       {
         "id": "Mastermind",
-        "reason": "Si le Conspirateur est en vie, et si l'hôte de la Ssangssue meurt par exécution, la Ssangssue survit mais perd sa capcité."
+        "reason": "Si le Génie du mal est en vie, et si l'hôte de la Ssangssue meurt par exécution, la Ssangssue survit mais perd sa capcité."
       }
     ]
   },
@@ -548,7 +548,7 @@
       },
       {
         "id": "Mastermind",
-        "reason": "Si Al-Hadikhia meurt par exécution, et le Conspirateur est en vie, Al-Hadikhia désigne 3 joueurs bons cette nuit : si les 3 choisissent de vivre, les mauvais gagnent. Dans le cas contraire, les bons gagnent."
+        "reason": "Si Al-Hadikhia meurt par exécution, et le Génie du mal est en vie, Al-Hadikhia désigne 3 joueurs bons cette nuit : si les 3 choisissent de vivre, les mauvais gagnent. Dans le cas contraire, les bons gagnent."
       }
     ]
   },

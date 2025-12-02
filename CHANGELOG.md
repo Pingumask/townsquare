@@ -6,6 +6,13 @@
 - Bugfixes:
 
 - Localization :
+  - Changing some roles' French name:
+    - Investigator: Enquêteur -> Détective
+    - Fool: Fou -> Bouffon
+    - Nightwatchman: Gardien de nuit -> Veilleur de nuit
+    - Mastermind: Conspirateur -> Génie du mal
+    - Lil' Monsta: Bébé monstre -> P'tit monstre
+    - Big Wig: Magistrat -> Gros bonnet
 
 - Technical :
 

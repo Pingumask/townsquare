@@ -33,7 +33,7 @@
   },
   {
     "id": "investigator",
-    "name": "Enquêteur",
+    "name": "Détective",
     "edition": "tb",
     "team": "townsfolk",
     "firstNight": 47,
@@ -1022,7 +1022,7 @@
   },
   {
     "id": "fool",
-    "name": "Fou",
+    "name": "Bouffon",
     "edition": "bmr",
     "team": "townsfolk",
     "firstNight": 0,
@@ -1150,7 +1150,7 @@
   },
   {
     "id": "mastermind",
-    "name": "Conspirateur",
+    "name": "Génie du mal",
     "edition": "bmr",
     "team": "minion",
     "firstNight": 0,
@@ -1448,18 +1448,18 @@
   },
   {
     "id": "nightwatchman",
-    "name": "Gardien de nuit",
+    "name": "Veilleur de nuit",
     "edition": "",
     "team": "townsfolk",
     "firstNight": 63,
-    "firstNightReminder": "Le Gardien de nuit peut désigner un joueur. Reveillez ce joueur, indiquez-lui qui est le Gardien de nuit.",
+    "firstNightReminder": "Le Veilleur de nuit peut désigner un joueur. Reveillez ce joueur, indiquez-lui qui est le Veilleur de nuit.",
     "otherNight": 79,
-    "otherNightReminder": "Le Garde de nuit peut désigner un joueur. Reveillez ce joueur, indiquez-lui qui est le Gardien de nuit",
+    "otherNightReminder": "Le Veilleur de nuit peut désigner un joueur. Reveillez ce joueur, indiquez-lui qui est le Veilleur de nuit",
     "reminders": [
       "Épuisé"
     ],
     "setup": false,
-    "ability": "Une fois par partie, la nuit, désignez un joueur : il apprend que vous êtes le Gardien de nuit."
+    "ability": "Une fois par partie, la nuit, désignez un joueur : il apprend que vous êtes le Veilleur de nuit."
   },
   {
     "id": "engineer",
@@ -2132,13 +2132,13 @@
   },
   {
     "id": "lilmonsta",
-    "name": "Bébé monstre",
+    "name": "P'tit monstre",
     "edition": "",
     "team": "demon",
     "firstNight": 24,
-    "firstNightReminder": "Réveillez tous les Sbires ensemble, faites-les voter pour désigner quel joueur baby-sitte le Bébé Monstre.",
+    "firstNightReminder": "Réveillez tous les Sbires ensemble, faites-les voter pour désigner quel joueur baby-sitte le P'tit Monstre.",
     "otherNight": 46,
-    "otherNightReminder": "Réveillez tous les Sbires ensemble, faites-les voter pour désigner quel joueur baby-sitte le Bébé Monstre. Vous pouvez choisir un joueur, il meurt.",
+    "otherNightReminder": "Réveillez tous les Sbires ensemble, faites-les voter pour désigner quel joueur baby-sitte le P'tit Monstre. Vous pouvez choisir un joueur, il meurt.",
     "reminders": [],
     "remindersGlobal": [
       "Démon",
@@ -2146,7 +2146,7 @@
     ],
     "setup": true,
     "forbidden": true,
-    "ability": "Chaque nuit, les Sbires choisissent qui a la garde du Bébé monstre et “est le Démon”. Chaque nuit*, il se peut qu'un joueur meure. [+1 Sbire]"
+    "ability": "Chaque nuit, les Sbires choisissent qui a la garde du P'tit monstre et “est le Démon”. Chaque nuit*, il se peut qu'un joueur meure. [+1 Sbire]"
   },
   {
     "id": "lleech",
