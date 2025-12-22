@@ -38,32 +38,28 @@ export interface ToggleableRole extends Role {
   selected?: boolean;
 }
 
-// Role grouping
 export interface RoleGroup {
   [team: string]: SelectableRole[];
 }
 
-// Script parsing
 export interface ParsedRole {
   id: string;
   edition?: string;
   image?: string;
 }
 
-// Jinx-related types
 export interface JinxInfo {
   first: Role;
   second: Role;
   reason: string;
 }
 
-// Team type
 export type TeamType =
+  | "default"
   | "townsfolk"
   | "outsider"
   | "minion"
   | "demon"
   | "traveler"
   | "fabled"
-  | "default"
   | "loric";

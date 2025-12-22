@@ -1,5 +1,6 @@
 <template>
-  <Modal v-if="modals.reminder && availableReminders.length && players[playerIndex]" @close="toggleModal('reminder')">
+  <Modal v-if="grimoire.modal === 'reminder' && availableReminders.length && players[playerIndex]"
+    @close="grimoire.toggleModal(null)">
     <h3>{{ t('modal.reminder.title') }}</h3>
     <ul class="reminders">
       <li v-for="reminder in availableReminders" :key="reminder.role.id + ' ' + reminder.name" class="reminder"
@@ -15,20 +16,28 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useStore } from "vuex";
 import { Modal, RoleIcon } from '@/components';
-import { useRolePath, useTranslation } from '@/composables';
-import { SPECIAL_REMINDER_ROLES } from "@/store/modules/players";
-import type { Reminder, Role, Player } from "@/types";
+import { getRoleImage } from '@/services';
+import {
+  SPECIAL_REMINDER_ROLES,
+  useGrimoireStore,
+  useLocaleStore,
+  usePlayersStore,
+} from "@/stores";
+import type {
+  Player,
+  Reminder,
+  Role,
+} from "@/types";
 
-const { t } = useTranslation();
-const { rolePath } = useRolePath();
+const locale = useLocaleStore();
+const t = locale.t;
 
 const mapReminder =
   (role: Role) =>
     (name: string): Reminder => ({
       role: role,
-      image: role.image || rolePath(role),
+      image: role.image || getRoleImage(role),
       imageAlt: role.imageAlt || '',
       name,
       id: `${role.id}-${name}`,
@@ -37,22 +46,28 @@ const mapReminder =
 const props = defineProps<{
   playerIndex: number;
 }>();
-const store = useStore();
 
-const modals = computed(() => store.state.modals);
-const players = computed(() => store.state.players.players);
+const playersStore = usePlayersStore();
+const grimoire = useGrimoireStore();
+
+const players = computed(() => playersStore.players);
 
 const availableReminders = computed((): Reminder[] => {
   let reminders: Reminder[] = [];
-  const { players, bluffs } = store.state.players;
-  store.state.roles.forEach((role: Role) => {
+  const { players, bluffs } = playersStore;
+
+  grimoire.roles.forEach((role: Role) => {
     // add reminders from player roles
     if (players.some((p: Player) => p.role.id === role.id)) {
-      reminders = [...reminders, ...role.reminders!.map(mapReminder(role))];
+      if (role.reminders) {
+        reminders = [...reminders, ...role.reminders.map(mapReminder(role))];
+      }
     }
     // add reminders from bluff/other roles
     else if (bluffs.some((bluff: Role) => bluff.id === role.id)) {
-      reminders = [...reminders, ...role.reminders!.map(mapReminder(role))];
+      if (role.reminders) {
+        reminders = [...reminders, ...role.reminders.map(mapReminder(role))];
+      }
     }
     // add global reminders
     if (role.remindersGlobal && role.remindersGlobal.length) {
@@ -63,14 +78,18 @@ const availableReminders = computed((): Reminder[] => {
     }
   });
   // add fabled reminders
-  store.state.players.fabled.forEach((role: Role) => {
-    reminders = [...reminders, ...role.reminders!.map(mapReminder(role))];
+  playersStore.fabled.forEach((role: Role) => {
+    if (role.reminders) {
+      reminders = [...reminders, ...role.reminders.map(mapReminder(role))];
+    }
   });
 
   // add out of script traveler reminders
-  store.state.othertravelers.forEach((role: Role) => {
+  grimoire.othertravelers.forEach((role: Role) => {
     if (players.some((p: Player) => p.role.id === role.id)) {
-      reminders = [...reminders, ...role.reminders!.map(mapReminder(role))];
+      if (role.reminders) {
+        reminders = [...reminders, ...role.reminders.map(mapReminder(role))];
+      }
     }
   });
 
@@ -113,7 +132,8 @@ const availableReminders = computed((): Reminder[] => {
 });
 
 function addReminder(reminder: Reminder) {
-  const player = store.state.players.players[props.playerIndex];
+  const player = playersStore.players[props.playerIndex];
+  if (!player) return;
   let value;
   if (reminder.role.id === "custom") {
     const name = prompt(t('prompt.customNote'));
@@ -121,21 +141,17 @@ function addReminder(reminder: Reminder) {
     value = [...player.reminders, { role: SPECIAL_REMINDER_ROLES.custom, name }];
   } else if (reminder.name === "?") {
     let name = prompt(t('prompt.customNote'));
-	if (!name) name = "?";
+    if (!name) name = "?";
     value = [...player.reminders, { role: reminder.role, name }];
   } else {
     value = [...player.reminders, reminder];
   }
-  store.commit("players/update", {
+  playersStore.update({
     player,
     property: "reminders",
     value,
   });
-  store.commit("toggleModal", "reminder");
-}
-
-function toggleModal(modal: string) {
-  store.commit("toggleModal", modal);
+  grimoire.toggleModal(null);
 }
 </script>
 

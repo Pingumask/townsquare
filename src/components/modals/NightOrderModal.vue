@@ -1,11 +1,12 @@
 <template>
-  <Modal v-if="modals.nightOrder && roles.size" class="night-reference" @close="toggleModal('nightOrder')">
+  <Modal v-if="grimoire.modal === 'nightOrder' && roles.size" class="night-reference"
+    @close="grimoire.toggleModal(null)">
     <font-awesome-icon icon="address-card" class="fa fa-address-card toggle" :title="t('modal.nightOrder.reference')"
-      @click="toggleModal('reference')" />
+      @click="grimoire.toggleModal('reference')" />
     <h3>
       {{ t('modal.nightOrder.title') }}
       <font-awesome-icon icon="cloud-moon" class="fa fa-cloud-moon" />
-      {{ edition.name || t('modal.nightOrder.custom') }}
+      {{ edition?.name || t('modal.nightOrder.custom') }}
     </h3>
     <div class="night">
       <NightOrderTable night-type="firstNight" />
@@ -16,21 +17,18 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useStore } from "vuex";
-import { useTranslation } from '@/composables';
 import { Modal, NightOrderTable } from '@/components';
+import { useGrimoireStore, useLocaleStore } from "@/stores";
 
-const { t } = useTranslation();
-const store = useStore();
+// Ensure timer durations are numbers when updated from input fields
+// The v-model in the template already updates the store directly
 
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
 
-const edition = computed(() => store.state.edition);
-const modals = computed(() => store.state.modals);
-const roles = computed(() => store.state.roles);
-
-const toggleModal = (modal: string) => {
-  store.commit("toggleModal", modal);
-};
+const edition = computed(() => grimoire.edition);
+const roles = computed(() => grimoire.roles);
 </script>
 
 <style lang="scss" scoped>
@@ -80,13 +78,13 @@ h4 {
 
 .fabled {
   --blend: normal;
-  --color: #ffe91f;
+  --color: var(--fabled);
 
   .name {
-    background: linear-gradient(90deg, $fabled, transparent 35%);
+    background: linear-gradient(90deg, var(--fabled), transparent 35%);
 
     .night .other & {
-      background: linear-gradient(-90deg, $fabled, transparent 35%);
+      background: linear-gradient(-90deg, var(--fabled), transparent 35%);
     }
   }
 }
@@ -96,82 +94,82 @@ h4 {
   --color: #4fda66;
 
   .name {
-    background: linear-gradient(90deg, $loric, transparent 35%);
+    background: linear-gradient(90deg, var(--loric), transparent 35%);
 
     .night .other & {
-      background: linear-gradient(-90deg, $loric, transparent 35%);
+      background: linear-gradient(-90deg, var(--loric), transparent 35%);
     }
   }
 }
 
 .townsfolk {
   --blend: normal;
-  --color: #1f65ff;
+  --color: var(--townsfolk);
 
   .name {
-    background: linear-gradient(90deg, $townsfolk, transparent 35%);
+    background: linear-gradient(90deg, var(--townsfolk), transparent 35%);
 
     .night .other & {
-      background: linear-gradient(-90deg, $townsfolk, transparent 35%);
+      background: linear-gradient(-90deg, var(--townsfolk), transparent 35%);
     }
   }
 }
 
 .outsider {
   --blend: normal;
-  --color: #46d5ff;
+  --color: var(--outsider);
 
   .name {
-    background: linear-gradient(90deg, $outsider, transparent 35%);
+    background: linear-gradient(90deg, var(--outsider), transparent 35%);
 
     .night .other & {
-      background: linear-gradient(-90deg, $outsider, transparent 35%);
+      background: linear-gradient(-90deg, var(--outsider), transparent 35%);
     }
   }
 }
 
 .minion {
   --blend: normal;
-  --color: #ff6900;
+  --color: var(--minion);
 
   .name {
-    background: linear-gradient(90deg, $minion, transparent 35%);
+    background: linear-gradient(90deg, var(--minion), transparent 35%);
 
     .night .other & {
-      background: linear-gradient(-90deg, $minion, transparent 35%);
+      background: linear-gradient(-90deg, var(--minion), transparent 35%);
     }
   }
 }
 
 .demon {
   --blend: normal;
-  --color: #ce0100;
+  --color: var(--demon);
 
   .name {
-    background: linear-gradient(90deg, $demon, transparent 35%);
+    background: linear-gradient(90deg, var(--demon), transparent 35%);
 
     .night .other & {
-      background: linear-gradient(-90deg, $demon, transparent 35%);
+      background: linear-gradient(-90deg, var(--demon), transparent 35%);
     }
   }
 }
 
 .traveler {
   .name {
-    background: linear-gradient(90deg, $traveler, transparent 35%);
+    background: linear-gradient(90deg, var(--traveler), transparent 35%);
 
     .night .other & {
-      background: linear-gradient(-90deg, $traveler, transparent 35%);
+      background: linear-gradient(-90deg, var(--traveler), transparent 35%);
     }
   }
 }
 
 .default {
   .name {
-    background: linear-gradient(90deg, $default, transparent 35%);
+    background: linear-gradient(90deg, var(--default), transparent 35%);
 
     .night .other & {
-      background: linear-gradient(-90deg, $default, transparent 35%);
+      background: linear-gradient(-90deg, var(--default), transparent 35%);
     }
   }
 }

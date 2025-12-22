@@ -3,12 +3,14 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  plugins: [vue({
-    script: {
-      defineModel: true,
-      propsDestructure: true
-    }
-  })],
+  plugins: [
+    vue({
+      script: {
+        defineModel: true,
+        propsDestructure: true,
+      },
+    }),
+  ],
   base: "/",
   resolve: {
     alias: {
@@ -28,15 +30,11 @@ export default defineConfig({
         entryFileNames: "[name].[hash].js",
         chunkFileNames: "[name].[hash].js",
         assetFileNames: "[name].[hash][extname]",
-        manualChunks: {
-          vendor: ["vue", "vuex"],
-          fontawesome: ["@fortawesome/fontawesome-svg-core", "@fortawesome/free-solid-svg-icons", "@fortawesome/free-brands-svg-icons", "@fortawesome/vue-fontawesome"],
-        },
       },
     },
     target: "ESNext",
   },
   server: {
     allowedHosts: [process.env.NODE_HOSTNAME],
-  }
+  },
 });

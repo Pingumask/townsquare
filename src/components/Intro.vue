@@ -3,7 +3,7 @@
     <img src="/apple-icon.png" alt="" class="logo">
     <div>
       {{ t('intro.header') }}
-      <button @click="toggleMenu">
+      <button @click="userPreferences.isMenuOpen = !userPreferences.isMenuOpen">
         <font-awesome-icon icon="cog" class="fa fa-cog" /> {{ t('intro.menu') }}
       </button>
       {{ t('intro.body') }}
@@ -17,15 +17,13 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from 'vuex';
-import { useTranslation } from '@/composables';
-
-const store = useStore();
-const { t } = useTranslation();
-
-const toggleMenu = (): void => {
-  store.commit('toggleMenu');
-};
+import {
+  useLocaleStore,
+  useUserPreferencesStore,
+} from '@/stores';
+const locale = useLocaleStore();
+const userPreferences = useUserPreferencesStore();
+const t = locale.t;
 </script>
 
 <style scoped lang="scss">

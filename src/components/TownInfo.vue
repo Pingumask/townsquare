@@ -1,17 +1,12 @@
 <template>
   <ul class="info">
-    <audio preload="auto">
-      <source src="../assets/sounds/countdown.mp3">
-      <source src="../assets/sounds/rooster.mp3">
-      <source src="../assets/sounds/gavel.mp3">
-    </audio>
-    <li class="edition" :class="['edition-' + edition.id]" :style="{
+    <li v-if="edition" class="edition" :class="['edition-' + edition.id]" :style="{
       backgroundImage: 'url(' + logoUrl + ')',
     }" />
     <li v-if="players.length - teams.traveler < 5">
       {{ t('towninfo.addPlayers') }}
     </li>
-    <li>
+    <li v-if="edition">
       <span v-if="!edition.isOfficial" class="meta">
         {{ edition.name }}
         {{ edition.author ? " ©" + edition.author : "" }}
@@ -53,29 +48,9 @@
         <font-awesome-icon class="traveler" :icon="teams.traveler > 1 ? 'user-friends' : 'user'" />
       </span>
     </li>
-    <li v-if="session.gamePhase === 'firstNight' || session.gamePhase === 'otherNight'">
+    <li v-if="grimoire.gamePhase === 'firstNight' || grimoire.gamePhase === 'otherNight'">
       <font-awesome-icon :icon="['fas', 'cloud-moon']" />
       {{ t('towninfo.nightPhase') }}
-    </li>
-    <li v-if="grimoire.isRinging">
-      <audio :autoplay="!grimoire.isMuted" :muted="grimoire.isMuted">
-        <source src="../assets/sounds/countdown.mp3">
-      </audio>
-      <font-awesome-icon :icon="['fas', 'music']" />
-      <font-awesome-icon :icon="['fas', 'bell']" />
-      <font-awesome-icon :icon="['fas', 'music']" />
-    </li>
-    <li v-else-if="grimoire.isRooster">
-      <audio :autoplay="!grimoire.isMuted" :muted="grimoire.isMuted">
-        <source src="../assets/sounds/rooster.mp3">
-      </audio>
-      <img src="../assets/icons/dawn.png" alt="dawn" style="height: 2em">
-    </li>
-    <li v-if="grimoire.isGavel">
-      <audio :autoplay="!grimoire.isMuted" :muted="grimoire.isMuted">
-        <source src="../assets/sounds/gavel.mp3">
-      </audio>
-      <font-awesome-icon :icon="['fas', 'gavel']" />
     </li>
     <li v-if="markedStoryteller" class="marked">
       <font-awesome-icon icon="skull" class="fa fa-skull" />
@@ -84,35 +59,44 @@
       <Countdown v-if="grimoire.timer.duration" :timer-name="grimoire.timer.name"
         :timer-duration="grimoire.timer.duration" class="timer" />
     </li>
+    <Jukebox />
   </ul>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useStore } from 'vuex';
-import gameJSON from '@/game.json';
-import { Countdown } from '@/components';
-import { useTranslation } from '@/composables';
+import { Countdown, Jukebox } from '@/components';
+import {
+  useGrimoireStore,
+  useLocaleStore,
+  usePlayersStore,
+  useSessionStore,
+  useUserPreferencesStore,
+  useVotingStore,
+} from "@/stores";
 import type { Player } from '@/types';
 
-const { t } = useTranslation();
-const store = useStore();
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const playersStore = usePlayersStore();
+const session = useSessionStore();
+const userPreferences = useUserPreferencesStore();
+const votingStore = useVotingStore();
+const t = locale.t;
 
-const edition = computed(() => store.state.edition);
-const grimoire = computed(() => store.state.grimoire);
-const session = computed(() => store.state.session);
-const players = computed(() => store.state.players.players);
+const edition = computed(() => grimoire.edition);
+const players = computed(() => playersStore.players);
 
 const markedStoryteller = computed(() => {
-  return typeof session.value.markedPlayer == 'string' && !(session.value.isSpectator && session.value.isSecretVote)
+  return typeof votingStore.markedPlayer == 'string' && !(session.isPlayerOrSpectator && grimoire.isSecretVote)
 });
 
 const logoUrl = computed(() => {
-  if (edition.value.logo && !edition.value.logo.includes('.')) {
+  if (edition.value?.logo && !edition.value.logo.includes('.')) {
     return new URL(`../assets/logos/${edition.value.logo}.png`, import.meta.url).href;
   }
 
-  if (edition.value.logo && grimoire.value.isImageOptIn) {
+  if (edition.value?.logo && userPreferences.isImageOptIn) {
     return edition.value.logo;
   }
 
@@ -120,13 +104,13 @@ const logoUrl = computed(() => {
 });
 
 const teams = computed(() => {
-  const nontravelers = store.getters['players/nontravelers'];
+  const nontravelers = playersStore.nontravelers;
   const alive = players.value.filter((player: Player) => player.isDead !== true).length;
   const aliveNT = players.value.filter(
     (player: Player) => player.isDead !== true && player.role.team !== 'traveler'
   ).length;
   return {
-    ...gameJSON[nontravelers - 5],
+    ...grimoire.getGameComposition(nontravelers),
     traveler: players.value.length - nontravelers,
     alive,
     aliveNT,
@@ -194,23 +178,23 @@ const teams = computed(() => {
     }
 
     .townsfolk {
-      color: $townsfolk;
+      color: var(--townsfolk);
     }
 
     .outsider {
-      color: $outsider;
+      color: var(--outsider);
     }
 
     .minion {
-      color: $minion;
+      color: var(--minion);
     }
 
     .demon {
-      color: $demon;
+      color: var(--demon);
     }
 
     .traveler {
-      color: $traveler;
+      color: var(--traveler);
     }
   }
 

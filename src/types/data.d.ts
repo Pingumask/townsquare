@@ -1,13 +1,17 @@
-import type { Edition } from './game';
-import type { Role } from './roles';
+import type { Edition } from "./game";
+import type { Role } from "./roles";
 
 // Locale types
 export interface LocaleData {
+  head?: {
+    title: string;
+    description: string;
+  };
   [key: string]: unknown;
 }
 
 export interface LocaleModule {
-  default: Record<string, unknown>;
+  default: LocaleData;
 }
 
 // Shared JSON/module shapes used across store and plugins
@@ -17,6 +21,7 @@ export interface EditionsJSON {
   teensyville: [string, string][];
 }
 
+// Jinx types
 export interface HatredEntry {
   id: string;
   reason: string;

@@ -5,9 +5,6 @@
       <span v-if="nominator" class="nominator" :style="nominatorStyle" />
     </div>
     <div class="overlay">
-      <audio preload="auto">
-        <source src="../assets/sounds/countdown.mp3">
-      </audio>
       <em class="blue">{{ nominatorDisplayName }}</em>
       {{ voteAction }}
       <em v-if="!shouldHideNominee">
@@ -16,9 +13,9 @@
       {{ t('vote.exclam') }}
       <br>
       <em v-if="
-        !session.isSecretVote ||
+        !grimoire.isSecretVote ||
         (nominee && nominee.role.team == 'traveler') ||
-        !session.isSpectator
+        !session.isPlayerOrSpectator
       " class="blue">
         {{ voters?.length }} {{ t('vote.votes') }}
       </em>
@@ -26,7 +23,7 @@
       {{ t('vote.inFavor') }}
       <em v-if="
         (nominee && nominee.role.team !== 'traveler') ||
-        (session.nomination && typeof session.nomination.nominee === 'string')
+        (votingStore.nomination && typeof votingStore.nomination.nominee === 'string')
       ">
         ({{ t('vote.majorityIs') }} {{ Math.ceil(alive / 2) }})
       </em>
@@ -34,30 +31,30 @@
         ({{ t('vote.majorityIs') }} {{ Math.ceil(players.length / 2) }})
       </em>
 
-      <template v-if="!session.isSpectator">
+      <template v-if="!session.isPlayerOrSpectator">
         <br>
         <em v-if="
-          session.isSecretVote &&
+          grimoire.isSecretVote &&
           ((nominee && nominee.role.team !== 'traveler') ||
-            (session.nomination && typeof session.nomination.nominee === 'string'))
+            (votingStore.nomination && typeof votingStore.nomination.nominee === 'string'))
         " class="orange">
           {{ t('vote.secretBallot') }}
         </em>
-        <div v-if="!session.isVoteInProgress && session.lockedVote < 1">
+        <div v-if="!votingStore.isVoteInProgress && votingStore.lockedVote < 1">
           {{ t('vote.timePerPlayer') }}
           <font-awesome-icon icon="minus-circle" class="fa fa-minus-circle" @mousedown.prevent="setVotingSpeed(-250)" />
-          {{ session.votingSpeed / 1000 }}s
+          {{ votingStore.votingSpeed / 1000 }}s
           <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @mousedown.prevent="setVotingSpeed(250)" />
         </div>
         <div class="button-group">
-          <div v-if="!session.isVoteInProgress" class="button townsfolk" @click="countdown">
+          <div v-if="!votingStore.isVoteInProgress" class="button townsfolk" @click="countdown">
             {{ t('vote.countdown') }}
           </div>
-          <div v-if="!session.isVoteInProgress" class="button" @click="start">
-            {{ session.lockedVote ? t('vote.restart') : t('vote.start') }}
+          <div v-if="!votingStore.isVoteInProgress" class="button" @click="start">
+            {{ votingStore.lockedVote ? t('vote.restart') : t('vote.start') }}
           </div>
           <template v-else>
-            <div class="button townsfolk" :class="{ disabled: !session.lockedVote }" @click="pause">
+            <div class="button townsfolk" :class="{ disabled: !votingStore.lockedVote }" @click="pause">
               {{ voteTimer ? t('vote.pause') : t('vote.resume') }}
             </div>
             <div class="button" @click="stop">
@@ -73,7 +70,7 @@
           (!nominee || nominee.role.team !== 'traveler')
         " class="button-group mark">
           <div class="button" :class="{
-            disabled: session.nomination?.nominee === session.markedPlayer,
+            disabled: votingStore.nomination?.nominee === votingStore.markedPlayer,
           }" @click="setMarked">
             {{ t('vote.setMarked') }}
           </div>
@@ -83,8 +80,8 @@
         </div>
       </template>
       <template v-else-if="canVote">
-        <div v-if="!session.isVoteInProgress">
-          {{ session.votingSpeed / 1000 }} {{ t('vote.secondsBetweenVotes') }}
+        <div v-if="!votingStore.isVoteInProgress">
+          {{ votingStore.votingSpeed / 1000 }} {{ t('vote.secondsBetweenVotes') }}
         </div>
         <div class="button-group">
           <div class="button townsfolk" :class="{ disabled: !currentVote }" @click="vote(false)">
@@ -100,13 +97,14 @@
       </div>
       <Countdown v-if="grimoire.timer.duration" :timer-name="grimoire.timer.name"
         :timer-duration="grimoire.timer.duration" />
+      <Jukebox />
     </div>
-    <div v-if="session.isVoteInProgress && !session.lockedVote" class="countdown">
+    <div v-if="votingStore.isVoteInProgress && !votingStore.lockedVote" class="countdown">
       <span>3</span>
       <span>2</span>
       <span>1</span>
       <span>{{ t('vote.doVote') }}</span>
-      <audio :autoplay="!grimoire.isMuted" :muted="grimoire.isMuted">
+      <audio :autoplay="!userPreferences.isMuted" :muted="userPreferences.isMuted">
         <source src="../assets/sounds/countdown.mp3">
       </audio>
     </div>
@@ -115,25 +113,35 @@
 
 <script setup lang="ts">
 import { computed, onUnmounted, ref } from "vue";
-import { useStore } from "vuex";
-import { Countdown } from '@/components';
-import { useTranslation, isActiveNomination } from '@/composables';
+import { Countdown, Jukebox } from '@/components';
+import { isActiveNomination } from '@/services';
+import {
+  useGrimoireStore,
+  useLocaleStore,
+  usePlayersStore,
+  useSessionStore,
+  useUserPreferencesStore,
+  useVotingStore,
+} from "@/stores";
 import type { Player } from '@/types';
 
-const store = useStore();
-const { t } = useTranslation();
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const playersStore = usePlayersStore();
+const session = useSessionStore();
+const userPreferences = useUserPreferencesStore();
+const votingStore = useVotingStore();
+const t = locale.t;
 
-const players = computed(() => store.state.players.players);
-const session = computed(() => store.state.session);
-const grimoire = computed(() => store.state.grimoire);
-const alive = computed(() => store.getters["players/alive"]);
+const alive = computed(() => playersStore.alive);
+const players = computed(() => playersStore.players);
 
 const voteTimer = ref<ReturnType<typeof setInterval> | null>(null);
 
 const nominator = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return null;
+  if (!isActiveNomination(votingStore.nomination)) return null;
 
-  const nominatorRef = session.value.nomination.nominator;
+  const nominatorRef = votingStore.nomination.nominator;
   if (typeof nominatorRef === 'number') {
     return players.value[nominatorRef] || null;
   }
@@ -141,33 +149,33 @@ const nominator = computed(() => {
 });
 
 const nominatorStyle = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return {};
+  if (!isActiveNomination(votingStore.nomination)) return {};
 
   const playersCount = players.value.length;
-  const nominatorRef = session.value.nomination.nominator;
+  const nominatorRef = votingStore.nomination.nominator;
 
   if (typeof nominatorRef !== 'number') return {};
 
   if (nominee.value) {
     return {
       transform: `rotate(${Math.round((nominatorRef / playersCount) * 360)}deg)`,
-      transitionDuration: session.value.votingSpeed - 100 + "ms",
+      transitionDuration: votingStore.votingSpeed - 100 + "ms",
     };
   } else {
-    const lock = session.value.lockedVote;
+    const lock = votingStore.lockedVote;
     const rotation =
       (360 * (nominatorRef + Math.min(lock, playersCount))) / playersCount;
     return {
       transform: `rotate(${Math.round(rotation)}deg)`,
-      transitionDuration: session.value.votingSpeed - 100 + "ms",
+      transitionDuration: votingStore.votingSpeed - 100 + "ms",
     };
   }
 });
 
 const nominee = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return null;
+  if (!isActiveNomination(votingStore.nomination)) return null;
 
-  const nomineeRef = session.value.nomination.nominee;
+  const nomineeRef = votingStore.nomination.nominee;
   if (typeof nomineeRef === 'number') {
     return players.value[nomineeRef] || null;
   }
@@ -175,47 +183,47 @@ const nominee = computed(() => {
 });
 
 const nomineeStyle = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return {};
+  if (!isActiveNomination(votingStore.nomination)) return {};
 
   const playersCount = players.value.length;
-  const nomineeRef = session.value.nomination.nominee;
+  const nomineeRef = votingStore.nomination.nominee;
 
   if (typeof nomineeRef !== 'number') return {};
 
-  const lock = session.value.lockedVote;
+  const lock = votingStore.lockedVote;
   const rotation = (360 * (nomineeRef + Math.min(lock, playersCount))) / playersCount;
   return {
     transform: `rotate(${Math.round(rotation)}deg)`,
-    transitionDuration: session.value.votingSpeed - 100 + "ms",
+    transitionDuration: votingStore.votingSpeed - 100 + "ms",
   };
 });
 
 const isFreeVote = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return false;
+  if (!isActiveNomination(votingStore.nomination)) return false;
   return (
-    session.value.nomination.nominee === null
+    votingStore.nomination.nominee === null
     || nominee.value?.role.team === 'traveler'
   )
 });
 
 const player = computed(() => {
-  return players.value.find((p: Player) => p.id === session.value.playerId);
+  return players.value.find((p: Player) => p.id === session.playerId);
 });
 
 const currentVote = computed(() => {
-  const index = players.value.findIndex((p: Player) => p.id === session.value.playerId);
-  return index >= 0 ? !!session.value.votes[index] : undefined;
+  const index = players.value.findIndex((p: Player) => p.id === session.playerId);
+  return index >= 0 ? !!votingStore.votes[index] : undefined;
 });
 
 // Type-safe computed properties for nomination handling
 const nominatorDisplayName = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return '';
+  if (!isActiveNomination(votingStore.nomination)) return '';
 
   if (nominator.value) {
     return nominator.value.name;
   }
 
-  const nominatorRef = session.value.nomination.nominator;
+  const nominatorRef = votingStore.nomination.nominator;
   if (typeof nominatorRef === 'string') {
     return nominatorRef.charAt(0).toUpperCase() + nominatorRef.slice(1);
   }
@@ -224,13 +232,13 @@ const nominatorDisplayName = computed(() => {
 });
 
 const nomineeDisplayName = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return '';
+  if (!isActiveNomination(votingStore.nomination)) return '';
 
   if (nominee.value) {
     return nominee.value.name;
   }
 
-  const nomineeRef = session.value.nomination.nominee;
+  const nomineeRef = votingStore.nomination.nominee;
   if (typeof nomineeRef === 'string') {
     // Capitalize string nominees (like "storyteller")
     return nomineeRef.charAt(0).toUpperCase() + nomineeRef.slice(1);
@@ -240,9 +248,9 @@ const nomineeDisplayName = computed(() => {
 });
 
 const voteAction = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return '';
+  if (!isActiveNomination(votingStore.nomination)) return '';
 
-  const nomination = session.value.nomination;
+  const nomination = votingStore.nomination;
 
   // Check if it's a special vote with custom action text
   if (nomination.specialVote?.timerText) {
@@ -259,9 +267,9 @@ const voteAction = computed(() => {
 });
 
 const shouldHideNominee = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return false;
+  if (!isActiveNomination(votingStore.nomination)) return false;
 
-  const nomination = session.value.nomination;
+  const nomination = votingStore.nomination;
 
   // Hide nominee if it's a special vote with custom timer text (like cultleader, custom)
   // but show nominee for special votes like bishop/atheist that have string nominees
@@ -276,9 +284,9 @@ const voudonInPlay = computed(() => {
 });
 
 const canVote = computed(() => {
-  if (!player.value || !isActiveNomination(session.value.nomination)) return false;
+  if (!player.value || !isActiveNomination(votingStore.nomination)) return false;
 
-  const nomination = session.value.nomination;
+  const nomination = votingStore.nomination;
 
   if ( // Dead player without a token or voudon
     (player.value.isDead || player.value.role.id == "beggar")
@@ -287,7 +295,6 @@ const canVote = computed(() => {
     && !voudonInPlay.value
   ) return false;
 
-  const sessionData = session.value;
   const playersCount = players.value.length;
   const index = players.value.indexOf(player.value);
 
@@ -303,13 +310,13 @@ const canVote = computed(() => {
 
   const indexAdjusted =
     (index - 1 + playersCount - referenceIndex) % playersCount;
-  return indexAdjusted >= sessionData.lockedVote - 1;
+  return indexAdjusted >= votingStore.lockedVote - 1;
 });
 
 const voters = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return [];
+  if (!isActiveNomination(votingStore.nomination)) return [];
 
-  const nomination = session.value.nomination;
+  const nomination = votingStore.nomination;
 
   // Determine reference player index for vote ordering
   let referenceIndex: number;
@@ -322,45 +329,45 @@ const voters = computed(() => {
     referenceIndex = 0;
   }
 
-  const votersList = Array(players.value.length)
+  const votersList = new Array(players.value.length)
     .fill("")
     .map((_, index) =>
-      session.value.votes[index] ? players.value[index].name : "",
+      votingStore.votes[index] && players.value[index] ? players.value[index].name : "",
     );
   const reorder = [
     ...votersList.slice(referenceIndex + 1),
     ...votersList.slice(0, referenceIndex + 1),
   ];
   return (
-    session.value.lockedVote
-      ? reorder.slice(0, session.value.lockedVote - 1)
+    votingStore.lockedVote
+      ? reorder.slice(0, votingStore.lockedVote - 1)
       : reorder
   ).filter((n) => !!n);
 });
 
 const countdown = () => {
-  store.commit("session/lockVote", 0);
-  store.commit("session/setVoteInProgress", true);
+  votingStore.lockVote(0);
+  votingStore.setVoteInProgress(true);
   voteTimer.value = setInterval(() => {
     start();
   }, 4000);
 };
 
 const start = () => {
-  store.commit("session/lockVote", 1);
-  store.commit("session/setVoteInProgress", true);
+  votingStore.lockVote(1);
+  votingStore.setVoteInProgress(true);
   if (voteTimer.value) {
     clearInterval(voteTimer.value);
   }
   voteTimer.value = setInterval(() => {
-    store.commit("session/lockVote");
-    if (session.value.lockedVote > players.value.length) {
+    votingStore.lockVote();
+    if (votingStore.lockedVote > players.value.length) {
       if (voteTimer.value) {
         clearInterval(voteTimer.value);
       }
-      store.commit("session/setVoteInProgress", false);
+      votingStore.setVoteInProgress(false);
     }
-  }, session.value.votingSpeed);
+  }, votingStore.votingSpeed);
 };
 
 const pause = () => {
@@ -369,14 +376,14 @@ const pause = () => {
     voteTimer.value = null;
   } else {
     voteTimer.value = setInterval(() => {
-      store.commit("session/lockVote");
-      if (session.value.lockedVote > players.value.length) {
+      votingStore.lockVote();
+      if (votingStore.lockedVote > players.value.length) {
         if (voteTimer.value) {
           clearInterval(voteTimer.value);
         }
-        store.commit("session/setVoteInProgress", false);
+        votingStore.setVoteInProgress(false);
       }
-    }, session.value.votingSpeed);
+    }, votingStore.votingSpeed);
   }
 };
 
@@ -385,48 +392,49 @@ const stop = () => {
     clearInterval(voteTimer.value);
   }
   voteTimer.value = null;
-  store.commit("session/setVoteInProgress", false);
-  store.commit("session/lockVote", 0);
+  votingStore.setVoteInProgress(false);
+  votingStore.lockVote(0);
 };
 
 const finish = () => {
   if (voteTimer.value) {
     clearInterval(voteTimer.value);
   }
-  store.commit("session/addHistory", {
+  votingStore.addHistory({
+    day: grimoire.dayCount,
     players: players.value,
-    isOrganVoteMode: session.value.isSecretVote,
+    isSecretVoteMode: grimoire.isSecretVote,
     localeTexts: {
       exile: t('modal.voteHistory.exile'),
       execution: t('modal.voteHistory.execution')
     }
   });
-  store.commit("session/nomination");
+  votingStore.setNomination(null);
 };
 
 const vote = (vote: boolean): boolean => {
   if (!canVote.value) return false;
-  const index = players.value.findIndex((p: Player) => p.id === session.value.playerId);
-  if (index >= 0 && !!session.value.votes[index] !== vote) {
-    store.commit("session/voteSync", [index, vote]);
+  const index = players.value.findIndex((p: Player) => p.id === session.playerId);
+  if (index >= 0 && !!votingStore.votes[index] !== vote) {
+    votingStore.voteSync([index, vote]);
     return true;
   }
   return false;
 };
 
 const setVotingSpeed = (diff: number) => {
-  const speed = Math.round(session.value.votingSpeed + diff);
+  const speed = Math.round(votingStore.votingSpeed + diff);
   if (speed >= 0) {
-    store.commit("session/setVotingSpeed", speed);
+    votingStore.setVotingSpeed(speed);
   }
 };
 
 const setMarked = () => {
-  store.commit("session/setMarkedPlayer", session.value.nomination.nominee);
+  votingStore.setMarkedPlayer(votingStore.nomination?.nominee as number);
 };
 
 const removeMarked = () => {
-  store.commit("session/setMarkedPlayer", -1);
+  votingStore.setMarkedPlayer(-1);
 };
 
 onUnmounted(() => {
@@ -469,16 +477,16 @@ onUnmounted(() => {
   }
 
   em {
-    color: $demon;
+    color: var(--demon);
     font-style: normal;
     font-weight: bold;
 
     &.blue {
-      color: $townsfolk;
+      color: var(--townsfolk);
     }
 
     &.orange {
-      color: $minion;
+      color: var(--minion);
     }
   }
 
@@ -571,7 +579,7 @@ onUnmounted(() => {
   }
 
   90% {
-    color: $townsfolk;
+    color: var(--townsfolk);
     opacity: 1;
   }
 
@@ -597,7 +605,7 @@ onUnmounted(() => {
   }
 
   90% {
-    color: $demon;
+    color: var(--demon);
     opacity: 1;
   }
 
