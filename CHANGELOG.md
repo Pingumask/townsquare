@@ -3,11 +3,15 @@
 ## Upcomming Version
 - Features:
 
-- Bugfixes:
+- Fixes:
 
 - Localization :
 
-- Technical :
+- Maintenance :
+
+# 6.0.1
+- Fixes:
+  - nginx config to redirect all traffic to index.html (to fix 404 errors on join links)
 
 # 6.0.0
 - Features:
