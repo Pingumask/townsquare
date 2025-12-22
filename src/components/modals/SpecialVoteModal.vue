@@ -1,5 +1,5 @@
 <template>
-  <Modal v-if="modals.specialVote" @close="toggleModal('specialVote')">
+  <Modal v-if="grimoire.modal === 'specialVote'" @close="grimoire.toggleModal(null)">
     <h3>{{ t('modal.specialvote.title') }}</h3>
     <div class="allTheButtons">
       <button @click="bishopVote()">
@@ -24,34 +24,40 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useStore } from 'vuex';
 import { Modal } from '@/components';
-import { useTranslation, createSpecialVote } from '@/composables';
+import { createSpecialVote } from '@/services';
+import {
+  useGrimoireStore,
+  useLocaleStore,
+  usePlayersStore,
+  useVotingStore,
+} from "@/stores";
 import type { Nomination } from '@/types';
 
-const { t } = useTranslation();
-const store = useStore();
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
+const playersStore = usePlayersStore();
+const votingStore = useVotingStore();
 
-const modals = computed(() => store.state.modals);
-const session = computed(() => store.state.session);
-const players = computed(() => store.state.players.players);
+const players = computed(() => playersStore.players);
 
 function launchVote(nomination: Nomination) {
-  store.commit('session/nomination', { nomination });
-  store.commit('toggleModal', 'specialVote');
+  votingStore.setNomination(nomination);
+  grimoire.toggleModal(null);
 }
 
 function bishopVote() {
   launchVote(createSpecialVote(
     t('modal.specialvote.st'),
-    session.value.playerForSpecialVote,
+    votingStore.playerForSpecialVote,
     { type: 'bishop' }
   ));
 }
 
 function atheistVote() {
   launchVote(createSpecialVote(
-    session.value.playerForSpecialVote,
+    votingStore.playerForSpecialVote,
     t('modal.specialvote.st'),
     { type: 'atheist' }
   ));
@@ -59,7 +65,7 @@ function atheistVote() {
 
 function cultleaderVote() {
   launchVote(createSpecialVote(
-    session.value.playerForSpecialVote,
+    votingStore.playerForSpecialVote,
     null, // Cult leader votes don't have a specific nominee
     {
       type: 'cultleader',
@@ -71,7 +77,9 @@ function cultleaderVote() {
 }
 
 function customVote() {
-  const playerName = players.value[session.value.playerForSpecialVote].name;
+  const player = players.value[votingStore.playerForSpecialVote];
+  if (!player) return;
+  const playerName = player.name;
   const input = prompt(
     t('modal.specialvote.complete') +
     playerName +
@@ -81,7 +89,7 @@ function customVote() {
   if (!input) return;
 
   launchVote(createSpecialVote(
-    session.value.playerForSpecialVote,
+    votingStore.playerForSpecialVote,
     null, // Custom votes don't have a specific nominee
     {
       type: 'custom',
@@ -90,10 +98,6 @@ function customVote() {
       buttonLabel: t('modal.specialvote.customMessages.buttonLabel'),  // "(Custom)"
     }
   ));
-}
-
-function toggleModal(modalName: string) {
-  store.commit('toggleModal', modalName);
 }
 </script>
 

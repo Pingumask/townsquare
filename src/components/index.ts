@@ -1,8 +1,11 @@
+export { default as Bluffs } from "./Bluffs.vue";
 export { default as Countdown } from "./Countdown.vue";
 export { default as Gradients } from "./Gradients.vue";
 export { default as Intro } from "./Intro.vue";
+export { default as Jukebox } from "./Jukebox.vue";
 export { default as Menu } from "./Menu.vue";
 export { default as NightOrderTable } from "./NightOrderTable.vue";
+export { default as Npcs } from "./Npcs.vue";
 export { default as RoleIcon } from "./RoleIcon.vue";
 export { default as Seat } from "./Seat.vue";
 export { default as SideMenu } from "./SideMenu.vue";

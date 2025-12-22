@@ -1,72 +1,71 @@
 {
   "menu": {
-    "grimoire": {
-      "title": "Grimoire",
-      "hide": "Cacher",
-      "show": "Montrer",
-      "firstNightSwitch": "Passer à la première nuit",
-      "nightSwitch": "Passer à la nuit",
-      "daySwitch": "Passer au jour",
-      "order": "Ordre Nocturne",
-      "zoom": "Zoom",
-      "background": "Image de fond",
-      "customImages": "Images Importées",
-      "streamerMode": "Mode Streamer",
-      "animations": "Effets réduits",
-      "mute": "Silencieux",
-      "ringBell": "Sonner Clocher"
-    },
-    "session": {
-      "title": {
+    "tabs": {
+      "session": {
         "player": "Joueur",
         "host": "Hôte",
-        "create": "Session Live"
+        "create": "Session"
       },
-      "player": "Joueur",
-      "players": "Joueurs",
-      "host": "Hôte",
-      "storyteller": "Hôte (Narrateur)",
-      "delay": "Délais",
-      "link": "Copier Lien Joueurs",
-      "sendRoles": "Envoyer les rôles",
-      "voteHistory": "Historique Votes",
-      "secretVote": "Vote secret",
-      "selfNaming": "Auto-Renommage",
-      "leave": "Quitter Session"
+      "options": "Préférences",
+      "setup": "Mise en place",
+      "storytelling": "Narration",
+      "playersMenu": "Menu des joueurs",
+      "soundboard": "Envoyer des Sons",
+      "gameplay": "Jeu",
+      "about": "A propos"
     },
-    "players": {
-      "title": "Joueurs",
-      "add": "Ajouter Siège",
-      "addMany": "Ajouter Sièges",
-      "randomize": "Mélanger Sièges",
-      "removeAll": "Retirer Joueurs"
-    },
-    "playersMenu": {
-      "title": "Menu des joueurs",
-      "required": "(requis)"
-    },
-    "characters": {
-      "title": "Personnages",
-      "selectEdition": "Choisir Scénario",
-      "assign": "Attribuer Rôles",
-      "addFabled": "Mythes/Légendes",
-      "removeAll": "Effacer Rôles"
-    },
-    "help": {
-      "title": "Aide",
-      "reference": "Référence rôles",
-      "nightOrder": "Ordre Nocturne",
-      "gameState": "Etat JSON du jeu",
-      "discord": "Rejoindre Discord",
-      "source": "Code Source",
-      "issues": "Signaler un bug / Proposer une fonctionnalité"
-    }
+    "hide": "Cacher",
+    "show": "Montrer",
+    "firstNightSwitch": "Passer à la première nuit",
+    "nightSwitch": "Passer à la nuit",
+    "daySwitch": "Passer au jour",
+    "order": "Ordre Nocturne",
+    "zoom": "Zoom",
+    "background": "Image de fond",
+    "customImages": "Images Importées",
+    "streamerMode": "Mode Streamer",
+    "animations": "Effets réduits",
+    "mute": "Silencieux",
+    "ringBell": "Sonner Clocher",
+    "player": "Joueur",
+    "players": "Joueurs",
+    "host": "Hôte",
+    "storyteller": "Hôte (Narrateur)",
+    "delay": "Délais",
+    "link": "Copier Lien Joueurs",
+    "sendRoles": "Envoyer les rôles",
+    "voteHistory": "Historique des Votes",
+    "allowVoteHistory": "Historique Publique",
+    "secretVote": "Vote secret",
+    "selfNaming": "Auto-Renommage",
+    "leave": "Quitter Session",
+    "addPlayer": "Ajouter un Siège",
+    "addPlayers": "Ajouter des Sièges",
+    "randomizeSeats": "Mélanger les Sièges",
+    "removeSeats": "Retirer tous les Sièges",
+    "selectEdition": "Choisir le Scénario",
+    "assign": "Attribuer les Rôles",
+    "addFabled": "Mythes & Légendes",
+    "clearRoles": "Effacer les Rôles",
+    "reference": "Référence des Rôles",
+    "nightOrder": "Ordre Nocturne",
+    "gameState": "Etat JSON du jeu",
+    "discord": "Rejoindre Discord",
+    "source": "Code Source",
+    "issues": "Signaler un bug",
+    "request": "Proposer une fonctionalité",
+    "newGame": "Nouvelle partie",
+    "endGame": "Fin de Partie"
+  },
+  "head": {
+    "title": "Grimoire Blood on the Clocktower",
+    "description": "Un Grimoire virtuel gratuit pour Blood on the Clocktower pour vous aider à animer vos parties (en ligne)."
   },
   "prompt": {
     "background": "Entrez l'URL de l'image de fond",
     "createSession": "Entrez un nom ou numéro de session",
     "sendRoles": "Voulez-vous envoyer les rôles à tous les joueurs ASSIS ?",
-    "sendRolesWithForbidden1": "ATTENTION\nL'un des rôles que vous voulez envoyer est un rôle interdit (",
+    "sendRolesWithForbidden1": "ATTENTION\nAu moins l'un des rôles que vous êtes sur le point d'envoyer est un rôle interdit (",
     "sendRolesWithForbidden2": ").\nConfirmer l'envoi ?",
     "imageOptIn": "Êtes-vous sûr de vouloir autoriser les images externes ? Un auteur de script mal intentionné pourrait s'en servir pour traquer votre adresse IP.",
     "joinSession": "Entrez le nom ou numéro de la session que vous souhaitez rejoindre",
@@ -80,7 +79,9 @@
     "customError": "Erreur lors du chargement du script",
     "customNote": "Ajouter une note personnalisée",
     "customScriptName": "Nom du scénario personnalisé",
-    "defaultScriptName": "Scénario personnalisé"
+    "defaultScriptName": "Scénario personnalisé",
+    "newGame": "Êtes-vous sûr de vouloir démarrer une nouvelle partie ? Cette action effacera tous les rôles, remettra le compteur de jours à zéro et reviendra à la phase de mise en place.",
+    "endGame": "Êtes-vous sûr de vouloir mettre fin à la partie ? La phase de fin de jeu sera disponible dans une future mise à jour."
   },
   "vote": {
     "nominates": "accuse",
@@ -145,6 +146,14 @@
         "button": "Débat",
         "text": "Faut-il tuer $accusee ?"
       }
+    },
+    "gamephase": {
+      "offline": "Non connecté",
+      "pregame": "Mise en place",
+      "firstNight": "Première Nuit",
+      "day": "Jour",
+      "otherNight": "Nuit",
+      "postgame": "Fin de partie"
     }
   },
   "towninfo": {
@@ -279,6 +288,7 @@
       "title": "Historique de votes",
       "accessibility": "Accessible aux Joueurs",
       "clear": "Effacer pour tous",
+      "day": "Jour",
       "time": "Heure",
       "nominator": "Accusateur",
       "nominee": "Accusé",
@@ -309,5 +319,10 @@
         "buttonLabel": "(Personnalisé)"
       }
     }
+  },
+  "sound": {
+    "rooster": "Chant du Coq",
+    "ringing": "Sonner la Cloche",
+    "gavel": "Frapper le Maillet"
   }
 }

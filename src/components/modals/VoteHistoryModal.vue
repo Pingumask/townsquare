@@ -1,21 +1,18 @@
 <template>
-  <Modal v-if="modals.voteHistory && (session.voteHistory || !session.isSpectator)" class="vote-history"
-    @close="toggleModal('voteHistory')">
-    <font-awesome-icon v-if="session.isSpectator" icon="trash-alt" class="fa fa-trash-alt clear"
-      title="Clear vote history" @click="clearVoteHistory" />
-
+  <Modal v-if="grimoire.modal === 'voteHistory' && (votingStore.voteHistory || !session.isPlayerOrSpectator)"
+    class="vote-history" @close="grimoire.toggleModal(null)">
     <h3>{{ t('modal.voteHistory.title') }}</h3>
 
-    <template v-if="!session.isSpectator">
+    <template v-if="!session.isPlayerOrSpectator">
       <div class="options">
-        <div class="option" @click="setRecordVoteHistory">
+        <div class="option" @click="grimoire.setVoteHistoryAllowed(!grimoire.isVoteHistoryAllowed)">
           <font-awesome-icon :icon="[
             'fas',
-            session.isVoteHistoryAllowed ? 'check-square' : 'square',
+            grimoire.isVoteHistoryAllowed ? 'check-square' : 'square',
           ]" />
           {{ t('modal.voteHistory.accessibility') }}
         </div>
-        <div class="option" @click="clearVoteHistory">
+        <div class="option" @click="votingStore.clearVoteHistory()">
           <font-awesome-icon icon="trash-alt" class="fa fa-trash-alt" />
           {{ t('modal.voteHistory.clear') }}
         </div>
@@ -28,6 +25,9 @@
             {{ t('modal.voteHistory.time') }}
           </th>
           <th scope="col">
+            {{ t('modal.voteHistory.day') }}
+          </th>
+          <th scope="col">
             {{ t('modal.voteHistory.nominator') }}
           </th>
           <th scope="col">
@@ -36,11 +36,15 @@
           <th scope="col">
             {{ t('modal.voteHistory.type') }}
           </th>
-          <th scope="col">
-            {{ t('modal.voteHistory.votes') }}
+          <th v-if="!session.isPlayerOrSpectator" scope="col">
+            <font-awesome-icon v-if="grimoire.isSecretVote" icon="eye-slash" class="fa fa-eye-slash" />
+            <font-awesome-icon v-else icon="eye" class="fa fa-eye" />
           </th>
           <th scope="col">
             {{ t('modal.voteHistory.majority') }}
+          </th>
+          <th scope="col">
+            {{ t('modal.voteHistory.votes') }}
           </th>
           <th scope="col">
             <font-awesome-icon icon="user-friends" class="fa fa-user-friends" />
@@ -49,24 +53,25 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(vote, index) in session.voteHistory" :key="index">
+        <tr v-for="(vote, index) in votingStore.voteHistory" :key="index">
           <td>
             {{ vote.timestamp.getHours().toString().padStart(2, "0") }}:{{
               vote.timestamp.getMinutes().toString().padStart(2, "0")
             }}
           </td>
-          <td>{{ vote.nominator }}</td>
-          <td>{{ vote.nominee }}</td>
+          <td>{{ vote.day }}</td>
+          <td class="nominator">{{ vote.nominator }}</td>
+          <td class="nominee">{{ vote.nominee }}</td>
           <td>{{ vote.type }}</td>
-          <td>
-            {{ vote.votes == null ? "?" : vote.votes.length }}
-            <font-awesome-icon icon="hand-paper" class="fa fa-hand-paper" />
+          <td v-if="!session.isPlayerOrSpectator">
+            <font-awesome-icon v-if="vote.anonymous" icon="eye-slash" class="fa fa-eye-slash" />
+            <font-awesome-icon v-else icon="eye" class="fa fa-eye" />
           </td>
           <td v-if="vote.nominee">
             {{ vote.majority }}
             <font-awesome-icon :icon="[
               'fas',
-              vote.votes == null
+              vote.anonymous && session.isPlayerOrSpectator
                 ? 'minus-square'
                 : vote.votes.length >= vote.majority
                   ? 'check-square'
@@ -74,9 +79,16 @@
             ]" />
           </td>
           <td v-else />
+          <td v-if="vote.anonymous && session.isPlayerOrSpectator">
+            <font-awesome-icon v-if="vote.anonymous" icon="eye-slash" class="fa fa-eye-slash" />
+          </td>
+          <td v-else>
+            {{ vote.votes.length }}
+            <font-awesome-icon icon="hand-paper" class="fa fa-hand-paper" />
+          </td>
           <td>
             {{
-              vote.votes == null
+              vote.anonymous && session.isPlayerOrSpectator
                 ? t('modal.voteHistory.hiddenVote')
                 : vote.votes.join(", ")
             }}
@@ -88,28 +100,19 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { useStore } from "vuex";
 import { Modal } from '@/components';
-import { useTranslation } from '@/composables';
+import {
+  useGrimoireStore,
+  useLocaleStore,
+  useSessionStore,
+  useVotingStore,
+} from "@/stores";
 
-const { t } = useTranslation();
-const store = useStore();
-
-const session = computed(() => store.state.session);
-const modals = computed(() => store.state.modals);
-
-const clearVoteHistory = () => {
-  store.commit("session/clearVoteHistory");
-};
-
-const setRecordVoteHistory = () => {
-  store.commit("session/setVoteHistoryAllowed", !session.value.isVoteHistoryAllowed);
-};
-
-const toggleModal = (modalName: string) => {
-  store.commit("toggleModal", modalName);
-};
+const locale = useLocaleStore();
+const grimoire = useGrimoireStore();
+const session = useSessionStore();
+const votingStore = useVotingStore();
+const t = locale.t;
 </script>
 
 <style lang="scss" scoped>
@@ -166,12 +169,12 @@ thead th {
 }
 
 tbody {
-  td:nth-child(2) {
-    color: $townsfolk;
+  td.nominator {
+    color: var(--townsfolk);
   }
 
-  td:nth-child(3) {
-    color: $demon;
+  td.nominee {
+    color: var(--demon);
   }
 
   td:nth-child(5) {

@@ -29,6 +29,7 @@ const emit = defineEmits<{
 const close = () => {
   emit('close');
 };
+
 </script>
 
 <style lang="scss">
@@ -46,7 +47,8 @@ const close = () => {
 }
 
 .modal {
-  background: rgba(0, 0, 0, 0.8);
+  color: inherit;
+  background: #000e;
   padding: 10px 20px 0 20px;
   border-radius: 10px;
   box-shadow: 2px 2px 20px 1px #000;
@@ -57,6 +59,11 @@ const close = () => {
   max-height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
+  outline: none;
+  border: none;
+  scrollbar-gutter: stable both-edges;
+  scrollbar-width: thin;
+  scrollbar-color: #333 #000;
 
   .editions &,
   .vote-history &,
@@ -110,14 +117,14 @@ const close = () => {
   background: rgba(0, 0, 0, 0.95);
   padding: 0;
   border-radius: 0;
-  height: 100%;
-  width: 100%;
-  max-width: 100%;
-  max-height: 100%;
+  height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
   display: flex;
   align-content: center;
   justify-content: center;
 
+  &.roles,
   .roles &,
   .characters & {
     max-width: 100%;

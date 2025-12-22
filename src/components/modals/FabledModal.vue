@@ -1,39 +1,53 @@
 <template>
-  <Modal v-if="modals.fabled && fabled.length" @close="toggleModal('fabled')">
+  <Modal v-if="grimoire.modal === 'fabled'" @close="grimoire.toggleModal(null)">
     <h3>{{ t('modal.fabled.title') }}</h3>
     <ul class="tokens">
       <li v-for="role in fabled" :key="role.id" @click="setFabled(role)">
         <Token :role="role" />
       </li>
     </ul>
+    <input v-model="rolefilter" type="search" :placeholder="t('modal.role.search')" />
   </Modal>
 </template>
 
 <script setup lang="ts">
-import type { Role } from '@/types';
-import { computed } from 'vue';
-import { useStore } from 'vuex';
+import { computed, ref } from 'vue';
 import { Modal, Token } from '@/components';
-import { useTranslation } from '@/composables';
+import {
+  useGrimoireStore,
+  useLocaleStore,
+  usePlayersStore,
 
-const { t } = useTranslation();
-const store = useStore();
+} from "@/stores";
+import type { Role } from "@/types";
 
-const modals = computed(() => store.state.modals);
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const playersStore = usePlayersStore();
+
+const t = locale.t;
+
+const rolefilter = ref('');
 
 const fabled = computed((): Role[] => {
-  return (Array.from(store.state.fabled.values()) as Role[]).filter((role: Role) =>
-    !store.state.players.fabled.some((fable: Role) => fable.id === role.id)
-  );
+  const available = [] as Role[];
+  grimoire.fabled.forEach((role: Role) => {
+    if (
+      role.name?.toLowerCase().includes(rolefilter.value?.toLowerCase()) ||
+      role.id?.toLowerCase().includes(rolefilter.value?.toLowerCase()) ||
+      role.ability?.toLowerCase().includes(rolefilter.value?.toLowerCase()) ||
+      role.firstNightReminder?.toLowerCase().includes(rolefilter.value?.toLowerCase()) ||
+      role.otherNightReminder?.toLowerCase().includes(rolefilter.value?.toLowerCase())
+    ) {
+      available.push(role);
+    }
+  })
+  return available.filter((role: Role) => !playersStore.fabled.some((fable: Role) => fable.id === role.id))
 });
 
 function setFabled(role: Role) {
-  store.commit('players/setFabled', { fabled: role });
-  store.commit('toggleModal', 'fabled');
-}
-
-function toggleModal(modal: string) {
-  store.commit('toggleModal', modal);
+  playersStore.setFabled({ fabled: role });
+  grimoire.toggleModal(null);
 }
 </script>
 
@@ -50,5 +64,18 @@ ul.tokens li {
     transform: scale(1.2);
     z-index: 10;
   }
+}
+
+input[type=search] {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: solid #fff;
+  border-width: 0 0 1px 0;
+  outline: none;
+  color: #fff;
+  font-size: 1em;
+  touch-action: none;
+  border-bottom-color: #777;
 }
 </style>

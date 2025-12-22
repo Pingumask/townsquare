@@ -1,77 +1,85 @@
 <template>
-  <aside v-if="!session.isSpectator || session.gamePhase === 'firstNight' || session.gamePhase === 'otherNight'"
-    ref="sideMenu" class="sideMenu" :class="{ closed: !isSideMenuOpen }">
+  <aside ref="sideMenu" class="sideMenu" :class="{ closed: !isSideMenuOpen }">
 
     <h3>
       <font-awesome-icon icon="times-circle" class="fa fa-times-circle" @click.stop="toggleSideMenu" />
       <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="toggleSideMenu" />
-      <span v-if="!session.sessionId">{{ t('townsquare.disconnected') }}</span>
-      <span v-else-if="!session.isSpectator">{{ t('townsquare.storytellerTools') }}</span>
-      <span
-        v-else-if="session.isSpectator && session.gamePhase === 'firstNight' || session.gamePhase === 'otherNight'">{{
-          t('modal.nightOrder.title') }}</span>
+      <span>
+        {{ t(`townsquare.gamephase.${grimoire.gamePhase}`) }}
+        <span v-if="grimoire.gamePhase === 'day' || grimoire.gamePhase === 'otherNight'">
+          {{ grimoire.dayCount }}
+        </span>
+      </span>
     </h3>
     <div class="content">
-      <div v-if="session.sessionId && !session.isSpectator">
+      <div v-if="session.sessionId && !session.isPlayerOrSpectator">
         <div class="button-group">
-          <button class="button" :disabled="session.gamePhase === 'firstNight'"
-            :title="t('menu.grimoire.firstNightSwitch')" @click="setGamePhase('firstNight')">
+          <button class="button" :disabled="grimoire.gamePhase === 'pregame'" :title="t('menu.newGame')"
+            @click="grimoire.newGame">
+            <font-awesome-icon icon="hand-sparkles" />
+          </button>
+          <button class="button" :disabled="grimoire.gamePhase !== 'pregame'" :title="t('menu.firstNightSwitch')"
+            @click="grimoire.setGamePhase('firstNight')">
             ☽
           </button>
-          <button class="button" :disabled="session.gamePhase === 'day'" :title="t('menu.grimoire.daySwitch')"
-            @click="setGamePhase('day')">
+          <button class="button" :disabled="grimoire.gamePhase === 'day' || grimoire.gamePhase === 'pregame'"
+            :title="t('menu.daySwitch')" @click="grimoire.setGamePhase('day')">
             ☀
           </button>
-          <button class="button" :disabled="session.gamePhase === 'otherNight'" :title="t('menu.grimoire.nightSwitch')"
-            @click="setGamePhase('otherNight')">
+          <button class="button" :disabled="grimoire.gamePhase === 'otherNight' || grimoire.gamePhase === 'pregame'"
+            :title="t('menu.nightSwitch')" @click="grimoire.setGamePhase('otherNight')">
             ☾
           </button>
+          <button class="button" :disabled="grimoire.gamePhase === 'pregame' || grimoire.gamePhase === 'postgame'"
+            :title="t('menu.endGame')" @click="grimoire.endGame">
+            <font-awesome-icon icon="ranking-star" />
+          </button>
         </div>
-        <div class="button-group">
-          <button @click="toggleRinging()">
+        <div v-if="grimoire.gamePhase !== 'pregame' && grimoire.gamePhase !== 'postgame'" class="button-group">
+          <button :title="t('sound.ringing')" @click="soundboard.playSound({ sound: 'ringing' })">
             <font-awesome-icon :icon="['fas', 'bell']" />
           </button>
-          <button @click="toggleRooster()">
+          <button :title="t('sound.rooster')" @click="soundboard.playSound({ sound: 'rooster' })">
             🐔
           </button>
-          <button @click="toggleGavel()">
+          <button :title="t('sound.gavel')" @click="soundboard.playSound({ sound: 'gavel' })">
             <font-awesome-icon :icon="['fas', 'gavel']" />
           </button>
         </div>
-        <div class="button-group">
-          <button @click="toggleHiddenVote()">
-            <font-awesome-icon v-if="session.isSecretVote" :icon="['fas', 'eye-slash']" />
-            <font-awesome-icon v-if="!session.isSecretVote" :icon="['fas', 'eye']" />
+        <div v-if="grimoire.gamePhase !== 'pregame' && grimoire.gamePhase !== 'postgame'" class="button-group">
+          <button :title="t('menu.secretVote')" @click="grimoire.setSecretVote(!grimoire.isSecretVote)">
+            <font-awesome-icon v-if="grimoire.isSecretVote" :icon="['fas', 'eye-slash']" />
+            <font-awesome-icon v-if="!grimoire.isSecretVote" :icon="['fas', 'eye']" />
           </button>
         </div>
-        <div v-if="session.gamePhase === 'pregame'">
+        <div v-if="grimoire.gamePhase === 'pregame'">
           <div class="button-group">
-            <button @click="copySessionUrl()">
-              {{ t('menu.session.link') }}
+            <button @click="session.copySessionUrl()">
+              {{ t('menu.link') }}
             </button>
           </div>
           <div class="button-group">
-            <button @click="addPlayers()">
-              {{ t('menu.players.addMany') }}
+            <button @click="playersStore.addPlayers()">
+              {{ t('menu.addPlayers') }}
             </button>
           </div>
           <div class="button-group">
-            <button @click="toggleModal('edition')">
-              {{ t('menu.characters.selectEdition') }}
+            <button @click="grimoire.toggleModal('edition')">
+              {{ t('menu.selectEdition') }}
             </button>
           </div>
           <div class="button-group">
-            <button @click="toggleModal('roles')">
-              {{ t('menu.characters.assign') }}
+            <button @click="grimoire.toggleModal('roles')">
+              {{ t('menu.assign') }}
             </button>
           </div>
           <div class="button-group">
-            <button @click="distributeRoles()">
-              {{ t('menu.session.sendRoles') }}
+            <button @click="playersStore.distributeRolesAction()">
+              {{ t('menu.sendRoles') }}
             </button>
           </div>
         </div>
-        <div v-if="session.gamePhase === 'day'">
+        <div v-if="grimoire.gamePhase === 'day'">
           <div class="button-group">
             <button @click="setTimer()">
               🕑 {{ timerDuration }} min
@@ -86,12 +94,15 @@
               ⏵
             </button>
           </div>
-          <div v-if="session.nomination" class="button-group">
+          <div v-if="votingStore.nomination" class="button-group">
             <button v-if="!isSpecialVoteWithMessages" @click="setAccusationTimer()">
               {{ t('townsquare.timer.accusation.button') }}
             </button>
             <button v-else @click="setSpecialVoteTimer()">
-              {{ session.nomination.specialVote?.buttonLabel || session.nomination.specialVote?.type || 'Special Vote'
+              {{
+                votingStore.nomination.specialVote?.buttonLabel
+                || votingStore.nomination.specialVote?.type
+                || 'Special Vote'
               }}
             </button>
             <button v-if="!isSpecialVoteWithMessages" @click="setDefenseTimer()">
@@ -117,16 +128,21 @@
           </div>
         </div>
       </div>
-      <div v-if="session.gamePhase === 'firstNight' || session.gamePhase === 'otherNight'"
+      <div v-if="grimoire.gamePhase === 'firstNight' || grimoire.gamePhase === 'otherNight'"
         class="night-order-container">
-        <NightOrderTable :night-type="session.gamePhase" />
+        <div v-if="grimoire.gamePhase === 'firstNight'" class="button-group">
+          <button @click="playersStore.distributeRolesAction()">
+            {{ t('menu.sendRoles') }}
+          </button>
+        </div>
+        <NightOrderTable :night-type="grimoire.gamePhase" />
       </div>
       <div v-if="!session.sessionId">
         <div class="button-group">
-          <button @click="hostSession">{{ t('menu.session.storyteller') }}</button>
+          <button @click="session.hostSession">{{ t('menu.storyteller') }}</button>
         </div>
         <div class="button-group">
-          <button @click="joinSession">{{ t('menu.session.player') }}</button>
+          <button @click="session.joinSession">{{ t('menu.player') }}</button>
         </div>
       </div>
     </div>
@@ -135,86 +151,52 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { useStore } from "vuex";
 import { NightOrderTable } from '@/components';
-import { useTranslation, isActiveNomination } from '@/composables';
-import { GamePhase } from "@/types";
+import { isActiveNomination } from '@/services';
+import {
+  useGrimoireStore,
+  useLocaleStore,
+  usePlayersStore,
+  useSessionStore,
+  useSoundboardStore,
+  useUserPreferencesStore,
+  useVotingStore,
+} from "@/stores";
 
-const store = useStore();
-const { t } = useTranslation();
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const playersStore = usePlayersStore();
+const session = useSessionStore();
+const soundboard = useSoundboardStore();
+const userPreferences = useUserPreferencesStore();
+const votingStore = useVotingStore();
+const t = locale.t;
 
-// Computed properties from store
-const grimoire = computed(() => store.state.grimoire);
-const session = computed(() => store.state.session);
-const players = computed(() => store.state.players.players);
+const players = computed(() => playersStore.players);
 
 const isSpecialVoteWithMessages = computed(() => {
-  if (!isActiveNomination(session.value.nomination)) return false;
-  const nomination = session.value.nomination;
+  if (!isActiveNomination(votingStore.nomination)) return false;
+  const nomination = votingStore.nomination;
   return !!nomination.specialVote?.timerText;
 });
 
+// Helper function to capitalize first letter of a string
+const capitalizeString = (str: string): string => {
+  if (!str || str.length === 0) return '';
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 // Reactive data
-const isSideMenuOpen = ref(false);
+const isSideMenuOpen = ref(true);
 const timerName = ref("Timer");
 const timerDuration = ref(1);
 const timerOn = ref(false);
 const timerEnder = ref<ReturnType<typeof setTimeout> | null>(null);
-const currentTimerType = ref<keyof typeof grimoire.value.timerDurations | null>(null);
+const currentTimerType = ref<keyof typeof userPreferences.timerDurations | null>(null);
 
 // Methods
 const toggleSideMenu = () => {
   isSideMenuOpen.value = !isSideMenuOpen.value;
-};
-
-const hostSession = () => {
-  store.dispatch('session/hostSession');
-};
-
-const joinSession = () => {
-  store.dispatch('session/joinSession');
-};
-
-const setGamePhase = (gamePhase: GamePhase) => {
-  if (gamePhase === "day") {
-    store.commit("toggleRooster", true);
-    setTimeout(() => store.commit("toggleRooster", false), 4000);
-  } else if (gamePhase === "otherNight" || gamePhase === "firstNight") {
-    store.commit("session/setMarkedPlayer", -1);
-  }
-  store.commit("session/setGamePhase", gamePhase);
-};
-
-const toggleHiddenVote = () => {
-  store.commit("session/toggleSecretVote");
-};
-
-const toggleRinging = () => {
-  store.dispatch("toggleRinging");
-};
-
-const toggleRooster = () => {
-  store.dispatch("toggleRooster");
-};
-
-const toggleGavel = () => {
-  store.dispatch("toggleGavel");
-};
-
-const toggleModal = (modal: string) => {
-  store.commit("toggleModal", modal);
-};
-
-const copySessionUrl = () => {
-  store.dispatch('session/copySessionUrl');
-};
-
-const addPlayers = () => {
-  store.dispatch("players/addPlayers");
-};
-
-const distributeRoles = () => {
-  store.dispatch("session/distributeRoles");
 };
 
 const renameTimer = () => {
@@ -229,37 +211,38 @@ const renameTimer = () => {
 
 const setDaytimeTimer = () => {
   currentTimerType.value = 'daytime';
-  timerDuration.value = grimoire.value.timerDurations.daytime;
+  timerDuration.value = userPreferences.timerDurations.daytime;
   timerName.value = t('townsquare.timer.daytime.text');
 };
 
 const setNominationTimer = () => {
   currentTimerType.value = 'nominations';
-  timerDuration.value = grimoire.value.timerDurations.nominations;
+  timerDuration.value = userPreferences.timerDurations.nominations;
   timerName.value = t('townsquare.timer.nominations.text');
 };
 
 const setDuskTimer = () => {
   currentTimerType.value = 'dusk';
-  timerDuration.value = grimoire.value.timerDurations.dusk;
+  timerDuration.value = userPreferences.timerDurations.dusk;
   timerName.value = t('townsquare.timer.dusk.text');
 };
 
 const setAccusationTimer = () => {
-  if (!isActiveNomination(session.value.nomination)) return;
+  if (!isActiveNomination(votingStore.nomination)) return;
 
   currentTimerType.value = 'accusation';
   timerDuration.value = 1;
-  const nomination = session.value.nomination;
+  const nomination = votingStore.nomination;
 
   let timerText = t('townsquare.timer.accusation.text');
 
   // Get nominator name for $accusator placeholder
-  const nominatorName = typeof nomination.nominator === 'number'
-    ? players.value[nomination.nominator]?.name || ''
-    : typeof nomination.nominator === 'string'
-      ? nomination.nominator.charAt(0).toUpperCase() + nomination.nominator.slice(1)
-      : '';
+  let nominatorName = '';
+  if (typeof nomination.nominator === 'number') {
+    nominatorName = players.value[nomination.nominator]?.name || '';
+  } else if (typeof nomination.nominator === 'string') {
+    nominatorName = capitalizeString(nomination.nominator);
+  }
 
   // Get nominee name for $accusee placeholder
   const nomineeName = typeof nomination.nominee === 'number'
@@ -274,20 +257,21 @@ const setAccusationTimer = () => {
 };
 
 const setDefenseTimer = () => {
-  if (!isActiveNomination(session.value.nomination)) return;
+  if (!isActiveNomination(votingStore.nomination)) return;
 
   currentTimerType.value = 'defense';
-  timerDuration.value = grimoire.value.timerDurations.defense;
-  const nomination = session.value.nomination;
+  timerDuration.value = userPreferences.timerDurations.defense;
+  const nomination = votingStore.nomination;
 
   let timerText = t('townsquare.timer.defense.text');
 
   // Get nominee name for $accusee placeholder
-  const nomineeName = typeof nomination.nominee === 'number'
-    ? players.value[nomination.nominee]?.name || ''
-    : typeof nomination.nominee === 'string'
-      ? nomination.nominee.charAt(0).toUpperCase() + nomination.nominee.slice(1)
-      : '';
+  let nomineeName = '';
+  if (typeof nomination.nominee === 'number') {
+    nomineeName = players.value[nomination.nominee]?.name || '';
+  } else if (typeof nomination.nominee === 'string') {
+    nomineeName = capitalizeString(nomination.nominee);
+  }
 
   // Get nominator name for $accusator placeholder
   const nominatorName = typeof nomination.nominator === 'number'
@@ -302,11 +286,11 @@ const setDefenseTimer = () => {
 };
 
 const setDebateTimer = () => {
-  if (!isActiveNomination(session.value.nomination)) return;
+  if (!isActiveNomination(votingStore.nomination)) return;
 
   currentTimerType.value = 'debate';
-  timerDuration.value = grimoire.value.timerDurations.debate;
-  const nomination = session.value.nomination;
+  timerDuration.value = userPreferences.timerDurations.debate;
+  const nomination = votingStore.nomination;
 
   let timerText = t('townsquare.timer.debate.text');
 
@@ -320,11 +304,11 @@ const setDebateTimer = () => {
 };
 
 const setSpecialVoteTimer = () => {
-  if (!isActiveNomination(session.value.nomination)) return;
+  if (!isActiveNomination(votingStore.nomination)) return;
 
   currentTimerType.value = 'custom';
-  timerDuration.value = grimoire.value.timerDurations.custom;
-  const nomination = session.value.nomination;
+  timerDuration.value = userPreferences.timerDurations.custom;
+  const nomination = votingStore.nomination;
 
   // Get nominator name
   const nominatorName = typeof nomination.nominator === 'number'
@@ -339,11 +323,11 @@ const setSpecialVoteTimer = () => {
 };
 
 const setSpecialDebateTimer = () => {
-  if (!isActiveNomination(session.value.nomination)) return;
+  if (!isActiveNomination(votingStore.nomination)) return;
 
   currentTimerType.value = 'customDebate';
-  timerDuration.value = grimoire.value.timerDurations.customDebate;
-  const nomination = session.value.nomination;
+  timerDuration.value = userPreferences.timerDurations.customDebate;
+  const nomination = votingStore.nomination;
 
   // Get the debate text
   let timerText = nomination.specialVote?.debateText || '';
@@ -359,30 +343,27 @@ const setSpecialDebateTimer = () => {
 
 const setTimer = () => {
   const newDuration = prompt(t('townsquare.timer.prompt.duration'));
-  if (isNaN(Number(newDuration))) {
+  if (Number.isNaN(Number(newDuration))) {
     return alert(t('townsquare.timer.prompt.durationError'));
   }
   if (Number(newDuration) > 0) {
     timerDuration.value = Number(newDuration);
     // Save the new duration for the current timer type
     if (currentTimerType.value) {
-      store.commit('setTimerDuration', {
-        type: currentTimerType.value,
-        duration: Number(newDuration)
-      });
+      userPreferences.timerDurations[currentTimerType.value] = Number(newDuration);
     }
   }
 };
 
 const startTimer = () => {
   const timer = { name: timerName.value, duration: timerDuration.value * 60 };
-  store.commit("setTimer", timer);
+  grimoire.setTimer(timer);
   timerOn.value = true;
   timerEnder.value = setTimeout(stopTimer, timer.duration * 1000);
 };
 
 const stopTimer = () => {
-  store.commit("setTimer", {});
+  grimoire.setTimer({});
   timerOn.value = false;
   if (timerEnder.value) {
     clearTimeout(timerEnder.value);
@@ -436,7 +417,7 @@ const stopTimer = () => {
   z-index: 50;
 
   h3 {
-    margin: 5px 1vh 0;
+    margin: 5px 1vh 0 0;
     display: flex;
     align-items: center;
     align-content: center;
@@ -454,18 +435,14 @@ const stopTimer = () => {
       flex-grow: 0;
 
       &.fa-times-circle {
-        margin-left: 1vh;
+        margin-left: 0.25rem;
+        margin-right: 0.5rem;
       }
 
       &.fa-plus-circle {
-        margin-left: 1vh;
+        margin-left: 0.25rem;
+        margin-right: 0.5rem;
         display: none;
-      }
-
-      &:hover path {
-        fill: url(#demon);
-        stroke-width: 30px;
-        stroke: white;
       }
     }
   }
@@ -496,5 +473,13 @@ const stopTimer = () => {
       scale: 0;
     }
   }
+}
+</style>
+
+<style lang="scss">
+.sideMenu h3 svg:hover path {
+  fill: url(#demon);
+  stroke-width: 30px;
+  stroke: white;
 }
 </style>
