@@ -5,6 +5,7 @@ interface UserPreferencesState {
   orderBubblesAsPlayer: boolean;
   orderBubblesAsHost: boolean;
   hideGrim: boolean;
+  hideOutOfPlay: boolean;
   isMenuOpen: boolean;
   isStatic: boolean;
   isMuted: boolean;
@@ -29,6 +30,7 @@ export const useUserPreferencesStore = defineStore("userPreferences", {
     orderBubblesAsPlayer: false,
     orderBubblesAsHost: true,
     hideGrim: false,
+    hideOutOfPlay: false,
     isMenuOpen: false,
     isStatic: false,
     isMuted: false,

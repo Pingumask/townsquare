@@ -7,6 +7,7 @@
     - Storyteller & Players can whisper to each other (ST can quickly switch target player by clicking a message from them or clicking their name from the night order)
     - Storyteller can Disable Neighbor whispers separately from Public chat and Storyteller whisper
     - Storyteller can snoop players whispers
+  - Toggleable Filter to hide unattributed characters from night order
 - Fixes:
   - Gamephase switch from menu or keybinding bug if current phase is endgame
 - Localization:
