@@ -5,3 +5,11 @@
 .github
 .vscode
 dist
+debug.log
+dockerignore
+docker-compose.yml
+docker-compose.template.yml
+Dockerfile
+Dockerfile.server
+LICENSE
+README.md

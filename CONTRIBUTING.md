@@ -7,11 +7,10 @@ Before submitting your contribution, please make sure to take a moment and read 
 - [Issue Reporting Guidelines](#issue-reporting-guidelines)
 - [Pull Request Guidelines](#pull-request-guidelines)
 - [Development Setup](#development-setup)
-- [Project Structure](#project-structure)
 
 ## Issue Reporting Guidelines
 
-- Report a new issue either through [GitHub](https://github.com/bra1n/townsquare/issues/new/choose) or [Email](mailto:steffen@baumgart.biz)
+- Report a new issue either through [GitHub](https://github.com/pingumask/townsquare/issues/new/choose)
 - Please include with your issue the browser and operating system you're using as well as steps necessary to reproduce the bug, if any
 - Be patient, I'm working on this project in my spare time :-)
 
@@ -39,7 +38,7 @@ Before submitting your contribution, please make sure to take a moment and read 
 
 ## Development Setup
 
-You will need [Node.js](http://nodejs.org) **version 8+** and a Chrome browser.
+You will need [Node.js](http://nodejs.org), check the requiredversion in package.json.
 
 After cloning the repo, run:
 
@@ -47,23 +46,7 @@ After cloning the repo, run:
 $ npm install
 ```
 
-The development server can be started with `npm run serve`.
-
-### Deploying to GitHub pages or with a non-root path
-
-Deploying a forked version to GitHub Pages or running your local
-development copy in a sub-path (instead of the web root) will require you to modify
-the `vue.config.js` and configure the path at which the website will be served, as well
-as removing the CNAME file and updating the GitHub pages configuration. Otherwise, your fork
-will think it should be served at clocktower.online instead of \<user\>.github.io/townsquare/.
-
-For example, deploying your forked `townsquare` project to GitHub pages would need the following
-`vue.config.js` changes:
-```js
-module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/townsquare/" : "/"
-};
-```
+The development server can be started with `npm run dev`.
 
 ### Committing Changes
 
@@ -81,31 +64,3 @@ $ npm run build
 # run linting scripts
 $ npm run lint
 ```
-
-## Project Structure
-
-- **`dist`**: contains built files for distribution.
-
-- **`public`**: static assets and templates that don't need to be built dynamically.
-
-- **`server`**: NodeJS code for the live session backend server.
-
-- **`src`**: contains the source code. The codebase is written in ES2015.
-
-  - **`assets`**: contains all graphical assets like images, fonts, icons, etc.
-
-    - **`editions`**: edition logos and icons
-
-    - **`fonts`**: webfonts used on the page
-
-    - **`icons`**: character token icons
-
-    - **`sounds`**: sound effects used on the page
-
-  - **`components`**: the internal components used in the project
-
-    - **`modals`**: the modals have a separate subfolder
-
-  - **`store`**: the VueX data store and modules
-
-    - **`modules`**: VueX modules that live in their own namespace

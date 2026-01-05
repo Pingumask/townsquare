@@ -1,17 +1,20 @@
+name: BotC
 services:
   beta_townsquare:
     container_name: beta_townsquare
     build:
       context: "."
       dockerfile: Dockerfile
+    restart: unless-stopped
     labels:
       - traefik.enable=true
       - traefik.http.routers.beta.rule=Host(`beta.clocktower.tf`)
-      - traefik.http.routers.beta.entrypoints=http,https
+      - traefik.http.routers.beta.entrypoints=web,web-secure
       - traefik.http.routers.beta.tls.certresolver=tlschallenge
       - traefik.http.routers.beta.tls=true
       - traefik.http.services.beta.loadbalancer.server.port=5173
     volumes:
+      - ./dist:/app/townsquare/dist
       - ./public:/app/townsquare/public
       - ./src:/app/townsquare/src
       - ./index.html:/app/townsquare/index.html
@@ -38,13 +41,17 @@ services:
     image: nginx:alpine
     volumes:
       - ./dist:/usr/share/nginx/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    restart: unless-stopped
     labels:
       - traefik.enable=true
       - traefik.http.routers.townsquare.rule=Host(`clocktower.tf`)
-      - traefik.http.routers.townsquare.entrypoints=http,https
+      - traefik.http.routers.townsquare.entrypoints=web,web-secure
       - traefik.http.routers.townsquare.tls.certresolver=tlschallenge
       - traefik.http.routers.townsquare.tls=true
     environment:
+      NODE_ENV: prod
+      NODE_HOSTNAME: clocktower.tf
       VITE_SERVER_URL: wss://ws.clocktower.tf/
     networks:
       - traefik
@@ -59,16 +66,17 @@ services:
       context: "."
       dockerfile: Dockerfile.server
     command: "node index.js"
+    restart: unless-stopped
     labels:
       - traefik.enable=true
       - traefik.http.routers.websocket.rule=Host(`ws.clocktower.tf`)
-      - traefik.http.routers.websocket.entrypoints=http,https
+      - traefik.http.routers.websocket.entrypoints=web,web-secure
       - traefik.http.routers.websocket.tls.certresolver=tlschallenge
       - traefik.http.routers.websocket.tls=true
       - traefik.http.services.websocket.loadbalancer.server.port=8081
     environment:
       NODE_ENV: development
-      NODE_ALLOWED_ORIGINS: "^https?://(.*\\.?clocktower\\.tf|.*\\.?\\.localhost)"
+      NODE_ALLOWED_ORIGINS: "^https?://(.*\\.?clocktower\\.tf|(.+\\.)?localhost)"
     working_dir: /app/server
     networks:
       - traefik

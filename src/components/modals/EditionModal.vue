@@ -1,5 +1,5 @@
 <template>
-  <Modal v-if="modals.edition" class="editions" @close="toggleModal('edition')">
+  <Modal v-if="grimoire.modal == 'edition'" class="editions" @close="grimoire.toggleModal(null)">
     <h3>{{ t('modal.edition.title') }}</h3>
     <ul>
       <li class="tabs" :class="tab">
@@ -102,18 +102,30 @@
 </template>
 
 <script setup lang="ts">
-import type { Role, Edition, ToggleableRole, ParsedRole, ScriptMeta } from "@/types";
 import { computed, ref } from "vue";
-import { useStore } from "vuex";
 import { Modal, Token } from "@/components";
-import { useTranslation } from '@/composables';
+import {
+  useGrimoireStore,
+  useLocaleStore,
+  usePlayersStore,
+} from "@/stores";
+import type {
+  Edition,
+  ParsedRole,
+  Role,
+  ScriptMeta,
+  ToggleableRole,
+} from "@/types";
 
-const { t } = useTranslation();
-const store = useStore();
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const playersStore = usePlayersStore();
+const t = locale.t;
+
 const tab = ref("official");
 
 // Get rolesJSON from the store's getters
-const rolesJSON = computed(() => store.getters.rolesJSONbyId || new Map());
+const rolesJSON = computed(() => grimoire.rolesJSONbyId || new Map());
 const draftPool = ref<ToggleableRole[]>([]);
 const teams = ["townsfolk", "outsider", "minion", "demon"] as const;
 const recommendedTeamSize: Record<string, number> = {
@@ -123,10 +135,9 @@ const recommendedTeamSize: Record<string, number> = {
   demon: 4,
 };
 
-const modals = computed(() => store.state.modals);
-const editions = computed(() => store.state.editions);
-const roles = computed(() => store.state.roles);
-const jinxes = computed(() => store.state.jinxes);
+const editions = computed(() => grimoire.editions);
+const jinxes = computed(() => grimoire.jinxes);
+const roles = computed(() => grimoire.roles);
 
 function initPool() {
   draftPool.value = Array.from(rolesJSON.value.values()) as ToggleableRole[];
@@ -263,30 +274,30 @@ function parseRoles(pickedRoles: (string | ParsedRole)[]) {
   );
   const metaIndex = processedRoles.findIndex(({ id }: ParsedRole) => id === "_meta");
   const meta: ScriptMeta = metaIndex > -1 ? processedRoles.splice(metaIndex, 1).pop() || {} : {};
-  store.commit("setCustomRoles", processedRoles);
-  store.commit("setEdition", { ...meta, id: "custom" });
+  grimoire.setEdition({ name: "Custom Script", ...meta, id: "custom" });
+  grimoire.setCustomRoles(processedRoles);
   const fabled: Role[] = [];
   let djinnAdded = false;
   let djinnNeeded = false;
   let bootleggerAdded = false;
   let bootleggerNedded = false;
   processedRoles.forEach((role: ParsedRole) => {
-    if (store.state.fabled.has(role.id || role)) {
-      fabled.push(store.state.fabled.get(role.id || role));
-      if ((role.id || role) == "djinn") {
+    if (grimoire.fabled.has(role.id)) {
+      fabled.push(grimoire.fabled.get(role.id)!);
+      if (role.id == "djinn") {
         djinnAdded = true;
-      } else if ((role.id || role) == "bootlegger") {
+      } else if (role.id == "bootlegger") {
         bootleggerAdded = true;
       }
     } else if (role.edition == "custom" || role.image) {
       /* If the role isn't fabled, but detected as custom, we will need a Bootlegger
-           * NB: The actual version isn't perfect, since they only detect custom roles with an image or with the argument "edition":"custom".
-           * The code will could be changed later, when all non-custom roles will have an attribute "edition"
-           */
+      * NB: The actual version isn't perfect, since they only detect custom roles with an image or with the argument "edition":"custom".
+      * The code will could be changed later, when all non-custom roles will have an attribute "edition"
+      */
       bootleggerNedded = true;
     } else if (!djinnAdded && !djinnNeeded && jinxes.value.get(role.id)) {
       // If the role isn't fabled, neither custom, and if we neither added a Djinn neither planned to add a Djinn, we look if this role is jinxed
-      jinxes.value.get(role.id).forEach((_reason: string, second: string) => {
+      jinxes.value.get(role.id)?.forEach((_reason: string, second: string) => {
         if (roles.value.get(second)) {
           djinnNeeded = true;
         }
@@ -294,21 +305,17 @@ function parseRoles(pickedRoles: (string | ParsedRole)[]) {
     }
   });
   if (djinnNeeded && !djinnAdded) {
-    fabled.push(store.state.fabled.get("djinn"));
+    fabled.push(grimoire.fabled.get("djinn")!);
   }
   if (bootleggerNedded && !bootleggerAdded) {
-    fabled.push(store.state.fabled.get("bootlegger"));
+    fabled.push(grimoire.fabled.get("bootlegger")!);
   }
-  store.commit("players/setFabled", { fabled });
+  playersStore.setFabled({ fabled });
 }
 
 function runEdition(edition: Edition) {
-  store.commit("setEdition", edition);
-  store.commit("players/setFabled", { fabled: [] });
-}
-
-function toggleModal(modal: string) {
-  store.commit('toggleModal', modal);
+  grimoire.setEdition(edition);
+  playersStore.setFabled({ fabled: [] });
 }
 </script>
 
@@ -404,7 +411,7 @@ input[type="file"] {
     border: 1px solid white;
     border-radius: 100vmax;
     padding: 0.15em 1.5em;
-    background: linear-gradient(#4e4e4e, #040404);
+    background: linear-gradient(var(--default), #040404);
     user-select: none;
 
     &:hover {
@@ -415,25 +422,29 @@ input[type="file"] {
 
 .townsfolk {
   aside {
-    background: linear-gradient(-90deg, $townsfolk, transparent);
+    background: linear-gradient(-90deg, var(--townsfolk), transparent);
+    min-height: 22ch;
   }
 }
 
 .outsider {
   aside {
-    background: linear-gradient(-90deg, $outsider, transparent);
+    background: linear-gradient(-90deg, var(--outsider), transparent);
+    min-height: 22ch;
   }
 }
 
 .minion {
   aside {
-    background: linear-gradient(-90deg, $minion, transparent);
+    background: linear-gradient(-90deg, var(--minion), transparent);
+    min-height: 22ch;
   }
 }
 
 .demon {
   aside {
-    background: linear-gradient(-90deg, $demon, transparent);
+    background: linear-gradient(-90deg, var(--demon), transparent);
+    min-height: 22ch;
   }
 }
 
@@ -472,7 +483,6 @@ input[type="file"] {
     justify-content: flex-start;
     padding-left: 1rem;
     padding-block: 0.25rem;
-    overflow: visible;
   }
 }
 </style>

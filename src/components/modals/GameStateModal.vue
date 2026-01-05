@@ -1,5 +1,5 @@
 <template>
-  <Modal v-if="modals.gameState" class="game-state" @close="toggleModal('gameState')">
+  <Modal v-if="grimoire.modal === 'gameState'" class="game-state" @close="grimoire.toggleModal(null)">
     <h3>{{ t('modal.gameState.title') }}</h3>
     <textarea :value="gamestate" @input.stop="input = ($event.target as HTMLTextAreaElement).value"
       @click="($event.target as HTMLTextAreaElement).select()" @keyup.stop="" />
@@ -7,7 +7,7 @@
       <div class="button townsfolk" @click="copy">
         <font-awesome-icon icon="copy" class="fa fa-copy" /> {{ t('modal.gameState.copy') }}
       </div>
-      <div v-if="!session.isSpectator" class="button demon" @click="load">
+      <div v-if="!session.isPlayerOrSpectator" class="button demon" @click="load">
         <font-awesome-icon icon="cog" class="fa fa-cog" /> {{ t('modal.gameState.load') }}
       </div>
     </div>
@@ -15,13 +15,20 @@
 </template>
 
 <script setup lang="ts">
-import type { Role, Player } from '@/types';
-import { ref, computed } from 'vue';
-import { useStore } from 'vuex';
+import { computed, ref } from 'vue';
 import { Modal } from '@/components';
-import { useTranslation } from '@/composables';
+import {
+  useGrimoireStore,
+  useLocaleStore,
+  usePlayersStore,
+  useSessionStore,
+} from "@/stores";
+import type {
+  Edition,
+  Player,
+  Role,
+} from '@/types';
 
-const { t } = useTranslation();
 // Types for game state data
 interface GameStateData {
   bluffs?: string[];
@@ -31,27 +38,32 @@ interface GameStateData {
   players?: Partial<Player>[];
 }
 
-const store = useStore();
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
+const playersStore = usePlayersStore();
+const sessionStore = useSessionStore();
 const input = ref("");
 
-const modals = computed(() => store.state.modals);
-const players = computed(() => store.state.players);
-const edition = computed(() => store.state.edition);
-const session = computed(() => store.state.session);
+const players = computed(() => playersStore.players);
+const bluffs = computed(() => playersStore.bluffs);
+const fabled = computed(() => playersStore.fabled);
+const edition = computed(() => grimoire.edition);
+const session = sessionStore;
 
 const gamestate = computed(() => {
   return JSON.stringify({
-    bluffs: players.value.bluffs.map(({ id }: Role) => id),
-    edition: edition.value.isOfficial
+    bluffs: bluffs.value.map(({ id }: Role) => id),
+    edition: edition.value?.isOfficial
       ? { id: edition.value.id }
       : edition.value,
-    roles: edition.value.isOfficial
+    roles: edition.value?.isOfficial
       ? ""
-      : store.getters.customRolesStripped,
-    fabled: players.value.fabled.map((fabled: Role) =>
+      : grimoire.customRolesStripped,
+    fabled: fabled.value.map((fabled: Role) =>
       fabled.isCustom ? fabled : { id: fabled.id },
     ),
-    players: players.value.players.map((player: Player) => ({
+    players: players.value.map((player: Player) => ({
       ...player,
       role: player.role.id || {},
     })),
@@ -63,46 +75,56 @@ const copy = () => {
 };
 
 const load = () => {
-  if (session.value.isSpectator) return;
+  if (session.isPlayerOrSpectator) return;
   try {
     const data: GameStateData = JSON.parse(input.value || gamestate.value);
     const { bluffs, edition, roles, fabled, players } = data;
 
-    if (roles) store.commit("setCustomRoles", roles);
-    if (edition) store.commit("setEdition", edition);
+
+    if (edition) {
+      // If edition is a partial object (only has id), look it up from editions JSON
+      const editionObj = edition as Partial<Edition>;
+      const fullEdition =
+        editionObj.id && !editionObj.name && !editionObj.isOfficial
+          ? grimoire.editions.official.find(e => e.id === editionObj.id)
+          : edition;
+
+      if (fullEdition) {
+        grimoire.setEdition(fullEdition as Edition);
+      } else {
+        console.warn(`Edition not found: ${editionObj.id}`);
+      }
+    }
+    if (roles) grimoire.setCustomRoles(roles as Role[]);
     if (bluffs && bluffs.length) {
       bluffs.forEach((role: string, index: number) => {
-        store.commit("players/setBluff", {
+        playersStore.setBluff({
           index,
-          role: store.state.roles.get(role) || {},
+          role: grimoire.roles.get(role) || {} as Role,
         });
       });
     }
     if (fabled) {
-      store.commit("players/setFabled", {
+      playersStore.setFabled({
         fabled: fabled.map((f: string | Role) =>
           typeof f === 'string'
-            ? store.state.fabled.get(f) || {}
-            : store.state.fabled.get(f.id) || f
+            ? grimoire.fabled.get(f) || {} as Role
+            : grimoire.fabled.get(f.id) || f
         ),
       });
     }
     if (players) {
-      store.commit("players/set", players.map((player: Partial<Player>) => ({
+      playersStore.set(players.map((player: Partial<Player>) => ({
         ...player,
         role: typeof player.role === 'string'
-          ? store.state.roles.get(player.role) || store.getters.rolesJSONbyId.get(player.role) || {}
-          : player.role || {},
-      })));
+          ? grimoire.roles.get(player.role) || grimoire.rolesJSONbyId.get(player.role) || {} as Role
+          : player.role || {} as Role,
+      })) as Player[]);
     }
-    toggleModal("gameState");
+    grimoire.toggleModal(null);
   } catch (e) {
     alert("Unable to parse JSON: " + e);
   }
-};
-
-const toggleModal = (modal: string) => {
-  store.commit("toggleModal", modal);
 };
 </script>
 

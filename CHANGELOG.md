@@ -3,12 +3,62 @@
 ## Upcomming Version
 - Features:
 
-- Bugfixes:
+- Fixes:
 
 - Localization :
 
-- Technical :
+- Maintenance :
 
+# 6.0.1
+- Fixes:
+  - nginx config to redirect all traffic to index.html (to fix 404 errors on join links)
+
+# 6.0.0
+- Features:
+  - Token abilities are now displayed on side of the that has the most space
+  - Darker Modals background for better readability
+  - Force storyteller locale on players
+  - Preference to show/hide night order bubbles saved separately as player and storyteller
+  - Added roles filtering to fabled modal
+  - Vote history is now persisted by the storyteller and broadcasted to players (if enabled) with anonymization if necessary (secret votes). Making pre-join history available. (made vote history not allowed for players by default)
+  - Day count displayed in SideMenu and Vote History
+  - Discord integration of join links includes the session ID
+  - Clear Roles from storyteller propagates to players
+  - Reorganized menu (more tabs regrouping actions that are usually accessed during the same game phase)
+- Bugfixes:
+  - Ongoing nomination is not lost if the storyteller refreshes the page
+  - Soundboard buttons now work during nominations
+  - Toggling gamephase to day now triggers the Rooster sound correctly when done via the "s" hotkey
+  - Toggling gamephase to night now correctly removes the marked player when done via the "s" hotkey
+  - PlayerMenu tab in the top menu was missing its focused state
+  - Killing a player doesn't remove the death mark anymore (they can die before their execution but still have the majority upon them)
+  - Hotkeys stayed disabled if the browser was refreshed while using the roles filter
+  - Reverted unintended change to night order table design
+  - Hiding the grimoire hides player names from the night order table in side menu
+  - Sounds won't be cut before they end on slower connections
+  - Official editions are now loaded correctly from GameStateModal
+  - Button for side menu missing hover state
+  - Long character names cut on tokens on some browsers (eg : "Charmeur de Serpents" was missing first and last letters on firefox)
+- Localization :
+  - Fixed typo in En UI : 
+    - "Pleas claim a seat to vote"
+  - Changing some roles' French name:
+    - Investigator: Enquêteur -> Détective
+    - Fool: Fou -> Bouffon
+    - Nightwatchman: Gardien de nuit -> Veilleur de nuit
+    - Mastermind: Conspirateur -> Génie du mal
+    - Lil' Monsta: Bébé monstre -> P'tit monstre
+    - Big Wig: Magistrat -> Gros bonnet
+- Technical:
+  - Replaced Vuex with Pinia stores
+  - Added persistence plugin to Pinia for automated persistence of most stores
+  - Lots of code refactoring (generally simpler and more maintainable)
+  - Updated dependencies
+
+## 5.8.0
+- Features:
+  - Adding the Zenomancer
+  - Display "beta" in version if in dev environment
 
 ## 5.7.0
 - Features:

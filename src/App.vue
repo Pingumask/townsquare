@@ -1,7 +1,7 @@
 <template>
   <div id="app" tabindex="-1" :class="{
-    night: (session.gamePhase === 'firstNight' || session.gamePhase === 'otherNight'),
-    static: grimoire.isStatic,
+    night: (grimoire.gamePhase === 'firstNight' || grimoire.gamePhase === 'otherNight'),
+    static: userPreferences.isStatic,
   }" :style="{
     backgroundImage: `url('${background}')`,
     backgroundColor: `${backgroundColor}`,
@@ -14,8 +14,8 @@
     <div class="backdrop" />
 
     <Intro v-if="!players.length" />
-    <TownInfo v-if="players.length && !session.nomination" />
-    <Vote v-if="session.nomination" />
+    <TownInfo v-if="players.length && !votingStore.nomination" />
+    <Vote v-if="votingStore.nomination" />
 
     <TownSquare />
     <Menu />
@@ -28,14 +28,21 @@
     <GameStateModal />
     <SpecialVoteModal />
     <Gradients />
-    <span id="version">v{{ version }}</span>
+    <span id="version">v{{ version }}{{ isBeta ? '-beta' : '' }}</span>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useStore } from "vuex";
 import app from "../package.json";
+import {
+  useGrimoireStore,
+  usePlayersStore,
+  useSessionStore,
+  useSoundboardStore,
+  useUserPreferencesStore,
+  useVotingStore,
+} from "@/stores";
 import {
   Gradients,
   Intro,
@@ -53,79 +60,87 @@ import {
   VoteHistoryModal,
 } from "@/components";
 
-const store = useStore();
+const grimoire = useGrimoireStore();
+const playersStore = usePlayersStore();
+const session = useSessionStore();
+const soundboard = useSoundboardStore();
+const userPreferences = useUserPreferencesStore();
+const votingStore = useVotingStore();
 const version = app.version;
 
-const grimoire = computed(() => store.state.grimoire);
-const session = computed(() => store.state.session);
-const edition = computed(() => store.state.edition);
-const players = computed(() => store.state.players.players);
+const edition = computed(() => grimoire.edition);
+const players = computed(() => playersStore.players);
 
 const background = computed(() => {
-  if (grimoire.value.isStreamerMode) {
+  if (userPreferences.isStreamerMode) {
     return "none";
   }
-  return grimoire.value.background || edition.value.background || "none";
+  return userPreferences.background || edition.value?.background || "none";
 });
 
 const backgroundColor = computed(() => {
-  return grimoire.value.isStreamerMode ? "#000000" : "transparent";
+  return userPreferences.isStreamerMode ? "#000000" : "transparent";
 });
 
-function keyup({ key, ctrlKey, metaKey }: KeyboardEvent) {
-  if (ctrlKey || metaKey || grimoire.value.disableHotkeys) return;
+const isBeta = computed(() => import.meta.env.MODE === "development");
+
+function keyup(event: KeyboardEvent) {
+  const { key, ctrlKey, metaKey } = event;
+  const target = event.target as HTMLElement;
+  if (ctrlKey || metaKey || ['INPUT', 'TEXTAREA'].includes(target.tagName) || target.isContentEditable) return;
+
   switch (key.toLocaleLowerCase()) {
     case "g":
-      store.commit("toggleGrimoire");
+      userPreferences.hideGrim = !userPreferences.hideGrim;
       break;
     case "a":
-      store.dispatch("players/addPlayer");
+      playersStore.addPlayer();
       break;
     case "p":
-      store.dispatch("players/addPlayers");
+      playersStore.addPlayers();
       break;
     case "h":
-      store.dispatch("session/hostSession");
+      if (!session.isPlayerOrSpectator && session.sessionId) {
+        soundboard.playSound({ sound: "gavel" });
+      } else {
+        session.hostSession();
+      }
       break;
     case "j":
-      store.dispatch("session/joinSession");
+      session.joinSession();
       break;
     case "r":
-      store.commit("toggleModal", "reference");
+      grimoire.toggleModal("reference");
       break;
     case "n":
-      store.commit("toggleModal", "nightOrder");
+      grimoire.toggleModal("nightOrder");
       break;
     case "e":
-      if (session.value.isSpectator) return;
-      store.commit("toggleModal", "edition");
+      if (session.isPlayerOrSpectator) return;
+      grimoire.toggleModal("edition");
       break;
     case "c":
-      if (session.value.isSpectator) return;
-      store.commit("toggleModal", "roles");
+      if (session.isPlayerOrSpectator) return;
+      grimoire.toggleModal("roles");
       break;
     case "v":
-      if (session.value.voteHistory.length || !session.value.isSpectator) {
-        store.commit("toggleModal", "voteHistory");
+      if (votingStore.voteHistory.length || !session.isPlayerOrSpectator) {
+        grimoire.toggleModal("voteHistory");
       }
       break;
     case "s":
-      if (session.value.isSpectator) return;
-      if (session.value.gamePhase === "pregame") {
-        store.commit("session/setGamePhase", "firstNight");
-      } else if (session.value.gamePhase === "firstNight" || session.value.gamePhase === "otherNight") {
-        store.commit("session/setGamePhase", "day");
-      } else if (session.value.gamePhase === "day") {
-        store.commit("session/setGamePhase", "otherNight");
-      }
-      store.dispatch("toggleNight");
+      grimoire.toggleNight();
       break;
     case "b":
-      if (session.value.isSpectator) return;
-      store.dispatch("toggleRinging");
+      if (session.isPlayerOrSpectator) return;
+      soundboard.playSound({ sound: "ringing" });
+      break;
+    case "d":
+      if (session.isPlayerOrSpectator) return;
+      soundboard.playSound({ sound: "rooster" });
       break;
     case "escape":
-      store.commit("toggleModal");
+      grimoire.toggleModal(null);
   }
 }
 </script>
@@ -155,7 +170,7 @@ function keyup({ key, ctrlKey, metaKey }: KeyboardEvent) {
 
 html,
 body {
-  font-size: 1.2em;
+  font-size: clamp(0.8em, 2.5vmin, 1.2em);
   line-height: 1.4;
   background: url("assets/background.jpg") center center;
   background-size: cover;
@@ -175,10 +190,10 @@ body {
 }
 
 a {
-  color: $townsfolk;
+  color: var(--townsfolk);
 
   &:hover {
-    color: $demon;
+    color: var(--demon);
   }
 }
 
@@ -356,7 +371,7 @@ video#background {
       rgba(1, 22, 46, 1) 50%,
       rgba(0, 39, 70, 1) 100%);
   opacity: 0;
-  transition: opacity 1s ease-in-out;
+  transition: all 1s ease-in-out;
 
   &:after {
     content: " ";
@@ -383,5 +398,9 @@ video#background {
 
 #app.night>.backdrop {
   opacity: 0.5;
+}
+
+#app.night {
+  filter: grayscale(15%) saturate(85%);
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
-  <Modal v-if="modals.reference && roles.size" class="characters" @close="toggleModal('reference')">
+  <Modal v-if="grimoire.modal === 'reference' && roles.size" class="characters" @close="grimoire.toggleModal(null)">
     <font-awesome-icon icon="cloud-moon" class="fa fa-cloud-moon toggle" :title="t('modal.reference.nightOrder')"
-      @click="toggleModal('nightOrder')" />
+      @click="grimoire.toggleModal('nightOrder')" />
     <h3>
       {{ t('modal.reference.title') }}
       <font-awesome-icon icon="address-card" class="fa fa-address-card" />
-      {{ edition.name || "Custom Script" }}
+      {{ edition?.name || "Custom Script" }}
     </h3>
     <div v-for="(teamRoles, team) in rolesGrouped" :key="team" :class="['team', team]">
       <aside :aria-label="t(`modal.reference.teamNames.${team}`)">
@@ -52,31 +52,29 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useStore } from "vuex";
-import { Modal } from '@/components';
-import { useTranslation } from '@/composables';
-import type { Role, Player, JinxInfo } from '@/types';
+import { Modal, RoleIcon } from '@/components';
+import {
+  useGrimoireStore,
+  useLocaleStore,
+  usePlayersStore,
+} from "@/stores";
+import type { JinxInfo, Player, Role } from '@/types';
 
-import RoleIcon from '../RoleIcon.vue';
+const locale = useLocaleStore();
+const grimoire = useGrimoireStore();
+const playersStore = usePlayersStore();
+const t = locale.t;
 
-const { t } = useTranslation();
-const store = useStore();
+const edition = computed(() => grimoire.edition);
+const jinxes = computed(() => grimoire.jinxes);
+const players = computed(() => playersStore.players);
+const roles = computed(() => grimoire.roles);
 
-const roles = computed(() => store.state.roles);
-const modals = computed(() => store.state.modals);
-const edition = computed(() => store.state.edition);
-const jinxes = computed(() => store.state.jinxes);
-const players = computed(() => store.state.players.players);
-
-/**
-     * Return a list of jinxes in the form of role IDs and a reason
-     * @returns {JinxInfo[]} [{first, second, reason}]
-     */
 const jinxed = computed((): JinxInfo[] => {
   const jinxedList: JinxInfo[] = [];
   roles.value.forEach((role: Role) => {
     if (jinxes.value.get(role.id)) {
-      jinxes.value.get(role.id).forEach((reason: string, second: string) => {
+      jinxes.value.get(role.id)?.forEach((reason: string, second: string) => {
         const secondRole = roles.value.get(second);
         if (secondRole) {
           jinxedList.push({
@@ -115,10 +113,6 @@ const playersByRole = computed(() => {
   });
   return playersMap;
 });
-
-const toggleModal = (modalName: string) => {
-  store.commit("toggleModal", modalName);
-};
 </script>
 
 <style lang="scss" scoped>
@@ -145,11 +139,11 @@ h3 {
 
 .townsfolk {
   .name {
-    color: $townsfolk;
+    color: var(--townsfolk);
   }
 
   aside {
-    background: linear-gradient(-90deg, $townsfolk, transparent);
+    background: linear-gradient(-90deg, var(--townsfolk), transparent);
   }
 }
 
@@ -157,19 +151,19 @@ h3 {
   --blend: normal;
 
   &.townsfolk {
-    --color: #1f65ff;
+    --color: var(--townsfolk);
   }
 
   &.outsider {
-    --color: #46d5ff;
+    --color: var(--outsider);
   }
 
   &.minion {
-    --color: #ff6900;
+    --color: var(--minion);
   }
 
   &.demon {
-    --color: #ce0100;
+    --color: var(--demon);
   }
 
   picture,
@@ -186,31 +180,31 @@ h3 {
 
 .outsider {
   .name {
-    color: $outsider;
+    color: var(--outsider);
   }
 
   aside {
-    background: linear-gradient(-90deg, $outsider, transparent);
+    background: linear-gradient(-90deg, var(--outsider), transparent);
   }
 }
 
 .minion {
   .name {
-    color: $minion;
+    color: var(--minion);
   }
 
   aside {
-    background: linear-gradient(-90deg, $minion, transparent);
+    background: linear-gradient(-90deg, var(--minion), transparent);
   }
 }
 
 .demon {
   .name {
-    color: $demon;
+    color: var(--demon);
   }
 
   aside {
-    background: linear-gradient(-90deg, $demon, transparent);
+    background: linear-gradient(-90deg, var(--demon), transparent);
   }
 }
 
@@ -220,11 +214,11 @@ h3 {
   }
 
   .name {
-    color: $fabled;
+    color: var(--fabled);
   }
 
   aside {
-    background: linear-gradient(-90deg, $fabled, transparent);
+    background: linear-gradient(-90deg, var(--fabled), transparent);
   }
 
   ul li {

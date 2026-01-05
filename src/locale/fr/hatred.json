@@ -1,0 +1,665 @@
+﻿[
+  {
+    "id": "bountyhunter",
+    "hatred": [
+      {
+        "id": "philosopher",
+        "reason": "Si le Philosophe gagne la capacité du Chasseur de primes, il se peut qu'un Villageois devienne mauvais."
+      },
+      {
+        "id": "kazali",
+        "reason": "Si le Kazali transforme le Chasseur de primes en Sbire, aucun mauvais Villageois n'est créé."
+      }
+    ]
+  },
+  {
+    "id": "mathematician",
+    "hatred": [
+      {
+        "id": "chambermaid",
+        "reason": "La Femme de chambre peut détecter si le Mathématicien se réveillera cette nuit."
+      },
+      {
+        "id": "drunk",
+        "reason": "Il se peut que le Mathématicien apprenne que la capacité de l'Ivrogne lui a donné une fausse information ou a échoué à avoir un effet."
+      },
+      {
+        "id": "lunatic",
+        "reason": "Il se peut que le Mathématicien apprenne que l'Aliéné a attaqué un autre joueur que le vrai Démon."
+      },
+      {
+        "id": "marionette",
+        "reason": "Il se peut que le Mathématicien apprenne que la capacité de la Marionnette lui a donné une fausse information ou a échoué à avoir un effet."
+      }
+    ]
+  },
+  {
+    "id": "alchemist",
+    "hatred": [
+      {
+        "id": "spy",
+        "reason": "Un Alchimiste-Espion n'a pas la capacité de l'Espion, et l'Espion est en jeu. Après chaque exécution, un Alchimiste-Espion en vie peut deviner publiquement un vivant comme étant l'Espion. S'il voit juste, le Démon doit choisir l'Espion cette nuit."
+      },
+      {
+        "id": "widow",
+        "reason": "Un Alchimiste-Veuve n'a pas la capacité de la Veuve, et la Veuve est en jeu. Après chaque exécution, un Alchimiste-Veuve en vie peut deviner publiquement un vivant comme étant la Veuve. S'il voit juste, le Démon doit choisir la Veuve cette nuit."
+      },
+      {
+        "id": "marionette",
+        "reason": "Un Alchimiste-Marionnette n'a pas la capacité de la Marionnette, et la Marionnette est en jeu."
+      },
+      {
+        "id": "wraith",
+        "reason": "Un Alchimiste-Spectre n'a pas la capacité du Spectre, et le Spectre est en jeu. Après chaque exécution, un Alchimiste-Spectre en vie peut deviner publiquement un vivant comme étant le Spectre. S'il voit juste, le Démon doit choisir le Spectre cette nuit."
+      },
+      {
+        "id": "summoner",
+        "reason": "L'Alchimiste-Invocateur n'a aucun bluff, et choisit quel Démon mais pas quel joueur. S'il meurt avant que cela n'arrive, les mauvais gagnent. [Aucun Démon]"
+      },
+      {
+        "id": "mastermind",
+        "reason": "Un Alchimiste-Génie du mal n'a pas la capacité du Génie du mal, et le Génie du mal n'est pas en jeu."
+      },
+      {
+        "id": "organgrinder",
+        "reason": "Si l'Alchiste a la capacité de l'Organiste barbare, l'Organiste barbare est en jeu. S'ils sont tous les deux sobres, il deviennent tous les deux ivres."
+      },
+      {
+        "id": "boffin",
+        "reason": "Si l'Alchimiste a la capacité du Spécialiste, l'Alchimiste n'apprend pas quelle est la capacité qu'il donne au Démon."
+      }
+    ]
+  },
+  {
+    "id": "cannibal",
+    "hatred": [
+      {
+        "id": "princess",
+        "reason": "Si le Cannibale accuse et exécute la Princesse, le Démon ne tue pas cette nuit."
+      },
+      {
+        "id": "juggler",
+        "reason": "Si le Jongleur devine des rôles durant son premier jour et meurt alors par exécution, le Cannibale apprend cette nuit combien de rôles le Jongleur a deviné correctement."
+      },
+      {
+        "id": "poppygrower",
+        "reason": "Si le Cannibale mange le Planteur de pavot, puis meurt ou perd la capacité du Panteur de pavot, le Démon et les Sbires apprennent qui sont leurs alliés cette nuit."
+      },
+      {
+        "id": "butler",
+        "reason": "Si le Cannibale gagne la capacité du Majordome, le Cannibale l'apprend."
+      },
+      {
+        "id": "zealot",
+        "reason": "Si le Cannibale gagne la capacité du Fanatique, le Cannibale l'apprend."
+      }
+    ]
+  },
+  {
+    "id": "magician",
+    "hatred": [
+      {
+        "id": "spy",
+        "reason": "Quand l'Espion regarde le Grimoire, les rôles du Démon et du Magicien sont retirés."
+      },
+      {
+        "id": "widow",
+        "reason": "Quand la Veuve regarde le Grimoire, les rôles du Démon et du Magicien sont retirés."
+      },
+      {
+        "id": "marionette",
+        "reason": "Si le Magicien est en vie, le Démon ne sait pas lequel de ses voisins est la Marionnette."
+      },
+      {
+        "id": "wraith",
+        "reason": "Après chaque exécution, le Magicien en vie peut deviner publiquement un vivant comme étant le Spectre. S'il voit juste, le Démon doit choisir le Spectre cette nuit."
+      },
+      {
+        "id": "vizier",
+        "reason": "Si le Vizir est en jeu, le Magicien n'a aucune capacité mais est immunisé contre la capacité du Vizir."
+      },
+      {
+        "id": "legion",
+        "reason": "Le Magicien se réveille en même temps que la Légion, et il se peut qu'il apparaisse comme mauvais. La Légion sait si un Magicien est en vie, mais pas de quel joueur il s'agit."
+      }
+    ]
+  },
+  {
+    "id": "butler",
+    "hatred": [
+      {
+        "id": "organgrinder",
+        "reason": "Si l'Organiste barbare a rendu les votes à bulletin secret, le Majordome peut lever la main mais son vote n'est compté que si son maître a voté aussi."
+      }
+    ]
+  },
+  {
+    "id": "recluse",
+    "hatred": [
+      {
+        "id": "sage",
+        "reason": "Il se peut que le Reclus apparaisse comme Démon pour le Sage."
+      },
+      {
+        "id": "ogre",
+        "reason": "Si le Reclus apparaît comme mauvais pour l'Ogre, l'Ogre apprend qu'il est mauvais."
+      }
+    ]
+  },
+  {
+    "id": "plaguedoctor",
+    "hatred": [
+      {
+        "id": "spy",
+        "reason": "Si le Narrateur devrait gagner la capacité de l'Espion, un Sbire la gagne à la place, et l'apprend."
+      },
+      {
+        "id": "fearmonger",
+        "reason": "Si le Narrateur devrait gagner la capacité du Semeur de peur, un Sbire la gagne à la place, et l'apprend."
+      },
+      {
+        "id": "marionette",
+        "reason": "Si le Narrateur devrait gagner la capacité de la Marionnette, un des bons voisins du Démon devient la Marionnette."
+      },
+      {
+        "id": "wraith",
+        "reason": "Si le Narrateur devrait gagner la capacité du Spectre, un Sbire la gagne à la place, et l'apprend."
+      },
+      {
+        "id": "eviltwin",
+        "reason": "Si le Narrateur devrait gagner la capacité du Jumeau maléfique, un joueur devient le Jumeau maléfique."
+      },
+      {
+        "id": "goblin",
+        "reason": "Si le Narrateur devrait gagner la capacité du Gobelin, un Sbire la gagne à la place, et l'apprend."
+      },
+      {
+        "id": "boomdandy",
+        "reason": "Si le Narrateur devrait gagner la capacité du Dynamiteur, un joueur devient le Dynamiteur."
+      },
+      {
+        "id": "scarletwoman",
+        "reason": "Si le Narrateur devrait gagner la capacité de la Gourgandine, un Sbire la gagne à la place, et l'apprend."
+      },
+      {
+        "id": "baron",
+        "reason": "Si le Narrateur devrait gagner la capacité du Baron, jusqu'à deux joueurs deviennent des Marginaux."
+      }
+    ]
+  },
+  {
+    "id": "heretic",
+    "hatred": [
+      {
+        "id": "godfather",
+        "reason": "Seul 1 personnage jinxé peut être en jeu à la fois."
+      },
+      {
+        "id": "spy",
+        "reason": "Seul 1 personnage jinxé peut être en jeu à la fois."
+      },
+      {
+        "id": "pithag",
+        "reason": "Seul 1 personnage jinxé peut être en jeu à la fois."
+      },
+      {
+        "id": "widow",
+        "reason": "Seul 1 personnage jinxé peut être en jeu à la fois."
+      },
+      {
+        "id": "baron",
+        "reason": "Seul 1 personnage jinxé peut être en jeu à la fois."
+      },
+      {
+        "id": "lleech",
+        "reason": "Seul 1 personnage jinxé peut être en jeu à la fois."
+      }
+    ]
+  },
+  {
+    "id": "spy",
+    "hatred": [
+      {
+        "id": "poppygrower",
+        "reason": "Si le Planteur de pavot a sa capacité, l'Espion ne voit pas le Grimoire."
+      },
+      {
+        "id": "ogre",
+        "reason": "L'Espion apparait comme mauvais pour l'Ogre."
+      },
+      {
+        "id": "damsel",
+        "reason": "Si l'Espion est (ou a été) en jeu, la Demoiselle est empoisonnée."
+      }
+    ]
+  },
+  {
+    "id": "cerenovus",
+    "hatred": [
+      {
+        "id": "goblin",
+        "reason": "Le Cerenovus peut choisir de rendre un joueur persuadé d'être le Gobelin."
+      }
+    ]
+  },
+  {
+    "id": "pithag",
+    "hatred": [
+      {
+        "id": "villageidiot",
+        "reason": "S'il y a moins de trois Idiots de Village, la Guenaude peut en créer un nouveau. Si elle le fait, il se peut que l'Idiot du Village ivre change."
+      },
+      {
+        "id": "cultleader",
+        "reason": "Si la Guenaude change un joueur déjà mauvais en Gourou, celui-ci ne peut pas devenir bon par sa capacité."
+      },
+      {
+        "id": "goon",
+        "reason": "Si la Guenaude change un joueur déjà mauvais en Homme de main, celui-ci ne peut pas devenir bon par sa capacité."
+      },
+      {
+        "id": "ogre",
+        "reason": "Si la Guenaude change un joueur déjà mauvais en Ogre, celui-ci ne peut pas devenir bon par sa capacité."
+      },
+      {
+        "id": "politician",
+        "reason": "Si la Guenaude change un joueur déjà mauvais en Politicien, celui-ci ne peut pas devenir bon par sa capacité."
+      },
+      {
+        "id": "damsel",
+        "reason": "Si la Guenaude crée une Demoiselle, le Narrateur choisit de quel joueur il s'agit."
+      }
+    ]
+  },
+  {
+    "id": "widow",
+    "hatred": [
+      {
+        "id": "poppygrower",
+        "reason": "Si le Planteur de pavot a sa capacité, la Veuve ne voit pas le Grimoire."
+      },
+      {
+        "id": "damsel",
+        "reason": "Si la Veuve est (ou a été) en jeu, la Demoiselle est empoisonnée."
+      }
+    ]
+  },
+  {
+    "id": "marionette",
+    "hatred": [
+      {
+        "id": "balloonist",
+        "reason": "Si la Marionnette pense être l'Aéronaute, il se peut qu'un Marginal ait été ajouté durant la mise en place."
+      },
+      {
+        "id": "huntsman",
+        "reason": "Si la Marionnette pense être le Chasseur, la Demoiselle a été ajoutée durant la mise en place."
+      },
+      {
+        "id": "summoner",
+        "reason": "S'il devrait y avoir une Marionnette en jeu, elle apparaît dans la partie après le Démon et doit commencer comme un de ses voisins."
+      },
+      {
+        "id": "lilmonsta",
+        "reason": "S'il devrait y avoir une Marionnette en jeu, elle apparaît dans la partie après le Démon et doit commencer comme un de ses voisins."
+      },
+      {
+        "id": "kazali",
+        "reason": "S'il devrait y avoir une Marionnette en jeu, elle apparaît dans la partie après le Démon et doit commencer comme un de ses voisins."
+      }
+    ]
+  },
+  {
+    "id": "summoner",
+    "hatred": [
+      {
+        "id": "clockmaker",
+        "reason": "L'Invocateur apparaît comme le Démon pour l'Horloger."
+      },
+      {
+        "id": "preacher",
+        "reason": "Si l'Invocateur vivant n'a plus sa capacité, le Narrateur a la capacité de l'Invocateur."
+      },
+      {
+        "id": "engineer",
+        "reason": "Si l'Invocateur vivant est retiré de la partie, le Narrateur a la capacité de l'Invocateur."
+      },
+      {
+        "id": "courtier",
+        "reason": "Si l'Invocateur vivant n'a plus sa capacité, le Narrateur a la capacité de l'Invocateur."
+      },
+      {
+        "id": "poppygrower",
+        "reason": "Si le Planteur de pavot est vivant durant la 3e nuit, l'Invocateur choisit quel Démon mais pas quel joueur."
+      },
+      {
+        "id": "hatter",
+        "reason": "Si l'Invocateur crée un deuxième Démon vivant, les morts cette nuit sont arbitraires."
+      },
+      {
+        "id": "pithag",
+        "reason": "Si l'Invocateur crée un deuxième Démon vivant, les morts cette nuit sont arbitraires."
+      },
+      {
+        "id": "pukka",
+        "reason": "L'Invocateur peut invoquer un Pukka durant la 2e nuit au lieu de la 3e."
+      },
+      {
+        "id": "kazali",
+        "reason": "Si l'Invocateur crée un deuxième Démon vivant, les morts cette nuit sont arbitraires."
+      },
+      {
+        "id": "zombuul",
+        "reason": "Si l'Invocateur invoque un joueur mort en Zombuul, ce Zombuul est traité comme étant \"mort une fois\"."
+      },
+      {
+        "id": "lordoftyphon",
+        "reason": "Si un Seigneur de Typhon est invoqué, il doit être voisin d'un Sbire et son autre voisin devient un mauvais Sbire."
+      }
+    ]
+  },
+  {
+    "id": "mastermind",
+    "hatred": [
+      {
+        "id": "vigormortis",
+        "reason": "Un Génie du mal qui a sa capacité la garde si le Vigormortis meurt."
+      }
+    ]
+  },
+  {
+    "id": "scarletwoman",
+    "hatred": [
+      {
+        "id": "fanggu",
+        "reason": "S'il devrait y avoir deux Démons vivants, l'un d'eux ayant été Gourgandine, la Gourgandine reste Gourgandine."
+      },
+      {
+        "id": "alhadikhia",
+        "reason": "S'il devrait y avoir deux Démons vivants, l'un d'eux ayant été Gourgandine, la Gourgandine redevient Gourgandine."
+      }
+    ]
+  },
+  {
+    "id": "vizier",
+    "hatred": [
+      {
+        "id": "investigator",
+        "reason": "Le Narrateur n'annonce pas que le Vizir est en jeu."
+      },
+      {
+        "id": "preacher",
+        "reason": "Si le Vizir perd sa capacité, il l'apprend, et ne peut pas mourir durant le jour."
+      },
+      {
+        "id": "alsaahir",
+        "reason": "Le Narrateur n'annonce pas que le Vizir est en jeu."
+      },
+      {
+        "id": "courtier",
+        "reason": "Si le Vizir perd sa capacité, il l'apprend, et ne peut pas mourir durant le jour."
+      },
+      {
+        "id": "politician",
+        "reason": "Il se peut que le Politicien apparaisse comme mauvais pour le Vizir."
+      },
+      {
+        "id": "zealot",
+        "reason": "Il se peut que le Fanatique apparaisse comme mauvais pour le Vizir."
+      },
+      {
+        "id": "fearmonger",
+        "reason": "Le Vizir se réveille avec le Semeur de peur, apprend qui il choisit, et ne peut pas choisir d'exécuter ce joueur."
+      }
+    ]
+  },
+  {
+    "id": "boffin",
+    "hatred": [
+      {
+        "id": "villageidiot",
+        "reason": "S'il y a moins de trois Idiots du Village, le Spécialiste peut donner au Démon la capacité de l'Idiot du Village."
+      },
+      {
+        "id": "cultleader",
+        "reason": "Si le Démon a la capacité du Gourou, il ne peut pas devenir bon par sa capacité."
+      },
+      {
+        "id": "goon",
+        "reason": "Si le Démon a la capacité de l'Homme de main, il ne peut pas devenir bon par sa capacité."
+      },
+      {
+        "id": "ogre",
+        "reason": "Le Démon ne peut pas avoir la capacité de l'Ogre."
+      },
+      {
+        "id": "drunk",
+        "reason": "Le Démon ne peut pas avoir la capacité de l'Ivrogne."
+      },
+      {
+        "id": "politician",
+        "reason": "Le Démon ne peut pas avoir la capacité du Politicien."
+      },
+      {
+        "id": "heretic",
+        "reason": "Le Démon ne peut pas avoir la capacité de l'Hérétique."
+      }
+    ]
+  },
+  {
+    "id": "yaggababble",
+    "hatred": [
+      {
+        "id": "exorcist",
+        "reason": "Si l'Exorciste désigne le Yaggablabla, le Yaggablabla ne tue personne cette nuit."
+      }
+    ]
+  },
+  {
+    "id": "lilmonsta",
+    "hatred": [
+      {
+        "id": "magician",
+        "reason": "Si le Magicien est en vie, le Narrateur choisit quel Sbire a la garde du P'tit monstre."
+      },
+      {
+        "id": "poppygrower",
+        "reason": "Si le P'tit monstre et le Planteur de pavot sont en vie, les Sbires sont réveillés un par un, jusqu'à ce que l'un d'eux accepte de prendre la garde du P'tit monstre."
+      },
+      {
+        "id": "hatter",
+        "reason": "Si le Chapelier meurt et le Démon choisit de devenir P'tit monstre, il choisit aussi un rôle de Sbire et le devient."
+      },
+      {
+        "id": "psychopath",
+        "reason": "Si le Psychopathe a la garde du P'tit monstre, il meurt lorsqu'exécuté."
+      },
+      {
+        "id": "scarletwoman",
+        "reason": "Si le P'tit monstre meurt lorsqu'au moins 5 joueurs sont en vie, la Gourgandine récupère la garde du P'tit monstre pour le reste de la partie."
+      },
+      {
+        "id": "vizier",
+        "reason": "Si le Vizir a la garde du P'tit monstre, il meurt lorsqu'exécuté."
+      }
+    ]
+  },
+  {
+    "id": "vortox",
+    "hatred": [
+      {
+        "id": "banshee",
+        "reason": "Si le Vortox tue la Banshee, tous les joueurs apprennent que la Banshee est morte."
+      }
+    ]
+  },
+  {
+    "id": "legion",
+    "hatred": [
+      {
+        "id": "preacher",
+        "reason": "Si le Prêcheur choisit un membre de la Légion, la Légion garde sa capacité mais il se peut que le Prêcheur apprenne que ce joueur est Légion."
+      },
+      {
+        "id": "engineer",
+        "reason": "Si une Légion est créée, tous les joueurs mauvais deviennent Légion. Si la Légion est en jeu, l'Ingénieur n'a aucune capacité."
+      },
+      {
+        "id": "minstrel",
+        "reason": "Si un membre de la Légion est mort par exécution aujourd'hui, la Légion garde sa capacité mais il se peut que le Ménestrel apprenne que ce joueur est Légion."
+      },
+      {
+        "id": "hatter",
+        "reason": "Si une Légion est créée, tous les joueurs mauvais deviennent Légion. Si la Légion est en jeu, le Chapelier n'a aucune capacité."
+      },
+      {
+        "id": "politician",
+        "reason": "Il se peut que le Politicien apparaisse comme mauvais pour la Légion."
+      },
+      {
+        "id": "zealot",
+        "reason": "Il se peut que le Fanatique apparaisse comme mauvais pour la Légion."
+      },
+      {
+        "id": "summoner",
+        "reason": "Si la Légion est invoquée, tous les joueurs mauvais deviennent Légion."
+      }
+    ]
+  },
+  {
+    "id": "lleech",
+    "hatred": [
+      {
+        "id": "slayer",
+        "reason": "Si le Pourfendeur tire sur l'hôte de la Ssangssue, l'hôte meurt."
+      },
+      {
+        "id": "mastermind",
+        "reason": "Si le Génie du mal est en vie, et si l'hôte de la Ssangssue meurt par exécution, la Ssangssue survit mais perd sa capcité."
+      }
+    ]
+  },
+  {
+    "id": "alhadikhia",
+    "hatred": [
+      {
+        "id": "princess",
+        "reason": "Si la Princesse accuse et exécute un joueur durant son premier jour, personne ne meurt à cause d'Al-Hadikhia cette nuit."
+      },
+      {
+        "id": "mastermind",
+        "reason": "Si Al-Hadikhia meurt par exécution, et le Génie du mal est en vie, Al-Hadikhia désigne 3 joueurs bons cette nuit : si les 3 choisissent de vivre, les mauvais gagnent. Dans le cas contraire, les bons gagnent."
+      }
+    ]
+  },
+  {
+    "id": "leviathan",
+    "hatred": [
+      {
+        "id": "grandmother",
+        "reason": "Si le Léviathan est en jeu et le petit-fils meurt par exécution, les mauvais gagnent."
+      },
+      {
+        "id": "king",
+        "reason": "Si le Léviathan est en jeu, et si au moins un joueur est mort, le Roi apprend un personnage en vie chaque nuit."
+      },
+      {
+        "id": "innkeeper",
+        "reason": "Si le Léviathan accuse et exécute le joueur protégé par l'Aubergiste, les bons gagnent."
+      },
+      {
+        "id": "monk",
+        "reason": "Si le Léviathan accuse et exécute le joueur protégé par le Moine, les bons gagnent."
+      },
+      {
+        "id": "exorcist",
+        "reason": "Si le Léviathan accuse et exécute le joueur désigne par l'Exorciste, les bons gagnent."
+      },
+      {
+        "id": "soldier",
+        "reason": "Si le Léviathan accuse et exécute le Soldat, les bons gagnent."
+      },
+      {
+        "id": "farmer",
+        "reason": "Chaque nuit*, le Léviathan désigne un joueur bon vivant (différent des nuits précédentes) : un Fermier désigné utilise sa capacité mais ne meurt pas."
+      },
+      {
+        "id": "ravenkeeper",
+        "reason": "Chaque nuit*, le Léviathan désigne un joueur bon vivant (différent des nuits précédentes) : un Gardien des corbeaux désigné utilise sa capacité mais ne meurt pas."
+      },
+      {
+        "id": "sage",
+        "reason": "Chaque nuit*, le Léviathan désigne un joueur bon vivant (différent des nuits précédentes) : un Sage désigné utilise sa capacité mais ne meurt pas."
+      },
+      {
+        "id": "banshee",
+        "reason": "Chaque nuit*, le Léviathan désigne un joueur bon vivant (différent des nuits précédentes) : une Banshee désignée meurt et gagne sa capacité."
+      },
+      {
+        "id": "mayor",
+        "reason": "Si le Léviathan et le Maire sont tous deux en vie durant le jour 5, et s'il n'y a pas d'exécution, les bons gagnent."
+      },
+      {
+        "id": "hatter",
+        "reason": "Le Léviathan ne peut pas apparaître dans la partie après le jour 5."
+      },
+      {
+        "id": "pithag",
+        "reason": "Le Léviathan ne peut pas apparaître dans la partie après le jour 5."
+      }
+    ]
+  },
+  {
+    "id": "riot",
+    "hatred": [
+      {
+        "id": "grandmother",
+        "reason": "Si l'Émeute est en jeu et le petit-fils meurt par exécution, les mauvais gagnent."
+      },
+      {
+        "id": "king",
+        "reason": "Si l'Émeute est en jeu, et si au moins un joueur est mort, le Roi apprend un personnage en vie chaque nuit."
+      },
+      {
+        "id": "innkeeper",
+        "reason": "Si l'Émeute accuse et exécute le joueur protégé par l'Aubergiste, les bons gagnent."
+      },
+      {
+        "id": "monk",
+        "reason": "Si l'Émeute accuse et exécute le joueur protégé par le Moine, les bons gagnent."
+      },
+      {
+        "id": "exorcist",
+        "reason": "Si l'Émeute accuse et exécute le joueur désigné par l'Exorciste, les bons gagnent."
+      },
+      {
+        "id": "soldier",
+        "reason": "Si l'Émeute accuse et exécute le Soldat, les bons gagnent."
+      },
+      {
+        "id": "farmer",
+        "reason": "Chaque nuit*, l'Émeute désigne un joueur bon vivant (différent des autres nuits) : un Fermier désigné utilise sa capacité mais ne meurt pas."
+      },
+      {
+        "id": "ravenkeeper",
+        "reason": "Chaque nuit*, l'Émeute désigne un joueur bon vivant (différent des autres nuits) : un Gardien des corbeaux désigné utilise sa capacité mais ne meurt pas."
+      },
+      {
+        "id": "sage",
+        "reason": "Chaque nuit*, l'Émeute désigne un joueur bon vivant (différent des autres nuits) : un Sage désigné utilise sa capacité mais ne meurt pas."
+      },
+      {
+        "id": "banshee",
+        "reason": "Chaque nuit*, l'Émeute désigne un joueur bon vivant (différent des nuits précédentes) : une Banshee désignée meurt et gagne sa capacité."
+      },
+      {
+        "id": "mayor",
+        "reason": "Le Maire peut décider d'arrêter l'émeute. S'il le fait quand seul une Émeute est en vie, les bons gagnent. S'il le fait avant, les mauvais gagnent."
+      },
+      {
+        "id": "atheist",
+        "reason": "Pendant une émeute, si le Narrateur est accusé, les joueurs votent. S'il est condamné, la partie prend immédiatement fin. Sinon, il accuse à son tour."
+      }
+    ]
+  }
+]

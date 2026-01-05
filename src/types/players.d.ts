@@ -1,6 +1,5 @@
 import type { Role } from "./roles";
 
-// Player reminder interface
 export interface Reminder {
   id: string;
   role: Role;
@@ -9,12 +8,11 @@ export interface Reminder {
   imageAlt?: string;
 }
 
-// Player interface
 export interface Player {
   name: string;
   id: string;
   role: Role;
-  alignment?: "good" | "evil" | null;
+  alignment?: Alignment;
   reminders: Reminder[];
   voteToken: boolean;
   isDead: boolean;
@@ -22,9 +20,4 @@ export interface Player {
   isMarked?: boolean;
 }
 
-// Players state
-export interface PlayersState {
-  players: Player[];
-  fabled: Role[];
-  bluffs: Role[];
-}
+export type Alignment = "good" | "evil" | null | undefined;

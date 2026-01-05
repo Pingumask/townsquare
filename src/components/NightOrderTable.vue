@@ -4,7 +4,7 @@
       {{ nightType === 'firstNight' ? t('modal.nightOrder.firstNight') : t('modal.nightOrder.otherNights') }}
     </li>
     <li v-for="role in roles" :key="role.id" :class="[role.team]">
-      <span v-if="nightType === 'firstNight' && role.id && role.id != 'empty'" class="icon" :class="role.team">
+      <span v-if="nightType === 'otherNight' && role.id && role.id != 'empty'" class="icon" :class="role.team">
         <RoleIcon :role="role" />
       </span>
       <span class="name">
@@ -17,15 +17,15 @@
         </span>
         <span v-if="
           (role.team == 'default' || role.team == 'fabled') &&
-          !session.isSpectator &&
+          !session.isPlayerOrSpectator &&
           players.length &&
-          players[0].role.id
+          players[0]?.role?.id
         " class="player">
           <br>
           <small />
         </span>
       </span>
-      <span v-if="nightType === 'otherNight' && role.id && role.id != 'empty'" class="icon" :class="role.team">
+      <span v-if="nightType === 'firstNight' && role.id && role.id != 'empty'" class="icon" :class="role.team">
         <RoleIcon :role="role" />
       </span>
       <span v-if="nightType === 'firstNight' && role.firstNightReminder" class="reminder">
@@ -40,24 +40,26 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useStore } from "vuex";
-import { useTranslation } from '@/composables';
+
 import { RoleIcon } from '@/components';
-import type { NightOrderRole, Role, Player } from "@/types";
+import type { NightOrderRole, Player, Role } from "@/types";
+import { useGrimoireStore, useLocaleStore, usePlayersStore, useSessionStore } from "@/stores";
 
 interface Props {
   nightType: 'firstNight' | 'otherNight';
 }
 
 const props = defineProps<Props>();
-const { t } = useTranslation();
-const store = useStore();
 
-const edition = computed(() => store.state.edition);
-const session = computed(() => store.state.session);
-const players = computed(() => store.state.players.players);
-const fabled = computed(() => store.state.players.fabled);
-const rolesStore = computed(() => store.state.roles);
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
+const playersStore = usePlayersStore();
+const session = useSessionStore();
+
+const edition = computed(() => grimoire.edition);
+const fabled = computed(() => playersStore.fabled);
+const players = computed(() => playersStore.players);
 
 const roles = computed(() => {
   function nightIndex(role: Role, officialEdition: boolean): number {
@@ -134,7 +136,7 @@ const roles = computed(() => {
   });
 
   // Add regular roles (non-travelers)
-  rolesStore.value.forEach((role: Role) => {
+  grimoire.roles.forEach((role: Role) => {
     const hasNightAction = props.nightType === 'firstNight' ? role.firstNight : role.otherNight;
     if (hasNightAction && role.team !== "traveler") {
       const roleWithPlayers: NightOrderRole = {
@@ -186,7 +188,7 @@ const roles = computed(() => {
 
   // Sort by night order
   nightRoles.sort((a: NightOrderRole, b: NightOrderRole) =>
-    nightIndex(a, edition.value.isOfficial) - nightIndex(b, edition.value.isOfficial)
+    nightIndex(a, !!edition.value?.isOfficial) - nightIndex(b, !!edition.value?.isOfficial)
   );
 
   return nightRoles;
@@ -197,84 +199,49 @@ const roles = computed(() => {
 @use "../vars.scss" as *;
 
 .fabled {
-  .name {
-    background: linear-gradient(90deg, $fabled, transparent 35%);
+  --blend: normal;
+  --color: var(--fabled);
+}
 
-    .other & {
-      background: linear-gradient(-90deg, $fabled, transparent 35%);
-    }
-  }
+.loric {
+  --blend: normal;
+  --color: #4fda66;
 }
 
 .townsfolk {
   --blend: normal;
-  --color: #1f65ff;
-
-  .name {
-    background: linear-gradient(90deg, $townsfolk, transparent 35%);
-
-    .other & {
-      background: linear-gradient(-90deg, $townsfolk, transparent 35%);
-    }
-  }
+  --color: var(--townsfolk);
 }
 
 .outsider {
   --blend: normal;
-  --color: #46d5ff;
-
-  .name {
-    background: linear-gradient(90deg, $outsider, transparent 35%);
-
-    .other & {
-      background: linear-gradient(-90deg, $outsider, transparent 35%);
-    }
-  }
+  --color: var(--outsider);
 }
 
 .minion {
   --blend: normal;
-  --color: #ff6900;
-
-  .name {
-    background: linear-gradient(90deg, $minion, transparent 35%);
-
-    .other & {
-      background: linear-gradient(-90deg, $minion, transparent 35%);
-    }
-  }
+  --color: var(--minion);
 }
 
 .demon {
   --blend: normal;
-  --color: #ce0100;
-
-  .name {
-    background: linear-gradient(90deg, $demon, transparent 35%);
-
-    .other & {
-      background: linear-gradient(-90deg, $demon, transparent 35%);
-    }
-  }
+  --color: var(--demon);
 }
 
 .traveler {
-  .name {
-    background: linear-gradient(90deg, $traveler, transparent 35%);
-
-    .other & {
-      background: linear-gradient(-90deg, $traveler, transparent 35%);
-    }
-  }
+  --color: #cc04ff;
 }
 
 .default {
-  .name {
-    background: linear-gradient(90deg, $default, transparent 35%);
+  --color: var(--default);
+}
 
-    .other & {
-      background: linear-gradient(-90deg, $default, transparent 35%);
-    }
+.name {
+  background: linear-gradient(90deg, var(--color), transparent 55%);
+
+  .otherNight & {
+    background: linear-gradient(-90deg, var(--color), transparent 55%);
+    text-align: left;
   }
 }
 
@@ -317,7 +284,6 @@ ul {
       flex-grow: 1;
       flex-shrink: 0;
       text-align: right;
-      font-size: 110%;
       padding: 5px;
       border-left: 1px solid rgba(255, 255, 255, 0.4);
       border-right: 1px solid rgba(255, 255, 255, 0.4);
@@ -365,21 +331,9 @@ ul {
   }
 }
 
-.first {
-  .name {
-    border-left: 0;
-  }
-}
-
-.other {
-  li .name {
-    text-align: left;
-    border-right: 0;
-  }
-}
-
 /** hide players when town square is set to "public" **/
-#townsquare.public~* .player {
+#townsquare.public~* .player,
+#townsquare.public .player {
   display: none;
 }
 </style>

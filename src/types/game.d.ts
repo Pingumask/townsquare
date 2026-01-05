@@ -6,21 +6,30 @@ export interface GameComposition {
   demon: number;
 }
 
-// Game info (similar to GameComposition but separate interface)
-export interface GameInfo {
-  townsfolk: number;
-  outsider: number;
-  minion: number;
-  demon: number;
-}
-
 // Game phases
-export type GamePhase = "pregame" | "day" | "firstNight" | "otherNight" | "postgame";
+export type GamePhase =
+  | "offline"
+  | "pregame"
+  | "day"
+  | "firstNight"
+  | "otherNight"
+  | "postgame";
 
 // Timer
 export interface Timer {
   name: string;
   duration: number;
+}
+
+interface TimerDurations {
+  daytime: number;
+  nominations: number;
+  dusk: number;
+  accusation: number;
+  defense: number;
+  debate: number;
+  custom: number;
+  customDebate: number;
 }
 
 // Edition
@@ -48,3 +57,16 @@ export interface ScriptMeta {
   author?: string;
   logo?: string;
 }
+
+export type Modals =
+  | "edition"
+  | "fabled"
+  | "gameState"
+  | "nightOrder"
+  | "reference"
+  | "reminder"
+  | "role"
+  | "roles"
+  | "voteHistory"
+  | "specialVote"
+  | null;

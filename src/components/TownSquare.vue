@@ -1,8 +1,8 @@
 <template>
   <div id="townsquare" class="square" :class="{
-    public: grimoire.isPublic,
-    spectator: session.isSpectator,
-    vote: session.nomination,
+    public: userPreferences.hideGrim,
+    spectator: session.isPlayerOrSpectator,
+    vote: votingStore.nomination,
   }">
     <ul class="circle" :class="['size-' + players.length]">
       <Seat v-for="(player, index) in players" :key="index" :player="player" :class="{
@@ -12,50 +12,9 @@
         nominate: nominate > -1,
       }" @trigger="handleTrigger(index, $event)" />
     </ul>
-
-    <div v-if="players.length" ref="bluffs" class="bluffs" :class="{ closed: !isBluffsOpen }">
-      <h3>
-        <span v-if="session.isSpectator">{{ t('townsquare.others') }}</span>
-        <span v-else>{{ t('townsquare.bluffs') }}</span>
-        <font-awesome-icon icon="times-circle" class="fa fa-times-circle" @click.stop="toggleBluffs" />
-        <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="toggleBluffs" />
-      </h3>
-      <ul>
-        <li v-for="index in bluffSize" :key="index" @click="openRoleModal(index * -1)">
-          <Token :role="bluffs[index - 1]" />
-        </li>
-      </ul>
-    </div>
-
+    <Bluffs @open-role-modal="openRoleModal" />
     <SideMenu />
-
-    <div v-if="fabled.length" class="fabled" :class="{ closed: !isFabledOpen }">
-      <h3>
-        <span>{{ t('townsquare.fabled') }}</span>
-        <font-awesome-icon icon="times-circle" class="fa fa-times-circle" @click.stop="toggleFabled" />
-        <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="toggleFabled" />
-      </h3>
-      <ul>
-        <li v-for="(role, index) in fabled" :key="index" :class="role.team" @click="removeFabled(index)">
-          <div v-if="
-            nightOrder.get(role).first &&
-            (grimoire.isNightOrder || !session.isSpectator)
-          " class="night-order first">
-            <em>{{ nightOrder.get(role).first }}</em>
-            <span v-if="role.firstNightReminder">{{ role.firstNightReminder }}</span>
-          </div>
-          <div v-if="
-            nightOrder.get(role).other &&
-            (grimoire.isNightOrder || !session.isSpectator)
-          " class="night-order other">
-            <em>{{ nightOrder.get(role).other }}</em>
-            <span v-if="role.otherNightReminder">{{ role.otherNightReminder }}</span>
-          </div>
-          <Token :role="role" />
-        </li>
-      </ul>
-    </div>
-
+    <Npcs />
     <ReminderModal :player-index="selectedPlayer" />
     <RoleModal :player-index="selectedPlayer" />
   </div>
@@ -63,65 +22,38 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { useStore } from "vuex";
-import { ReminderModal, RoleModal, Seat, SideMenu, Token } from '@/components';
-import { useTranslation } from '@/composables';
-import type { Player } from '@/types';
+import { Bluffs, Npcs, ReminderModal, RoleModal, Seat, SideMenu } from '@/components';
+import {
+  useGrimoireStore,
+  useLocaleStore,
+  usePlayersStore,
+  usePlayersMenuStore,
+  useSessionStore,
+  useUserPreferencesStore,
+  useVotingStore,
+} from "@/stores";
+import type { Player } from "@/types";
 
-const store = useStore();
-const { t } = useTranslation();
+const grimoire = useGrimoireStore();
+const locale = useLocaleStore();
+const t = locale.t;
+const playersStore = usePlayersStore();
+const playersMenuStore = usePlayersMenuStore();
+const session = useSessionStore();
+const userPreferences = useUserPreferencesStore();
+const votingStore = useVotingStore();
 
-// Computed properties from store
-const nightOrder = computed(() => store.getters["players/nightOrder"]);
-const grimoire = computed(() => store.state.grimoire);
-const session = computed(() => store.state.session);
-const players = computed(() => store.state.players.players);
-const bluffs = computed(() => store.state.players.bluffs);
-const fabled = computed(() => store.state.players.fabled);
+const players = computed(() => playersStore.players);
 
-// Used in CSS v-bind
-// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-const firstMessage = computed(() => {
-  return JSON.stringify(t('modal.nightOrder.firstNight'));
-});
+const firstMessage = computed(() => t('modal.nightOrder.firstNight'));// eslint-disable-line @typescript-eslint/no-unused-vars, no-unused-vars
+const otherMessage = computed(() => t('modal.nightOrder.otherNights'));// eslint-disable-line @typescript-eslint/no-unused-vars, no-unused-vars
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-const otherMessage = computed(() => {
-  return JSON.stringify(t('modal.nightOrder.otherNights'));
-});
-
-// Reactive data
-const selectedPlayer = ref(0);
-const bluffSize = ref(3);
-const swap = ref(-1);
 const move = ref(-1);
 const nominate = ref(-1);
-const isBluffsOpen = ref(true);
-const isFabledOpen = ref(true);
+const selectedPlayer = ref(0);
+const swap = ref(-1);
 
-// Methods converted to functions
-const toggleBluffs = () => {
-  isBluffsOpen.value = !isBluffsOpen.value;
-};
-
-const toggleFabled = () => {
-  isFabledOpen.value = !isFabledOpen.value;
-};
-
-const removeFabled = (index: number) => {
-  if (session.value.isSpectator) return;
-  store.commit("players/setFabled", { index });
-};
-
-const toggleNight = () => {
-  store.dispatch("toggleNight");
-};
-
-const toggleRinging = () => {
-  store.dispatch("toggleRinging");
-};
 const handleTrigger = (playerIndex: number, event: string | [string] | [string, unknown]) => {
-  // Handle both string events and array events
   const [method, params] = Array.isArray(event) ? [event[0], event[1]] : [event, undefined];
   const methodMap: Record<string, Function> = {
     claimSeat,
@@ -131,11 +63,6 @@ const handleTrigger = (playerIndex: number, event: string | [string] | [string, 
     swapPlayer,
     movePlayer,
     nominatePlayer,
-    toggleBluffs,
-    toggleFabled,
-    removeFabled,
-    toggleNight,
-    toggleRinging,
   };
 
   if (typeof methodMap[method] === "function") {
@@ -144,98 +71,133 @@ const handleTrigger = (playerIndex: number, event: string | [string] | [string, 
 };
 
 const claimSeat = (playerIndex: number) => {
-  if (!session.value.isSpectator) return;
-  if (session.value.playerId === players.value[playerIndex].id) {
-    store.commit("session/claimSeat", -1);
+  const player = players.value[playerIndex];
+  if (player && session.playerId === player.id) {
+    session.claimSeat(-1);
   } else {
-    store.commit("session/claimSeat", playerIndex);
+    session.claimSeat(playerIndex);
   }
 };
 
 const openReminderModal = (playerIndex: number) => {
   selectedPlayer.value = playerIndex;
-  store.commit("toggleModal", "reminder");
+  grimoire.toggleModal("reminder");
 };
 
 const openRoleModal = (playerIndex: number) => {
   const player = players.value[playerIndex];
-  if (session.value.isSpectator && player && player.role.team === "traveler")
-    return;
+  if (session.isPlayerOrSpectator && player && player.role.team === "traveler") return;
   selectedPlayer.value = playerIndex;
-  store.commit("toggleModal", "role");
+  grimoire.toggleModal("role");
 };
+
+const cancel = () => {
+  move.value = -1;
+  swap.value = -1;
+  nominate.value = -1;
+};
+
 const removePlayer = (playerIndex: number) => {
-  if (session.value.isSpectator || session.value.lockedVote) return;
-  if (!confirm(`Do you really want to remove ${players.value[playerIndex].name}?`)) return;
-  const { nomination } = session.value;
+  if (session.isPlayerOrSpectator || votingStore.lockedVote) return;
+  if (!playersMenuStore.removePlayer) return;
+
+  const player = players.value[playerIndex];
+  if (!player || !confirm(`Do you really want to remove ${player.name}?`)) return;
+
+  const nomination = votingStore.nomination;
   if (nomination) {
-    if (nomination.includes(playerIndex)) {
+    const nominator = Number(nomination.nominator);
+    const nominee = Number(nomination.nominee);
+    if (nominator === playerIndex || nominee === playerIndex) {
       // abort vote if removed player is either nominator or nominee
-      store.commit("session/nomination");
+      votingStore.setNomination(null);
     } else if (
-      nomination.nominator > playerIndex ||
-      nomination.nominee > playerIndex
+      nominator > playerIndex ||
+      nominee > playerIndex
     ) {
       // update nomination array if removed player has lower index
-      store.commit("session/setNomination", [
-        nomination.nominator > playerIndex ? nomination.nominator - 1 : nomination.nominator,
-        nomination.nominee > playerIndex ? nomination.nominee - 1 : nomination.nominee,
-      ]);
+      votingStore.setNomination({
+        nominator: nominator > playerIndex ? nominator - 1 : nominator,
+        nominee: nominee > playerIndex ? nominee - 1 : nominee,
+      });
     }
   }
-  store.commit("players/remove", playerIndex);
+  playersStore.remove(playerIndex);
 };
+
 const swapPlayer = (from: number, to?: Player) => {
-  if (session.value.isSpectator || session.value.lockedVote) return;
+  if (session.isPlayerOrSpectator || votingStore.lockedVote) return;
+  if (!playersMenuStore.swapPlayers) return;
+
   if (to === undefined) {
     cancel();
     swap.value = from;
   } else {
-    if (session.value.nomination) {
-      // update nomination if one of the involved players is swapped
-      const swapTo = players.value.indexOf(to);
-      const updatedNomination = session.value.nomination.map((nom: number) => {
-        if (nom === swap.value) return swapTo;
-        if (nom === swapTo) return swap.value;
-        return nom;
-      });
-      if (
-        session.value.nomination.nominator !== updatedNomination.nominator ||
-        session.value.nomination.nominee !== updatedNomination.nominee
-      ) {
-        store.commit("session/setNomination", updatedNomination);
-      }
-    }
-    store.commit("players/swap", [
-      swap.value,
-      players.value.indexOf(to),
-    ]);
+    const swapTo = players.value.indexOf(to);
+    updateNominationForSwap(swap.value, swapTo);
+    playersStore.swap([swap.value, swapTo]);
     cancel();
   }
 };
+
+const updateNominationForSwap = (swapFrom: number, swapTo: number) => {
+  const currentNomination = votingStore.nomination;
+  if (!currentNomination) return;
+
+  let newNominator = Number(currentNomination.nominator);
+  let newNominee = Number(currentNomination.nominee);
+
+  if (newNominator === swapFrom) newNominator = swapTo;
+  else if (newNominator === swapTo) newNominator = swapFrom;
+
+  if (newNominee === swapFrom) newNominee = swapTo;
+  else if (newNominee === swapTo) newNominee = swapFrom;
+
+  if (
+    Number(currentNomination.nominator) !== newNominator ||
+    Number(currentNomination.nominee) !== newNominee
+  ) {
+    votingStore.setNomination({
+      nominator: newNominator,
+      nominee: newNominee
+    });
+  }
+};
+
 const movePlayer = (from: number, to?: Player) => {
-  if (session.value.isSpectator || session.value.lockedVote) return;
+  if (session.isPlayerOrSpectator || votingStore.lockedVote) return;
+  if (!playersMenuStore.movePlayer) return;
+
   if (to === undefined) {
     cancel();
     move.value = from;
   } else {
-    if (session.value.nomination) {
+    if (votingStore.nomination) {
       // update nomination if it is affected by the move
       const moveTo = players.value.indexOf(to);
-      const updatedNomination = session.value.nomination.map((nom: number) => {
-        if (nom === move.value) return moveTo;
-        if (nom > move.value && nom <= moveTo) return nom - 1;
-        if (nom < move.value && nom >= moveTo) return nom + 1;
-        return nom;
-      });
+      const currentNomination = votingStore.nomination;
+
+      const mapIndex = (idx: number) => {
+        if (idx === move.value) return moveTo;
+        if (idx > move.value && idx <= moveTo) return idx - 1;
+        if (idx < move.value && idx >= moveTo) return idx + 1;
+        return idx;
+      };
+
+      const newNominator = mapIndex(Number(currentNomination.nominator));
+      const newNominee = mapIndex(Number(currentNomination.nominee));
+
       if (
-        session.value.nomination.nominator !== updatedNomination.nominator ||
-        session.value.nomination.nominee !== updatedNomination.nominee
+        Number(currentNomination.nominator) !== newNominator ||
+        Number(currentNomination.nominee) !== newNominee
       ) {
-        store.commit("session/setNomination", updatedNomination);
+        votingStore.setNomination({
+          nominator: newNominator,
+          nominee: newNominee
+        });
       }
     }
-    store.commit("players/move", [
+    playersStore.move([
       move.value,
       players.value.indexOf(to),
     ]);
@@ -244,26 +206,19 @@ const movePlayer = (from: number, to?: Player) => {
 };
 
 const nominatePlayer = (from: number, to?: Player) => {
-  if (session.value.isSpectator || session.value.lockedVote) return;
+  if (session.isPlayerOrSpectator || votingStore.lockedVote) return;
   if (to === undefined) {
     cancel();
     if (from !== nominate.value) {
       nominate.value = from;
     }
   } else {
-    const nomination = {
+    votingStore.setNomination({
       nominator: nominate.value,
       nominee: players.value.indexOf(to)
-    };
-    store.commit("session/nomination", { nomination });
+    });
     cancel();
   }
-};
-
-const cancel = () => {
-  move.value = -1;
-  swap.value = -1;
-  nominate.value = -1;
 };
 </script>
 
@@ -677,7 +632,7 @@ const cancel = () => {
   &.first span {
     right: 120%;
     background: linear-gradient(to right,
-        $townsfolk 0%,
+        var(--townsfolk) 0%,
         rgba(0, 0, 0, 0.5) 20%);
 
     &:before {
@@ -685,7 +640,7 @@ const cancel = () => {
     }
 
     &:after {
-      border-left-color: $townsfolk;
+      border-left-color: var(--townsfolk);
       margin-left: 3px;
       left: 100%;
     }
@@ -693,7 +648,7 @@ const cancel = () => {
 
   &.other span {
     left: 120%;
-    background: linear-gradient(to right, $demon 0%, rgba(0, 0, 0, 0.5) 20%);
+    background: linear-gradient(to right, var(--demon) 0%, rgba(0, 0, 0, 0.5) 20%);
 
     &:before {
       content: v-bind(otherMessage);
@@ -702,7 +657,7 @@ const cancel = () => {
     &:after {
       right: 100%;
       margin-right: 3px;
-      border-right-color: $demon;
+      border-right-color: var(--demon);
     }
   }
 
@@ -728,12 +683,12 @@ const cancel = () => {
 
   &.first em {
     left: -10%;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, $townsfolk 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, var(--townsfolk) 100%);
   }
 
   &.other em {
     right: -10%;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, $demon 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, var(--demon) 100%);
   }
 
   em:hover+span {
@@ -752,7 +707,7 @@ const cancel = () => {
         margin-left: 0;
         margin-right: 3px;
         border-left-color: transparent;
-        border-right-color: $townsfolk;
+        border-right-color: var(--townsfolk);
       }
     }
   }

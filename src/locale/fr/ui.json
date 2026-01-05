@@ -1,0 +1,328 @@
+{
+  "menu": {
+    "tabs": {
+      "session": {
+        "player": "Joueur",
+        "host": "Hôte",
+        "create": "Session"
+      },
+      "options": "Préférences",
+      "setup": "Mise en place",
+      "storytelling": "Narration",
+      "playersMenu": "Menu des joueurs",
+      "soundboard": "Envoyer des Sons",
+      "gameplay": "Jeu",
+      "about": "A propos"
+    },
+    "hide": "Cacher",
+    "show": "Montrer",
+    "firstNightSwitch": "Passer à la première nuit",
+    "nightSwitch": "Passer à la nuit",
+    "daySwitch": "Passer au jour",
+    "order": "Ordre Nocturne",
+    "zoom": "Zoom",
+    "background": "Image de fond",
+    "customImages": "Images Importées",
+    "streamerMode": "Mode Streamer",
+    "animations": "Effets réduits",
+    "mute": "Silencieux",
+    "ringBell": "Sonner Clocher",
+    "player": "Joueur",
+    "players": "Joueurs",
+    "host": "Hôte",
+    "storyteller": "Hôte (Narrateur)",
+    "delay": "Délais",
+    "link": "Copier Lien Joueurs",
+    "sendRoles": "Envoyer les rôles",
+    "voteHistory": "Historique des Votes",
+    "allowVoteHistory": "Historique Publique",
+    "secretVote": "Vote secret",
+    "selfNaming": "Auto-Renommage",
+    "leave": "Quitter Session",
+    "addPlayer": "Ajouter un Siège",
+    "addPlayers": "Ajouter des Sièges",
+    "randomizeSeats": "Mélanger les Sièges",
+    "removeSeats": "Retirer tous les Sièges",
+    "selectEdition": "Choisir le Scénario",
+    "assign": "Attribuer les Rôles",
+    "addFabled": "Mythes & Légendes",
+    "clearRoles": "Effacer les Rôles",
+    "reference": "Référence des Rôles",
+    "nightOrder": "Ordre Nocturne",
+    "gameState": "Etat JSON du jeu",
+    "discord": "Rejoindre Discord",
+    "source": "Code Source",
+    "issues": "Signaler un bug",
+    "request": "Proposer une fonctionalité",
+    "newGame": "Nouvelle partie",
+    "endGame": "Fin de Partie"
+  },
+  "head": {
+    "title": "Grimoire Blood on the Clocktower",
+    "description": "Un Grimoire virtuel gratuit pour Blood on the Clocktower pour vous aider à animer vos parties (en ligne)."
+  },
+  "prompt": {
+    "background": "Entrez l'URL de l'image de fond",
+    "createSession": "Entrez un nom ou numéro de session",
+    "sendRoles": "Voulez-vous envoyer les rôles à tous les joueurs ASSIS ?",
+    "sendRolesWithForbidden1": "ATTENTION\nAu moins l'un des rôles que vous êtes sur le point d'envoyer est un rôle interdit (",
+    "sendRolesWithForbidden2": ").\nConfirmer l'envoi ?",
+    "imageOptIn": "Êtes-vous sûr de vouloir autoriser les images externes ? Un auteur de script mal intentionné pourrait s'en servir pour traquer votre adresse IP.",
+    "joinSession": "Entrez le nom ou numéro de la session que vous souhaitez rejoindre",
+    "leaveSession": "Êtes-vous sur de vouloir quitter la partie en cours ?",
+    "addPlayer": "Nom du joueur",
+    "addPlayers": "Nombre de joueurs à ajouter",
+    "randomizeSeatings": "Êtes-vous sur de vouloir mélanger les sièges ?",
+    "clearPlayers": "Êtes-vous sur de vouloir supprimer tous les joueurs ?",
+    "clearRoles": "Êtes-vous sur de vouloir effacer tous les rôles ?",
+    "customUrl": "Entrer l'URL du fichier JSON de personnalisation de script",
+    "customError": "Erreur lors du chargement du script",
+    "customNote": "Ajouter une note personnalisée",
+    "customScriptName": "Nom du scénario personnalisé",
+    "defaultScriptName": "Scénario personnalisé",
+    "newGame": "Êtes-vous sûr de vouloir démarrer une nouvelle partie ? Cette action effacera tous les rôles, remettra le compteur de jours à zéro et reviendra à la phase de mise en place.",
+    "endGame": "Êtes-vous sûr de vouloir mettre fin à la partie ? La phase de fin de jeu sera disponible dans une future mise à jour."
+  },
+  "vote": {
+    "nominates": "accuse",
+    "callexile": "veut exiler",
+    "exclam": " !",
+    "votes": "votes",
+    "inFavor": "pour",
+    "majorityIs": "majorité à",
+    "secretBallot": "Les votes ont lieu à bulletin secret.",
+    "timePerPlayer": "Temps par Joueur :",
+    "countdown": "Compte à rebours",
+    "restart": "Relancer",
+    "start": "Démarrer",
+    "pause": "Pause",
+    "resume": "Continuer",
+    "reset": "Annuler",
+    "close": "Fermer",
+    "setMarked": "Marquer comme condamné",
+    "removeMarked": "Effacer la marque",
+    "secondsBetweenVotes": "secondes par vote",
+    "handDown": "Baisser la Main",
+    "handUp": "Lever la Main",
+    "seatToVote": "Asseyez-vous pour pouvoir voter",
+    "doVote": "Votez"
+  },
+  "townsquare": {
+    "others": "Autres Rôles",
+    "bluffs": "Bluffs de Démon",
+    "fabled": "Mythes & Légendes",
+    "storytellerTools": "Narration",
+    "disconnected": "Non connecté",
+    "timer": {
+      "default": {
+        "text": "Compte à rebours"
+      },
+      "prompt": {
+        "name": "Nom du compte à rebours",
+        "duration": "Durée en minutes",
+        "durationError": "Veuillez saisir un nombre en minutes"
+      },
+      "daytime": {
+        "button": "Journée",
+        "text": "Journée"
+      },
+      "nominations": {
+        "button": "Accusations",
+        "text": "Accusations ouvertes"
+      },
+      "dusk": {
+        "button": "Fin de Journée",
+        "text": "Fin de Journée"
+      },
+      "accusation": {
+        "button": "Accusation",
+        "text": "$accusator accuse $accusee"
+      },
+      "defense": {
+        "button": "Défense",
+        "text": "$accusee se défend contre $accusator"
+      },
+      "debate": {
+        "button": "Débat",
+        "text": "Faut-il tuer $accusee ?"
+      }
+    },
+    "gamephase": {
+      "offline": "Non connecté",
+      "pregame": "Mise en place",
+      "firstNight": "Première Nuit",
+      "day": "Jour",
+      "otherNight": "Nuit",
+      "postgame": "Fin de partie"
+    }
+  },
+  "towninfo": {
+    "addPlayers": "Appuyez sur [A] pour ajouter plus de joueurs !",
+    "nightPhase": "C'est la nuit"
+  },
+  "player": {
+    "handUp": "Main levée",
+    "handDown": "Main baissée",
+    "cancel": "Annuler",
+    "swap": "Échanger de siège avec ce joueur",
+    "swapAlignment": "Inverser Alignement",
+    "move": "Déplacer le joueur vers ce siège",
+    "nominate": "Accuse ce joueur",
+    "ghostVote": "Vote Fantôme",
+    "changePronouns": "Changer de Pronom",
+    "changeName": "Renommer",
+    "movePlayer": "Déplacer le joueur",
+    "swapPlayers": "Échanger les sièges",
+    "removePlayer": "Retirer le joueur",
+    "emptySeat": "Vider le siège",
+    "nomination": "Accusation",
+    "specialVote": "Vote spécial",
+    "claimSeat": "S'asseoir ici",
+    "vacateSeat": "Libérer le Siège",
+    "occupiedSeat": "Siège Occupé"
+  },
+  "intro": {
+    "header": "Bienvenue sur le Centre-ville Virtuel (non-officiel) pour Blood on the Clocktower! Veuillez ajouter des Joueurs via le",
+    "menu": "Menu",
+    "body": "en haut à droite ou en appuyant sur [A] pour commencer. Vous pouvez aussi rejoindre une session en appuyant sur [J].",
+    "footerStart": "Ce programme est libre et ses sources peuvent être trouvées sur",
+    "footerEnd": ". Ce site n'est pas affilié à The Pandemonium Institute. \"Blood on the Clocktower\" est une marque déposée de Steven Medway & The Pandemonium Institute."
+  },
+  "modal": {
+    "edition": {
+      "title": "Choisir un Scénario :",
+      "tab": {
+        "official": "Officiels",
+        "popular": "Populaires",
+        "teensyville": "Teensyville",
+        "custom": "Personnaliser",
+        "build": "Créer"
+      },
+      "custom": {
+        "introStart": "Pour jouer avec un script personnalisé, vous pouvez sélectionner les personnages de votre choix grace à l'",
+        "scriptTool": "outil officiel d'édition de scripts",
+        "introEnd": "puis téléverser le fichier json généré directement ici ou depuis une URL hébergée.",
+        "instructionsStart": "Pour plus d'informations, vous pouvez vous réferrer à",
+        "documentation": "la documentation",
+        "instructionsEnd": "pour apprendre comment rédiger des fiches de personnages personnalisés.",
+        "warning": "Ne chargez des fichier JSON qu'à partir de sources de confiance !",
+        "popularScripts": "Quelques scénarios populaires :",
+        "upload": "Téléversersement JSON",
+        "url": "Entrer une URL",
+        "clipboard": "Presse-papier",
+        "back": "Retour",
+        "startDraft": "Démarrer un draft"
+      },
+      "build": {
+        "resetBuilt": "Tout supprimer",
+        "selectAll": "Whale bucket (tous les rôles)",
+        "initPool": "Réinitialiser",
+        "randomizeBuilt": "Rôle aléatoires",
+        "startBuilt": "Jouer le script"
+      }
+    },
+    "fabled": {
+      "title": "Choisissez un Mythe ou une Légende à ajouter à la partie"
+    },
+    "gameState": {
+      "title": "État Actuel de la Partie",
+      "copy": "Copier JSON",
+      "load": "Charger l'état"
+    },
+    "nightOrder": {
+      "title": "Ordre Nocturne",
+      "custom": "Scénario Perso",
+      "firstNight": "Première Nuit",
+      "otherNights": "Autres Nuits",
+      "minionInfo": "Informations Sbires",
+      "minionInfoDescription": "S'il y a plusieurs Sbires, ils apprennent qui sont les autres Sbires. Indiquez aux Sbires qui est le Démon.",
+      "demonInfo": "Info & Bluffs Démon",
+      "demonInfoDescription": "Indiquez au Démon qui sont ses Sbires. Indiquez les rôles de 3 personnages bons qui ne sont pas en jeu.",
+      "dusk": "Crépuscule",
+      "duskDescription1": "Endormez les joueurs.",
+      "duskDescription2": "Terminez la journée, et endormez les joueurs.",
+      "dawn": "Aube",
+      "dawnDescription1": "Réveillez les joueurs.",
+      "dawnDescription2": "Réveillez les joueurs, puis annoncez qui est mort cette nuit.",
+      "reference": "Afficher la Réference de rôles"
+    },
+    "reference": {
+      "title": "Réference de rôles",
+      "jinxed": "Jinx",
+      "notfirstnight": "* Pas la première nuit",
+      "teamNames": {
+        "townsfolk": "villageois",
+        "outsider": "marginaux",
+        "minion": "sbires",
+        "demon": "démons"
+      },
+      "nightOrder": "Afficher l'Ordre Nocturne"
+    },
+    "reminder": {
+      "title": "Apposer une note :",
+      "good": "Bon",
+      "evil": "Mauvais",
+      "townsfolk": "Villageois",
+      "outsider": "Marginal",
+      "minion": "Sbire",
+      "demon": "Demon",
+      "custom": "Note"
+    },
+    "role": {
+      "title": "Choisissez un personnage pour",
+      "bluff": "bluffer",
+      "editionRoles": "Rôles de ce Scénario",
+      "othertravelers": "Autres Voyageurs",
+      "search": "Chercher parmi les personnages & capacités"
+    },
+    "roles": {
+      "titleStart": "Selectionner les personnages pour ",
+      "titleEnd": " joueurs :",
+      "warning": "Attention : certains des personnages sélectionnés changent la distribution de début de partie ! La distribution aléatoire n'effectue pas elle-même ces changements, pensez à modifier les attributions en conséquence avant d'envoyer les rôles aux joueurs.",
+      "allowMultiple": "Permettre les doublons de personnages",
+      "assignStart": "Attribuer aléatoirement ces ",
+      "assignEnd": " rôles",
+      "shuffle": "Tirer les personnages au sort"
+    },
+    "voteHistory": {
+      "title": "Historique de votes",
+      "accessibility": "Accessible aux Joueurs",
+      "clear": "Effacer pour tous",
+      "day": "Jour",
+      "time": "Heure",
+      "nominator": "Accusateur",
+      "nominee": "Accusé",
+      "type": "Type",
+      "votes": "Voix",
+      "majority": "Majorité",
+      "voters": "Votants",
+      "execution": "Exécution",
+      "exile": "Exil",
+      "hiddenVote": "Le résultat est caché"
+    },
+    "specialvote": {
+      "title": "Sélectionnez un type de vote :",
+      "bishop": "Accusation par le Narrateur",
+      "atheist": "Accusation du Narrateur",
+      "st": "le Narrateur",
+      "cultleader": "Création de secte",
+      "cultleaderMessages": {
+        "timerText": "veut créer une secte",
+        "debateText": "Voulez-vous rejoindre la secte créée par $player ?",
+        "buttonLabel": "Secte"
+      },
+      "custom": "Vote personnalisé",
+      "complete": "Complétez : ",
+      "customMessages": {
+        "timerText": "",
+        "debateText": "Le débat est ouvert",
+        "buttonLabel": "(Personnalisé)"
+      }
+    }
+  },
+  "sound": {
+    "rooster": "Chant du Coq",
+    "ringing": "Sonner la Cloche",
+    "gavel": "Frapper le Maillet"
+  }
+}

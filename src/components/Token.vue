@@ -1,5 +1,5 @@
 <template>
-  <div class="token" :class="[role.id, { unchecked: unchecked }]" @click="setRole">
+  <div ref="el" class="token" :class="[role.id, { unchecked: unchecked, 'right': isRight }]" @click="setRole">
     <RoleIcon :role="role" :player="player" />
     <span v-if="role.firstNight || role.firstNightReminder" class="leaf-left" />
     <span v-if="role.otherNight || role.otherNightReminder" class="leaf-right" />
@@ -21,9 +21,12 @@
 </template>
 
 <script setup lang="ts">
-import type { Player, Role } from '@/types';
-import { computed } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { RoleIcon } from '@/components';
+import type { Player, Role } from '@/types';
+
+const el = ref<HTMLDivElement>();
+const isRight = ref<boolean>(false);
 
 const props = withDefaults(defineProps<{
   role?: Role;
@@ -49,8 +52,12 @@ const reminderLeaves = computed(() => {
 const nameToFontSize = computed(() => {
   if (!props.role?.name) return "0%";
   if (props.role.name.length <= 10) return "110%";
-  return `${Math.max(110 - ((props.role.name.length - 10) * 3.25), 50)}%`;
+  return `${Math.max(110 - ((props.role.name.length - 10) * 3.75), 50)}%`;
 });
+
+onMounted(() => {
+  isRight.value = el.value!.getBoundingClientRect().left + el.value!.getBoundingClientRect().width / 2 > window.innerWidth / 2;
+})
 
 function setRole() {
   emit('set-role', props.role!);
@@ -209,7 +216,7 @@ function setRole() {
     width: 250px;
     z-index: 25;
     font-size: 80%;
-    background: rgba(0, 0, 0, 0.5);
+    background: #111d;
     border-radius: 10px;
     border: 3px solid black;
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
@@ -235,6 +242,20 @@ function setRole() {
 
   &:hover .ability {
     opacity: 1;
+  }
+
+  &.right .ability {
+    left: auto;
+    right: 120%;
+
+    &:before {
+      right: auto;
+      left: 100%;
+      border-left-color: black;
+      border-right-color: transparent;
+      position: absolute;
+      margin-left: 2px;
+    }
   }
 }
 </style>
