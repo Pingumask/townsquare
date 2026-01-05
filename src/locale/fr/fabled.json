@@ -244,5 +244,17 @@
     "name": "Zénomancien",
     "team": "loric",
     "ability": "Un (ou plusieurs) joueurs ont chacun un objectif. Si un joueur le remplit, il apprend une information vraie."
+  },
+  {
+    "id": "hindu",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "name": "Hindou",
+    "team": "loric",
+    "ability": "Les 4 premiers joueurs à mourir sont immédiatement réincarnés comme Voyageurs du même alignement."
   }
 ]
