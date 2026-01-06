@@ -124,7 +124,8 @@ export const useSessionStore = defineStore("session", {
     },
 
     copySessionUrl() {
-      const link = globalThis.location.href + this.sessionId;
+      const url = globalThis.location.href.split("#")[0];
+      const link = url + "#" + this.sessionId;
       navigator.clipboard.writeText(link);
     },
     initializeFromUrl() {
