@@ -2,6 +2,7 @@
 
 ## Upcomming Version
 - Features:
+  - Adding the Hindu
 
 - Fixes:
   - Typo in english menu tabs ("Jeu" instead of "Gameplay")
