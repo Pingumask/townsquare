@@ -1,82 +1,32 @@
 [
-    {
-        "id": "_meta",
-        "name": "Trouble brewing Advanced",
-        "author": "Trae Lenox"
-    },
-    {
-        "id": "noble"
-    },
-    {
-        "id": "chef"
-    },
-    {
-        "id": "washerwoman"
-    },
-    {
-        "id": "librarian"
-    },
-    {
-        "id": "empath"
-    },
-    {
-        "id": "fortuneteller"
-    },
-    {
-        "id": "undertaker"
-    },
-    {
-        "id": "monk"
-    },
-    {
-        "id": "slayer"
-    },
-    {
-        "id": "soldier"
-    },
-    {
-        "id": "ravenkeeper"
-    },
-    {
-        "id": "virgin"
-    },
-    {
-        "id": "mayor"
-    },
-    {
-        "id": "goon"
-    },
-    {
-        "id": "saint"
-    },
-    {
-        "id": "recluse"
-    },
-    {
-        "id": "drunk"
-    },
-    {
-        "id": "lunatic"
-    },
-    {
-        "id": "poisoner"
-    },
-    {
-        "id": "spy"
-    },
-    {
-        "id": "baron"
-    },
-    {
-        "id": "scarletwoman"
-    },
-    {
-        "id": "marionette"
-    },
-    {
-        "id": "imp"
-    },
-    {
-        "id": "fanggu"
-    }
+  {
+    "id": "_meta",
+    "name": "Trouble brewing Advanced",
+    "author": "Trae Lenox"
+  },
+  "noble",
+  "chef",
+  "washerwoman",
+  "librarian",
+  "empath",
+  "fortuneteller",
+  "undertaker",
+  "monk",
+  "slayer",
+  "soldier",
+  "ravenkeeper",
+  "virgin",
+  "mayor",
+  "goon",
+  "saint",
+  "recluse",
+  "drunk",
+  "lunatic",
+  "poisoner",
+  "spy",
+  "baron",
+  "scarletwoman",
+  "marionette",
+  "imp",
+  "fanggu"
 ]

@@ -5,8 +5,8 @@
   - Adding the Hindu
 - Fixes:
   - Typo in english menu tabs ("Jeu" instead of "Gameplay")
-  - Wrong composition for Teensyville scripts
-  - Typo in No Greater Joy script causing the Scarlet Woman to not be added
+  - Wrong composition (number of villagers/outsiders) for Teensyville scripts
+  - Wrong ids in many included custom scripts
 - Localization :
   - Aded support for Spanish (Thanks to https://github.com/FerLuisxd)
 - Maintenance :

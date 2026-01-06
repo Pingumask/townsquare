@@ -5,94 +5,34 @@
     "author": "Emily",
     "logo": "catfishing"
   },
-  {
-    "id": "investigator"
-  },
-  {
-    "id": "chef"
-  },
-  {
-    "id": "grandmother"
-  },
-  {
-    "id": "balloonist"
-  },
-  {
-    "id": "dreamer"
-  },
-  {
-    "id": "fortune_teller"
-  },
-  {
-    "id": "snake_charmer"
-  },
-  {
-    "id": "gambler"
-  },
-  {
-    "id": "savant"
-  },
-  {
-    "id": "philosopher"
-  },
-  {
-    "id": "ravenkeeper"
-  },
-  {
-    "id": "amnesiac"
-  },
-  {
-    "id": "cannibal"
-  },
-  {
-    "id": "drunk"
-  },
-  {
-    "id": "recluse"
-  },
-  {
-    "id": "sweetheart"
-  },
-  {
-    "id": "mutant"
-  },
-  {
-    "id": "lunatic"
-  },
-  {
-    "id": "godfather"
-  },
-  {
-    "id": "cerenovus"
-  },
-  {
-    "id": "pit-hag"
-  },
-  {
-    "id": "widow"
-  },
-  {
-    "id": "imp"
-  },
-  {
-    "id": "vigormortis"
-  },
-  {
-    "id": "fang_gu"
-  },
-  {
-    "id": "beggar"
-  },
-  {
-    "id": "barista"
-  },
-  {
-    "id": "apprentice"
-  },
-  {
-    "id": "harlot"
-  },
-  {
-    "id": "bone_collector"
-  }
+  "investigator",
+  "chef",
+  "grandmother",
+  "balloonist",
+  "dreamer",
+  "fortuneteller",
+  "snakecharmer",
+  "gambler",
+  "savant",
+  "philosopher",
+  "ravenkeeper",
+  "amnesiac",
+  "cannibal",
+  "drunk",
+  "recluse",
+  "sweetheart",
+  "mutant",
+  "lunatic",
+  "godfather",
+  "cerenovus",
+  "pit-hag",
+  "widow",
+  "imp",
+  "vigormortis",
+  "fang_gu",
+  "beggar",
+  "barista",
+  "apprentice",
+  "harlot",
+  "bonecollector"
 ]

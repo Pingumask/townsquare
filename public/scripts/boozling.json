@@ -1,83 +1,33 @@
 [
-    {
-        "id": "_meta",
-        "name": "Boozling",
-        "author": "Lau",
-        "logo": "balloonist"
-    },
-    {
-        "id": "noble"
-    },
-    {
-        "id": "pixie"
-    },
-    {
-        "id": "highpriestess"
-    },
-    {
-        "id": "balloonist"
-    },
-    {
-        "id": "fortuneteller"
-    },
-    {
-        "id": "oracle"
-    },
-    {
-        "id": "savant"
-    },
-    {
-        "id": "philosopher"
-    },
-    {
-        "id": "huntsman"
-    },
-    {
-        "id": "fisherman"
-    },
-    {
-        "id": "slayer"
-    },
-    {
-        "id": "sage"
-    },
-    {
-        "id": "cannibal"
-    },
-    {
-        "id": "drunk"
-    },
-    {
-        "id": "mutant"
-    },
-    {
-        "id": "damsel"
-    },
-    {
-        "id": "klutz"
-    },
-    {
-        "id": "golem"
-    },
-    {
-        "id": "baron"
-    },
-    {
-        "id": "cerenovus"
-    },
-    {
-        "id": "scarletwoman"
-    },
-    {
-        "id": "marionette"
-    },
-    {
-        "id": "nodashii"
-    },
-    {
-        "id": "fanggu"
-    },
-    {
-        "id": "imp"
-    }
+  {
+    "id": "_meta",
+    "name": "Boozling",
+    "author": "Lau",
+    "logo": "balloonist"
+  },
+  "noble",
+  "pixie",
+  "highpriestess",
+  "balloonist",
+  "fortuneteller",
+  "oracle",
+  "savant",
+  "philosopher",
+  "huntsman",
+  "fisherman",
+  "slayer",
+  "sage",
+  "cannibal",
+  "drunk",
+  "mutant",
+  "damsel",
+  "klutz",
+  "golem",
+  "baron",
+  "cerenovus",
+  "scarletwoman",
+  "marionette",
+  "nodashii",
+  "fanggu",
+  "imp"
 ]

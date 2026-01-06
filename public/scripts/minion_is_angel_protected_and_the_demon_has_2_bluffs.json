@@ -1,1 +1,24 @@
-[{"id": "_meta", "name": "Minion is Angel-protected & The Demon has 2 Bluffs", "author": "Zets"}, {"id": "empath"}, {"id": "chambermaid"}, {"id": "mathematician"}, {"id": "savant"}, {"id": "engineer"}, {"id": "philosopher"}, {"id": "juggler"}, {"id": "mutant"}, {"id": "lunatic"}, {"id": "devils_advocate"}, {"id": "pit-hag"}, {"id": "psychopath"}, {"id": "no_dashii"}, {"id": "pukka"}, {"id": "vigormortis"}, {"id": "legion"}, {"id": "angel"}]
+[
+  {
+    "id": "_meta",
+    "name": "Minion is Angel-protected & The Demon has 2 Bluffs",
+    "author": "Zets"
+  },
+  "empath",
+  "chambermaid",
+  "mathematician",
+  "savant",
+  "engineer",
+  "philosopher",
+  "juggler",
+  "mutant",
+  "lunatic",
+  "devilsadvocate",
+  "pithag",
+  "psychopath",
+  "nodashii",
+  "pukka",
+  "vigormortis",
+  "legion",
+  "angel"
+]

@@ -1,1 +1,34 @@
-[{"id":"_meta","author":"Aero","name":"Separation Of Church and State"},"knight","grandmother","high_priestess","dreamer","mathematician","town_crier","gossip","amnesiac","juggler","engineer","pacifist","ravenkeeper","mayor","butler","tinker","plague_doctor","moonchild","widow","harpy","assassin","mezepheles","scarlet_woman","lleech","vigormortis","legion","sentinel","storm_catcher"]
+[
+  {
+    "id": "_meta",
+    "author": "Aero",
+    "name": "Separation Of Church and State"
+  },
+  "knight",
+  "grandmother",
+  "high_priestess",
+  "dreamer",
+  "mathematician",
+  "towncrier",
+  "gossip",
+  "amnesiac",
+  "juggler",
+  "engineer",
+  "pacifist",
+  "ravenkeeper",
+  "mayor",
+  "butler",
+  "tinker",
+  "plaguedoctor",
+  "moonchild",
+  "widow",
+  "harpy",
+  "assassin",
+  "mezepheles",
+  "scarletwoman",
+  "lleech",
+  "vigormortis",
+  "legion",
+  "sentinel",
+  "stormcatcher"
+]

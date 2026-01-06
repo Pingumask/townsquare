@@ -4,82 +4,30 @@
     "name": "Knowing me, Knowing you",
     "author": "Nadine"
   },
-  {
-    "id": "amnesiac"
-  },
-  {
-    "id": "artist"
-  },
-  {
-    "id": "bountyhunter"
-  },
-  {
-    "id": "dreamer"
-  },
-  {
-    "id": "fisherman"
-  },
-  {
-    "id": "fortuneteller"
-  },
-  {
-    "id": "librarian"
-  },
-  {
-    "id": "oracle"
-  },
-  {
-    "id": "ravenkeeper"
-  },
-  {
-    "id": "seamstress"
-  },
-  {
-    "id": "snakecharmer"
-  },
-  {
-    "id": "undertaker"
-  },
-  {
-    "id": "washerwoman"
-  },
-  {
-    "id": "barber"
-  },
-  {
-    "id": "drunk"
-  },
-  {
-    "id": "recluse"
-  },
-  {
-    "id": "sweetheart"
-  },
-  {
-    "id": "godfather"
-  },
-  {
-    "id": "poisoner"
-  },
-  {
-    "id": "scarletwoman"
-  },
-  {
-    "id": "spy"
-  },
-  {
-    "id": "fanggu"
-  },
-  {
-    "id": "imp"
-  },
-  {
-    "id": "nodashii"
-  },
-  {
-    "id": "vigormortis"
-  },
-  {
-    "id": "revolutionary"
-  }
+  "amnesiac",
+  "artist",
+  "bountyhunter",
+  "dreamer",
+  "fisherman",
+  "fortuneteller",
+  "librarian",
+  "oracle",
+  "ravenkeeper",
+  "seamstress",
+  "snakecharmer",
+  "undertaker",
+  "washerwoman",
+  "barber",
+  "drunk",
+  "recluse",
+  "sweetheart",
+  "godfather",
+  "poisoner",
+  "scarletwoman",
+  "spy",
+  "fanggu",
+  "imp",
+  "nodashii",
+  "vigormortis",
+  "revolutionary"
 ]

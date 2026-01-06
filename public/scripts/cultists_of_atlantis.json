@@ -1,76 +1,30 @@
 [
-    {
-        "id": "_meta",
-        "name": "Cultists of Atlantis",
-        "author": "Zets"
-    },
-    {
-        "id": "noble"
-    },
-    {
-        "id": "librarian"
-    },
-    {
-        "id": "empath"
-    },
-    {
-        "id": "balloonist"
-    },
-    {
-        "id": "cult_leader"
-    },
-    {
-        "id": "snake_charmer"
-    },
-    {
-        "id": "undertaker"
-    },
-    {
-        "id": "savant"
-    },
-    {
-        "id": "amnesiac"
-    },
-    {
-        "id": "fisherman"
-    },
-    {
-        "id": "seamstress"
-    },
-    {
-        "id": "mayor"
-    },
-    {
-        "id": "atheist"
-    },
-    {
-        "id": "butler"
-    },
-    {
-        "id": "mutant"
-    },
-    {
-        "id": "drunk"
-    },
-    {
-        "id": "politician"
-    },
-    {
-        "id": "lunatic"
-    },
-    {
-        "id": "widow"
-    },
-    {
-        "id": "spy"
-    },
-    {
-        "id": "marionette"
-    },
-    {
-        "id": "baron"
-    },
-    {
-        "id": "leviathan"
-    }
+  {
+    "id": "_meta",
+    "name": "Cultists of Atlantis",
+    "author": "Zets"
+  },
+  "noble",
+  "librarian",
+  "empath",
+  "balloonist",
+  "cultleader",
+  "snakecharmer",
+  "undertaker",
+  "savant",
+  "amnesiac",
+  "fisherman",
+  "seamstress",
+  "mayor",
+  "atheist",
+  "butler",
+  "mutant",
+  "drunk",
+  "politician",
+  "lunatic",
+  "widow",
+  "spy",
+  "marionette",
+  "baron",
+  "leviathan"
 ]

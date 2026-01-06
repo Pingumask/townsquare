@@ -1,77 +1,31 @@
 [
-    {
-      "id": "_meta",
-      "name": "Harold Holt's Revenge",
-      "author": "Theo",
-      "logo": "leviathan"
-    },
-    {
-        "id": "librarian"
-    },
-    {
-        "id": "investigator"
-    },
-    {
-        "id": "shugenja"
-    },
-    {
-        "id": "balloonist"
-    },
-    {
-        "id": "dreamer"
-    },
-    {
-        "id": "snakecharmer"
-    },
-    {
-        "id": "towncrier"
-    },
-    {
-        "id": "slayer"
-    },
-    {
-        "id": "savant"
-    },
-    {
-        "id": "amnesiac"
-    },
-    {
-        "id": "seamstress"
-    },
-    {
-        "id": "courtier"
-    },
-    {
-        "id": "magician"
-    },
-    {
-        "id": "mutant"
-    },
-    {
-        "id": "damsel"
-    },
-    {
-        "id": "lunatic"
-    },
-    {
-        "id": "politician"
-    },
-    {
-        "id": "cerenovus"
-    },
-    {
-        "id": "pithag"
-    },
-    {
-        "id": "baron"
-    },
-    {
-        "id": "goblin"
-    },
-    {
-        "id": "marionette"
-    },
-    {
-        "id": "leviathan"
-    }
+  {
+    "id": "_meta",
+    "name": "Harold Holt's Revenge",
+    "author": "Theo",
+    "logo": "leviathan"
+  },
+  "librarian",
+  "investigator",
+  "shugenja",
+  "balloonist",
+  "dreamer",
+  "snakecharmer",
+  "towncrier",
+  "slayer",
+  "savant",
+  "amnesiac",
+  "seamstress",
+  "courtier",
+  "magician",
+  "mutant",
+  "damsel",
+  "lunatic",
+  "politician",
+  "cerenovus",
+  "pithag",
+  "baron",
+  "goblin",
+  "marionette",
+  "leviathan"
 ]

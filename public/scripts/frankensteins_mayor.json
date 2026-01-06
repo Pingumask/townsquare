@@ -4,40 +4,16 @@
     "name": "Frankenstein's Mayor",
     "author": "Storyteller Baron Ted"
   },
-  {
-    "id": "sentinel"
-  },
-  {
-    "id": "chef"
-  },
-  {
-    "id": "undertaker"
-  },
-  {
-    "id": "oracle"
-  },
-  {
-    "id": "sage"
-  },
-  {
-    "id": "ravenkeeper"
-  },
-  {
-    "id": "mayor"
-  },
-  {
-    "id": "recluse"
-  },
-  {
-    "id": "lunatic"
-  },
-  {
-    "id": "poisoner"
-  },
-  {
-    "id": "spy"
-  },
-  {
-    "id": "zombuul"
-  }
+  "sentinel",
+  "chef",
+  "undertaker",
+  "oracle",
+  "sage",
+  "ravenkeeper",
+  "mayor",
+  "recluse",
+  "lunatic",
+  "poisoner",
+  "spy",
+  "zombuul"
 ]
