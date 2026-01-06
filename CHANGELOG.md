@@ -5,6 +5,7 @@
 
 - Fixes:
   - Typo in english menu tabs ("Jeu" instead of "Gameplay")
+  - Wrong composition for Teensyville scripts
 - Localization :
 
 - Maintenance :

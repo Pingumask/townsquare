@@ -436,7 +436,7 @@ export const useGrimoireStore = defineStore("grimoire", {
         minion = 1 + Math.floor((playerCount - 7) / 3);
       } else {
         minion = 1;
-        outsider = playerCount % 2 ? 1 : 0;
+        outsider = playerCount % 2 ? 0 : 1;
       }
       townsfolk = playerCount - demon - minion - outsider;
 
