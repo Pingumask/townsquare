@@ -244,5 +244,17 @@
     "name": "Zenomante",
     "team": "loric",
     "ability": "Uno o más jugadores tienen un objetivo cada uno. Cuando se logra, ese jugador descubre una pieza de información verdadera."
+  },
+  {
+    "id": "hindu",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "name": "Hindu",
+    "team": "loric",
+    "ability": "Los primeros 4 jugadores en morir son reencarnados inmediatamente como Viajeros del mismo alineamiento."
   }
 ]
