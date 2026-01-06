@@ -9,6 +9,7 @@
 - Localization :
   - Aded support for Spanish (Thanks to https://github.com/FerLuisxd)
 - Maintenance :
+  - Removed github actions deployment to github pages (https://pingumask.github.io is deprecated, use https://clocktower.tf instead)
 
 # 6.0.1
 - Fixes:

@@ -5,7 +5,7 @@
 This is an unofficial online tool to run Blood on the Clocktower games through Discord or other digital means.
 It is supposed to aid storytellers and players by allowing them to quickly set up games, run votes and much more.
 
-[You can try it online!](https://pingumask.github.io)
+[You can try it online!](https://clocktower.tf)
 
 If you want to learn more about how to use the app as a player, [JayBotC](https://www.youtube.com/channel/UCNZy-4Rp877XtTHaIZdWYFQ) kindly created two tutorial videos.
 
