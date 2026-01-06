@@ -4,7 +4,8 @@
 - Features:
 
 - Fixes:
-
+  - Typo in english menu tabs ("Jeu" instead of "Gameplay")
+  - Wrong composition for Teensyville scripts
 - Localization :
 
 - Maintenance :
@@ -40,7 +41,7 @@
   - Button for side menu missing hover state
   - Long character names cut on tokens on some browsers (eg : "Charmeur de Serpents" was missing first and last letters on firefox)
 - Localization :
-  - Fixed typo in En UI : 
+  - Fixed typo in En UI :
     - "Pleas claim a seat to vote"
   - Changing some roles' French name:
     - Investigator: Enquêteur -> Détective
