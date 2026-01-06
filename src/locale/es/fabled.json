@@ -1,0 +1,260 @@
+[
+  {
+    "id": "doomsayer",
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+    "reminders": [
+      "Usado"
+    ],
+    "setup": false,
+    "name": "Agorero",
+    "team": "fabled",
+    "ability": "Si viven 4 o más jugadores, cada jugador vivo puede elegir públicamente (una vez por partida) que muera un jugador de su propia alineación."
+  },
+  {
+    "id": "angel",
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+    "reminders": [
+      "Protegido",
+      "Algo Malo"
+    ],
+    "setup": false,
+    "name": "Ángel",
+    "team": "fabled",
+    "ability": "Algo malo podría ocurrirle a quien sea más responsable de la muerte de un jugador nuevo."
+  },
+  {
+    "id": "buddhist",
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+    "reminders": [
+      "Veterano"
+    ],
+    "setup": false,
+    "name": "Budista",
+    "team": "fabled",
+    "ability": "Durante los primeros 2 minutos de cada día, los jugadores veteranos no pueden hablar."
+  },
+  {
+    "id": "hellslibrarian",
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+    "reminders": [
+      "Algo Malo"
+    ],
+    "setup": false,
+    "name": "Bibliotecario del Infierno",
+    "team": "fabled",
+    "ability": "Algo malo podría ocurrirle a quien hable cuando el Narrador haya pedido silencio."
+  },
+  {
+    "id": "revolutionary",
+    "firstNight": 1,
+    "firstNightReminder": "Dile al grupo quiénes son los dos jugadores afectados por el Revolucionario y recuérdales que tienen la misma alineación.",
+    "otherNightReminder": "",
+    "reminders": [
+      "Misma alineación",
+      "Usado"
+    ],
+    "setup": false,
+    "name": "Revolucionario",
+    "team": "fabled",
+    "ability": "2 jugadores vecinos son conocidos por tener la misma alineación. Una vez por partida, uno de ellos se registra falsamente."
+  },
+  {
+    "id": "fiddler",
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "name": "Violinista",
+    "team": "fabled",
+    "ability": "Una vez por partida, el Demonio elige en secreto a un jugador contrario: todos los jugadores eligen cuál de estos 2 jugadores gana."
+  },
+  {
+    "id": "toymaker",
+    "firstNightReminder": "",
+    "otherNight": 31,
+    "otherNightReminder": "Si es una noche en la que un ataque del Demonio podría terminar la partida, y el Demonio está marcado como \"Noche final: Sin Ataque\", entonces el Demonio no actúa esta noche. (No lo despiertes).",
+    "reminders": [
+      "Noche final: Sin Ataque"
+    ],
+    "setup": false,
+    "name": "Juguetero",
+    "team": "fabled",
+    "ability": "El Demonio puede elegir no atacar y debe hacerlo al menos una vez por partida. Los jugadores malvados obtienen información inicial normal."
+  },
+  {
+    "id": "fibbin",
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+    "reminders": [
+      "Usado"
+    ],
+    "setup": false,
+    "name": "Fibbin",
+    "team": "fabled",
+    "ability": "Una vez por partida, 1 jugador bueno podría recibir información falsa."
+  },
+  {
+    "id": "duchess",
+    "firstNightReminder": "",
+    "otherNight": 3,
+    "otherNightReminder": "Despierta a cada jugador marcado como \"Visitante\" o \"Información Falsa\" uno por uno. Muéstrales la ficha de la Duquesa, luego dedos (1, 2, 3) igualando el número de jugadores malvados marcados como \"Visitante\" o, si estás despertando al jugador marcado como \"Información Falsa\", muéstrales cualquier número de dedos excepto el número de jugadores malvados marcados como \"Visitante\".",
+    "reminders": [
+      "Visitante",
+      "Información Falsa"
+    ],
+    "setup": false,
+    "name": "Duquesa",
+    "team": "fabled",
+    "ability": "Cada día, 3 jugadores pueden elegir visitarte. Por la noche*, cada visitante descubre cuántos visitantes son malvados, pero 1 recibe información falsa."
+  },
+  {
+    "id": "sentinel",
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": true,
+    "name": "Centinela",
+    "team": "fabled",
+    "ability": "Podría haber 1 Forastero extra o 1 menos en juego."
+  },
+  {
+    "id": "spiritofivory",
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+    "reminders": [
+      "Sin maldad extra"
+    ],
+    "setup": false,
+    "name": "Espíritu de Marfil",
+    "team": "fabled",
+    "ability": "No puede haber más de 1 jugador malvado extra."
+  },
+  {
+    "id": "djinn",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+    "reminders": [
+      "?"
+    ],
+    "setup": false,
+    "name": "Djinn",
+    "team": "fabled",
+    "ability": "Usa la regla especial del Djinn. Todos los jugadores saben cuál es."
+  },
+  {
+    "id": "deusexfiasco",
+    "firstNightReminder": "",
+    "otherNight": 3,
+    "otherNightReminder": "Si la partida se acerca al día final y no habías cometido un error accidental, comete un error deliberado antes de que la partida termine.",
+    "reminders": [
+      "Uy"
+    ],
+    "setup": false,
+    "name": "Deus ex Fiasco",
+    "team": "fabled",
+    "ability": "Al menos una vez por partida, el Narrador cometerá un error, lo corregirá y lo admitirá públicamente."
+  },
+  {
+    "id": "ferryman",
+    "firstNightReminder": "",
+    "otherNight": 1002,
+    "otherNightReminder": "Si es el último día, devuelve a cada jugador muerto su ficha de voto.",
+    "reminders": [],
+    "setup": false,
+    "name": "Barquero",
+    "team": "fabled",
+    "ability": "En el último día, todos los jugadores muertos recuperan su ficha de voto."
+  },
+  {
+    "id": "gardener",
+    "firstNight": 1,
+    "firstNightReminder": "Dile al grupo qué personaje de jugador has elegido.",
+    "otherNightReminder": "",
+    "reminders": [
+      "Asignado"
+    ],
+    "setup": false,
+    "name": "Jardinero",
+    "team": "loric",
+    "ability": "El Narrador asigna los personajes de 1 o más jugadores."
+  },
+  {
+    "id": "bootlegger",
+    "firstNight": 3,
+    "firstNightReminder": "Si corresponde, usa regla(s) casera(s).",
+    "otherNight": 3,
+    "otherNightReminder": "Si corresponde, usa regla(s) casera(s).",
+    "reminders": [
+      "?"
+    ],
+    "setup": false,
+    "name": "Contrabandista",
+    "team": "loric",
+    "ability": "Este guion tiene personajes o reglas caseras."
+  },
+  {
+    "id": "stormcatcher",
+    "firstNight": 13,
+    "firstNightReminder": "Muestra a cada jugador malvado qué jugador está marcado como \"Seguro\".",
+    "otherNightReminder": "",
+    "reminders": [
+      "Seguro"
+    ],
+    "setup": false,
+    "name": "Atrapa tormentas",
+    "team": "loric",
+    "ability": "Nombra un personaje bueno. Si está en juego, solo puede morir por ejecución, pero los jugadores malvados descubren qué jugador es."
+  },
+  {
+    "id": "bigwig",
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "name": "Mandamás",
+    "team": "loric",
+    "ability": "Cada nominado elige a un jugador: hasta la votación, solo ellos pueden hablar y están locos de que el nominado es bueno o podrían morir."
+  },
+  {
+    "id": "tor",
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "name": "Tor",
+    "team": "loric",
+    "ability": "Los jugadores no conocen su personaje ni alineación. Los descubren cuando mueren."
+  },
+  {
+    "id": "zenomancer",
+    "firstNight": 3,
+    "firstNightReminder": "Puedes dar un objetivo a cualquier jugador(es).",
+    "otherNight": 3,
+    "otherNightReminder": "Puedes dar un objetivo a cualquier jugador(es).",
+    "reminders": [
+      "Objetivo",
+      "?"
+    ],
+    "setup": false,
+    "name": "Zenomante",
+    "team": "loric",
+    "ability": "Uno o más jugadores tienen un objetivo cada uno. Cuando se logra, ese jugador descubre una pieza de información verdadera."
+  },
+  {
+    "id": "hindu",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "name": "Hindu",
+    "team": "loric",
+    "ability": "Los primeros 4 jugadores en morir son reencarnados inmediatamente como Viajeros del mismo alineamiento."
+  }
+]

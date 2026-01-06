@@ -3,12 +3,11 @@
 ## Upcomming Version
 - Features:
   - Adding the Hindu
-
 - Fixes:
   - Typo in english menu tabs ("Jeu" instead of "Gameplay")
   - Wrong composition for Teensyville scripts
 - Localization :
-
+  - Aded support for Spanish (Thanks to https://github.com/FerLuisxd)
 - Maintenance :
 
 # 6.0.1
