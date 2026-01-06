@@ -1,0 +1,665 @@
+﻿[
+  {
+    "id": "bountyhunter",
+    "hatred": [
+      {
+        "id": "philosopher",
+        "reason": "Si el Filósofo obtiene la habilidad del Cazarrecompensas, un Aldeano podría volverse malvado."
+      },
+      {
+        "id": "kazali",
+        "reason": "Si el Kazali convierte al Cazarrecompensas en un Esbirro, no se crea un Aldeano malvado."
+      }
+    ]
+  },
+  {
+    "id": "mathematician",
+    "hatred": [
+      {
+        "id": "chambermaid",
+        "reason": "La Sirvienta puede detectar si el Matemático despertará esta noche."
+      },
+      {
+        "id": "drunk",
+        "reason": "El Matemático podría aprender si la habilidad del Borracho dio información falsa o falló en funcionar correctamente."
+      },
+      {
+        "id": "lunatic",
+        "reason": "El Matemático podría aprender si el Lunático ataca a un jugador diferente al que atacó el Demonio real."
+      },
+      {
+        "id": "marionette",
+        "reason": "El Matemático podría aprender si la habilidad de la Marioneta dio información falsa o falló en funcionar correctamente."
+      }
+    ]
+  },
+  {
+    "id": "alchemist",
+    "hatred": [
+      {
+        "id": "spy",
+        "reason": "Un Alquimista-Espía no tiene la habilidad del Espía y hay un Espía en juego. Tras cada ejecución, un Alquimista-Espía vivo puede adivinar públicamente a un jugador vivo como el Espía. Si acierta, el Demonio debe elegir al Espía esta noche."
+      },
+      {
+        "id": "widow",
+        "reason": "Un Alquimista-Viuda no tiene la habilidad de la Viuda y hay una Viuda en juego. Tras cada ejecución, un Alquimista-Viuda vivo puede adivinar públicamente a un jugador vivo como la Viuda. Si acierta, el Demonio debe elegir a la Viuda esta noche."
+      },
+      {
+        "id": "marionette",
+        "reason": "Un Alquimista-Marioneta no tiene la habilidad de la Marioneta y la Marioneta está en juego."
+      },
+      {
+        "id": "wraith",
+        "reason": "Un Alquimista-Espectro no tiene la habilidad del Espectro y hay un Espectro en juego. Tras cada ejecución, un Alquimista-Espectro vivo puede adivinar públicamente a un jugador vivo como el Espectro. Si acierta, el Demonio debe elegir al Espectro esta noche."
+      },
+      {
+        "id": "summoner",
+        "reason": "El Alquimista-Invocador no obtiene faroles, y elige qué Demonio pero no qué jugador. Si mueren antes de que esto suceda, el mal gana. [Sin Demonio]"
+      },
+      {
+        "id": "mastermind",
+        "reason": "Un Alquimista-Mente Maestra no tiene la habilidad de la Mente Maestra y la Mente Maestra no está en juego."
+      },
+      {
+        "id": "organgrinder",
+        "reason": "Si el Alquimista tiene la habilidad del Organillero, el Organillero está en juego. Si ambos están sobrios, ambos están borrachos."
+      },
+      {
+        "id": "boffin",
+        "reason": "Si el Alquimista tiene la habilidad de la Rata de laboratorio, el Alquimista no aprende qué habilidad tiene el Demonio."
+      }
+    ]
+  },
+  {
+    "id": "cannibal",
+    "hatred": [
+      {
+        "id": "princess",
+        "reason": "Si el Caníbal nominó y ejecutó a la Princesa hoy, el Demonio no mata esta noche."
+      },
+      {
+        "id": "juggler",
+        "reason": "Si el Malabarista adivina en su primer día y muere por ejecución, esta noche el Caníbal vivo aprende cuántas adivinanzas acertó el Malabarista."
+      },
+      {
+        "id": "poppygrower",
+        "reason": "Si el Caníbal come al Cultivador de opio, y luego muere o pierde la habilidad del Cultivador de opio, el Demonio y los Esbirros aprenden quiénes son los otros esa noche."
+      },
+      {
+        "id": "butler",
+        "reason": "Si el Caníbal obtiene la habilidad del Mayordomo, el Caníbal aprende esto."
+      },
+      {
+        "id": "zealot",
+        "reason": "Si el Caníbal obtiene la habilidad del Fanático, el Caníbal aprende esto."
+      }
+    ]
+  },
+  {
+    "id": "magician",
+    "hatred": [
+      {
+        "id": "spy",
+        "reason": "Cuando el Espía ve el Grimorio, se retiran las fichas de personaje del Demonio y del Mago."
+      },
+      {
+        "id": "widow",
+        "reason": "Cuando la Viuda ve el Grimorio, se retiran las fichas de personaje del Demonio y del Mago."
+      },
+      {
+        "id": "marionette",
+        "reason": "Si el Mago está vivo, el Demonio no sabe qué vecino es la Marioneta."
+      },
+      {
+        "id": "wraith",
+        "reason": "Tras cada ejecución, el Mago vivo puede adivinar públicamente a un jugador vivo como el Espectro. Si acierta, el Demonio debe elegir al Espectro esta noche."
+      },
+      {
+        "id": "vizier",
+        "reason": "Si el Visir está en juego, el Mago no tiene habilidad pero es inmune a la habilidad del Visir."
+      },
+      {
+        "id": "legion",
+        "reason": "El Mago despierta con Legión y podría registrarse como malvado. Legión sabe si hay un Mago en juego, pero no qué jugador es."
+      }
+    ]
+  },
+  {
+    "id": "butler",
+    "hatred": [
+      {
+        "id": "organgrinder",
+        "reason": "Si el Organillero está causando votación con ojos cerrados, el Mayordomo puede levantar la mano para votar pero su voto solo se cuenta si su amo votó también."
+      }
+    ]
+  },
+  {
+    "id": "recluse",
+    "hatred": [
+      {
+        "id": "sage",
+        "reason": "El Recluso podría registrarse como el Demonio para el Sabio."
+      },
+      {
+        "id": "ogre",
+        "reason": "Si el Recluso se registra como malvado para el Ogro, el Ogro aprende que es malvado."
+      }
+    ]
+  },
+  {
+    "id": "plaguedoctor",
+    "hatred": [
+      {
+        "id": "spy",
+        "reason": "Si el Narrador fuera a obtener la habilidad del Espía, un Esbirro la obtiene, y aprende esto."
+      },
+      {
+        "id": "fearmonger",
+        "reason": "Si el Narrador fuera a obtener la habilidad del Fearmonger, un Esbirro la obtiene, y aprende esto."
+      },
+      {
+        "id": "marionette",
+        "reason": "Si el Narrador fuera a obtener la habilidad de la Marioneta, uno de los vecinos buenos del Demonio se convierte en la Marioneta."
+      },
+      {
+        "id": "wraith",
+        "reason": "Si el Narrador fuera a obtener la habilidad del Espectro, un Esbirro la obtiene, y aprende esto."
+      },
+      {
+        "id": "eviltwin",
+        "reason": "Si el Narrador fuera a obtener la habilidad de la Gemela Malvada, un jugador se convierte en la Gemela Malvada."
+      },
+      {
+        "id": "goblin",
+        "reason": "Si el Narrador fuera a obtener la habilidad del Goblin, un Esbirro la obtiene, y aprende esto."
+      },
+      {
+        "id": "boomdandy",
+        "reason": "Si el Narrador fuera a obtener la habilidad del Boomdandy, un jugador se convierte en el Boomdandy."
+      },
+      {
+        "id": "scarletwoman",
+        "reason": "Si el Narrador fuera a obtener la habilidad de la Mujer Escarlata, un Esbirro la obtiene, y aprende esto."
+      },
+      {
+        "id": "baron",
+        "reason": "Si el Narrador fuera a obtener la habilidad del Barón, hasta dos jugadores se convierten en Forasteros."
+      }
+    ]
+  },
+  {
+    "id": "heretic",
+    "hatred": [
+      {
+        "id": "godfather",
+        "reason": "Solo 1 personaje con jinx puede estar en juego."
+      },
+      {
+        "id": "spy",
+        "reason": "Solo 1 personaje con jinx puede estar en juego."
+      },
+      {
+        "id": "pithag",
+        "reason": "Solo 1 personaje con jinx puede estar en juego."
+      },
+      {
+        "id": "widow",
+        "reason": "Solo 1 personaje con jinx puede estar en juego."
+      },
+      {
+        "id": "baron",
+        "reason": "Solo 1 personaje con jinx puede estar en juego."
+      },
+      {
+        "id": "lleech",
+        "reason": "Solo 1 personaje con jinx puede estar en juego."
+      }
+    ]
+  },
+  {
+    "id": "spy",
+    "hatred": [
+      {
+        "id": "poppygrower",
+        "reason": "Si el Cultivador de opio tiene su habilidad, el Espía no ve el Grimorio."
+      },
+      {
+        "id": "ogre",
+        "reason": "El Espía se registra como malvado para el Ogro."
+      },
+      {
+        "id": "damsel",
+        "reason": "Si el Espía está (o ha estado) en juego, la Damisela está envenenada."
+      }
+    ]
+  },
+  {
+    "id": "cerenovus",
+    "hatred": [
+      {
+        "id": "goblin",
+        "reason": "El Cerenovus puede elegir hacer 'loco' a un jugador de que es el Goblin."
+      }
+    ]
+  },
+  {
+    "id": "pithag",
+    "hatred": [
+      {
+        "id": "villageidiot",
+        "reason": "Si hay una ficha de repuesto, la Pit-Hag puede crear un Tonto del pueblo extra. Si es así, el Tonto del pueblo borracho podría cambiar."
+      },
+      {
+        "id": "cultleader",
+        "reason": "Si la Pit-Hag convierte a un jugador malvado en el Líder de culto, no puede volverse bueno debido a su propia habilidad."
+      },
+      {
+        "id": "goon",
+        "reason": "Si la Pit-Hag convierte a un jugador malvado en el Matón, no puede volverse bueno debido a su propia habilidad."
+      },
+      {
+        "id": "ogre",
+        "reason": "Si la Pit-Hag convierte a un jugador malvado en el Ogro, no puede volverse bueno debido a su propia habilidad."
+      },
+      {
+        "id": "politician",
+        "reason": "Si la Pit-Hag convierte a un jugador malvado en el Político, no puede volverse bueno debido a su propia habilidad."
+      },
+      {
+        "id": "damsel",
+        "reason": "Si una Pit-Hag crea una Damisela, el Narrador elige qué jugador es."
+      }
+    ]
+  },
+  {
+    "id": "widow",
+    "hatred": [
+      {
+        "id": "poppygrower",
+        "reason": "Si el Cultivador de opio tiene su habilidad, la Viuda no ve el Grimorio."
+      },
+      {
+        "id": "damsel",
+        "reason": "Si la Viuda está (o ha estado) en juego, la Damisela está envenenada."
+      }
+    ]
+  },
+  {
+    "id": "marionette",
+    "hatred": [
+      {
+        "id": "balloonist",
+        "reason": "Si la Marioneta cree que es el Aeronatua, un Forastero podría haber sido añadido durante la preparación."
+      },
+      {
+        "id": "huntsman",
+        "reason": "Si la Marioneta cree que es el Cazador, la Damisela se añadió durante la preparación."
+      },
+      {
+        "id": "summoner",
+        "reason": "Si hubiera una Marioneta en juego, entra en juego después del Demonio y debe comenzar como su vecino."
+      },
+      {
+        "id": "lilmonsta",
+        "reason": "Si hubiera una Marioneta en juego, entra en juego después del Demonio y debe comenzar como su vecino."
+      },
+      {
+        "id": "kazali",
+        "reason": "Si hubiera una Marioneta en juego, entra en juego después del Demonio y debe comenzar como su vecino."
+      }
+    ]
+  },
+  {
+    "id": "summoner",
+    "hatred": [
+      {
+        "id": "clockmaker",
+        "reason": "El Invocador se registra como el Demonio para el Relojero."
+      },
+      {
+        "id": "preacher",
+        "reason": "Si el Invocador vivo no tiene habilidad, el Narrador tiene la habilidad del Invocador."
+      },
+      {
+        "id": "engineer",
+        "reason": "Si el Invocador vivo es eliminado del juego, el Narrador tiene la habilidad del Invocador."
+      },
+      {
+        "id": "courtier",
+        "reason": "Si el Invocador vivo no tiene habilidad, el Narrador tiene la habilidad del Invocador."
+      },
+      {
+        "id": "poppygrower",
+        "reason": "Si el Cultivador de opio está vivo en la 3ª noche, el Invocador elige qué Demonio pero no qué jugador."
+      },
+      {
+        "id": "hatter",
+        "reason": "Si el Invocador crea un segundo Demonio vivo, las muertes esta noche son arbitrarias."
+      },
+      {
+        "id": "pithag",
+        "reason": "Si el Invocador crea un segundo Demonio vivo, las muertes esta noche son arbitrarias."
+      },
+      {
+        "id": "pukka",
+        "reason": "El Invocador puede invocar a un Pukka en la 2ª noche en lugar de la 3ª."
+      },
+      {
+        "id": "kazali",
+        "reason": "Si el Invocador crea un segundo Demonio vivo, las muertes esta noche son arbitrarias."
+      },
+      {
+        "id": "zombuul",
+        "reason": "Si el Invocador invoca a un jugador muerto para ser el Zombuul, el Zombuul ya ha \"muerto una vez\"."
+      },
+      {
+        "id": "lordoftyphon",
+        "reason": "Si se invoca a un Señor de Typhon, debe ser vecino de un Esbirro y su otro vecino se convierte en un Esbirro malvado."
+      }
+    ]
+  },
+  {
+    "id": "mastermind",
+    "hatred": [
+      {
+        "id": "vigormortis",
+        "reason": "Una Mente Maestra que tiene su habilidad la conserva si el Vigormortis muere."
+      }
+    ]
+  },
+  {
+    "id": "scarletwoman",
+    "hatred": [
+      {
+        "id": "fanggu",
+        "reason": "Si hubiera dos Demonios, uno de los cuales era la Mujer Escarlata, la Mujer Escarlata sigue siendo la Mujer Escarlata."
+      },
+      {
+        "id": "alhadikhia",
+        "reason": "Si hubiera dos Demonios, uno de los cuales era la Mujer Escarlata, la Mujer Escarlata se convierte en la Mujer Escarlata de nuevo."
+      }
+    ]
+  },
+  {
+    "id": "vizier",
+    "hatred": [
+      {
+        "id": "investigator",
+        "reason": "El Narrador no declara que el Visir está en juego."
+      },
+      {
+        "id": "preacher",
+        "reason": "Si el Visir pierde su habilidad, aprende esto, y no puede morir durante el día."
+      },
+      {
+        "id": "alsaahir",
+        "reason": "El Narrador no declara que el Visir está en juego."
+      },
+      {
+        "id": "courtier",
+        "reason": "Si el Visir pierde su habilidad, aprende esto, y no puede morir durante el día."
+      },
+      {
+        "id": "politician",
+        "reason": "El Político podría registrarse como malvado para el Visir."
+      },
+      {
+        "id": "zealot",
+        "reason": "El Fanático podría registrarse como malvado para el Visir."
+      },
+      {
+        "id": "fearmonger",
+        "reason": "El Visir despierta con el Fearmonger, aprende a quién elige y no puede elegir ejecutar a ese jugador."
+      }
+    ]
+  },
+  {
+    "id": "boffin",
+    "hatred": [
+      {
+        "id": "villageidiot",
+        "reason": "Si hay una ficha de repuesto, la Rata de laboratorio puede darle al Demonio la habilidad del Tonto del pueblo."
+      },
+      {
+        "id": "cultleader",
+        "reason": "Si el Demonio tiene la habilidad del Líder de culto, no puede volverse bueno debido a esta habilidad."
+      },
+      {
+        "id": "goon",
+        "reason": "Si el Demonio tiene la habilidad del Matón, no puede volverse bueno debido a esta habilidad."
+      },
+      {
+        "id": "ogre",
+        "reason": "El Demonio no puede tener la habilidad del Ogro."
+      },
+      {
+        "id": "drunk",
+        "reason": "El Demonio no puede tener la habilidad del Borracho."
+      },
+      {
+        "id": "politician",
+        "reason": "El Demonio no puede tener la habilidad del Político."
+      },
+      {
+        "id": "heretic",
+        "reason": "El Demonio no puede tener la habilidad del Hereje."
+      }
+    ]
+  },
+  {
+    "id": "yaggababble",
+    "hatred": [
+      {
+        "id": "exorcist",
+        "reason": "Si el Exorcista elige al Yaggababble, el Yaggababble no mata esta noche."
+      }
+    ]
+  },
+  {
+    "id": "lilmonsta",
+    "hatred": [
+      {
+        "id": "magician",
+        "reason": "Si el Mago está vivo, el Narrador elige qué Esbirro cuida a Lil' Monsta."
+      },
+      {
+        "id": "poppygrower",
+        "reason": "Si Lil' Monsta y el Cultivador de opio están vivos, los Esbirros despiertan uno por uno, hasta que uno de ellos elija tomar la ficha de Lil' Monsta."
+      },
+      {
+        "id": "hatter",
+        "reason": "Si el Sombrerero muere y el Demonio elige a Lil' Monsta, también elige en qué Esbirro convertirse."
+      },
+      {
+        "id": "psychopath",
+        "reason": "Si el Psicópata está cuidando a Lil' Monsta, muere cuando es ejecutado."
+      },
+      {
+        "id": "scarletwoman",
+        "reason": "Si Lil' Monsta muere con 5 o más jugadores vivos, la Mujer Escarlata cuida a Lil' Monsta por el resto del juego."
+      },
+      {
+        "id": "vizier",
+        "reason": "Si el Visir está cuidando a Lil' Monsta, muere cuando es ejecutado."
+      }
+    ]
+  },
+  {
+    "id": "vortox",
+    "hatred": [
+      {
+        "id": "banshee",
+        "reason": "Si el Vortox mata a la Banshee, todos los jugadores aprenden que la Banshee ha muerto."
+      }
+    ]
+  },
+  {
+    "id": "legion",
+    "hatred": [
+      {
+        "id": "preacher",
+        "reason": "Si el Predicador elige a Legión, Legión conserva su habilidad, pero el Predicador podría aprender que es Legión."
+      },
+      {
+        "id": "engineer",
+        "reason": "Si se crea Legión, todos los jugadores malvados se convierten en Legión. Si Legión está en juego, el Ingeniero empieza sabiendo esto pero no tiene habilidad."
+      },
+      {
+        "id": "minstrel",
+        "reason": "Si Legión murió por ejecución hoy, Legión conserva su habilidad, pero el Juglar podría aprender que es Legión."
+      },
+      {
+        "id": "hatter",
+        "reason": "Si se crea Legión, todos los jugadores malvados se convierten en Legión. Si Legión está en juego, el Sombrerero no tiene habilidad."
+      },
+      {
+        "id": "politician",
+        "reason": "El Político podría registrarse como malvado para Legión."
+      },
+      {
+        "id": "zealot",
+        "reason": "El Fanático podría registrarse como malvado para Legión."
+      },
+      {
+        "id": "summoner",
+        "reason": "Si se invoca a Legión, todos los jugadores malvados se convierten en Legión."
+      }
+    ]
+  },
+  {
+    "id": "lleech",
+    "hatred": [
+      {
+        "id": "slayer",
+        "reason": "Si el Exterminador mata al huésped del Lleech, el huésped muere."
+      },
+      {
+        "id": "mastermind",
+        "reason": "Si la Mente Maestra está viva y el huésped del Lleech muere por ejecución, el Lleech vive pero pierde su habilidad."
+      }
+    ]
+  },
+  {
+    "id": "alhadikhia",
+    "hatred": [
+      {
+        "id": "princess",
+        "reason": "Si la Princesa nominó y ejecutó a un jugador en su 1er día, nadie muere ante el Al-Hadikhia esta noche."
+      },
+      {
+        "id": "mastermind",
+        "reason": "Si el Al-Hadikhia muere por ejecución, y la Mente Maestra está viva, el Al-Hadikhia elige 3 jugadores buenos esta noche: si los 3 eligen vivir, el mal gana. De lo contrario, el bien gana."
+      }
+    ]
+  },
+  {
+    "id": "leviathan",
+    "hatred": [
+      {
+        "id": "grandmother",
+        "reason": "Si el Leviatán está en juego y el Nieto muere por ejecución, el mal gana."
+      },
+      {
+        "id": "king",
+        "reason": "Si el Leviatán está en juego, y al menos 1 jugador está muerto, el Rey aprende un personaje vivo cada noche."
+      },
+      {
+        "id": "innkeeper",
+        "reason": "Si el Leviatán nomina y ejecuta a un jugador protegido por el Posadero, el bien gana."
+      },
+      {
+        "id": "monk",
+        "reason": "Si el Leviatán nomina y ejecuta al jugador protegido por el Monje, el bien gana."
+      },
+      {
+        "id": "exorcist",
+        "reason": "Si el Leviatán nomina y ejecuta al jugador elegido por el Exorcista, el bien gana."
+      },
+      {
+        "id": "soldier",
+        "reason": "Si el Leviatán nomina y ejecuta al Soldado, el bien gana."
+      },
+      {
+        "id": "farmer",
+        "reason": "Cada noche*, el Leviatán elige un jugador bueno vivo (diferente a las noches anteriores): un Granjero elegido usa su habilidad pero no muere."
+      },
+      {
+        "id": "ravenkeeper",
+        "reason": "Cada noche*, el Leviatán elige un jugador vivo (diferente a las noches anteriores): un Guardián de Cuervos elegido usa su habilidad pero no muere."
+      },
+      {
+        "id": "sage",
+        "reason": "Cada noche*, el Leviatán elige un jugador bueno vivo (diferente a las noches anteriores): un Sabio elegido usa su habilidad pero no muere."
+      },
+      {
+        "id": "banshee",
+        "reason": "Cada noche*, el Leviatán elige un jugador bueno vivo (diferente a las noches anteriores): una Banshee elegida muere y gana su habilidad."
+      },
+      {
+        "id": "mayor",
+        "reason": "Si el Leviatán y el Alcalde están vivos en el día 5 y no ocurre ninguna ejecución, el bien gana."
+      },
+      {
+        "id": "hatter",
+        "reason": "El Leviatán no puede entrar en juego después del día 5."
+      },
+      {
+        "id": "pithag",
+        "reason": "El Leviatán no puede entrar en juego después del día 5."
+      }
+    ]
+  },
+  {
+    "id": "riot",
+    "hatred": [
+      {
+        "id": "grandmother",
+        "reason": "Si Riot está en juego y el Nieto muere por ejecución, el mal gana."
+      },
+      {
+        "id": "king",
+        "reason": "Si Riot está en juego, y al menos 1 jugador está muerto, el Rey aprende un personaje vivo cada noche."
+      },
+      {
+        "id": "innkeeper",
+        "reason": "Si Riot nomina y ejecuta a un jugador protegido por el Posadero, el bien gana."
+      },
+      {
+        "id": "monk",
+        "reason": "Si Riot nomina y ejecuta al jugador protegido por el Monje, el bien gana."
+      },
+      {
+        "id": "exorcist",
+        "reason": "Si Riot nomina y ejecuta al jugador elegido por el Exorcista, el bien gana."
+      },
+      {
+        "id": "soldier",
+        "reason": "Si Riot nomina y ejecuta al Soldado, el bien gana."
+      },
+      {
+        "id": "farmer",
+        "reason": "Cada noche*, Riot elige un jugador bueno vivo (diferente a las noches anteriores): un Granjero elegido usa su habilidad pero no muere."
+      },
+      {
+        "id": "ravenkeeper",
+        "reason": "Cada noche*, Riot elige un jugador bueno vivo (diferente a las noches anteriores): un Guardián de Cuervos elegido usa su habilidad pero no muere."
+      },
+      {
+        "id": "sage",
+        "reason": "Cada noche*, Riot elige un jugador bueno vivo (diferente a las noches anteriores): un Sabio elegido usa su habilidad pero no muere."
+      },
+      {
+        "id": "banshee",
+        "reason": "Cada noche*, Riot elige un jugador bueno vivo (diferente a las noches anteriores): una Banshee elegida muere y gana su habilidad."
+      },
+      {
+        "id": "mayor",
+        "reason": "El Alcalde puede elegir detener el riot. Si lo hace cuando solo 1 Riot está vivo, el bien gana. De lo contrario, el mal gana."
+      },
+      {
+        "id": "atheist",
+        "reason": "Durante un riot, si el Narrador es nominado, los jugadores votan. Si está \"a punto de morir\", el juego termina. Si no, nomina de nuevo."
+      }
+    ]
+  }
+]
