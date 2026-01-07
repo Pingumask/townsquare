@@ -8,7 +8,7 @@
     - Storyteller can Disable Neighbor whispers separately from Public chat and Storyteller whisper
     - Storyteller can snoop players whispers
 - Fixes:
-
+  - Gamephase switch from menu or keybinding bug if current phase is endgame
 - Localization:
 
 - Maintenance:

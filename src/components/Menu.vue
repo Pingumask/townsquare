@@ -194,10 +194,6 @@
             {{ t('menu.sendRoles') }}
             <em><font-awesome-icon icon="theater-masks" class="fa fa-theater-masks" /></em>
           </li>
-          <li @click="grimoire.endGame">
-            {{ t('menu.endGame') }}
-            <em><font-awesome-icon icon="ranking-star" class="fa fa-ranking-star" /></em>
-          </li>
         </template>
 
         <template v-if="tab === 'storytelling'">
@@ -214,6 +210,9 @@
             </template>
             <template v-if="grimoire.gamePhase === 'day'">
               {{ t('menu.nightSwitch') }}
+            </template>
+            <template v-if="grimoire.gamePhase === 'postgame'">
+              {{ t('menu.newGame') }}
             </template>
             <em>[S]</em>
           </li>
@@ -264,6 +263,10 @@
               'fas',
               grimoire.isWhisperAllowed ? 'check-square' : 'square',
             ]" /></em>
+          </li>
+          <li v-if="grimoire.gamePhase !== 'postgame'" @click="grimoire.endGame">
+            {{ t('menu.endGame') }}
+            <em><font-awesome-icon icon="ranking-star" class="fa fa-ranking-star" /></em>
           </li>
         </template>
 

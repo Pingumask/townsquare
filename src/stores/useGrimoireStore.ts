@@ -450,6 +450,8 @@ export const useGrimoireStore = defineStore("grimoire", {
         this.setGamePhase("day");
       } else if (this.gamePhase === "day") {
         this.setGamePhase("otherNight");
+      } else if (this.gamePhase === "postgame") {
+        this.newGame();
       }
     },
 
