@@ -13,6 +13,7 @@
       }" @trigger="handleTrigger(index, $event)" />
     </ul>
     <Bluffs @open-role-modal="openRoleModal" />
+    <PlayerChat />
     <SideMenu />
     <Npcs />
     <ReminderModal :player-index="selectedPlayer" />
@@ -22,7 +23,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { Bluffs, Npcs, ReminderModal, RoleModal, Seat, SideMenu } from '@/components';
+import { Bluffs, Npcs, PlayerChat, ReminderModal, RoleModal, Seat, SideMenu } from '@/components';
 import {
   useGrimoireStore,
   useLocaleStore,

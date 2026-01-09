@@ -6,6 +6,7 @@ import {
   useLocaleStore,
   useSoundboardStore,
   useVotingStore,
+  useChatStore,
 } from "@/stores";
 import type {
   Edition,
@@ -289,6 +290,9 @@ export class LiveSession {
         break;
       case "voteHistory":
         votingStore.setVoteHistory(params as VoteHistoryEntry[]);
+        break;
+      case "chat":
+        this._handleChat(params);
         break;
     }
   }
@@ -753,6 +757,43 @@ export class LiveSession {
     votingStore.updateNomination({
       nomination: params,
     });
+  }
+
+  _handleChat(params: unknown) {
+    if (!this._isPlayerOrSpectator) return;
+    const playersStore = usePlayersStore();
+    const chatStore = useChatStore();
+    const sessionStore = useSessionStore();
+
+    const chatData = params as { from: string; message: string };
+    const senderId = chatData.from;
+
+    const currentPlayerIndex = playersStore.players.findIndex(
+      (p: Player) => p.id === sessionStore.playerId
+    );
+    
+    if (currentPlayerIndex === -1) return;
+
+    const leftNeighborId = playersStore.players[
+      (currentPlayerIndex - 1 + playersStore.players.length) % playersStore.players.length
+    ]?.id;
+    
+    const rightNeighborId = playersStore.players[
+      (currentPlayerIndex + 1) % playersStore.players.length
+    ]?.id;
+
+    let messageTab: "left" | "right" | null = null;
+    if (leftNeighborId === senderId) {
+      messageTab = "left";
+    } else if (rightNeighborId === senderId) {
+      messageTab = "right";
+    }
+
+    if (messageTab) {
+      chatStore.receiveMessage(chatData, messageTab);
+    } else {
+      console.warn("[Chat] Message from unknown neighbor:", senderId);
+    }
   }
 }
 
