@@ -321,6 +321,11 @@
       }
     }
   },
+  "chat": {
+    "title": "Chat",
+    "type_message": "Tapez votre message...",
+    "send": "Envoyer"
+  },
   "sound": {
     "rooster": "Chant du Coq",
     "ringing": "Sonner la Cloche",

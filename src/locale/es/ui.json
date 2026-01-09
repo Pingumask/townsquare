@@ -320,6 +320,11 @@
       }
     }
   },
+  "chat": {
+    "title": "Chat",
+    "type_message": "Escribe tu mensaje...",
+    "send": "Enviar"
+  },
   "sound": {
     "rooster": "Gallo",
     "ringing": "Campana",

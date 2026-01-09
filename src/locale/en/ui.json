@@ -320,6 +320,11 @@
       }
     }
   },
+  "chat": {
+    "title": "Chat",
+    "type_message": "Type message...",
+    "send": "Send"
+  },
   "sound": {
     "rooster": "Rooster",
     "ringing": "Ring Bell",
