@@ -21,7 +21,7 @@ export const useChatStore = defineStore("chat", {
 
   actions: {
     addMessage(tab: "left" | "right", message: ChatMessage) {
-      this.messages[tab].push(message);
+      this.messages[tab]?.push(message);
     },
 
     clearMessages(tab: "left" | "right") {
