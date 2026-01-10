@@ -7,6 +7,7 @@ import {
   useSoundboardStore,
   useVotingStore,
   useChatStore,
+  useAnimationStore,
 } from "@/stores";
 import type {
   Edition,
@@ -161,6 +162,7 @@ export class LiveSession {
     const playersStore = usePlayersStore();
     const soundboardStore = useSoundboardStore();
     const votingStore = useVotingStore();
+    const animationStore = useAnimationStore();
 
     let command: string = "",
       params: unknown;
@@ -246,6 +248,16 @@ export class LiveSession {
       case "isMessagingDisabled":
         if (!this._isPlayerOrSpectator) return;
         grimoire.setMessagingDisabled(params as boolean);
+        break;
+      case "chatActivity":
+        if (!this._isPlayerOrSpectator) return;
+        const fromPlayer = playersStore.players.find(p => p.id === (params as {from: string, to: string}).from);
+        const toPlayer = playersStore.players.find(p => p.id === (params as {from: string, to: string}).to);
+        if (fromPlayer && toPlayer) {
+          const fromIndex = playersStore.players.indexOf(fromPlayer);
+          const toIndex = playersStore.players.indexOf(toPlayer);
+          animationStore.addAnimation({ from: fromIndex, to: toIndex, emoji: "✉️" });
+        }
         break;
       case "playSound":
         if (!this._isPlayerOrSpectator) return;
@@ -413,6 +425,7 @@ export class LiveSession {
       allowSelfNaming,
       isVoteHistoryAllowed,
       isSecretVoteMode,
+      isMessagingDisabled,
       timer,
       nomination,
       votingSpeed,

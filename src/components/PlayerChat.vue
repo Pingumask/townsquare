@@ -37,9 +37,10 @@
           v-model="messageInput" 
           type="text"
           :placeholder="t('chat.type_message')"
+          :disabled="!activeNeighbor || activeNeighbor.id === ''"
           @keyup.enter="sendMessage"
         />
-        <button @click="sendMessage">{{ t('chat.send') }}</button>
+        <button @click="sendMessage" :disabled="!activeNeighbor || activeNeighbor.id === ''">{{ t('chat.send') }}</button>
       </div>
     </div>
   </div>
@@ -47,7 +48,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { useLocaleStore, usePlayersStore, useSessionStore, useChatStore, useGrimoireStore } from "@/stores";
+import { useLocaleStore, usePlayersStore, useSessionStore, useChatStore, useGrimoireStore, useAnimationStore } from "@/stores";
 import socket from "@/services/socket";
 
 const locale = useLocaleStore();
@@ -55,6 +56,7 @@ const playersStore = usePlayersStore();
 const sessionStore = useSessionStore();
 const chatStore = useChatStore();
 const grimoire = useGrimoireStore();
+const animationStore = useAnimationStore();
 const t = locale.t;
 
 const isChatOpen = ref(false);
@@ -90,17 +92,28 @@ const activeMessages = computed(() => {
   return chatStore.messages[activeTab.value] || [];
 });
 
+const activeNeighbor = computed(() => {
+  return activeTab.value === 'left' ? leftNeighbor.value : rightNeighbor.value;
+});
+
 const toggleChat = () => {
   isChatOpen.value = !isChatOpen.value;
+};
+
+const animateMessageSent = () => {
+  const neighbor = activeNeighbor.value;
+  if (!neighbor) return;
+  const fromIndex = currentPlayerIndex.value;
+  const toIndex = playersStore.players.indexOf(neighbor);
+  animationStore.addAnimation({ from: fromIndex, to: toIndex, emoji: "✉️" });
 };
 
 const sendMessage = () => {
   if (!messageInput.value.trim()) return;
   
   const neighbor = activeTab.value === 'left' ? leftNeighbor.value : rightNeighbor.value;
-  if (!neighbor) return;
+  if (!neighbor || neighbor.id === "") return;
 
-  // Add message to store
   const msg = {
     from: currentPlayerName.value,
     text: messageInput.value,
@@ -108,7 +121,6 @@ const sendMessage = () => {
   };
   chatStore.addMessage(activeTab.value, msg);
   
-  // Send via socket to neighbor with sender ID included
   const chatMessage = {
     from: sessionStore.playerId,
     message: messageInput.value,
@@ -117,6 +129,16 @@ const sendMessage = () => {
   console.log("[Chat] Sending to", neighbor.id, ":", chatMessage);
 
   socket.send("direct", { [neighbor.id]: ["chat", chatMessage] });
+  
+  animateMessageSent();
+
+  const activityData = { from: sessionStore.playerId, to: neighbor.id };
+  const recipients: Record<string, any> = {};
+  players.value.filter(p => p.id !== sessionStore.playerId && p.id !== '').forEach(p => {
+    recipients[p.id] = ["chatActivity", activityData];
+  });
+  recipients["host"] = ["chatActivity", activityData];
+  socket.send("direct", recipients);
   
   messageInput.value = '';
 };
@@ -287,7 +309,12 @@ const sendMessage = () => {
   transition: background 250ms;
 }
 
-.input-area button:hover {
+.input-area button:hover:not(:disabled) {
   background: rgba(100, 150, 255, 0.9);
+}
+
+.input-area button:disabled {
+  background: rgba(100, 100, 100, 0.5);
+  cursor: not-allowed;
 }
 </style>
