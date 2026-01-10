@@ -162,7 +162,6 @@ export class LiveSession {
     const playersStore = usePlayersStore();
     const soundboardStore = useSoundboardStore();
     const votingStore = useVotingStore();
-    const animationStore = useAnimationStore();
 
     let command: string = "",
       params: unknown;
