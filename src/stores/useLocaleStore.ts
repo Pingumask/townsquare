@@ -55,6 +55,7 @@ export const useLocaleStore = defineStore("locale", {
 
       return result ?? key;
     },
+    supportedLanguages: () => Array.from(supportedLanguages),
   },
 
   actions: {

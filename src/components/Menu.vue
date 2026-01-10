@@ -479,18 +479,26 @@ const imageOptIn = () => {
   }
 };
 
-const supportedLangs = ['en', 'fr', 'es'];
+const supportedLangs = locale.supportedLanguages;
 
 const nextLanguage = () => {
   const currentIndex = supportedLangs.indexOf(locale.currentLanguage);
   const nextIndex = (currentIndex + 1) % supportedLangs.length;
-  locale.forceLocale(supportedLangs[nextIndex]);
+  const targetLang = supportedLangs[nextIndex];
+  
+  if (targetLang) {
+    locale.forceLocale(targetLang);
+  }
 };
 
 const previousLanguage = () => {
   const currentIndex = supportedLangs.indexOf(locale.currentLanguage);
   const prevIndex = (currentIndex - 1 + supportedLangs.length) % supportedLangs.length;
-  locale.forceLocale(supportedLangs[prevIndex]);
+  const targetLang = supportedLangs[prevIndex];
+
+  if (targetLang) {
+    locale.forceLocale(targetLang);
+  }
 };
 </script>
 
