@@ -244,9 +244,9 @@ export class LiveSession {
         if (!this._isPlayerOrSpectator) return;
         grimoire.setSecretVote(params as boolean);
         break;
-      case "isMessagingDisabled":
+      case "isWhisperingAllowed":
         if (!this._isPlayerOrSpectator) return;
-        grimoire.setMessagingDisabled(params as boolean);
+        grimoire.setAllowWhispers(params as boolean);
         break;
       case "chatActivity":
         this._handleChatActivity(params as { from: string; to: string });
@@ -386,7 +386,7 @@ export class LiveSession {
         allowSelfNaming: grimoireStore.allowSelfNaming,
         isVoteHistoryAllowed: grimoireStore.isVoteHistoryAllowed,
         isSecretVoteMode: grimoireStore.isSecretVote,
-        isMessagingDisabled: grimoireStore.isMessagingDisabled,
+        isWhisperingAllowed: grimoireStore.isWhisperingAllowed,
         nomination: votingStore.nomination,
         votingSpeed: votingStore.votingSpeed,
         lockedVote: votingStore.lockedVote,
@@ -417,7 +417,7 @@ export class LiveSession {
       allowSelfNaming,
       isVoteHistoryAllowed,
       isSecretVoteMode,
-      isMessagingDisabled,
+      isWhisperingAllowed,
       timer,
       nomination,
       votingSpeed,
@@ -443,7 +443,7 @@ export class LiveSession {
       allowSelfNaming?: boolean;
       isVoteHistoryAllowed?: boolean;
       isSecretVoteMode?: boolean;
-      isMessagingDisabled?: boolean;
+      isWhisperingAllowed?: boolean;
       timer?: { name?: string; duration?: number };
       nomination: Nomination | null;
       votingSpeed?: number;
@@ -509,7 +509,7 @@ export class LiveSession {
       grimoireStore.setAllowSelfNaming(!!allowSelfNaming);
       grimoireStore.setVoteHistoryAllowed(!!isVoteHistoryAllowed);
       grimoireStore.setSecretVote(!!isSecretVoteMode);
-      grimoireStore.setMessagingDisabled(!!isMessagingDisabled);
+      grimoireStore.setAllowWhispers(!!isWhisperingAllowed);
       votingStore.updateNomination({
         nomination,
         votes: votes || [],

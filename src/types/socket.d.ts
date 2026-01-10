@@ -15,7 +15,7 @@ export type SocketCommands =
   | "playSound"
   | "isSecretVote"
   | "isSecretVoteMode"
-  | "isMessagingDisabled"
+  | "isWhisperingAllowed"
   | "isVoteHistoryAllowed"
   | "isVoteInProgress"
   | "locale"

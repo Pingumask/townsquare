@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="isSeated && !grimoire.isMessagingDisabled"
+    v-if="isSeated && grimoire.isWhisperingAllowed"
     ref="playerChat"
     class="player-chat"
     :class="{ closed: !isChatOpen }"
@@ -63,7 +63,7 @@
         >
           <font-awesome-icon
             :icon="['fas', 'paper-plane']"
-            :title="t('chat.send')"
+            :title="activeNeighbor && activeNeighbor.id !== '' ? t('chat.send') : t('chat.cannotSend')"
           />
         </button>
       </div>
@@ -311,7 +311,7 @@ const sendMessage = () => {
 .input-area input {
   flex: 1;
   font-size: inherit;
-  padding: 0 0.15rem;
+  padding: 0 0.5rem;
   margin: 5px auto;
   border: 1px solid #666;
   border-radius: 5px;

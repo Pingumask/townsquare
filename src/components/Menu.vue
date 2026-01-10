@@ -246,11 +246,11 @@
               grimoire.allowSelfNaming ? 'check-square' : 'square',
             ]" /></em>
           </li>
-          <li @click="grimoire.setMessagingDisabled(!grimoire.isMessagingDisabled)">
-            {{ t('menu.disableMessaging') }}
+          <li @click="grimoire.setAllowWhispers(!grimoire.isWhisperingAllowed)">
+            {{ t('menu.allowWhispering') }}
             <em><font-awesome-icon :icon="[
               'fas',
-              grimoire.isMessagingDisabled ? 'check-square' : 'square',
+              grimoire.isWhisperingAllowed ? 'check-square' : 'square',
             ]" /></em>
           </li>
         </template>
