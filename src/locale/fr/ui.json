@@ -38,6 +38,7 @@
     "allowVoteHistory": "Historique Publique",
     "secretVote": "Vote secret",
     "selfNaming": "Auto-Renommage",
+    "disableMessaging": "Désactiver la messagerie",
     "leave": "Quitter Session",
     "addPlayer": "Ajouter un Siège",
     "addPlayers": "Ajouter des Sièges",

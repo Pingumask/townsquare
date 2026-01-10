@@ -246,6 +246,13 @@
               grimoire.allowSelfNaming ? 'check-square' : 'square',
             ]" /></em>
           </li>
+          <li @click="grimoire.setMessagingDisabled(!grimoire.isMessagingDisabled)">
+            {{ t('menu.disableMessaging') }}
+            <em><font-awesome-icon :icon="[
+              'fas',
+              grimoire.isMessagingDisabled ? 'check-square' : 'square',
+            ]" /></em>
+          </li>
         </template>
 
         <template v-if="tab === 'playersMenu' && !session.isPlayerOrSpectator">

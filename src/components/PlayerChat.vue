@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isSeated" ref="playerChat" class="player-chat" :class="{ closed: !isChatOpen }">
+  <div v-if="isSeated && !grimoire.isMessagingDisabled" ref="playerChat" class="player-chat" :class="{ closed: !isChatOpen }">
     <h3>
       <span>{{ t('chat.title') }}</span>
       <font-awesome-icon icon="times-circle" class="fa fa-times-circle" @click.stop="toggleChat" />
@@ -47,13 +47,14 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { useLocaleStore, usePlayersStore, useSessionStore, useChatStore } from "@/stores";
+import { useLocaleStore, usePlayersStore, useSessionStore, useChatStore, useGrimoireStore } from "@/stores";
 import socket from "@/services/socket";
 
 const locale = useLocaleStore();
 const playersStore = usePlayersStore();
 const sessionStore = useSessionStore();
 const chatStore = useChatStore();
+const grimoire = useGrimoireStore();
 const t = locale.t;
 
 const isChatOpen = ref(false);

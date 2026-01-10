@@ -43,6 +43,7 @@ interface GrimoireState {
   allowSelfNaming: boolean;
   isVoteHistoryAllowed: boolean;
   isSecretVote: boolean;
+  isMessagingDisabled: boolean;
   gamePhase: GamePhase;
   dayCount: number;
 }
@@ -64,6 +65,7 @@ export const useGrimoireStore = defineStore("grimoire", {
     allowSelfNaming: false,
     isVoteHistoryAllowed: false,
     isSecretVote: false,
+    isMessagingDisabled: false,
     gamePhase: "offline",
     dayCount: 0,
   }),
@@ -352,6 +354,14 @@ export const useGrimoireStore = defineStore("grimoire", {
       this.isSecretVote = isSecretVote;
       if (!sessionStore.isPlayerOrSpectator) {
         socket.send("isSecretVote", this.isSecretVote);
+      }
+    },
+
+    setMessagingDisabled(isMessagingDisabled: boolean) {
+      const sessionStore = useSessionStore();
+      this.isMessagingDisabled = isMessagingDisabled;
+      if (!sessionStore.isPlayerOrSpectator) {
+        socket.send("isMessagingDisabled", this.isMessagingDisabled);
       }
     },
 
