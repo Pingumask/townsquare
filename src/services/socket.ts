@@ -68,7 +68,7 @@ export class LiveSession {
         } else {
           this.disconnect();
         }
-      },
+      }
     );
 
     watch(
@@ -77,7 +77,7 @@ export class LiveSession {
         if (!this._isPlayerOrSpectator) {
           this.send("locale", newLocale);
         }
-      },
+      }
     );
   }
 
@@ -93,7 +93,7 @@ export class LiveSession {
       this._wss +
         channel +
         "/" +
-        (this._isPlayerOrSpectator ? sessionStore.playerId : "host"),
+        (this._isPlayerOrSpectator ? sessionStore.playerId : "host")
     );
     this._socket.addEventListener("message", this._handleMessage.bind(this));
     this._socket.onopen = this._onOpen.bind(this);
@@ -109,7 +109,7 @@ export class LiveSession {
         sessionStore.setReconnecting(true);
         this._reconnectTimer = setTimeout(
           () => this.connect(channel),
-          3 * 1000,
+          3 * 1000
         );
       }
     };
@@ -124,7 +124,7 @@ export class LiveSession {
   _sendDirect(
     playerId: string | undefined | null,
     command: SocketCommands,
-    params: unknown,
+    params: unknown
   ) {
     if (playerId) {
       this.send("direct", { [playerId]: [command, params] });
@@ -180,12 +180,12 @@ export class LiveSession {
           params as {
             edition: Edition;
             roles?: Array<Role>;
-          },
+          }
         );
         break;
       case "fabled":
         this._updateFabled(
-          params as Array<Role | { id: string; isCustom?: boolean }>,
+          params as Array<Role | { id: string; isCustom?: boolean }>
         );
         break;
       case "gs":
@@ -197,7 +197,7 @@ export class LiveSession {
             index: number;
             property: keyof Player;
             value: unknown;
-          },
+          }
         );
         break;
       case "claim":
@@ -205,7 +205,7 @@ export class LiveSession {
         break;
       case "ping":
         this._handlePing(
-          params as [(number | undefined)?, unknown?] | undefined,
+          params as [(number | undefined)?, unknown?] | undefined
         );
         break;
       case "nomination":
@@ -249,7 +249,6 @@ export class LiveSession {
         grimoire.setMessagingDisabled(params as boolean);
         break;
       case "chatActivity":
-        if (!this._isPlayerOrSpectator) return;
         this._handleChatActivity(params as { from: string; to: string });
         break;
       case "playSound":
@@ -394,7 +393,7 @@ export class LiveSession {
         isVoteInProgress: votingStore.isVoteInProgress,
         markedPlayer: votingStore.markedPlayer,
         fabled: playersStore.fabled.map((f: Role) =>
-          f.isCustom ? f : { id: f.id },
+          f.isCustom ? f : { id: f.id }
         ),
         ...(votingStore.nomination ? { votes: votingStore.votes } : {}),
         voteHistory,
@@ -485,7 +484,7 @@ export class LiveSession {
           ) {
             playersStore.update({ player, property, value });
           }
-        },
+        }
       );
       if (player && roleId && player.role.id !== roleId) {
         const role =
@@ -534,8 +533,8 @@ export class LiveSession {
     const { edition } = grimoireStore;
     let roles;
     if (edition && !edition.isOfficial) {
-      roles = Array.from<Role>(grimoireStore.roles.values()).map(
-        (role: Role) => (role.isCustom ? role : { id: role.id }),
+      roles = Array.from<Role>(grimoireStore.roles.values()).map((role: Role) =>
+        role.isCustom ? role : { id: role.id }
       );
     }
     this._sendDirect(playerId, "edition", {
@@ -566,7 +565,7 @@ export class LiveSession {
         alert(
           `This session contains custom characters that can't be found. ` +
             `Please load them before joining! ` +
-            `Missing roles: ${missing.join(", ")}`,
+            `Missing roles: ${missing.join(", ")}`
         );
         this.disconnect();
       }
@@ -651,7 +650,7 @@ export class LiveSession {
 
   _handlePing([playerIdOrCount = 0, latency]: [
     (number | undefined)?,
-    unknown?,
+    unknown?
   ] = []) {
     const sessionStore = useSessionStore();
 
@@ -667,7 +666,7 @@ export class LiveSession {
           this._pings[playerIdOrCount] = ping;
           const pings = Object.values(this._pings);
           sessionStore.setPing(
-            Math.round(pings.reduce((a, b) => a + b, 0) / pings.length),
+            Math.round(pings.reduce((a, b) => a + b, 0) / pings.length)
           );
         }
       }
@@ -705,7 +704,7 @@ export class LiveSession {
     const player = playersStore.players[seatIndex];
     // check if player is already seated
     const oldSeat = playersStore.players.findIndex(
-      (p: Player) => p.id === playerId,
+      (p: Player) => p.id === playerId
     );
     console.log("switched from seat ", oldSeat, "to seat", seatIndex);
     if (oldSeat > -1 && oldSeat !== seatIndex) {
@@ -781,11 +780,11 @@ export class LiveSession {
     const senderId = chatData.from;
 
     const currentPlayerIndex = playersStore.currentPlayerIndex;
-    
+
     if (currentPlayerIndex === -1) return;
 
     const leftNeighborId = playersStore.leftNeighbor?.id;
-    
+
     const rightNeighborId = playersStore.rightNeighbor?.id;
 
     let messageTab: "left" | "right" | null = null;
@@ -806,12 +805,16 @@ export class LiveSession {
     const playersStore = usePlayersStore();
     const animationStore = useAnimationStore();
 
-    const fromPlayer = playersStore.players.find(p => p.id === params.from);
-    const toPlayer = playersStore.players.find(p => p.id === params.to);
+    const fromPlayer = playersStore.players.find((p) => p.id === params.from);
+    const toPlayer = playersStore.players.find((p) => p.id === params.to);
     if (fromPlayer && toPlayer) {
       const fromIndex = playersStore.players.indexOf(fromPlayer);
       const toIndex = playersStore.players.indexOf(toPlayer);
-      animationStore.addAnimation({ from: fromIndex, to: toIndex, emoji: "✉️" });
+      animationStore.addAnimation({
+        from: fromIndex,
+        to: toIndex,
+        emoji: "✉️",
+      });
     }
   }
 }
