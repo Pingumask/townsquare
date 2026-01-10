@@ -33,6 +33,7 @@ import {
   faMinusCircle,
   faMinusSquare,
   faMusic,
+  faPaperPlane,
   faPeopleArrows,
   faPlay,
   faPlusCircle,
@@ -106,6 +107,7 @@ library.add(
   faMinusCircle,
   faMinusSquare,
   faMusic,
+  faPaperPlane,
   faPeopleArrows,
   faPlay,
   faPlusCircle,
@@ -136,7 +138,7 @@ library.add(
   faYinYang,
   faGithub,
   faDiscord,
-  faDocker,
+  faDocker
 );
 
 export default {

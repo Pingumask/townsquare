@@ -1,30 +1,47 @@
 <template>
-  <div v-if="isSeated && !grimoire.isMessagingDisabled" ref="playerChat" class="player-chat" :class="{ closed: !isChatOpen }">
+  <div
+    v-if="isSeated && !grimoire.isMessagingDisabled"
+    ref="playerChat"
+    class="player-chat"
+    :class="{ closed: !isChatOpen }"
+  >
     <h3>
-      <span>{{ t('chat.title') }}</span>
-      <font-awesome-icon icon="times-circle" class="fa fa-times-circle" @click.stop="toggleChat" />
-      <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="toggleChat" />
+      <span>{{ t("chat.title") }}</span>
+      <font-awesome-icon
+        icon="times-circle"
+        class="fa fa-times-circle"
+        @click.stop="toggleChat"
+      />
+      <font-awesome-icon
+        icon="plus-circle"
+        class="fa fa-plus-circle"
+        @click.stop="toggleChat"
+      />
     </h3>
-    <div v-if="!isChatOpen" style="display: none;"></div>
+    <div v-if="!isChatOpen" style="display: none"></div>
     <div v-else class="chat-container">
-      <div class="tabs">
-        <button 
-          :class="{ active: activeTab === 'left' }" 
+      <ul class="tabs">
+        <li
+          aria-role="tab"
+          class="tab"
+          :class="{ active: activeTab === 'left' }"
           @click="activeTab = 'left'"
         >
           {{ leftNeighbor?.name }}
-        </button>
-        <button 
-          :class="{ active: activeTab === 'right' }" 
+        </li>
+        <li
+          aria-role="tab"
+          class="tab"
+          :class="{ active: activeTab === 'right' }"
           @click="activeTab = 'right'"
         >
           {{ rightNeighbor?.name }}
-        </button>
-      </div>
+        </li>
+      </ul>
 
       <div class="messages">
-        <div 
-          v-for="(msg, index) in activeMessages" 
+        <div
+          v-for="(msg, index) in activeMessages"
           :key="index"
           :class="['message', msg.isOwn ? 'own' : 'other']"
         >
@@ -33,14 +50,22 @@
       </div>
 
       <div class="input-area">
-        <input 
-          v-model="messageInput" 
+        <input
+          v-model="messageInput"
           type="text"
           :placeholder="t('chat.type_message')"
           :disabled="!activeNeighbor || activeNeighbor.id === ''"
           @keyup.enter="sendMessage"
         />
-        <button :disabled="!activeNeighbor || activeNeighbor.id === ''" @click="sendMessage">{{ t('chat.send') }}</button>
+        <button
+          :disabled="!activeNeighbor || activeNeighbor.id === ''"
+          @click="sendMessage"
+        >
+          <font-awesome-icon
+            :icon="['fas', 'paper-plane']"
+            :title="t('chat.send')"
+          />
+        </button>
       </div>
     </div>
   </div>
@@ -48,7 +73,14 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { useLocaleStore, usePlayersStore, useSessionStore, useChatStore, useGrimoireStore, useAnimationStore } from "@/stores";
+import {
+  useLocaleStore,
+  usePlayersStore,
+  useSessionStore,
+  useChatStore,
+  useGrimoireStore,
+  useAnimationStore,
+} from "@/stores";
 import socket from "@/services/socket";
 
 const locale = useLocaleStore();
@@ -60,8 +92,8 @@ const animationStore = useAnimationStore();
 const t = locale.t;
 
 const isChatOpen = ref(false);
-const activeTab = ref<'left' | 'right'>('left');
-const messageInput = ref('');
+const activeTab = ref<"left" | "right">("left");
+const messageInput = ref("");
 
 const players = computed(() => playersStore.players);
 const currentPlayerIndex = computed(() => playersStore.currentPlayerIndex);
@@ -71,7 +103,7 @@ const isSeated = computed(() => {
 });
 
 const currentPlayerName = computed(() => {
-  return playersStore.players[currentPlayerIndex.value]?.name || 'You';
+  return playersStore.players[currentPlayerIndex.value]?.name || "You";
 });
 
 const leftNeighbor = computed(() => playersStore.leftNeighbor);
@@ -83,7 +115,7 @@ const activeMessages = computed(() => {
 });
 
 const activeNeighbor = computed(() => {
-  return activeTab.value === 'left' ? leftNeighbor.value : rightNeighbor.value;
+  return activeTab.value === "left" ? leftNeighbor.value : rightNeighbor.value;
 });
 
 const toggleChat = () => {
@@ -100,8 +132,9 @@ const animateMessageSent = () => {
 
 const sendMessage = () => {
   if (!messageInput.value.trim()) return;
-  
-  const neighbor = activeTab.value === 'left' ? leftNeighbor.value : rightNeighbor.value;
+
+  const neighbor =
+    activeTab.value === "left" ? leftNeighbor.value : rightNeighbor.value;
   if (!neighbor || neighbor.id === "") return;
 
   const msg = {
@@ -110,27 +143,29 @@ const sendMessage = () => {
     isOwn: true,
   };
   chatStore.addMessage(activeTab.value, msg);
-  
+
   const chatMessage = {
     from: sessionStore.playerId,
     message: messageInput.value,
   };
-  
+
   console.log("[Chat] Sending to", neighbor.id, ":", chatMessage);
 
   socket.send("direct", { [neighbor.id]: ["chat", chatMessage] });
-  
+
   animateMessageSent();
 
   const activityData = { from: sessionStore.playerId, to: neighbor.id };
   const recipients: Record<string, unknown> = {};
-  players.value.filter(p => p.id !== sessionStore.playerId && p.id !== '').forEach(p => {
-    recipients[p.id] = ["chatActivity", activityData];
-  });
+  players.value
+    .filter((p) => p.id !== sessionStore.playerId && p.id !== "")
+    .forEach((p) => {
+      recipients[p.id] = ["chatActivity", activityData];
+    });
   recipients["host"] = ["chatActivity", activityData];
   socket.send("direct", recipients);
-  
-  messageInput.value = '';
+
+  messageInput.value = "";
 };
 </script>
 
@@ -138,16 +173,15 @@ const sendMessage = () => {
 .player-chat {
   position: absolute;
   left: 10px;
-  top: 40%;
+  top: 50%;
   transform: translateY(-50%);
   background: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
-  border: 3px solid #4a4a4a;
+  border: 3px solid black;
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
   z-index: 50;
   padding: 10px;
   color: white;
-  width: 350px;
   max-width: 90vw;
   transition: all 250ms ease-in-out;
   display: flex;
@@ -155,12 +189,7 @@ const sendMessage = () => {
 }
 
 .player-chat.closed {
-  width: auto;
-  height: auto;
-  border: 3px solid #4a4a4a;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 10px;
-  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .player-chat.closed .chat-container {
@@ -218,11 +247,12 @@ const sendMessage = () => {
   flex-shrink: 0;
 }
 
-.tabs button {
+.tabs .tab {
   flex: 1;
-  padding: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
+  border: 1px solid grey;
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+  padding: 0.15em 1em;
   color: white;
   cursor: pointer;
   border-radius: 5px 5px 0 0;
@@ -231,15 +261,15 @@ const sendMessage = () => {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  user-select: none;
 }
 
-.tabs button:hover {
+.tabs .tab:hover {
   background: rgba(255, 255, 255, 0.2);
 }
 
-.tabs button.active {
-  background: rgba(255, 255, 255, 0.3);
-  border-bottom: 2px solid #fff;
+.tabs .tab.active {
+  background: linear-gradient(rgb(31, 101, 255) 0%, rgba(0, 0, 0, 0.5) 100%);
 }
 
 .messages {
@@ -248,19 +278,21 @@ const sendMessage = () => {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 10px;
+  padding: 0.5rem;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 5px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.2);
 }
 
 .message {
-  padding: 8px;
+  padding: 0.125rem 0.5rem;
   border-radius: 5px;
   word-wrap: break-word;
 }
 
 .message.own {
-  background: rgba(100, 150, 255, 0.5);
+  background: rgba(255, 255, 255, 0.5);
   align-self: flex-end;
   max-width: 80%;
 }
@@ -278,7 +310,9 @@ const sendMessage = () => {
 
 .input-area input {
   flex: 1;
-  padding: 8px;
+  font-size: inherit;
+  padding: 0 0.15rem;
+  margin: 5px auto;
   border: 1px solid #666;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.1);
@@ -289,22 +323,21 @@ const sendMessage = () => {
   color: rgba(255, 255, 255, 0.5);
 }
 
+.input-area input:focus {
+  outline: 1px solid white;
+}
+
 .input-area button {
-  padding: 8px 16px;
-  background: rgba(100, 150, 255, 0.7);
-  border: none;
-  border-radius: 5px;
   color: white;
   cursor: pointer;
   transition: background 250ms;
 }
 
-.input-area button:hover:not(:disabled) {
-  background: rgba(100, 150, 255, 0.9);
+.input-area button:disabled {
+  cursor: not-allowed;
 }
 
-.input-area button:disabled {
-  background: rgba(100, 100, 100, 0.5);
+.input-area input:disabled {
   cursor: not-allowed;
 }
 </style>
