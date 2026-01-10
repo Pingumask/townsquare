@@ -326,7 +326,7 @@
     "title": "Chuchottements",
     "type_message": "Tapez votre message...",
     "send": "Envoyer",
-    "cannotSend": "Impossible de chuchotter à un voisin qui n'est pas assit"
+    "cannotSend": "Impossible de chuchotter à un voisin qui n'est pas assis"
   },
   "sound": {
     "rooster": "Chant du Coq",

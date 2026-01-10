@@ -213,7 +213,7 @@ const sendMessage = () => {
 .player-chat h3 .fa {
   cursor: pointer;
   margin-left: 10px;
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
 .player-chat h3 .fa-times-circle {
@@ -339,5 +339,13 @@ const sendMessage = () => {
 
 .input-area input:disabled {
   cursor: not-allowed;
+}
+</style>
+
+<style lang="scss">
+.player-chat h3 svg:hover path {
+  fill: url(#demon);
+  stroke-width: 30px;
+  stroke: white;
 }
 </style>
