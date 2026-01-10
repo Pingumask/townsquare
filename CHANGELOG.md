@@ -13,6 +13,7 @@
 ## 6.1.0
 - Features:
   - Adding the Hindu Loric
+  - Allow manual language selection (By default: follows ST language or uses browser's preferences when not playing)
 - Fixes:
   - Typo in english menu tabs ("Jeu" instead of "Gameplay")
   - Wrong composition (number of villagers/outsiders) for Teensyville scripts
