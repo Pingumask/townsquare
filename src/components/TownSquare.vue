@@ -44,6 +44,7 @@ import {
   useVotingStore,
   useAnimationStore,
 } from "@/stores";
+import type { Animation } from "@/stores/useAnimationStore";
 import type { Player } from "@/types";
 
 const grimoire = useGrimoireStore();
@@ -146,7 +147,7 @@ const getSeatPosition = (index: number, total: number) => {
   return { x, y };
 };
 
-const getAnimationStyle = (anim: any) => {
+const getAnimationStyle = (anim: Animation) => {
   const total = players.value.length;
   const fromPos = getSeatPosition(anim.from, total);
   const toPos = getSeatPosition(anim.to, total);

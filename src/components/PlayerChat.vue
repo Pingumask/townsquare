@@ -28,7 +28,7 @@
           :key="index"
           :class="['message', msg.isOwn ? 'own' : 'other']"
         >
-          <strong>{{ msg.from }}:</strong> {{ msg.text }}
+          {{ msg.text }}
         </div>
       </div>
 
@@ -40,7 +40,7 @@
           :disabled="!activeNeighbor || activeNeighbor.id === ''"
           @keyup.enter="sendMessage"
         />
-        <button @click="sendMessage" :disabled="!activeNeighbor || activeNeighbor.id === ''">{{ t('chat.send') }}</button>
+        <button :disabled="!activeNeighbor || activeNeighbor.id === ''" @click="sendMessage">{{ t('chat.send') }}</button>
       </div>
     </div>
   </div>
@@ -64,9 +64,7 @@ const activeTab = ref<'left' | 'right'>('left');
 const messageInput = ref('');
 
 const players = computed(() => playersStore.players);
-const currentPlayerIndex = computed(() => {
-  return players.value.findIndex(p => p.id === sessionStore.playerId);
-});
+const currentPlayerIndex = computed(() => playersStore.currentPlayerIndex);
 
 const isSeated = computed(() => {
   return sessionStore.isPlayerOrSpectator && currentPlayerIndex.value !== -1;
@@ -76,17 +74,9 @@ const currentPlayerName = computed(() => {
   return playersStore.players[currentPlayerIndex.value]?.name || 'You';
 });
 
-const leftNeighbor = computed(() => {
-  if (currentPlayerIndex.value === -1) return null;
-  const idx = (currentPlayerIndex.value - 1 + players.value.length) % players.value.length;
-  return players.value[idx];
-});
+const leftNeighbor = computed(() => playersStore.leftNeighbor);
 
-const rightNeighbor = computed(() => {
-  if (currentPlayerIndex.value === -1) return null;
-  const idx = (currentPlayerIndex.value + 1) % players.value.length;
-  return players.value[idx];
-});
+const rightNeighbor = computed(() => playersStore.rightNeighbor);
 
 const activeMessages = computed(() => {
   return chatStore.messages[activeTab.value] || [];
@@ -133,7 +123,7 @@ const sendMessage = () => {
   animateMessageSent();
 
   const activityData = { from: sessionStore.playerId, to: neighbor.id };
-  const recipients: Record<string, any> = {};
+  const recipients: Record<string, unknown> = {};
   players.value.filter(p => p.id !== sessionStore.playerId && p.id !== '').forEach(p => {
     recipients[p.id] = ["chatActivity", activityData];
   });

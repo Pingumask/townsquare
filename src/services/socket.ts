@@ -251,13 +251,7 @@ export class LiveSession {
         break;
       case "chatActivity":
         if (!this._isPlayerOrSpectator) return;
-        const fromPlayer = playersStore.players.find(p => p.id === (params as {from: string, to: string}).from);
-        const toPlayer = playersStore.players.find(p => p.id === (params as {from: string, to: string}).to);
-        if (fromPlayer && toPlayer) {
-          const fromIndex = playersStore.players.indexOf(fromPlayer);
-          const toIndex = playersStore.players.indexOf(toPlayer);
-          animationStore.addAnimation({ from: fromIndex, to: toIndex, emoji: "✉️" });
-        }
+        this._handleChatActivity(params as { from: string; to: string });
         break;
       case "playSound":
         if (!this._isPlayerOrSpectator) return;
@@ -308,7 +302,7 @@ export class LiveSession {
         votingStore.setVoteHistory(params as VoteHistoryEntry[]);
         break;
       case "chat":
-        this._handleChat(params);
+        this._handleChat(params as { from: string; message: string });
         break;
     }
   }
@@ -779,28 +773,21 @@ export class LiveSession {
     });
   }
 
-  _handleChat(params: unknown) {
+  _handleChat(params: { from: string; message: string }) {
     if (!this._isPlayerOrSpectator) return;
     const playersStore = usePlayersStore();
     const chatStore = useChatStore();
-    const sessionStore = useSessionStore();
 
-    const chatData = params as { from: string; message: string };
+    const chatData = params;
     const senderId = chatData.from;
 
-    const currentPlayerIndex = playersStore.players.findIndex(
-      (p: Player) => p.id === sessionStore.playerId
-    );
+    const currentPlayerIndex = playersStore.currentPlayerIndex;
     
     if (currentPlayerIndex === -1) return;
 
-    const leftNeighborId = playersStore.players[
-      (currentPlayerIndex - 1 + playersStore.players.length) % playersStore.players.length
-    ]?.id;
+    const leftNeighborId = playersStore.leftNeighbor?.id;
     
-    const rightNeighborId = playersStore.players[
-      (currentPlayerIndex + 1) % playersStore.players.length
-    ]?.id;
+    const rightNeighborId = playersStore.rightNeighbor?.id;
 
     let messageTab: "left" | "right" | null = null;
     if (leftNeighborId === senderId) {
@@ -813,6 +800,19 @@ export class LiveSession {
       chatStore.receiveMessage(chatData, messageTab);
     } else {
       console.warn("[Chat] Message from unknown neighbor:", senderId);
+    }
+  }
+
+  _handleChatActivity(params: { from: string; to: string }) {
+    const playersStore = usePlayersStore();
+    const animationStore = useAnimationStore();
+
+    const fromPlayer = playersStore.players.find(p => p.id === params.from);
+    const toPlayer = playersStore.players.find(p => p.id === params.to);
+    if (fromPlayer && toPlayer) {
+      const fromIndex = playersStore.players.indexOf(fromPlayer);
+      const toIndex = playersStore.players.indexOf(toPlayer);
+      animationStore.addAnimation({ from: fromIndex, to: toIndex, emoji: "✉️" });
     }
   }
 }

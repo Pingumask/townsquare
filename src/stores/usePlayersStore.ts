@@ -162,6 +162,25 @@ export const usePlayersStore = defineStore("players", {
       });
       return nightOrder;
     },
+
+    currentPlayerIndex(): number {
+      const sessionStore = useSessionStore();
+      return this.players.findIndex(p => p.id === sessionStore.playerId);
+    },
+
+    leftNeighbor(): Player | undefined {
+      const idx = this.currentPlayerIndex;
+      if (idx === -1) return undefined;
+      const len = this.players.length;
+      return this.players[(idx - 1 + len) % len];
+    },
+
+    rightNeighbor(): Player | undefined {
+      const idx = this.currentPlayerIndex;
+      if (idx === -1) return undefined;
+      const len = this.players.length;
+      return this.players[(idx + 1) % len];
+    },
   },
 
   actions: {
