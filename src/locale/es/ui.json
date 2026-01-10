@@ -55,7 +55,8 @@
     "issues": "Reportar un error",
     "request": "Solicitar una función",
     "newGame": "Nuevo juego",
-    "endGame": "Finalizar juego"
+    "endGame": "Finalizar juego",
+    "language": "Idioma"
   },
   "head": {
     "title": "Plaza del Pueblo de Blood on the Clocktower",

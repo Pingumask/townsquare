@@ -1,6 +1,8 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faAddressCard,
+  faChevronLeft,
+  faChevronRight,
   faBarsProgress,
   faBell,
   faBookOpen,
@@ -71,6 +73,8 @@ import type { App } from "vue";
 
 library.add(
   faAddressCard,
+  faChevronLeft,
+  faChevronRight,
   faBarsProgress,
   faBell,
   faBookOpen,

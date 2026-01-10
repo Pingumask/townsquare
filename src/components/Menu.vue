@@ -111,6 +111,14 @@
                 @click="userPreferences.zoom = Math.min(userPreferences.zoom + 1, 10)" />
             </em>
           </li>
+          <li>
+            {{ t('menu.language') }}
+            <em>
+              <font-awesome-icon icon="chevron-left" class="fa fa-chevron-left" @click="previousLanguage" />
+              {{ locale.currentLanguage.toUpperCase() }}
+              <font-awesome-icon icon="chevron-right" class="fa fa-chevron-right" @click="nextLanguage" />
+            </em>
+          </li>
           <li @click="setBackground()">
             {{ t('menu.background') }}
             <em><font-awesome-icon icon="image" class="fa fa-image" /></em>
@@ -469,6 +477,20 @@ const imageOptIn = () => {
   if (userPreferences.isImageOptIn || confirm(t('prompt.imageOptIn'))) {
     userPreferences.isImageOptIn = !userPreferences.isImageOptIn;
   }
+};
+
+const supportedLangs = ['en', 'fr', 'es'];
+
+const nextLanguage = () => {
+  const currentIndex = supportedLangs.indexOf(locale.currentLanguage);
+  const nextIndex = (currentIndex + 1) % supportedLangs.length;
+  locale.forceLocale(supportedLangs[nextIndex]);
+};
+
+const previousLanguage = () => {
+  const currentIndex = supportedLangs.indexOf(locale.currentLanguage);
+  const prevIndex = (currentIndex - 1 + supportedLangs.length) % supportedLangs.length;
+  locale.forceLocale(supportedLangs[prevIndex]);
 };
 </script>
 
