@@ -43,6 +43,7 @@ interface GrimoireState {
   allowSelfNaming: boolean;
   isVoteHistoryAllowed: boolean;
   isSecretVote: boolean;
+  isWhisperingAllowed: boolean;
   gamePhase: GamePhase;
   dayCount: number;
 }
@@ -61,9 +62,10 @@ export const useGrimoireStore = defineStore("grimoire", {
     jinxes: new Map<string, Map<string, string>>(),
     rolesJSONbyId: new Map<string, Role>(),
     modal: null,
-    allowSelfNaming: false,
-    isVoteHistoryAllowed: false,
+    allowSelfNaming: true,
+    isVoteHistoryAllowed: true,
     isSecretVote: false,
+    isWhisperingAllowed: true,
     gamePhase: "offline",
     dayCount: 0,
   }),
@@ -108,7 +110,7 @@ export const useGrimoireStore = defineStore("grimoire", {
             unknown
           >;
           for (const prop in roleObj) {
-            if (strippedProps.includes(prop as (typeof strippedProps)[number]))
+            if (strippedProps.includes(prop as typeof strippedProps[number]))
               continue;
             const value = roleObj[prop];
             if (customKeys.includes(prop) && value !== customObj[prop]) {
@@ -352,6 +354,14 @@ export const useGrimoireStore = defineStore("grimoire", {
       this.isSecretVote = isSecretVote;
       if (!sessionStore.isPlayerOrSpectator) {
         socket.send("isSecretVote", this.isSecretVote);
+      }
+    },
+
+    setAllowWhispers(isWhisperingAllowed: boolean) {
+      const sessionStore = useSessionStore();
+      this.isWhisperingAllowed = isWhisperingAllowed;
+      if (!sessionStore.isPlayerOrSpectator) {
+        socket.send("isWhisperingAllowed", this.isWhisperingAllowed);
       }
     },
 

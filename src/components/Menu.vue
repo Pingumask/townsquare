@@ -246,6 +246,13 @@
               grimoire.allowSelfNaming ? 'check-square' : 'square',
             ]" /></em>
           </li>
+          <li @click="grimoire.setAllowWhispers(!grimoire.isWhisperingAllowed)">
+            {{ t('menu.allowWhispering') }}
+            <em><font-awesome-icon :icon="[
+              'fas',
+              grimoire.isWhisperingAllowed ? 'check-square' : 'square',
+            ]" /></em>
+          </li>
         </template>
 
         <template v-if="tab === 'playersMenu' && !session.isPlayerOrSpectator">

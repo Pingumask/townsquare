@@ -38,6 +38,7 @@
     "allowVoteHistory": "Historial de votaciones público",
     "secretVote": "Votación secreta",
     "selfNaming": "Permitir auto-nombrarse",
+    "allowWhispering": "Permitir susurrar",
     "leave": "Salir de la sesión",
     "addPlayer": "Agregar asiento",
     "addPlayers": "Agregar asientos",
@@ -319,6 +320,12 @@
         "buttonLabel": "(Personalizado)"
       }
     }
+  },
+  "chat": {
+    "title": "Chat",
+    "type_message": "Escribe tu mensaje...",
+    "send": "Enviar",
+    "cannotSend": "No puedes susurrarle a un vecino que no está sentado."
   },
   "sound": {
     "rooster": "Gallo",
