@@ -55,7 +55,8 @@
     "issues": "Signaler un bug",
     "request": "Proposer une fonctionalité",
     "newGame": "Nouvelle partie",
-    "endGame": "Fin de Partie"
+    "endGame": "Fin de Partie",
+    "language": "Langue"
   },
   "head": {
     "title": "Grimoire Blood on the Clocktower",

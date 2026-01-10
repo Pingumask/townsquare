@@ -2,7 +2,7 @@
 
 ## Upcomming Version
 - Features:
-
+  - Allow manual language selection (By default: follows ST language or uses browser's preferences when not playing)
 - Fixes:
 
 - Localization :

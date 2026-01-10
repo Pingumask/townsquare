@@ -55,7 +55,8 @@
     "issues": "Report a bug",
     "request": "Request a feature",
     "newGame": "New Game",
-    "endGame": "End Game"
+    "endGame": "End Game",
+    "language": "Language"
   },
   "head": {
     "title": "Blood on the Clocktower Town Square",
