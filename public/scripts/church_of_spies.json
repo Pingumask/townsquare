@@ -1,1 +1,31 @@
-[{"id":"_meta","author":"Andrew Nathenson","name":"Church of Spies"},"librarian","steward","pixie","cult_leader","fortune_teller","high_priestess","exorcist","monk","undertaker","juggler","nightwatchman","artist","ravenkeeper","klutz","saint","mutant","drunk","baron","marionette","scarlet_woman","spy","no_dashii","po","pukka"]
+[
+  {
+    "id": "_meta",
+    "author": "Andrew Nathenson",
+    "name": "Church of Spies"
+  },
+  "librarian",
+  "steward",
+  "pixie",
+  "cultleader",
+  "fortuneteller",
+  "highpriestess",
+  "exorcist",
+  "monk",
+  "undertaker",
+  "juggler",
+  "nightwatchman",
+  "artist",
+  "ravenkeeper",
+  "klutz",
+  "saint",
+  "mutant",
+  "drunk",
+  "baron",
+  "marionette",
+  "scarletwoman",
+  "spy",
+  "nodashii",
+  "po",
+  "pukka"
+]

@@ -2,7 +2,8 @@ import { defineStore } from "pinia";
 import { useGrimoireStore } from "@/stores";
 import type { FabledJSON, JinxesJSON, LocaleModule, RolesJSON } from "@/types";
 
-const supportedLanguages = new Set(["en", "fr"]);
+// Please keep languages in alphabetical order
+const supportedLanguages = new Set(["en", "es", "fr"]);
 const MASTER_LANGUAGE = "en";
 
 interface LocaleState {
@@ -55,6 +56,7 @@ export const useLocaleStore = defineStore("locale", {
 
       return result ?? key;
     },
+    supportedLanguages: () => Array.from(supportedLanguages),
   },
 
   actions: {

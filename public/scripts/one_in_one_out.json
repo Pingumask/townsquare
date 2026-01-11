@@ -1,1 +1,33 @@
-[{"id":"_meta","author":"Baron von Klutz","name":"One in one out"},"steward","knight","highpriestess","villageidiot","snakecharmer","fortuneteller","oracle","monk","amnesiac","fisherman","seamstress","farmer","cannibal","ogre","goon","recluse","drunk","poisoner","harpy","spy","mezepheles","kazali","imp","ojo","fanggu","spiritofivory"]
+[
+  {
+    "id": "_meta",
+    "author": "Baron von Klutz",
+    "name": "One in one out"
+  },
+  "steward",
+  "knight",
+  "highpriestess",
+  "villageidiot",
+  "snakecharmer",
+  "fortuneteller",
+  "oracle",
+  "monk",
+  "amnesiac",
+  "fisherman",
+  "seamstress",
+  "farmer",
+  "cannibal",
+  "ogre",
+  "goon",
+  "recluse",
+  "drunk",
+  "poisoner",
+  "harpy",
+  "spy",
+  "mezepheles",
+  "kazali",
+  "imp",
+  "ojo",
+  "fanggu",
+  "spiritofivory"
+]

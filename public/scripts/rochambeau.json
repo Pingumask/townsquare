@@ -5,79 +5,29 @@
     "name": "Rochambeau",
     "author": "Habby"
   },
-  {
-    "id": "noble"
-  },
-  {
-    "id": "bountyhunter"
-  },
-  {
-    "id": "highpriestess"
-  },
-  {
-    "id": "towncrier"
-  },
-  {
-    "id": "innkeeper"
-  },
-  {
-    "id": "gambler"
-  },
-  {
-    "id": "acrobat"
-  },
-  {
-    "id": "lycanthrope"
-  },
-  {
-    "id": "gossip"
-  },
-  {
-    "id": "nightwatchman"
-  },
-  {
-    "id": "seamstress"
-  },
-  {
-    "id": "cannibal"
-  },
-  {
-    "id": "mayor"
-  },
-  {
-    "id": "goon"
-  },
-  {
-    "id": "tinker"
-  },
-  {
-    "id": "moonchild"
-  },
-  {
-    "id": "hatter"
-  },
-  {
-    "id": "godfather"
-  },
-  {
-    "id": "poisoner"
-  },
-  {
-    "id": "pithag"
-  },
-  {
-    "id": "assassin"
-  },
-  {
-    "id": "widow"
-  },
-  {
-    "id": "po"
-  },
-  {
-    "id": "vigormortis"
-  },
-  {
-    "id": "leviathan"
-  }
+  "noble",
+  "bountyhunter",
+  "highpriestess",
+  "towncrier",
+  "innkeeper",
+  "gambler",
+  "acrobat",
+  "lycanthrope",
+  "gossip",
+  "nightwatchman",
+  "seamstress",
+  "cannibal",
+  "mayor",
+  "goon",
+  "tinker",
+  "moonchild",
+  "hatter",
+  "godfather",
+  "poisoner",
+  "pithag",
+  "assassin",
+  "widow",
+  "po",
+  "vigormortis",
+  "leviathan"
 ]

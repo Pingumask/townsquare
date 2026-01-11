@@ -111,6 +111,14 @@
                 @click="userPreferences.zoom = Math.min(userPreferences.zoom + 1, 10)" />
             </em>
           </li>
+          <li>
+            {{ t('menu.language') }}
+            <em>
+              <font-awesome-icon icon="chevron-left" class="fa fa-chevron-left" @click="previousLanguage" />
+              {{ locale.currentLanguage.toUpperCase() }}
+              <font-awesome-icon icon="chevron-right" class="fa fa-chevron-right" @click="nextLanguage" />
+            </em>
+          </li>
           <li @click="setBackground()">
             {{ t('menu.background') }}
             <em><font-awesome-icon icon="image" class="fa fa-image" /></em>
@@ -236,6 +244,13 @@
             <em><font-awesome-icon :icon="[
               'fas',
               grimoire.allowSelfNaming ? 'check-square' : 'square',
+            ]" /></em>
+          </li>
+          <li @click="grimoire.setAllowWhispers(!grimoire.isWhisperingAllowed)">
+            {{ t('menu.allowWhispering') }}
+            <em><font-awesome-icon :icon="[
+              'fas',
+              grimoire.isWhisperingAllowed ? 'check-square' : 'square',
             ]" /></em>
           </li>
         </template>
@@ -468,6 +483,28 @@ const setBackground = () => {
 const imageOptIn = () => {
   if (userPreferences.isImageOptIn || confirm(t('prompt.imageOptIn'))) {
     userPreferences.isImageOptIn = !userPreferences.isImageOptIn;
+  }
+};
+
+const supportedLangs = locale.supportedLanguages;
+
+const nextLanguage = () => {
+  const currentIndex = supportedLangs.indexOf(locale.currentLanguage);
+  const nextIndex = (currentIndex + 1) % supportedLangs.length;
+  const targetLang = supportedLangs[nextIndex];
+  
+  if (targetLang) {
+    locale.forceLocale(targetLang);
+  }
+};
+
+const previousLanguage = () => {
+  const currentIndex = supportedLangs.indexOf(locale.currentLanguage);
+  const prevIndex = (currentIndex - 1 + supportedLangs.length) % supportedLangs.length;
+  const targetLang = supportedLangs[prevIndex];
+
+  if (targetLang) {
+    locale.forceLocale(targetLang);
   }
 };
 </script>

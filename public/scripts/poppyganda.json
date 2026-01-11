@@ -5,76 +5,28 @@
     "logo": "poppyganda",
     "author": "Dan"
   },
-  {
-    "id": "chef"
-  },
-  {
-    "id": "librarian"
-  },
-  {
-    "id": "bountyhunter"
-  },
-  {
-    "id": "pixie"
-  },
-  {
-    "id": "fortuneteller"
-  },
-  {
-    "id": "towncrier"
-  },
-  {
-    "id": "oracle"
-  },
-  {
-    "id": "monk"
-  },
-  {
-    "id": "savant"
-  },
-  {
-    "id": "juggler"
-  },
-  {
-    "id": "farmer"
-  },
-  {
-    "id": "mayor"
-  },
-  {
-    "id": "poppygrower"
-  },
-  {
-    "id": "lunatic"
-  },
-  {
-    "id": "drunk"
-  },
-  {
-    "id": "mutant"
-  },
-  {
-    "id": "snitch"
-  },
-  {
-    "id": "cerenovus"
-  },
-  {
-    "id": "marionette"
-  },
-  {
-    "id": "eviltwin"
-  },
-  {
-    "id": "baron"
-  },
-  {
-    "id": "imp"
-  },
-  {
-    "id": "vortox"
-  },
-  {
-    "id": "legion"
-  }
+  "chef",
+  "librarian",
+  "bountyhunter",
+  "pixie",
+  "fortuneteller",
+  "towncrier",
+  "oracle",
+  "monk",
+  "savant",
+  "juggler",
+  "farmer",
+  "mayor",
+  "poppygrower",
+  "lunatic",
+  "drunk",
+  "mutant",
+  "snitch",
+  "cerenovus",
+  "marionette",
+  "eviltwin",
+  "baron",
+  "imp",
+  "vortox",
+  "legion"
 ]

@@ -4,88 +4,32 @@
     "name": "Simpletown Village",
     "author": "Gordon Fitzgerald"
   },
-  {
-    "id": "alchemist"
-  },
-  {
-    "id": "librarian"
-  },
-  {
-    "id": "amnesiac"
-  },
-  {
-    "id": "cannibal"
-  },
-  {
-    "id": "sailor"
-  },
-  {
-    "id": "snakecharmer"
-  },
-  {
-    "id": "gambler"
-  },
-  {
-    "id": "farmer"
-  },
-  {
-    "id": "fool"
-  },
-  {
-    "id": "philosopher"
-  },
-  {
-    "id": "magician"
-  },
-  {
-    "id": "poppygrower"
-  },
-  {
-    "id": "drunk"
-  },
-  {
-    "id": "lunatic"
-  },
-  {
-    "id": "goon"
-  },
-  {
-    "id": "barber"
-  },
-  {
-    "id": "mutant"
-  },
-  {
-    "id": "politician"
-  },
-  {
-    "id": "klutz"
-  },
-  {
-    "id": "sweetheart"
-  },
-  {
-    "id": "tinker"
-  },
-  {
-    "id": "baron"
-  },
-  {
-    "id": "pithag"
-  },
-  {
-    "id": "godfather"
-  },
-  {
-    "id": "marionette"
-  },
-  {
-    "id": "fanggu"
-  },
-  {
-    "id": "duchess"
-  },
-  {
-    "id": "sentinel"
-  }
+  "alchemist",
+  "librarian",
+  "amnesiac",
+  "cannibal",
+  "sailor",
+  "snakecharmer",
+  "gambler",
+  "farmer",
+  "fool",
+  "philosopher",
+  "magician",
+  "poppygrower",
+  "drunk",
+  "lunatic",
+  "goon",
+  "barber",
+  "mutant",
+  "politician",
+  "klutz",
+  "sweetheart",
+  "tinker",
+  "baron",
+  "pithag",
+  "godfather",
+  "marionette",
+  "fanggu",
+  "duchess",
+  "sentinel"
 ]

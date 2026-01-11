@@ -2,14 +2,33 @@
 
 ## Upcomming Version
 - Features:
+<<<<<<< HEAD
   - Adding the Hindu
 
+=======
+  - Allow manual language selection (By default: follows ST language or uses browser's preferences when not playing)
+  - Allow players to whisper their neigbours (can be disabled by storyteller)
+>>>>>>> 023a0433df08abade92e33ebb57ff38531ade2d4
 - Fixes:
-  - Typo in english menu tabs ("Jeu" instead of "Gameplay")
-  - Wrong composition for Teensyville scripts
+
 - Localization :
 
 - Maintenance :
+
+
+## 6.1.0
+- Features:
+  - Adding the Hindu Loric
+- Fixes:
+  - Typo in english menu tabs ("Jeu" instead of "Gameplay")
+  - Wrong composition (number of villagers/outsiders) for Teensyville scripts
+  - Wrong ids in many included custom scripts
+- Localization :
+  - Added support for Spanish (Thanks to https://github.com/FerLuisxd)
+- Maintenance :
+  - Removed github actions deployment to github pages (https://pingumask.github.io is deprecated, use https://clocktower.tf instead)
+  - Beta deployments managed by netlify (develop branch available at https://beta.clocktower.tf, temporary test versions deployed automatically on pull requests)
+  - Updated dependencies
 
 # 6.0.1
 - Fixes:

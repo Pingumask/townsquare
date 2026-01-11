@@ -1,6 +1,8 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faAddressCard,
+  faChevronLeft,
+  faChevronRight,
   faBarsProgress,
   faBell,
   faBookOpen,
@@ -31,6 +33,7 @@ import {
   faMinusCircle,
   faMinusSquare,
   faMusic,
+  faPaperPlane,
   faPeopleArrows,
   faPlay,
   faPlusCircle,
@@ -71,6 +74,8 @@ import type { App } from "vue";
 
 library.add(
   faAddressCard,
+  faChevronLeft,
+  faChevronRight,
   faBarsProgress,
   faBell,
   faBookOpen,
@@ -102,6 +107,7 @@ library.add(
   faMinusCircle,
   faMinusSquare,
   faMusic,
+  faPaperPlane,
   faPeopleArrows,
   faPlay,
   faPlusCircle,
@@ -132,7 +138,7 @@ library.add(
   faYinYang,
   faGithub,
   faDiscord,
-  faDocker,
+  faDocker
 );
 
 export default {

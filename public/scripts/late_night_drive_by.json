@@ -1,50 +1,22 @@
 [
-    {
-        "id": "_meta",
-        "logo": "godfather",
-        "name": "Late night drive by",
-        "author": "Aero"
-    },
-    {
-        "id": "snake_charmer"
-    },
-    {
-        "id": "lycanthrope"
-    },
-    {
-        "id": "slayer"
-    },
-    {
-        "id": "fool"
-    },
-    {
-        "id": "alchemist"
-    },
-    {
-        "id": "minstrel"
-    },
-    {
-        "id": "tinker"
-    },
-    {
-        "id": "recluse"
-    },
-    {
-        "id": "golem"
-    },
-    {
-        "id": "godfather"
-    },
-    {
-        "id": "psychopath"
-    },
-    {
-        "id": "scarlet_woman"
-    },
-    {
-        "id": "pukka"
-    },
-    {
-        "id": "imp"
-    }
+  {
+    "id": "_meta",
+    "logo": "godfather",
+    "name": "Late night drive by",
+    "author": "Aero"
+  },
+  "snakecharmer",
+  "lycanthrope",
+  "slayer",
+  "fool",
+  "alchemist",
+  "minstrel",
+  "tinker",
+  "recluse",
+  "golem",
+  "godfather",
+  "psychopath",
+  "scarletwoman",
+  "pukka",
+  "imp"
 ]

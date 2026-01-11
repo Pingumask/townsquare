@@ -1,1 +1,37 @@
-[{"id":"_meta","author":"Zets","name":"A Grimm Chorus"},"general","village_idiot","town_crier","innkeeper","gambler","exorcist","amnesiac","nightwatchman","slayer","fisherman","soldier","minstrel","cannibal","damsel","drunk","golem","politician","godfather","summoner","assassin","scarlet_woman","yaggababble","pukka","ojo","po","harlot","judge","scapegoat","beggar","thief"]
+[
+  {
+    "id": "_meta",
+    "author": "Zets",
+    "name": "A Grimm Chorus"
+  },
+  "general",
+  "villageidiot",
+  "towncrier",
+  "innkeeper",
+  "gambler",
+  "exorcist",
+  "amnesiac",
+  "nightwatchman",
+  "slayer",
+  "fisherman",
+  "soldier",
+  "minstrel",
+  "cannibal",
+  "damsel",
+  "drunk",
+  "golem",
+  "politician",
+  "godfather",
+  "summoner",
+  "assassin",
+  "scarletwoman",
+  "yaggababble",
+  "pukka",
+  "ojo",
+  "po",
+  "harlot",
+  "judge",
+  "scapegoat",
+  "beggar",
+  "thief"
+]

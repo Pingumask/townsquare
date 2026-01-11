@@ -1,83 +1,33 @@
 [
-    {
-        "id": "_meta",
-        "logo": "midnight_oasis",
-        "name": "The Midnight Oasis",
-        "author": "Zets"
-    },
-    {
-        "id": "noble"
-    },
-    {
-        "id": "balloonist"
-    },
-    {
-        "id": "snake_charmer"
-    },
-    {
-        "id": "savant"
-    },
-    {
-        "id": "amnesiac"
-    },
-    {
-        "id": "engineer"
-    },
-    {
-        "id": "huntsman"
-    },
-    {
-        "id": "professor"
-    },
-    {
-        "id": "fisherman"
-    },
-    {
-        "id": "farmer"
-    },
-    {
-        "id": "poppy_grower"
-    },
-    {
-        "id": "cannibal"
-    },
-    {
-        "id": "atheist"
-    },
-    {
-        "id": "damsel"
-    },
-    {
-        "id": "drunk"
-    },
-    {
-        "id": "golem"
-    },
-    {
-        "id": "barber"
-    },
-    {
-        "id": "mezepheles"
-    },
-    {
-        "id": "poisoner"
-    },
-    {
-        "id": "pit-hag"
-    },
-    {
-        "id": "psychopath"
-    },
-    {
-        "id": "al-hadikhia"
-    },
-    {
-        "id": "vigormortis"
-    },
-    {
-        "id": "sentinel"
-    },
-    {
-        "id": "spirit_of_ivory"
-    }
+  {
+    "id": "_meta",
+    "logo": "midnight_oasis",
+    "name": "The Midnight Oasis",
+    "author": "Zets"
+  },
+  "noble",
+  "balloonist",
+  "snakecharmer",
+  "savant",
+  "amnesiac",
+  "engineer",
+  "huntsman",
+  "professor",
+  "fisherman",
+  "farmer",
+  "poppygrower",
+  "cannibal",
+  "atheist",
+  "damsel",
+  "drunk",
+  "golem",
+  "barber",
+  "mezepheles",
+  "poisoner",
+  "pithag",
+  "psychopath",
+  "alhadikhia",
+  "vigormortis",
+  "sentinel",
+  "spiritofivory"
 ]

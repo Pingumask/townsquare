@@ -5,73 +5,27 @@
     "author": "Matt",
     "logo": "pukka"
   },
-  {
-    "id": "clockmaker"
-  },
-  {
-    "id": "grandmother"
-  },
-  {
-    "id": "librarian"
-  },
-  {
-    "id": "empath"
-  },
-  {
-    "id": "fortuneteller"
-  },
-  {
-    "id": "exorcist"
-  },
-  {
-    "id": "flowergirl"
-  },
-  {
-    "id": "oracle"
-  },
-  {
-    "id": "undertaker"
-  },
-  {
-    "id": "monk"
-  },
-  {
-    "id": "artist"
-  },
-  {
-    "id": "slayer"
-  },
-  {
-    "id": "seamstress"
-  },
-  {
-    "id": "lunatic"
-  },
-  {
-    "id": "mutant"
-  },
-  {
-    "id": "sweetheart"
-  },
-  {
-    "id": "recluse"
-  },
-  {
-    "id": "godfather"
-  },
-  {
-    "id": "assassin"
-  },
-  {
-    "id": "scarletwoman"
-  },
-  {
-    "id": "marionette"
-  },
-  {
-    "id": "nodashii"
-  },
-  {
-    "id": "pukka"
-  }
+  "clockmaker",
+  "grandmother",
+  "librarian",
+  "empath",
+  "fortuneteller",
+  "exorcist",
+  "flowergirl",
+  "oracle",
+  "undertaker",
+  "monk",
+  "artist",
+  "slayer",
+  "seamstress",
+  "lunatic",
+  "mutant",
+  "sweetheart",
+  "recluse",
+  "godfather",
+  "assassin",
+  "scarletwoman",
+  "marionette",
+  "nodashii",
+  "pukka"
 ]

@@ -1,82 +1,32 @@
 [
-    {
-        "id": "_meta",
-        "name": "Storyteller's Vengeance",
-        "author": "Termateddy"
-    },
-    {
-        "id": "investigator"
-    },
-    {
-        "id": "chambermaid"
-    },
-    {
-        "id": "empath"
-    },
-    {
-        "id": "fortune_teller"
-    },
-    {
-        "id": "innkeeper"
-    },
-    {
-        "id": "town_crier"
-    },
-    {
-        "id": "undertaker"
-    },
-    {
-        "id": "artist"
-    },
-    {
-        "id": "seamstress"
-    },
-    {
-        "id": "slayer"
-    },
-    {
-        "id": "virgin"
-    },
-    {
-        "id": "mayor"
-    },
-    {
-        "id": "atheist"
-    },
-    {
-        "id": "drunk"
-    },
-    {
-        "id": "lunatic"
-    },
-    {
-        "id": "puzzlemaster"
-    },
-    {
-        "id": "klutz"
-    },
-    {
-        "id": "evil_twin"
-    },
-    {
-        "id": "marionette"
-    },
-    {
-        "id": "witch"
-    },
-    {
-        "id": "scarlet_woman"
-    },
-    {
-        "id": "fang_gu"
-    },
-    {
-        "id": "imp"
-    },
-    {
-        "id": "no_dashii"
-    },
-    {
-        "id": "vigormortis"
-    }
+  {
+    "id": "_meta",
+    "name": "Storyteller's Vengeance",
+    "author": "Termateddy"
+  },
+  "investigator",
+  "chambermaid",
+  "empath",
+  "fortuneteller",
+  "innkeeper",
+  "town_crier",
+  "undertaker",
+  "artist",
+  "seamstress",
+  "slayer",
+  "virgin",
+  "mayor",
+  "atheist",
+  "drunk",
+  "lunatic",
+  "puzzlemaster",
+  "klutz",
+  "eviltwin",
+  "marionette",
+  "witch",
+  "scarletwoman",
+  "fanggu",
+  "imp",
+  "nodashii",
+  "vigormortis"
 ]

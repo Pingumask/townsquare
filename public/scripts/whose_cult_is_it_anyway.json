@@ -4,97 +4,35 @@
     "name": "Whose Cult Is It Anyway?",
     "author": "Aero"
   },
-  {
-    "id": "noble"
-  },
-  {
-    "id": "pixie"
-  },
-  {
-    "id": "balloonist"
-  },
-  {
-    "id": "preacher"
-  },
-  {
-    "id": "villageidiot"
-  },
-  {
-    "id": "king"
-  },
-  {
-    "id": "cultleader"
-  },
-  {
-    "id": "oracle"
-  },
-  {
-    "id": "lycanthrope"
-  },
-  {
-    "id": "savant"
-  },
-  {
-    "id": "seamstress"
-  },
-  {
-    "id": "cannibal"
-  },
-  {
-    "id": "choirboy"
-  },
-  {
-    "id": "recluse"
-  },
-  {
-    "id": "mutant"
-  },
-  {
-    "id": "zealot"
-  },
-  {
-    "id": "puzzlemaster"
-  },
-  {
-    "id": "witch"
-  },
-  {
-    "id": "cerenovus"
-  },
-  {
-    "id": "fearmonger"
-  },
-  {
-    "id": "goblin"
-  },
-  {
-    "id": "lilmonsta"
-  },
-  {
-    "id": "nodashii"
-  },
-  {
-    "id": "fanggu"
-  },
-  {
-    "id": "lordoftyphon"
-  },
-  {
-    "id": "harlot"
-  },
-  {
-    "id": "butcher"
-  },
-  {
-    "id": "bonecollector"
-  },
-  {
-    "id": "beggar"
-  },
-  {
-    "id": "bishop"
-  },
-  {
-    "id": "stormcatcher"
-  }
+  "noble",
+  "pixie",
+  "balloonist",
+  "preacher",
+  "villageidiot",
+  "king",
+  "cultleader",
+  "oracle",
+  "lycanthrope",
+  "savant",
+  "seamstress",
+  "cannibal",
+  "choirboy",
+  "recluse",
+  "mutant",
+  "zealot",
+  "puzzlemaster",
+  "witch",
+  "cerenovus",
+  "fearmonger",
+  "goblin",
+  "lilmonsta",
+  "nodashii",
+  "fanggu",
+  "lordoftyphon",
+  "harlot",
+  "butcher",
+  "bonecollector",
+  "beggar",
+  "bishop",
+  "stormcatcher"
 ]

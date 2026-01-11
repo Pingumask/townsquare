@@ -5,58 +5,22 @@
     "author": "Evin Donohoe",
     "logo": "doomsayer"
   },
-  {
-    "id": "clockmaker"
-  },
-  {
-    "id": "empath"
-  },
-  {
-    "id": "dreamer"
-  },
-  {
-    "id": "courtier"
-  },
-  {
-    "id": "slayer"
-  },
-  {
-    "id": "mayor"
-  },
-  {
-    "id": "lunatic"
-  },
-  {
-    "id": "klutz"
-  },
-  {
-    "id": "spy"
-  },
-  {
-    "id": "scarletwoman"
-  },
-  {
-    "id": "vortox"
-  },
-  {
-    "id": "barista"
-  },
-  {
-    "id": "harlot"
-  },
-  {
-    "id": "beggar"
-  },
-  {
-    "id": "scapegoat"
-  },
-  {
-    "id": "bishop"
-  },
-  {
-    "id": "doomsayer"
-  },
-  {
-    "id": "sentinel"
-  }
+  "clockmaker",
+  "empath",
+  "dreamer",
+  "courtier",
+  "slayer",
+  "mayor",
+  "lunatic",
+  "klutz",
+  "spy",
+  "scarletwoman",
+  "vortox",
+  "barista",
+  "harlot",
+  "beggar",
+  "scapegoat",
+  "bishop",
+  "doomsayer",
+  "sentinel"
 ]

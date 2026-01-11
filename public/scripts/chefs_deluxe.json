@@ -1,1 +1,31 @@
-[{"id":"_meta","author":"Harald","name":"Chef's Deluxe"},"chef","pixie","mathematician","snake_charmer","town_crier","savant","amnesiac","juggler","fisherman","philosopher","poppy_grower","cannibal","atheist","puzzlemaster","recluse","mutant","drunk","spy","cerenovus","marionette","evil_twin","imp","fang_gu","legion"]
+[
+  {
+    "id": "_meta",
+    "author": "Harald",
+    "name": "Chef's Deluxe"
+  },
+  "chef",
+  "pixie",
+  "mathematician",
+  "snakecharmer",
+  "towncrier",
+  "savant",
+  "amnesiac",
+  "juggler",
+  "fisherman",
+  "philosopher",
+  "poppygrower",
+  "cannibal",
+  "atheist",
+  "puzzlemaster",
+  "recluse",
+  "mutant",
+  "drunk",
+  "spy",
+  "cerenovus",
+  "marionette",
+  "eviltwin",
+  "imp",
+  "fanggu",
+  "legion"
+]

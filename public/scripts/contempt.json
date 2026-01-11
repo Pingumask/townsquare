@@ -1,1 +1,31 @@
-[{"id": "_meta", "name": "Contempt", "author": "Milk"}, {"id": "steward"}, {"id": "noble"}, {"id": "bountyhunter"}, {"id": "highpriestess"}, {"id": "balloonist"}, {"id": "mathematician"}, {"id": "oracle"}, {"id": "slayer"}, {"id": "fisherman"}, {"id": "juggler"}, {"id": "soldier"}, {"id": "cannibal"}, {"id": "ravenkeeper"}, {"id": "butler"}, {"id": "sweetheart"}, {"id": "plaguedoctor"}, {"id": "barber"}, {"id": "xaan"}, {"id": "marionette"}, {"id": "scarletwoman"}, {"id": "vizier"}, {"id": "nodashii"}, {"id": "imp"}, {"id": "ojo"}]
+[
+  {
+    "id": "_meta",
+    "name": "Contempt",
+    "author": "Milk"
+  },
+  "steward",
+  "noble",
+  "bountyhunter",
+  "highpriestess",
+  "balloonist",
+  "mathematician",
+  "oracle",
+  "slayer",
+  "fisherman",
+  "juggler",
+  "soldier",
+  "cannibal",
+  "ravenkeeper",
+  "butler",
+  "sweetheart",
+  "plaguedoctor",
+  "barber",
+  "xaan",
+  "marionette",
+  "scarletwoman",
+  "vizier",
+  "nodashii",
+  "imp",
+  "ojo"
+]
