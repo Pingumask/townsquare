@@ -69,4 +69,5 @@ export type Modals =
   | "roles"
   | "voteHistory"
   | "specialVote"
+  | "notes"
   | null;

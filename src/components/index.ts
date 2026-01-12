@@ -26,3 +26,4 @@ export { default as RoleModal } from "./modals/RoleModal.vue";
 export { default as RolesModal } from "./modals/RolesModal.vue";
 export { default as SpecialVoteModal } from "./modals/SpecialVoteModal.vue";
 export { default as VoteHistoryModal } from "./modals/VoteHistoryModal.vue";
+export { default as NotesModal } from "./modals/NotesModal.vue";

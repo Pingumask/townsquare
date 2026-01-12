@@ -13,6 +13,7 @@
 
 ## 6.1.0
 - Features:
+  - Added private Notes popup (toggle with 'Q') - credit to @FerLuisxd (https://github.com/FerLuisxd)
   - Adding the Hindu Loric
 - Fixes:
   - Typo in english menu tabs ("Jeu" instead of "Gameplay")

@@ -12,6 +12,7 @@ interface UserPreferencesState {
   isStreamerMode: boolean;
   zoom: number;
   background: string;
+  notes: string;
   timerDurations: TimerDurations;
 }
 
@@ -27,6 +28,7 @@ export const useUserPreferencesStore = defineStore("userPreferences", {
     isStreamerMode: false,
     zoom: 0,
     background: "",
+    notes: "",
     timerDurations: {
       daytime: 6,
       nominations: 2,
