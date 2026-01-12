@@ -57,6 +57,7 @@
     "request": "Proposer une fonctionalité",
     "newGame": "Nouvelle partie",
     "endGame": "Fin de Partie",
+    "notes": "Notes",
     "language": "Langue"
   },
   "head": {
@@ -320,6 +321,10 @@
         "debateText": "Le débat est ouvert",
         "buttonLabel": "(Personnalisé)"
       }
+    },
+    "notes": {
+      "title": "Notes",
+      "placeholder": "Tapez vos notes ici... (elles ne sont visibles que par vous)"
     }
   },
   "chat": {

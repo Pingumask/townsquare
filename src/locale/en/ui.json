@@ -57,6 +57,7 @@
     "request": "Request a feature",
     "newGame": "New Game",
     "endGame": "End Game",
+    "notes": "Notes",
     "language": "Language"
   },
   "head": {
@@ -319,6 +320,10 @@
         "debateText": "The debate is open",
         "buttonLabel": "(Custom)"
       }
+    },
+    "notes": {
+      "title": "Notes",
+      "placeholder": "Type your notes here... (they are only visible to you)"
     }
   },
   "chat": {
