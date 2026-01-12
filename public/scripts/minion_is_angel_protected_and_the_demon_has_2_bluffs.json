@@ -2,7 +2,9 @@
   {
     "id": "_meta",
     "name": "Minion is Angel-protected & The Demon has 2 Bluffs",
-    "author": "Zets"
+    "author": "Zets",
+    "bootlegger": [12, 13],
+    "version":"7.0.0"
   },
   "empath",
   "chambermaid",

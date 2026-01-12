@@ -2,7 +2,8 @@
   {
     "id": "_meta",
     "author": "Rope",
-    "name": "Revenge of the Martian Vampires"
+    "name": "Revenge of the Martian Vampires",
+    "version" : "2.0.0"
   },
   "librarian",
   "pixie",

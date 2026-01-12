@@ -3,7 +3,8 @@
     "id": "_meta",
     "logo": "spooky_tea",
     "name": "Spooky Tea",
-    "author": "Zets"
+    "author": "Zets",
+    "version" : "2.0.1"
   },
   "chef",
   "pixie",

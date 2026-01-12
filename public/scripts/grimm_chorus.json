@@ -2,7 +2,8 @@
   {
     "id": "_meta",
     "author": "Zets",
-    "name": "A Grimm Chorus"
+    "name": "A Grimm Chorus",
+    "version" : "1.6.1"
   },
   "general",
   "villageidiot",

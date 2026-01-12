@@ -3,7 +3,8 @@
     "id": "_meta",
     "logo": "godfather",
     "name": "Late night drive by",
-    "author": "Aero"
+    "author": "Aero",
+    "version" : "1.6"
   },
   "snakecharmer",
   "lycanthrope",

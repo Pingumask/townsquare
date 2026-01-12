@@ -3,7 +3,10 @@
     "id": "_meta",
     "logo": "reptiles",
     "name": "Reptiles II : Lizard in the city",
-    "author": "Aero"
+    "author": "Aero",
+    "stormcaught": "drunk",
+    "bootlegger": [9],
+    "version" : "1.2.0"
   },
   "chef",
   "washerwoman",

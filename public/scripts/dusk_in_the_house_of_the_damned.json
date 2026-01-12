@@ -2,7 +2,8 @@
   {
     "id": "_meta",
     "name": "Dusk in the House of the Damned",
-    "author": "Shade (Shadowqueer)"
+    "author": "Shade (Shadowqueer)",
+    "version" : "3.0.0"
   },
   "noble",
   "pixie",

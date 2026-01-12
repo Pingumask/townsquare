@@ -270,7 +270,23 @@
         "minion": "sbires",
         "demon": "démons"
       },
-      "nightOrder": "Afficher l'Ordre Nocturne"
+      "nightOrder": "Afficher l'Ordre Nocturne",
+      "specialRules": [
+        "Les accusés peuvent choisir de mourir après avoir fait une accusation. S'ils le font, la capacité de leur accusé marche deux fois jusqu'à demain au crépuscule.",
+        "(Un personnage qui a déjà utilisé sa capacité unique ne peut pas la réutiliser ainsi. EN revanche, s'il ne l'a pas utilisée quand il reçoit son bonus, il pourra l'utiliser deux fois d'un coup)",
+        "Les joueurs ne peuvent pas se sacrifier au Djinn s'il ne reste que 3 joueurs en vie.",
+        "Igonrez le jinx Légion/Magicien.",
+        "Si le Cannibale mange l'Idiot du Village ivre, il devient ivre.",
+        "Si le Planteur de pavot meurt alors qu'il est empoisonné, sa capacité fonctionne quand même.",
+        "Le Kazali choisit les personnages de tout le monde pour faire une distribution légale (+0 Marginal, pas de Demoiselle), jusqu'à 3 changements peuvent être faits par le Narrateur. S'il y a alors 1 Marginal de moins que prévu, une Demoiselle est crée après les choix du Narrateur.",
+        "Tous les joueurs sont dans une paire de Révolutionnaire.",
+        "(N'utilisez le mensonge permis par le Révolutionnaire qu'une seule fois par partie)",
+        "En annonçant les cibles d'Al-Hadikhia chaque nuit, le Narrateur doit imiter le bruit d'un éclair.",
+        "Le jinx Léviathan + Guenaude est ignoré.",
+        "Le Siège 7 reste vide. Ses choix sont arbitraires. Une fois par partie, le Narrateur peut parler en son nom.",
+        "Le Démon connaît 2 bluffs. Autrement dit, il connaît 2 personnages non distribués.",
+        "Le Sbire est protégé par l'Ange. Cela signifie que l'identité du Sbire est connue publiquement depuis le début de la partie (avant la première nuit), mais le tuer déclenche la colère de l'Ange."
+      ]
     },
     "reminder": {
       "title": "Apposer une note :",
