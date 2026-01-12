@@ -2,7 +2,8 @@
   {
     "id": "_meta",
     "name": "Insanity and Intuition v1.2",
-    "author": "Sam"
+    "author": "Sam",
+    "version" : "1.2.0"
   },
   "knight",
   "pixie",

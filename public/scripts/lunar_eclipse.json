@@ -2,7 +2,8 @@
   {
     "id": "_meta",
     "author": "Ekin",
-    "name": "Lunar Eclipse"
+    "name": "Lunar Eclipse",
+    "version" : "1.6.0"
   },
   "grandmother",
   "pixie",

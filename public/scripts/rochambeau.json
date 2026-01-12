@@ -3,7 +3,9 @@
     "id": "_meta",
     "logo": "rochambeau",
     "name": "Rochambeau",
-    "author": "Habby"
+    "author": "Habby",
+    "bootlegger": [10],
+    "version" : "10.0.0"
   },
   "noble",
   "bountyhunter",

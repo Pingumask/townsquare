@@ -3,7 +3,8 @@
     "id": "_meta",
     "name": "Boozling",
     "author": "Lau",
-    "logo": "balloonist"
+    "logo": "balloonist",
+    "version": "9.0.0"
   },
   "noble",
   "pixie",

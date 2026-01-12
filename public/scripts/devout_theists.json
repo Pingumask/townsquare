@@ -2,7 +2,8 @@
   {
     "id": "_meta",
     "name": "Devout Theists v6",
-    "author": "Emerald"
+    "author": "Emerald",
+    "version" : "6.0.0"
   },
   "noble",
   "chef",

@@ -3,7 +3,8 @@
     "id": "_meta",
     "logo": "the-horrifying-spectacle",
     "name": "The Horrifying Spectacle of Public Executions",
-    "author": "Navean"
+    "author": "Navean",
+    "version" : "2.0.0"
   },
   "chef",
   "sailor",

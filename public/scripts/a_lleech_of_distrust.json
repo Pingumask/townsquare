@@ -2,7 +2,8 @@
   {
     "id": "_meta",
     "author": "OJ",
-    "name": "A Lleech of Distrust"
+    "name": "A Lleech of Distrust",
+    "version":"2.1.1"
   },
   "pixie",
   "undertaker",

@@ -2,7 +2,8 @@
   {
     "id": "_meta",
     "name": "No roles barred",
-    "author": "Andrew Pichot"
+    "author": "Andrew Pichot",
+    "version" : "1.0.1"
   },
   "alchemist",
   "noble",

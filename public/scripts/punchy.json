@@ -2,7 +2,8 @@
   {
     "id": "_meta",
     "author": "Zets",
-    "name": "Punchy v3.8"
+    "name": "Punchy v3.8",
+    "version" : "3.8.0"
   },
   "steward",
   "pixie",

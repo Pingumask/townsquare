@@ -4,7 +4,8 @@
     "logo": "hide_seek",
     "name": "Hide and Seek",
     "author": "Narninian & Zaba",
-    "credits": "Script logo by Wedge McCloud."
+    "credits": "Script logo by Wedge McCloud.",
+    "version" : "6.1.0"
   },
   "noble",
   "librarian",

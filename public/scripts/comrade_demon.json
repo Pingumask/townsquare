@@ -2,7 +2,8 @@
   {
     "id": "_meta",
     "name": "Comrade Demon",
-    "author": "Zets"
+    "author": "Zets",
+    "version" : "1.9.0"
   },
   "noble",
   "investigator",

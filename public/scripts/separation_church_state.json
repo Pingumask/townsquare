@@ -2,7 +2,9 @@
   {
     "id": "_meta",
     "author": "Aero",
-    "name": "Separation Of Church and State"
+    "name": "Separation Of Church and State",
+    "stormcaught":"mayor",
+    "version":"2.5.0"
   },
   "knight",
   "grandmother",

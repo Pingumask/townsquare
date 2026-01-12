@@ -3,7 +3,8 @@
     "id": "_meta",
     "name": "Race to the Bottom",
     "author": "Evin Donohoe",
-    "logo": "doomsayer"
+    "logo": "doomsayer",
+    "version" : "1.1.0"
   },
   "clockmaker",
   "empath",
