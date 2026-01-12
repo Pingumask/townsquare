@@ -4,6 +4,7 @@
 - Features:
   - Allow manual language selection (By default: follows ST language or uses browser's preferences when not playing)
   - Allow players to whisper their neigbours (can be disabled by storyteller)
+  - Added private Notes popup (toggle with 'Q') - credit to @FerLuisxd (https://github.com/FerLuisxd)
 - Fixes:
 
 - Localization :
@@ -13,7 +14,6 @@
 
 ## 6.1.0
 - Features:
-  - Added private Notes popup (toggle with 'Q') - credit to @FerLuisxd (https://github.com/FerLuisxd)
   - Adding the Hindu Loric
 - Fixes:
   - Typo in english menu tabs ("Jeu" instead of "Gameplay")
