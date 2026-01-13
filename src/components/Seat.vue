@@ -58,6 +58,15 @@
           session.isPlayerOrSpectator &&
           props.player.id !== session.playerId
         " icon="question" class="fa fa-question vote" :title="t('player.handDown')" @click="vote()" />
+        
+        <font-awesome-icon v-if="
+          session.isPlayerOrSpectator &&
+          props.player.id &&
+          props.player.id !== session.playerId &&
+          discordStore.isSelectingForChat
+        " icon="comments" class="fa fa-comments request-chat" title="Request Private Chat" 
+          @click="requestPrivateChat(props.player)" />
+
         <font-awesome-icon icon="times-circle" class="fa fa-times-circle cancel" :title="t('player.cancel')"
           @click="cancel()" />
         <font-awesome-icon icon="exchange-alt" class="fa fa-exchange-alt swap" :title="t('player.swap')"
@@ -192,6 +201,7 @@ import {
   useSessionStore,
   useUserPreferencesStore,
   useVotingStore,
+  useDiscordStore,
 } from "@/stores";
 
 const locale = useLocaleStore();
@@ -214,6 +224,7 @@ const playersMenu = usePlayersMenuStore();
 const session = useSessionStore();
 const userPreferences = useUserPreferencesStore();
 const votingStore = useVotingStore();
+const discordStore = useDiscordStore();
 
 const index = computed(() => players.value.indexOf(props.player));
 const players = computed<Player[]>(() => playersStore.players);
@@ -374,13 +385,38 @@ function cancel() {
   emit("trigger", ["cancel"]);
 }
 
+function requestPrivateChat(player: Player) {
+  emit("trigger", ["requestPrivateChat", player]);
+}
+
 function claimSeat() {
   isMenuOpen.value = false;
   emit("trigger", ["claimSeat"]);
-  if (props.player.name === "") {
-    setTimeout(() => {
-      changeName();
-    }, 100);
+  
+  // If we are claiming an EMPTY seat (or it's not us already), prompt for name/discord
+  // But wait, claimSeat works as a toggle in TownSquare.vue:
+  // if (player && session.playerId === player.id) { session.claimSeat(-1); } else { session.claimSeat(playerIndex); }
+  
+  // here in Seat.vue, props.player exists. 
+  // If props.player.id === session.playerId, we are ALREADY seated here. So clicking this calls unclaim.
+  // We want to prompt ONLY if we are NOT seated here (claiming).
+  const isUnclaiming = props.player && props.player.id === session.playerId;
+
+  if (!isUnclaiming) {
+      if (props.player.name === "") {
+        setTimeout(() => {
+          changeName();
+        }, 100);
+      }
+      // Prompt for Discord Username if not set
+      if (!userPreferences.discordUsername) {
+        setTimeout(() => {
+          const username = prompt("Enter your Discord Username (for Voice Chat integration):");
+          if (username) {
+            userPreferences.$patch({ discordUsername: username });
+          }
+        }, 200);
+      }
   }
 }
 
@@ -640,6 +676,7 @@ picture * {
   &.move,
   &.nominate,
   &.vote,
+  &.request-chat,
   &.cancel {
     width: 50%;
     height: 60%;
@@ -666,6 +703,10 @@ picture * {
     &.fa-question * {
       fill: url(#minion);
     }
+    
+    &.fa-comments * {
+      fill: url(#townsfolk);
+    }
   }
 }
 
@@ -691,6 +732,18 @@ picture * {
 // a locked vote can be clicked on by the ST
 #townsquare.vote:not(.spectator) .player.vote-lock .overlay svg.vote {
   pointer-events: all;
+}
+
+li .player .overlay svg.request-chat {
+  opacity: 0.8;
+  transform: scale(0.8) translateY(-60%); 
+  // Positioning it above/apart from center
+  pointer-events: all;
+  
+  &:hover {
+    transform: scale(1) translateY(-60%);
+    opacity: 1;
+  }
 }
 
 li.from:not(.nominate) .player .overlay svg.cancel {

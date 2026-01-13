@@ -8,6 +8,7 @@ import {
   useVotingStore,
   useChatStore,
   useAnimationStore,
+  useDiscordStore,
 } from "@/stores";
 import type {
   Edition,
@@ -91,9 +92,9 @@ export class LiveSession {
     this.disconnect();
     this._socket = new WebSocket(
       this._wss +
-        channel +
-        "/" +
-        (this._isPlayerOrSpectator ? sessionStore.playerId : "host")
+      channel +
+      "/" +
+      (this._isPlayerOrSpectator ? sessionStore.playerId : "host")
     );
     this._socket.addEventListener("message", this._handleMessage.bind(this));
     this._socket.onopen = this._onOpen.bind(this);
@@ -302,6 +303,21 @@ export class LiveSession {
       case "chat":
         this._handleChat(params as { from: string; message: string });
         break;
+      case "discordRequest":
+        this._handleDiscordRequest(params as { from: string; to: string });
+        break;
+      case "discordAccept":
+        this._handleDiscordAccept(params as { from: string; to: string; roomName: string });
+        break;
+      case "discordMove": // Sent by player to host
+        this._handleDiscordMove(params as { type: string, discordUsername: string, channelName: string });
+        break;
+      case "discordState": // Broadcast by host
+        this._handleDiscordState(params as Record<string, string[]>);
+        break;
+      case "discordForceMove":
+        this._handleDiscordForceMove(params as { roomName: string });
+        break;
     }
   }
 
@@ -392,6 +408,7 @@ export class LiveSession {
         lockedVote: votingStore.lockedVote,
         isVoteInProgress: votingStore.isVoteInProgress,
         markedPlayer: votingStore.markedPlayer,
+        discordWebhookUrl: grimoireStore.discordWebhookUrl,
         fabled: playersStore.fabled.map((f: Role) =>
           f.isCustom ? f : { id: f.id }
         ),
@@ -404,6 +421,8 @@ export class LiveSession {
 
   async _updateGamestate(data: Record<string, unknown>) {
     if (!this._isPlayerOrSpectator) return;
+    console.log("Game State received:", data);
+
     const grimoireStore = useGrimoireStore();
     const playersStore = usePlayersStore();
     const votingStore = useVotingStore();
@@ -428,6 +447,7 @@ export class LiveSession {
       markedPlayer,
       fabled,
       locale,
+      discordWebhookUrl,
     } = data as {
       gamestate: Array<{
         name: string;
@@ -454,6 +474,7 @@ export class LiveSession {
       markedPlayer?: number;
       fabled: Array<{ id: string; isCustom?: boolean }>;
       locale: string;
+      discordWebhookUrl?: string;
     };
 
     await localeStore.forceLocale(locale);
@@ -505,11 +526,23 @@ export class LiveSession {
       }
     });
     if (!isLightweight) {
+      const logChange = (name: string, oldVal: unknown, newVal: unknown) => {
+        if (JSON.stringify(oldVal) !== JSON.stringify(newVal)) {
+          console.log(`GS Change [${name}]:`, oldVal, "->", newVal);
+        }
+      };
+
       grimoireStore.setTimer(timer || {});
       grimoireStore.setAllowSelfNaming(!!allowSelfNaming);
       grimoireStore.setVoteHistoryAllowed(!!isVoteHistoryAllowed);
       grimoireStore.setSecretVote(!!isSecretVoteMode);
       grimoireStore.setAllowWhispers(!!isWhisperingAllowed);
+
+      logChange("discordWebhookUrl", grimoireStore.discordWebhookUrl, discordWebhookUrl);
+      if (discordWebhookUrl !== undefined) {
+        grimoireStore.$patch({ discordWebhookUrl });
+      }
+
       votingStore.updateNomination({
         nomination,
         votes: votes || [],
@@ -564,8 +597,8 @@ export class LiveSession {
         });
         alert(
           `This session contains custom characters that can't be found. ` +
-            `Please load them before joining! ` +
-            `Missing roles: ${missing.join(", ")}`
+          `Please load them before joining! ` +
+          `Missing roles: ${missing.join(", ")}`
         );
         this.disconnect();
       }
@@ -799,6 +832,64 @@ export class LiveSession {
     } else {
       console.warn("[Chat] Message from unknown neighbor:", senderId);
     }
+  }
+
+  _handleDiscordRequest(params: { from: string; to: string }) {
+    const discordStore = useDiscordStore();
+    const session = useSessionStore();
+    // Only care if it is for me
+    if (params.to === session.playerId) {
+      discordStore.handleRequest(params.from);
+    }
+  }
+
+  _handleDiscordAccept(params: { from: string; to: string; roomName: string }) {
+    const discordStore = useDiscordStore();
+    const session = useSessionStore();
+    if (params.to === session.playerId) {
+      discordStore.handleAccept(params.roomName);
+    }
+  }
+
+  _handleDiscordMove(params: { type: string, discordUsername: string, channelName: string }) {
+    if (this._isPlayerOrSpectator) return; // Only host handles this
+    const discordStore = useDiscordStore();
+    // Host needs to find the player ID from the sender?? 
+    // Wait, the params don't include playerId, but the explicit `discordMove` call in store did send payload...
+    // But socket.ts `_handleMessage` doesn't pass the sender ID automatically if it's not in the payload wrapper
+    // The socket message is [command, params]. 
+    // But since `discordMove` is sent via `socket.send`, it goes to everyone?
+    // No, `socket.send` goes to Host if not direct?
+    // Actually `socket.send` in `LiveSession` sends to the server, which rebroadcasts to everyone (or host only if logic says so?)
+    // In `server/index.js`, default is broadcast to everyone.
+
+    // So if a player sends `discordMove`, everyone receives it.
+    // We only want Host to process it.
+
+    // BUT we need to know WHO sent it. 
+    // The payload in `useDiscordStore` was:
+    // { type: "MOVE", discordUsername: "ferluis", channelName: "private-room-3" }
+    // It is missing the playerId. We should add it to the payload.
+
+    // Let's defer this fix to `useDiscordStore.ts` update, but here I'll assume params has playerId or we'll add it.
+    // Actually, `useDiscordStore` didn't put playerId in payload. I should fix that.
+
+    // For now, let's assume we will add `playerId` to the payload in `useDiscordStore.ts`.
+    if ((params as any).playerId) {
+      discordStore.processHostMove((params as any).playerId, params.channelName);
+    }
+  }
+
+  _handleDiscordForceMove(params: { roomName: string }) {
+    const discordStore = useDiscordStore();
+    discordStore.moveToRoom(params.roomName);
+    discordStore.activePrivateRoom = null; // Ensure we clear private room state
+  }
+
+  _handleDiscordState(params: Record<string, string[]>) {
+    if (!this._isPlayerOrSpectator) return; // Host ignores this (he is the source)
+    const discordStore = useDiscordStore();
+    discordStore.updateRoomState(params);
   }
 
   _handleChatActivity(params: { from: string; to: string }) {

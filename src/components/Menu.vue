@@ -145,6 +145,10 @@
             {{ t('menu.mute') }}
             <em><font-awesome-icon :icon="['fas', userPreferences.isMuted ? 'volume-mute' : 'volume-up']" /></em>
           </li>
+          <li @click="setDiscordUsername">
+            Discord Username
+            <em><font-awesome-icon :icon="['fab', 'discord']" /></em>
+          </li>
         </template>
 
         <template v-if="tab === 'setup' && !session.isPlayerOrSpectator">
@@ -193,6 +197,10 @@
           <li @click="grimoire.endGame">
             {{ t('menu.endGame') }}
             <em><font-awesome-icon icon="ranking-star" class="fa fa-ranking-star" /></em>
+          </li>
+          <li v-if="!session.isPlayerOrSpectator" @click="setDiscordWebhook">
+            Discord Webhook
+            <em><font-awesome-icon :icon="['fab', 'discord']" /></em>
           </li>
         </template>
 
@@ -484,6 +492,20 @@ const imageOptIn = () => {
   if (userPreferences.isImageOptIn || confirm(t('prompt.imageOptIn'))) {
     userPreferences.isImageOptIn = !userPreferences.isImageOptIn;
   }
+};
+
+const setDiscordUsername = () => {
+    const username = prompt("Enter your Discord Username (for Voice Chat integration):", userPreferences.discordUsername);
+    if (username !== null) {
+        userPreferences.discordUsername = username;
+    }
+};
+
+const setDiscordWebhook = () => {
+    const url = prompt("Enter Discord Webhook URL for Voice Chat integration:", grimoire.discordWebhookUrl);
+    if (url !== null) {
+        grimoire.$patch({ discordWebhookUrl: url });
+    }
 };
 
 const supportedLangs = locale.supportedLanguages;

@@ -24,6 +24,7 @@
     </ul>
     <Bluffs @open-role-modal="openRoleModal" />
     <PlayerChat />
+    <DiscordPanel />
     <SideMenu />
     <Npcs />
     <ReminderModal :player-index="selectedPlayer" />
@@ -33,7 +34,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { Bluffs, Npcs, PlayerChat, ReminderModal, RoleModal, Seat, SideMenu } from '@/components';
+import { Bluffs, DiscordPanel, Npcs, PlayerChat, ReminderModal, RoleModal, Seat, SideMenu } from '@/components';
 import {
   useGrimoireStore,
   useLocaleStore,
@@ -43,6 +44,7 @@ import {
   useUserPreferencesStore,
   useVotingStore,
   useAnimationStore,
+  useDiscordStore,
 } from "@/stores";
 import type { Animation } from "@/stores/useAnimationStore";
 import type { Player } from "@/types";
@@ -56,6 +58,7 @@ const session = useSessionStore();
 const userPreferences = useUserPreferencesStore();
 const votingStore = useVotingStore();
 const animationStore = useAnimationStore();
+const discordStore = useDiscordStore();
 
 const players = computed(() => playersStore.players);
 
@@ -77,6 +80,7 @@ const handleTrigger = (playerIndex: number, event: string | [string] | [string, 
     swapPlayer,
     movePlayer,
     nominatePlayer,
+    requestPrivateChat,
   };
 
   if (typeof methodMap[method] === "function") {
@@ -253,6 +257,11 @@ const nominatePlayer = (from: number, to?: Player) => {
     });
     cancel();
   }
+};
+
+const requestPrivateChat = (from: number, to?: Player) => {
+  if (!to || !to.id) return;
+  discordStore.requestPrivateChat(to.id);
 };
 </script>
 

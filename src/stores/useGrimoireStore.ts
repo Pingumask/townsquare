@@ -46,6 +46,7 @@ interface GrimoireState {
   isWhisperingAllowed: boolean;
   gamePhase: GamePhase;
   dayCount: number;
+  discordWebhookUrl?: string;
 }
 
 export const useGrimoireStore = defineStore("grimoire", {
@@ -68,6 +69,7 @@ export const useGrimoireStore = defineStore("grimoire", {
     isWhisperingAllowed: true,
     gamePhase: "offline",
     dayCount: 0,
+    discordWebhookUrl: "",
   }),
 
   getters: {
@@ -468,6 +470,7 @@ export const useGrimoireStore = defineStore("grimoire", {
       "isVoteHistoryAllowed",
       "isSecretVote",
       "gamePhase",
+      "discordWebhookUrl",
     ],
     serializer: {
       serialize: (state: GrimoireState): string => {

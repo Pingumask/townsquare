@@ -31,4 +31,11 @@ export type SocketCommands =
   | "swap"
   | "vote"
   | "voteHistory"
-  | "votingSpeed";
+  | "votingSpeed"
+  | "chat"
+  | "chatActivity"
+  | "discordRequest"
+  | "discordAccept"
+  | "discordMove"
+  | "discordState"
+  | "discordForceMove";
