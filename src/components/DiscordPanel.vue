@@ -12,7 +12,7 @@
       <div v-else>
         <!-- Incoming Request Alert -->
         <div v-if="Object.keys(discordStore.privateRequests).length > 0" class="requests">
-             <div v-for="(status, pid) in discordStore.privateRequests" :key="pid" class="request-item">
+             <div v-for="(_, pid) in discordStore.privateRequests" :key="pid" class="request-item">
                 <span class="req-text">{{ getPlayerName(pid) }} wants to call</span>
                 <div class="req-actions">
                   <button class="accept" @click="discordStore.acceptPrivateChat(pid)">Join</button>
@@ -43,7 +43,7 @@
           >
             <div class="room-header">
               <span class="room-name">{{ room }}</span>
-              <span class="count" v-if="discordStore.roomState[room]?.length">
+              <span v-if="discordStore.roomState[room]?.length" class="count">
                 {{ discordStore.roomState[room].length }}
               </span>
             </div>

@@ -259,7 +259,7 @@ const nominatePlayer = (from: number, to?: Player) => {
   }
 };
 
-const requestPrivateChat = (from: number, to?: Player) => {
+const requestPrivateChat = (_from: number, to?: Player) => {
   if (!to || !to.id) return;
   discordStore.requestPrivateChat(to.id);
 };

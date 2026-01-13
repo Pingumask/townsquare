@@ -875,8 +875,9 @@ export class LiveSession {
     // Actually, `useDiscordStore` didn't put playerId in payload. I should fix that.
 
     // For now, let's assume we will add `playerId` to the payload in `useDiscordStore.ts`.
-    if ((params as any).playerId) {
-      discordStore.processHostMove((params as any).playerId, params.channelName);
+    const discordParams = params as { playerId?: string; channelName: string };
+    if (discordParams.playerId) {
+      discordStore.processHostMove(discordParams.playerId, discordParams.channelName);
     }
   }
 
