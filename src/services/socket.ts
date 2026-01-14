@@ -318,6 +318,9 @@ export class LiveSession {
       case "discordForceMove":
         this._handleDiscordForceMove(params as { roomName: string });
         break;
+      case "discordMoveAll":
+        this._handleDiscordMoveAll(params as { roomName: string });
+        break;
     }
   }
 
@@ -408,7 +411,8 @@ export class LiveSession {
         lockedVote: votingStore.lockedVote,
         isVoteInProgress: votingStore.isVoteInProgress,
         markedPlayer: votingStore.markedPlayer,
-        discordWebhookUrl: grimoireStore.discordWebhookUrl,
+        isDiscordIntegrationEnabled: grimoireStore.isDiscordIntegrationEnabled,
+        ...(grimoireStore.isDiscordIntegrationEnabled ? { discordWebhookUrl: grimoireStore.discordWebhookUrl } : {}),
         fabled: playersStore.fabled.map((f: Role) =>
           f.isCustom ? f : { id: f.id }
         ),
@@ -448,6 +452,7 @@ export class LiveSession {
       fabled,
       locale,
       discordWebhookUrl,
+      isDiscordIntegrationEnabled,
     } = data as {
       gamestate: Array<{
         name: string;
@@ -475,6 +480,7 @@ export class LiveSession {
       fabled: Array<{ id: string; isCustom?: boolean }>;
       locale: string;
       discordWebhookUrl?: string;
+      isDiscordIntegrationEnabled?: boolean;
     };
 
     await localeStore.forceLocale(locale);
@@ -541,6 +547,11 @@ export class LiveSession {
       logChange("discordWebhookUrl", grimoireStore.discordWebhookUrl, discordWebhookUrl);
       if (discordWebhookUrl !== undefined) {
         grimoireStore.$patch({ discordWebhookUrl });
+      }
+
+      logChange("isDiscordIntegrationEnabled", grimoireStore.isDiscordIntegrationEnabled, isDiscordIntegrationEnabled);
+      if (isDiscordIntegrationEnabled !== undefined) {
+        grimoireStore.$patch({ isDiscordIntegrationEnabled });
       }
 
       votingStore.updateNomination({
@@ -882,6 +893,12 @@ export class LiveSession {
   }
 
   _handleDiscordForceMove(params: { roomName: string }) {
+    const discordStore = useDiscordStore();
+    discordStore.moveToRoom(params.roomName);
+    discordStore.activePrivateRoom = null; // Ensure we clear private room state
+  }
+
+  _handleDiscordMoveAll(params: { roomName: string }) {
     const discordStore = useDiscordStore();
     discordStore.moveToRoom(params.roomName);
     discordStore.activePrivateRoom = null; // Ensure we clear private room state

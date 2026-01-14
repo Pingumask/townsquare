@@ -38,4 +38,5 @@ export type SocketCommands =
   | "discordAccept"
   | "discordMove"
   | "discordState"
-  | "discordForceMove";
+  | "discordForceMove"
+  | "discordMoveAll";

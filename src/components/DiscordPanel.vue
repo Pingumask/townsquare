@@ -1,5 +1,5 @@
 <template>
-  <div class="discord-panel" :class="{ open: isOpen }">
+  <div v-if="grimoire.isDiscordIntegrationEnabled" class="discord-panel" :class="{ open: isOpen }">
     <div class="tab" @click="toggleOpen">
       <span v-if="isOpen || !isOpen">Voice</span>
     </div>
@@ -22,6 +22,16 @@
         </div>
 
         <div class="controls">
+           <!-- Host Only: Call All Players Button -->
+           <button 
+             v-if="!session.isPlayerOrSpectator"
+             class="call-all-btn" 
+             @click="callAllPlayers"
+           >
+             <font-awesome-icon icon="users" />
+             Call All to Main Hall
+           </button>
+
            <button 
              class="request-call-btn" 
              :class="{ active: discordStore.isSelectingForChat }"
@@ -78,10 +88,12 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { useDiscordStore, usePlayersStore, useUserPreferencesStore } from "@/stores";
+import { useDiscordStore, useGrimoireStore, usePlayersStore, useSessionStore, useUserPreferencesStore } from "@/stores";
 
 const isOpen = ref(false);
 const discordStore = useDiscordStore();
+const grimoire = useGrimoireStore();
+const session = useSessionStore();
 const playersStore = usePlayersStore();
 const userPreferences = useUserPreferencesStore();
 
@@ -95,6 +107,11 @@ function joinRoom(room: string) {
 
 function exitPrivateCall() {
   discordStore.moveToRoom("Main Hall");
+}
+
+function callAllPlayers() {
+  if (!confirm("Move all players to Main Hall?")) return;
+  discordStore.callAllToMainHall();
 }
 
 function getPlayerName(id: string) {
@@ -152,7 +169,7 @@ function getPlayerName(id: string) {
     border: 1px solid #444;
     border-radius: 10px;
     padding: 15px;
-    width: 250px;
+    width: 280px;
     pointer-events: all;
     max-height: 80vh;
     overflow-y: auto;
@@ -163,6 +180,21 @@ function getPlayerName(id: string) {
   margin-bottom: 10px;
   border-bottom: 1px solid #444;
   padding-bottom: 10px;
+}
+
+.call-all-btn {
+  width: 100%;
+  padding: 8px;
+  background: #c44;
+  border: 1px solid #a33;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 8px;
+  
+  &:hover {
+    background: #d55;
+  }
 }
 
 .request-call-btn {

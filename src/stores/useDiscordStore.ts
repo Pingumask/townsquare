@@ -72,6 +72,30 @@ export const useDiscordStore = defineStore("discord", {
             });
         },
 
+        async callAllToMainHall() {
+            const session = useSessionStore();
+            const grimoire = useGrimoireStore();
+
+            if (session.isPlayerOrSpectator) return;
+
+            if (!grimoire.isDiscordIntegrationEnabled) return;
+            if (!grimoire.discordWebhookUrl) return;
+
+            socket.send("discordMoveAll", { roomName: "Main Hall" });
+
+            await fetch(grimoire.discordWebhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    content: JSON.stringify({
+                        type: "MOVEALL"
+                    })
+                })
+            });
+
+            this.moveToRoom("Main Hall");
+        },
+
         async acceptPrivateChat(requesterId: string) {
             const session = useSessionStore();
             const myId = session.playerId;
@@ -102,8 +126,7 @@ export const useDiscordStore = defineStore("discord", {
         async triggerWebhook(type: string, channelName: string) {
             const grimoire = useGrimoireStore();
             const prefs = useUserPreferencesStore();
-            console.log('triggering webhook', type, channelName, grimoire.discordWebhookUrl, prefs.discordUsername);
-            console.log('webhookurl', grimoire.discordWebhookUrl)
+            if (!grimoire.isDiscordIntegrationEnabled) return;
             if (!grimoire.discordWebhookUrl) return;
 
             try {

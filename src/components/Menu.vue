@@ -261,6 +261,17 @@
               grimoire.isWhisperingAllowed ? 'check-square' : 'square',
             ]" /></em>
           </li>
+          <li 
+            v-if="!session.isPlayerOrSpectator"
+            :class="{ disabled: !grimoire.discordWebhookUrl }"
+            @click="grimoire.setDiscordIntegrationEnabled(!grimoire.isDiscordIntegrationEnabled)"
+          >
+            Enable Discord Integration
+            <em><font-awesome-icon :icon="[
+              'fas',
+              grimoire.isDiscordIntegrationEnabled ? 'check-square' : 'square',
+            ]" /></em>
+          </li>
         </template>
 
         <template v-if="tab === 'playersMenu' && !session.isPlayerOrSpectator">
@@ -504,7 +515,7 @@ const setDiscordUsername = () => {
 const setDiscordWebhook = () => {
     const url = prompt("Enter Discord Webhook URL for Voice Chat integration:", grimoire.discordWebhookUrl);
     if (url !== null) {
-        grimoire.$patch({ discordWebhookUrl: url });
+        grimoire.setDiscordWebhookUrl(url);
     }
 };
 
