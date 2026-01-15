@@ -37,6 +37,7 @@ export const useDiscordStore = defineStore("discord", {
 
             const session = useSessionStore();
 
+            let returnTriggered = false;
             // If leaving a private room, use RETURN to move both players back to Main Hall
             if (this.activePrivateRoom && this.activePrivateRoom !== roomName) {
                 const occupants = this.roomState[this.activePrivateRoom] || [];
@@ -51,6 +52,7 @@ export const useDiscordStore = defineStore("discord", {
                 // Trigger RETURN webhook to move both players back to Main Hall
                 if (this.activePrivatePartnerUsername && !options.skipWebhook) {
                     this.triggerPrivateWebhook("RETURN", this.activePrivatePartnerUsername);
+                    returnTriggered = true;
                 }
 
                 if (!roomName.startsWith("private-")) {
@@ -63,7 +65,8 @@ export const useDiscordStore = defineStore("discord", {
 
             this.sendMove(roomName);
 
-            if (!options.skipWebhook) {
+            // Skip individual MOVE if RETURN already moved us to Main Hall
+            if (!options.skipWebhook && !(returnTriggered && roomName === "Main Hall")) {
                 this.triggerWebhook("MOVE", roomName);
             }
         },
