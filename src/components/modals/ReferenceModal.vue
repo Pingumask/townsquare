@@ -10,20 +10,14 @@
     <h5 v-if="edition && edition.version">{{ edition.version }}</h5>
     <br>
 
-    <div v-if="edition && edition.bootlegger" class="specialRuleContainer">
+    <div v-if="edition && edition.bootlegger && edition.bootlegger.length>0" class="specialRuleContainer">
       <img src="../../assets/icons/bootlegger.png" class="bootlegger left">
       <img src="../../assets/icons/bootlegger.png" class="bootlegger right">
-      <div v-if="edition.bootlegger.length && edition.bootlegger.length > 0" class="specialRule">
+      <div class="specialRule">
         <div v-for="elem in edition.bootlegger" :key="elem">
-          <div v-if="typeof elem == 'number' && elem >= 0 && elem < t('modal.reference.specialRules').length">
-            <p>{{ t('modal.reference.specialRules')[elem] }}</p>
-          </div>
-          <div v-else>
-            <p>{{ elem }}</p>
-          </div>
+          <p>{{ elem }}</p>
         </div>
       </div>
-      <div v-else class="specialRule">{{ edition.bootlegger }}</div>
     </div>
 
     <div v-for="(teamRoles, team) in rolesGrouped" :key="team" :class="['team', team]">

@@ -42,7 +42,7 @@ export interface Edition {
   background?: string;
   isOfficial?: boolean;
   roles?: string[];
-  bootlegger?: string;
+  bootlegger?: string[];
   stormcaught?: string;
 }
 
