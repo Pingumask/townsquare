@@ -3,6 +3,11 @@
     "id": "_meta",
     "name": "Dusk in the House of the Damned",
     "author": "Shade (Shadowqueer)",
+    "bootlegger": [
+      "Igonrez le jinx Légion/Magicien.",
+      "Si le Cannibale mange l'Idiot du Village ivre, il devient ivre.",
+      "Si le Planteur de pavot meurt alors qu'il est empoisonné, sa capacité fonctionne quand même."
+    ],
     "version" : "3.0.0"
   },
   "noble",

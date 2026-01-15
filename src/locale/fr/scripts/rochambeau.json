@@ -1,0 +1,37 @@
+[
+  {
+    "id": "_meta",
+    "logo": "rochambeau",
+    "name": "Rochambeau",
+    "author": "Habby",
+    "bootlegger": [
+      "Le jinx Léviathan + Guenaude est ignoré."
+    ],
+    "version" : "10.0.0"
+  },
+  "noble",
+  "bountyhunter",
+  "highpriestess",
+  "towncrier",
+  "innkeeper",
+  "gambler",
+  "acrobat",
+  "lycanthrope",
+  "gossip",
+  "nightwatchman",
+  "seamstress",
+  "cannibal",
+  "mayor",
+  "goon",
+  "tinker",
+  "moonchild",
+  "hatter",
+  "godfather",
+  "poisoner",
+  "pithag",
+  "assassin",
+  "widow",
+  "po",
+  "vigormortis",
+  "leviathan"
+]

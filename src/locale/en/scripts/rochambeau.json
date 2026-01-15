@@ -4,7 +4,9 @@
     "logo": "rochambeau",
     "name": "Rochambeau",
     "author": "Habby",
-    "bootlegger": [10],
+    "bootlegger": [
+      "The Pit-Hag + Leviathan jinx is ignored."
+    ],
     "version" : "10.0.0"
   },
   "noble",

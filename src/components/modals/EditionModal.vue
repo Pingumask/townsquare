@@ -240,7 +240,7 @@ function logoPath(edition: Edition) {
 }
 
 async function launchScript(fileName: string) {
-  await handleURL(`/scripts/${fileName}`);
+  await handleURL(`../src/locale/${locale.userLanguage}/scripts/${fileName}`);
 }
 
 async function handleURL(url: string) {

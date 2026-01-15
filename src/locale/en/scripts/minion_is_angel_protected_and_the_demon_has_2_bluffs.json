@@ -3,7 +3,10 @@
     "id": "_meta",
     "name": "Minion is Angel-protected & The Demon has 2 Bluffs",
     "author": "Zets",
-    "bootlegger": [12, 13],
+    "bootlegger": [
+      "The Demon gets 2 bluffs - meaning they learn 2 not-in-play characters.",
+      "The Minion is protected by the Angel. This means that the Minion is publicly known from the very beginning of the game (the start of the first night), but killing them invokes the wrath of the Angel."
+    ],
     "version":"7.0.0"
   },
   "empath",

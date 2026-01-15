@@ -5,7 +5,9 @@
     "name": "Reptiles II : Lizard in the city",
     "author": "Aero",
     "stormcaught": "drunk",
-    "bootlegger": [9],
+    "bootlegger": [
+      "When announcing the Al-Hadikhia targets each night, the Storyteller musts make fake lightning sounds."
+    ],
     "version" : "1.2.0"
   },
   "chef",
