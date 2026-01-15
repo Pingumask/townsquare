@@ -393,30 +393,19 @@ function claimSeat() {
   isMenuOpen.value = false;
   emit("trigger", ["claimSeat"]);
   
-  // If we are claiming an EMPTY seat (or it's not us already), prompt for name/discord
-  // But wait, claimSeat works as a toggle in TownSquare.vue:
-  // if (player && session.playerId === player.id) { session.claimSeat(-1); } else { session.claimSeat(playerIndex); }
-  
-  // here in Seat.vue, props.player exists. 
-  // If props.player.id === session.playerId, we are ALREADY seated here. So clicking this calls unclaim.
-  // We want to prompt ONLY if we are NOT seated here (claiming).
-  const isUnclaiming = props.player && props.player.id === session.playerId;
+  const isUnclaiming = props.player?.id === session.playerId;
+  if (isUnclaiming) return;
 
-  if (!isUnclaiming) {
-      if (props.player.name === "") {
-        setTimeout(() => {
-          changeName();
-        }, 100);
+  if (props.player.name === "") {
+    setTimeout(() => changeName(), 100);
+  }
+  if (!userPreferences.discordUsername) {
+    setTimeout(() => {
+      const username = prompt("Enter your Discord Username (for Voice Chat integration):");
+      if (username) {
+        userPreferences.$patch({ discordUsername: username });
       }
-      // Prompt for Discord Username if not set
-      if (!userPreferences.discordUsername) {
-        setTimeout(() => {
-          const username = prompt("Enter your Discord Username (for Voice Chat integration):");
-          if (username) {
-            userPreferences.$patch({ discordUsername: username });
-          }
-        }, 200);
-      }
+    }, 200);
   }
 }
 
@@ -736,8 +725,7 @@ picture * {
 
 li .player .overlay svg.request-chat {
   opacity: 0.8;
-  transform: scale(0.8) translateY(-60%); 
-  // Positioning it above/apart from center
+  transform: scale(0.8) translateY(-60%);
   pointer-events: all;
   
   &:hover {

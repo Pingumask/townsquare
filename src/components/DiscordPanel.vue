@@ -127,7 +127,7 @@ function getPlayerName(id: string) {
 .discord-panel {
   position: absolute;
   top: 50px;
-  left: 0; // Move to Left
+  left: 0;
   z-index: 100;
   transition: all 0.3s ease;
   pointer-events: none;

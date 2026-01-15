@@ -4,10 +4,10 @@ import socket from "@/services/socket";
 
 interface DiscordState {
     currentRoom: string;
-    roomState: Record<string, string[]>; // RoomName -> PlayerID[]
-    privateRequests: Record<string, string>; // PlayerID -> RequesterDiscordUsername
+    roomState: Record<string, string[]>;
+    privateRequests: Record<string, string>;
     activePrivateRoom: string | null;
-    activePrivatePartnerUsername: string | null; // Discord username of the other person in private call
+    activePrivatePartnerUsername: string | null;
     isSelectingForChat: boolean;
 }
 
@@ -26,8 +26,6 @@ export const useDiscordStore = defineStore("discord", {
     }),
 
     actions: {
-        // --- Actions called by UI ---
-
         toggleSelection() {
             this.isSelectingForChat = !this.isSelectingForChat;
         },
@@ -36,9 +34,8 @@ export const useDiscordStore = defineStore("discord", {
             if (this.currentRoom === roomName) return;
 
             const session = useSessionStore();
-
             let returnTriggered = false;
-            // If leaving a private room, use RETURN to move both players back to Main Hall
+
             if (this.activePrivateRoom && this.activePrivateRoom !== roomName) {
                 const occupants = this.roomState[this.activePrivateRoom] || [];
                 const otherId = occupants.find(id => id !== session.playerId);
@@ -49,9 +46,8 @@ export const useDiscordStore = defineStore("discord", {
                     });
                 }
 
-                // Trigger RETURN webhook to move both players back to Main Hall
                 if (this.activePrivatePartnerUsername && !options.skipWebhook) {
-                    this.triggerPrivateWebhook("RETURN", this.activePrivatePartnerUsername);
+                    this.sendWebhook({ type: "RETURN", discordUsername2: this.activePrivatePartnerUsername });
                     returnTriggered = true;
                 }
 
@@ -62,12 +58,10 @@ export const useDiscordStore = defineStore("discord", {
             }
 
             this.currentRoom = roomName;
-
             this.sendMove(roomName);
 
-            // Skip individual MOVE if RETURN already moved us to Main Hall
             if (!options.skipWebhook && !(returnTriggered && roomName === "Main Hall")) {
-                this.triggerWebhook("MOVE", roomName);
+                this.sendWebhook({ type: "MOVE", channelName: roomName });
             }
         },
 
@@ -77,8 +71,6 @@ export const useDiscordStore = defineStore("discord", {
             if (!session.playerId) return;
 
             this.isSelectingForChat = false;
-
-            // Include discordUsername so the accepter has it for MOVEPRIVATE webhook
             socket.send("direct", {
                 [targetPlayerId]: ["discordRequest", {
                     from: session.playerId,
@@ -93,22 +85,10 @@ export const useDiscordStore = defineStore("discord", {
             const grimoire = useGrimoireStore();
 
             if (session.isPlayerOrSpectator) return;
-
-            if (!grimoire.isDiscordIntegrationEnabled) return;
-            if (!grimoire.discordWebhookUrl) return;
+            if (!grimoire.isDiscordIntegrationEnabled || !grimoire.discordWebhookUrl) return;
 
             socket.send("discordMoveAll", { roomName: "Main Hall" });
-
-            await fetch(grimoire.discordWebhookUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    content: JSON.stringify({
-                        type: "MOVEALL"
-                    })
-                })
-            });
-
+            await this.sendWebhook({ type: "MOVEALL" });
             this.moveToRoom("Main Hall", { skipWebhook: true });
         },
 
@@ -117,12 +97,8 @@ export const useDiscordStore = defineStore("discord", {
             const prefs = useUserPreferencesStore();
             const myId = session.playerId;
 
-            // Get the requester's discord username from the stored request
             const requesterDiscordUsername = this.privateRequests[requesterId];
-            if (!requesterDiscordUsername) {
-                console.error("No discord username found for requester");
-                return;
-            }
+            if (!requesterDiscordUsername) return;
 
             let i = 1;
             let roomName = "";
@@ -142,7 +118,6 @@ export const useDiscordStore = defineStore("discord", {
 
             delete this.privateRequests[requesterId];
 
-            // Include accepter's discord username so requester can store it for RETURN webhook
             socket.send("direct", {
                 [requesterId]: ["discordAccept", {
                     from: myId,
@@ -152,15 +127,13 @@ export const useDiscordStore = defineStore("discord", {
                 }]
             });
 
-            // Use MOVEPRIVATE to move both players to an empty private room
-            this.triggerPrivateWebhook("MOVEPRIVATE", requesterDiscordUsername);
+            this.sendWebhook({ type: "MOVEPRIVATE", discordUsername2: requesterDiscordUsername });
         },
 
-        async triggerWebhook(type: string, channelName: string) {
+        async sendWebhook(payload: { type: string; channelName?: string; discordUsername2?: string }) {
             const grimoire = useGrimoireStore();
             const prefs = useUserPreferencesStore();
-            if (!grimoire.isDiscordIntegrationEnabled) return;
-            if (!grimoire.discordWebhookUrl) return;
+            if (!grimoire.isDiscordIntegrationEnabled || !grimoire.discordWebhookUrl) return;
 
             try {
                 await fetch(grimoire.discordWebhookUrl, {
@@ -168,9 +141,10 @@ export const useDiscordStore = defineStore("discord", {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         content: JSON.stringify({
-                            type: type,
+                            type: payload.type,
                             discordUsername: prefs.discordUsername,
-                            channelName: channelName
+                            ...(payload.channelName && { channelName: payload.channelName }),
+                            ...(payload.discordUsername2 && { discordUsername2: payload.discordUsername2 })
                         })
                     })
                 });
@@ -179,94 +153,46 @@ export const useDiscordStore = defineStore("discord", {
             }
         },
 
-        // Webhook for private calls (MOVEPRIVATE, RETURN) that involve two users
-        async triggerPrivateWebhook(type: "MOVEPRIVATE" | "RETURN", otherDiscordUsername: string) {
-            const grimoire = useGrimoireStore();
-            const prefs = useUserPreferencesStore();
-            if (!grimoire.isDiscordIntegrationEnabled) return;
-            if (!grimoire.discordWebhookUrl) return;
-
-            try {
-                await fetch(grimoire.discordWebhookUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        content: JSON.stringify({
-                            type: type,
-                            discordUsername: prefs.discordUsername,
-                            discordUsername2: otherDiscordUsername
-                        })
-                    })
-                });
-            } catch (e) {
-                console.error("Failed to send discord private webhook", e);
-            }
-        },
-
-        // --- Actions called by Socket Handlers ---
-
         handleRequest(fromPlayerId: string, discordUsername: string) {
-            // Store the requester's discord username so we have it when accepting
             this.privateRequests[fromPlayerId] = discordUsername;
-            // Play a short ring sound to notify of incoming request
-            const soundboard = useSoundboardStore();
-            soundboard.playSound({ sound: "ring" });
+            useSoundboardStore().playSound({ sound: "ring" });
         },
 
         handleAccept(roomName: string, partnerDiscordUsername: string) {
-            // Just update UI - the accepter already triggered MOVEPRIVATE which moves both users
             this.currentRoom = roomName;
             this.sendMove(roomName);
             this.activePrivateRoom = roomName;
             this.activePrivatePartnerUsername = partnerDiscordUsername;
         },
 
-        // Called when we receive full state update from Host
         updateRoomState(newState: Record<string, string[]>) {
             this.roomState = newState;
         },
 
-        // --- Networking helpers ---
-
         sendMove(roomName: string) {
-            const prefs = useUserPreferencesStore();
             const session = useSessionStore();
 
-            const payload = {
-                type: "MOVE",
-                discordUsername: prefs.discordUsername,
-                channelName: roomName,
-                playerId: session.playerId,
-            };
-
-            // If I am host, I update my state directly AND broadcast.
-            // If I am player, I send to host to update his state map.
             if (!session.isPlayerOrSpectator) {
                 this.processHostMove(session.playerId, roomName);
             } else {
-                socket.send("discordMove", payload);
+                socket.send("discordMove", {
+                    playerId: session.playerId,
+                    channelName: roomName,
+                });
             }
         },
 
-        // Host only: Process a move from anyone (including self) to update the Map
-        async processHostMove(playerId: string, roomName: string) {
-            // Update local state Map
-            // Remove from old rooms
+        processHostMove(playerId: string, roomName: string) {
             for (const r in this.roomState) {
-                const roomParams = this.roomState[r];
-                if (roomParams) {
-                    this.roomState[r] = roomParams.filter(id => id !== playerId);
+                if (this.roomState[r]) {
+                    this.roomState[r] = this.roomState[r].filter(id => id !== playerId);
                 }
             }
-            // Add to new room
             if (!this.roomState[roomName]) {
                 this.roomState[roomName] = [];
             }
             this.roomState[roomName].push(playerId);
-
-            // Broadcast new state to everyone
             socket.send("discordState", this.roomState);
         }
-
     }
 });
