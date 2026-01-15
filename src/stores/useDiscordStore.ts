@@ -150,9 +150,9 @@ export const useDiscordStore = defineStore("discord", {
 
         handleRequest(fromPlayerId: string) {
             this.privateRequests[fromPlayerId] = 'received';
-            // Play a short ringing sound to notify of incoming request
+            // Play a short ring sound to notify of incoming request
             const soundboard = useSoundboardStore();
-            soundboard.playSound({ sound: "ringing" });
+            soundboard.playSound({ sound: "ring" });
         },
 
         handleAccept(roomName: string) {
