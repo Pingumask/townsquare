@@ -38,7 +38,7 @@
     "allowVoteHistory": "Public vote History",
     "secretVote": "Hidden Vote",
     "selfNaming": "Allow self-naming",
-    "allowWhispering": "Allow Whispering",
+    "allowWhispering": "Allow Chat",
     "leave": "Leave Session",
     "addPlayer": "Add Seat",
     "addPlayers": "Add Seats",
@@ -322,10 +322,11 @@
     }
   },
   "chat": {
-    "title": "Whisper",
+    "title": "Chat",
     "type_message": "Type message...",
     "send": "Send",
-    "cannotSend": "Cannot whisper to unseated neighbor"
+    "cannotSend": "Cannot send to unseated neighbor",
+    "global": "Global"
   },
   "sound": {
     "rooster": "Rooster",
