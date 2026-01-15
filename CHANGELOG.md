@@ -6,6 +6,7 @@
   - Allow players to whisper their neigbours (can be disabled by storyteller)
   - Adding the Pope
   - Updating the choice of Players' menu
+  - Allowing showing an alignment change on a custom role
 - Fixes:
 
 - Localization :

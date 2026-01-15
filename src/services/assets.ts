@@ -1,7 +1,30 @@
 import { useUserPreferencesStore } from "@/stores";
 import { Role } from "@/types";
 
-export const getRoleImage = (role: Role): string => {
+
+function default_alignment(team: string | undefined, alignment: string | null | undefined) {
+  if (alignment == "good") {
+    return (team == "townsfolk" || team == "outsider");
+  }
+  else if (alignment == "evil") {
+    return (team == "minion" || team == "demon");
+  }
+  return true;
+}
+
+
+function teamIcon(team: string | undefined, alignment: string | null | undefined) {  
+
+  if (!default_alignment(team, alignment)) {
+    return new URL(`../assets/icons/${team}_${alignment}.png`, import.meta.url).href;
+  }
+
+  return new URL(`../assets/icons/${team}.png`, import.meta.url).href;
+}
+
+
+
+export const getRoleImage = (role: Role, alignment: string | null | undefined = null): string => {
     const userPreferences = useUserPreferencesStore();
 
     if (
@@ -18,10 +41,37 @@ export const getRoleImage = (role: Role): string => {
         return new URL(`../assets/icons/${role.id}.png`, import.meta.url).href;
     }
     if (role.image && userPreferences.isImageOptIn) {
-        return role.image;
+      if (Array.isArray(role.image)) {
+        switch(role.image.length) {
+          case 0 :
+            return teamIcon(role.team, alignment);
+          case 1 :
+            return role.image[0];
+          case 2 :
+            if (default_alignment(role.team, alignment)) {
+              return role.image[0];
+            }
+            else {
+              return role.image[1];
+            }
+          default :
+            if (alignment == "good") {
+              return role.image[1];
+            }
+            else if(alignment == "evil") {
+              return role.image[2];
+            }
+            else {
+              return role.image[0];
+            }
+        }
+      } 
+      else {
+        return role.image; 
+      }
     }
     if (role.image && !userPreferences.isImageOptIn) {
-        return new URL(`../assets/icons/${role.team}.png`, import.meta.url).href;
+        return teamIcon(role.team, alignment);
     }
     return new URL(`../assets/icons/${role.id}.svg`, import.meta.url).href;
 };
