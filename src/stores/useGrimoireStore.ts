@@ -46,6 +46,8 @@ interface GrimoireState {
   isWhisperingAllowed: boolean;
   gamePhase: GamePhase;
   dayCount: number;
+  discordWebhookUrl?: string;
+  isDiscordIntegrationEnabled: boolean;
 }
 
 export const useGrimoireStore = defineStore("grimoire", {
@@ -68,6 +70,8 @@ export const useGrimoireStore = defineStore("grimoire", {
     isWhisperingAllowed: true,
     gamePhase: "offline",
     dayCount: 0,
+    discordWebhookUrl: "",
+    isDiscordIntegrationEnabled: false,
   }),
 
   getters: {
@@ -418,6 +422,28 @@ export const useGrimoireStore = defineStore("grimoire", {
       if (!sessionStore.isPlayerOrSpectator) socket.send("dayCount", dayCount);
     },
 
+    setDiscordIntegrationEnabled(enabled: boolean) {
+      if (enabled && !this.discordWebhookUrl) return;
+
+      this.isDiscordIntegrationEnabled = enabled;
+      const sessionStore = useSessionStore();
+      if (!sessionStore.isPlayerOrSpectator) {
+        socket.send("isDiscordIntegrationEnabled", enabled);
+        if (enabled) {
+          socket.send("discordWebhookUrl", this.discordWebhookUrl);
+        }
+      }
+    },
+
+    setDiscordWebhookUrl(url: string) {
+      const oldUrl = this.discordWebhookUrl;
+      this.discordWebhookUrl = url;
+      const sessionStore = useSessionStore();
+      if (!sessionStore.isPlayerOrSpectator && url !== oldUrl) {
+        socket.send("discordWebhookUrl", url);
+      }
+    },
+
     toggleNight() {
       const sessionStore = useSessionStore();
       if (sessionStore.isPlayerOrSpectator) return;
@@ -468,6 +494,8 @@ export const useGrimoireStore = defineStore("grimoire", {
       "isVoteHistoryAllowed",
       "isSecretVote",
       "gamePhase",
+      "discordWebhookUrl",
+      "isDiscordIntegrationEnabled",
     ],
     serializer: {
       serialize: (state: GrimoireState): string => {

@@ -63,6 +63,11 @@ import {
   faYinYang,
   faHandSparkles,
   faRankingStar,
+  faComments,
+  faHeadset,
+  faPhoneSlash,
+  faMicrophone,
+  faMicrophoneSlash,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faDocker,
@@ -138,7 +143,12 @@ library.add(
   faYinYang,
   faGithub,
   faDiscord,
-  faDocker
+  faDocker,
+  faComments,
+  faHeadset,
+  faPhoneSlash,
+  faMicrophone,
+  faMicrophoneSlash
 );
 
 export default {

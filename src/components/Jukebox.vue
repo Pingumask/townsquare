@@ -11,6 +11,10 @@
     @ended="showRooster = false">
     <source src="../assets/sounds/rooster.mp3">
   </audio>
+  <audio ref="ringAudio" preload="auto" :muted="userPreferences.isMuted" @play="showRing = true"
+    @ended="showRing = false">
+    <source src="../assets/sounds/ring.mp3">
+  </audio>
   <ul>
     <li v-if="showRinging">
       <font-awesome-icon :icon="['fas', 'music']" />
@@ -22,6 +26,9 @@
     </li>
     <li v-if="showGavel">
       <font-awesome-icon :icon="['fas', 'gavel']" />
+    </li>
+    <li v-if="showRing">
+      <font-awesome-icon :icon="['fas', 'phone']" />
     </li>
   </ul>
 </template>
@@ -36,10 +43,12 @@ const soundboard = useSoundboardStore();
 const ringingAudio = ref<HTMLAudioElement>();
 const roosterAudio = ref<HTMLAudioElement>();
 const gavelAudio = ref<HTMLAudioElement>();
+const ringAudio = ref<HTMLAudioElement>();
 
 const showGavel = ref(false);
 const showRinging = ref(false);
 const showRooster = ref(false);
+const showRing = ref(false);
 
 watch(() => soundboard.ringingTrigger, () => {
   if (ringingAudio.value) {
@@ -58,4 +67,11 @@ watch(() => soundboard.gavelTrigger, () => {
     gavelAudio.value.play();
   }
 });
+
+watch(() => soundboard.ringTrigger, () => {
+  if (ringAudio.value) {
+    ringAudio.value.play();
+  }
+});
 </script>
+

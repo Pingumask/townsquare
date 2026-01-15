@@ -8,6 +8,7 @@ export { default as NightOrderTable } from "./NightOrderTable.vue";
 export { default as Npcs } from "./Npcs.vue";
 export { default as PlayerChat } from "./PlayerChat.vue";
 export { default as RoleIcon } from "./RoleIcon.vue";
+export { default as DiscordPanel } from "./DiscordPanel.vue";
 export { default as Seat } from "./Seat.vue";
 export { default as SideMenu } from "./SideMenu.vue";
 export { default as Token } from "./Token.vue";

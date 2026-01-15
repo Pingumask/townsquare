@@ -8,6 +8,7 @@ import {
   useVotingStore,
   useChatStore,
   useAnimationStore,
+  useDiscordStore,
 } from "@/stores";
 import type {
   Edition,
@@ -91,9 +92,9 @@ export class LiveSession {
     this.disconnect();
     this._socket = new WebSocket(
       this._wss +
-        channel +
-        "/" +
-        (this._isPlayerOrSpectator ? sessionStore.playerId : "host")
+      channel +
+      "/" +
+      (this._isPlayerOrSpectator ? sessionStore.playerId : "host")
     );
     this._socket.addEventListener("message", this._handleMessage.bind(this));
     this._socket.onopen = this._onOpen.bind(this);
@@ -302,6 +303,32 @@ export class LiveSession {
       case "chat":
         this._handleChat(params as { from: string; message: string });
         break;
+      case "discordRequest":
+        this._handleDiscordRequest(params as { from: string; to: string; discordUsername: string });
+        break;
+      case "discordAccept":
+        this._handleDiscordAccept(params as { from: string; to: string; roomName: string; discordUsername: string });
+        break;
+      case "discordMove":
+        this._handleDiscordMove(params as { playerId?: string; channelName: string });
+        break;
+      case "discordState":
+        this._handleDiscordState(params as Record<string, string[]>);
+        break;
+      case "discordForceMove":
+        this._handleDiscordForceMove(params as { roomName: string });
+        break;
+      case "discordMoveAll":
+        this._handleDiscordMoveAll(params as { roomName: string });
+        break;
+      case "discordWebhookUrl":
+        if (!this._isPlayerOrSpectator) return;
+        grimoire.$patch({ discordWebhookUrl: params as string });
+        break;
+      case "isDiscordIntegrationEnabled":
+        if (!this._isPlayerOrSpectator) return;
+        grimoire.$patch({ isDiscordIntegrationEnabled: params as boolean });
+        break;
     }
   }
 
@@ -392,6 +419,8 @@ export class LiveSession {
         lockedVote: votingStore.lockedVote,
         isVoteInProgress: votingStore.isVoteInProgress,
         markedPlayer: votingStore.markedPlayer,
+        isDiscordIntegrationEnabled: grimoireStore.isDiscordIntegrationEnabled,
+        discordWebhookUrl: grimoireStore.discordWebhookUrl,
         fabled: playersStore.fabled.map((f: Role) =>
           f.isCustom ? f : { id: f.id }
         ),
@@ -404,6 +433,7 @@ export class LiveSession {
 
   async _updateGamestate(data: Record<string, unknown>) {
     if (!this._isPlayerOrSpectator) return;
+
     const grimoireStore = useGrimoireStore();
     const playersStore = usePlayersStore();
     const votingStore = useVotingStore();
@@ -428,6 +458,8 @@ export class LiveSession {
       markedPlayer,
       fabled,
       locale,
+      discordWebhookUrl,
+      isDiscordIntegrationEnabled,
     } = data as {
       gamestate: Array<{
         name: string;
@@ -454,6 +486,8 @@ export class LiveSession {
       markedPlayer?: number;
       fabled: Array<{ id: string; isCustom?: boolean }>;
       locale: string;
+      discordWebhookUrl?: string;
+      isDiscordIntegrationEnabled?: boolean;
     };
 
     await localeStore.forceLocale(locale);
@@ -510,6 +544,14 @@ export class LiveSession {
       grimoireStore.setVoteHistoryAllowed(!!isVoteHistoryAllowed);
       grimoireStore.setSecretVote(!!isSecretVoteMode);
       grimoireStore.setAllowWhispers(!!isWhisperingAllowed);
+
+      if (discordWebhookUrl !== undefined) {
+        grimoireStore.$patch({ discordWebhookUrl });
+      }
+      if (isDiscordIntegrationEnabled !== undefined) {
+        grimoireStore.$patch({ isDiscordIntegrationEnabled });
+      }
+
       votingStore.updateNomination({
         nomination,
         votes: votes || [],
@@ -564,8 +606,8 @@ export class LiveSession {
         });
         alert(
           `This session contains custom characters that can't be found. ` +
-            `Please load them before joining! ` +
-            `Missing roles: ${missing.join(", ")}`
+          `Please load them before joining! ` +
+          `Missing roles: ${missing.join(", ")}`
         );
         this.disconnect();
       }
@@ -799,6 +841,49 @@ export class LiveSession {
     } else {
       console.warn("[Chat] Message from unknown neighbor:", senderId);
     }
+  }
+
+  _handleDiscordRequest(params: { from: string; to: string; discordUsername: string }) {
+    const discordStore = useDiscordStore();
+    const session = useSessionStore();
+    if (params.to === session.playerId) {
+      discordStore.handleRequest(params.from, params.discordUsername);
+    }
+  }
+
+  _handleDiscordAccept(params: { from: string; to: string; roomName: string; discordUsername: string }) {
+    const discordStore = useDiscordStore();
+    const session = useSessionStore();
+    if (params.to === session.playerId) {
+      discordStore.handleAccept(params.roomName, params.discordUsername);
+    }
+  }
+
+  _handleDiscordMove(params: { playerId?: string; channelName: string }) {
+    if (this._isPlayerOrSpectator) return;
+    const discordStore = useDiscordStore();
+    if (params.playerId) {
+      discordStore.processHostMove(params.playerId, params.channelName);
+    }
+  }
+
+  _clearPrivateRoomAndMove(discordStore: ReturnType<typeof useDiscordStore>, roomName: string) {
+    discordStore.moveToRoom(roomName, { skipWebhook: true });
+    discordStore.activePrivateRoom = null;
+    discordStore.activePrivatePartnerUsername = null;
+  }
+
+  _handleDiscordForceMove(params: { roomName: string }) {
+    this._clearPrivateRoomAndMove(useDiscordStore(), params.roomName);
+  }
+
+  _handleDiscordMoveAll(params: { roomName: string }) {
+    this._clearPrivateRoomAndMove(useDiscordStore(), params.roomName);
+  }
+
+  _handleDiscordState(params: Record<string, string[]>) {
+    if (!this._isPlayerOrSpectator) return;
+    useDiscordStore().updateRoomState(params);
   }
 
   _handleChatActivity(params: { from: string; to: string }) {
