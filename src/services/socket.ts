@@ -91,9 +91,9 @@ export class LiveSession {
     this.disconnect();
     this._socket = new WebSocket(
       this._wss +
-        channel +
-        "/" +
-        (this._isPlayerOrSpectator ? sessionStore.playerId : "host")
+      channel +
+      "/" +
+      (this._isPlayerOrSpectator ? sessionStore.playerId : "host")
     );
     this._socket.addEventListener("message", this._handleMessage.bind(this));
     this._socket.onopen = this._onOpen.bind(this);
@@ -301,6 +301,9 @@ export class LiveSession {
         break;
       case "chat":
         this._handleChat(params as { from: string; message: string });
+        break;
+      case "globalChat":
+        this._handleGlobalChat(params as { from: string; message: string });
         break;
     }
   }
@@ -564,8 +567,8 @@ export class LiveSession {
         });
         alert(
           `This session contains custom characters that can't be found. ` +
-            `Please load them before joining! ` +
-            `Missing roles: ${missing.join(", ")}`
+          `Please load them before joining! ` +
+          `Missing roles: ${missing.join(", ")}`
         );
         this.disconnect();
       }
@@ -816,6 +819,11 @@ export class LiveSession {
         emoji: "✉️",
       });
     }
+  }
+
+  _handleGlobalChat(params: { from: string; message: string }) {
+    const chatStore = useChatStore();
+    chatStore.receiveMessage(params, "global");
   }
 }
 

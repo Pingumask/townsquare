@@ -1,9 +1,10 @@
 # Release Notes
 
-## Upcomming Version
+## Upcoming Version
 - Features:
   - Allow manual language selection (By default: follows ST language or uses browser's preferences when not playing)
   - Allow players to whisper their neigbours (can be disabled by storyteller)
+  - Added a "Global" chat tab to broadcast messages to all players (available for both players and host).
 - Fixes:
 
 - Localization :

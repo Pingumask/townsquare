@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="isSeated && grimoire.isWhisperingAllowed"
+    v-if="canShowChat"
     ref="playerChat"
     class="player-chat"
     :class="{ closed: !isChatOpen }"
@@ -21,30 +21,41 @@
     <div v-if="!isChatOpen" style="display: none"></div>
     <div v-else class="chat-container">
       <ul class="tabs">
+        <template v-if="sessionStore.isPlayerOrSpectator">
+          <li
+            aria-role="tab"
+            class="tab"
+            :class="{ active: activeTab === 'left' }"
+            @click="activeTab = 'left'"
+          >
+            {{ leftNeighbor?.name }}
+          </li>
+          <li
+            aria-role="tab"
+            class="tab"
+            :class="{ active: activeTab === 'right' }"
+            @click="activeTab = 'right'"
+          >
+            {{ rightNeighbor?.name }}
+          </li>
+        </template>
         <li
           aria-role="tab"
           class="tab"
-          :class="{ active: activeTab === 'left' }"
-          @click="activeTab = 'left'"
+          :class="{ active: activeTab === 'global' }"
+          @click="activeTab = 'global'"
         >
-          {{ leftNeighbor?.name }}
-        </li>
-        <li
-          aria-role="tab"
-          class="tab"
-          :class="{ active: activeTab === 'right' }"
-          @click="activeTab = 'right'"
-        >
-          {{ rightNeighbor?.name }}
+          {{ t("chat.global") }}
         </li>
       </ul>
 
-      <div class="messages">
+      <div ref="messagesContainer" class="messages">
         <div
           v-for="(msg, index) in activeMessages"
           :key="index"
           :class="['message', msg.isOwn ? 'own' : 'other']"
         >
+          <strong v-if="activeTab === 'global'">{{ msg.from }}: </strong>
           {{ msg.text }}
         </div>
       </div>
@@ -54,16 +65,16 @@
           v-model="messageInput"
           type="text"
           :placeholder="t('chat.type_message')"
-          :disabled="!activeNeighbor || activeNeighbor.id === ''"
+          :disabled="isInputDisabled"
           @keyup.enter="sendMessage"
         />
         <button
-          :disabled="!activeNeighbor || activeNeighbor.id === ''"
+          :disabled="isSendDisabled"
           @click="sendMessage"
         >
           <font-awesome-icon
             :icon="['fas', 'paper-plane']"
-            :title="activeNeighbor && activeNeighbor.id !== '' ? t('chat.send') : t('chat.cannotSend')"
+            :title="getTooltipTitle()"
           />
         </button>
       </div>
@@ -72,7 +83,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, watch, nextTick } from "vue";
 import {
   useLocaleStore,
   usePlayersStore,
@@ -92,17 +103,34 @@ const animationStore = useAnimationStore();
 const t = locale.t;
 
 const isChatOpen = ref(false);
-const activeTab = ref<"left" | "right">("left");
+const activeTab = ref<"left" | "right" | "global">(
+  sessionStore.isPlayerOrSpectator ? "left" : "global"
+);
 const messageInput = ref("");
+const messagesContainer = ref<HTMLElement | null>(null);
+
+const scrollToBottom = () => {
+  nextTick(() => {
+    if (messagesContainer.value) {
+      messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight;
+    }
+  });
+};
 
 const players = computed(() => playersStore.players);
 const currentPlayerIndex = computed(() => playersStore.currentPlayerIndex);
+
+const canShowChat = computed(() => {
+  if (!grimoire.isWhisperingAllowed) return false;
+  return !sessionStore.isPlayerOrSpectator || isSeated.value;
+});
 
 const isSeated = computed(() => {
   return sessionStore.isPlayerOrSpectator && currentPlayerIndex.value !== -1;
 });
 
 const currentPlayerName = computed(() => {
+  if (!sessionStore.isPlayerOrSpectator) return t("menu.host");
   return playersStore.players[currentPlayerIndex.value]?.name || "You";
 });
 
@@ -115,8 +143,35 @@ const activeMessages = computed(() => {
 });
 
 const activeNeighbor = computed(() => {
+  if (activeTab.value === "global") return null;
   return activeTab.value === "left" ? leftNeighbor.value : rightNeighbor.value;
 });
+
+const isInputDisabled = computed(() => {
+  if (activeTab.value === "global") return false;
+  return !activeNeighbor.value || activeNeighbor.value.id === "";
+});
+
+const isSendDisabled = computed(() => {
+  return isCooldown.value || isInputDisabled.value;
+});
+
+const getTooltipTitle = () => {
+  if (activeTab.value === "global") return t("chat.send");
+  return activeNeighbor.value && activeNeighbor.value.id !== ""
+    ? t("chat.send")
+    : t("chat.cannotSend");
+};
+
+watch(
+  [activeMessages, isChatOpen, activeTab],
+  () => {
+    if (isChatOpen.value) {
+      scrollToBottom();
+    }
+  },
+  { deep: true }
+);
 
 const toggleChat = () => {
   isChatOpen.value = !isChatOpen.value;
@@ -130,41 +185,58 @@ const animateMessageSent = () => {
   animationStore.addAnimation({ from: fromIndex, to: toIndex, emoji: "✉️" });
 };
 
-const sendMessage = () => {
-  if (!messageInput.value.trim()) return;
+const isCooldown = ref(false);
 
-  const neighbor =
-    activeTab.value === "left" ? leftNeighbor.value : rightNeighbor.value;
-  if (!neighbor || neighbor.id === "") return;
+const startCooldown = (duration: number) => {
+  isCooldown.value = true;
+  setTimeout(() => {
+    isCooldown.value = false;
+  }, duration);
+};
+
+const buildRecipients = <T>(command: string, data: T): Record<string, [string, T]> => {
+  const recipients: Record<string, [string, T]> = {};
+  players.value
+    .filter((p) => p.id !== sessionStore.playerId && p.id !== "")
+    .forEach((p) => {
+      recipients[p.id] = [command, data];
+    });
+  recipients["host"] = [command, data];
+  return recipients;
+};
+
+const sendMessage = () => {
+  if (isCooldown.value || !messageInput.value.trim()) return;
 
   const msg = {
     from: currentPlayerName.value,
     text: messageInput.value,
     isOwn: true,
   };
-  chatStore.addMessage(activeTab.value, msg);
 
   const chatMessage = {
-    from: sessionStore.playerId,
+    from: sessionStore.isPlayerOrSpectator ? sessionStore.playerId : "host",
     message: messageInput.value,
   };
 
-  console.log("[Chat] Sending to", neighbor.id, ":", chatMessage);
+  if (activeTab.value === "global") {
+    chatStore.addMessage("global", msg);
+    socket.send("direct", buildRecipients("globalChat", chatMessage));
+    startCooldown(3000);
+  } else {
+    const neighbor = activeNeighbor.value;
+    if (!neighbor || neighbor.id === "") return;
 
-  socket.send("direct", { [neighbor.id]: ["chat", chatMessage] });
+    chatStore.addMessage(activeTab.value, msg);
+    socket.send("direct", { [neighbor.id]: ["chat", chatMessage] });
+    animateMessageSent();
 
-  animateMessageSent();
+    const activityData = { from: sessionStore.playerId, to: neighbor.id };
+    socket.send("direct", buildRecipients("chatActivity", activityData));
+    startCooldown(800);
+  }
 
-  const activityData = { from: sessionStore.playerId, to: neighbor.id };
-  const recipients: Record<string, unknown> = {};
-  players.value
-    .filter((p) => p.id !== sessionStore.playerId && p.id !== "")
-    .forEach((p) => {
-      recipients[p.id] = ["chatActivity", activityData];
-    });
-  recipients["host"] = ["chatActivity", activityData];
-  socket.send("direct", recipients);
-
+  scrollToBottom();
   messageInput.value = "";
 };
 </script>
