@@ -1,7 +1,7 @@
 <template>
   <picture v-if="role.id && role.id != 'empty'" class="role" :class="[player?.alignment, role.team]">
-    <img v-if="role.image" :src="rolePath(role)" :alt="role.id">
-    <InlineSvg v-else :src="rolePath(role)" />
+    <img v-if="role.image" :src="rolePath(role,player?.alignment)" :alt="role.id">
+    <InlineSvg v-else :src="rolePath(role,player?.alignment)" />
   </picture>
 </template>
 
@@ -19,7 +19,7 @@ const props = defineProps<{
 const role = computed(() => props.role);
 const player = computed(() => props.player);
 
-const rolePath = (role: Role) => getRoleImage(role);
+const rolePath = (role: Role, alignment: string | null | undefined = null) => getRoleImage(role, alignment);
 </script>
 
 <style scoped lang="scss">
