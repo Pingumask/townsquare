@@ -194,8 +194,8 @@ const startCooldown = (duration: number) => {
   }, duration);
 };
 
-const buildRecipients = (command: string, data: unknown): Record<string, unknown> => {
-  const recipients: Record<string, unknown> = {};
+const buildRecipients = <T>(command: string, data: T): Record<string, [string, T]> => {
+  const recipients: Record<string, [string, T]> = {};
   players.value
     .filter((p) => p.id !== sessionStore.playerId && p.id !== "")
     .forEach((p) => {
