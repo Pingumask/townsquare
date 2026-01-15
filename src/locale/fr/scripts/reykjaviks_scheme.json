@@ -1,0 +1,32 @@
+[
+  {
+    "id": "_meta",
+    "name": "Reykjavik's Scheme",
+    "author": "Gordon Fitzgerald",
+    "background": "https://clocktower.tf/scripts/reykjaviks_scheme.bg.png"
+  },
+  "slayer",
+  "artist",
+  "fisherman",
+  "savant",
+  "gossip",
+  "cannibal",
+  "mayor",
+  "minstrel",
+  "virgin",
+  "tealady",
+  "alchemist",
+  "pacifist",
+  "fool",
+  "golem",
+  "damsel",
+  "heretic",
+  "snitch",
+  "boomdandy",
+  "goblin",
+  "psychopath",
+  "devilsadvocate",
+  "alhadikhia",
+  "lleech",
+  "sentinel"
+]
