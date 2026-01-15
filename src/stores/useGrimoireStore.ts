@@ -423,15 +423,12 @@ export const useGrimoireStore = defineStore("grimoire", {
     },
 
     setDiscordIntegrationEnabled(enabled: boolean) {
-      if (enabled && !this.discordWebhookUrl) {
-        console.warn("Cannot enable Discord integration without webhook URL");
-        return;
-      }
+      if (enabled && !this.discordWebhookUrl) return;
+
       this.isDiscordIntegrationEnabled = enabled;
       const sessionStore = useSessionStore();
       if (!sessionStore.isPlayerOrSpectator) {
         socket.send("isDiscordIntegrationEnabled", enabled);
-        // Also send the webhook URL when enabling so clients have it
         if (enabled) {
           socket.send("discordWebhookUrl", this.discordWebhookUrl);
         }

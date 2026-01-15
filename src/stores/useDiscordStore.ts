@@ -95,32 +95,17 @@ export const useDiscordStore = defineStore("discord", {
         async acceptPrivateChat(requesterId: string) {
             const session = useSessionStore();
             const prefs = useUserPreferencesStore();
-            const myId = session.playerId;
 
             const requesterDiscordUsername = this.privateRequests[requesterId];
             if (!requesterDiscordUsername) return;
 
-            let i = 1;
-            let roomName = "";
-            while (true) {
-                const name = `private-room-${i}`;
-                if (!this.roomState[name] || this.roomState[name].length === 0) {
-                    roomName = name;
-                    break;
-                }
-                i++;
-            }
-
-            this.currentRoom = roomName;
-            this.sendMove(roomName);
-            this.activePrivateRoom = roomName;
-            this.activePrivatePartnerUsername = requesterDiscordUsername;
-
+            const roomName = this.findEmptyPrivateRoom();
+            this.enterPrivateRoom(roomName, requesterDiscordUsername);
             delete this.privateRequests[requesterId];
 
             socket.send("direct", {
                 [requesterId]: ["discordAccept", {
-                    from: myId,
+                    from: session.playerId,
                     to: requesterId,
                     roomName,
                     discordUsername: prefs.discordUsername
@@ -128,6 +113,19 @@ export const useDiscordStore = defineStore("discord", {
             });
 
             this.sendWebhook({ type: "MOVEPRIVATE", discordUsername2: requesterDiscordUsername });
+        },
+
+        findEmptyPrivateRoom(): string {
+            let i = 1;
+            while ((this.roomState[`private-room-${i}`]?.length ?? 0) > 0) i++;
+            return `private-room-${i}`;
+        },
+
+        enterPrivateRoom(roomName: string, partnerUsername: string) {
+            this.currentRoom = roomName;
+            this.sendMove(roomName);
+            this.activePrivateRoom = roomName;
+            this.activePrivatePartnerUsername = partnerUsername;
         },
 
         async sendWebhook(payload: { type: string; channelName?: string; discordUsername2?: string }) {
@@ -159,10 +157,7 @@ export const useDiscordStore = defineStore("discord", {
         },
 
         handleAccept(roomName: string, partnerDiscordUsername: string) {
-            this.currentRoom = roomName;
-            this.sendMove(roomName);
-            this.activePrivateRoom = roomName;
-            this.activePrivatePartnerUsername = partnerDiscordUsername;
+            this.enterPrivateRoom(roomName, partnerDiscordUsername);
         },
 
         updateRoomState(newState: Record<string, string[]>) {

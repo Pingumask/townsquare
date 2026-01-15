@@ -1,7 +1,7 @@
 <template>
   <div v-if="grimoire.isDiscordIntegrationEnabled" class="discord-panel" :class="{ open: isOpen }">
-    <div class="tab" @click="toggleOpen">
-      <span v-if="isOpen || !isOpen">Voice</span>
+    <div class="tab" @click="isOpen = !isOpen">
+      <span>Voice</span>
     </div>
 
     <div v-if="isOpen" class="content">
@@ -49,7 +49,7 @@
             :key="room"
             class="room"
             :class="{ active: discordStore.currentRoom === room }"
-            @click="joinRoom(room)"
+            @click="discordStore.moveToRoom(room)"
           >
             <div class="room-header">
               <span class="room-name">{{ room }}</span>
@@ -75,7 +75,7 @@
                   {{ getPlayerName(pid) }}
                </span>
             </div>
-            <button class="exit-btn" @click="exitPrivateCall">
+            <button class="exit-btn" @click="discordStore.moveToRoom('Main Hall')">
                <font-awesome-icon icon="phone-slash" /> Leave
             </button>
           </div>
@@ -97,27 +97,13 @@ const session = useSessionStore();
 const playersStore = usePlayersStore();
 const userPreferences = useUserPreferencesStore();
 
-function toggleOpen() {
-  isOpen.value = !isOpen.value;
-}
-
-function joinRoom(room: string) {
-  discordStore.moveToRoom(room);
-}
-
-function exitPrivateCall() {
-  discordStore.moveToRoom("Main Hall");
-}
-
 function callAllPlayers() {
-  if (!confirm("Move all players to Main Hall?")) return;
-  discordStore.callAllToMainHall();
+  if (confirm("Move all players to Main Hall?")) {
+    discordStore.callAllToMainHall();
+  }
 }
 
-function getPlayerName(id: string) {
-  const p = playersStore.players.find(p => p.id === id);
-  return p ? p.name : id; 
-}
+const getPlayerName = (id: string) => playersStore.players.find(p => p.id === id)?.name ?? id;
 
 </script>
 
@@ -182,43 +168,29 @@ function getPlayerName(id: string) {
   padding-bottom: 10px;
 }
 
-.call-all-btn {
+%btn {
   width: 100%;
   padding: 8px;
-  background: #c44;
-  border: 1px solid #a33;
   color: white;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.call-all-btn {
+  @extend %btn;
+  background: #c44;
+  border: 1px solid #a33;
   margin-bottom: 8px;
-  
-  &:hover {
-    background: #d55;
-  }
+  &:hover { background: #d55; }
 }
 
 .request-call-btn {
-  width: 100%;
-  padding: 8px;
+  @extend %btn;
   background: #2a2a2a;
   border: 1px solid #444;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  
-  &.active {
-    background: var(--townsfolk);
-    color: white;
-  }
-  
-  &:hover {
-    background: #3a3a3a;
-  }
-
-  &.active:hover {
-     background: var(--townsfolk);
-     opacity: 0.9;
-  }
+  &.active { background: var(--townsfolk); }
+  &:hover { background: #3a3a3a; }
+  &.active:hover { background: var(--townsfolk); opacity: 0.9; }
 }
 
 .requests {
