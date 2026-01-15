@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { useGrimoireStore, usePlayersStore, useSessionStore, useUserPreferencesStore } from "@/stores";
+import { useGrimoireStore, useSessionStore, useSoundboardStore, useUserPreferencesStore } from "@/stores";
 import socket from "@/services/socket";
 
 interface DiscordState {
@@ -34,11 +34,8 @@ export const useDiscordStore = defineStore("discord", {
             if (this.currentRoom === roomName) return;
 
             const session = useSessionStore();
-            const players = usePlayersStore();
-            const me = players.players.find(p => p.id === session.playerId);
 
-            if (!me) return;
-
+            // If leaving a private room, force the other person back to Main Hall
             if (this.activePrivateRoom && this.activePrivateRoom !== roomName) {
                 const occupants = this.roomState[this.activePrivateRoom] || [];
                 const otherId = occupants.find(id => id !== session.playerId);
@@ -70,6 +67,9 @@ export const useDiscordStore = defineStore("discord", {
             socket.send("direct", {
                 [targetPlayerId]: ["discordRequest", { from: session.playerId, to: targetPlayerId }]
             });
+
+            // Trigger webhook for private call request
+            this.triggerWebhook("REQUEST_CALL", targetPlayerId);
         },
 
         async callAllToMainHall() {
@@ -150,6 +150,9 @@ export const useDiscordStore = defineStore("discord", {
 
         handleRequest(fromPlayerId: string) {
             this.privateRequests[fromPlayerId] = 'received';
+            // Play a short ringing sound to notify of incoming request
+            const soundboard = useSoundboardStore();
+            soundboard.playSound({ sound: "ringing" });
         },
 
         handleAccept(roomName: string) {

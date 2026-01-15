@@ -60,7 +60,7 @@
         " icon="question" class="fa fa-question vote" :title="t('player.handDown')" @click="vote()" />
         
         <font-awesome-icon v-if="
-          session.isPlayerOrSpectator &&
+          session.playerId &&
           props.player.id &&
           props.player.id !== session.playerId &&
           discordStore.isSelectingForChat

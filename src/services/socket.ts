@@ -321,6 +321,14 @@ export class LiveSession {
       case "discordMoveAll":
         this._handleDiscordMoveAll(params as { roomName: string });
         break;
+      case "discordWebhookUrl":
+        if (!this._isPlayerOrSpectator) return;
+        grimoire.$patch({ discordWebhookUrl: params as string });
+        break;
+      case "isDiscordIntegrationEnabled":
+        if (!this._isPlayerOrSpectator) return;
+        grimoire.$patch({ isDiscordIntegrationEnabled: params as boolean });
+        break;
     }
   }
 
@@ -412,7 +420,7 @@ export class LiveSession {
         isVoteInProgress: votingStore.isVoteInProgress,
         markedPlayer: votingStore.markedPlayer,
         isDiscordIntegrationEnabled: grimoireStore.isDiscordIntegrationEnabled,
-        ...(grimoireStore.isDiscordIntegrationEnabled ? { discordWebhookUrl: grimoireStore.discordWebhookUrl } : {}),
+        discordWebhookUrl: grimoireStore.discordWebhookUrl,
         fabled: playersStore.fabled.map((f: Role) =>
           f.isCustom ? f : { id: f.id }
         ),

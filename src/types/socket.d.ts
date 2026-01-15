@@ -39,4 +39,6 @@ export type SocketCommands =
   | "discordMove"
   | "discordState"
   | "discordForceMove"
-  | "discordMoveAll";
+  | "discordMoveAll"
+  | "discordWebhookUrl"
+  | "isDiscordIntegrationEnabled";

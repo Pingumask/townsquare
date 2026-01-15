@@ -430,15 +430,20 @@ export const useGrimoireStore = defineStore("grimoire", {
       this.isDiscordIntegrationEnabled = enabled;
       const sessionStore = useSessionStore();
       if (!sessionStore.isPlayerOrSpectator) {
-        socket.sendGamestate();
+        socket.send("isDiscordIntegrationEnabled", enabled);
+        // Also send the webhook URL when enabling so clients have it
+        if (enabled) {
+          socket.send("discordWebhookUrl", this.discordWebhookUrl);
+        }
       }
     },
 
     setDiscordWebhookUrl(url: string) {
+      const oldUrl = this.discordWebhookUrl;
       this.discordWebhookUrl = url;
       const sessionStore = useSessionStore();
-      if (!sessionStore.isPlayerOrSpectator) {
-        socket.sendGamestate();
+      if (!sessionStore.isPlayerOrSpectator && url !== oldUrl) {
+        socket.send("discordWebhookUrl", url);
       }
     },
 
