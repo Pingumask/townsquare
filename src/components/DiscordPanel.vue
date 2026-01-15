@@ -22,15 +22,24 @@
         </div>
 
         <div class="controls">
-           <!-- Host Only: Call All Players Button -->
-           <button 
-             v-if="!session.isPlayerOrSpectator"
-             class="call-all-btn" 
-             @click="callAllPlayers"
-           >
-             <font-awesome-icon icon="users" />
-             Call All to Main Hall
-           </button>
+           <div v-if="!session.isPlayerOrSpectator" class="host-controls">
+             <button 
+               class="call-all-btn" 
+               @click="callAllPlayers"
+             >
+               <font-awesome-icon icon="users" />
+               Call Main Hall
+             </button>
+
+             <button 
+               class="mute-btn" 
+               :class="{ muted: discordStore.isMuted }"
+               @click="discordStore.toggleMute()"
+               :title="discordStore.isMuted ? 'Unmute All' : 'Mute All'"
+             >
+               <font-awesome-icon :icon="discordStore.isMuted ? 'microphone-slash' : 'microphone'" />
+             </button>
+           </div>
 
            <button 
              class="request-call-btn" 
@@ -168,6 +177,12 @@ const getPlayerName = (id: string) => playersStore.players.find(p => p.id === id
   padding-bottom: 10px;
 }
 
+.host-controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
 %btn {
   width: 100%;
   padding: 8px;
@@ -180,8 +195,28 @@ const getPlayerName = (id: string) => playersStore.players.find(p => p.id === id
   @extend %btn;
   background: #c44;
   border: 1px solid #a33;
-  margin-bottom: 8px;
+  flex: 1;
   &:hover { background: #d55; }
+}
+
+.mute-btn {
+  padding: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #4a4a4a;
+  border: 1px solid #666;
+  width: 40px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.muted {
+    background: #c44;
+    border: 1px solid #a33;
+  }
+  &:hover { background: #5a5a5a; }
+  &.muted:hover { background: #d55; }
 }
 
 .request-call-btn {

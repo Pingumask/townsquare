@@ -66,6 +66,8 @@ import {
   faComments,
   faHeadset,
   faPhoneSlash,
+  faMicrophone,
+  faMicrophoneSlash,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faDocker,
@@ -144,7 +146,9 @@ library.add(
   faDocker,
   faComments,
   faHeadset,
-  faPhoneSlash
+  faPhoneSlash,
+  faMicrophone,
+  faMicrophoneSlash
 );
 
 export default {

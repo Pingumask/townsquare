@@ -9,6 +9,7 @@ interface DiscordState {
     activePrivateRoom: string | null;
     activePrivatePartnerUsername: string | null;
     isSelectingForChat: boolean;
+    isMuted: boolean;
 }
 
 export const useDiscordStore = defineStore("discord", {
@@ -23,6 +24,7 @@ export const useDiscordStore = defineStore("discord", {
         activePrivateRoom: null,
         activePrivatePartnerUsername: null,
         isSelectingForChat: false,
+        isMuted: false,
     }),
 
     actions: {
@@ -80,16 +82,25 @@ export const useDiscordStore = defineStore("discord", {
             });
         },
 
-        async callAllToMainHall() {
+        checkHostPrivileges() {
             const session = useSessionStore();
             const grimoire = useGrimoireStore();
+            return !session.isPlayerOrSpectator && grimoire.isDiscordIntegrationEnabled && !!grimoire.discordWebhookUrl;
+        },
 
-            if (session.isPlayerOrSpectator) return;
-            if (!grimoire.isDiscordIntegrationEnabled || !grimoire.discordWebhookUrl) return;
+        async callAllToMainHall() {
+            if (!this.checkHostPrivileges()) return;
 
             socket.send("discordMoveAll", { roomName: "Main Hall" });
             await this.sendWebhook({ type: "MOVEALL" });
             this.moveToRoom("Main Hall", { skipWebhook: true });
+        },
+
+        async toggleMute() {
+            if (!this.checkHostPrivileges()) return;
+
+            this.isMuted = !this.isMuted;
+            await this.sendWebhook({ type: this.isMuted ? "MUTE" : "UNMUTE" });
         },
 
         async acceptPrivateChat(requesterId: string) {
