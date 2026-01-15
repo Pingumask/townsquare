@@ -5,8 +5,9 @@ import socket from "@/services/socket";
 interface DiscordState {
     currentRoom: string;
     roomState: Record<string, string[]>; // RoomName -> PlayerID[]
-    privateRequests: Record<string, string>; // PlayerID -> Status (sent/received)
+    privateRequests: Record<string, string>; // PlayerID -> RequesterDiscordUsername
     activePrivateRoom: string | null;
+    activePrivatePartnerUsername: string | null; // Discord username of the other person in private call
     isSelectingForChat: boolean;
 }
 
@@ -20,6 +21,7 @@ export const useDiscordStore = defineStore("discord", {
         },
         privateRequests: {},
         activePrivateRoom: null,
+        activePrivatePartnerUsername: null,
         isSelectingForChat: false,
     }),
 
@@ -30,12 +32,12 @@ export const useDiscordStore = defineStore("discord", {
             this.isSelectingForChat = !this.isSelectingForChat;
         },
 
-        moveToRoom(roomName: string) {
+        moveToRoom(roomName: string, options: { skipWebhook?: boolean } = {}) {
             if (this.currentRoom === roomName) return;
 
             const session = useSessionStore();
 
-            // If leaving a private room, force the other person back to Main Hall
+            // If leaving a private room, use RETURN to move both players back to Main Hall
             if (this.activePrivateRoom && this.activePrivateRoom !== roomName) {
                 const occupants = this.roomState[this.activePrivateRoom] || [];
                 const otherId = occupants.find(id => id !== session.playerId);
@@ -46,8 +48,14 @@ export const useDiscordStore = defineStore("discord", {
                     });
                 }
 
+                // Trigger RETURN webhook to move both players back to Main Hall
+                if (this.activePrivatePartnerUsername && !options.skipWebhook) {
+                    this.triggerPrivateWebhook("RETURN", this.activePrivatePartnerUsername);
+                }
+
                 if (!roomName.startsWith("private-")) {
                     this.activePrivateRoom = null;
+                    this.activePrivatePartnerUsername = null;
                 }
             }
 
@@ -55,21 +63,26 @@ export const useDiscordStore = defineStore("discord", {
 
             this.sendMove(roomName);
 
-            this.triggerWebhook("MOVE", roomName);
+            if (!options.skipWebhook) {
+                this.triggerWebhook("MOVE", roomName);
+            }
         },
 
         requestPrivateChat(targetPlayerId: string) {
             const session = useSessionStore();
+            const prefs = useUserPreferencesStore();
             if (!session.playerId) return;
 
             this.isSelectingForChat = false;
 
+            // Include discordUsername so the accepter has it for MOVEPRIVATE webhook
             socket.send("direct", {
-                [targetPlayerId]: ["discordRequest", { from: session.playerId, to: targetPlayerId }]
+                [targetPlayerId]: ["discordRequest", {
+                    from: session.playerId,
+                    to: targetPlayerId,
+                    discordUsername: prefs.discordUsername
+                }]
             });
-
-            // Trigger webhook for private call request
-            this.triggerWebhook("REQUEST_CALL", targetPlayerId);
         },
 
         async callAllToMainHall() {
@@ -93,12 +106,20 @@ export const useDiscordStore = defineStore("discord", {
                 })
             });
 
-            this.moveToRoom("Main Hall");
+            this.moveToRoom("Main Hall", { skipWebhook: true });
         },
 
         async acceptPrivateChat(requesterId: string) {
             const session = useSessionStore();
+            const prefs = useUserPreferencesStore();
             const myId = session.playerId;
+
+            // Get the requester's discord username from the stored request
+            const requesterDiscordUsername = this.privateRequests[requesterId];
+            if (!requesterDiscordUsername) {
+                console.error("No discord username found for requester");
+                return;
+            }
 
             let i = 1;
             let roomName = "";
@@ -111,16 +132,25 @@ export const useDiscordStore = defineStore("discord", {
                 i++;
             }
 
-            this.moveToRoom(roomName);
+            this.currentRoom = roomName;
+            this.sendMove(roomName);
             this.activePrivateRoom = roomName;
+            this.activePrivatePartnerUsername = requesterDiscordUsername;
 
             delete this.privateRequests[requesterId];
 
+            // Include accepter's discord username so requester can store it for RETURN webhook
             socket.send("direct", {
-                [requesterId]: ["discordAccept", { from: myId, to: requesterId, roomName }]
+                [requesterId]: ["discordAccept", {
+                    from: myId,
+                    to: requesterId,
+                    roomName,
+                    discordUsername: prefs.discordUsername
+                }]
             });
 
-            this.triggerWebhook("MOVE", roomName);
+            // Use MOVEPRIVATE to move both players to an empty private room
+            this.triggerPrivateWebhook("MOVEPRIVATE", requesterDiscordUsername);
         },
 
         async triggerWebhook(type: string, channelName: string) {
@@ -146,19 +176,46 @@ export const useDiscordStore = defineStore("discord", {
             }
         },
 
+        // Webhook for private calls (MOVEPRIVATE, RETURN) that involve two users
+        async triggerPrivateWebhook(type: "MOVEPRIVATE" | "RETURN", otherDiscordUsername: string) {
+            const grimoire = useGrimoireStore();
+            const prefs = useUserPreferencesStore();
+            if (!grimoire.isDiscordIntegrationEnabled) return;
+            if (!grimoire.discordWebhookUrl) return;
+
+            try {
+                await fetch(grimoire.discordWebhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        content: JSON.stringify({
+                            type: type,
+                            discordUsername: prefs.discordUsername,
+                            discordUsername2: otherDiscordUsername
+                        })
+                    })
+                });
+            } catch (e) {
+                console.error("Failed to send discord private webhook", e);
+            }
+        },
+
         // --- Actions called by Socket Handlers ---
 
-        handleRequest(fromPlayerId: string) {
-            this.privateRequests[fromPlayerId] = 'received';
+        handleRequest(fromPlayerId: string, discordUsername: string) {
+            // Store the requester's discord username so we have it when accepting
+            this.privateRequests[fromPlayerId] = discordUsername;
             // Play a short ring sound to notify of incoming request
             const soundboard = useSoundboardStore();
             soundboard.playSound({ sound: "ring" });
         },
 
-        handleAccept(roomName: string) {
-            this.moveToRoom(roomName);
+        handleAccept(roomName: string, partnerDiscordUsername: string) {
+            // Just update UI - the accepter already triggered MOVEPRIVATE which moves both users
+            this.currentRoom = roomName;
+            this.sendMove(roomName);
             this.activePrivateRoom = roomName;
-            this.triggerWebhook("MOVE", roomName);
+            this.activePrivatePartnerUsername = partnerDiscordUsername;
         },
 
         // Called when we receive full state update from Host

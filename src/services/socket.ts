@@ -304,12 +304,12 @@ export class LiveSession {
         this._handleChat(params as { from: string; message: string });
         break;
       case "discordRequest":
-        this._handleDiscordRequest(params as { from: string; to: string });
+        this._handleDiscordRequest(params as { from: string; to: string; discordUsername: string });
         break;
       case "discordAccept":
-        this._handleDiscordAccept(params as { from: string; to: string; roomName: string });
+        this._handleDiscordAccept(params as { from: string; to: string; roomName: string; discordUsername: string });
         break;
-      case "discordMove": // Sent by player to host
+      case "discordMove":
         this._handleDiscordMove(params as { type: string, discordUsername: string, channelName: string });
         break;
       case "discordState": // Broadcast by host
@@ -853,20 +853,22 @@ export class LiveSession {
     }
   }
 
-  _handleDiscordRequest(params: { from: string; to: string }) {
+  _handleDiscordRequest(params: { from: string; to: string; discordUsername: string }) {
     const discordStore = useDiscordStore();
     const session = useSessionStore();
     // Only care if it is for me
     if (params.to === session.playerId) {
-      discordStore.handleRequest(params.from);
+      // Pass the requester's discord username so we have it when accepting for MOVEPRIVATE
+      discordStore.handleRequest(params.from, params.discordUsername);
     }
   }
 
-  _handleDiscordAccept(params: { from: string; to: string; roomName: string }) {
+  _handleDiscordAccept(params: { from: string; to: string; roomName: string; discordUsername: string }) {
     const discordStore = useDiscordStore();
     const session = useSessionStore();
     if (params.to === session.playerId) {
-      discordStore.handleAccept(params.roomName);
+      // Get the accepter's discord username from their message to store for RETURN webhook
+      discordStore.handleAccept(params.roomName, params.discordUsername);
     }
   }
 
@@ -902,14 +904,16 @@ export class LiveSession {
 
   _handleDiscordForceMove(params: { roomName: string }) {
     const discordStore = useDiscordStore();
-    discordStore.moveToRoom(params.roomName);
+    discordStore.moveToRoom(params.roomName, { skipWebhook: true });
     discordStore.activePrivateRoom = null; // Ensure we clear private room state
+    discordStore.activePrivatePartnerUsername = null;
   }
 
   _handleDiscordMoveAll(params: { roomName: string }) {
     const discordStore = useDiscordStore();
-    discordStore.moveToRoom(params.roomName);
+    discordStore.moveToRoom(params.roomName, { skipWebhook: true });
     discordStore.activePrivateRoom = null; // Ensure we clear private room state
+    discordStore.activePrivatePartnerUsername = null;
   }
 
   _handleDiscordState(params: Record<string, string[]>) {
