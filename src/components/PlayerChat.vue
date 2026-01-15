@@ -39,7 +39,7 @@
         </li>
       </ul>
 
-      <div class="messages">
+      <div ref="messagesContainer" class="messages">
         <div
           v-for="(msg, index) in activeMessages"
           :key="index"
@@ -58,7 +58,7 @@
           @keyup.enter="sendMessage"
         />
         <button
-          :disabled="!activeNeighbor || activeNeighbor.id === ''"
+          :disabled="!activeNeighbor || activeNeighbor.id === '' || isCooldown"
           @click="sendMessage"
         >
           <font-awesome-icon
@@ -72,7 +72,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, watch, nextTick } from "vue";
 import {
   useLocaleStore,
   usePlayersStore,
@@ -94,6 +94,15 @@ const t = locale.t;
 const isChatOpen = ref(false);
 const activeTab = ref<"left" | "right">("left");
 const messageInput = ref("");
+const messagesContainer = ref<HTMLElement | null>(null);
+
+const scrollToBottom = () => {
+  nextTick(() => {
+    if (messagesContainer.value) {
+      messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight;
+    }
+  });
+};
 
 const players = computed(() => playersStore.players);
 const currentPlayerIndex = computed(() => playersStore.currentPlayerIndex);
@@ -118,6 +127,16 @@ const activeNeighbor = computed(() => {
   return activeTab.value === "left" ? leftNeighbor.value : rightNeighbor.value;
 });
 
+watch(
+  [activeMessages, isChatOpen, activeTab],
+  () => {
+    if (isChatOpen.value) {
+      scrollToBottom();
+    }
+  },
+  { deep: true }
+);
+
 const toggleChat = () => {
   isChatOpen.value = !isChatOpen.value;
 };
@@ -130,8 +149,10 @@ const animateMessageSent = () => {
   animationStore.addAnimation({ from: fromIndex, to: toIndex, emoji: "✉️" });
 };
 
+const isCooldown = ref(false);
+
 const sendMessage = () => {
-  if (!messageInput.value.trim()) return;
+  if (isCooldown.value || !messageInput.value.trim()) return;
 
   const neighbor =
     activeTab.value === "left" ? leftNeighbor.value : rightNeighbor.value;
@@ -143,13 +164,13 @@ const sendMessage = () => {
     isOwn: true,
   };
   chatStore.addMessage(activeTab.value, msg);
+  scrollToBottom();
 
   const chatMessage = {
     from: sessionStore.playerId,
     message: messageInput.value,
   };
 
-  console.log("[Chat] Sending to", neighbor.id, ":", chatMessage);
 
   socket.send("direct", { [neighbor.id]: ["chat", chatMessage] });
 
@@ -166,6 +187,11 @@ const sendMessage = () => {
   socket.send("direct", recipients);
 
   messageInput.value = "";
+
+  isCooldown.value = true;
+  setTimeout(() => {
+    isCooldown.value = false;
+  }, 800);
 };
 </script>
 
