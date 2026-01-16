@@ -256,5 +256,17 @@
     "name": "Hindu",
     "team": "loric",
     "ability": "Los primeros 4 jugadores en morir son reencarnados inmediatamente como Viajeros del mismo alineamiento."
+  },
+  {
+    "id": "pope",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": true,
+    "name": "Pope",
+    "team": "loric",
+    "ability": "There are duplicate good characters in play. They might also be bluffs."
   }
 ]
