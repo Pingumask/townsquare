@@ -264,7 +264,7 @@
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [],
-    "setup": false,
+    "setup": true,
     "name": "Pape",
     "team": "loric",
     "ability": "Il y a des personnages bons en plusieurs exemplaires. Il se peut qu'ils soient aussi des bluffs."

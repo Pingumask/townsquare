@@ -264,7 +264,7 @@
     "otherNight": 0,
     "otherNightReminder": "",
     "reminders": [],
-    "setup": false,
+    "setup": true,
     "name": "Pope",
     "team": "loric",
     "ability": "There are duplicate good characters in play. They might also be bluffs."
