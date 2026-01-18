@@ -2,13 +2,10 @@
 
 ## Upcomming Version
 - Features:
-<<<<<<< HEAD
-  - Adding the Hindu
-
-=======
   - Allow manual language selection (By default: follows ST language or uses browser's preferences when not playing)
   - Allow players to whisper their neigbours (can be disabled by storyteller)
   - Adding the Pope
+  - Updating the choice of Players' menu
 - Fixes:
 
 - Localization :

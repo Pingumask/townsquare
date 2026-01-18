@@ -328,6 +328,20 @@
               ]" />
             </em>
           </li>
+          <li @click="playersMenu.emptySeat = !playersMenu.emptySeat">
+            <small>
+              <div>
+                <font-awesome-icon icon="chair" class="fa fa-chair" />
+                {{ t('player.emptySeat') }}
+              </div>
+            </small>
+            <em>
+              <font-awesome-icon :icon="[
+                'fas',
+                playersMenu.emptySeat ? 'check-square' : 'square',
+              ]" />
+            </em>
+          </li>
           <li @click="playersMenu.swapAlignment = !playersMenu.swapAlignment">
             <small>
               <div>
