@@ -19,8 +19,8 @@ export const usePlayersMenuStore = defineStore("playersMenu", {
     swapPlayers: true,
     removePlayer: true,
     emptySeat: true,
-    swapAlignment: false,
-    specialVote: false,
+    swapAlignment: true,
+    specialVote: true,
   }),
   actions: {
     togglePlayersMenu(name: keyof PlayersMenuState) {
