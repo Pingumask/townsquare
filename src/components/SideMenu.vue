@@ -130,7 +130,7 @@
       </div>
       <div v-if="grimoire.gamePhase === 'firstNight' || grimoire.gamePhase === 'otherNight'"
         class="night-order-container">
-        <div v-if="grimoire.gamePhase === 'firstNight'" class="button-group">
+        <div v-if="grimoire.gamePhase === 'firstNight' && !session.isPlayerOrSpectator" class="button-group">
           <button @click="playersStore.distributeRolesAction()">
             {{ t('menu.sendRoles') }}
           </button>
