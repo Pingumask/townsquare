@@ -11,7 +11,7 @@
 - Localization :
 
 - Maintenance :
-
+  - Enforce strict equality in linter
 
 ## 6.1.0
 - Features:

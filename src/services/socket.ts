@@ -733,7 +733,7 @@ export class LiveSession {
       (index -
         1 +
         playerCount -
-        (typeof votingStore.nomination?.nominee == "number"
+        (typeof votingStore.nomination?.nominee === "number"
           ? votingStore.nomination.nominee
           : (votingStore.nomination?.nominator as number) || 0)) %
       playerCount;
@@ -750,7 +750,7 @@ export class LiveSession {
     if (seatIndex > 1) {
       const { lockedVote, nomination, votes } = votingStore;
       const index =
-        ((typeof nomination?.nominee == "number"
+        ((typeof nomination?.nominee === "number"
           ? nomination.nominee
           : (nomination?.nominator as number) || 0) +
           lockedVote -
