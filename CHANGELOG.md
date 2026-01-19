@@ -8,7 +8,7 @@
 =======
   - Allow manual language selection (By default: follows ST language or uses browser's preferences when not playing)
   - Allow players to whisper their neigbours (can be disabled by storyteller)
->>>>>>> 023a0433df08abade92e33ebb57ff38531ade2d4
+  - Adding the Pope
 - Fixes:
 
 - Localization :
