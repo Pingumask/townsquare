@@ -7,6 +7,7 @@
   - Adding the Pope
   - Updating the choice of Players' menu
 - Fixes:
+  - Send Characters button not visible to players anymore
 
 - Localization :
 
