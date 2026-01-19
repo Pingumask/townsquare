@@ -256,5 +256,17 @@
     "name": "Hindou",
     "team": "loric",
     "ability": "Les 4 premiers joueurs à mourir sont immédiatement réincarnés comme Voyageurs du même alignement."
+  },
+  {
+    "id": "pope",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": true,
+    "name": "Pape",
+    "team": "loric",
+    "ability": "Il y a des personnages bons en plusieurs exemplaires. Il se peut qu'ils soient aussi des bluffs."
   }
 ]
