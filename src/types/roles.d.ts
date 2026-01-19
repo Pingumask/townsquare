@@ -16,7 +16,7 @@ export interface Role {
   reminders?: string[];
   remindersGlobal?: string[];
   setup?: boolean;
-  image?: string;
+  image?: string|string[];
   imageAlt?: string;
   forbidden?: boolean;
   multiple?: boolean;
@@ -45,7 +45,7 @@ export interface RoleGroup {
 export interface ParsedRole {
   id: string;
   edition?: string;
-  image?: string;
+  image?: string|string[];
 }
 
 export interface JinxInfo {
