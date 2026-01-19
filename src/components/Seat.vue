@@ -107,7 +107,7 @@
             {{ t('player.changePronouns') }}
           </li>
           <li v-if="
-            !session.isPlayerOrSpectator ||
+            (!session.isPlayerOrSpectator && playersMenu.changeName) ||
             ((grimoire.allowSelfNaming || props.player.name === '') && session.isPlayerOrSpectator && player.id === session.playerId)
           " @click="changeName">
             <font-awesome-icon icon="user-edit" class="fa fa-user-edit" />
@@ -126,7 +126,8 @@
               <font-awesome-icon icon="times-circle" class="fa fa-times-circle" />
               {{ t('player.removePlayer') }}
             </li>
-            <li v-if="props.player.id && session.sessionId" @click="updatePlayer('id', '', true)">
+            <li v-if="props.player.id && session.sessionId && playersMenu.emptySeat"
+              @click="updatePlayer('id', '', true)">
               <font-awesome-icon icon="chair" class="fa fa-chair" />
               {{ t('player.emptySeat') }}
             </li>
