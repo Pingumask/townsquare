@@ -2,22 +2,29 @@
 
 ## Upcoming Version
 - Features:
+
+- Fixes:
+
+- Localization:
+
+- Maintenance:
+
+
+## 6.2.0
+- Features:
   - Allow manual language selection (By default: follows ST language or uses browser's preferences when not playing)
   - Text messaging (global + whisper to neighbors) (can be disabled by storyteller) - credit to [@FerLuisxd](https://github.com/FerLuisxd)
   - Integrated Notepad (toggle with 'Q')
     - Base functionality by [@FerLuisxd](https://github.com/FerLuisxd)
-    - Enhanced by Pingumask (Resizable, Movable instead of UI blocking Modal)
+    - Enhanced by [@Pingumask](https://github.com/Pingumask) (Resizable, Movable instead of UI blocking Modal)
   - Adding the Pope
   - More toggleable options in Players' menu
   - Allowing showing an alignment change on a custom role
-  - Added a "Global" chat tab to broadcast messages to all players (available for both players and host).
 - Fixes:
   - Send Characters button not visible to players anymore
-
-- Localization :
-
-- Maintenance :
+- Maintenance:
   - Enforce strict equality in linter
+  - Updated dependencies
 
 ## 6.1.0
 - Features:
