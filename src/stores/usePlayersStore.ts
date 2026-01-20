@@ -168,18 +168,19 @@ export const usePlayersStore = defineStore("players", {
       return this.players.findIndex(p => p.id === sessionStore.playerId);
     },
 
+    // Left & right are defined looking towards the center of the table, so left neighbor is clockwise
     leftNeighbor(): Player | undefined {
       const idx = this.currentPlayerIndex;
       if (idx === -1) return undefined;
       const len = this.players.length;
-      return this.players[(idx - 1 + len) % len];
+      return this.players[(idx + 1) % len];
     },
 
     rightNeighbor(): Player | undefined {
       const idx = this.currentPlayerIndex;
       if (idx === -1) return undefined;
       const len = this.players.length;
-      return this.players[(idx + 1) % len];
+      return this.players[(idx - 1 + len) % len];
     },
   },
 

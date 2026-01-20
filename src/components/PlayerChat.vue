@@ -1,70 +1,38 @@
 <template>
-  <div
-    v-if="isSeated && grimoire.isWhisperingAllowed"
-    ref="playerChat"
-    class="player-chat"
-    :class="{ closed: !isChatOpen }"
-  >
+  <div v-if="canShowChat" ref="playerChat" class="player-chat" :class="{ closed: !isChatOpen }">
     <h3>
       <span>{{ t("chat.title") }}</span>
-      <font-awesome-icon
-        icon="times-circle"
-        class="fa fa-times-circle"
-        @click.stop="toggleChat"
-      />
-      <font-awesome-icon
-        icon="plus-circle"
-        class="fa fa-plus-circle"
-        @click.stop="toggleChat"
-      />
+      <font-awesome-icon icon="times-circle" class="fa fa-times-circle" @click.stop="toggleChat" />
+      <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="toggleChat" />
     </h3>
     <div v-if="!isChatOpen" style="display: none"></div>
     <div v-else class="chat-container">
       <ul class="tabs">
-        <li
-          aria-role="tab"
-          class="tab"
-          :class="{ active: activeTab === 'left' }"
-          @click="activeTab = 'left'"
-        >
+        <li v-if="sessionStore.isPlayerOrSpectator" aria-role="tab" class="tab"
+          :class="{ active: activeTab === 'left' }" @click="activeTab = 'left'">
           {{ leftNeighbor?.name }}
         </li>
-        <li
-          aria-role="tab"
-          class="tab"
-          :class="{ active: activeTab === 'right' }"
-          @click="activeTab = 'right'"
-        >
+        <li aria-role="tab" class="tab" :class="{ active: activeTab === 'global' }" @click="activeTab = 'global'">
+          {{ t("chat.global") }}
+        </li>
+        <li v-if="sessionStore.isPlayerOrSpectator" aria-role="tab" class="tab"
+          :class="{ active: activeTab === 'right' }" @click="activeTab = 'right'">
           {{ rightNeighbor?.name }}
         </li>
       </ul>
 
-      <div class="messages">
-        <div
-          v-for="(msg, index) in activeMessages"
-          :key="index"
-          :class="['message', msg.isOwn ? 'own' : 'other']"
-        >
+      <div ref="messagesContainer" class="messages">
+        <div v-for="(msg, index) in activeMessages" :key="index" :class="['message', msg.isOwn ? 'own' : 'other']">
+          <strong v-if="activeTab === 'global'">{{ msg.from }}: </strong>
           {{ msg.text }}
         </div>
       </div>
 
       <div class="input-area">
-        <input
-          v-model="messageInput"
-          type="text"
-          :placeholder="t('chat.type_message')"
-          :disabled="!activeNeighbor || activeNeighbor.id === ''"
-          @keyup.enter="sendMessage"
-        />
-        <button
-          :disabled="!activeNeighbor || activeNeighbor.id === ''"
-          @click="sendMessage"
-        >
-          <font-awesome-icon
-            :icon="['fas', 'paper-plane']"
-            :title="activeNeighbor && activeNeighbor.id !== '' ? t('chat.send') : t('chat.cannotSend')"
-          />
+        <input v-model="messageInput" type="text" :placeholder="t('chat.type_message')" :disabled="isInputDisabled"
+          @keyup.enter="sendMessage" />
+        <button :disabled="isSendDisabled" @click="sendMessage">
+          <font-awesome-icon :icon="['fas', 'paper-plane']" :title="getTooltipTitle()" />
         </button>
       </div>
     </div>
@@ -72,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, watch, nextTick } from "vue";
 import {
   useLocaleStore,
   usePlayersStore,
@@ -82,6 +50,7 @@ import {
   useAnimationStore,
 } from "@/stores";
 import socket from "@/services/socket";
+import { ChatChannel } from "@/types";
 
 const locale = useLocaleStore();
 const playersStore = usePlayersStore();
@@ -92,17 +61,32 @@ const animationStore = useAnimationStore();
 const t = locale.t;
 
 const isChatOpen = ref(false);
-const activeTab = ref<"left" | "right">("left");
+const activeTab = ref<ChatChannel>("global");
 const messageInput = ref("");
+const messagesContainer = ref<HTMLElement | null>(null);
+
+const scrollToBottom = () => {
+  nextTick(() => {
+    if (messagesContainer.value) {
+      messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight;
+    }
+  });
+};
 
 const players = computed(() => playersStore.players);
 const currentPlayerIndex = computed(() => playersStore.currentPlayerIndex);
+
+const canShowChat = computed(() => {
+  if (!grimoire.isTextChatAllowed) return false;
+  return !sessionStore.isPlayerOrSpectator || isSeated.value;
+});
 
 const isSeated = computed(() => {
   return sessionStore.isPlayerOrSpectator && currentPlayerIndex.value !== -1;
 });
 
 const currentPlayerName = computed(() => {
+  if (!sessionStore.isPlayerOrSpectator) return t("menu.host");
   return playersStore.players[currentPlayerIndex.value]?.name || "You";
 });
 
@@ -115,8 +99,35 @@ const activeMessages = computed(() => {
 });
 
 const activeNeighbor = computed(() => {
+  if (activeTab.value === "global") return null;
   return activeTab.value === "left" ? leftNeighbor.value : rightNeighbor.value;
 });
+
+const isInputDisabled = computed(() => {
+  if (activeTab.value === "global") return false;
+  return !activeNeighbor.value || activeNeighbor.value.id === "";
+});
+
+const isSendDisabled = computed(() => {
+  return isCooldown.value || isInputDisabled.value;
+});
+
+const getTooltipTitle = () => {
+  if (activeTab.value === "global") return t("chat.send");
+  return activeNeighbor.value && activeNeighbor.value.id !== ""
+    ? t("chat.send")
+    : t("chat.cannotSend");
+};
+
+watch(
+  [activeMessages, isChatOpen, activeTab],
+  () => {
+    if (isChatOpen.value) {
+      scrollToBottom();
+    }
+  },
+  { deep: true }
+);
 
 const toggleChat = () => {
   isChatOpen.value = !isChatOpen.value;
@@ -130,41 +141,58 @@ const animateMessageSent = () => {
   animationStore.addAnimation({ from: fromIndex, to: toIndex, emoji: "✉️" });
 };
 
-const sendMessage = () => {
-  if (!messageInput.value.trim()) return;
+const isCooldown = ref(false);
 
-  const neighbor =
-    activeTab.value === "left" ? leftNeighbor.value : rightNeighbor.value;
-  if (!neighbor || neighbor.id === "") return;
+const startCooldown = (duration: number) => {
+  isCooldown.value = true;
+  setTimeout(() => {
+    isCooldown.value = false;
+  }, duration);
+};
+
+const buildRecipients = <T>(command: string, data: T): Record<string, [string, T]> => {
+  const recipients: Record<string, [string, T]> = {};
+  players.value
+    .filter((p) => p.id !== sessionStore.playerId && p.id !== "")
+    .forEach((p) => {
+      recipients[p.id] = [command, data];
+    });
+  recipients["host"] = [command, data];
+  return recipients;
+};
+
+const sendMessage = () => {
+  if (isCooldown.value || !messageInput.value.trim()) return;
 
   const msg = {
     from: currentPlayerName.value,
     text: messageInput.value,
     isOwn: true,
   };
-  chatStore.addMessage(activeTab.value, msg);
 
   const chatMessage = {
-    from: sessionStore.playerId,
+    from: sessionStore.isPlayerOrSpectator ? sessionStore.playerId : "host",
     message: messageInput.value,
   };
 
-  console.log("[Chat] Sending to", neighbor.id, ":", chatMessage);
+  if (activeTab.value === "global") {
+    chatStore.addMessage("global", msg);
+    socket.send("direct", buildRecipients("globalChat", chatMessage));
+    startCooldown(3000);
+  } else {
+    const neighbor = activeNeighbor.value;
+    if (!neighbor || neighbor.id === "") return;
 
-  socket.send("direct", { [neighbor.id]: ["chat", chatMessage] });
+    chatStore.addMessage(activeTab.value, msg);
+    socket.send("direct", { [neighbor.id]: ["chat", chatMessage] });
+    animateMessageSent();
 
-  animateMessageSent();
+    const activityData = { from: sessionStore.playerId, to: neighbor.id };
+    socket.send("direct", buildRecipients("chatActivity", activityData));
+    startCooldown(800);
+  }
 
-  const activityData = { from: sessionStore.playerId, to: neighbor.id };
-  const recipients: Record<string, unknown> = {};
-  players.value
-    .filter((p) => p.id !== sessionStore.playerId && p.id !== "")
-    .forEach((p) => {
-      recipients[p.id] = ["chatActivity", activityData];
-    });
-  recipients["host"] = ["chatActivity", activityData];
-  socket.send("direct", recipients);
-
+  scrollToBottom();
   messageInput.value = "";
 };
 </script>
@@ -238,6 +266,7 @@ const sendMessage = () => {
   gap: 10px;
   margin-top: 10px;
   height: 400px;
+  width: min(35ch, 80vw);
 }
 
 .tabs {
