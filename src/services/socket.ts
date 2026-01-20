@@ -10,6 +10,7 @@ import {
   useAnimationStore,
 } from "@/stores";
 import type {
+  ChatChannel,
   Edition,
   GamePhase,
   JukeboxSound,
@@ -244,9 +245,9 @@ export class LiveSession {
         if (!this._isPlayerOrSpectator) return;
         grimoire.setSecretVote(params as boolean);
         break;
-      case "isWhisperingAllowed":
+      case "isTextChatAllowed":
         if (!this._isPlayerOrSpectator) return;
-        grimoire.setAllowWhispers(params as boolean);
+        grimoire.setAllowTextChat(params as boolean);
         break;
       case "chatActivity":
         this._handleChatActivity(params as { from: string; to: string });
@@ -389,7 +390,7 @@ export class LiveSession {
         allowSelfNaming: grimoireStore.allowSelfNaming,
         isVoteHistoryAllowed: grimoireStore.isVoteHistoryAllowed,
         isSecretVoteMode: grimoireStore.isSecretVote,
-        isWhisperingAllowed: grimoireStore.isWhisperingAllowed,
+        isTextChatAllowed: grimoireStore.isTextChatAllowed,
         nomination: votingStore.nomination,
         votingSpeed: votingStore.votingSpeed,
         lockedVote: votingStore.lockedVote,
@@ -420,7 +421,7 @@ export class LiveSession {
       allowSelfNaming,
       isVoteHistoryAllowed,
       isSecretVoteMode,
-      isWhisperingAllowed,
+      isTextChatAllowed,
       timer,
       nomination,
       votingSpeed,
@@ -446,7 +447,7 @@ export class LiveSession {
       allowSelfNaming?: boolean;
       isVoteHistoryAllowed?: boolean;
       isSecretVoteMode?: boolean;
-      isWhisperingAllowed?: boolean;
+      isTextChatAllowed?: boolean;
       timer?: { name?: string; duration?: number };
       nomination: Nomination | null;
       votingSpeed?: number;
@@ -512,7 +513,7 @@ export class LiveSession {
       grimoireStore.setAllowSelfNaming(!!allowSelfNaming);
       grimoireStore.setVoteHistoryAllowed(!!isVoteHistoryAllowed);
       grimoireStore.setSecretVote(!!isSecretVoteMode);
-      grimoireStore.setAllowWhispers(!!isWhisperingAllowed);
+      grimoireStore.setAllowTextChat(!!isTextChatAllowed);
       votingStore.updateNomination({
         nomination,
         votes: votes || [],
@@ -790,7 +791,7 @@ export class LiveSession {
 
     const rightNeighborId = playersStore.rightNeighbor?.id;
 
-    let messageTab: "left" | "right" | null = null;
+    let messageTab: ChatChannel | null = null;
     if (leftNeighborId === senderId) {
       messageTab = "left";
     } else if (rightNeighborId === senderId) {

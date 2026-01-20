@@ -38,7 +38,7 @@
     "allowVoteHistory": "Historial de votaciones público",
     "secretVote": "Votación secreta",
     "selfNaming": "Permitir auto-nombrarse",
-    "allowWhispering": "Permitir chat",
+    "allowTextChat": "Permitir chat",
     "leave": "Salir de la sesión",
     "addPlayer": "Agregar asiento",
     "addPlayers": "Agregar asientos",

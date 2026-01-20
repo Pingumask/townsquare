@@ -1,81 +1,38 @@
 <template>
-  <div
-    v-if="canShowChat"
-    ref="playerChat"
-    class="player-chat"
-    :class="{ closed: !isChatOpen }"
-  >
+  <div v-if="canShowChat" ref="playerChat" class="player-chat" :class="{ closed: !isChatOpen }">
     <h3>
       <span>{{ t("chat.title") }}</span>
-      <font-awesome-icon
-        icon="times-circle"
-        class="fa fa-times-circle"
-        @click.stop="toggleChat"
-      />
-      <font-awesome-icon
-        icon="plus-circle"
-        class="fa fa-plus-circle"
-        @click.stop="toggleChat"
-      />
+      <font-awesome-icon icon="times-circle" class="fa fa-times-circle" @click.stop="toggleChat" />
+      <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="toggleChat" />
     </h3>
     <div v-if="!isChatOpen" style="display: none"></div>
     <div v-else class="chat-container">
       <ul class="tabs">
-        <template v-if="sessionStore.isPlayerOrSpectator">
-          <li
-            aria-role="tab"
-            class="tab"
-            :class="{ active: activeTab === 'left' }"
-            @click="activeTab = 'left'"
-          >
-            {{ leftNeighbor?.name }}
-          </li>
-          <li
-            aria-role="tab"
-            class="tab"
-            :class="{ active: activeTab === 'right' }"
-            @click="activeTab = 'right'"
-          >
-            {{ rightNeighbor?.name }}
-          </li>
-        </template>
-        <li
-          aria-role="tab"
-          class="tab"
-          :class="{ active: activeTab === 'global' }"
-          @click="activeTab = 'global'"
-        >
+        <li v-if="sessionStore.isPlayerOrSpectator" aria-role="tab" class="tab"
+          :class="{ active: activeTab === 'left' }" @click="activeTab = 'left'">
+          {{ leftNeighbor?.name }}
+        </li>
+        <li aria-role="tab" class="tab" :class="{ active: activeTab === 'global' }" @click="activeTab = 'global'">
           {{ t("chat.global") }}
+        </li>
+        <li v-if="sessionStore.isPlayerOrSpectator" aria-role="tab" class="tab"
+          :class="{ active: activeTab === 'right' }" @click="activeTab = 'right'">
+          {{ rightNeighbor?.name }}
         </li>
       </ul>
 
       <div ref="messagesContainer" class="messages">
-        <div
-          v-for="(msg, index) in activeMessages"
-          :key="index"
-          :class="['message', msg.isOwn ? 'own' : 'other']"
-        >
+        <div v-for="(msg, index) in activeMessages" :key="index" :class="['message', msg.isOwn ? 'own' : 'other']">
           <strong v-if="activeTab === 'global'">{{ msg.from }}: </strong>
           {{ msg.text }}
         </div>
       </div>
 
       <div class="input-area">
-        <input
-          v-model="messageInput"
-          type="text"
-          :placeholder="t('chat.type_message')"
-          :disabled="isInputDisabled"
-          @keyup.enter="sendMessage"
-        />
-        <button
-          :disabled="isSendDisabled"
-          @click="sendMessage"
-        >
-          <font-awesome-icon
-            :icon="['fas', 'paper-plane']"
-            :title="getTooltipTitle()"
-          />
+        <input v-model="messageInput" type="text" :placeholder="t('chat.type_message')" :disabled="isInputDisabled"
+          @keyup.enter="sendMessage" />
+        <button :disabled="isSendDisabled" @click="sendMessage">
+          <font-awesome-icon :icon="['fas', 'paper-plane']" :title="getTooltipTitle()" />
         </button>
       </div>
     </div>
@@ -93,6 +50,7 @@ import {
   useAnimationStore,
 } from "@/stores";
 import socket from "@/services/socket";
+import { ChatChannel } from "@/types";
 
 const locale = useLocaleStore();
 const playersStore = usePlayersStore();
@@ -103,9 +61,7 @@ const animationStore = useAnimationStore();
 const t = locale.t;
 
 const isChatOpen = ref(false);
-const activeTab = ref<"left" | "right" | "global">(
-  sessionStore.isPlayerOrSpectator ? "left" : "global"
-);
+const activeTab = ref<ChatChannel>("global");
 const messageInput = ref("");
 const messagesContainer = ref<HTMLElement | null>(null);
 
@@ -121,7 +77,7 @@ const players = computed(() => playersStore.players);
 const currentPlayerIndex = computed(() => playersStore.currentPlayerIndex);
 
 const canShowChat = computed(() => {
-  if (!grimoire.isWhisperingAllowed) return false;
+  if (!grimoire.isTextChatAllowed) return false;
   return !sessionStore.isPlayerOrSpectator || isSeated.value;
 });
 
@@ -310,6 +266,7 @@ const sendMessage = () => {
   gap: 10px;
   margin-top: 10px;
   height: 400px;
+  width: min(35ch, 80vw);
 }
 
 .tabs {
