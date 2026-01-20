@@ -57,6 +57,7 @@
     "request": "Solicitar una función",
     "newGame": "Nuevo juego",
     "endGame": "Finalizar juego",
+    "notes": "Notas",
     "language": "Idioma"
   },
   "head": {
@@ -319,6 +320,10 @@
         "debateText": "El debate está abierto",
         "buttonLabel": "(Personalizado)"
       }
+    },
+    "notes": {
+      "title": "Notas",
+      "placeholder": "Escribe tus notas aquí... (solo son visibles para ti)"
     }
   },
   "chat": {

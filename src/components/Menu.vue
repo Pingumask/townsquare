@@ -404,6 +404,10 @@
             {{ t('menu.nightOrder') }}
             <em>[N]</em>
           </li>
+          <li @click="grimoire.toggleModal('notes')">
+            {{ t('menu.notes') }}
+            <em>[Q]</em>
+          </li>
           <li :class="{ disabled: !grimoire.isVoteHistoryAllowed && session.isPlayerOrSpectator }"
             @click="grimoire.toggleModal('voteHistory')">
             {{ t('menu.voteHistory') }}<em>[V]</em>
