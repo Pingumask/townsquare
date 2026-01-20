@@ -3,10 +3,12 @@
 ## Upcoming Version
 - Features:
   - Allow manual language selection (By default: follows ST language or uses browser's preferences when not playing)
-  - Allow players to whisper their neigbours (can be disabled by storyteller)
-  - Added private Notes popup (toggle with 'Q') - credit to @FerLuisxd (https://github.com/FerLuisxd)
+  - Text messaging (global + whisper to neighbors) (can be disabled by storyteller) - credit to [@FerLuisxd](https://github.com/FerLuisxd)
+  - Integrated Notepad (toggle with 'Q')
+    - Base functionality by [@FerLuisxd](https://github.com/FerLuisxd)
+    - Enhanced by Pingumask (Resizable, Movable instead of UI blocking Modal)
   - Adding the Pope
-  - Updating the choice of Players' menu
+  - More toggleable options in Players' menu
   - Allowing showing an alignment change on a custom role
   - Added a "Global" chat tab to broadcast messages to all players (available for both players and host).
 - Fixes:
@@ -25,7 +27,7 @@
   - Wrong composition (number of villagers/outsiders) for Teensyville scripts
   - Wrong ids in many included custom scripts
 - Localization :
-  - Added support for Spanish (Thanks to https://github.com/FerLuisxd)
+  - Added support for Spanish - credit to [@FerLuisxd](https://github.com/FerLuisxd)
 - Maintenance :
   - Removed github actions deployment to github pages (https://pingumask.github.io is deprecated, use https://clocktower.tf instead)
   - Beta deployments managed by netlify (develop branch available at https://beta.clocktower.tf, temporary test versions deployed automatically on pull requests)

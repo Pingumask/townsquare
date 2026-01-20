@@ -27,7 +27,7 @@
     <VoteHistoryModal />
     <GameStateModal />
     <SpecialVoteModal />
-    <NotesModal />
+    <Notes />
     <Gradients />
     <span id="version">v{{ version }}{{ isBeta ? '-beta' : '' }}</span>
   </div>
@@ -48,6 +48,7 @@ import {
   Gradients,
   Intro,
   Menu,
+  Notes,
   TownInfo,
   Vote,
   EditionModal,
@@ -59,7 +60,6 @@ import {
   SpecialVoteModal,
   TownSquare,
   VoteHistoryModal,
-  NotesModal,
 } from "@/components";
 
 const grimoire = useGrimoireStore();
@@ -145,7 +145,7 @@ function keyup(event: KeyboardEvent) {
       grimoire.toggleModal(null);
       break;
     case "q":
-      grimoire.toggleModal("notes");
+      userPreferences.notes.opened = !userPreferences.notes.opened;
       break;
   }
 }
