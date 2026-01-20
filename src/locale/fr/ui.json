@@ -38,7 +38,7 @@
     "allowVoteHistory": "Historique Publique",
     "secretVote": "Vote secret",
     "selfNaming": "Auto-Renommage",
-    "allowWhispering": "Chuchottements",
+    "allowTextChat": "Autoriser la messagerie",
     "leave": "Quitter Session",
     "addPlayer": "Ajouter un Siège",
     "addPlayers": "Ajouter des Sièges",
@@ -328,10 +328,11 @@
     }
   },
   "chat": {
-    "title": "Chuchottements",
+    "title": "Chat",
     "type_message": "Tapez votre message...",
     "send": "Envoyer",
-    "cannotSend": "Impossible de chuchotter à un voisin qui n'est pas assis"
+    "cannotSend": "Impossible d'envoyer un message à un voisin qui n'est pas assis",
+    "global": "Global"
   },
   "sound": {
     "rooster": "Chant du Coq",

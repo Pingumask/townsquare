@@ -1,16 +1,21 @@
 # Release Notes
 
-## Upcomming Version
+## Upcoming Version
 - Features:
   - Allow manual language selection (By default: follows ST language or uses browser's preferences when not playing)
   - Allow players to whisper their neigbours (can be disabled by storyteller)
   - Added private Notes popup (toggle with 'Q') - credit to @FerLuisxd (https://github.com/FerLuisxd)
+  - Adding the Pope
+  - Updating the choice of Players' menu
+  - Allowing showing an alignment change on a custom role
+  - Added a "Global" chat tab to broadcast messages to all players (available for both players and host).
 - Fixes:
+  - Send Characters button not visible to players anymore
 
 - Localization :
 
 - Maintenance :
-
+  - Enforce strict equality in linter
 
 ## 6.1.0
 - Features:

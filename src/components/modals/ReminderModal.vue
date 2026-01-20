@@ -37,7 +37,7 @@ const mapReminder =
   (role: Role) =>
     (name: string): Reminder => ({
       role: role,
-      image: role.image || getRoleImage(role),
+      image: getRoleImage(role),
       imageAlt: role.imageAlt || '',
       name,
       id: `${role.id}-${name}`,

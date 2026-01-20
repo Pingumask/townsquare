@@ -278,7 +278,7 @@ const shouldHideNominee = computed(() => {
 
 const voudonInPlay = computed(() => {
   for (const player of players.value) {
-    if (player.role.id == "voudon") return !player.isDead;
+    if (player.role.id === "voudon") return !player.isDead;
   }
   return false;
 });
@@ -289,7 +289,7 @@ const canVote = computed(() => {
   const nomination = votingStore.nomination;
 
   if ( // Dead player without a token or voudon
-    (player.value.isDead || player.value.role.id == "beggar")
+    (player.value.isDead || player.value.role.id === "beggar")
     && !player.value.voteToken
     && !isFreeVote.value
     && !voudonInPlay.value
