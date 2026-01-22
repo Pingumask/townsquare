@@ -4,7 +4,7 @@
 - Features:
 
 - Fixes:
-
+  - Better contrast for Token tooltips in Roles attribution modal
 - Localization:
 
 - Maintenance:

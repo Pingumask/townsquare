@@ -1,13 +1,31 @@
 <template>
-  <div ref="el" class="token" :class="[role.id, { unchecked: unchecked, 'right': isRight }]" @click="setRole">
+  <div
+    ref="el"
+    class="token"
+    :class="[role.id, { unchecked: unchecked, right: isRight }]"
+    @click="setRole"
+  >
     <RoleIcon :role="role" :player="player" />
     <span v-if="role.firstNight || role.firstNightReminder" class="leaf-left" />
-    <span v-if="role.otherNight || role.otherNightReminder" class="leaf-right" />
+    <span
+      v-if="role.otherNight || role.otherNightReminder"
+      class="leaf-right"
+    />
     <span v-if="reminderLeaves" :class="['leaf-top' + reminderLeaves]" />
     <span v-if="role.setup" class="leaf-orange" />
     <svg viewBox="0 0 150 150" class="name">
-      <path id="curve" d="M 13 75 C 13 160, 138 160, 138 75" fill="transparent" />
-      <text width="150" x="66.6%" text-anchor="middle" class="label mozilla" :font-size="nameToFontSize">
+      <path
+        id="curve"
+        d="M 13 75 C 13 160, 138 160, 138 75"
+        fill="transparent"
+      />
+      <text
+        width="150"
+        x="66.6%"
+        text-anchor="middle"
+        class="label mozilla"
+        :font-size="nameToFontSize"
+      >
         <textPath xlink:href="#curve">
           {{ role?.name || "" }}
         </textPath>
@@ -21,25 +39,28 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
-import { RoleIcon } from '@/components';
-import type { Player, Role } from '@/types';
+import { computed, onMounted, ref } from "vue";
+import { RoleIcon } from "@/components";
+import type { Player, Role } from "@/types";
 
 const el = ref<HTMLDivElement>();
 const isRight = ref<boolean>(false);
 
-const props = withDefaults(defineProps<{
-  role?: Role;
-  unchecked?: boolean;
-  player?: Player;
-}>(), {
-  role: () => ({} as Role),
-  unchecked: false,
-  player: () => ({} as Player),
-});
+const props = withDefaults(
+  defineProps<{
+    role?: Role;
+    unchecked?: boolean;
+    player?: Player;
+  }>(),
+  {
+    role: () => ({}) as Role,
+    unchecked: false,
+    player: () => ({}) as Player,
+  },
+);
 
 const emit = defineEmits<{
-  'set-role': [role: Role];
+  "set-role": [role: Role];
 }>();
 
 const reminderLeaves = computed(() => {
@@ -52,15 +73,18 @@ const reminderLeaves = computed(() => {
 const nameToFontSize = computed(() => {
   if (!props.role?.name) return "0%";
   if (props.role.name.length <= 10) return "110%";
-  return `${Math.max(110 - ((props.role.name.length - 10) * 3.75), 50)}%`;
+  return `${Math.max(110 - (props.role.name.length - 10) * 3.75, 50)}%`;
 });
 
 onMounted(() => {
-  isRight.value = el.value!.getBoundingClientRect().left + el.value!.getBoundingClientRect().width / 2 > window.innerWidth / 2;
-})
+  isRight.value =
+    el.value!.getBoundingClientRect().left +
+      el.value!.getBoundingClientRect().width / 2 >
+    window.innerWidth / 2;
+});
 
 function setRole() {
-  emit('set-role', props.role!);
+  emit("set-role", props.role!);
 }
 </script>
 
@@ -86,7 +110,9 @@ function setRole() {
     @-moz-document url-prefix() {
       &.mozilla {
         stroke: none;
-        filter: drop-shadow(0 1.5px 0 black) drop-shadow(0 -1.5px 0 black) drop-shadow(1.5px 0 0 black) drop-shadow(-1.5px 0 0 black) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
+        filter: drop-shadow(0 1.5px 0 black) drop-shadow(0 -1.5px 0 black)
+          drop-shadow(1.5px 0 0 black) drop-shadow(-1.5px 0 0 black)
+          drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
       }
     }
   }
@@ -192,7 +218,9 @@ function setRole() {
           // Vue doesn't support scoped media queries, so we have to use a second css class
           stroke: none;
           text-shadow: none;
-          filter: drop-shadow(0 1.5px 0 white) drop-shadow(0 -1.5px 0 white) drop-shadow(1.5px 0 0 white) drop-shadow(-1.5px 0 0 white) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
+          filter: drop-shadow(0 1.5px 0 white) drop-shadow(0 -1.5px 0 white)
+            drop-shadow(1.5px 0 0 white) drop-shadow(-1.5px 0 0 white)
+            drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
         }
       }
     }

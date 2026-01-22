@@ -1,10 +1,12 @@
 <template>
-  <Modal v-if="grimoire.modal === 'roles' && nontravelers >= 5" class="roles" @close="grimoire.toggleModal(null)">
+  <Modal
+    v-if="grimoire.modal === 'roles' && nontravelers >= 5"
+    class="roles"
+    @close="grimoire.toggleModal(null)"
+  >
     <h3>
       {{
-        t('modal.roles.titleStart') +
-        nontravelers +
-        t('modal.roles.titleEnd')
+        t("modal.roles.titleStart") + nontravelers + t("modal.roles.titleEnd")
       }}
     </h3>
     <ul v-for="(teamRoles, team) in roleSelection" :key="team" class="tokens">
@@ -12,59 +14,84 @@
         {{ getTeamRoleCount(teamRoles) }} /
         {{ composition?.[team as keyof GameComposition] }}
       </li>
-      <li v-for="role in teamRoles" :key="role.id" :class="[role.team, role.selected ? 'selected' : '']"
-        @click="role.selected = role.selected ? 0 : 1">
-        <Token :role="role" />
-        <font-awesome-icon v-if="role.setup" icon="exclamation-triangle" class="fa fa-exclamation-triangle" />
+      <li
+        v-for="role in teamRoles"
+        :key="role.id"
+        :class="[role.team, role.selected ? 'selected' : '']"
+        @click="role.selected = role.selected ? 0 : 1"
+      >
+        <Token :role="role" :unchecked="!role.selected" />
+        <font-awesome-icon
+          v-if="role.setup"
+          icon="exclamation-triangle"
+          class="fa fa-exclamation-triangle"
+        />
         <div v-if="allowMultiple || role.multiple" class="buttons">
-          <font-awesome-icon icon="minus-circle" @click.stop="role.selected--" />
+          <font-awesome-icon
+            icon="minus-circle"
+            @click.stop="role.selected--"
+          />
           <span>{{ role.selected > 1 ? "x" + role.selected : "" }}</span>
-          <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="role.selected++" />
+          <font-awesome-icon
+            icon="plus-circle"
+            class="fa fa-plus-circle"
+            @click.stop="role.selected++"
+          />
         </div>
       </li>
     </ul>
     <ul class="tokens">
-      <li v-for="role in fabledWithSetup" :key="role.id" :class="['fabled', 'selected']">
+      <li
+        v-for="role in fabledWithSetup"
+        :key="role.id"
+        :class="['fabled', 'selected']"
+      >
         <Token :role="role" />
-        <font-awesome-icon icon="exclamation-triangle" class="fa fa-exclamation-triangle" />
+        <font-awesome-icon
+          icon="exclamation-triangle"
+          class="fa fa-exclamation-triangle"
+        />
       </li>
     </ul>
     <div v-if="hasSelectedSetupRoles || fabledWithSetup.length" class="warning">
-      <font-awesome-icon icon="exclamation-triangle" class="fa fa-exclamation-triangle" />
-      <span>{{ t('modal.roles.warning') }}</span>
+      <font-awesome-icon
+        icon="exclamation-triangle"
+        class="fa fa-exclamation-triangle"
+      />
+      <span>{{ t("modal.roles.warning") }}</span>
     </div>
     <label class="multiple" :class="{ checked: allowMultiple }">
       <font-awesome-icon :icon="allowMultiple ? 'check-square' : 'square'" />
-      <input v-model="allowMultiple" type="checkbox" name="allow-multiple">
-      {{ t('modal.roles.allowMultiple') }}
+      <input v-model="allowMultiple" type="checkbox" name="allow-multiple" />
+      {{ t("modal.roles.allowMultiple") }}
     </label>
     <div class="button-group">
-      <button class="button" :class="{
-        disabled: selectedRoles > nontravelers || !selectedRoles,
-      }" @click="assignRoles">
+      <button
+        class="button"
+        :class="{
+          disabled: selectedRoles > nontravelers || !selectedRoles,
+        }"
+        @click="assignRoles"
+      >
         <font-awesome-icon icon="people-arrows" class="fa fa-people-arrows" />
         {{
-          t('modal.roles.assignStart') +
+          t("modal.roles.assignStart") +
           selectedRoles +
-          t('modal.roles.assignEnd')
+          t("modal.roles.assignEnd")
         }}
       </button>
       <div class="button" @click="selectRandomRoles">
         <font-awesome-icon icon="random" class="fa fa-random" />
-        {{ t('modal.roles.shuffle') }}
+        {{ t("modal.roles.shuffle") }}
       </div>
     </div>
   </Modal>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue';
-import { Modal, Token } from '@/components';
-import {
-  useGrimoireStore,
-  useLocaleStore,
-  usePlayersStore,
-} from "@/stores";
+import { computed, onMounted, ref, watch } from "vue";
+import { Modal, Token } from "@/components";
+import { useGrimoireStore, useLocaleStore, usePlayersStore } from "@/stores";
 import type {
   GameComposition,
   Player,
@@ -76,8 +103,8 @@ import type {
 const locale = useLocaleStore();
 const t = locale.t;
 
-const randomElement = <T>(arr: T[]): T => {
-  if (arr.length === 0) throw new Error('Cannot select from empty array');
+const randomElement = <T,>(arr: T[]): T => {
+  if (arr.length === 0) throw new Error("Cannot select from empty array");
   return arr[Math.floor(Math.random() * arr.length)]!;
 };
 
@@ -93,11 +120,15 @@ const players = computed(() => playersStore.players);
 const roles = computed(() => grimoire.roles);
 const edition = computed(() => grimoire.edition);
 
-const composition = computed(() => grimoire.getGameComposition(nontravelers.value));
+const composition = computed(() =>
+  grimoire.getGameComposition(nontravelers.value),
+);
 
 const selectedRoles = computed(() => {
   return Object.values(roleSelection.value)
-    .map((roles: SelectableRole[]) => roles.reduce((a: number, { selected }) => a + selected, 0))
+    .map((roles: SelectableRole[]) =>
+      roles.reduce((a: number, { selected }) => a + selected, 0),
+    )
     .reduce((a: number, b: number) => a + b, 0);
 });
 
@@ -125,10 +156,10 @@ const selectRandomRoles = () => {
   roleSelection.value = {};
   roles.value.forEach((role: Role) => {
     const selectableRole: SelectableRole = { ...role, selected: 0 };
-    if (!roleSelection.value[role.team || 'unknown']) {
-      roleSelection.value[role.team || 'unknown'] = [];
+    if (!roleSelection.value[role.team || "unknown"]) {
+      roleSelection.value[role.team || "unknown"] = [];
     }
-    roleSelection.value[role.team || 'unknown']?.push(selectableRole);
+    roleSelection.value[role.team || "unknown"]?.push(selectableRole);
   });
   delete roleSelection.value["traveler"];
   if (composition.value) {
@@ -155,12 +186,23 @@ const assignRoles = () => {
       .map((roles: SelectableRole[]) =>
         roles
           // duplicate roles selected more than once and filter unselected
-          .reduce((a: SelectableRole[], r: SelectableRole) => [...a, ...Array(r.selected).fill(r)], []),
+          .reduce(
+            (a: SelectableRole[], r: SelectableRole) => [
+              ...a,
+              ...Array(r.selected).fill(r),
+            ],
+            [],
+          ),
       )
       // flatten into a single array
       .reduce((a: SelectableRole[], b: SelectableRole[]) => [...a, ...b], [])
-      .map((a: SelectableRole) => [Math.random(), a] as [number, SelectableRole])
-      .sort((a: [number, SelectableRole], b: [number, SelectableRole]) => a[0] - b[0])
+      .map(
+        (a: SelectableRole) => [Math.random(), a] as [number, SelectableRole],
+      )
+      .sort(
+        (a: [number, SelectableRole], b: [number, SelectableRole]) =>
+          a[0] - b[0],
+      )
       .map((a: [number, SelectableRole]) => a[1]);
     players.value.forEach((player: Player) => {
       if (player.role.team !== "traveler" && roles.length) {
@@ -202,12 +244,9 @@ ul.tokens {
     border-radius: 50%;
     width: 5vmax;
     margin: 5px;
-    opacity: 0.5;
     transition: all 250ms;
 
     &.selected {
-      opacity: 1;
-
       .buttons {
         display: flex;
       }
@@ -222,7 +261,6 @@ ul.tokens {
         0 0 10px var(--townsfolk),
         0 0 10px #004cff;
     }
-
     &.outsider {
       box-shadow:
         0 0 10px var(--outsider),
