@@ -5,6 +5,8 @@
 
 - Fixes:
   - Better contrast for Token tooltips in Roles attribution modal
+  - Better contrast for Pronouns
+  - Better contrast for Players Menu
 - Localization:
 
 - Maintenance:
