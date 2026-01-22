@@ -2,11 +2,12 @@
 
 ## Upcoming Version
 - Features:
-
+  - Storyteller can manually change day counter
 - Fixes:
   - Better contrast for Token tooltips in Roles attribution modal
   - Better contrast for Pronouns
   - Better contrast for Players Menu
+  - Move text chat to top for mobile users
 - Localization:
 
 - Maintenance:

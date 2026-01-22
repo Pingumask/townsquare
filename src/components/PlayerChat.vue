@@ -214,6 +214,11 @@ const sendMessage = () => {
   transition: all 250ms ease-in-out;
   display: flex;
   flex-direction: column;
+  @media(orientation: portrait) {
+    left: 50%;
+    top: 10px;
+    transform: translateX(-50%);
+  }
 }
 
 .player-chat.closed {
