@@ -413,6 +413,7 @@ export const useGrimoireStore = defineStore("grimoire", {
     },
 
     setDayCount(dayCount: number) {
+      if (dayCount < 0) return;
       this.dayCount = dayCount;
       const sessionStore = useSessionStore();
       if (!sessionStore.isPlayerOrSpectator) socket.send("dayCount", dayCount);
