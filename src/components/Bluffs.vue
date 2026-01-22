@@ -1,14 +1,43 @@
 <template>
-  <div v-if="players.length" ref="bluffs" class="bluffs" :class="{ closed: !isBluffsOpen }">
+  <div
+    v-if="players.length"
+    ref="bluffs"
+    class="bluffs"
+    :class="{ closed: !isBluffsOpen }"
+  >
     <h3>
-      <span v-if="isPlayerOrSpectator">{{ t('townsquare.others') }}</span>
-      <span v-else>{{ t('townsquare.bluffs') }}</span>
-      <font-awesome-icon icon="times-circle" class="fa fa-times-circle" @click.stop="toggleBluffs" />
-      <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="toggleBluffs" />
+      <font-awesome-icon
+        v-if="bluffs.length > 3"
+        icon="minus-circle"
+        class="bluff-count"
+        @click="bluffs.pop()"
+      />
+      <span v-if="isPlayerOrSpectator">{{ t("townsquare.others") }}</span>
+      <span v-else>{{ t("townsquare.bluffs") }}</span>
+      <font-awesome-icon
+        v-if="bluffs.length < 12"
+        icon="plus-circle"
+        class="bluff-count"
+        @click="bluffs.push({ id: '' })"
+      />
+      <font-awesome-icon
+        icon="times-circle"
+        class="fa fa-times-circle close"
+        @click.stop="toggleBluffs"
+      />
+      <font-awesome-icon
+        icon="plus-circle"
+        class="fa fa-plus-circle open"
+        @click.stop="toggleBluffs"
+      />
     </h3>
     <ul>
-      <li v-for="index in bluffSize" :key="index" @click="openRoleModal(index * -1)">
-        <Token :role="bluffs[index - 1] || { id: '' }" />
+      <li
+        v-for="(bluff, index) in bluffs"
+        :key="index"
+        @click="openRoleModal(index * -1)"
+      >
+        <Token :role="bluff" />
       </li>
     </ul>
   </div>
@@ -17,11 +46,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { Token } from "@/components";
-import {
-  useLocaleStore,
-  usePlayersStore,
-  useSessionStore,
-} from "@/stores";
+import { useLocaleStore, usePlayersStore, useSessionStore } from "@/stores";
 
 const emit = defineEmits(["openRoleModal"]);
 
@@ -30,7 +55,6 @@ const playersStore = usePlayersStore();
 const sessionStore = useSessionStore();
 const t = locale.t;
 
-const bluffSize = ref(3);
 const isBluffsOpen = ref(true);
 
 const bluffs = computed(() => playersStore.bluffs);
@@ -47,7 +71,7 @@ const toggleBluffs = () => {
 </script>
 
 <style scoped>
-.bluffs {
+#townsquare .bluffs {
   position: absolute;
   bottom: 10px;
   left: 10px;
@@ -62,9 +86,13 @@ const toggleBluffs = () => {
   z-index: 50;
   padding: 10px;
   color: white;
+  width: min(calc(3 * 10vmin + 20px) ,calc((100vmax - 100vmin) / 2 - 40px));
+  @media (orientation: portrait) {
+    width: 50vw;
+  }
 }
 
-.bluffs.closed {
+#townsquare .bluffs.closed {
   opacity: 1;
   width: auto;
   height: auto;
@@ -72,12 +100,12 @@ const toggleBluffs = () => {
   background: none;
 }
 
-.bluffs.closed ul,
-.bluffs.closed h3 span {
+#townsquare .bluffs.closed ul,
+#townsquare .bluffs.closed h3 span {
   display: none;
 }
 
-.bluffs h3 {
+#townsquare .bluffs h3 {
   display: flex;
   align-items: center;
   align-content: center;
@@ -85,43 +113,47 @@ const toggleBluffs = () => {
   font-size: 1.17em;
 }
 
-.bluffs h3 .fa {
+#townsquare .bluffs h3 .fa {
   cursor: pointer;
 }
 
-.bluffs h3 .fa-times-circle {
+#townsquare .bluffs h3 .close {
   margin-left: 1vh;
   display: block;
 }
 
-.bluffs h3 .fa-plus-circle {
+#townsquare .bluffs h3 .open {
   margin-left: 1vh;
   display: none;
 }
 
-.bluffs.closed h3 .fa-times-circle {
+#townsquare .bluffs.closed h3 .close {
   display: none;
 }
 
-.bluffs.closed h3 .fa-plus-circle {
+#townsquare .bluffs.closed h3 .open {
   display: block;
 }
 
-.bluffs ul {
+#townsquare .bluffs ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10vmin, 1fr));
 }
 
-.bluffs li {
-  width: 14vmin;
-  height: 14vmin;
-  margin: 0 0.5%;
+#townsquare .bluffs ul li {
+  width: 10vmin;
+  height: 10vmin;
+  aspect-ratio: 1;
   display: inline-block;
   transition: all 250ms;
   cursor: pointer;
+}
+
+.bluff-count {
+  height: 1rem;
+  margin-inline: 0.25rem;
 }
 </style>

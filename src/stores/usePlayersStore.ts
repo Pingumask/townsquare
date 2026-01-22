@@ -77,7 +77,7 @@ export const usePlayersStore = defineStore("players", {
   state: (): PlayersState => ({
     players: [] as Player[],
     fabled: [] as Role[],
-    bluffs: [] as Role[],
+    bluffs: [{id: ''},{id: ''},{id: ''}] as Role[],
   }),
 
   getters: {
@@ -306,7 +306,7 @@ export const usePlayersStore = defineStore("players", {
     },
     setBluff({ index, role }: { index?: number; role?: Role } = {}) {
       if (index === undefined) {
-        this.bluffs = [];
+        this.bluffs = [{id: ''},{id: ''},{id: ''}] as Role[];
       } else {
         this.bluffs.splice(index, 1, role!);
       }
