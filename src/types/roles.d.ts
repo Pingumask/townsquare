@@ -61,5 +61,6 @@ export type TeamType =
   | "minion"
   | "demon"
   | "traveler"
+  | "traveller"   // This possibility exists to handle the alternate writing
   | "fabled"
   | "loric";
