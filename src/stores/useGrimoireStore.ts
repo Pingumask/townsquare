@@ -260,6 +260,15 @@ export const useGrimoireStore = defineStore("grimoire", {
 
       const processedRoles = roles
         .map((role) => {
+
+          // Correcting the ID if needed, by removing non-alphabetical characters and putting the rest in lower case
+          role.id = role.id.replace(/[^a-z]/gi, '').toLowerCase();
+
+          // Correcting the Traveller type if needed
+          if(role.team == "traveller") {
+            role.team = "traveler";
+          }
+
           if (Array.isArray(role) && (role as unknown[])[0]) {
             // Handle array format [name, id, ...] if applicable, or just map keys
             const mappedRole: Record<string, unknown> = {};
