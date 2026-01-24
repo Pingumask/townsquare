@@ -265,7 +265,7 @@ export const useGrimoireStore = defineStore("grimoire", {
           role.id = role.id.replace(/[^a-z]/gi, '').toLowerCase();
 
           // Correcting the Traveller type if needed
-          if(role.team == "traveller") {
+          if(role.team === "traveller") {
             role.team = "traveler";
           }
 
