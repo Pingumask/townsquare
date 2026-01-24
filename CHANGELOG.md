@@ -2,6 +2,7 @@
 
 ## Upcoming Version
 - Features:
+  - Allowing alternate writings for roles ID and "traveller"
 
 - Fixes:
 
