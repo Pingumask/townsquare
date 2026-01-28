@@ -7,6 +7,7 @@ interface SoundboardState {
   ringingTrigger: number;
   roosterTrigger: number;
   gavelTrigger: number;
+  deathTrigger: number;
 }
 
 export const useSoundboardStore = defineStore("soundboard", {
@@ -14,6 +15,7 @@ export const useSoundboardStore = defineStore("soundboard", {
     ringingTrigger: 0,
     roosterTrigger: 0,
     gavelTrigger: 0,
+    deathTrigger: 0,
   }),
 
   actions: {
@@ -27,6 +29,9 @@ export const useSoundboardStore = defineStore("soundboard", {
           break;
         case "gavel":
           this.gavelTrigger++;
+          break;
+        case "death":
+          this.deathTrigger++;
           break;
       }
       const sessionStore = useSessionStore();

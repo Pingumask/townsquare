@@ -336,6 +336,7 @@
   "sound": {
     "rooster": "Gallo",
     "ringing": "Campana",
-    "gavel": "Golpe de mazo"
+    "gavel": "Golpe de mazo",
+    "death": "Muerte"
   }
 }

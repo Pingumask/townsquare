@@ -336,6 +336,7 @@
   "sound": {
     "rooster": "Rooster",
     "ringing": "Ring Bell",
-    "gavel": "Hit Gavel"
+    "gavel": "Hit Gavel",
+    "death": "Death"
   }
 }
