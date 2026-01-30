@@ -2,6 +2,7 @@
 
 ## Upcoming Version
 - Features:
+  - Added a death sound to the game
 
 - Fixes:
 
