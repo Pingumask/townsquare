@@ -104,9 +104,6 @@
       <span>2</span>
       <span>1</span>
       <span>{{ t('vote.doVote') }}</span>
-      <audio :autoplay="!userPreferences.isMuted" :muted="userPreferences.isMuted">
-        <source src="../assets/sounds/countdown.mp3">
-      </audio>
     </div>
   </div>
 </template>
@@ -122,6 +119,7 @@ import {
   useSessionStore,
   useUserPreferencesStore,
   useVotingStore,
+  useSoundboardStore,
 } from "@/stores";
 import type { Player } from '@/types';
 
@@ -346,6 +344,8 @@ const voters = computed(() => {
 });
 
 const countdown = () => {
+  const soundboard = useSoundboardStore();
+  soundboard.playSound({ sound: "ringing" });
   votingStore.lockVote(0);
   votingStore.setVoteInProgress(true);
   voteTimer.value = setInterval(() => {
@@ -354,13 +354,21 @@ const countdown = () => {
 };
 
 const start = () => {
+  const soundboard = useSoundboardStore();
   votingStore.lockVote(1);
   votingStore.setVoteInProgress(true);
   if (voteTimer.value) {
     clearInterval(voteTimer.value);
   }
   voteTimer.value = setInterval(() => {
+    if ((players.value.length-votingStore.lockedVote)*votingStore.votingSpeed <= 5000 && players.value.length*votingStore.votingSpeed >= 5000) {
+      soundboard.playSound({ sound: "riser" });
+    }
     votingStore.lockVote();
+    if (votingStore.votingSpeed >= 1000) {
+      soundboard.changeVolume({ sound: "votingBell" }, 0.2+0.8*Math.min(votingStore.lockedVote/players.value.length, 1.0));
+      soundboard.playSound({ sound: "votingBell" });
+    }
     if (votingStore.lockedVote > players.value.length) {
       if (voteTimer.value) {
         clearInterval(voteTimer.value);
@@ -371,12 +379,20 @@ const start = () => {
 };
 
 const pause = () => {
+  const soundboard = useSoundboardStore();
   if (voteTimer.value) {
     clearInterval(voteTimer.value);
     voteTimer.value = null;
   } else {
     voteTimer.value = setInterval(() => {
+      if ((players.value.length-votingStore.lockedVote)*votingStore.votingSpeed <= 5000 && (players.value.length-votingStore.lockedVote)*votingStore.votingSpeed >= 4000) {
+        soundboard.playSound({ sound: "riser" });
+      }
       votingStore.lockVote();
+      if (votingStore.votingSpeed >= 1000) {
+        soundboard.changeVolume({ sound: "votingBell" }, 0.2+0.8*Math.min(votingStore.lockedVote/players.value.length, 1.0));
+        soundboard.playSound({ sound: "votingBell" });
+      }
       if (votingStore.lockedVote > players.value.length) {
         if (voteTimer.value) {
           clearInterval(voteTimer.value);

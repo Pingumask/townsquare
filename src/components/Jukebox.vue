@@ -15,6 +15,16 @@
     @ended="showDeath = false">
     <source src="../assets/sounds/death.mp3">
   </audio>
+  <audio ref="votingBellAudio" preload="auto" :muted="userPreferences.isMuted">
+    <source src="../assets/sounds/voting_bell.mp3">
+  </audio>
+  <audio ref="riserAudio" preload="auto" :muted="userPreferences.isMuted">
+    <source src="../assets/sounds/riser.mp3">
+  </audio>
+  <audio ref="drumRollAudio" preload="auto" :muted="userPreferences.isMuted" @play="showDrumRoll = true"
+    @ended="showDrumRoll = false">
+    <source src="../assets/sounds/drum_roll.mp3">
+  </audio>
   <ul>
     <li v-if="showRinging">
       <font-awesome-icon :icon="['fas', 'music']" />
@@ -30,6 +40,9 @@
     <li v-if="showDeath">
       🪦
     </li>
+    <li v-if="showDrumRoll">
+      🥁
+    </li>
   </ul>
 </template>
 
@@ -44,33 +57,69 @@ const ringingAudio = ref<HTMLAudioElement>();
 const roosterAudio = ref<HTMLAudioElement>();
 const gavelAudio = ref<HTMLAudioElement>();
 const deathAudio = ref<HTMLAudioElement>();
+const votingBellAudio = ref<HTMLAudioElement>();
+const riserAudio = ref<HTMLAudioElement>();
+const drumRollAudio = ref<HTMLAudioElement>();
 
 const showGavel = ref(false);
 const showRinging = ref(false);
 const showRooster = ref(false);
 const showDeath = ref(false);
+const showDrumRoll = ref(false);
+
+function playOverlapping(audioRef: Ref<HTMLAudioElement>) {
+  const clone = audioRef.value.cloneNode(true) as HTMLAudioElement;
+  clone.volume = audioRef.value.volume;
+  clone.play();
+}
 
 watch(() => soundboard.ringingTrigger, () => {
   if (ringingAudio.value) {
+    ringingAudio.value.volume = soundboard.ringingVolume;
     ringingAudio.value.play();
   }
 });
 
 watch(() => soundboard.roosterTrigger, () => {
   if (roosterAudio.value) {
+    roosterAudio.value.volume = soundboard.roosterVolume;
     roosterAudio.value.play();
   }
 });
 
 watch(() => soundboard.gavelTrigger, () => {
   if (gavelAudio.value) {
+    gavelAudio.value.volume = soundboard.gavelVolume;
     gavelAudio.value.play();
   }
 });
 
 watch(() => soundboard.deathTrigger, () => {
   if (deathAudio.value) {
+    deathAudio.value.volume = soundboard.deathVolume;
     deathAudio.value.play();
   }
 });
+
+watch(() => soundboard.votingBellTrigger, () => {
+  if (votingBellAudio.value) {
+    votingBellAudio.value.volume = soundboard.votingBellVolume;
+    playOverlapping(votingBellAudio);
+  }
+});
+
+watch(() => soundboard.riserTrigger, () => {
+  if (riserAudio.value) {
+    riserAudio.value.volume = soundboard.riserVolume;
+    riserAudio.value.play();
+  }
+});
+
+watch(() => soundboard.drumRollTrigger, () => {
+  if (drumRollAudio.value) {
+    drumRollAudio.value.volume = soundboard.drumRollVolume;
+    drumRollAudio.value.play();
+  }
+});
+
 </script>
