@@ -40,7 +40,7 @@
         " class="orange">
           {{ t('vote.secretBallot') }}
         </em>
-        <div v-if="!votingStore.isVoteInProgress && votingStore.lockedVote < 1">
+        <div v-if="(!votingStore.isVoteInProgress && votingStore.lockedVote < 1) || votingStore.lockedVote == players.length + 1">
           {{ t('vote.timePerPlayer') }}
           <font-awesome-icon icon="minus-circle" class="fa fa-minus-circle" @mousedown.prevent="setVotingSpeed(-250)" />
           {{ votingStore.votingSpeed / 1000 }}s
@@ -130,6 +130,8 @@ const session = useSessionStore();
 const userPreferences = useUserPreferencesStore();
 const votingStore = useVotingStore();
 const t = locale.t;
+
+let timerForRiser: ReturnType<typeof setTimeout>;
 
 const alive = computed(() => playersStore.alive);
 const players = computed(() => playersStore.players);
@@ -360,10 +362,12 @@ const start = () => {
   if (voteTimer.value) {
     clearInterval(voteTimer.value);
   }
-  voteTimer.value = setInterval(() => {
-    if ((players.value.length-votingStore.lockedVote)*votingStore.votingSpeed <= 5000 && players.value.length*votingStore.votingSpeed >= 5000) {
+  if (players.value.length*votingStore.votingSpeed >= 5000) {
+    timerForRiser = setTimeout(() => {
       soundboard.playSound({ sound: "riser" });
-    }
+    }, players.value.length*votingStore.votingSpeed-5000);
+  }
+  voteTimer.value = setInterval(() => {
     votingStore.lockVote();
     if (votingStore.votingSpeed >= 1000) {
       soundboard.changeVolume({ sound: "votingBell" }, 0.2+0.8*Math.min(votingStore.lockedVote/players.value.length, 1.0));
@@ -382,12 +386,15 @@ const pause = () => {
   const soundboard = useSoundboardStore();
   if (voteTimer.value) {
     clearInterval(voteTimer.value);
+    clearTimeout(timerForRiser);
     voteTimer.value = null;
   } else {
-    voteTimer.value = setInterval(() => {
-      if ((players.value.length-votingStore.lockedVote)*votingStore.votingSpeed <= 5000 && (players.value.length-votingStore.lockedVote)*votingStore.votingSpeed >= 4000) {
+    if ((players.value.length-votingStore.lockedVote)*votingStore.votingSpeed >= 5000) {
+      timerForRiser = setTimeout(() => {
         soundboard.playSound({ sound: "riser" });
-      }
+      }, (players.value.length)*votingStore.votingSpeed-5000);
+    }
+    voteTimer.value = setInterval(() => {
       votingStore.lockVote();
       if (votingStore.votingSpeed >= 1000) {
         soundboard.changeVolume({ sound: "votingBell" }, 0.2+0.8*Math.min(votingStore.lockedVote/players.value.length, 1.0));
