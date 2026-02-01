@@ -337,6 +337,8 @@
     "rooster": "Gallo",
     "ringing": "Campana",
     "gavel": "Golpe de mazo",
-    "death": "Muerte"
+    "death": "Tocar a muerto",
+    "drumRoll": "Redoblar"
+
   }
 }
