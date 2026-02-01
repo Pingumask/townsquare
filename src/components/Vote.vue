@@ -117,7 +117,6 @@ import {
   useLocaleStore,
   usePlayersStore,
   useSessionStore,
-  useUserPreferencesStore,
   useVotingStore,
   useSoundboardStore,
 } from "@/stores";
@@ -127,7 +126,6 @@ const grimoire = useGrimoireStore();
 const locale = useLocaleStore();
 const playersStore = usePlayersStore();
 const session = useSessionStore();
-const userPreferences = useUserPreferencesStore();
 const votingStore = useVotingStore();
 const t = locale.t;
 

@@ -48,6 +48,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from "vue";
+import type { Ref } from "vue";
 import { useSoundboardStore, useUserPreferencesStore } from "@/stores";
 
 const userPreferences = useUserPreferencesStore();
@@ -67,7 +68,8 @@ const showRooster = ref(false);
 const showDeath = ref(false);
 const showDrumRoll = ref(false);
 
-function playOverlapping(audioRef: Ref<HTMLAudioElement>) {
+function playOverlapping(audioRef: Ref<HTMLAudioElement | undefined, HTMLAudioElement | undefined>) {
+  if (!audioRef.value) return ;
   const clone = audioRef.value.cloneNode(true) as HTMLAudioElement;
   clone.volume = audioRef.value.volume;
   clone.play();
