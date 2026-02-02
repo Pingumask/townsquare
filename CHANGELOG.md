@@ -1,15 +1,39 @@
 # Release Notes
 
-## Upcomming Version
+## Upcoming Version
 - Features:
-  - Allow manual language selection (By default: follows ST language or uses browser's preferences when not playing)
-  - Allow players to whisper their neigbours (can be disabled by storyteller)
+
 - Fixes:
 
-- Localization :
+- Localization:
 
-- Maintenance :
+- Maintenance:
 
+
+## 6.2.1
+- Features:
+  - Storyteller can manually change day counter
+- Fixes:
+  - Better contrast for Token tooltips in Roles attribution modal
+  - Better contrast for Pronouns
+  - Better contrast for Players Menu
+  - Move text chat to top for mobile users
+
+## 6.2.0
+- Features:
+  - Allow manual language selection (By default: follows ST language or uses browser's preferences when not playing)
+  - Text messaging (global + whisper to neighbors) (can be disabled by storyteller) - credit to [@FerLuisxd](https://github.com/FerLuisxd)
+  - Integrated Notepad (toggle with 'Q')
+    - Base functionality by [@FerLuisxd](https://github.com/FerLuisxd)
+    - Enhanced by [@Pingumask](https://github.com/Pingumask) (Resizable, Movable instead of UI blocking Modal)
+  - Adding the Pope
+  - More toggleable options in Players' menu
+  - Allowing showing an alignment change on a custom role
+- Fixes:
+  - Send Characters button not visible to players anymore
+- Maintenance:
+  - Enforce strict equality in linter
+  - Updated dependencies
 
 ## 6.1.0
 - Features:
@@ -19,7 +43,7 @@
   - Wrong composition (number of villagers/outsiders) for Teensyville scripts
   - Wrong ids in many included custom scripts
 - Localization :
-  - Added support for Spanish (Thanks to https://github.com/FerLuisxd)
+  - Added support for Spanish - credit to [@FerLuisxd](https://github.com/FerLuisxd)
 - Maintenance :
   - Removed github actions deployment to github pages (https://pingumask.github.io is deprecated, use https://clocktower.tf instead)
   - Beta deployments managed by netlify (develop branch available at https://beta.clocktower.tf, temporary test versions deployed automatically on pull requests)

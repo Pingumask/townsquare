@@ -1,37 +1,50 @@
 <template>
   <li :style="zoom">
-    <div ref="player" class="player" :class="[
-      {
-        dead: props.player.isDead,
-        marked: votingStore.markedPlayer === index,
-        'no-vote': !props.player.voteToken,
-        you: session.sessionId && props.player.id && props.player.id === session.playerId,
-        'vote-yes': votingStore.votes[index],
-        'vote-lock': voteLocked,
-      },
-      props.player.role.team,
-    ]">
+    <div
+      ref="player"
+      class="player"
+      :class="[
+        {
+          dead: props.player.isDead,
+          marked: votingStore.markedPlayer === index,
+          'no-vote': !props.player.voteToken,
+          you:
+            session.sessionId &&
+            props.player.id &&
+            props.player.id === session.playerId,
+          'vote-yes': votingStore.votes[index],
+          'vote-lock': voteLocked,
+        },
+        props.player.role.team,
+      ]"
+    >
       <div class="shroud" @click="toggleStatus()" />
       <div class="life" @click="toggleStatus()" />
 
-      <div v-if="
-        nightOrder.get(props.player).first && showOrderBubbles
-      " class="night-order first">
+      <div
+        v-if="nightOrder.get(props.player).first && showOrderBubbles"
+        class="night-order first"
+      >
         <em>{{ nightOrder.get(props.player).first }}</em>
         <span v-if="props.player.role.firstNightReminder">
           {{ props.player.role.firstNightReminder }}
         </span>
       </div>
-      <div v-if="
-        nightOrder.get(props.player).other && showOrderBubbles
-      " class="night-order other">
+      <div
+        v-if="nightOrder.get(props.player).other && showOrderBubbles"
+        class="night-order other"
+      >
         <em>{{ nightOrder.get(props.player).other }}</em>
         <span v-if="props.player.role.otherNightReminder">
           {{ props.player.role.otherNightReminder }}
         </span>
       </div>
 
-      <Token :role="props.player.role" :player="props.player" @set-role="$emit('trigger', ['openRoleModal'])" />
+      <Token
+        :role="props.player.role"
+        :player="props.player"
+        @set-role="$emit('trigger', ['openRoleModal'])"
+      />
 
       <!-- Overlay icons -->
       <div class="overlay">
@@ -75,32 +88,132 @@
           @click="movePlayer(props.player)" />
         <font-awesome-icon icon="hand-point-right" class="fa fa-hand-point-right nominate" :title="t('player.nominate')"
           @click="nominatePlayer(props.player)" />
+        <font-awesome-icon
+          v-if="
+            !grimoire.isSecretVote ||
+            isSpecialVoteWithMessages ||
+            !session.isPlayerOrSpectator ||
+            props.player.id == session.playerId
+          "
+          icon="hand-paper"
+          class="fa fa-hand-paper vote"
+          :title="t('player.handUp')"
+          @click="vote()"
+        />
+        <font-awesome-icon
+          v-if="
+            grimoire.isSecretVote &&
+            !isSpecialVoteWithMessages &&
+            session.isPlayerOrSpectator &&
+            props.player.id !== session.playerId
+          "
+          icon="question"
+          class="fa fa-question vote"
+          :title="t('player.handUp')"
+          @click="vote()"
+        />
+        <font-awesome-icon
+          v-if="
+            !grimoire.isSecretVote ||
+            !session.isPlayerOrSpectator ||
+            props.player.id == session.playerId
+          "
+          icon="times"
+          class="fa fa-times vote"
+          :title="t('player.handDown')"
+          @click="vote()"
+        />
+        <font-awesome-icon
+          v-if="
+            grimoire.isSecretVote &&
+            !isSpecialVoteWithMessages &&
+            session.isPlayerOrSpectator &&
+            props.player.id !== session.playerId
+          "
+          icon="question"
+          class="fa fa-question vote"
+          :title="t('player.handDown')"
+          @click="vote()"
+        />
+        <font-awesome-icon
+          icon="times-circle"
+          class="fa fa-times-circle cancel"
+          :title="t('player.cancel')"
+          @click="cancel()"
+        />
+        <font-awesome-icon
+          icon="exchange-alt"
+          class="fa fa-exchange-alt swap"
+          :title="t('player.swap')"
+          @click="swapPlayer(props.player)"
+        />
+        <font-awesome-icon
+          icon="redo-alt"
+          class="fa fa-redo-alt move"
+          :title="t('player.move')"
+          @click="movePlayer(props.player)"
+        />
+        <font-awesome-icon
+          icon="hand-point-right"
+          class="fa fa-hand-point-right nominate"
+          :title="t('player.nominate')"
+          @click="nominatePlayer(props.player)"
+        />
       </div>
 
       <!-- Claimed seat icon -->
-      <font-awesome-icon v-if="props.player.id && session.sessionId" icon="chair" class="fa fa-chair seat"
-        :class="{ highlight: session.isRolesDistributed }" />
+      <font-awesome-icon
+        v-if="props.player.id && session.sessionId"
+        icon="chair"
+        class="fa fa-chair seat"
+        :class="{ highlight: session.isRolesDistributed }"
+      />
 
       <!-- Ghost vote icon -->
-      <font-awesome-icon v-if="(props.player.isDead || player.role.id == 'beggar') && props.player.voteToken"
-        icon="vote-yea" class="fa fa-vote-yea has-vote" :title="t('player.ghostVote')"
-        @click="updatePlayer('voteToken', false)" />
       <font-awesome-icon
-        v-if="(props.player.isDead || player.role.id == 'beggar') && !props.player.voteToken && !session.isPlayerOrSpectator"
-        icon="vote-yea" class="fa fa-vote-yea has-vote no-token" :title="t('player.ghostVote')"
-        @click="updatePlayer('voteToken', true)" />
+        v-if="
+          (props.player.isDead || player.role.id == 'beggar') &&
+          props.player.voteToken
+        "
+        icon="vote-yea"
+        class="fa fa-vote-yea has-vote"
+        :title="t('player.ghostVote')"
+        @click="updatePlayer('voteToken', false)"
+      />
+      <font-awesome-icon
+        v-if="
+          (props.player.isDead || player.role.id == 'beggar') &&
+          !props.player.voteToken &&
+          !session.isPlayerOrSpectator
+        "
+        icon="vote-yea"
+        class="fa fa-vote-yea has-vote no-token"
+        :title="t('player.ghostVote')"
+        @click="updatePlayer('voteToken', true)"
+      />
 
       <!-- On block icon -->
       <div class="marked">
-        <font-awesome-icon v-if="!(session.isPlayerOrSpectator && grimoire.isSecretVote)" icon="skull"
-          class="fa fa-skull" />
+        <font-awesome-icon
+          v-if="!(session.isPlayerOrSpectator && grimoire.isSecretVote)"
+          icon="skull"
+          class="fa fa-skull"
+        />
       </div>
-      <div class="name" :class="{ active: isMenuOpen }" @click="isMenuOpen = !isMenuOpen">
+      <div
+        class="name"
+        :class="{ active: isMenuOpen }"
+        @click="isMenuOpen = !isMenuOpen"
+      >
         <span>{{
           // eslint-disable-next-line no-irregular-whitespace
           props.player.name || " "
-          }}</span>
-        <font-awesome-icon v-if="props.player.pronouns" icon="venus-mars" class="fa fa-venus-mars" />
+        }}</span>
+        <font-awesome-icon
+          v-if="props.player.pronouns"
+          icon="venus-mars"
+          class="fa fa-venus-mars"
+        />
         <div v-if="props.player.pronouns" class="pronouns">
           <span>{{ props.player.pronouns }}</span>
         </div>
@@ -108,74 +221,128 @@
 
       <transition name="fold">
         <ul v-if="isMenuOpen" class="menu">
-          <li v-if="
-            (!session.isPlayerOrSpectator && playersMenu.changePronouns) ||
-            (session.isPlayerOrSpectator && props.player.id === session.playerId)
-          " @click="changePronouns">
+          <li
+            v-if="
+              (!session.isPlayerOrSpectator && playersMenu.changePronouns) ||
+              (session.isPlayerOrSpectator &&
+                props.player.id === session.playerId)
+            "
+            @click="changePronouns"
+          >
             <font-awesome-icon icon="venus-mars" class="fa fa-venus-mars" />
-            {{ t('player.changePronouns') }}
+            {{ t("player.changePronouns") }}
           </li>
-          <li v-if="
-            !session.isPlayerOrSpectator ||
-            ((grimoire.allowSelfNaming || props.player.name === '') && session.isPlayerOrSpectator && player.id === session.playerId)
-          " @click="changeName">
+          <li
+            v-if="
+              (!session.isPlayerOrSpectator && playersMenu.changeName) ||
+              ((grimoire.allowSelfNaming || props.player.name === '') &&
+                session.isPlayerOrSpectator &&
+                player.id === session.playerId)
+            "
+            @click="changeName"
+          >
             <font-awesome-icon icon="user-edit" class="fa fa-user-edit" />
-            {{ t('player.changeName') }}
+            {{ t("player.changeName") }}
           </li>
           <template v-if="!session.isPlayerOrSpectator">
-            <li v-if="playersMenu.movePlayer" :class="{ disabled: votingStore.lockedVote }" @click="movePlayer()">
+            <li
+              v-if="playersMenu.movePlayer"
+              :class="{ disabled: votingStore.lockedVote }"
+              @click="movePlayer()"
+            >
               <font-awesome-icon icon="redo-alt" class="fa fa-redo-alt" />
-              {{ t('player.movePlayer') }}
+              {{ t("player.movePlayer") }}
             </li>
-            <li v-if="playersMenu.swapPlayers" :class="{ disabled: votingStore.lockedVote }" @click="swapPlayer()">
-              <font-awesome-icon icon="exchange-alt" class="fa fa-exchange-alt" />
-              {{ t('player.swapPlayers') }}
+            <li
+              v-if="playersMenu.swapPlayers"
+              :class="{ disabled: votingStore.lockedVote }"
+              @click="swapPlayer()"
+            >
+              <font-awesome-icon
+                icon="exchange-alt"
+                class="fa fa-exchange-alt"
+              />
+              {{ t("player.swapPlayers") }}
             </li>
-            <li v-if="playersMenu.removePlayer" :class="{ disabled: votingStore.lockedVote }" @click="removePlayer">
-              <font-awesome-icon icon="times-circle" class="fa fa-times-circle" />
-              {{ t('player.removePlayer') }}
+            <li
+              v-if="playersMenu.removePlayer"
+              :class="{ disabled: votingStore.lockedVote }"
+              @click="removePlayer"
+            >
+              <font-awesome-icon
+                icon="times-circle"
+                class="fa fa-times-circle"
+              />
+              {{ t("player.removePlayer") }}
             </li>
-            <li v-if="props.player.id && session.sessionId" @click="updatePlayer('id', '', true)">
+            <li
+              v-if="
+                props.player.id && session.sessionId && playersMenu.emptySeat
+              "
+              @click="updatePlayer('id', '', true)"
+            >
               <font-awesome-icon icon="chair" class="fa fa-chair" />
-              {{ t('player.emptySeat') }}
+              {{ t("player.emptySeat") }}
             </li>
-            <li v-if="props.player.role.id && (props.player.role.team == 'traveler' || playersMenu.swapAlignment)"
-              @click="switchAlignment">
+            <li
+              v-if="
+                props.player.role.id &&
+                (props.player.role.team == 'traveler' ||
+                  playersMenu.swapAlignment)
+              "
+              @click="switchAlignment"
+            >
               <font-awesome-icon icon="yin-yang" class="fa fa-yin-yang" />
-              {{ t('player.swapAlignment') }}
+              {{ t("player.swapAlignment") }}
             </li>
             <template v-if="!votingStore.nomination">
               <li @click="nominatePlayer()">
-                <font-awesome-icon icon="hand-point-right" class="fa fa-hand-point-right" />
-                {{ t('player.nomination') }}
+                <font-awesome-icon
+                  icon="hand-point-right"
+                  class="fa fa-hand-point-right"
+                />
+                {{ t("player.nomination") }}
               </li>
             </template>
             <template v-if="!votingStore.nomination && playersMenu.specialVote">
               <li @click="specialVote()">
                 <font-awesome-icon icon="vote-yea" class="fa fa-vote-yea" />
-                {{ t('player.specialVote') }}
+                {{ t("player.specialVote") }}
               </li>
             </template>
           </template>
-          <li v-if="session.isPlayerOrSpectator"
-            :class="{ disabled: props.player.id && props.player.id !== session.playerId }" @click="claimSeat">
+          <li
+            v-if="session.isPlayerOrSpectator"
+            :class="{
+              disabled: props.player.id && props.player.id !== session.playerId,
+            }"
+            @click="claimSeat"
+          >
             <font-awesome-icon icon="chair" class="fa fa-chair" />
             <template v-if="!props.player.id">
-              {{ t('player.claimSeat') }}
+              {{ t("player.claimSeat") }}
             </template>
             <template v-else-if="props.player.id === session.playerId">
-              {{ t('player.vacateSeat') }}
+              {{ t("player.vacateSeat") }}
             </template>
-            <template v-else> {{ t('player.occupiedSeat') }}</template>
+            <template v-else> {{ t("player.occupiedSeat") }}</template>
           </li>
         </ul>
       </transition>
     </div>
 
     <template v-if="props.player.reminders">
-      <div v-for="reminder in props.player.reminders" :key="reminder.role.id + ' ' + reminder.name" class="reminder"
-        :class="[reminder.role.id]" @click="removeReminder(reminder)">
-        <picture v-if="reminder.role.id !== 'custom'" :class="reminder.role?.team">
+      <div
+        v-for="reminder in props.player.reminders"
+        :key="reminder.role.id + ' ' + reminder.name"
+        class="reminder"
+        :class="[reminder.role.id]"
+        @click="removeReminder(reminder)"
+      >
+        <picture
+          v-if="reminder.role.id !== 'custom'"
+          :class="reminder.role?.team"
+        >
           <RoleIcon :role="reminder.role" />
         </picture>
         <span class="text">{{ reminder.name }}</span>
@@ -191,7 +358,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { RoleIcon, Token } from "@/components";
-import { isActiveNomination } from '@/services/nomination';
+import { isActiveNomination } from "@/services/nomination";
 import type { Player, Reminder } from "@/types";
 import {
   useGrimoireStore,
@@ -214,8 +381,8 @@ interface Props {
 const props = defineProps<Props>();
 
 const emit = defineEmits<{
-  'update-player': [property: string, value: unknown];
-  'trigger': [action: string | [string, unknown] | [string]];
+  "update-player": [property: string, value: unknown];
+  trigger: [action: string | [string, unknown] | [string]];
 }>();
 
 const grimoire = useGrimoireStore();
@@ -245,9 +412,9 @@ const voteLocked = computed(() => {
 
   // Determine the reference player index for vote locking
   let referenceIndex: number;
-  if (typeof nomination.nominee === 'number') {
+  if (typeof nomination.nominee === "number") {
     referenceIndex = nomination.nominee;
-  } else if (typeof nomination.nominator === 'number') {
+  } else if (typeof nomination.nominator === "number") {
     referenceIndex = nomination.nominator;
   } else {
     return false; // Can't determine vote lock for special votes without player indices
@@ -279,7 +446,8 @@ const zoom = computed(() => {
 const isMenuOpen = ref(false);
 
 function changePronouns() {
-  if (session.isPlayerOrSpectator && props.player.id !== session.playerId) return;
+  if (session.isPlayerOrSpectator && props.player.id !== session.playerId)
+    return;
   const pronouns = prompt("Player pronouns", props.player.pronouns);
   if (pronouns !== null) {
     updatePlayer("pronouns", pronouns, true);
@@ -298,17 +466,23 @@ function toggleStatus() {
     }
   } else {
     updatePlayer("isDead", !props.player.isDead);
-    if (props.player.voteToken != props.player.isDead) {
+    if (props.player.voteToken !== props.player.isDead) {
       updatePlayer("voteToken", !props.player.voteToken);
     }
   }
 }
 
 function switchAlignment() {
-  let selectedPlayer = players.value.find(player => player === props.player);
+  let selectedPlayer = players.value.find((player) => player === props.player);
   if (!selectedPlayer) return;
-  if (selectedPlayer.alignment === undefined || selectedPlayer.alignment === null) {
-    if (selectedPlayer.role.team === "townsfolk" || selectedPlayer.role.team === "outsider") {
+  if (
+    selectedPlayer.alignment === undefined ||
+    selectedPlayer.alignment === null
+  ) {
+    if (
+      selectedPlayer.role.team === "townsfolk" ||
+      selectedPlayer.role.team === "outsider"
+    ) {
       selectedPlayer.alignment = "evil";
     } else {
       selectedPlayer.alignment = "good";
@@ -323,8 +497,10 @@ function switchAlignment() {
 }
 
 function changeName() {
-  if (session.isPlayerOrSpectator && props.player.id !== session.playerId) return;
-  const name = prompt(t('prompt.addPlayer'), props.player.name) || props.player.name;
+  if (session.isPlayerOrSpectator && props.player.id !== session.playerId)
+    return;
+  const name =
+    prompt(t("prompt.addPlayer"), props.player.name) || props.player.name;
   if (name !== null && name !== "") {
     updatePlayer("name", name, true);
   }
@@ -336,7 +512,11 @@ function removeReminder(reminder: Reminder) {
   updatePlayer("reminders", reminders, true);
 }
 
-function updatePlayer(property: keyof Player, value: unknown, closeMenu = false) {
+function updatePlayer(
+  property: keyof Player,
+  value: unknown,
+  closeMenu = false,
+) {
   if (
     session.isPlayerOrSpectator &&
     property !== "reminders" &&
@@ -412,10 +592,7 @@ function claimSeat() {
 function vote() {
   if (session.isPlayerOrSpectator) return;
   if (!voteLocked.value) return;
-  votingStore.voteSync([
-    index.value,
-    !votingStore.votes[index.value],
-  ]);
+  votingStore.voteSync([index.value, !votingStore.votes[index.value]]);
 }
 </script>
 
@@ -713,7 +890,10 @@ picture * {
 #townsquare.vote .player.vote-lock:not(.vote-yes) .overlay svg.vote.fa-times,
 #townsquare.vote .player.you.vote-yes .overlay svg.vote.fa-question,
 #townsquare.vote .player.vote-lock.vote-yes .overlay svg.vote.fa-question,
-#townsquare.vote .player.vote-lock:not(.vote-yes) .overlay svg.vote.fa-question {
+#townsquare.vote
+  .player.vote-lock:not(.vote-yes)
+  .overlay
+  svg.vote.fa-question {
   opacity: 1;
   transform: scale(1);
 }
@@ -881,7 +1061,7 @@ li.move:not(.from) .player .overlay svg.move {
 }
 
 /***** Player name *****/
-.player>.name {
+.player > .name {
   right: 10%;
   display: flex;
   justify-content: center;
@@ -927,7 +1107,7 @@ li.move:not(.from) .player .overlay svg.move {
     right: 110%;
     max-width: 250px;
     z-index: 25;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
     border: 3px solid black;
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
@@ -951,19 +1131,19 @@ li.move:not(.from) .player .overlay svg.move {
   }
 }
 
-.player.dead>.name {
-  opacity: 0.5;
+.player.dead > .name {
+  color: #aaaa;
 }
 
 /***** Player menu *****/
-.player>.menu {
+.player > .menu {
   z-index: 10;
   position: absolute;
   left: 110%;
   bottom: -5px;
   text-align: left;
   white-space: nowrap;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.9);
   padding: 2px 5px;
   border-radius: 10px;
   border: 3px solid #000;
@@ -996,7 +1176,7 @@ li.move:not(.from) .player .overlay svg.move {
   display: none;
 }
 
-.circle .player .shroud:hover~.token .ability,
+.circle .player .shroud:hover ~ .token .ability,
 .circle .player .token:hover .ability {
   opacity: 1;
 }
@@ -1131,11 +1311,9 @@ li.move:not(.from) .player .overlay svg.move {
 #townsquare.public .reminder {
   opacity: 0;
   pointer-events: none;
-
-
 }
 
-picture>* {
+picture > * {
   filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
 }
 </style>

@@ -38,7 +38,7 @@
     "allowVoteHistory": "Public vote History",
     "secretVote": "Hidden Vote",
     "selfNaming": "Allow self-naming",
-    "allowWhispering": "Allow Whispering",
+    "allowTextChat": "Allow Text Chat",
     "leave": "Leave Session",
     "addPlayer": "Add Seat",
     "addPlayers": "Add Seats",
@@ -57,6 +57,7 @@
     "request": "Request a feature",
     "newGame": "New Game",
     "endGame": "End Game",
+    "notes": "Notes",
     "language": "Language"
   },
   "head": {
@@ -319,13 +320,18 @@
         "debateText": "The debate is open",
         "buttonLabel": "(Custom)"
       }
+    },
+    "notes": {
+      "title": "Notes",
+      "placeholder": "Type your notes here... (they are only visible to you)"
     }
   },
   "chat": {
-    "title": "Whisper",
+    "title": "Chat",
     "type_message": "Type message...",
     "send": "Send",
-    "cannotSend": "Cannot whisper to unseated neighbor"
+    "cannotSend": "Cannot send to unseated neighbor",
+    "global": "Global"
   },
   "sound": {
     "rooster": "Rooster",

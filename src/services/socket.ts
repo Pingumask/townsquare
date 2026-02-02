@@ -11,6 +11,7 @@ import {
   useDiscordStore,
 } from "@/stores";
 import type {
+  ChatChannel,
   Edition,
   GamePhase,
   JukeboxSound,
@@ -245,9 +246,9 @@ export class LiveSession {
         if (!this._isPlayerOrSpectator) return;
         grimoire.setSecretVote(params as boolean);
         break;
-      case "isWhisperingAllowed":
+      case "isTextChatAllowed":
         if (!this._isPlayerOrSpectator) return;
-        grimoire.setAllowWhispers(params as boolean);
+        grimoire.setAllowTextChat(params as boolean);
         break;
       case "chatActivity":
         this._handleChatActivity(params as { from: string; to: string });
@@ -328,6 +329,9 @@ export class LiveSession {
       case "isDiscordIntegrationEnabled":
         if (!this._isPlayerOrSpectator) return;
         grimoire.$patch({ isDiscordIntegrationEnabled: params as boolean });
+        break;
+      case "globalChat":
+        this._handleGlobalChat(params as { from: string; message: string });
         break;
     }
   }
@@ -413,7 +417,7 @@ export class LiveSession {
         allowSelfNaming: grimoireStore.allowSelfNaming,
         isVoteHistoryAllowed: grimoireStore.isVoteHistoryAllowed,
         isSecretVoteMode: grimoireStore.isSecretVote,
-        isWhisperingAllowed: grimoireStore.isWhisperingAllowed,
+        isTextChatAllowed: grimoireStore.isTextChatAllowed,
         nomination: votingStore.nomination,
         votingSpeed: votingStore.votingSpeed,
         lockedVote: votingStore.lockedVote,
@@ -447,7 +451,7 @@ export class LiveSession {
       allowSelfNaming,
       isVoteHistoryAllowed,
       isSecretVoteMode,
-      isWhisperingAllowed,
+      isTextChatAllowed,
       timer,
       nomination,
       votingSpeed,
@@ -475,7 +479,7 @@ export class LiveSession {
       allowSelfNaming?: boolean;
       isVoteHistoryAllowed?: boolean;
       isSecretVoteMode?: boolean;
-      isWhisperingAllowed?: boolean;
+      isTextChatAllowed?: boolean;
       timer?: { name?: string; duration?: number };
       nomination: Nomination | null;
       votingSpeed?: number;
@@ -543,7 +547,6 @@ export class LiveSession {
       grimoireStore.setAllowSelfNaming(!!allowSelfNaming);
       grimoireStore.setVoteHistoryAllowed(!!isVoteHistoryAllowed);
       grimoireStore.setSecretVote(!!isSecretVoteMode);
-      grimoireStore.setAllowWhispers(!!isWhisperingAllowed);
 
       if (discordWebhookUrl !== undefined) {
         grimoireStore.$patch({ discordWebhookUrl });
@@ -552,6 +555,7 @@ export class LiveSession {
         grimoireStore.$patch({ isDiscordIntegrationEnabled });
       }
 
+      grimoireStore.setAllowTextChat(!!isTextChatAllowed);
       votingStore.updateNomination({
         nomination,
         votes: votes || [],
@@ -775,7 +779,7 @@ export class LiveSession {
       (index -
         1 +
         playerCount -
-        (typeof votingStore.nomination?.nominee == "number"
+        (typeof votingStore.nomination?.nominee === "number"
           ? votingStore.nomination.nominee
           : (votingStore.nomination?.nominator as number) || 0)) %
       playerCount;
@@ -792,7 +796,7 @@ export class LiveSession {
     if (seatIndex > 1) {
       const { lockedVote, nomination, votes } = votingStore;
       const index =
-        ((typeof nomination?.nominee == "number"
+        ((typeof nomination?.nominee === "number"
           ? nomination.nominee
           : (nomination?.nominator as number) || 0) +
           lockedVote -
@@ -829,7 +833,7 @@ export class LiveSession {
 
     const rightNeighborId = playersStore.rightNeighbor?.id;
 
-    let messageTab: "left" | "right" | null = null;
+    let messageTab: ChatChannel | null = null;
     if (leftNeighborId === senderId) {
       messageTab = "left";
     } else if (rightNeighborId === senderId) {
@@ -901,6 +905,11 @@ export class LiveSession {
         emoji: "✉️",
       });
     }
+  }
+
+  _handleGlobalChat(params: { from: string; message: string }) {
+    const chatStore = useChatStore();
+    chatStore.receiveMessage(params, "global");
   }
 }
 

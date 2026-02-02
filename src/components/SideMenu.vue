@@ -6,9 +6,11 @@
       <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="toggleSideMenu" />
       <span>
         {{ t(`townsquare.gamephase.${grimoire.gamePhase}`) }}
-        <span v-if="grimoire.gamePhase === 'day' || grimoire.gamePhase === 'otherNight'">
+        <div v-if="grimoire.gamePhase === 'day' || grimoire.gamePhase === 'otherNight'" id="daycounter">
+          <font-awesome-icon v-if="!session.isPlayerOrSpectator && grimoire.dayCount > 1" icon="fa-minus-circle" @click="dayDown()" />
           {{ grimoire.dayCount }}
-        </span>
+          <font-awesome-icon v-if="!session.isPlayerOrSpectator" icon="fa-plus-circle" @click="grimoire.setDayCount(grimoire.dayCount + 1);" />
+        </div>
       </span>
     </h3>
     <div class="content">
@@ -130,7 +132,7 @@
       </div>
       <div v-if="grimoire.gamePhase === 'firstNight' || grimoire.gamePhase === 'otherNight'"
         class="night-order-container">
-        <div v-if="grimoire.gamePhase === 'firstNight'" class="button-group">
+        <div v-if="grimoire.gamePhase === 'firstNight' && !session.isPlayerOrSpectator" class="button-group">
           <button @click="playersStore.distributeRolesAction()">
             {{ t('menu.sendRoles') }}
           </button>
@@ -369,6 +371,14 @@ const stopTimer = () => {
     clearTimeout(timerEnder.value);
   }
 };
+
+const dayDown = () => {
+  grimoire.setDayCount(grimoire.dayCount - 1);
+  if (grimoire.gamePhase === "otherNight" && grimoire.dayCount === 1) {
+    grimoire.setGamePhase("firstNight");
+  }
+}
+
 </script>
 
 <style scoped lang="scss">
@@ -471,6 +481,17 @@ const stopTimer = () => {
       width: 0px;
       height: 0px;
       scale: 0;
+    }
+  }
+
+  #daycounter {
+    display: inline-block;
+    svg {
+      height: 1rem;
+      opacity: 0;
+    }
+    &:hover svg{
+      opacity: 1;
     }
   }
 }

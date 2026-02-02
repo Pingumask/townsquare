@@ -38,7 +38,7 @@
     "allowVoteHistory": "Historial de votaciones público",
     "secretVote": "Votación secreta",
     "selfNaming": "Permitir auto-nombrarse",
-    "allowWhispering": "Permitir susurrar",
+    "allowTextChat": "Permitir chat",
     "leave": "Salir de la sesión",
     "addPlayer": "Agregar asiento",
     "addPlayers": "Agregar asientos",
@@ -57,6 +57,7 @@
     "request": "Solicitar una función",
     "newGame": "Nuevo juego",
     "endGame": "Finalizar juego",
+    "notes": "Notas",
     "language": "Idioma"
   },
   "head": {
@@ -319,13 +320,18 @@
         "debateText": "El debate está abierto",
         "buttonLabel": "(Personalizado)"
       }
+    },
+    "notes": {
+      "title": "Notas",
+      "placeholder": "Escribe tus notas aquí... (solo son visibles para ti)"
     }
   },
   "chat": {
     "title": "Chat",
     "type_message": "Escribe tu mensaje...",
     "send": "Enviar",
-    "cannotSend": "No puedes susurrarle a un vecino que no está sentado."
+    "cannotSend": "No puedes enviar mensaje a un vecino que no está sentado",
+    "global": "Global"
   },
   "sound": {
     "rooster": "Gallo",

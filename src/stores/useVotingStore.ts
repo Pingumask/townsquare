@@ -227,7 +227,7 @@ export const useVotingStore = defineStore("voting", {
       if (!session.isPlayerOrSpectator) {
         const players = usePlayersStore().players;
         const index =
-          ((typeof this.nomination?.nominee == "number"
+          ((typeof this.nomination?.nominee === "number"
             ? this.nomination.nominee
             : (this.nomination?.nominator as number) || 0) +
             this.lockedVote -

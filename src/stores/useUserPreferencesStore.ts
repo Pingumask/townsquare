@@ -13,6 +13,16 @@ interface UserPreferencesState {
   zoom: number;
   background: string;
   discordUsername?: string;
+  notes: {
+    content: string;
+    opened: boolean;
+    position: {
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+    }
+  };
   timerDurations: TimerDurations;
 }
 
@@ -29,6 +39,16 @@ export const useUserPreferencesStore = defineStore("userPreferences", {
     zoom: 0,
     background: "",
     discordUsername: "",
+    notes: {
+      content: "",
+      opened: false,
+      position: {
+        x: 10,
+        y: 100,
+        width: 400,
+        height: 300
+      }
+    },
     timerDurations: {
       daytime: 6,
       nominations: 2,

@@ -254,11 +254,11 @@
               grimoire.allowSelfNaming ? 'check-square' : 'square',
             ]" /></em>
           </li>
-          <li @click="grimoire.setAllowWhispers(!grimoire.isWhisperingAllowed)">
-            {{ t('menu.allowWhispering') }}
+          <li @click="grimoire.setAllowTextChat(!grimoire.isTextChatAllowed)">
+            {{ t('menu.allowTextChat') }}
             <em><font-awesome-icon :icon="[
               'fas',
-              grimoire.isWhisperingAllowed ? 'check-square' : 'square',
+              grimoire.isTextChatAllowed ? 'check-square' : 'square',
             ]" /></em>
           </li>
           <li 
@@ -347,6 +347,20 @@
               ]" />
             </em>
           </li>
+          <li @click="playersMenu.emptySeat = !playersMenu.emptySeat">
+            <small>
+              <div>
+                <font-awesome-icon icon="chair" class="fa fa-chair" />
+                {{ t('player.emptySeat') }}
+              </div>
+            </small>
+            <em>
+              <font-awesome-icon :icon="[
+                'fas',
+                playersMenu.emptySeat ? 'check-square' : 'square',
+              ]" />
+            </em>
+          </li>
           <li @click="playersMenu.swapAlignment = !playersMenu.swapAlignment">
             <small>
               <div>
@@ -408,6 +422,10 @@
           <li @click="grimoire.toggleModal('nightOrder')">
             {{ t('menu.nightOrder') }}
             <em>[N]</em>
+          </li>
+          <li @click="grimoire.toggleModal('notes')">
+            {{ t('menu.notes') }}
+            <em>[Q]</em>
           </li>
           <li :class="{ disabled: !grimoire.isVoteHistoryAllowed && session.isPlayerOrSpectator }"
             @click="grimoire.toggleModal('voteHistory')">
@@ -525,7 +543,7 @@ const nextLanguage = () => {
   const currentIndex = supportedLangs.indexOf(locale.currentLanguage);
   const nextIndex = (currentIndex + 1) % supportedLangs.length;
   const targetLang = supportedLangs[nextIndex];
-  
+
   if (targetLang) {
     locale.forceLocale(targetLang);
   }

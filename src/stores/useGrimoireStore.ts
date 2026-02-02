@@ -43,7 +43,7 @@ interface GrimoireState {
   allowSelfNaming: boolean;
   isVoteHistoryAllowed: boolean;
   isSecretVote: boolean;
-  isWhisperingAllowed: boolean;
+  isTextChatAllowed: boolean;
   gamePhase: GamePhase;
   dayCount: number;
   discordWebhookUrl?: string;
@@ -67,7 +67,7 @@ export const useGrimoireStore = defineStore("grimoire", {
     allowSelfNaming: true,
     isVoteHistoryAllowed: true,
     isSecretVote: false,
-    isWhisperingAllowed: true,
+    isTextChatAllowed: true,
     gamePhase: "offline",
     dayCount: 0,
     discordWebhookUrl: "",
@@ -361,11 +361,11 @@ export const useGrimoireStore = defineStore("grimoire", {
       }
     },
 
-    setAllowWhispers(isWhisperingAllowed: boolean) {
+    setAllowTextChat(isTextChatAllowed: boolean) {
       const sessionStore = useSessionStore();
-      this.isWhisperingAllowed = isWhisperingAllowed;
+      this.isTextChatAllowed = isTextChatAllowed;
       if (!sessionStore.isPlayerOrSpectator) {
-        socket.send("isWhisperingAllowed", this.isWhisperingAllowed);
+        socket.send("isTextChatAllowed", this.isTextChatAllowed);
       }
     },
 
@@ -417,6 +417,7 @@ export const useGrimoireStore = defineStore("grimoire", {
     },
 
     setDayCount(dayCount: number) {
+      if (dayCount < 0) return;
       this.dayCount = dayCount;
       const sessionStore = useSessionStore();
       if (!sessionStore.isPlayerOrSpectator) socket.send("dayCount", dayCount);

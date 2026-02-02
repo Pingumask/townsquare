@@ -284,12 +284,12 @@ function parseRoles(pickedRoles: (string | ParsedRole)[]) {
   processedRoles.forEach((role: ParsedRole) => {
     if (grimoire.fabled.has(role.id)) {
       fabled.push(grimoire.fabled.get(role.id)!);
-      if (role.id == "djinn") {
+      if (role.id === "djinn") {
         djinnAdded = true;
-      } else if (role.id == "bootlegger") {
+      } else if (role.id === "bootlegger") {
         bootleggerAdded = true;
       }
-    } else if (role.edition == "custom" || role.image) {
+    } else if (role.edition === "custom" || role.image) {
       /* If the role isn't fabled, but detected as custom, we will need a Bootlegger
       * NB: The actual version isn't perfect, since they only detect custom roles with an image or with the argument "edition":"custom".
       * The code will could be changed later, when all non-custom roles will have an attribute "edition"

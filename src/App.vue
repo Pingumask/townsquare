@@ -27,6 +27,7 @@
     <VoteHistoryModal />
     <GameStateModal />
     <SpecialVoteModal />
+    <Notes />
     <Gradients />
     <span id="version">v{{ version }}{{ isBeta ? '-beta' : '' }}</span>
   </div>
@@ -47,6 +48,7 @@ import {
   Gradients,
   Intro,
   Menu,
+  Notes,
   TownInfo,
   Vote,
   EditionModal,
@@ -141,6 +143,10 @@ function keyup(event: KeyboardEvent) {
       break;
     case "escape":
       grimoire.toggleModal(null);
+      break;
+    case "q":
+      userPreferences.notes.opened = !userPreferences.notes.opened;
+      break;
   }
 }
 </script>

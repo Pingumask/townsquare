@@ -108,7 +108,7 @@ const close = () => {
   }
 
   >.slot {
-    max-height: 100%;
+    height: calc(100% - 8em);
     position: initial;
   }
 }

@@ -5,6 +5,7 @@ export { default as Intro } from "./Intro.vue";
 export { default as Jukebox } from "./Jukebox.vue";
 export { default as Menu } from "./Menu.vue";
 export { default as NightOrderTable } from "./NightOrderTable.vue";
+export { default as Notes } from "./Notes.vue";
 export { default as Npcs } from "./Npcs.vue";
 export { default as PlayerChat } from "./PlayerChat.vue";
 export { default as RoleIcon } from "./RoleIcon.vue";
