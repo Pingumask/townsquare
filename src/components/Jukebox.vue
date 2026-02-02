@@ -72,12 +72,14 @@ function playOverlapping(audioRef: Ref<HTMLAudioElement | undefined, HTMLAudioEl
   if (!audioRef.value) return ;
   const clone = audioRef.value.cloneNode(true) as HTMLAudioElement;
   clone.volume = audioRef.value.volume;
+  clone.muted = audioRef.value.muted;
   clone.play();
 }
 
 watch(() => soundboard.ringingTrigger, () => {
   if (ringingAudio.value) {
     ringingAudio.value.volume = soundboard.ringingVolume;
+    ringingAudio.value.muted = userPreferences.isMuted;
     ringingAudio.value.play();
   }
 });
@@ -85,6 +87,7 @@ watch(() => soundboard.ringingTrigger, () => {
 watch(() => soundboard.roosterTrigger, () => {
   if (roosterAudio.value) {
     roosterAudio.value.volume = soundboard.roosterVolume;
+    roosterAudio.value.muted = userPreferences.isMuted;
     roosterAudio.value.play();
   }
 });
@@ -92,6 +95,7 @@ watch(() => soundboard.roosterTrigger, () => {
 watch(() => soundboard.gavelTrigger, () => {
   if (gavelAudio.value) {
     gavelAudio.value.volume = soundboard.gavelVolume;
+    gavelAudio.value.muted = userPreferences.isMuted;
     gavelAudio.value.play();
   }
 });
@@ -99,6 +103,7 @@ watch(() => soundboard.gavelTrigger, () => {
 watch(() => soundboard.deathTrigger, () => {
   if (deathAudio.value) {
     deathAudio.value.volume = soundboard.deathVolume;
+    deathAudio.value.muted = userPreferences.isMuted;
     deathAudio.value.play();
   }
 });
@@ -106,6 +111,7 @@ watch(() => soundboard.deathTrigger, () => {
 watch(() => soundboard.votingBellTrigger, () => {
   if (votingBellAudio.value) {
     votingBellAudio.value.volume = soundboard.votingBellVolume;
+    votingBellAudio.value.muted = userPreferences.isMuted;
     playOverlapping(votingBellAudio);
   }
 });
@@ -113,6 +119,7 @@ watch(() => soundboard.votingBellTrigger, () => {
 watch(() => soundboard.riserTrigger, () => {
   if (riserAudio.value) {
     riserAudio.value.volume = soundboard.riserVolume;
+    riserAudio.value.muted = userPreferences.isMuted;
     riserAudio.value.play();
   }
 });
@@ -120,6 +127,7 @@ watch(() => soundboard.riserTrigger, () => {
 watch(() => soundboard.drumRollTrigger, () => {
   if (drumRollAudio.value) {
     drumRollAudio.value.volume = soundboard.drumRollVolume;
+    drumRollAudio.value.muted = userPreferences.isMuted;
     drumRollAudio.value.play();
   }
 });
