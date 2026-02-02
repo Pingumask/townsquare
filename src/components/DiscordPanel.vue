@@ -34,8 +34,8 @@
              <button 
                class="mute-btn" 
                :class="{ muted: discordStore.isMuted }"
-               @click="discordStore.toggleMute()"
                :title="discordStore.isMuted ? 'Unmute All' : 'Mute All'"
+               @click="discordStore.toggleMute()"
              >
                <font-awesome-icon :icon="discordStore.isMuted ? 'microphone-slash' : 'microphone'" />
              </button>
