@@ -2,6 +2,7 @@
 
 ## Upcoming Version
 - Features:
+  - Added a parchment which prints the current day/night at each game phase change
 
 - Fixes:
 
