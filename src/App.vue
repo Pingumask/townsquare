@@ -16,6 +16,7 @@
     <Intro v-if="!players.length" />
     <TownInfo v-if="players.length && !votingStore.nomination" />
     <Vote v-if="votingStore.nomination" />
+    <Parchment v-if="grimoire.showParchment" @finished="grimoire.showParchment = false" />
 
     <TownSquare />
     <Menu />
@@ -60,6 +61,7 @@ import {
   SpecialVoteModal,
   TownSquare,
   VoteHistoryModal,
+  Parchment,
 } from "@/components";
 
 const grimoire = useGrimoireStore();

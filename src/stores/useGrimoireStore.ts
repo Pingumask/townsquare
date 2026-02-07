@@ -46,6 +46,7 @@ interface GrimoireState {
   isTextChatAllowed: boolean;
   gamePhase: GamePhase;
   dayCount: number;
+  showParchment: boolean;
 }
 
 export const useGrimoireStore = defineStore("grimoire", {
@@ -68,6 +69,7 @@ export const useGrimoireStore = defineStore("grimoire", {
     isTextChatAllowed: true,
     gamePhase: "offline",
     dayCount: 0,
+    showParchment: false,
   }),
 
   getters: {
@@ -383,6 +385,7 @@ export const useGrimoireStore = defineStore("grimoire", {
         votingStore.setMarkedPlayer(-1);
         this.setDayCount(this.dayCount + 1);
       }
+      this.showParchment = true;
     },
 
     newGame() {
