@@ -16,7 +16,7 @@
 
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 import { useGrimoireStore, useLocaleStore } from "@/stores";
 
 const grimoire = useGrimoireStore();
@@ -65,6 +65,31 @@ const startText = () => {
   }, letterSpeed);
 };
 
+const onMouseMove = (e: MouseEvent) => {
+  const el = document.getElementById("parchment");
+  if (!el) return;
+
+  const rect = el.getBoundingClientRect();
+  const inside =
+    e.clientX >= rect.left &&
+    e.clientX <= rect.right &&
+    e.clientY >= rect.top &&
+    e.clientY <= rect.bottom;
+
+  if (inside) {
+    el.classList.add("hover");
+  } else {
+    el.classList.remove("hover");
+  }
+};
+
+onMounted(() => {
+  window.addEventListener("mousemove", onMouseMove);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("mousemove", onMouseMove);
+});
 
 </script>
 
@@ -74,7 +99,7 @@ const startText = () => {
 #parchment {
   position: absolute;
   margin: auto;
-  width: 20vw;
+  width: auto;
   z-index: 30;
   display: flex;
   align-items: center;
@@ -82,11 +107,19 @@ const startText = () => {
   justify-content: center;
   transition: opacity 0.6s ease;
   opacity: 1;
+  pointer-events: none;
+}
+
+#parchment.hover {
+  transition: opacity 0.6s ease;
+  opacity: 0.2;
 }
 
 #parchment.hide {
   opacity: 0;
 }
+
+
 
 
 #parchment img {
@@ -95,6 +128,7 @@ const startText = () => {
   opacity: 0;
   transform: translateY(-20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
 }
 
 #parchment img.show {
@@ -116,6 +150,7 @@ const startText = () => {
 }
 
 #parchment .title {
+  pointer-events: none;
   position: absolute;
   font-family: "Papyrus";
   font-size: 4em;

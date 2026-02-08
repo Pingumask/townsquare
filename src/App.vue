@@ -16,7 +16,7 @@
     <Intro v-if="!players.length" />
     <TownInfo v-if="players.length && !votingStore.nomination" />
     <Vote v-if="votingStore.nomination" />
-    <Parchment v-if="grimoire.showParchment" @finished="grimoire.showParchment = false" />
+    <Parchment v-if="grimoire.showParchment" />
 
     <TownSquare />
     <Menu />
