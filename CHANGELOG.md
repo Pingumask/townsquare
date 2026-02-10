@@ -2,6 +2,7 @@
 
 ## Upcoming Version
 - Features:
+  - Updating night order
 
 - Fixes:
 

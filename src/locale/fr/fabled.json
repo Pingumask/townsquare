@@ -75,7 +75,7 @@
   {
     "id": "toymaker",
     "firstNightReminder": "",
-    "otherNight": 31,
+    "otherNight": 33,
     "otherNightReminder": "Si le Démon pourrait terminer la partie cette nuit, mais qu'il a toujours son marqueur 'Nuit sans attaque', il n'agit pas cette nuit (ne le réveillez pas)",
     "reminders": [
       "Nuit sans attaque"
@@ -199,7 +199,7 @@
   },
   {
     "id": "stormcatcher",
-    "firstNight": 13,
+    "firstNight": 14,
     "firstNightReminder": "Réveillez chaque joueur mauvais et indiquez-lui quel joueur est marqué comme \"Protégé\".",
     "otherNightReminder": "",
     "reminders": [
