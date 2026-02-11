@@ -10,6 +10,7 @@ export type SocketCommands =
   | "edition"
   | "fabled"
   | "gamePhase"
+  | "annouceWinner"
   | "getGamestate"
   | "gs"
   | "playSound"

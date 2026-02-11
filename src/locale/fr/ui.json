@@ -159,6 +159,14 @@
       "postgame": "Fin de partie"
     }
   },
+  "postgame": {
+    "announceWinner": "Annoncer les vainqueurs",
+    "goodWarning": "Êtes-vous sûr de vouloir déclarer les bons vainqueurs de cette partie ?",
+    "evilWarning": "Êtes-vous sûr de vouloir déclarer les mauvais vainqueurs de cette partie ?",
+    "theWinnersAre": "Les vainqueurs sont ...",
+    "good": "Les bons",
+    "evil": "Les mauvais"
+  },
   "towninfo": {
     "addPlayers": "Appuyez sur [A] pour ajouter plus de joueurs !",
     "nightPhase": "C'est la nuit"

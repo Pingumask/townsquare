@@ -232,6 +232,10 @@ export class LiveSession {
         if (!this._isPlayerOrSpectator) return;
         grimoire.setGamePhase(params as GamePhase);
         break;
+      case "annouceWinner":
+        if (!this._isPlayerOrSpectator) return;
+        grimoire.announceWinner(params as string);
+        break;
       case "dayCount":
         if (!this._isPlayerOrSpectator) return;
         grimoire.setDayCount(params as number);

@@ -47,6 +47,8 @@ interface GrimoireState {
   gamePhase: GamePhase;
   dayCount: number;
   showParchment: boolean;
+  ShowCustomTextForParchment: boolean;
+  winner: string;
 }
 
 export const useGrimoireStore = defineStore("grimoire", {
@@ -70,6 +72,8 @@ export const useGrimoireStore = defineStore("grimoire", {
     gamePhase: "offline",
     dayCount: 0,
     showParchment: false,
+    ShowCustomTextForParchment: false,
+    winner: "not_decided"
   }),
 
   getters: {
@@ -436,6 +440,22 @@ export const useGrimoireStore = defineStore("grimoire", {
       } else if (this.gamePhase === "day") {
         this.setGamePhase("otherNight");
       }
+    },
+
+    announceWinner(winner: string) {
+      const session = useSessionStore();
+      //const locale = useLocaleStore();
+      //const t = locale.t;
+
+      // I (Beu_Beuh) decided to comment these lines as suggested by As2Pique
+      // Can be uncommented if it's more convenient 
+      if (!session.isPlayerOrSpectator) {
+        //if (!confirm(t("postgame."+winner+"Warning"))) return;
+        socket.send("annouceWinner", winner);
+      }
+      this.winner = winner;
+      this.ShowCustomTextForParchment = true;
+      this.showParchment = true;
     },
 
     getGameComposition(playerCount: number): GameComposition {

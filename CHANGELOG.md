@@ -3,7 +3,8 @@
 ## Upcoming Version
 - Features:
 
-  - Added a parchment which prints the current day/night at each game phase change
+  - Added a parchment which prints the current day/night at each game phase change and that announce the end of a game
+  - Added a cutsene to announce the winners at the end of a game
 
 - Fixes:
 

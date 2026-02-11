@@ -129,6 +129,17 @@
             </button>
           </div>
         </div>
+        <div v-if="grimoire.gamePhase === 'postgame'">
+          <center> {{ t('postgame.announceWinner') }} </center>
+          <div class="button-group">
+            <div class="button townsfolk" @click="grimoire.announceWinner('good')">
+              {{ t('postgame.good') }}
+            </div>
+            <div class="button demon" @click="grimoire.announceWinner('evil')">
+              {{ t('postgame.evil') }}
+            </div>
+          </div>
+        </div>
       </div>
       <div v-if="grimoire.gamePhase === 'firstNight' || grimoire.gamePhase === 'otherNight'"
         class="night-order-container">
