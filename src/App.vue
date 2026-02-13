@@ -428,4 +428,8 @@ video#background {
 #app.night {
   filter: grayscale(15%) saturate(85%);
 }
+
+[role=button] {
+  cursor: pointer;
+}
 </style>

@@ -2,7 +2,7 @@
   <MovableDialog v-if="canShowChat" class="player-chat" :position="userPreferences.chat.position" :isOpen="isChatOpen"
     :title="t('chat.title')" @toggle="handleToggle">
     <div v-if="!sessionStore.isPlayerOrSpectator">
-      <em class="clickable" @click="grimoire.setAllowWhisper(!grimoire.isWhisperAllowed)">
+      <em role="button" @click="grimoire.setAllowWhisper(!grimoire.isWhisperAllowed)">
         <font-awesome-icon :icon="[
           'fas',
           grimoire.isWhisperAllowed ? 'check-square' : 'square',
@@ -38,7 +38,7 @@
         <div v-for="(msg, index) in activeMessages" :key="index"
           :class="{ message: true, own: msg.fromName === sessionStore.currentPlayerName, other: msg.fromName !== sessionStore.currentPlayerName, host: msg.fromId === 'host' }">
           <strong v-if="msg.fromName !== sessionStore.currentPlayerName"
-            :class="chatStore.activeTab === 'host' && !sessionStore.isPlayerOrSpectator ? 'clickable' : ''"
+            :role="chatStore.activeTab === 'host' && !sessionStore.isPlayerOrSpectator ? 'button' : ''"
             @click="chatStore.targetPlayer = msg.fromId">{{
               msg.fromName }}</strong>
           <em
@@ -402,10 +402,6 @@ const handleToggle = () => {
     --bg: #ddd;
     color: black;
   }
-}
-
-.clickable {
-  cursor: pointer;
 }
 
 select {

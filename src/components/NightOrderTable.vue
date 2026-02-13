@@ -12,7 +12,8 @@
         {{ role.name }}
         <br>
         <span v-if="role.players.length" class="player">
-          <small v-for="(player, index) in role.players" :key="index" :class="{ dead: player.isDead }"
+          <small v-for="(player, index) in role.players"
+            :key="index" :class="{ dead: player.isDead }" :role="chatStore.activeTab === 'host' && !session.isPlayerOrSpectator ? 'button' : ''"
             @click="chatStore.targetPlayer = player.id">
             {{ player.name + (role.players.length > index + 1 ? "," : "") }}
           </small>
