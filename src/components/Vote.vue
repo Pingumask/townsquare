@@ -207,7 +207,7 @@ const isFreeVote = computed(() => {
 });
 
 const player = computed(() => {
-  return players.value.find((p: Player) => p.id === session.playerId);
+  return playersStore.getById(session.playerId)
 });
 
 const currentVote = computed(() => {

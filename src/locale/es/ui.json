@@ -39,6 +39,7 @@
     "secretVote": "Votación secreta",
     "selfNaming": "Permitir auto-nombrarse",
     "allowTextChat": "Permitir chat",
+    "allowWhisper": "Permitir susurrar",
     "leave": "Salir de la sesión",
     "addPlayer": "Agregar asiento",
     "addPlayers": "Agregar asientos",
@@ -48,6 +49,7 @@
     "assign": "Elegir y asignar",
     "addFabled": "Agregar Fabled o Loric",
     "clearRoles": "Quitar roles",
+    "clearChat": "Borrar chat",
     "reference": "Hoja de referencia",
     "nightOrder": "Hoja de orden nocturno",
     "gameState": "Estado del juego (JSON)",
@@ -78,6 +80,7 @@
     "randomizeSeatings": "¿Seguro que deseas aleatorizar los asientos?",
     "clearPlayers": "¿Seguro que deseas eliminar a todos los jugadores?",
     "clearRoles": "¿Seguro que deseas eliminar todos los roles de los jugadores?",
+    "clearAllChat": "¿Eliminar todos los chat de los jugadores?",
     "customUrl": "Ingresa la URL de un archivo custom-script?json",
     "customError": "Error al cargar el script personalizado",
     "customNote": "Agregar una nota de recordatorio personalizada",
@@ -331,11 +334,17 @@
     "type_message": "Escribe tu mensaje...",
     "send": "Enviar",
     "cannotSend": "No puedes enviar mensaje a un vecino que no está sentado",
-    "global": "Global"
+    "global": "Pueblo",
+    "host": "Cuentista",
+    "players": "Jugadores",
+    "whispers": "susurros",
+    "to": "a"
   },
   "sound": {
     "rooster": "Gallo",
     "ringing": "Campana",
-    "gavel": "Golpe de mazo"
+    "gavel": "Golpe de mazo",
+    "host": "Cuentista",
+    "players": "Jugadores"
   }
 }

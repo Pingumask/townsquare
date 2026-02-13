@@ -2,13 +2,17 @@
 
 ## Upcoming Version
 - Features:
-
+  - Chat enhancements :
+    - Movable Window
+    - Storyteller & Players can whisper to each other (ST can quickly switch target player by clicking a message from them or clicking their name from the night order)
+    - Storyteller can Disable Neighbor whispers separately from Public chat and Storyteller whisper
+    - Storyteller can snoop players whispers
 - Fixes:
 
 - Localization:
 
 - Maintenance:
-
+  - Reusable MovableDialog component (used by chat and notes)
 
 ## 6.2.1
 - Features:

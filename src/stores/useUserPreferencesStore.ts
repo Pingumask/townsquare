@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import type { TimerDurations } from "@/types";
+import type { Position, Sizing, TimerDurations } from "@/types";
 
 interface UserPreferencesState {
   orderBubblesAsPlayer: boolean;
@@ -15,13 +15,12 @@ interface UserPreferencesState {
   notes: {
     content: string;
     opened: boolean;
-    position: {
-      x: number;
-      y: number;
-      width: number;
-      height: number;
-    }
+    position: Position;
+    sizing: Sizing;
   };
+  chat: {
+    position: Position;
+  }
   timerDurations: TimerDurations;
 }
 
@@ -43,8 +42,16 @@ export const useUserPreferencesStore = defineStore("userPreferences", {
       position: {
         x: 10,
         y: 100,
+      },
+      sizing: {
         width: 400,
-        height: 300
+        height: 300,
+      }
+    },
+    chat: {
+      position: {
+        x: 10,
+        y: 250,
       }
     },
     timerDurations: {

@@ -170,6 +170,10 @@
             {{ t('menu.removeSeats') }}
             <em><font-awesome-icon icon="trash-alt" class="fa fa-trash-alt" /></em>
           </li>
+          <li v-if="grimoire.isTextChatAllowed" @click="chatStore.clearMessages(false)">
+            {{ t('menu.clearChat') }}
+            <em><font-awesome-icon icon="trash-alt" class="fa fa-trash-alt" /></em>
+          </li>
           <li v-if="players.length" @click="playersStore.clearRoles(false)">
             {{ t('menu.clearRoles') }}
             <em><font-awesome-icon icon="trash-alt" class="fa fa-trash-alt" /></em>
@@ -251,6 +255,14 @@
             <em><font-awesome-icon :icon="[
               'fas',
               grimoire.isTextChatAllowed ? 'check-square' : 'square',
+            ]" /></em>
+          </li>
+          <li :class="{ disabled: !grimoire.isTextChatAllowed }"
+            @click="grimoire.setAllowWhisper(!grimoire.isWhisperAllowed)">
+            {{ t('menu.allowWhisper') }}
+            <em><font-awesome-icon :icon="[
+              'fas',
+              grimoire.isWhisperAllowed ? 'check-square' : 'square',
             ]" /></em>
           </li>
         </template>
@@ -416,6 +428,10 @@
             {{ t('menu.clearRoles') }}
             <em><font-awesome-icon icon="trash-alt" class="fa fa-trash-alt" /></em>
           </li>
+          <li v-if="grimoire.isTextChatAllowed" @click="chatStore.clearMessages(false)">
+            {{ t('menu.clearChat') }}
+            <em><font-awesome-icon icon="trash-alt" class="fa fa-trash-alt" /></em>
+          </li>
         </template>
 
         <template v-if="tab === 'about'">
@@ -466,6 +482,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import {
+  useChatStore,
   useGrimoireStore,
   useLocaleStore,
   usePlayersStore,
@@ -476,6 +493,7 @@ import {
   useVotingStore,
 } from "@/stores";
 
+const chatStore = useChatStore();
 const grimoire = useGrimoireStore();
 const locale = useLocaleStore();
 const playersStore = usePlayersStore();

@@ -71,3 +71,13 @@ export type Modals =
   | "specialVote"
   | "notes"
   | null;
+
+export interface Position {
+  x: number;
+  y: number;
+}
+
+export interface Sizing {
+  width: number;
+  height: number;
+}

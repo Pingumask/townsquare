@@ -11,7 +11,8 @@
         {{ role.name }}
         <span v-if="role.players.length" class="player">
           <br>
-          <small v-for="(player, index) in role.players" :key="index" :class="{ dead: player.isDead }">
+          <small v-for="(player, index) in role.players" :key="index" :class="{ dead: player.isDead }"
+            @click="chatStore.targetPlayer = player.id">
             {{ player.name + (role.players.length > index + 1 ? "," : "") }}
           </small>
         </span>
@@ -43,7 +44,13 @@ import { computed } from "vue";
 
 import { RoleIcon } from '@/components';
 import type { NightOrderRole, Player, Role } from "@/types";
-import { useGrimoireStore, useLocaleStore, usePlayersStore, useSessionStore } from "@/stores";
+import {
+  useChatStore,
+  useGrimoireStore,
+  useLocaleStore,
+  usePlayersStore,
+  useSessionStore
+} from "@/stores";
 
 interface Props {
   nightType: 'firstNight' | 'otherNight';
@@ -51,6 +58,7 @@ interface Props {
 
 const props = defineProps<Props>();
 
+const chatStore = useChatStore();
 const grimoire = useGrimoireStore();
 const locale = useLocaleStore();
 const t = locale.t;

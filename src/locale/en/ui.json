@@ -39,6 +39,7 @@
     "secretVote": "Hidden Vote",
     "selfNaming": "Allow self-naming",
     "allowTextChat": "Allow Text Chat",
+    "allowWhisper": "Allow Whispering",
     "leave": "Leave Session",
     "addPlayer": "Add Seat",
     "addPlayers": "Add Seats",
@@ -48,6 +49,7 @@
     "assign": "Choose & Assign",
     "addFabled": "Add Fabled or Loric",
     "clearRoles": "Remove Roles",
+    "clearChat": "Clear chat",
     "reference": "Reference Sheet",
     "nightOrder": "Night Order Sheet",
     "gameState": "Game State JSON",
@@ -78,6 +80,7 @@
     "randomizeSeatings": "Are you sure you want to randomize seatings?",
     "clearPlayers": "Are you sure you want to remove all players?",
     "clearRoles": "Are you sure you want to remove all player roles?",
+    "clearAllChat": "Also clear chat for players ?",
     "customUrl": "Enter URL to a custom-script?json file",
     "customError": "Error loading custom script",
     "customNote": "Add a custom reminder node",
@@ -331,7 +334,11 @@
     "type_message": "Type message...",
     "send": "Send",
     "cannotSend": "Cannot send to unseated neighbor",
-    "global": "Global"
+    "global": "Townsquare",
+    "host": "Storyteller",
+    "players": "Players",
+    "whispers": "Whispers",
+    "to": "to"
   },
   "sound": {
     "rooster": "Rooster",
