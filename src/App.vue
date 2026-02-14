@@ -16,6 +16,7 @@
     <Intro v-if="!players.length" />
     <TownInfo v-if="players.length && !votingStore.nomination" />
     <Vote v-if="votingStore.nomination" />
+    <Parchment v-if="grimoire.showParchment" />
 
     <TownSquare />
     <Menu />
@@ -55,6 +56,7 @@ import {
   FabledModal,
   GameStateModal,
   NightOrderModal,
+  Parchment,
   ReferenceModal,
   RolesModal,
   SpecialVoteModal,

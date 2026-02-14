@@ -162,6 +162,14 @@
       "postgame": "Post-game"
     }
   },
+  "postgame": {
+    "announceWinner": "Announce the winners",
+    "goodWarning": "Are you sure you want to declare the good winners of this game?",
+    "evilWarning": "Are you sure you want to declare the evil winners of this game?",
+    "theWinnersAre": "The winners are ...",
+    "good": "The good",
+    "evil": "The evil"
+  },
   "towninfo": {
     "addPlayers": "Please add more players!",
     "nightPhase": "Night Phase"

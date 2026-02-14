@@ -6,6 +6,7 @@ export { default as Jukebox } from "./Jukebox.vue";
 export { default as Menu } from "./Menu.vue";
 export { default as NightOrderTable } from "./NightOrderTable.vue";
 export { default as Npcs } from "./Npcs.vue";
+export { default as Parchment } from "./Parchment.vue";
 export { default as RoleIcon } from "./RoleIcon.vue";
 export { default as Seat } from "./Seat.vue";
 export { default as SideMenu } from "./SideMenu.vue";

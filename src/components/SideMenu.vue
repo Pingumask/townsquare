@@ -135,6 +135,17 @@
             </button>
           </div>
         </div>
+        <div v-if="grimoire.gamePhase === 'postgame'">
+          <h4>{{ t('postgame.announceWinner') }}</h4>
+          <div class="button-group">
+            <div class="button townsfolk" @click="grimoire.announceWinner('good')">
+              {{ t('postgame.good') }}
+            </div>
+            <div class="button demon" @click="grimoire.announceWinner('evil')">
+              {{ t('postgame.evil') }}
+            </div>
+          </div>
+        </div>
       </div>
       <div v-if="grimoire.gamePhase === 'firstNight' || grimoire.gamePhase === 'otherNight'"
         class="night-order-container">
@@ -500,6 +511,10 @@ const dayDown = () => {
       opacity: 1;
     }
   }
+}
+
+h4 {
+  text-align: center;
 }
 </style>
 

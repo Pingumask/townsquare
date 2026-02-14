@@ -48,6 +48,9 @@ interface GrimoireState {
   isWhisperAllowed: boolean;
   gamePhase: GamePhase;
   dayCount: number;
+  showParchment: boolean;
+  ShowCustomTextForParchment: boolean;
+  winner: string;
 }
 
 export const useGrimoireStore = defineStore("grimoire", {
@@ -71,6 +74,9 @@ export const useGrimoireStore = defineStore("grimoire", {
     isWhisperAllowed: true,
     gamePhase: "offline",
     dayCount: 0,
+    showParchment: false,
+    ShowCustomTextForParchment: false,
+    winner: "not_decided"
   }),
 
   getters: {
@@ -399,6 +405,7 @@ export const useGrimoireStore = defineStore("grimoire", {
         votingStore.setMarkedPlayer(-1);
         this.setDayCount(this.dayCount + 1);
       }
+      this.showParchment = true;
     },
 
     newGame() {
@@ -456,6 +463,16 @@ export const useGrimoireStore = defineStore("grimoire", {
       } else if (this.gamePhase === "postgame") {
         this.newGame();
       }
+    },
+
+    announceWinner(winner: string) {
+      const session = useSessionStore();
+      if (!session.isPlayerOrSpectator) {
+        socket.send("annouceWinner", winner);
+      }
+      this.winner = winner;
+      this.ShowCustomTextForParchment = true;
+      this.showParchment = true;
     },
 
     getGameComposition(playerCount: number): GameComposition {
