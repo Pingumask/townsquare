@@ -3,7 +3,7 @@
 ## Upcoming Version
 - Features:
   - Renaming some roles' variables, to use the same terminology as the official app (only the features already previously coded work)
-
+  - Adding more informations on the roles' reference sheet (script version, Bootlegger rule, Stormcaught character)
 - Fixes:
   - Sounds during a vote have been changed to be less disturbing
 
