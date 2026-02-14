@@ -10,10 +10,9 @@
   - Toggleable Filter to hide unattributed characters from night order
   - Toggle voting with space  
   - Added voting sounds and a death sound
-
   - Added a parchment which prints the current day/night at each game phase change and that announce the end of a game
   - Added a cutsene to announce the winners at the end of a game
-
+  - New Loric : Ventriloquist
 - Fixes:
   - Gamephase switch from menu or keybinding bug if current phase is endgame
   - Starting a new game didn't send players back to the "pregame" phase

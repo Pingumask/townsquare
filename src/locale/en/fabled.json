@@ -268,5 +268,17 @@
     "name": "Pope",
     "team": "loric",
     "ability": "There are duplicate good characters in play. They might also be bluffs."
+  },
+  {
+    "id": "ventriloquist",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": true,
+    "name": "Ventriloquist",
+    "team": "loric",
+    "ability": "If a player is mad as a fresh character during their nomination, they might not die if executed today."
   }
 ]

@@ -268,5 +268,17 @@
     "name": "Papa",
     "team": "loric",
     "ability": "Hay personajes buenos duplicados en juego. Podrían ser faroles."
+  },
+  {
+    "id": "ventriloquist",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": true,
+    "name": "Ventrílocuo",
+    "team": "loric",
+    "ability": "Si un jugador está \u201Cloco\u201D como personaje nuevo durante su nominación, es posible que no muera si es ejecutado hoy."
   }
 ]

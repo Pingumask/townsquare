@@ -268,5 +268,17 @@
     "name": "Pape",
     "team": "loric",
     "ability": "Il y a des personnages bons en plusieurs exemplaires. Il se peut qu'ils soient aussi des bluffs."
+  },
+  {
+    "id": "ventriloquist",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": true,
+    "name": "Ventriloque",
+    "team": "loric",
+    "ability": "Si un joueur est persuadé d'être un nouveau personnage durant son accusation, il se peut qu'il ne meurt pas si exécuté."
   }
 ]
