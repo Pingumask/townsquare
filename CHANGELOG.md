@@ -8,7 +8,9 @@
     - Storyteller can Disable Neighbor whispers separately from Public chat and Storyteller whisper
     - Storyteller can snoop players whispers
   - Toggleable Filter to hide unattributed characters from night order
-  - Toggle voting with space
+  - Toggle voting with space  
+  - Added voting sounds and a death sound
+
 - Fixes:
   - Gamephase switch from menu or keybinding bug if current phase is endgame
   - Starting a new game didn't send players back to the "pregame" phase

@@ -202,6 +202,7 @@ import {
   usePlayersStore,
   usePlayersMenuStore,
   useSessionStore,
+  useSoundboardStore,
   useUserPreferencesStore,
   useVotingStore,
 } from "@/stores";
@@ -289,9 +290,12 @@ function changePronouns() {
 }
 
 function toggleStatus() {
+  const soundboard = useSoundboardStore();
+  
   if (userPreferences.hideGrim) {
     if (!props.player.isDead) {
       updatePlayer("isDead", true);
+      soundboard.playSound({ sound: "death" });
     } else if (props.player.voteToken) {
       updatePlayer("voteToken", false);
     } else {
@@ -300,6 +304,9 @@ function toggleStatus() {
     }
   } else {
     updatePlayer("isDead", !props.player.isDead);
+    if (props.player.isDead) {
+      soundboard.playSound({ sound: "death" });
+    }
     if (props.player.voteToken !== props.player.isDead) {
       updatePlayer("voteToken", !props.player.voteToken);
     }

@@ -404,6 +404,14 @@
             {{ t('sound.gavel') }}
             <em>[H]</em>
           </li>
+          <li @click="soundboard.playSound({ sound: 'death' })">
+            {{ t('sound.death') }}
+            <!-- maybe add a shortcut one day -->
+          </li>
+          <li @click="soundboard.playSound({ sound: 'drumRoll' })">
+            {{ t('sound.drumRoll') }}
+            <!-- maybe add a shortcut one day -->
+          </li>
         </template>
 
         <template v-if="tab === 'gameplay'">

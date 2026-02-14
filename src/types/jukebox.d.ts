@@ -1,1 +1,1 @@
-export type JukeboxSound = "ringing" | "rooster" | "gavel";
+export type JukeboxSound = "ringing" | "rooster" | "gavel" | "death" | "votingBell" | "riser" | "drumRoll";

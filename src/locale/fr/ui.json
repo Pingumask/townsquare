@@ -344,6 +344,8 @@
   "sound": {
     "rooster": "Chant du Coq",
     "ringing": "Sonner la Cloche",
-    "gavel": "Frapper le Maillet"
+    "gavel": "Frapper le Maillet",
+    "death": "Sonner le Glas",
+    "drumRoll": "Rouler le tambour"
   }
 }

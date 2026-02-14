@@ -343,6 +343,8 @@
   "sound": {
     "rooster": "Rooster",
     "ringing": "Ring Bell",
-    "gavel": "Hit Gavel"
+    "gavel": "Hit Gavel",
+    "death": "Sound the death knell",
+    "drumRoll": "Roll the drum"
   }
 }

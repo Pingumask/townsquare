@@ -343,8 +343,6 @@
   "sound": {
     "rooster": "Gallo",
     "ringing": "Campana",
-    "gavel": "Golpe de mazo",
-    "host": "Cuentista",
-    "players": "Jugadores"
+    "gavel": "Golpe de mazo"
   }
 }

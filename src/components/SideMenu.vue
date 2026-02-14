@@ -47,6 +47,12 @@
           <button :title="t('sound.gavel')" @click="soundboard.playSound({ sound: 'gavel' })">
             <font-awesome-icon :icon="['fas', 'gavel']" />
           </button>
+          <button :title="t('sound.death')" @click="soundboard.playSound({ sound: 'death' })">
+            🪦
+          </button>
+          <button :title="t('sound.drumRoll')" @click="soundboard.playSound({ sound: 'drumRoll' })">
+            🥁
+          </button>
         </div>
         <div v-if="grimoire.gamePhase !== 'pregame' && grimoire.gamePhase !== 'postgame'" class="button-group">
           <button :title="t('menu.secretVote')" @click="grimoire.setSecretVote(!grimoire.isSecretVote)">

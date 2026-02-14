@@ -40,7 +40,7 @@
         " class="orange">
           {{ t('vote.secretBallot') }}
         </em>
-        <div v-if="!votingStore.isVoteInProgress && votingStore.lockedVote < 1">
+        <div v-if="(!votingStore.isVoteInProgress && votingStore.lockedVote < 1) || votingStore.lockedVote == players.length + 1">
           {{ t('vote.timePerPlayer') }}
           <font-awesome-icon icon="minus-circle" class="fa fa-minus-circle" @mousedown.prevent="setVotingSpeed(-250)" />
           {{ votingStore.votingSpeed / 1000 }}s
@@ -104,9 +104,6 @@
       <span>2</span>
       <span>1</span>
       <span>{{ t('vote.doVote') }}</span>
-      <audio :autoplay="!userPreferences.isMuted" :muted="userPreferences.isMuted">
-        <source src="../assets/sounds/countdown.mp3">
-      </audio>
     </div>
   </div>
 </template>
@@ -120,8 +117,8 @@ import {
   useLocaleStore,
   usePlayersStore,
   useSessionStore,
-  useUserPreferencesStore,
   useVotingStore,
+  useSoundboardStore,
 } from "@/stores";
 import type { Player } from '@/types';
 
@@ -129,9 +126,10 @@ const grimoire = useGrimoireStore();
 const locale = useLocaleStore();
 const playersStore = usePlayersStore();
 const session = useSessionStore();
-const userPreferences = useUserPreferencesStore();
 const votingStore = useVotingStore();
 const t = locale.t;
+
+let timerForRiser: ReturnType<typeof setTimeout>;
 
 const alive = computed(() => playersStore.alive);
 const players = computed(() => playersStore.players);
@@ -346,6 +344,8 @@ const voters = computed(() => {
 });
 
 const countdown = () => {
+  const soundboard = useSoundboardStore();
+  soundboard.playSound({ sound: "ringing" });
   votingStore.lockVote(0);
   votingStore.setVoteInProgress(true);
   voteTimer.value = setInterval(() => {
@@ -354,13 +354,23 @@ const countdown = () => {
 };
 
 const start = () => {
+  const soundboard = useSoundboardStore();
   votingStore.lockVote(1);
   votingStore.setVoteInProgress(true);
   if (voteTimer.value) {
     clearInterval(voteTimer.value);
   }
+  if (players.value.length*votingStore.votingSpeed >= 5000) {
+    timerForRiser = setTimeout(() => {
+      soundboard.playSound({ sound: "riser" });
+    }, players.value.length*votingStore.votingSpeed-5000);
+  }
   voteTimer.value = setInterval(() => {
     votingStore.lockVote();
+    if (votingStore.votingSpeed >= 1000) {
+      soundboard.changeVolume({ sound: "votingBell" }, 0.2+0.8*Math.min(votingStore.lockedVote/players.value.length, 1.0));
+      soundboard.playSound({ sound: "votingBell" });
+    }
     if (votingStore.lockedVote > players.value.length) {
       if (voteTimer.value) {
         clearInterval(voteTimer.value);
@@ -371,12 +381,23 @@ const start = () => {
 };
 
 const pause = () => {
+  const soundboard = useSoundboardStore();
   if (voteTimer.value) {
     clearInterval(voteTimer.value);
+    clearTimeout(timerForRiser);
     voteTimer.value = null;
   } else {
+    if ((players.value.length-votingStore.lockedVote)*votingStore.votingSpeed >= 5000) {
+      timerForRiser = setTimeout(() => {
+        soundboard.playSound({ sound: "riser" });
+      }, (players.value.length)*votingStore.votingSpeed-5000);
+    }
     voteTimer.value = setInterval(() => {
       votingStore.lockVote();
+      if (votingStore.votingSpeed >= 1000) {
+        soundboard.changeVolume({ sound: "votingBell" }, 0.2+0.8*Math.min(votingStore.lockedVote/players.value.length, 1.0));
+        soundboard.playSound({ sound: "votingBell" });
+      }
       if (votingStore.lockedVote > players.value.length) {
         if (voteTimer.value) {
           clearInterval(voteTimer.value);
