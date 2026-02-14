@@ -444,13 +444,7 @@ export const useGrimoireStore = defineStore("grimoire", {
 
     announceWinner(winner: string) {
       const session = useSessionStore();
-      //const locale = useLocaleStore();
-      //const t = locale.t;
-
-      // I (Beu_Beuh) decided to comment these lines as suggested by As2Pique
-      // Can be uncommented if it's more convenient 
       if (!session.isPlayerOrSpectator) {
-        //if (!confirm(t("postgame."+winner+"Warning"))) return;
         socket.send("annouceWinner", winner);
       }
       this.winner = winner;

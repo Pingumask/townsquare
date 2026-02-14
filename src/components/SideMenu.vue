@@ -130,7 +130,7 @@
           </div>
         </div>
         <div v-if="grimoire.gamePhase === 'postgame'">
-          <center> {{ t('postgame.announceWinner') }} </center>
+          <h4>{{ t('postgame.announceWinner') }}</h4>
           <div class="button-group">
             <div class="button townsfolk" @click="grimoire.announceWinner('good')">
               {{ t('postgame.good') }}
@@ -505,6 +505,10 @@ const dayDown = () => {
       opacity: 1;
     }
   }
+}
+
+h4 {
+  text-align: center;
 }
 </style>
 

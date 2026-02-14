@@ -1,12 +1,12 @@
 <template>
-  <div id="win_background" v-if="grimoire.ShowCustomTextForParchment" :class="{ show: showWinBackground, hide: hideWinBackground }"></div>
-  <img id="img_role_1" :src="img1Path" :class="{ show: showRoles, hide: hideContainer }">
-  <img id="img_role_2" :src="img2Path" :class="{ show: showRoles, hide: hideContainer }">
+  <div v-if="grimoire.ShowCustomTextForParchment" id="win_background" :class="{ show: showWinBackground, hide: hideWinBackground }"></div>
+  <img id="img_role_1" alt="Winning alignment icon" :src="img1Path" :class="{ show: showRoles, hide: hideContainer }">
+  <img id="img_role_2" alt="Secondary winning alignement icon" :src="img2Path" :class="{ show: showRoles, hide: hideContainer }">
   <div id="parchment" :class="{ show: showContainer, hide: hideContainer }">
     <div id="win_announce" :class="{ show: showWinAnnounce, hide: hideWinAnnounce }">
-      {{t("postgame.theWinnersAre")}}
+      {{ t("postgame.theWinnersAre") }}
     </div>
-    <img src="../assets/parchment.png" :class="{ show: showParchment }">
+    <img alt="parchment" src="../assets/parchment.png" :class="{ show: showParchment }">
     <div class="title">
       <span
         v-for="(char, i) in letters"
@@ -144,43 +144,33 @@ const onMouseMove = (e: MouseEvent) => {
 };
 
 onMounted(() => {
-  window.addEventListener("mousemove", onMouseMove);
+  globalThis.addEventListener("mousemove", onMouseMove);
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener("mousemove", onMouseMove);
+  globalThis.removeEventListener("mousemove", onMouseMove);
 });
 
 if (grimoire.ShowCustomTextForParchment) {
-  let text = t('postgame.'+winner)
+  const text = t('postgame.'+winner)
   letters.value = text.split("");
   showContainerForWin(text, winner);
-}
-else if (gamePhase=="day" && dayCount>0) {
-  let text = t("townsquare.gamephase."+gamePhase)+" "+dayCount;
+} else if (gamePhase==="day" && dayCount>0) {
+  const text = `${t("townsquare.gamephase.day")} ${dayCount}`;
   letters.value = text.split("");
   showContainer(text);
-}
-else if (gamePhase=="firstNight" && dayCount>0) {
-  let text = t("townsquare.gamephase.otherNight")+" "+dayCount;
+} else if (gamePhase==="firstNight" || gamePhase==="otherNight") {
+  const text = `${t("townsquare.gamephase.otherNight")} ${dayCount}`;
   letters.value = text.split("");
   showContainer(text);
-}
-else if (gamePhase=="otherNight" && dayCount>0) {
-  let text = t("townsquare.gamephase."+gamePhase)+" "+dayCount;
+} else if (gamePhase==="postgame") {
+  const text = t("townsquare.gamephase.postgame");
   letters.value = text.split("");
   showContainer(text);
-}
-else if (gamePhase=="postgame") {
-  let text = t("townsquare.gamephase."+gamePhase);
-  letters.value = text.split("");
-  showContainer(text);
-}
-else {
+} else {
   grimoire.ShowCustomTextForParchment = false;
   grimoire.showParchment = false;
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -206,7 +196,6 @@ else {
   opacity: 0;
 }
 
-
 #parchment {
   position: absolute;
   margin: auto;
@@ -231,13 +220,11 @@ else {
   opacity: 0;
 }
 
-
-
 #win_announce {
   position: absolute;
   font-size: 1.5rem;
   margin-bottom: 15em;
-  font-family: "PiratesBay";
+  font-family: "PiratesBay", sans-serif;
   transition: opacity 0.6s ease;
   opacity: 1;
 }
@@ -245,9 +232,6 @@ else {
 #win_announce.hide {
   opacity: 0;
 }
-
-
-
 
 #parchment img {
   height: 10em;
@@ -262,7 +246,6 @@ else {
   opacity: 1;
   transform: translateY(0);
 }
-
 
 .letter {
   display: inline-block;
@@ -279,15 +262,13 @@ else {
 #parchment .title {
   pointer-events: none;
   position: absolute;
-  font-family: "Papyrus";
+  font-family: "Papyrus", sans-serif;
   font-size: 4em;
   color : black;
   text-align: center;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
   white-space: pre;
 }
-
-
 
 #img_role_1 {
   position: absolute;
@@ -328,6 +309,4 @@ else {
 #img_role_1.hide, #img_role_2.hide {
   opacity: 0;
 }
-
 </style>
-
