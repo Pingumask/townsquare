@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import editionJSONRaw from "@/editions.json";
 import socket from "@/services/socket";
 import {
+  useChatStore,
   useLocaleStore,
   usePlayersStore,
   useSessionStore,
@@ -44,8 +45,12 @@ interface GrimoireState {
   isVoteHistoryAllowed: boolean;
   isSecretVote: boolean;
   isTextChatAllowed: boolean;
+  isWhisperAllowed: boolean;
   gamePhase: GamePhase;
   dayCount: number;
+  showParchment: boolean;
+  ShowCustomTextForParchment: boolean;
+  winner: string;
 }
 
 export const useGrimoireStore = defineStore("grimoire", {
@@ -66,8 +71,12 @@ export const useGrimoireStore = defineStore("grimoire", {
     isVoteHistoryAllowed: true,
     isSecretVote: false,
     isTextChatAllowed: true,
+    isWhisperAllowed: true,
     gamePhase: "offline",
     dayCount: 0,
+    showParchment: false,
+    ShowCustomTextForParchment: false,
+    winner: "not_decided"
   }),
 
   getters: {
@@ -364,6 +373,18 @@ export const useGrimoireStore = defineStore("grimoire", {
         socket.send("isTextChatAllowed", this.isTextChatAllowed);
       }
     },
+    setAllowWhisper(isWhisperAllowed: boolean) {
+      if (!this.isTextChatAllowed) return;
+      const chatStore = useChatStore();
+      const session = useSessionStore();
+      this.isWhisperAllowed = isWhisperAllowed;
+      if (chatStore.activeTab === "left" || chatStore.activeTab === "right") {
+        chatStore.activeTab = "global";
+      }
+      if (!session.isPlayerOrSpectator) {
+        socket.send("isWhisperAllowed", this.isWhisperAllowed);
+      }
+    },
 
     setGamePhase(gamePhase: GamePhase) {
       if (this.gamePhase === gamePhase) return; // Avoids triggering things when host refreshes
@@ -372,8 +393,9 @@ export const useGrimoireStore = defineStore("grimoire", {
       const votingStore = useVotingStore();
 
       this.gamePhase = gamePhase;
-      if (!sessionStore.isPlayerOrSpectator)
+      if (!sessionStore.isPlayerOrSpectator){
         socket.send("gamePhase", gamePhase);
+      }
       if (gamePhase === "day") {
         soundboard.playSound({ sound: "rooster" });
       } else if (gamePhase === "firstNight") {
@@ -383,9 +405,11 @@ export const useGrimoireStore = defineStore("grimoire", {
         votingStore.setMarkedPlayer(-1);
         this.setDayCount(this.dayCount + 1);
       }
+      this.showParchment = true;
     },
 
     newGame() {
+      const chatStore = useChatStore();
       const locale = useLocaleStore();
       const playersStore = usePlayersStore();
       const session = useSessionStore();
@@ -398,8 +422,12 @@ export const useGrimoireStore = defineStore("grimoire", {
       playersStore.randomize();
       votingStore.setMarkedPlayer(-1);
       votingStore.clearVoteHistory();
+      chatStore.clearMessages(true);
       this.setGamePhase("pregame");
       this.setDayCount(0);
+      for (const player of playersStore.players) {
+        socket.sendGamestate(player.id, false);
+      }
     },
 
     endGame() {
@@ -432,7 +460,19 @@ export const useGrimoireStore = defineStore("grimoire", {
         this.setGamePhase("day");
       } else if (this.gamePhase === "day") {
         this.setGamePhase("otherNight");
+      } else if (this.gamePhase === "postgame") {
+        this.newGame();
       }
+    },
+
+    announceWinner(winner: string) {
+      const session = useSessionStore();
+      if (!session.isPlayerOrSpectator) {
+        socket.send("annouceWinner", winner);
+      }
+      this.winner = winner;
+      this.ShowCustomTextForParchment = true;
+      this.showParchment = true;
     },
 
     getGameComposition(playerCount: number): GameComposition {

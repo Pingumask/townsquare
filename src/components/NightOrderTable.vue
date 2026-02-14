@@ -2,6 +2,7 @@
   <ul :class="nightType">
     <li class="headline">
       {{ nightType === 'firstNight' ? t('modal.nightOrder.firstNight') : t('modal.nightOrder.otherNights') }}
+      <font-awesome-icon :icon="preferences.hideOutOfPlay ? 'filter' : 'filter-circle-xmark'" @click="preferences.hideOutOfPlay = !preferences.hideOutOfPlay" />
     </li>
     <li v-for="role in roles" :key="role.id" :class="[role.team]">
       <span v-if="nightType === 'otherNight' && role.id && role.id != 'empty'" class="icon" :class="role.team">
@@ -9,9 +10,11 @@
       </span>
       <span class="name">
         {{ role.name }}
+        <br>
         <span v-if="role.players.length" class="player">
-          <br>
-          <small v-for="(player, index) in role.players" :key="index" :class="{ dead: player.isDead }">
+          <small v-for="(player, index) in role.players"
+            :key="index" :class="{ dead: player.isDead }" :role="chatStore.activeTab === 'host' && !session.isPlayerOrSpectator ? 'button' : ''"
+            @click="chatStore.targetPlayer = player.id">
             {{ player.name + (role.players.length > index + 1 ? "," : "") }}
           </small>
         </span>
@@ -21,7 +24,6 @@
           players.length &&
           players[0]?.role?.id
         " class="player">
-          <br>
           <small />
         </span>
       </span>
@@ -43,7 +45,14 @@ import { computed } from "vue";
 
 import { RoleIcon } from '@/components';
 import type { NightOrderRole, Player, Role } from "@/types";
-import { useGrimoireStore, useLocaleStore, usePlayersStore, useSessionStore } from "@/stores";
+import {
+  useChatStore,
+  useGrimoireStore,
+  useLocaleStore,
+  usePlayersStore,
+  useSessionStore,
+  useUserPreferencesStore
+} from "@/stores";
 
 interface Props {
   nightType: 'firstNight' | 'otherNight';
@@ -51,11 +60,15 @@ interface Props {
 
 const props = defineProps<Props>();
 
+const chatStore = useChatStore();
 const grimoire = useGrimoireStore();
 const locale = useLocaleStore();
 const t = locale.t;
 const playersStore = usePlayersStore();
 const session = useSessionStore();
+const preferences = useUserPreferencesStore();
+
+const displayOutOfPlay = computed(() => preferences.hideOutOfPlay ? 'none' : 'flex');
 
 const edition = computed(() => grimoire.edition);
 const fabled = computed(() => playersStore.fabled);
@@ -278,6 +291,10 @@ ul {
         display: block;
         padding-top: 66%;
       }
+    }
+
+    &:not(:has( small)) {
+      display: v-bind(displayOutOfPlay);
     }
 
     .name {

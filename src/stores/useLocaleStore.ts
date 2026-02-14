@@ -99,7 +99,7 @@ export const useLocaleStore = defineStore("locale", {
 
       const m1 = import(`@/locale/${MASTER_LANGUAGE}/ui.json`);
 
-      const [mUi] = await Promise.all([m1]);
+      const mUi = await m1;
 
       this.fallbackLocale = mUi as LocaleModule;
 
@@ -107,6 +107,7 @@ export const useLocaleStore = defineStore("locale", {
     },
 
     async forceLocale(locale: string) {
+      if (!Array.from(supportedLanguages).includes(locale)) return
       this.currentLanguage = locale;
       const p1 = await import(`@/locale/${locale}/ui.json`);
       const p2 = await import(`@/locale/${locale}/roles.json`);

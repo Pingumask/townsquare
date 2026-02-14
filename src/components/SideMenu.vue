@@ -47,6 +47,12 @@
           <button :title="t('sound.gavel')" @click="soundboard.playSound({ sound: 'gavel' })">
             <font-awesome-icon :icon="['fas', 'gavel']" />
           </button>
+          <button :title="t('sound.death')" @click="soundboard.playSound({ sound: 'death' })">
+            🪦
+          </button>
+          <button :title="t('sound.drumRoll')" @click="soundboard.playSound({ sound: 'drumRoll' })">
+            🥁
+          </button>
         </div>
         <div v-if="grimoire.gamePhase !== 'pregame' && grimoire.gamePhase !== 'postgame'" class="button-group">
           <button :title="t('menu.secretVote')" @click="grimoire.setSecretVote(!grimoire.isSecretVote)">
@@ -127,6 +133,17 @@
             <button @click="setDuskTimer()">
               {{ t('townsquare.timer.dusk.button') }}
             </button>
+          </div>
+        </div>
+        <div v-if="grimoire.gamePhase === 'postgame'">
+          <h4>{{ t('postgame.announceWinner') }}</h4>
+          <div class="button-group">
+            <div class="button townsfolk" @click="grimoire.announceWinner('good')">
+              {{ t('postgame.good') }}
+            </div>
+            <div class="button demon" @click="grimoire.announceWinner('evil')">
+              {{ t('postgame.evil') }}
+            </div>
           </div>
         </div>
       </div>
@@ -494,6 +511,10 @@ const dayDown = () => {
       opacity: 1;
     }
   }
+}
+
+h4 {
+  text-align: center;
 }
 </style>
 

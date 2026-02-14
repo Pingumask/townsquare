@@ -39,6 +39,7 @@
     "secretVote": "Vote secret",
     "selfNaming": "Auto-Renommage",
     "allowTextChat": "Autoriser la messagerie",
+    "allowWhisper": "Autoriser chuchottements",
     "leave": "Quitter Session",
     "addPlayer": "Ajouter un Siège",
     "addPlayers": "Ajouter des Sièges",
@@ -48,6 +49,7 @@
     "assign": "Attribuer les Rôles",
     "addFabled": "Mythes & Légendes",
     "clearRoles": "Effacer les Rôles",
+    "clearChat": "Effacer chat",
     "reference": "Référence des Rôles",
     "nightOrder": "Ordre Nocturne",
     "gameState": "Etat JSON du jeu",
@@ -78,6 +80,7 @@
     "randomizeSeatings": "Êtes-vous sur de vouloir mélanger les sièges ?",
     "clearPlayers": "Êtes-vous sur de vouloir supprimer tous les joueurs ?",
     "clearRoles": "Êtes-vous sur de vouloir effacer tous les rôles ?",
+    "clearAllChat": "Effacer aussi le chat des joueurs ?",
     "customUrl": "Entrer l'URL du fichier JSON de personnalisation de script",
     "customError": "Erreur lors du chargement du script",
     "customNote": "Ajouter une note personnalisée",
@@ -158,6 +161,14 @@
       "otherNight": "Nuit",
       "postgame": "Fin de partie"
     }
+  },
+  "postgame": {
+    "announceWinner": "Annoncer les vainqueurs",
+    "goodWarning": "Êtes-vous sûr de vouloir déclarer les bons vainqueurs de cette partie ?",
+    "evilWarning": "Êtes-vous sûr de vouloir déclarer les mauvais vainqueurs de cette partie ?",
+    "theWinnersAre": "Les vainqueurs sont ...",
+    "good": "Les bons",
+    "evil": "Les mauvais"
   },
   "towninfo": {
     "addPlayers": "Appuyez sur [A] pour ajouter plus de joueurs !",
@@ -332,11 +343,17 @@
     "type_message": "Tapez votre message...",
     "send": "Envoyer",
     "cannotSend": "Impossible d'envoyer un message à un voisin qui n'est pas assis",
-    "global": "Global"
+    "global": "Village",
+    "host": "Conteur",
+    "players": "Joueurs",
+    "whispers": "Chuchottements",
+    "to": "à"
   },
   "sound": {
     "rooster": "Chant du Coq",
     "ringing": "Sonner la Cloche",
-    "gavel": "Frapper le Maillet"
+    "gavel": "Frapper le Maillet",
+    "death": "Sonner le Glas",
+    "drumRoll": "Rouler le tambour"
   }
 }
