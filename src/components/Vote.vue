@@ -109,7 +109,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onUnmounted, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import { Countdown, Jukebox } from '@/components';
 import { isActiveNomination } from '@/services';
 import {
@@ -205,7 +205,7 @@ const isFreeVote = computed(() => {
 });
 
 const player = computed(() => {
-  return players.value.find((p: Player) => p.id === session.playerId);
+  return playersStore.getById(session.playerId)
 });
 
 const currentVote = computed(() => {
@@ -443,6 +443,14 @@ const vote = (vote: boolean): boolean => {
   return false;
 };
 
+const toggleVote = (event: KeyboardEvent) => {
+  if (!canVote.value) return;
+  const target = event.target as HTMLElement;
+  if (['INPUT', 'TEXTAREA'].includes(target.tagName) || target.isContentEditable) return;
+  const index = players.value.findIndex((p: Player) => p.id === session.playerId);
+  vote(!votingStore.votes[index]);
+}
+
 const setVotingSpeed = (diff: number) => {
   const speed = Math.round(votingStore.votingSpeed + diff);
   if (speed >= 0) {
@@ -458,10 +466,15 @@ const removeMarked = () => {
   votingStore.setMarkedPlayer(-1);
 };
 
+onMounted( ()=> {
+  globalThis.addEventListener('keyup', toggleVote);
+})
+
 onUnmounted(() => {
   if (voteTimer.value) {
     clearInterval(voteTimer.value);
   }
+  globalThis.removeEventListener('keyup', toggleVote);
 });
 </script>
 

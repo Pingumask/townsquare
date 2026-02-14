@@ -1,67 +1,99 @@
 <template>
-  <div v-if="canShowChat" ref="playerChat" class="player-chat" :class="{ closed: !isChatOpen }">
-    <h3>
-      <span>{{ t("chat.title") }}</span>
-      <font-awesome-icon icon="times-circle" class="fa fa-times-circle" @click.stop="toggleChat" />
-      <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="toggleChat" />
-    </h3>
-    <div v-if="!isChatOpen" style="display: none"></div>
-    <div v-else class="chat-container">
+  <MovableDialog v-if="canShowChat" class="player-chat" :position="userPreferences.chat.position" :isOpen="isChatOpen"
+    :title="t('chat.title')" @toggle="handleToggle">
+    <div v-if="!sessionStore.isPlayerOrSpectator">
+      <em role="button" @click="grimoire.setAllowWhisper(!grimoire.isWhisperAllowed)">
+        <font-awesome-icon :icon="[
+          'fas',
+          grimoire.isWhisperAllowed ? 'check-square' : 'square',
+        ]" />
+        {{ t('menu.allowWhisper') }}
+      </em>
+    </div>
+    <div class="chat-container">
       <ul class="tabs">
-        <li v-if="sessionStore.isPlayerOrSpectator" aria-role="tab" class="tab"
-          :class="{ active: activeTab === 'left' }" @click="activeTab = 'left'">
+        <li v-if="sessionStore.isPlayerOrSpectator && grimoire.isWhisperAllowed" aria-role="tab" class="tab"
+          :class="{ active: chatStore.activeTab === 'left' }" @click="chatStore.activeTab = 'left'">
           {{ leftNeighbor?.name }}
         </li>
-        <li aria-role="tab" class="tab" :class="{ active: activeTab === 'global' }" @click="activeTab = 'global'">
+        <li aria-role="tab" class="tab" :class="{ active: chatStore.activeTab === 'global' }"
+          @click="chatStore.activeTab = 'global'">
           {{ t("chat.global") }}
         </li>
-        <li v-if="sessionStore.isPlayerOrSpectator" aria-role="tab" class="tab"
-          :class="{ active: activeTab === 'right' }" @click="activeTab = 'right'">
+        <li aria-role="tab" class="tab" :class="{ active: chatStore.activeTab === 'host' }"
+          @click="chatStore.activeTab = 'host'">
+          {{ sessionStore.isPlayerOrSpectator ? t('chat.host') : t('chat.players') }}
+        </li>
+        <li v-if="!sessionStore.isPlayerOrSpectator && grimoire.isWhisperAllowed" aria-role="tab" class="tab"
+          :class="{ active: chatStore.activeTab === 'whispers' }" @click="chatStore.activeTab = 'whispers'">
+          {{ t('chat.whispers') }}
+        </li>
+        <li v-if="sessionStore.isPlayerOrSpectator && grimoire.isWhisperAllowed" aria-role="tab" class="tab"
+          :class="{ active: chatStore.activeTab === 'right' }" @click="chatStore.activeTab = 'right'">
           {{ rightNeighbor?.name }}
         </li>
       </ul>
 
       <div ref="messagesContainer" class="messages">
-        <div v-for="(msg, index) in activeMessages" :key="index" :class="['message', msg.isOwn ? 'own' : 'other']">
-          <strong v-if="activeTab === 'global'">{{ msg.from }}: </strong>
+        <div v-for="(msg, index) in activeMessages" :key="index"
+          :class="{ message: true, own: msg.fromName === sessionStore.currentPlayerName, other: msg.fromName !== sessionStore.currentPlayerName, host: msg.fromId === 'host' }">
+          <strong v-if="msg.fromName !== sessionStore.currentPlayerName"
+            :role="chatStore.activeTab === 'host' && !sessionStore.isPlayerOrSpectator ? 'button' : ''"
+            @click="chatStore.targetPlayer = msg.fromId">{{
+              msg.fromName }}</strong>
+          <em
+            v-if="chatStore.activeTab === 'host' && !sessionStore.isPlayerOrSpectator && msg.fromName === sessionStore.currentPlayerName || chatStore.activeTab === 'whispers'">{{
+              ` ${t('chat.to')}
+            ${msg.toName}` }}</em>
+          <template
+            v-if="msg.fromName !== sessionStore.currentPlayerName || chatStore.activeTab === 'host' && !sessionStore.isPlayerOrSpectator">:
+          </template>
           {{ msg.text }}
         </div>
       </div>
 
-      <div class="input-area">
+      <div v-if="chatStore.activeTab !== 'whispers'" class="input-area">
         <input v-model="messageInput" type="text" :placeholder="t('chat.type_message')" :disabled="isInputDisabled"
           @keyup.enter="sendMessage" />
+
         <button :disabled="isSendDisabled" @click="sendMessage">
           <font-awesome-icon :icon="['fas', 'paper-plane']" :title="getTooltipTitle()" />
         </button>
       </div>
     </div>
-  </div>
+    <select v-if="!sessionStore.isPlayerOrSpectator && chatStore.activeTab === 'host'" v-model="chatStore.targetPlayer">
+      <option v-for="player in playersStore.players" :key="player.id" :value="player.id">
+        {{ player.name }}
+      </option>
+    </select>
+  </MovableDialog>
 </template>
 
 <script setup lang="ts">
+import { MovableDialog } from "@/components";
 import { ref, computed, watch, nextTick } from "vue";
 import {
+  useAnimationStore,
+  useChatStore,
+  useGrimoireStore,
   useLocaleStore,
   usePlayersStore,
   useSessionStore,
-  useChatStore,
-  useGrimoireStore,
-  useAnimationStore,
+  useUserPreferencesStore,
 } from "@/stores";
 import socket from "@/services/socket";
-import { ChatChannel } from "@/types";
+import { ChatMessage } from "@/types";
 
+const animationStore = useAnimationStore();
+const chatStore = useChatStore();
+const grimoire = useGrimoireStore();
 const locale = useLocaleStore();
 const playersStore = usePlayersStore();
 const sessionStore = useSessionStore();
-const chatStore = useChatStore();
-const grimoire = useGrimoireStore();
-const animationStore = useAnimationStore();
+const userPreferences = useUserPreferencesStore();
 const t = locale.t;
 
-const isChatOpen = ref(false);
-const activeTab = ref<ChatChannel>("global");
+const isChatOpen = ref(true);
 const messageInput = ref("");
 const messagesContainer = ref<HTMLElement | null>(null);
 
@@ -78,6 +110,7 @@ const currentPlayerIndex = computed(() => playersStore.currentPlayerIndex);
 
 const canShowChat = computed(() => {
   if (!grimoire.isTextChatAllowed) return false;
+  if (!sessionStore.sessionId) return false;
   return !sessionStore.isPlayerOrSpectator || isSeated.value;
 });
 
@@ -85,26 +118,22 @@ const isSeated = computed(() => {
   return sessionStore.isPlayerOrSpectator && currentPlayerIndex.value !== -1;
 });
 
-const currentPlayerName = computed(() => {
-  if (!sessionStore.isPlayerOrSpectator) return t("menu.host");
-  return playersStore.players[currentPlayerIndex.value]?.name || "You";
-});
-
 const leftNeighbor = computed(() => playersStore.leftNeighbor);
 
 const rightNeighbor = computed(() => playersStore.rightNeighbor);
 
 const activeMessages = computed(() => {
-  return chatStore.messages[activeTab.value] || [];
+  return chatStore.messages[chatStore.activeTab] || [];
 });
 
 const activeNeighbor = computed(() => {
-  if (activeTab.value === "global") return null;
-  return activeTab.value === "left" ? leftNeighbor.value : rightNeighbor.value;
+  if (chatStore.activeTab === "left") return leftNeighbor.value;
+  if (chatStore.activeTab === "right") return rightNeighbor.value;
+  return null;
 });
 
 const isInputDisabled = computed(() => {
-  if (activeTab.value === "global") return false;
+  if (chatStore.activeTab === "global" || chatStore.activeTab === "host") return false;
   return !activeNeighbor.value || activeNeighbor.value.id === "";
 });
 
@@ -113,14 +142,14 @@ const isSendDisabled = computed(() => {
 });
 
 const getTooltipTitle = () => {
-  if (activeTab.value === "global") return t("chat.send");
+  if (chatStore.activeTab === "global") return t("chat.send");
   return activeNeighbor.value && activeNeighbor.value.id !== ""
     ? t("chat.send")
     : t("chat.cannotSend");
 };
 
 watch(
-  [activeMessages, isChatOpen, activeTab],
+  [activeMessages, isChatOpen, chatStore.activeTab],
   () => {
     if (isChatOpen.value) {
       scrollToBottom();
@@ -128,10 +157,6 @@ watch(
   },
   { deep: true }
 );
-
-const toggleChat = () => {
-  isChatOpen.value = !isChatOpen.value;
-};
 
 const animateMessageSent = () => {
   const neighbor = activeNeighbor.value;
@@ -164,27 +189,40 @@ const buildRecipients = <T>(command: string, data: T): Record<string, [string, T
 const sendMessage = () => {
   if (isCooldown.value || !messageInput.value.trim()) return;
 
-  const msg = {
-    from: currentPlayerName.value,
+  const chatMessage: ChatMessage = {
+    fromId: sessionStore.isPlayerOrSpectator ? sessionStore.playerId : "host",
+    fromName: sessionStore.currentPlayerName,
+    toId: '',
+    toName: '',
     text: messageInput.value,
-    isOwn: true,
   };
 
-  const chatMessage = {
-    from: sessionStore.isPlayerOrSpectator ? sessionStore.playerId : "host",
-    message: messageInput.value,
-  };
-
-  if (activeTab.value === "global") {
-    chatStore.addMessage("global", msg);
+  if (chatStore.activeTab === "global") {
+    chatStore.addMessage("global", chatMessage);
     socket.send("direct", buildRecipients("globalChat", chatMessage));
     startCooldown(3000);
+  } else if (chatStore.activeTab === "host" && sessionStore.isPlayerOrSpectator) {
+    chatMessage.toId = "host";
+    chatStore.addMessage("host", chatMessage);
+    socket.send("direct", { ['host']: ["chat", chatMessage] });
+    startCooldown(800);
+  } else if (chatStore.activeTab === "host" && !sessionStore.isPlayerOrSpectator) {
+    const toPlayer = playersStore.getById(chatStore.targetPlayer);
+    if (!toPlayer) return alert("Target player is not seated");
+    chatMessage.toId = toPlayer.id;
+    chatMessage.toName = toPlayer.name;
+    chatStore.addMessage("host", chatMessage);
+    socket.send("direct", { [chatStore.targetPlayer]: ["chat", chatMessage] });
+    startCooldown(800);
   } else {
     const neighbor = activeNeighbor.value;
     if (!neighbor || neighbor.id === "") return;
-
-    chatStore.addMessage(activeTab.value, msg);
+    if (!neighbor.id) return alert("Target player is not seated");
+    chatMessage.toId = neighbor.id;
+    chatMessage.toName = neighbor.name;
+    chatStore.addMessage(chatStore.activeTab, chatMessage);
     socket.send("direct", { [neighbor.id]: ["chat", chatMessage] });
+    socket.send("direct", { ["host"]: ["chat", chatMessage] });
     animateMessageSent();
 
     const activityData = { from: sessionStore.playerId, to: neighbor.id };
@@ -195,14 +233,14 @@ const sendMessage = () => {
   scrollToBottom();
   messageInput.value = "";
 };
+
+const handleToggle = () => {
+  isChatOpen.value = !isChatOpen.value;
+};
 </script>
 
 <style scoped>
 .player-chat {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
   background: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
   border: 3px solid black;
@@ -211,14 +249,8 @@ const sendMessage = () => {
   padding: 10px;
   color: white;
   max-width: 90vw;
-  transition: all 250ms ease-in-out;
   display: flex;
   flex-direction: column;
-  @media(orientation: portrait) {
-    left: 50%;
-    top: 10px;
-    transform: translateX(-50%);
-  }
 }
 
 .player-chat.closed {
@@ -271,7 +303,7 @@ const sendMessage = () => {
   gap: 10px;
   margin-top: 10px;
   height: 400px;
-  width: min(35ch, 80vw);
+  width: min(42ch, 80vw);
 }
 
 .tabs {
@@ -289,7 +321,6 @@ const sendMessage = () => {
   padding: 0.15em 1em;
   color: white;
   cursor: pointer;
-  border-radius: 5px 5px 0 0;
   transition: background 250ms;
   min-width: 0;
   white-space: nowrap;
@@ -320,21 +351,63 @@ const sendMessage = () => {
 }
 
 .message {
+  background: var(--bg);
+  outline: 1px solid var(--bg);
   padding: 0.125rem 0.5rem;
   border-radius: 5px;
   word-wrap: break-word;
+
+  &.own {
+    --bg: #666;
+    align-self: flex-end;
+    max-width: 80%;
+    margin-right: 0.5rem;
+
+    &:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border: 0.4rem solid transparent;
+      border-left-color: var(--bg);
+      border-right: 0;
+      margin-top: -0.4em;
+      margin-right: -0.4em;
+    }
+  }
+
+  &.other {
+    --bg: #333;
+    align-self: flex-start;
+    max-width: 80%;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border: 0.4rem solid transparent;
+      border-right-color: var(--bg);
+      border-left: 0;
+      margin-top: -0.4em;
+      margin-left: -0.4em;
+    }
+  }
+
+  &.host {
+    --bg: #ddd;
+    color: black;
+  }
 }
 
-.message.own {
-  background: rgba(255, 255, 255, 0.5);
-  align-self: flex-end;
-  max-width: 80%;
-}
-
-.message.other {
-  background: rgba(100, 100, 100, 0.5);
-  align-self: flex-start;
-  max-width: 80%;
+select {
+  width: 100%;
+  font-size: 0.8em;
+  margin: 0;
 }
 
 .input-area {
@@ -346,7 +419,7 @@ const sendMessage = () => {
   flex: 1;
   font-size: inherit;
   padding: 0 0.5rem;
-  margin: 5px auto;
+  margin: 0;
   border: 1px solid #666;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.1);

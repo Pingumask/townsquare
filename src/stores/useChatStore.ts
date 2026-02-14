@@ -1,24 +1,24 @@
 import { defineStore } from "pinia";
-import { usePlayersStore } from "./usePlayersStore";
-import { useLocaleStore } from "./useLocaleStore";
-import { ChatChannel } from "@/types";
-
-export interface ChatMessage {
-  from: string;
-  text: string;
-  isOwn: boolean;
-}
+import socket from "@/services/socket";
+import { useLocaleStore, usePlayersStore, useSessionStore } from "@/stores";
+import type { ChatChannel, ChatMessage } from "@/types";
 
 interface ChatState {
+  activeTab: ChatChannel;
+  targetPlayer: string; // Player id
   messages: Record<string, ChatMessage[]>;
 }
 
 export const useChatStore = defineStore("chat", {
   state: (): ChatState => ({
+    activeTab: "global",
+    targetPlayer: "",
     messages: {
-      left: [],
-      right: [],
-      global: [],
+      left: [] as ChatMessage[],
+      right: [] as ChatMessage[],
+      global: [] as ChatMessage[],
+      whispers: [] as ChatMessage[],
+      host: [] as ChatMessage[],
     },
   }),
 
@@ -27,23 +27,30 @@ export const useChatStore = defineStore("chat", {
       this.messages[tab]?.push(message);
     },
 
-    clearMessages(tab: ChatChannel) {
-      this.messages[tab] = [];
+    clearMessages(forceClear: boolean = false) {
+      const locale = useLocaleStore();
+      const t = locale.t;
+      this.$reset();
+      const session = useSessionStore();
+      if (!session.isPlayerOrSpectator) {
+        if(forceClear || confirm(t('prompt.clearAllChat'))) {
+          socket.send('clearChat');
+        }
+      }
     },
 
-    receiveMessage(data: { from: string; message: string }, tab: ChatChannel) {
+    receiveMessage(msg: ChatMessage, tab: ChatChannel) {
       const playersStore = usePlayersStore();
       const localeStore = useLocaleStore();
 
-      const player = playersStore.players.find(p => p.id === data.from);
-      const fromName = player?.name || (data.from === "host" ? localeStore.t("menu.host") : data.from);
+      const fromPlayer = playersStore.getById(msg.fromId);
+      msg.fromName = msg.fromId === "host" || msg.fromId === "" ? localeStore.t("chat.host") : fromPlayer?.name || msg.fromId;
 
-      const message: ChatMessage = {
-        from: fromName,
-        text: data.message,
-        isOwn: false,
-      };
-      this.addMessage(tab, message);
+      const toPlayer = playersStore.getById(msg.toId);
+      msg.toName = msg.toId === "host" || msg.toId === "" ? localeStore.t("chat.host") : toPlayer?.name || msg.toId || "Undefined";
+
+      this.addMessage(tab, msg);
     },
   },
+  persist: true,
 });

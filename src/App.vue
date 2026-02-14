@@ -176,8 +176,7 @@ function keyup(event: KeyboardEvent) {
 
 html,
 body {
-  font-size: clamp(0.8em, 2.5vmin, 1.2em);
-  line-height: 1.4;
+  font-size: clamp(0.8rem, 2.4vmin, 1.1rem);
   background: url("assets/background.jpg") center center;
   background-size: cover;
   color: white;
@@ -284,7 +283,8 @@ ul {
 }
 
 button,
-.button {
+.button,
+select {
   font-family: "Roboto Condensed", sans-serif;
   font-size: 1.2rem;
   padding: 0;
@@ -306,7 +306,7 @@ button,
   transition: all 200ms;
   white-space: nowrap;
 
-  &:hover {
+  &:not(select):hover {
     color: red;
   }
 
@@ -353,6 +353,25 @@ button,
       inset 0 1px 1px #9c0000,
       0 0 10px #000;
   }
+}
+
+select {
+  appearance: base-select;
+
+  background-color: #4e4e4e;
+  color: white;
+
+  option:hover {
+    color: red;
+  }
+}
+
+input,
+textarea {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.1em;
 }
 
 /* video background */
@@ -408,5 +427,9 @@ video#background {
 
 #app.night {
   filter: grayscale(15%) saturate(85%);
+}
+
+[role=button] {
+  cursor: pointer;
 }
 </style>

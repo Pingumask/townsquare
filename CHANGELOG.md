@@ -2,14 +2,22 @@
 
 ## Upcoming Version
 - Features:
+  - Chat enhancements :
+    - Movable Window
+    - Storyteller & Players can whisper to each other (ST can quickly switch target player by clicking a message from them or clicking their name from the night order)
+    - Storyteller can Disable Neighbor whispers separately from Public chat and Storyteller whisper
+    - Storyteller can snoop players whispers
+  - Toggleable Filter to hide unattributed characters from night order
+  - Toggle voting with space  
   - Added voting sounds and a death sound
 
 - Fixes:
-
+  - Gamephase switch from menu or keybinding bug if current phase is endgame
+  - Starting a new game didn't send players back to the "pregame" phase
 - Localization:
 
 - Maintenance:
-
+  - Reusable MovableDialog component (used by chat and notes)
 
 ## 6.2.1
 - Features:

@@ -23,9 +23,12 @@ import {
   faEyeSlash,
   faFileCode,
   faFileUpload,
+  faFilter,
+  faFilterCircleXmark,
   faGavel,
   faHandPaper,
   faHandPointRight,
+  faHandSparkles,
   faHeartbeat,
   faHouseUser,
   faImage,
@@ -39,6 +42,7 @@ import {
   faPlusCircle,
   faQuestion,
   faRandom,
+  faRankingStar,
   faRedoAlt,
   faSearchMinus,
   faSearchPlus,
@@ -62,8 +66,6 @@ import {
   faWindowMaximize,
   faWindowMinimize,
   faYinYang,
-  faHandSparkles,
-  faRankingStar,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faDocker,
@@ -97,6 +99,8 @@ library.add(
   faEyeSlash,
   faFileCode,
   faFileUpload,
+  faFilter,
+  faFilterCircleXmark,
   faGavel,
   faHandPaper,
   faHandPointRight,
@@ -138,9 +142,9 @@ library.add(
   faWindowMaximize,
   faWindowMinimize,
   faYinYang,
-  faGithub,
   faDiscord,
-  faDocker
+  faDocker,
+  faGithub,
 );
 
 export default {
