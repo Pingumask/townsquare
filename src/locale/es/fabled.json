@@ -75,7 +75,7 @@
   {
     "id": "toymaker",
     "firstNightReminder": "",
-    "otherNight": 31,
+    "otherNight": 33,
     "otherNightReminder": "Si es una noche en la que un ataque del Demonio podría terminar la partida, y el Demonio está marcado como \"Noche final: Sin Ataque\", entonces el Demonio no actúa esta noche. (No lo despiertes).",
     "reminders": [
       "Noche final: Sin Ataque"
@@ -199,7 +199,7 @@
   },
   {
     "id": "stormcatcher",
-    "firstNight": 13,
+    "firstNight": 14,
     "firstNightReminder": "Muestra a cada jugador malvado qué jugador está marcado como \"Seguro\".",
     "otherNightReminder": "",
     "reminders": [

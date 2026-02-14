@@ -181,7 +181,7 @@ const roles = computed(() => {
       {
         id: "minion",
         name: t('modal.nightOrder.minionInfo'),
-        firstNight: 12,
+        firstNight: 13,
         team: "minion",
         players: players.value.filter((p: Player) => p.role.team === "minion"),
         firstNightReminder: t('modal.nightOrder.minionInfoDescription'),
@@ -190,7 +190,7 @@ const roles = computed(() => {
       {
         id: "demon",
         name: t('modal.nightOrder.demonInfo'),
-        firstNight: 18,
+        firstNight: 19,
         team: "demon",
         players: players.value.filter((p: Player) => p.role.team === "demon"),
         firstNightReminder: t('modal.nightOrder.demonInfoDescription'),

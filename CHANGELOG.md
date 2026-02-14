@@ -21,6 +21,7 @@
 
 - Maintenance:
   - Reusable MovableDialog component (used by chat and notes)
+  - Updating night order
 
 ## 6.2.1
 - Features:
