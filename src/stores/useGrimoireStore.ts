@@ -415,9 +415,12 @@ export const useGrimoireStore = defineStore("grimoire", {
       playersStore.randomize();
       votingStore.setMarkedPlayer(-1);
       votingStore.clearVoteHistory();
+      chatStore.clearMessages(true);
       this.setGamePhase("pregame");
       this.setDayCount(0);
-      chatStore.clearMessages(true);
+      for (const player of playersStore.players) {
+        socket.sendGamestate(player.id, false);
+      }
     },
 
     endGame() {

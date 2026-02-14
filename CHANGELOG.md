@@ -11,6 +11,7 @@
   - Toggle voting with space
 - Fixes:
   - Gamephase switch from menu or keybinding bug if current phase is endgame
+  - Starting a new game didn't send players back to the "pregame" phase
 - Localization:
 
 - Maintenance:
