@@ -185,6 +185,9 @@ export const usePlayersStore = defineStore("players", {
   },
 
   actions: {
+    getById(id: string): Player | undefined {
+      return this.players.find(p => p.id === id);
+    },
     set(players: Player[] = []) {
       this.players = players;
       const sessionStore = useSessionStore();

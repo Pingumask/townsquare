@@ -170,6 +170,10 @@
             {{ t('menu.removeSeats') }}
             <em><font-awesome-icon icon="trash-alt" class="fa fa-trash-alt" /></em>
           </li>
+          <li v-if="grimoire.isTextChatAllowed" @click="chatStore.clearMessages(false)">
+            {{ t('menu.clearChat') }}
+            <em><font-awesome-icon icon="trash-alt" class="fa fa-trash-alt" /></em>
+          </li>
           <li v-if="players.length" @click="playersStore.clearRoles(false)">
             {{ t('menu.clearRoles') }}
             <em><font-awesome-icon icon="trash-alt" class="fa fa-trash-alt" /></em>
@@ -190,10 +194,6 @@
             {{ t('menu.sendRoles') }}
             <em><font-awesome-icon icon="theater-masks" class="fa fa-theater-masks" /></em>
           </li>
-          <li @click="grimoire.endGame">
-            {{ t('menu.endGame') }}
-            <em><font-awesome-icon icon="ranking-star" class="fa fa-ranking-star" /></em>
-          </li>
         </template>
 
         <template v-if="tab === 'storytelling'">
@@ -210,6 +210,9 @@
             </template>
             <template v-if="grimoire.gamePhase === 'day'">
               {{ t('menu.nightSwitch') }}
+            </template>
+            <template v-if="grimoire.gamePhase === 'postgame'">
+              {{ t('menu.newGame') }}
             </template>
             <em>[S]</em>
           </li>
@@ -252,6 +255,18 @@
               'fas',
               grimoire.isTextChatAllowed ? 'check-square' : 'square',
             ]" /></em>
+          </li>
+          <li :class="{ disabled: !grimoire.isTextChatAllowed }"
+            @click="grimoire.setAllowWhisper(!grimoire.isWhisperAllowed)">
+            {{ t('menu.allowWhisper') }}
+            <em><font-awesome-icon :icon="[
+              'fas',
+              grimoire.isWhisperAllowed ? 'check-square' : 'square',
+            ]" /></em>
+          </li>
+          <li v-if="grimoire.gamePhase !== 'postgame'" @click="grimoire.endGame">
+            {{ t('menu.endGame') }}
+            <em><font-awesome-icon icon="ranking-star" class="fa fa-ranking-star" /></em>
           </li>
         </template>
 
@@ -389,6 +404,14 @@
             {{ t('sound.gavel') }}
             <em>[H]</em>
           </li>
+          <li @click="soundboard.playSound({ sound: 'death' })">
+            {{ t('sound.death') }}
+            <!-- maybe add a shortcut one day -->
+          </li>
+          <li @click="soundboard.playSound({ sound: 'drumRoll' })">
+            {{ t('sound.drumRoll') }}
+            <!-- maybe add a shortcut one day -->
+          </li>
         </template>
 
         <template v-if="tab === 'gameplay'">
@@ -414,6 +437,10 @@
           </li>
           <li v-if="players.length" @click="playersStore.clearRoles(false)">
             {{ t('menu.clearRoles') }}
+            <em><font-awesome-icon icon="trash-alt" class="fa fa-trash-alt" /></em>
+          </li>
+          <li v-if="grimoire.isTextChatAllowed" @click="chatStore.clearMessages(false)">
+            {{ t('menu.clearChat') }}
             <em><font-awesome-icon icon="trash-alt" class="fa fa-trash-alt" /></em>
           </li>
         </template>
@@ -466,6 +493,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import {
+  useChatStore,
   useGrimoireStore,
   useLocaleStore,
   usePlayersStore,
@@ -476,6 +504,7 @@ import {
   useVotingStore,
 } from "@/stores";
 
+const chatStore = useChatStore();
 const grimoire = useGrimoireStore();
 const locale = useLocaleStore();
 const playersStore = usePlayersStore();
