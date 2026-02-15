@@ -6,6 +6,7 @@
 - Fixes:
 
 - Localization:
+  - Correcting an error in the Ventriloquist's description (French version)
 
 - Maintenance:
 
