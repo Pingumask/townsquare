@@ -26,7 +26,7 @@
           icon="exclamation-triangle"
           class="fa fa-exclamation-triangle"
         />
-        <div v-if="allowMultiple || role.multiple" class="buttons">
+        <div v-if="allowMultiple || hasFeature(role,'bag-duplicate')" class="buttons">
           <font-awesome-icon
             icon="minus-circle"
             @click.stop="role.selected--"
@@ -178,6 +178,22 @@ const selectRandomRoles = () => {
     });
   }
 };
+
+const hasFeature = (role: Role, feature: string) => {
+  if (role.special) {
+    if ("name" in role.special) {
+      return role.special.name === feature;
+    }
+    else {
+      for (const specialFeature of role.special) {
+        if (specialFeature.name === feature) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}
 
 const assignRoles = () => {
   if (selectedRoles.value <= nontravelers.value && selectedRoles.value) {

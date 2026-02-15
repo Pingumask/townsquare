@@ -276,10 +276,40 @@ const shouldHideNominee = computed(() => {
 
 const voudonInPlay = computed(() => {
   for (const player of players.value) {
-    if (player.role.id === "voudon") return !player.isDead;
+    if (!player.isDead && player.role && player.role.special) {
+      const special = player.role.special;
+      if("name" in special) {
+        if(special.name === "free-dead-vote") {
+          return true;
+        }
+      }
+      else {
+        for(const feature of special) {
+          if(feature.name === "free-dead-vote") {
+            return true;
+          } 
+        }
+      }
+    }
   }
   return false;
 });
+
+const hasFeature = (player: Player, feature: string) => {
+  if (player.role && player.role.special) {
+    if ("name" in player.role.special) {
+      return player.role.special.name === feature;
+    }
+    else {
+      for (const specialFeature of player.role.special) {
+        if (specialFeature.name === feature) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}
 
 const canVote = computed(() => {
   if (!player.value || !isActiveNomination(votingStore.nomination)) return false;
@@ -287,7 +317,7 @@ const canVote = computed(() => {
   const nomination = votingStore.nomination;
 
   if ( // Dead player without a token or voudon
-    (player.value.isDead || player.value.role.id === "beggar")
+    (player.value.isDead || hasFeature(player.value,"need-token"))
     && !player.value.voteToken
     && !isFreeVote.value
     && !voudonInPlay.value

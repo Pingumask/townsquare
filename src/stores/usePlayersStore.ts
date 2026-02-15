@@ -447,6 +447,21 @@ export const usePlayersStore = defineStore("players", {
         }
       }
     },
+    isForbidden(role: Role) {
+      if (role.special) {
+        if ("name" in role.special) {
+          return role.special.name === "bag-disabled";
+        }
+        else {
+          for (const feature of role.special) {
+            if(feature.name === "bag-disabled") {
+              return true;
+            }
+          }
+        }
+      }
+      return false;
+    },
     distributeRolesAction() {
       const session = useSessionStore();
       if (session.isPlayerOrSpectator) return;
@@ -460,7 +475,7 @@ export const usePlayersStore = defineStore("players", {
       const players = this.players;
       for (let i = 0; i < players.length && !forbiddenRole; i++) {
         const player = players[i];
-        if (player?.role?.forbidden) {
+        if (player && player.role && this.isForbidden(player.role)) {
           forbiddenRole = player.role.name || "";
         }
       }

@@ -2,6 +2,7 @@
 
 ## Upcoming Version
 - Features:
+  - Renaming some roles' variables, to use the same terminology as the official app (only the features already previously coded work)
 
 - Fixes:
 

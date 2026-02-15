@@ -70,6 +70,10 @@
     "setup": false,
     "name": "Violinista",
     "team": "fabled",
+    "special": {
+      "type": "ability",
+      "name": "pointing"
+    },
     "ability": "Una vez por partida, el Demonio elige en secreto a un jugador contrario: todos los jugadores eligen cuál de estos 2 jugadores gana."
   },
   {
@@ -267,6 +271,10 @@
     "setup": true,
     "name": "Papa",
     "team": "loric",
+    "special": {
+      "type": "selection",
+      "name": "good-duplicate"
+    },
     "ability": "Hay personajes buenos duplicados en juego. Podrían ser faroles."
   },
   {
