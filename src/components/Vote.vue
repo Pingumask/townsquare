@@ -276,20 +276,8 @@ const shouldHideNominee = computed(() => {
 
 const voudonInPlay = computed(() => {
   for (const player of players.value) {
-    if (!player.isDead && player.role && player.role.special) {
-      const special = player.role.special;
-      if("name" in special) {
-        if(special.name === "free-dead-vote") {
-          return true;
-        }
-      }
-      else {
-        for(const feature of special) {
-          if(feature.name === "free-dead-vote") {
-            return true;
-          } 
-        }
-      }
+    if (!player.isDead && hasFeature(player,"free-dead-vote")) {
+      return true;
     }
   }
   return false;
