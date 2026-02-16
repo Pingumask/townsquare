@@ -105,10 +105,10 @@
 
       <transition name="fold">
         <ul v-if="isMenuOpen" class="menu">
-          <li @click="updatePlayer('handRaised', !player.handRaised, false)" v-if="
+          <li v-if="
             session.isPlayerOrSpectator &&
             player.id === session.playerId
-          ">
+          " @click="updatePlayer('handRaised', !player.handRaised, false)">
             <font-awesome-icon icon="hand-paper" />
             {{ player.handRaised ? t('vote.handDown') : t('vote.handUp') }}
           </li>
