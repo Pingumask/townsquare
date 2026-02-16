@@ -9,6 +9,7 @@ interface SoundboardState {
   gavelTrigger: number;
   deathTrigger: number;
   votingBellTrigger: number;
+  votingClockTrigger: number;
   riserTrigger: number;
   drumRollTrigger: number;
 
@@ -17,8 +18,11 @@ interface SoundboardState {
   gavelVolume: number;
   deathVolume: number;
   votingBellVolume: number;
+  votingClockVolume: number;
   riserVolume: number;
   drumRollVolume: number;
+
+  votingClockType: number;
 }
 
 export const useSoundboardStore = defineStore("soundboard", {
@@ -28,16 +32,20 @@ export const useSoundboardStore = defineStore("soundboard", {
     gavelTrigger: 0,
     deathTrigger: 0,
     votingBellTrigger: 0,
+    votingClockTrigger: 0,
     riserTrigger: 0,
     drumRollTrigger: 0,
 
-    ringingVolume: 1.0,
-    roosterVolume: 1.0,
-    gavelVolume: 1.0,
-    deathVolume: 1.0,
-    votingBellVolume: 1.0,
-    riserVolume: 1.0,
-    drumRollVolume: 1.0,
+    ringingVolume: 0.5,
+    roosterVolume: 1,
+    gavelVolume: 1,
+    deathVolume: 0.5,
+    votingBellVolume: 0.5,
+    votingClockVolume: 0.5, // Overwritten by useVotingStore const clockStartVolume & clockEndVolume
+    riserVolume: 0.3,
+    drumRollVolume: 1,
+
+    votingClockType: 0,
   }),
 
   actions: {
@@ -57,6 +65,9 @@ export const useSoundboardStore = defineStore("soundboard", {
           break;
         case "votingBell":
           this.votingBellVolume = volume;
+          break;
+        case "votingClock":
+          this.votingClockVolume = volume;
           break;
         case "riser":
           this.riserVolume = volume;
@@ -83,6 +94,9 @@ export const useSoundboardStore = defineStore("soundboard", {
           break;
         case "votingBell":
           this.votingBellTrigger++;
+          break;
+        case "votingClock":
+          this.votingClockTrigger++;
           break;
         case "riser":
           this.riserTrigger++;
