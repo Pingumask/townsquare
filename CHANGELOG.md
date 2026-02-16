@@ -10,6 +10,7 @@
   - Forbid language change for players
   - Clear notes when starting a new game
   - Display error when host tries to whisper to unseated player
+  - Chat & Notes moved behind modals and menus
 - Localization:
   - Correcting an error in the Ventriloquist's description (French version)
 

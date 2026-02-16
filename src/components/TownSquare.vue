@@ -12,8 +12,8 @@
         nominate: nominate > -1,
       }" @trigger="handleTrigger(index, $event)" />
       <div class="animations">
-        <div 
-          v-for="anim in animationStore.animations" 
+        <div
+          v-for="anim in animationStore.animations"
           :key="anim.id"
           class="animation"
           :style="getAnimationStyle(anim)"

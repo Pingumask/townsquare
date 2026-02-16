@@ -245,7 +245,6 @@ const handleToggle = () => {
   border-radius: 10px;
   border: 3px solid black;
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
-  z-index: 50;
   padding: 10px;
   color: white;
   max-width: 90vw;

@@ -91,7 +91,7 @@ const stopDrag = () => {
   max-width: 95vw;
   padding-inline: 1rem;
   position: fixed;
-  z-index: 100;
+  z-index: 50;
   left: v-bind(left);
   top: v-bind(top);
   margin: 0;

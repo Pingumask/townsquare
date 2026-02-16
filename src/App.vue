@@ -18,6 +18,7 @@
     <Vote v-if="votingStore.nomination" />
     <Parchment v-if="grimoire.showParchment" />
 
+    <Notes />
     <TownSquare />
     <Menu />
     <EditionModal />
@@ -28,7 +29,6 @@
     <VoteHistoryModal />
     <GameStateModal />
     <SpecialVoteModal />
-    <Notes />
     <Gradients />
     <span id="version">v{{ version }}{{ isBeta ? '-beta' : '' }}</span>
   </div>
