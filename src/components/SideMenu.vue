@@ -7,9 +7,11 @@
       <span>
         {{ t(`townsquare.gamephase.${grimoire.gamePhase}`) }}
         <div v-if="grimoire.gamePhase === 'day' || grimoire.gamePhase === 'otherNight'" id="daycounter">
-          <font-awesome-icon v-if="!session.isPlayerOrSpectator && grimoire.dayCount > 1" icon="fa-minus-circle" @click="dayDown()" />
+          <font-awesome-icon v-if="!session.isPlayerOrSpectator && grimoire.dayCount > 1" icon="fa-minus-circle"
+            @click="dayDown()" />
           {{ grimoire.dayCount }}
-          <font-awesome-icon v-if="!session.isPlayerOrSpectator" icon="fa-plus-circle" @click="grimoire.setDayCount(grimoire.dayCount + 1);" />
+          <font-awesome-icon v-if="!session.isPlayerOrSpectator" icon="fa-plus-circle"
+            @click="grimoire.setDayCount(grimoire.dayCount + 1);" />
         </div>
       </span>
     </h3>
@@ -37,7 +39,7 @@
             <font-awesome-icon icon="ranking-star" />
           </button>
         </div>
-        <div v-if="grimoire.gamePhase !== 'pregame' && grimoire.gamePhase !== 'postgame'" class="button-group">
+        <div v-if="grimoire.gamePhase !== 'pregame'" class="button-group">
           <button :title="t('sound.ringing')" @click="soundboard.playSound({ sound: 'ringing' })">
             <font-awesome-icon :icon="['fas', 'bell']" />
           </button>
@@ -503,11 +505,13 @@ const dayDown = () => {
 
   #daycounter {
     display: inline-block;
+
     svg {
       height: 1rem;
       opacity: 0;
     }
-    &:hover svg{
+
+    &:hover svg {
       opacity: 1;
     }
   }

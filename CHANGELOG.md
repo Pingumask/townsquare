@@ -4,7 +4,7 @@
 - Features:
 
 - Fixes:
-
+  - Allow soundboard during postgame
 - Localization:
 
 - Maintenance:
@@ -18,7 +18,7 @@
     - Storyteller can Disable Neighbor whispers separately from Public chat and Storyteller whisper
     - Storyteller can snoop players whispers
   - Toggleable Filter to hide unattributed characters from night order
-  - Toggle voting with space  
+  - Toggle voting with space
   - Added voting sounds and a death sound
   - Added a parchment which prints the current day/night at each game phase change and that announce the end of a game
   - Added a cutsene to announce the winners at the end of a game
