@@ -230,6 +230,9 @@ export class LiveSession {
         if (!this._isPlayerOrSpectator) return;
         votingStore.setMarkedPlayer(params as number);
         break;
+      case "newGame":
+        grimoire.newGame();
+        break;
       case "gamePhase":
         if (!this._isPlayerOrSpectator) return;
         grimoire.setGamePhase(params as GamePhase);

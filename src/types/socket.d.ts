@@ -26,6 +26,7 @@ export type SocketCommands =
   | "marked"
   | "move"
   | "name"
+  | "newGame"
   | "nomination"
   | "player"
   | "pronouns"

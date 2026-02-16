@@ -7,6 +7,7 @@ import {
   usePlayersStore,
   useSessionStore,
   useSoundboardStore,
+  useUserPreferencesStore,
   useVotingStore,
 } from "@/stores";
 import type {
@@ -404,6 +405,8 @@ export const useGrimoireStore = defineStore("grimoire", {
       } else if (gamePhase === "otherNight") {
         votingStore.setMarkedPlayer(-1);
         this.setDayCount(this.dayCount + 1);
+      } else if (gamePhase === "pregame") {
+        this.setDayCount(0);
       }
       this.showParchment = true;
     },
@@ -413,20 +416,22 @@ export const useGrimoireStore = defineStore("grimoire", {
       const locale = useLocaleStore();
       const playersStore = usePlayersStore();
       const session = useSessionStore();
+      const userPreferences = useUserPreferencesStore()
       const votingStore = useVotingStore();
       const t = locale.t;
 
-      if (session.isPlayerOrSpectator) return;
-      if (!confirm(t("prompt.newGame"))) return;
-      playersStore.clearRoles(true);
-      playersStore.randomize();
+      if (!session.isPlayerOrSpectator) {
+        if (!confirm(t("prompt.newGame"))) return;
+      }
+      this.setGamePhase("pregame");
       votingStore.setMarkedPlayer(-1);
+      playersStore.clearRoles(true);
       votingStore.clearVoteHistory();
       chatStore.clearMessages(true);
-      this.setGamePhase("pregame");
-      this.setDayCount(0);
-      for (const player of playersStore.players) {
-        socket.sendGamestate(player.id, false);
+      userPreferences.notes.content = "";
+      if (!session.isPlayerOrSpectator) {
+        socket.send("newGame");
+        playersStore.randomize();
       }
     },
 
