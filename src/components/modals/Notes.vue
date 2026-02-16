@@ -60,6 +60,8 @@ const handleToggle = () => {
 @use "@/vars.scss" as *;
 
 .notes {
+  max-width: 95vw;
+
   .content {
     textarea {
       flex-grow: 1;
@@ -75,7 +77,9 @@ const handleToggle = () => {
       outline: none;
       box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
       width: v-bind(width);
+      max-width: calc(95vw - 5rem);
       height: v-bind(height);
+      max-height: calc(95vh - 6rem);
       margin-top: 0.75em;
       box-sizing: content-box;
 
