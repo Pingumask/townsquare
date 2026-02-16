@@ -1831,7 +1831,7 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 58,
-    "otherNightReminder": "If the Plague Doctor died, the Storyteller gained a Minion ability. If you haven’t done this yet, do so now.",
+    "otherNightReminder": "Si el Doctor de la Plaga moría, el Narrador obtenía una habilidad de Esbirro. Si aún no lo has hecho, hazlo ahora.",
     "reminders": [
       "Habilidad del Narrador"
     ],
@@ -2230,7 +2230,7 @@
     "firstNight": 0,
     "firstNightReminder": "",
     "otherNight": 92,
-    "otherNightReminder": "Change the Riot reminder token to the relevant day. If it is night 3, you may wake the Minions. Show the YOU ARE & Riot tokens.",
+    "otherNightReminder": "Cambia el recordatorio de Día. Si es la noche 3, puedes despertar a los esbirros. Muestra lacarta 'TÚ ERES' y Riot.",
     "reminders": [
       "Día 1",
       "Día 2",

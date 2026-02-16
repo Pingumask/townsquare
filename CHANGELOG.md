@@ -12,8 +12,8 @@
   - Display error when host tries to whisper to unseated player
   - Chat & Notes moved behind modals and menus
 - Localization:
-  - Correcting an error in the Ventriloquist's description (French version)
-
+  - Fr : Correcting a typo in the Ventriloquist's description
+  - Es : Missing translations for Riot and Plaguedoctor night descriptions
 - Maintenance:
 
 
