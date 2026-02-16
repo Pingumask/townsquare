@@ -62,7 +62,7 @@
       </div>
     </div>
     <select v-if="!sessionStore.isPlayerOrSpectator && chatStore.activeTab === 'host'" v-model="chatStore.targetPlayer">
-      <option v-for="player in playersStore.players" :key="player.id" :value="player.id">
+      <option v-for="player in playersStore.players" :key="`${player.name}-${player.id}`" :value="player.id">
         {{ player.name }}
       </option>
     </select>
@@ -187,6 +187,7 @@ const buildRecipients = <T>(command: string, data: T): Record<string, [string, T
 };
 
 const sendMessage = () => {
+  const t = useLocaleStore().t;
   if (isCooldown.value || !messageInput.value.trim()) return;
 
   const chatMessage: ChatMessage = {
@@ -208,7 +209,7 @@ const sendMessage = () => {
     startCooldown(800);
   } else if (chatStore.activeTab === "host" && !sessionStore.isPlayerOrSpectator) {
     const toPlayer = playersStore.getById(chatStore.targetPlayer);
-    if (!toPlayer) return alert("Target player is not seated");
+    if (!toPlayer ||toPlayer.id === "") return alert(t('chat.cannotSend'));
     chatMessage.toId = toPlayer.id;
     chatMessage.toName = toPlayer.name;
     chatStore.addMessage("host", chatMessage);
@@ -216,8 +217,7 @@ const sendMessage = () => {
     startCooldown(800);
   } else {
     const neighbor = activeNeighbor.value;
-    if (!neighbor || neighbor.id === "") return;
-    if (!neighbor.id) return alert("Target player is not seated");
+    if (!neighbor || neighbor.id === "") return alert(t('chat.cannotSend'));
     chatMessage.toId = neighbor.id;
     chatMessage.toName = neighbor.name;
     chatStore.addMessage(chatStore.activeTab, chatMessage);

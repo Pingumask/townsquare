@@ -8,6 +8,7 @@
   - Notes modal: fix max size
   - Forbid language change for players
   - Clear notes when starting a new game
+  - Display error when host tries to whisper to unseated player
 - Localization:
 
 - Maintenance:

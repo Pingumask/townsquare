@@ -341,7 +341,7 @@
     "title": "Chat",
     "type_message": "Escribe tu mensaje...",
     "send": "Enviar",
-    "cannotSend": "No puedes enviar mensaje a un vecino que no está sentado",
+    "cannotSend": "No puedes enviar mensaje a un jugador que no está sentado",
     "global": "Pueblo",
     "host": "Cuentista",
     "players": "Jugadores",

@@ -341,7 +341,7 @@
     "title": "Chat",
     "type_message": "Type message...",
     "send": "Send",
-    "cannotSend": "Cannot send to unseated neighbor",
+    "cannotSend": "Cannot send to unseated player",
     "global": "Townsquare",
     "host": "Storyteller",
     "players": "Players",
