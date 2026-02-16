@@ -11,6 +11,7 @@
   - Clear notes when starting a new game
   - Display error when host tries to whisper to unseated player
 - Localization:
+  - Correcting an error in the Ventriloquist's description (French version)
 
 - Maintenance:
 
