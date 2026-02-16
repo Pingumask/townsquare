@@ -5,7 +5,7 @@
   }" :style="{
     backgroundImage: `url('${background}')`,
     backgroundColor: `${backgroundColor}`,
-  }" @keyup="keyup">
+  }" @keyup="keyup" @keyup.space="space">
     <video v-if="background && background.match(/\.(mp4|webm)$/i)" id="background" :src="background" autoplay loop
       tabindex="-1" aria-hidden="true" aria-label="Decorative background video">
       <track kind="captions" src="" default
@@ -150,6 +150,18 @@ function keyup(event: KeyboardEvent) {
       userPreferences.notes.opened = !userPreferences.notes.opened;
       break;
   }
+}
+
+function space() {
+  if (!session.isPlayerOrSpectator) return;
+  const player = playersStore.players[playersStore.currentPlayerIndex];
+  if (!player) return;
+  if (votingStore.nomination) return;
+  playersStore.update({
+    player: player,
+    property: "handRaised",
+    value: !player.handRaised,
+  });
 }
 </script>
 

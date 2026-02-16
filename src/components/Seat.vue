@@ -5,6 +5,7 @@
         dead: props.player.isDead,
         marked: votingStore.markedPlayer === index,
         'no-vote': !props.player.voteToken,
+        'hand-raised': props.player.handRaised,
         you:
           session.sessionId &&
           props.player.id &&
@@ -34,6 +35,8 @@
 
       <!-- Overlay icons -->
       <div class="overlay">
+        <font-awesome-icon icon="hand-paper" class="fa fa-hand-paper hand" :title="t('player.handUp')"
+          @click="updatePlayer('handRaised', false, false)" />
         <font-awesome-icon v-if="
           !grimoire.isSecretVote ||
           isSpecialVoteWithMessages ||
@@ -102,6 +105,13 @@
 
       <transition name="fold">
         <ul v-if="isMenuOpen" class="menu">
+          <li @click="updatePlayer('handRaised', !player.handRaised, false)" v-if="
+            session.isPlayerOrSpectator &&
+            player.id === session.playerId
+          ">
+            <font-awesome-icon icon="hand-paper" />
+            {{ player.handRaised ? t('vote.handDown') : t('vote.handUp') }}
+          </li>
           <li v-if="
             (!session.isPlayerOrSpectator && playersMenu.changePronouns) ||
             (session.isPlayerOrSpectator &&
@@ -291,7 +301,7 @@ function changePronouns() {
 
 function toggleStatus() {
   const soundboard = useSoundboardStore();
-  
+
   if (userPreferences.hideGrim) {
     if (!props.player.isDead) {
       updatePlayer("isDead", true);
@@ -358,12 +368,10 @@ function updatePlayer(
   value: unknown,
   closeMenu = false,
 ) {
+  const allowedPlayerActions = ["reminders", "pronouns", "name", "id", "handRaised"];
   if (
     session.isPlayerOrSpectator &&
-    property !== "reminders" &&
-    property !== "pronouns" &&
-    property !== "name" &&
-    property !== "id"
+    !allowedPlayerActions.includes(property)
   )
     return;
   playersStore.update({
@@ -665,6 +673,7 @@ picture * {
   z-index: 2;
   cursor: pointer;
 
+  &.hand,
   &.swap,
   &.move,
   &.nominate,
@@ -684,8 +693,18 @@ picture * {
     }
 
     &:hover *,
-    &.fa-hand-paper * {
+    &.vote * {
       fill: url(#demon);
+    }
+
+    &.hand {
+      transform-origin: left bottom;
+      transition: all 500ms;
+      transform: scale(1);
+
+      & * {
+        fill: url(#default);
+      }
     }
 
     &.fa-times * {
@@ -696,6 +715,15 @@ picture * {
       fill: url(#minion);
     }
   }
+}
+
+.player.hand-raised .overlay svg.hand {
+  transform: rotateZ(-35deg) translateX(-45%) translateY(-35%);
+  opacity: 1;
+}
+
+.vote .player.hand-raised .overlay svg.hand {
+  opacity: 0;
 }
 
 // other player voted yes, but is not locked yet

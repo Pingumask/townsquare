@@ -65,6 +65,7 @@ const NEWPLAYER: Player = {
   voteToken: false,
   isDead: false,
   pronouns: "",
+  handRaised: false,
 };
 
 interface PlayersState {
@@ -243,6 +244,9 @@ export const usePlayersStore = defineStore("players", {
           break;
         case "pronouns":
           socket.send("pronouns", [index, value]);
+          break;
+        case "handRaised":
+          socket.send("handRaised", [index, value]);
           break;
         case "role":
           if (sessionStore.isPlayerOrSpectator) return;

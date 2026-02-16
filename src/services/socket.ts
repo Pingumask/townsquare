@@ -310,6 +310,9 @@ export class LiveSession {
       case "name":
         this._updatePlayerName(params as [number, string]);
         break;
+      case "handRaised":
+        this._updatePlayerHand(params as [number, boolean]);
+        break;
       case "locale":
         localeStore.forceLocale(params as string);
         break;
@@ -638,6 +641,19 @@ export class LiveSession {
     playersStore.update({
       player,
       property: "name",
+      value,
+      isFromSocket: true,
+    });
+  }
+
+  _updatePlayerHand([index, value]: [number, boolean]) {
+    const playersStore = usePlayersStore();
+    const player = playersStore.players[index];
+    if (!player) return;
+
+    playersStore.update({
+      player,
+      property: "handRaised",
       value,
       isFromSocket: true,
     });
