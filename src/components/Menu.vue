@@ -111,7 +111,7 @@
                 @click="userPreferences.zoom = Math.min(userPreferences.zoom + 1, 10)" />
             </em>
           </li>
-          <li>
+          <li v-if="!session.isPlayerOrSpectator">
             {{ t('menu.language') }}
             <em>
               <font-awesome-icon icon="chevron-left" class="fa fa-chevron-left" @click="previousLanguage" />

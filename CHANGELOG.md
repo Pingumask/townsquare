@@ -6,6 +6,7 @@
 - Fixes:
   - Allow soundboard during postgame
   - Notes modal: fix max size
+  - Forbid language change for players
 - Localization:
 
 - Maintenance:
