@@ -86,8 +86,9 @@
     "customNote": "Add a custom reminder node",
     "customScriptName": "Customized script name",
     "defaultScriptName": "Custom Script",
-    "newGame": "Are you sure you want to start a new game ? This will clear all roles, reset day count and go back to pregame phase.",
-    "endGame": "Are you sure you want to end the game ? The post game phase will be available in a future update."
+    "newGame": "Are you sure you want to start a new game ? This will clear all roles, all history, reset day count and go back to pregame phase.",
+    "endGame": "Are you sure you want to end the game ? The post game phase will be available in a future update.",
+    "unseatedVote": "Are you sure you want to start the vote ? The following players are not seated:\n"
   },
   "vote": {
     "nominates": "nominates",

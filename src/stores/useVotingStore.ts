@@ -41,8 +41,7 @@ export const useVotingStore = defineStore("voting", {
     setVoteInProgress(isVoteInProgress: boolean) {
       const session = useSessionStore();
       this.isVoteInProgress = isVoteInProgress;
-      if (!session.isPlayerOrSpectator)
-        socket.send("isVoteInProgress", isVoteInProgress);
+      if (!session.isPlayerOrSpectator) socket.send("isVoteInProgress", isVoteInProgress);
     },
     setMarkedPlayer(markedPlayer: number) {
       const session = useSessionStore();

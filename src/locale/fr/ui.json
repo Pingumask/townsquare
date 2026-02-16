@@ -86,8 +86,9 @@
     "customNote": "Ajouter une note personnalisée",
     "customScriptName": "Nom du scénario personnalisé",
     "defaultScriptName": "Scénario personnalisé",
-    "newGame": "Êtes-vous sûr de vouloir démarrer une nouvelle partie ? Cette action effacera tous les rôles, remettra le compteur de jours à zéro et reviendra à la phase de mise en place.",
-    "endGame": "Êtes-vous sûr de vouloir mettre fin à la partie ? La phase de fin de jeu sera disponible dans une future mise à jour."
+    "newGame": "Êtes-vous sûr de vouloir démarrer une nouvelle partie ? Cette action effacera tous les rôles, tous les historiques, remettra le compteur de jours à zéro et reviendra à la phase de mise en place.",
+    "endGame": "Êtes-vous sûr de vouloir mettre fin à la partie ? La phase de fin de jeu sera disponible dans une future mise à jour.",
+    "unseatedVote": "Êtes-vous sûr de vouloir lancer le vote ? Les joueurs suivants ne sont pas assis :\n"
   },
   "vote": {
     "nominates": "accuse",

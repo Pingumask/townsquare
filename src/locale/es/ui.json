@@ -87,7 +87,8 @@
     "customScriptName": "Nombre del script personalizado",
     "defaultScriptName": "Script personalizado",
     "newGame": "¿Seguro que deseas iniciar un nuevo juego? Esto eliminará todos los roles, reiniciará el contador de días y volverá a la fase previa.",
-    "endGame": "¿Seguro que deseas finalizar el juego? La fase post-juego estará disponible en una futura actualización."
+    "endGame": "¿Seguro que deseas finalizar el juego? La fase post-juego estará disponible en una futura actualización.",
+    "unseatedVote": "¿Seguro de que deseas iniciar la votación ? Los siguientes jugadores no están sentados :\n"
   },
   "vote": {
     "nominates": "nomina a",

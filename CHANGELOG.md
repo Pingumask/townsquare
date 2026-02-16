@@ -3,6 +3,7 @@
 ## Upcoming Version
 - Features:
   - Raise hand out of votes
+  - Check everyone is seated before a vote
 - Fixes:
   - Allow soundboard during postgame
   - Notes modal: fix max size
