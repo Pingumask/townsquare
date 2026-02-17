@@ -1,9 +1,5 @@
 <template>
-  <Modal
-    v-if="grimoire.modal === 'roles' && nontravelers >= 5"
-    class="roles"
-    @close="grimoire.toggleModal(null)"
-  >
+  <Modal v-if="grimoire.modal === 'roles' && nontravelers >= 5" class="roles" @close="grimoire.toggleModal(null)">
     <h3>
       {{
         t("modal.roles.titleStart") + nontravelers + t("modal.roles.titleEnd")
@@ -14,50 +10,25 @@
         {{ getTeamRoleCount(teamRoles) }} /
         {{ composition?.[team as keyof GameComposition] }}
       </li>
-      <li
-        v-for="role in teamRoles"
-        :key="role.id"
-        :class="[role.team, role.selected ? 'selected' : '']"
-        @click="role.selected = role.selected ? 0 : 1"
-      >
+      <li v-for="role in teamRoles" :key="role.id" :class="[role.team, role.selected ? 'selected' : '']"
+        @click="role.selected = role.selected ? 0 : 1">
         <Token :role="role" :unchecked="!role.selected" />
-        <font-awesome-icon
-          v-if="role.setup"
-          icon="exclamation-triangle"
-          class="fa fa-exclamation-triangle"
-        />
-        <div v-if="allowMultiple || hasFeature(role,'bag-duplicate')" class="buttons">
-          <font-awesome-icon
-            icon="minus-circle"
-            @click.stop="role.selected--"
-          />
+        <font-awesome-icon v-if="role.setup" icon="exclamation-triangle" class="fa fa-exclamation-triangle" />
+        <div v-if="allowMultiple || playersStore.hasFeature(role, 'bag-duplicate')" class="buttons">
+          <font-awesome-icon icon="minus-circle" @click.stop="role.selected--" />
           <span>{{ role.selected > 1 ? "x" + role.selected : "" }}</span>
-          <font-awesome-icon
-            icon="plus-circle"
-            class="fa fa-plus-circle"
-            @click.stop="role.selected++"
-          />
+          <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="role.selected++" />
         </div>
       </li>
     </ul>
     <ul class="tokens">
-      <li
-        v-for="role in fabledWithSetup"
-        :key="role.id"
-        :class="['fabled', 'selected']"
-      >
+      <li v-for="role in fabledWithSetup" :key="role.id" :class="['fabled', 'selected']">
         <Token :role="role" />
-        <font-awesome-icon
-          icon="exclamation-triangle"
-          class="fa fa-exclamation-triangle"
-        />
+        <font-awesome-icon icon="exclamation-triangle" class="fa fa-exclamation-triangle" />
       </li>
     </ul>
     <div v-if="hasSelectedSetupRoles || fabledWithSetup.length" class="warning">
-      <font-awesome-icon
-        icon="exclamation-triangle"
-        class="fa fa-exclamation-triangle"
-      />
+      <font-awesome-icon icon="exclamation-triangle" class="fa fa-exclamation-triangle" />
       <span>{{ t("modal.roles.warning") }}</span>
     </div>
     <label class="multiple" :class="{ checked: allowMultiple }">
@@ -66,13 +37,9 @@
       {{ t("modal.roles.allowMultiple") }}
     </label>
     <div class="button-group">
-      <button
-        class="button"
-        :class="{
-          disabled: selectedRoles > nontravelers || !selectedRoles,
-        }"
-        @click="assignRoles"
-      >
+      <button class="button" :class="{
+        disabled: selectedRoles > nontravelers || !selectedRoles,
+      }" @click="assignRoles">
         <font-awesome-icon icon="people-arrows" class="fa fa-people-arrows" />
         {{
           t("modal.roles.assignStart") +
@@ -110,8 +77,6 @@ const randomElement = <T,>(arr: T[]): T => {
 
 const grimoire = useGrimoireStore();
 const playersStore = usePlayersStore();
-
-const hasFeature = playersStore.hasFeature;
 
 const allowMultiple = ref(false);
 const roleSelection = ref<RoleGroup>({});
@@ -263,6 +228,7 @@ ul.tokens {
         0 0 10px var(--townsfolk),
         0 0 10px #004cff;
     }
+
     &.outsider {
       box-shadow:
         0 0 10px var(--outsider),

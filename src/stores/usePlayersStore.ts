@@ -447,26 +447,13 @@ export const usePlayersStore = defineStore("players", {
         }
       }
     },
-    hasFeature(role: (Role | Player), feature: string) {
-      // If "role" is of type Player, we convert it into a Role
-      if("role" in role) {
-        role = role.role;
-      }
-      if (role && role.special) {
-        // If "role.special" is of type SpecialFeature
-        if ("name" in role.special) {
-          return role.special.name === feature;
-        }
-        // If "role.special" is of type SpecialFeature[]
-        else {
-          for (const specialFeature of role.special) {
-            if(specialFeature.name === feature) {
-              return true;
-            }
-          }
-        }
-      }
-      return false;
+    hasFeature(role: Role, feature: string) {
+      if (!role.special) return false;
+      if (Array.isArray(role.special)) return role.special.some((sf) => sf.name === feature);
+      return role.special.name === feature;
+    },
+    isFeatureInPlay(feature: string) {
+      return this.players.some((player) => this.hasFeature(player.role, feature));
     },
     distributeRolesAction() {
       const session = useSessionStore();
@@ -476,24 +463,17 @@ export const usePlayersStore = defineStore("players", {
       const popup = t("prompt.sendRoles");
       if (!confirm(popup)) return;
 
-      // Checking all players to see if one of them has a forbidden role
-      let forbiddenRole = "";
+      // Checking if forbidden roles are selected
+      let forbiddenRole = [];
       const players = this.players;
-      for (let i = 0; i < players.length && !forbiddenRole; i++) {
+      for (let i = 0; i < players.length; i++) {
         const player = players[i];
-        if (player && this.hasFeature(player,"bag-disabled")) {
-          forbiddenRole = player.role.name || "";
+        if (player && this.hasFeature(player.role, "bag-disabled")) {
+          forbiddenRole.push(player.role.name || "");
         }
       }
-      let confirmedDistribution = forbiddenRole === "";
-      if (!confirmedDistribution) {
-        const forbiddenPopup =
-          t("prompt.sendRolesWithForbidden1") +
-          forbiddenRole +
-          t("prompt.sendRolesWithForbidden2");
-        confirmedDistribution = confirm(forbiddenPopup);
-      }
-      if (confirmedDistribution) {
+
+      if (!forbiddenRole.length || confirm(t('prompt.sendForbiddenRoles').replace("$roles", forbiddenRole.join(", ")))) {
         this.distributeRoles(true);
         setTimeout(() => {
           this.distributeRoles(false);

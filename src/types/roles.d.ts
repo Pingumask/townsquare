@@ -97,4 +97,4 @@ export type FeatureCategoryType =
   */
   | "vote"            // hidden, multiplier, need-token, free-dead-vote or two-hands
   | "reveal"          // replace-character
-  
+
