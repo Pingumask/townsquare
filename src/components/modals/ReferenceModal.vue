@@ -7,6 +7,21 @@
       <font-awesome-icon icon="address-card" class="fa fa-address-card" />
       {{ edition?.name || "Custom Script" }}
     </h3>
+    <h4 v-if="edition && (edition.author || edition.version)">
+      <span v-if="edition.version">v.{{ edition.version }} </span>
+      <span v-if="edition.author"> ©{{ edition.author }}</span>
+    </h4>
+
+    <div v-if="edition && edition.bootlegger && edition.bootlegger.length>0" class="specialRuleContainer">
+      <img src="../../assets/icons/bootlegger.png" class="bootlegger left" alt="bootlegger">
+      <div class="specialRule">
+        <div v-for="elem in edition.bootlegger" :key="elem">
+          <p>{{ elem }}</p>
+        </div>
+      </div>
+      <img src="../../assets/icons/bootlegger.png" class="bootlegger right" alt="bootlegger">
+    </div>
+
     <div v-for="(teamRoles, team) in rolesGrouped" :key="team" :class="['team', team]">
       <aside :aria-label="t(`modal.reference.teamNames.${team}`)">
         <h4>{{ t(`modal.reference.teamNames.${team}`) }}</h4>
@@ -18,7 +33,10 @@
             <span v-if="Object.keys(playersByRole).length" class="player">
               {{ playersByRole[role.id] ? playersByRole[role.id]?.join(", ") : "" }}
             </span>
-            <span class="name">{{ role.name }}</span>
+            <div class="name">
+              {{ role.name }}
+              <img v-if="edition && edition.stormcaught === role.id" src="../../assets/icons/stormcatcher.png" class="stormcatcher" alt="stormcatcher">
+            </div>
             <span class="ability">{{ role.ability }}</span>
           </div>
         </li>
@@ -137,6 +155,11 @@ h3 {
   }
 }
 
+h5 {
+  font-size: 70%;
+  color: gray;
+}
+
 .townsfolk {
   .name {
     color: var(--townsfolk);
@@ -176,6 +199,32 @@ h3 {
   width: 4rem;
   height: 4rem;
   text-align: right;
+}
+
+.stormcatcher {
+  width: 1.5rem;
+  position: absolute;
+  float: right;
+  margin-left: 15px;
+}
+div.container {
+  text-align: center;
+}
+.specialRuleContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bootlegger {
+  width: 5rem;
+  display: inline-block;
+}
+.specialRule {
+  text-align: center;
+  color: var(--loric);
+  font-weight: bold;
+  font-size: 80%;
 }
 
 .outsider {
@@ -249,6 +298,7 @@ h3 {
 .team {
   display: flex;
   align-items: stretch;
+  clear: both;
 
   &:not(:last-child):after {
     content: " ";

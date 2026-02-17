@@ -1,0 +1,29 @@
+[
+  {
+    "id": "_meta",
+    "name": "Minion is Angel-protected & The Demon has 2 Bluffs",
+    "author": "Zets",
+    "bootlegger": [
+      "Le Démon connaît 2 bluffs. Autrement dit, il connaît 2 personnages non distribués.",
+      "Le Sbire est protégé par l'Ange. Cela signifie que l'identité du Sbire est connue publiquement depuis le début de la partie (avant la première nuit), mais le tuer déclenche la colère de l'Ange."
+    ],
+    "version":"7.0.0"
+  },
+  "empath",
+  "chambermaid",
+  "mathematician",
+  "savant",
+  "engineer",
+  "philosopher",
+  "juggler",
+  "mutant",
+  "lunatic",
+  "devilsadvocate",
+  "pithag",
+  "psychopath",
+  "nodashii",
+  "pukka",
+  "vigormortis",
+  "legion",
+  "angel"
+]
