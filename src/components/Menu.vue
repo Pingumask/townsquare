@@ -1,7 +1,7 @@
 <template>
   <div id="controls">
     <span v-show="votingStore.voteHistory.length && session.sessionId" class="nomlog-summary"
-      :title="`${votingStore.voteHistory.length} recent ${votingStore.voteHistory.length == 1 ? 'nomination' : 'nominations'}`"
+      :title="`${votingStore.voteHistory.length} recent ${votingStore.voteHistory.length === 1 ? 'nomination' : 'nominations'}`"
       @click="grimoire.toggleModal('voteHistory')">
       <font-awesome-icon icon="book-dead" class="fa fa-book-dead" />
       {{ votingStore.voteHistory.length }}

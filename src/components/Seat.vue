@@ -41,7 +41,7 @@
           !grimoire.isSecretVote ||
           isSpecialVoteWithMessages ||
           !session.isPlayerOrSpectator ||
-          props.player.id == session.playerId
+          props.player.id === session.playerId
         " icon="hand-paper" class="fa fa-hand-paper vote" :title="t('player.handUp')" @click="vote()" />
         <font-awesome-icon v-if="
           grimoire.isSecretVote &&
@@ -52,7 +52,7 @@
         <font-awesome-icon v-if="
           !grimoire.isSecretVote ||
           !session.isPlayerOrSpectator ||
-          props.player.id == session.playerId
+          props.player.id === session.playerId
         " icon="times" class="fa fa-times vote" :title="t('player.handDown')" @click="vote()" />
         <font-awesome-icon v-if="
           grimoire.isSecretVote &&
@@ -150,7 +150,7 @@
             </li>
             <li v-if="
               props.player.role.id &&
-              (props.player.role.team == 'traveler' ||
+              (props.player.role.team === 'traveler' ||
                 playersMenu.swapAlignment)
             " @click="switchAlignment">
               <font-awesome-icon icon="yin-yang" class="fa fa-yin-yang" />

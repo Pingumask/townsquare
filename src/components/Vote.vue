@@ -14,7 +14,7 @@
       <br>
       <em v-if="
         !grimoire.isSecretVote ||
-        (nominee && nominee.role.team == 'traveler') ||
+        (nominee && nominee.role.team === 'traveler') ||
         !session.isPlayerOrSpectator
       " class="blue">
         {{ voters?.length }} {{ t('vote.votes') }}
@@ -41,7 +41,7 @@
           {{ t('vote.secretBallot') }}
         </em>
         <div
-          v-if="(!votingStore.isVoteInProgress && votingStore.lockedVote < 1) || votingStore.lockedVote == players.length + 1">
+          v-if="(!votingStore.isVoteInProgress && votingStore.lockedVote < 1) || votingStore.lockedVote === players.length + 1">
           {{ t('vote.timePerPlayer') }}
           <font-awesome-icon icon="minus-circle" class="fa fa-minus-circle" @mousedown.prevent="setVotingSpeed(-250)" />
           {{ votingStore.votingSpeed / 1000 }}s

@@ -1,20 +1,20 @@
 <template>
-  <Modal v-if="grimoire.modal == 'edition'" class="editions" @close="grimoire.toggleModal(null)">
+  <Modal v-if="grimoire.modal === 'edition'" class="editions" @close="grimoire.toggleModal(null)">
     <h3>{{ t('modal.edition.title') }}</h3>
     <ul>
       <li class="tabs" :class="tab">
-        <span class="tab" icon="book-open" :class="{ active: tab == 'official' }" @click="tab = 'official'">{{
+        <span class="tab" icon="book-open" :class="{ active: tab === 'official' }" @click="tab = 'official'">{{
           t('modal.edition.tab.official') }}</span>
-        <span class="tab" icon="tower-broadcast" :class="{ active: tab == 'popular' }" @click="tab = 'popular'">{{
+        <span class="tab" icon="tower-broadcast" :class="{ active: tab === 'popular' }" @click="tab = 'popular'">{{
           t('modal.edition.tab.popular') }}</span>
-        <span class="tab" icon="question" :class="{ active: tab == 'custom' }" @click="tab = 'custom'">{{
+        <span class="tab" icon="question" :class="{ active: tab === 'custom' }" @click="tab = 'custom'">{{
           t('modal.edition.tab.custom') }}</span>
-        <span class="tab" icon="question" :class="{ active: tab == 'build' }" @click="
+        <span class="tab" icon="question" :class="{ active: tab === 'build' }" @click="
           initPool();
         tab = 'build';
         ">{{ t('modal.edition.tab.build') }}</span>
       </li>
-      <template v-if="tab == 'official'">
+      <template v-if="tab === 'official'">
         <ul class="editions">
           <li v-for="edition in editions.official" :key="edition.id" class="edition" :class="['edition-' + edition.id]"
             :style="{ backgroundImage: `url(${logoPath(edition)})` }" @click="runEdition(edition)">
@@ -22,7 +22,7 @@
           </li>
         </ul>
       </template>
-      <template v-if="tab == 'popular'">
+      <template v-if="tab === 'popular'">
         <ul class="scripts">
           <li v-for="(script, index) in editions.popular" :key="index" @click="launchScript(script[1])">
             {{ script[0] }}
@@ -35,7 +35,7 @@
           </li>
         </ul>
       </template>
-      <template v-if="tab == 'custom'">
+      <template v-if="tab === 'custom'">
         <div class="custom">
           {{ t('modal.edition.custom.introStart') }}
           <a href="https://script.bloodontheclocktower.com/" target="_blank">
@@ -65,7 +65,7 @@
           </div>
         </div>
       </template>
-      <template v-if="tab == 'build'">
+      <template v-if="tab === 'build'">
         <section v-for="team in teams" :key="team" class="build team" :class="team">
           <aside class="aside">
             <div>
