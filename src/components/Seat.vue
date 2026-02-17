@@ -76,12 +76,12 @@
 
       <!-- Ghost vote icon -->
       <font-awesome-icon v-if="
-        (props.player.isDead || player.role.id == 'beggar') &&
+        (props.player.isDead || playersStore.hasFeature(player.role, 'need-token')) &&
         props.player.voteToken
       " icon="vote-yea" class="fa fa-vote-yea has-vote" :title="t('player.ghostVote')"
         @click="updatePlayer('voteToken', false)" />
       <font-awesome-icon v-if="
-        (props.player.isDead || player.role.id == 'beggar') &&
+        (props.player.isDead || playersStore.hasFeature(player.role, 'need-token')) &&
         !props.player.voteToken &&
         !session.isPlayerOrSpectator
       " icon="vote-yea" class="fa fa-vote-yea has-vote no-token" :title="t('player.ghostVote')"
@@ -96,7 +96,7 @@
         <span>{{
           // eslint-disable-next-line no-irregular-whitespace
           props.player.name || " "
-          }}</span>
+        }}</span>
         <font-awesome-icon v-if="props.player.pronouns" icon="venus-mars" class="fa fa-venus-mars" />
         <div v-if="props.player.pronouns" class="pronouns">
           <span>{{ props.player.pronouns }}</span>

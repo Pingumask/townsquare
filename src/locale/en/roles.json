@@ -217,7 +217,16 @@
       "Drunk"
     ],
     "setup": true,
-    "forbidden": true,
+    "special": [
+      {
+        "type": "selection",
+        "name": "bag-disabled"
+      },
+      {
+        "type": "reveal",
+        "name": "replace-character"
+      }
+    ],
     "ability": "You do not know you are the Drunk. You think you are a Townsfolk character, but you are not."
   },
   {
@@ -333,6 +342,11 @@
       "3 votes"
     ],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "multiplier",
+      "value": 3
+    },
     "ability": "Each night, choose a player (not yourself): their vote counts as 3 votes tomorrow."
   },
   {
@@ -348,6 +362,11 @@
       "Negative vote"
     ],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "multiplier",
+      "value": -1
+    },
     "ability": "Each night, choose a player (not yourself): their vote counts negatively tomorrow."
   },
   {
@@ -387,6 +406,10 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "need-token"
+    },
     "ability": "You must use a vote token to vote. Dead players may choose to give you theirs. If so, you learn their alignment. You are sober & healthy."
   },
   {
@@ -530,10 +553,16 @@
     "otherNightReminder": "If the Philosopher has not used their ability: the Philosopher either shows a 'no' head signal, or points to a good character on their sheet. If they chose a character: Swap the out-of-play character token with the Philosopher token and add the 'Is the Philosopher' reminder. If the character is in play, place the drunk marker by that player.",
     "reminders": [
       "Drunk",
-      "Philosopher",
       "No ability"
     ],
+    "remindersGlobal": [
+      "Is the Philosopher"
+    ],
     "setup": false,
+    "special": {
+      "type": "reveal",
+      "name": "replace-character"
+    },
     "ability": "Once per game, at night, choose a good character: gain that ability. If this character is in play, they are drunk."
   },
   {
@@ -1098,7 +1127,16 @@
       "Chosen"
     ],
     "setup": false,
-    "forbidden": true,
+    "special": [
+      {
+        "type": "selection",
+        "name": "bag-disabled"
+      },
+      {
+        "type": "reveal",
+        "name": "replace-character"
+      }
+    ],
     "ability": "You think you are a Demon, but you are not. The Demon knows who you are & who you choose at night."
   },
   {
@@ -1295,6 +1333,10 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "free-dead-vote"
+    },
     "ability": "Only you and the dead can vote. They don't need a vote token to do so. A 50% majority is not required."
   },
   {
@@ -1589,6 +1631,10 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": true,
+    "special": {
+      "type": "selection",
+      "name": "good-duplicate"
+    },
     "ability": "The Storyteller can break the game rules & if executed, good wins, even if you are dead. [No evil characters]"
   },
   {
@@ -1661,7 +1707,10 @@
       "Drunk"
     ],
     "setup": true,
-    "multiple": true,
+    "special": {
+      "type": "selection",
+      "name": "bag-duplicate"
+    },
     "ability": "Each night, choose a player: you learn their alignment. [+0 to +2 Village Idiots. 1 of the extras is drunk]"
   },
   {
@@ -1721,6 +1770,10 @@
       "Has Ability"
     ],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "two-hands"
+    },
     "ability": "If the Demon kills you, all players learn this. From now on, you may nominate twice per day and vote twice per nomination."
   },
   {
@@ -1992,7 +2045,16 @@
       "Is the Marionette"
     ],
     "setup": true,
-    "forbidden": true,
+    "special": [
+      {
+        "type": "selection",
+        "name": "bag-disabled"
+      },
+      {
+        "type": "reveal",
+        "name": "replace-character"
+      }
+    ],
     "ability": "You think you are a good character but you are not. The Demon knows who you are. [You neighbour the Demon]"
   },
   {
@@ -2006,6 +2068,10 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
+    "special": {
+      "type": "ability",
+      "name": "pointing"
+    },
     "ability": "If you are executed, all but 3 players die. After a 10 to 1 countdown, the player with the most players pointing at them, dies."
   },
   {
@@ -2022,6 +2088,10 @@
       "Used vote"
     ],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "hidden"
+    },
     "ability": "All players keep their eyes closed when voting and the vote tally is secret. Each night, choose if you are drunk until dusk."
   },
   {
@@ -2128,6 +2198,10 @@
     "otherNightReminder": "Each time you wake an evil player at night, first wake the Wraith. If the Wraith is drunk or poisoned, tell them they cannot open their eyes.",
     "reminders": [],
     "setup": false,
+    "special": {
+      "type": "player",
+      "name": "open-eyes"
+    },
     "ability": "You may choose to open your eyes at night. You wake when other evil players do."
   },
   {
@@ -2145,7 +2219,10 @@
       "Dead"
     ],
     "setup": true,
-    "forbidden": true,
+    "special": {
+      "type": "selection",
+      "name": "bag-disabled"
+    },
     "ability": "Each night, Minions choose who babysits Lil' Monsta & 'is the Demon'. Each night*, a player might die. [+1 Minion]"
   },
   {
@@ -2197,7 +2274,10 @@
       "About to die"
     ],
     "setup": true,
-    "multiple": true,
+    "special": {
+      "type": "selection",
+      "name": "bag-duplicate"
+    },
     "ability": "Each night*, a player might die. Executions fail if only evil voted. You register as a Minion too. [Most players are Legion]"
   },
   {

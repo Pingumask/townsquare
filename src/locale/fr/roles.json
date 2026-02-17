@@ -217,7 +217,16 @@
       "Ivrogne"
     ],
     "setup": true,
-    "forbidden": true,
+    "special": [
+      {
+        "type": "selection",
+        "name": "bag-disabled"
+      },
+      {
+        "type": "reveal",
+        "name": "replace-character"
+      }
+    ],
     "ability": "Vous ne savez pas que vous êtes l'Ivrogne. Vous croyez être un personnage Villageois, mais vous ne l'êtes pas."
   },
   {
@@ -333,6 +342,11 @@
       "Triple vote"
     ],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "multiplier",
+      "value": 3
+    },
     "ability": "Chaque nuit, désignez un joueur (autre que vous-même) : demain, son vote comptera triple."
   },
   {
@@ -348,6 +362,11 @@
       "Vote négatif"
     ],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "multiplier",
+      "value": -1
+    },
     "ability": "Chaque nuit, désignez un joueur (autre que vous-même) : demain, son vote comptera négativement."
   },
   {
@@ -387,6 +406,10 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "need-token"
+    },
     "ability": "Vous avez besoin d'un jeton pour voter. Si un mort vous donne le sien, vous apprenez son alignement. Vous êtes sobre et sain."
   },
   {
@@ -530,10 +553,16 @@
     "otherNightReminder": "Le Philosophe choisit s'il souhaite utiliser sa capacité. S'il le fait, il choisit un personnage bon. Le philosophe gagne sa capacité. Si ce personnage est en jeu, ce personnage devient ivre.",
     "reminders": [
       "Ivre",
-      "Philosophe",
       "Plus de capacité"
     ],
+    "remindersGlobal": [
+      "Philosophe"
+    ],
     "setup": false,
+    "special": {
+      "type": "reveal",
+      "name": "replace-character"
+    },
     "ability": "Une fois par partie, la nuit, désignez un personnage bon : vous gagnez sa capacité. Si ce personnage est en jeu, il est ivre."
   },
   {
@@ -1098,7 +1127,16 @@
       "Désigné"
     ],
     "setup": true,
-    "forbidden": true,
+    "special": [
+      {
+        "type": "selection",
+        "name": "bag-disabled"
+      },
+      {
+        "type": "reveal",
+        "name": "replace-character"
+      }
+    ],
     "ability": "Vous croyez être un Démon, mais vous ne l'êtes pas. Le Démon sait qui vous êtes et qui vous désignez chaque nuit."
   },
   {
@@ -1295,6 +1333,10 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "free-dead-vote"
+    },
     "ability": "Seuls vous et les morts pouvez voter. Les morts n'ont pas besoin de jeton pour voter. La majorité à 50% n'est pas requise."
   },
   {
@@ -1589,6 +1631,10 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": true,
+    "special": {
+      "type": "selection",
+      "name": "good-duplicate"
+    },
     "ability": "Le Narrateur peut briser les règles du jeu. S'il est exécuté, les bons gagnent, même si vous êtes mort. [Aucun joueur mauvais]"
   },
   {
@@ -1661,7 +1707,10 @@
       "Ivre"
     ],
     "setup": true,
-    "multiple": true,
+    "special": {
+      "type": "selection",
+      "name": "bag-duplicate"
+    },
     "ability": "Chaque nuit, désignez un joueur : vous apprenez son alignement. [+0 à +2 Idiots du Village, l’un d’eux étant ivre]"
   },
   {
@@ -1721,6 +1770,10 @@
       "A sa capacité"
     ],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "two-hands"
+    },
     "ability": "Si le Démon vous tue, tous les joueurs l'apprennent. Désormais, vous pouvez accuser deux fois par jour et voter deux fois par accusation."
   },
   {
@@ -1992,7 +2045,16 @@
       "Marionnette"
     ],
     "setup": true,
-    "forbidden": true,
+    "special": [
+      {
+        "type": "selection",
+        "name": "bag-disabled"
+      },
+      {
+        "type": "reveal",
+        "name": "replace-character"
+      }
+    ],
     "ability": "Vous croyez être un personnage bon, mais vous ne l'êtes pas. Le Démon sait qui vous êtes. [Le Démon est votre voisin]"
   },
   {
@@ -2006,6 +2068,10 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
+    "special": {
+      "type": "ability",
+      "name": "pointing"
+    },
     "ability": "Si vous êtes exécuté, tous les joueurs sauf 3 meurent. Après un décompte de 10 à 1, le joueur pointé par le plus de joueurs meurt."
   },
   {
@@ -2022,6 +2088,10 @@
       "Vote utilisé"
     ],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "hidden"
+    },
     "ability": "Les votes sont à bulletin secret et les résultats ne sont pas annoncés. Chaque nuit, choisissez si vous êtes ivre jusqu'au crépuscule."
   },
   {
@@ -2128,6 +2198,10 @@
     "otherNightReminder": "Chaque fois que vous réveillez un joueur mauvais, réveillez d’abord le Spectre. Si le Spectre est ivre ou empoisonné, dites-lui qu'il ne peut pas ouvrir les yeux.",
     "reminders": [],
     "setup": false,
+    "special": {
+      "type": "player",
+      "name": "open-eyes"
+    },
     "ability": "Vous pouvez choisir d'ouvrir les yeux durant la nuit. Vous êtes réveillés quand les autres joueurs mauvais le sont."
   },
   {
@@ -2145,7 +2219,10 @@
       "Mort"
     ],
     "setup": true,
-    "forbidden": true,
+    "special": {
+      "type": "selection",
+      "name": "bag-disabled"
+    },
     "ability": "Chaque nuit, les Sbires choisissent qui a la garde du P'tit monstre et “est le Démon”. Chaque nuit*, il se peut qu'un joueur meure. [+1 Sbire]"
   },
   {
@@ -2197,7 +2274,10 @@
       "Condamné"
     ],
     "setup": true,
-    "multiple": true,
+    "special": {
+      "type": "selection",
+      "name": "bag-duplicate"
+    },
     "ability": "Chaque nuit*, il se peut qu'un joueur meure. Les exécutions ratent si 0 bon vote. Vous apparaissez aussi comme Sbire. [Majorité de Légion]"
   },
   {
