@@ -128,6 +128,7 @@ const playersStore = usePlayersStore();
 const session = useSessionStore();
 const votingStore = useVotingStore();
 const t = locale.t;
+const hasFeature = playersStore.hasFeature;
 
 let timerForRiser: ReturnType<typeof setTimeout>;
 
@@ -282,22 +283,6 @@ const voudonInPlay = computed(() => {
   }
   return false;
 });
-
-const hasFeature = (player: Player, feature: string) => {
-  if (player.role && player.role.special) {
-    if ("name" in player.role.special) {
-      return player.role.special.name === feature;
-    }
-    else {
-      for (const specialFeature of player.role.special) {
-        if (specialFeature.name === feature) {
-          return true;
-        }
-      }
-    }
-  }
-  return false;
-}
 
 const canVote = computed(() => {
   if (!player.value || !isActiveNomination(votingStore.nomination)) return false;

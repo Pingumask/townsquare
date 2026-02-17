@@ -111,6 +111,8 @@ const randomElement = <T,>(arr: T[]): T => {
 const grimoire = useGrimoireStore();
 const playersStore = usePlayersStore();
 
+const hasFeature = playersStore.hasFeature;
+
 const allowMultiple = ref(false);
 const roleSelection = ref<RoleGroup>({});
 
@@ -178,22 +180,6 @@ const selectRandomRoles = () => {
     });
   }
 };
-
-const hasFeature = (role: Role, feature: string) => {
-  if (role.special) {
-    if ("name" in role.special) {
-      return role.special.name === feature;
-    }
-    else {
-      for (const specialFeature of role.special) {
-        if (specialFeature.name === feature) {
-          return true;
-        }
-      }
-    }
-  }
-  return false;
-}
 
 const assignRoles = () => {
   if (selectedRoles.value <= nontravelers.value && selectedRoles.value) {

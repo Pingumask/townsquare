@@ -76,12 +76,12 @@
 
       <!-- Ghost vote icon -->
       <font-awesome-icon v-if="
-        (props.player.isDead || hasFeature('need-token')) &&
+        (props.player.isDead || hasFeature(player,'need-token')) &&
         props.player.voteToken
       " icon="vote-yea" class="fa fa-vote-yea has-vote" :title="t('player.ghostVote')"
         @click="updatePlayer('voteToken', false)" />
       <font-awesome-icon v-if="
-        (props.player.isDead || hasFeature('need-token')) &&
+        (props.player.isDead || hasFeature(player,'need-token')) &&
         !props.player.voteToken &&
         !session.isPlayerOrSpectator
       " icon="vote-yea" class="fa fa-vote-yea has-vote no-token" :title="t('player.ghostVote')"
@@ -238,6 +238,8 @@ const session = useSessionStore();
 const userPreferences = useUserPreferencesStore();
 const votingStore = useVotingStore();
 
+const hasFeature = playersStore.hasFeature;
+
 const index = computed(() => players.value.indexOf(props.player));
 const players = computed<Player[]>(() => playersStore.players);
 const nightOrder = computed(() => playersStore.nightOrder);
@@ -289,22 +291,6 @@ const zoom = computed(() => {
 });
 
 const isMenuOpen = ref(false);
-
-const hasFeature = (feature: string) => {
-  if (props.player && props.player.role && props.player.role.special) {
-    if ("name" in props.player.role.special) {
-      return props.player.role.special.name === feature;
-    }
-    else {
-      for (const specialFeature of props.player.role.special) {
-        if (specialFeature.name === feature) {
-          return true;
-        }
-      }
-    }
-  }
-  return false;
-}
 
 function changePronouns() {
   if (session.isPlayerOrSpectator && props.player.id !== session.playerId)

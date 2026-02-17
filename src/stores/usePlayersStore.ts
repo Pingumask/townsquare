@@ -447,14 +447,20 @@ export const usePlayersStore = defineStore("players", {
         }
       }
     },
-    isForbidden(role: Role) {
-      if (role.special) {
+    hasFeature(role: (Role | Player), feature: string) {
+      // If "role" is of type Player, we convert it into a Role
+      if("role" in role) {
+        role = role.role;
+      }
+      if (role && role.special) {
+        // If "role.special" is of type SpecialFeature
         if ("name" in role.special) {
-          return role.special.name === "bag-disabled";
+          return role.special.name === feature;
         }
+        // If "role.special" is of type SpecialFeature[]
         else {
-          for (const feature of role.special) {
-            if(feature.name === "bag-disabled") {
+          for (const specialFeature of role.special) {
+            if(specialFeature.name === feature) {
               return true;
             }
           }
@@ -475,7 +481,7 @@ export const usePlayersStore = defineStore("players", {
       const players = this.players;
       for (let i = 0; i < players.length && !forbiddenRole; i++) {
         const player = players[i];
-        if (player && player.role && this.isForbidden(player.role)) {
+        if (player && this.hasFeature(player,"bag-disabled")) {
           forbiddenRole = player.role.name || "";
         }
       }
