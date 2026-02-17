@@ -7,17 +7,19 @@
       <font-awesome-icon icon="address-card" class="fa fa-address-card" />
       {{ edition?.name || "Custom Script" }}
     </h3>
-    <h5 v-if="edition && edition.version">{{ edition.version }}</h5>
-    <br>
+    <h4 v-if="edition && (edition.author || edition.version)">
+      <span v-if="edition.version">v.{{ edition.version }} </span>
+      <span v-if="edition.author"> ©{{ edition.author }}</span>
+    </h4>
 
     <div v-if="edition && edition.bootlegger && edition.bootlegger.length>0" class="specialRuleContainer">
-      <img src="../../assets/icons/bootlegger.png" class="bootlegger left">
-      <img src="../../assets/icons/bootlegger.png" class="bootlegger right">
+      <img src="../../assets/icons/bootlegger.png" class="bootlegger left" alt="bootlegger">
       <div class="specialRule">
         <div v-for="elem in edition.bootlegger" :key="elem">
           <p>{{ elem }}</p>
         </div>
       </div>
+      <img src="../../assets/icons/bootlegger.png" class="bootlegger right" alt="bootlegger">
     </div>
 
     <div v-for="(teamRoles, team) in rolesGrouped" :key="team" :class="['team', team]">
@@ -33,7 +35,7 @@
             </span>
             <div class="name">
               {{ role.name }}
-              <img v-if="edition && edition.stormcaught == role.id" src="../../assets/icons/stormcatcher.png" class="stormcatcher">
+              <img v-if="edition && edition.stormcaught === role.id" src="../../assets/icons/stormcatcher.png" class="stormcatcher" alt="stormcatcher">
             </div>
             <span class="ability">{{ role.ability }}</span>
           </div>
@@ -210,16 +212,13 @@ div.container {
 }
 .specialRuleContainer {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .bootlegger {
-  width: 10rem;
+  width: 5rem;
   display: inline-block;
-  &.left {
-    float: left;
-  }
-  &.right {
-    float: right;
-  }
 }
 .specialRule {
   text-align: center;
