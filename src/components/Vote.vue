@@ -123,6 +123,9 @@ import {
 } from "@/stores";
 import type { Player } from '@/types';
 
+const clockStartVolume = 0.3;
+const clockEndVolume = 0.5;
+
 const grimoire = useGrimoireStore();
 const locale = useLocaleStore();
 const playersStore = usePlayersStore();
@@ -369,15 +372,16 @@ const start = () => {
   }
   voteTimer.value = setInterval(() => {
     votingStore.lockVote();
-    if (votingStore.votingSpeed >= 1000) {
-      soundboard.changeVolume({ sound: "votingBell" }, 0.2 + 0.8 * Math.min(votingStore.lockedVote / players.value.length, 1.0));
-      soundboard.playSound({ sound: "votingBell" });
-    }
     if (votingStore.lockedVote > players.value.length) {
       if (voteTimer.value) {
+        soundboard.playSound({ sound: "votingBell" });
         clearInterval(voteTimer.value);
       }
       votingStore.setVoteInProgress(false);
+    }
+    else if (votingStore.votingSpeed >= 500) {
+      soundboard.changeVolume({ sound: "votingClock" }, clockStartVolume+(clockEndVolume-clockStartVolume)*Math.min((votingStore.lockedVote+1)/players.value.length, 1));
+      soundboard.playSound({ sound: "votingClock" });
     }
   }, votingStore.votingSpeed);
 };
@@ -396,15 +400,16 @@ const pause = () => {
     }
     voteTimer.value = setInterval(() => {
       votingStore.lockVote();
-      if (votingStore.votingSpeed >= 1000) {
-        soundboard.changeVolume({ sound: "votingBell" }, 0.2 + 0.8 * Math.min(votingStore.lockedVote / players.value.length, 1.0));
-        soundboard.playSound({ sound: "votingBell" });
-      }
       if (votingStore.lockedVote > players.value.length) {
         if (voteTimer.value) {
+          soundboard.playSound({ sound: "votingBell" });
           clearInterval(voteTimer.value);
         }
         votingStore.setVoteInProgress(false);
+      }
+      else if (votingStore.votingSpeed >= 500) {
+        soundboard.changeVolume({ sound: "votingClock" }, 0.2+0.7*Math.min((votingStore.lockedVote+1)/players.value.length, 1));
+        soundboard.playSound({ sound: "votingClock" });
       }
     }, votingStore.votingSpeed);
   }
