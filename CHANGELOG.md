@@ -10,7 +10,7 @@
 - Localization:
 
 - Maintenance:
-
+  - Small code quality refactoring and indentation changes
 
 ## 6.4.0
 - Features:

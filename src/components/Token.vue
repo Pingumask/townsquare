@@ -1,31 +1,13 @@
 <template>
-  <div
-    ref="el"
-    class="token"
-    :class="[role.id, { unchecked: unchecked, right: isRight }]"
-    @click="setRole"
-  >
+  <div ref="el" class="token" :class="[role.id, { unchecked: unchecked, right: isRight }]" @click="setRole">
     <RoleIcon :role="role" :player="player" />
     <span v-if="role.firstNight || role.firstNightReminder" class="leaf-left" />
-    <span
-      v-if="role.otherNight || role.otherNightReminder"
-      class="leaf-right"
-    />
+    <span v-if="role.otherNight || role.otherNightReminder" class="leaf-right" />
     <span v-if="reminderLeaves" :class="['leaf-top' + reminderLeaves]" />
     <span v-if="role.setup" class="leaf-orange" />
     <svg viewBox="0 0 150 150" class="name">
-      <path
-        id="curve"
-        d="M 13 75 C 13 160, 138 160, 138 75"
-        fill="transparent"
-      />
-      <text
-        width="150"
-        x="66.6%"
-        text-anchor="middle"
-        class="label mozilla"
-        :font-size="nameToFontSize"
-      >
+      <path id="curve" d="M 13 75 C 13 160, 138 160, 138 75" fill="transparent" />
+      <text width="150" x="66.6%" text-anchor="middle" class="label mozilla" :font-size="nameToFontSize">
         <textPath xlink:href="#curve">
           {{ role?.name || "" }}
         </textPath>
@@ -34,10 +16,10 @@
     <div class="edition" :class="[`edition-${role.edition}`, role.team]" />
     <div v-if="role.ability" class="ability">
       {{ role.ability }}
-      <template v-if="role.id==='bootlegger' && grimoire.edition?.bootlegger">
+      <template v-if="role.id === 'bootlegger' && grimoire.edition?.bootlegger">
         <div v-for="(rule, index) in grimoire.edition.bootlegger" :key="index" class="rule">{{ rule }}</div>
       </template>
-      <template v-if="role.id==='stormcatcher' && grimoire.edition?.stormcaught">
+      <template v-if="role.id === 'stormcatcher' && grimoire.edition?.stormcaught">
         <div class="rule">{{ grimoire.roles.get(grimoire.edition?.stormcaught)?.name }}</div>
       </template>
     </div>
@@ -88,7 +70,7 @@ const nameToFontSize = computed(() => {
 onMounted(() => {
   isRight.value =
     el.value!.getBoundingClientRect().left +
-      el.value!.getBoundingClientRect().width / 2 >
+    el.value!.getBoundingClientRect().width / 2 >
     window.innerWidth / 2;
 });
 
@@ -119,9 +101,7 @@ function setRole() {
     @-moz-document url-prefix() {
       &.mozilla {
         stroke: none;
-        filter: drop-shadow(0 1.5px 0 black) drop-shadow(0 -1.5px 0 black)
-          drop-shadow(1.5px 0 0 black) drop-shadow(-1.5px 0 0 black)
-          drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
+        filter: drop-shadow(0 1.5px 0 black) drop-shadow(0 -1.5px 0 black) drop-shadow(1.5px 0 0 black) drop-shadow(-1.5px 0 0 black) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
       }
     }
   }
@@ -227,9 +207,7 @@ function setRole() {
           // Vue doesn't support scoped media queries, so we have to use a second css class
           stroke: none;
           text-shadow: none;
-          filter: drop-shadow(0 1.5px 0 white) drop-shadow(0 -1.5px 0 white)
-            drop-shadow(1.5px 0 0 white) drop-shadow(-1.5px 0 0 white)
-            drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
+          filter: drop-shadow(0 1.5px 0 white) drop-shadow(0 -1.5px 0 white) drop-shadow(1.5px 0 0 white) drop-shadow(-1.5px 0 0 white) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
         }
       }
     }
@@ -277,6 +255,7 @@ function setRole() {
 
     .rule {
       margin-top: 1rem;
+
       &::before {
         content: '• ';
       }

@@ -394,7 +394,7 @@ export const useGrimoireStore = defineStore("grimoire", {
       const votingStore = useVotingStore();
 
       this.gamePhase = gamePhase;
-      if (!sessionStore.isPlayerOrSpectator){
+      if (!sessionStore.isPlayerOrSpectator) {
         socket.send("gamePhase", gamePhase);
       }
       if (gamePhase === "day") {

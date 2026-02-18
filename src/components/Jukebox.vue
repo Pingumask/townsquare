@@ -77,7 +77,7 @@ const showDeath = ref(false);
 const showDrumRoll = ref(false);
 
 function playOverlapping(audioRef: Ref<HTMLAudioElement | undefined, HTMLAudioElement | undefined>) {
-  if (!audioRef.value) return ;
+  if (!audioRef.value) return;
   const clone = audioRef.value.cloneNode(true) as HTMLAudioElement;
   clone.volume = audioRef.value.volume;
   clone.muted = audioRef.value.muted;

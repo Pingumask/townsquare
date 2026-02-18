@@ -162,8 +162,8 @@ export const useVotingStore = defineStore("voting", {
           votesHidden && session.isPlayerOrSpectator
             ? []
             : players
-                .filter((_player, index) => this.votes[index])
-                .map(({ name }) => name),
+              .filter((_player, index) => this.votes[index])
+              .map(({ name }) => name),
         anonymous: votesHidden,
       };
 

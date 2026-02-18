@@ -466,8 +466,7 @@ export const usePlayersStore = defineStore("players", {
       // Checking if forbidden roles are selected
       let forbiddenRole = [];
       const players = this.players;
-      for (let i = 0; i < players.length; i++) {
-        const player = players[i];
+      for (const player of players) {
         if (player && this.hasFeature(player.role, "bag-disabled")) {
           forbiddenRole.push(player.role.name || "");
         }

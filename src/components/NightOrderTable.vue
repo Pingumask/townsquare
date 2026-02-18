@@ -2,7 +2,8 @@
   <ul :class="nightType">
     <li class="headline">
       {{ nightType === 'firstNight' ? t('modal.nightOrder.firstNight') : t('modal.nightOrder.otherNights') }}
-      <font-awesome-icon :icon="preferences.hideOutOfPlay ? 'filter' : 'filter-circle-xmark'" @click="preferences.hideOutOfPlay = !preferences.hideOutOfPlay" />
+      <font-awesome-icon :icon="preferences.hideOutOfPlay ? 'filter' : 'filter-circle-xmark'"
+        @click="preferences.hideOutOfPlay = !preferences.hideOutOfPlay" />
     </li>
     <li v-for="role in roles" :key="role.id" :class="[role.team]">
       <span v-if="nightType === 'otherNight' && role.id && role.id != 'empty'" class="icon" :class="role.team">
@@ -12,8 +13,8 @@
         {{ role.name }}
         <br>
         <span v-if="role.players.length" class="player">
-          <small v-for="(player, index) in role.players"
-            :key="index" :class="{ dead: player.isDead }" :role="chatStore.activeTab === 'host' && !session.isPlayerOrSpectator ? 'button' : ''"
+          <small v-for="(player, index) in role.players" :key="index" :class="{ dead: player.isDead }"
+            :role="chatStore.activeTab === 'host' && !session.isPlayerOrSpectator ? 'button' : ''"
             @click="chatStore.targetPlayer = player.id">
             {{ player.name + (role.players.length > index + 1 ? "," : "") }}
           </small>
@@ -293,7 +294,7 @@ ul {
       }
     }
 
-    &:not(:has( small)) {
+    &:not(:has(small)) {
       display: v-bind(displayOutOfPlay);
     }
 

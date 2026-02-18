@@ -380,7 +380,7 @@ const start = () => {
       votingStore.setVoteInProgress(false);
     }
     else if (votingStore.votingSpeed >= 500) {
-      soundboard.changeVolume({ sound: "votingClock" }, clockStartVolume+(clockEndVolume-clockStartVolume)*Math.min((votingStore.lockedVote+1)/players.value.length, 1));
+      soundboard.changeVolume({ sound: "votingClock" }, clockStartVolume + (clockEndVolume - clockStartVolume) * Math.min((votingStore.lockedVote + 1) / players.value.length, 1));
       soundboard.playSound({ sound: "votingClock" });
     }
   }, votingStore.votingSpeed);
@@ -408,7 +408,7 @@ const pause = () => {
         votingStore.setVoteInProgress(false);
       }
       else if (votingStore.votingSpeed >= 500) {
-        soundboard.changeVolume({ sound: "votingClock" }, 0.2+0.7*Math.min((votingStore.lockedVote+1)/players.value.length, 1));
+        soundboard.changeVolume({ sound: "votingClock" }, 0.2 + 0.7 * Math.min((votingStore.lockedVote + 1) / players.value.length, 1));
         soundboard.playSound({ sound: "votingClock" });
       }
     }, votingStore.votingSpeed);

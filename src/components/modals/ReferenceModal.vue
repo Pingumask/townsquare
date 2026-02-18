@@ -12,7 +12,7 @@
       <span v-if="edition.author"> ©{{ edition.author }}</span>
     </h4>
 
-    <div v-if="edition && edition.bootlegger && edition.bootlegger.length>0" class="specialRuleContainer">
+    <div v-if="edition && edition.bootlegger && edition.bootlegger.length > 0" class="specialRuleContainer">
       <img src="../../assets/icons/bootlegger.png" class="bootlegger left" alt="bootlegger">
       <div class="specialRule">
         <div v-for="elem in edition.bootlegger" :key="elem">
@@ -35,7 +35,8 @@
             </span>
             <div class="name">
               {{ role.name }}
-              <img v-if="edition && edition.stormcaught === role.id" src="../../assets/icons/stormcatcher.png" class="stormcatcher" alt="stormcatcher">
+              <img v-if="edition && edition.stormcaught === role.id" src="../../assets/icons/stormcatcher.png"
+                class="stormcatcher" alt="stormcatcher">
             </div>
             <span class="ability">{{ role.ability }}</span>
           </div>
@@ -207,19 +208,23 @@ h5 {
   float: right;
   margin-left: 15px;
 }
+
 div.container {
   text-align: center;
 }
+
 .specialRuleContainer {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .bootlegger {
   width: 5rem;
   display: inline-block;
 }
+
 .specialRule {
   text-align: center;
   color: var(--loric);

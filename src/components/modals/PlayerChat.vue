@@ -2,13 +2,13 @@
   <MovableDialog v-if="canShowChat" class="player-chat" :position="userPreferences.chat.position" :isOpen="isChatOpen"
     :title="t('chat.title')" @toggle="handleToggle">
     <div v-if="!sessionStore.isPlayerOrSpectator">
-      <em role="button" @click="grimoire.setAllowWhisper(!grimoire.isWhisperAllowed)">
-        <font-awesome-icon :icon="[
+      <label for="allowWhisper" @click="grimoire.setAllowWhisper(!grimoire.isWhisperAllowed)">
+        <font-awesome-icon id="allowWhisper" :icon="[
           'fas',
           grimoire.isWhisperAllowed ? 'check-square' : 'square',
         ]" />
         {{ t('menu.allowWhisper') }}
-      </em>
+      </label>
     </div>
     <div class="chat-container">
       <ul class="tabs">
@@ -209,7 +209,7 @@ const sendMessage = () => {
     startCooldown(800);
   } else if (chatStore.activeTab === "host" && !sessionStore.isPlayerOrSpectator) {
     const toPlayer = playersStore.getById(chatStore.targetPlayer);
-    if (!toPlayer ||toPlayer.id === "") return alert(t('chat.cannotSend'));
+    if (!toPlayer || toPlayer.id === "") return alert(t('chat.cannotSend'));
     chatMessage.toId = toPlayer.id;
     chatMessage.toName = toPlayer.name;
     chatStore.addMessage("host", chatMessage);
@@ -278,6 +278,10 @@ const handleToggle = () => {
   cursor: pointer;
   margin-left: 10px;
   font-size: 1em;
+}
+
+label[for] {
+  cursor: pointer;
 }
 
 .player-chat h3 .fa-times-circle {
@@ -421,7 +425,7 @@ select {
   margin: 0;
   border: 1px solid #666;
   border-radius: 5px;
-  background: rgba(255, 255, 255, 0.1);
+  background: #6666;
   color: white;
 }
 

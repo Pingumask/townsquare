@@ -12,12 +12,8 @@
         nominate: nominate > -1,
       }" @trigger="handleTrigger(index, $event)" />
       <div class="animations">
-        <div
-          v-for="anim in animationStore.animations"
-          :key="anim.id"
-          class="animation"
-          :style="getAnimationStyle(anim)"
-        >
+        <div v-for="anim in animationStore.animations" :key="anim.id" class="animation"
+          :style="getAnimationStyle(anim)">
           {{ anim.emoji }}
         </div>
       </div>
@@ -769,7 +765,14 @@ const nominatePlayer = (from: number, to?: Player) => {
 }
 
 @keyframes fly {
-  0% { transform: translate(0, 0) scale(1); opacity: 1; }
-  100% { transform: translate(var(--to-x), var(--to-y)) scale(0.5); opacity: 0; }
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--to-x), var(--to-y)) scale(0.5);
+    opacity: 0;
+  }
 }
 </style>

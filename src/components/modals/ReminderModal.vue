@@ -57,20 +57,13 @@ const availableReminders = computed((): Reminder[] => {
   const { players, bluffs } = playersStore;
 
   grimoire.roles.forEach((role: Role) => {
-    // add reminders from player roles
-    if (players.some((p: Player) => p.role.id === role.id)) {
-      if (role.reminders) {
-        reminders = [...reminders, ...role.reminders.map(mapReminder(role))];
-      }
-    }
-    // add reminders from bluff/other roles
-    else if (bluffs.some((bluff: Role) => bluff.id === role.id)) {
+    if (players.some((p: Player) => p.role.id === role.id) || bluffs.some((bluff: Role) => bluff.id === role.id)) {
       if (role.reminders) {
         reminders = [...reminders, ...role.reminders.map(mapReminder(role))];
       }
     }
     // add global reminders
-    if (role.remindersGlobal && role.remindersGlobal.length) {
+    if (role.remindersGlobal?.length) {
       reminders = [
         ...reminders,
         ...role.remindersGlobal.map(mapReminder(role)),
@@ -97,33 +90,27 @@ const availableReminders = computed((): Reminder[] => {
     id: "good",
     role: SPECIAL_REMINDER_ROLES.good,
     name: t('modal.reminder.good'),
-  });
-  reminders.push({
+  }, {
     id: "evil",
     role: SPECIAL_REMINDER_ROLES.evil,
     name: t('modal.reminder.evil'),
-  });
-  reminders.push({
+  }, {
     id: "townsfolk",
     role: SPECIAL_REMINDER_ROLES.townsfolk,
     name: t('modal.reminder.townsfolk'),
-  });
-  reminders.push({
+  }, {
     id: "outsider",
     role: SPECIAL_REMINDER_ROLES.outsider,
     name: t('modal.reminder.outsider'),
-  });
-  reminders.push({
+  }, {
     id: "minion",
     role: SPECIAL_REMINDER_ROLES.minion,
     name: t('modal.reminder.minion'),
-  });
-  reminders.push({
+  }, {
     id: "demon",
     role: SPECIAL_REMINDER_ROLES.demon,
     name: t('modal.reminder.demon'),
-  });
-  reminders.push({
+  }, {
     id: "custom",
     role: SPECIAL_REMINDER_ROLES.custom,
     name: t('modal.reminder.custom'),

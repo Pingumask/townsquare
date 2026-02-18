@@ -430,7 +430,6 @@ const dayDown = () => {
     }
   }
 
-
   bottom: 10px;
   left: auto;
   right: 10px;

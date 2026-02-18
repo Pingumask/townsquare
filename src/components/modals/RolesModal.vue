@@ -150,19 +150,17 @@ const assignRoles = () => {
   if (selectedRoles.value <= nontravelers.value && selectedRoles.value) {
     // generate list of selected roles and randomize it
     const roles = Object.values(roleSelection.value)
-      .map((roles: SelectableRole[]) =>
+      .flatMap((roles: SelectableRole[]) =>
         roles
           // duplicate roles selected more than once and filter unselected
           .reduce(
             (a: SelectableRole[], r: SelectableRole) => [
               ...a,
-              ...Array(r.selected).fill(r),
+              ...new Array(r.selected).fill(r),
             ],
             [],
           ),
       )
-      // flatten into a single array
-      .reduce((a: SelectableRole[], b: SelectableRole[]) => [...a, ...b], [])
       .map(
         (a: SelectableRole) => [Math.random(), a] as [number, SelectableRole],
       )

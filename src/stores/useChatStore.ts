@@ -33,7 +33,7 @@ export const useChatStore = defineStore("chat", {
       this.$reset();
       const session = useSessionStore();
       if (!session.isPlayerOrSpectator) {
-        if(forceClear || confirm(t('prompt.clearAllChat'))) {
+        if (forceClear || confirm(t('prompt.clearAllChat'))) {
           socket.send('clearChat');
         }
       }
