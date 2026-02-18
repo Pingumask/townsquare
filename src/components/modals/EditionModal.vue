@@ -207,25 +207,21 @@ function openUpload() {
   fileInput?.click();
 }
 
-function handleUpload(event: Event) {
+async function handleUpload(event: Event) {
   const target = event.target as HTMLInputElement;
   const file = target.files?.[0];
   if (!file?.size) {
     return;
   }
-  const reader = new FileReader();
-  reader.addEventListener("load", () => {
-    try {
-      const result = reader.result as string;
-      const uploadedRoles = JSON.parse(result);
-      parseRoles(uploadedRoles);
-    } catch (e) {
-      const error = e as Error;
-      alert(`Error reading custom script: ${error.message}`);
-    }
-    target.value = "";
-  });
-  reader.readAsText(file);
+  try {
+    const result = await file.text();
+    const uploadedRoles = JSON.parse(result);
+    parseRoles(uploadedRoles);
+  } catch (e) {
+    const error = e as Error;
+    alert(`Error reading custom script: ${error.message}`);
+  }
+  target.value = "";
 }
 
 function promptURL() {
