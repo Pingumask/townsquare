@@ -11,6 +11,7 @@ import {
   useVotingStore,
 } from "@/stores";
 import type {
+  CustomRole,
   Edition,
   EditionsJSON,
   GameComposition,
@@ -239,7 +240,7 @@ export const useGrimoireStore = defineStore("grimoire", {
       if (!sessionStore.isPlayerOrSpectator) socket.sendEdition();
     },
 
-    setCustomRoles(roles: Array<Role>) {
+    setCustomRoles(roles: Array<Role|CustomRole>) {
       const customRoleBase: Role = {
         id: "",
         name: "",
@@ -262,7 +263,7 @@ export const useGrimoireStore = defineStore("grimoire", {
         .map((role) => {
 
           // Correcting the ID if needed, by removing non-alphabetical characters and putting the rest in lower case
-          role.id = role.id.replace(/[^a-z]/gi, '').toLowerCase();
+          role.id = role.id.replaceAll(/[^a-z]/gi, '').toLowerCase();
 
           // Correcting the Traveller type if needed
           if(role.team === "traveller") {
