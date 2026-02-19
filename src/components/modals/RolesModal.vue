@@ -271,6 +271,7 @@ ul.tokens {
     .fa-exclamation-triangle {
       position: absolute;
       color: red;
+      text-shadow: 0 0 2px black;
       filter: drop-shadow(0 0 3px black) drop-shadow(0 0 3px black);
       top: 5px;
       right: -5px;
@@ -299,6 +300,7 @@ ul.tokens {
         &:hover {
           opacity: 1;
           color: red;
+          text-shadow: 0 0 2px black;
         }
       }
     }
@@ -349,6 +351,7 @@ ul.tokens {
     &.checked,
     &:hover {
       color: red;
+      text-shadow: 0 0 2px black;
     }
 
     svg {
@@ -362,6 +365,7 @@ ul.tokens {
 
   .warning {
     color: red;
+    text-shadow: 0 0 2px black;
     position: absolute;
     bottom: 20px;
     right: 20px;
@@ -379,7 +383,8 @@ ul.tokens {
       right: -20px;
       bottom: 30px;
       width: 420px;
-      background: rgba(0, 0, 0, 0.75);
+      background: var(--background-color);
+      backdrop-filter: blur(3px);
       padding: 5px;
       border-radius: 10px;
       border: 2px solid black;

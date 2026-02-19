@@ -61,6 +61,7 @@ const handleToggle = () => {
 
 .notes {
   max-width: 95vw;
+  backdrop-filter: blur(3px);
 
   .content {
     textarea {

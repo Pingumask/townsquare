@@ -86,7 +86,7 @@ function setRole() {
   background: url("../assets/token.png") center center;
   background-size: 100%;
   text-align: center;
-  border: 3px solid black;
+  border: 3px solid var(--border-color);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   display: flex;
@@ -118,7 +118,7 @@ function setRole() {
   }
 
   &.unchecked {
-    background: #ddd4;
+    background: #444;
 
     * {
       filter: grayscale(80%);
@@ -230,9 +230,9 @@ function setRole() {
     width: 250px;
     z-index: 25;
     font-size: 80%;
-    background: #111d;
+    background: #000a;
     border-radius: 10px;
-    border: 3px solid black;
+    border: 3px solid var(--border-color);
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
     text-align: left;
     justify-items: center;

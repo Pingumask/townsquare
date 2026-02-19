@@ -416,7 +416,7 @@ const dayDown = () => {
     }
 
     &::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.3);
+      background: var(--background-color);
       border-radius: 4px;
     }
 
@@ -434,9 +434,10 @@ const dayDown = () => {
   left: auto;
   right: 10px;
   width: min-content;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--background-color);
+  backdrop-filter: blur(3px);
   border-radius: 10px;
-  border: 3px solid black;
+  border: 3px solid var(--border-color);
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
   transform-origin: bottom left;
   transform: scale(1);

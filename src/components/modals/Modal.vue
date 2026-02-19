@@ -48,7 +48,8 @@ const close = () => {
 
 .modal {
   color: inherit;
-  background: #000e;
+  background: var(--background-color);
+  backdrop-filter: blur(10px);
   padding: 10px 20px 0 20px;
   border-radius: 10px;
   box-shadow: 2px 2px 20px 1px #000;
@@ -60,7 +61,7 @@ const close = () => {
   overflow-y: auto;
   overflow-x: hidden;
   outline: none;
-  border: none;
+  border: 3px solid var(--border-color);
   scrollbar-gutter: stable both-edges;
   scrollbar-width: thin;
   scrollbar-color: #333 #000;
@@ -103,6 +104,7 @@ const close = () => {
 
       &:hover {
         color: red;
+        text-shadow: 0 0 2px black;
       }
     }
   }
@@ -114,7 +116,7 @@ const close = () => {
 }
 
 .maximized {
-  background: rgba(0, 0, 0, 0.95);
+  background: black;
   padding: 0;
   border-radius: 0;
   height: 100vh;

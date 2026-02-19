@@ -2,6 +2,7 @@
   <div id="app" tabindex="-1" :class="{
     night: (grimoire.gamePhase === 'firstNight' || grimoire.gamePhase === 'otherNight'),
     static: userPreferences.isStatic,
+    streamer: userPreferences.isStreamerMode,
   }" :style="{
     backgroundImage: `url('${background}')`,
     backgroundColor: `${backgroundColor}`,
@@ -245,6 +246,13 @@ ul {
   align-items: center;
   align-content: center;
   justify-content: center;
+  --border-color: #111;
+  --background-color: #000a;
+
+  &.streamer {
+    --border-color: #333;
+    --background-color: #2228;
+  }
 
   // disable all animations
   &.static *,
@@ -252,6 +260,13 @@ ul {
   &.static *:before {
     transition: none !important;
     animation: none !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition: none !important;
+      animation: none !important;
+    }
   }
 }
 
@@ -325,6 +340,7 @@ select {
 
   &:not(select):hover {
     color: red;
+    text-shadow: 0 0 2px black;
   }
 
   &[disabled],
@@ -380,6 +396,7 @@ select {
 
   option:hover {
     color: red;
+    text-shadow: 0 0 2px black;
   }
 }
 

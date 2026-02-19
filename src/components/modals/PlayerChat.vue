@@ -1,6 +1,6 @@
 <template>
-  <MovableDialog v-if="canShowChat" class="player-chat" :position="userPreferences.chat.position" :isOpen="isChatOpen"
-    :title="t('chat.title')" @toggle="handleToggle">
+  <MovableDialog v-if="canShowChat" class="player-chat modal" :position="userPreferences.chat.position"
+    :isOpen="isChatOpen" :title="t('chat.title')" @toggle="handleToggle">
     <div v-if="!sessionStore.isPlayerOrSpectator">
       <label for="allowWhisper" @click="grimoire.setAllowWhisper(!grimoire.isWhisperAllowed)">
         <font-awesome-icon id="allowWhisper" :icon="[
@@ -241,19 +241,16 @@ const handleToggle = () => {
 
 <style scoped>
 .player-chat {
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--background-color);
+  backdrop-filter: blur(3px);
   border-radius: 10px;
-  border: 3px solid black;
+  border: 3px solid var(--border-color);
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
   padding: 10px;
   color: white;
   max-width: 90vw;
   display: flex;
   flex-direction: column;
-}
-
-.player-chat.closed {
-  background: rgba(0, 0, 0, 0.5);
 }
 
 .player-chat.closed .chat-container {
@@ -347,7 +344,7 @@ label[for] {
   flex-direction: column;
   gap: 5px;
   padding: 0.5rem;
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--background-color);
   border-radius: 5px;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.2);

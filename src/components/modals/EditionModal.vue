@@ -351,6 +351,7 @@ ul.editions {
 
     &:hover {
       color: red;
+      text-shadow: 0 0 2px black;
     }
   }
 }
@@ -381,6 +382,7 @@ ul.editions {
 
     &:hover {
       color: red;
+      text-shadow: 0 0 2px black;
     }
 
     &.active {
@@ -419,6 +421,7 @@ input[type="file"] {
 
     &:hover {
       color: red;
+      text-shadow: 0 0 2px black;
     }
   }
 }

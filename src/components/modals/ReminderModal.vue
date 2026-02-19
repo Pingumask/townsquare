@@ -156,7 +156,7 @@ ul.reminders .reminder {
   margin: 1%;
 
   border-radius: 50%;
-  border: 3px solid black;
+  border: 3px solid var(--border-color);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   line-height: 100%;

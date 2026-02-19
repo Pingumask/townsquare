@@ -323,9 +323,9 @@ ul {
       bottom: 10%;
       width: 40vw;
       z-index: 25;
-      background: rgba(0, 0, 0, 0.75);
+      background: #000a;
       border-radius: 10px;
-      border: 3px solid black;
+      border: 3px solid var(--border-color);
       filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
       text-align: left;
       pointer-events: none;

@@ -145,6 +145,7 @@ const playersByRole = computed(() => {
 
   &:hover {
     color: red;
+    text-shadow: 0 0 2px black;
   }
 }
 

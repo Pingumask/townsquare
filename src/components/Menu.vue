@@ -640,8 +640,9 @@ const previousLanguage = () => {
 
   >svg {
     cursor: pointer;
-    background: rgba(0, 0, 0, 0.5);
-    border: 3px solid black;
+    background: var(--background-color);
+    backdrop-filter: blur(3px);
+    border: 3px solid var(--border-color);
     margin-bottom: -8px;
     border-bottom: 0;
     border-radius: 10px 10px 0 0;
@@ -655,6 +656,7 @@ const previousLanguage = () => {
 
   li:hover a {
     color: red;
+    text-shadow: 0 0 2px black;
   }
 
   ul {
@@ -665,14 +667,15 @@ const previousLanguage = () => {
     flex-direction: column;
     overflow: hidden;
     box-shadow: 0 0 10px black;
-    border: 3px solid black;
+    border: 3px solid var(--border-color);
+    backdrop-filter: blur(10px);
     border-radius: 10px 0 10px 10px;
 
     li {
       padding: 2px 5px;
       color: white;
       text-align: left;
-      background: rgba(0, 0, 0, 0.7);
+      background: var(--background-color);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -693,6 +696,7 @@ const previousLanguage = () => {
 
           &:hover {
             color: red;
+            text-shadow: 0 0 2px black;
           }
 
           &:last-child {
@@ -712,6 +716,7 @@ const previousLanguage = () => {
 
         &:not(.tabs):not(.disabled):hover {
           color: red;
+          text-shadow: 0 0 2px black;
         }
 
         &.disabled {
