@@ -1,20 +1,20 @@
 <template>
-  <Modal v-if="grimoire.modal == 'edition'" class="editions" @close="grimoire.toggleModal(null)">
+  <Modal v-if="grimoire.modal === 'edition'" class="editions" @close="grimoire.toggleModal(null)">
     <h3>{{ t('modal.edition.title') }}</h3>
     <ul>
       <li class="tabs" :class="tab">
-        <span class="tab" icon="book-open" :class="{ active: tab == 'official' }" @click="tab = 'official'">{{
+        <span class="tab" icon="book-open" :class="{ active: tab === 'official' }" @click="tab = 'official'">{{
           t('modal.edition.tab.official') }}</span>
-        <span class="tab" icon="tower-broadcast" :class="{ active: tab == 'popular' }" @click="tab = 'popular'">{{
+        <span class="tab" icon="tower-broadcast" :class="{ active: tab === 'popular' }" @click="tab = 'popular'">{{
           t('modal.edition.tab.popular') }}</span>
-        <span class="tab" icon="question" :class="{ active: tab == 'custom' }" @click="tab = 'custom'">{{
+        <span class="tab" icon="question" :class="{ active: tab === 'custom' }" @click="tab = 'custom'">{{
           t('modal.edition.tab.custom') }}</span>
-        <span class="tab" icon="question" :class="{ active: tab == 'build' }" @click="
+        <span class="tab" icon="question" :class="{ active: tab === 'build' }" @click="
           initPool();
         tab = 'build';
         ">{{ t('modal.edition.tab.build') }}</span>
       </li>
-      <template v-if="tab == 'official'">
+      <template v-if="tab === 'official'">
         <ul class="editions">
           <li v-for="edition in editions.official" :key="edition.id" class="edition" :class="['edition-' + edition.id]"
             :style="{ backgroundImage: `url(${logoPath(edition)})` }" @click="runEdition(edition)">
@@ -22,7 +22,7 @@
           </li>
         </ul>
       </template>
-      <template v-if="tab == 'popular'">
+      <template v-if="tab === 'popular'">
         <ul class="scripts">
           <li v-for="(script, index) in editions.popular" :key="index" @click="launchScript(script[1])">
             {{ script[0] }}
@@ -35,7 +35,7 @@
           </li>
         </ul>
       </template>
-      <template v-if="tab == 'custom'">
+      <template v-if="tab === 'custom'">
         <div class="custom">
           {{ t('modal.edition.custom.introStart') }}
           <a href="https://script.bloodontheclocktower.com/" target="_blank">
@@ -65,7 +65,7 @@
           </div>
         </div>
       </template>
-      <template v-if="tab == 'build'">
+      <template v-if="tab === 'build'">
         <section v-for="team in teams" :key="team" class="build team" :class="team">
           <aside class="aside">
             <div>
@@ -207,25 +207,21 @@ function openUpload() {
   fileInput?.click();
 }
 
-function handleUpload(event: Event) {
+async function handleUpload(event: Event) {
   const target = event.target as HTMLInputElement;
   const file = target.files?.[0];
   if (!file?.size) {
     return;
   }
-  const reader = new FileReader();
-  reader.addEventListener("load", () => {
-    try {
-      const result = reader.result as string;
-      const uploadedRoles = JSON.parse(result);
-      parseRoles(uploadedRoles);
-    } catch (e) {
-      const error = e as Error;
-      alert(`Error reading custom script: ${error.message}`);
-    }
-    target.value = "";
-  });
-  reader.readAsText(file);
+  try {
+    const result = await file.text();
+    const uploadedRoles = JSON.parse(result);
+    parseRoles(uploadedRoles);
+  } catch (e) {
+    const error = e as Error;
+    alert(`Error reading custom script: ${error.message}`);
+  }
+  target.value = "";
 }
 
 function promptURL() {
@@ -240,7 +236,7 @@ function logoPath(edition: Edition) {
 }
 
 async function launchScript(fileName: string) {
-  await handleURL(`/scripts/${fileName}`);
+  await handleURL(`../src/locale/${locale.userLanguage}/scripts/${fileName}`);
 }
 
 async function handleURL(url: string) {
@@ -280,12 +276,16 @@ function parseRoles(pickedRoles: (string | ParsedRole)[]) {
   let djinnAdded = false;
   let djinnNeeded = false;
   let bootleggerAdded = false;
-  let bootleggerNedded = false;
+  let bootleggerNedded = grimoire.edition ? grimoire.edition.bootlegger : false;
+  let stormcatcherAdded = false;
+  let stormcatcherNeeded = grimoire.edition ? grimoire.edition.stormcaught : false;
   processedRoles.forEach((role: ParsedRole) => {
     if (grimoire.fabled.has(role.id)) {
       fabled.push(grimoire.fabled.get(role.id)!);
       if (role.id === "djinn") {
         djinnAdded = true;
+      } else if (role.id === "stormcatcher") {
+        stormcatcherAdded = true;
       } else if (role.id === "bootlegger") {
         bootleggerAdded = true;
       }
@@ -306,6 +306,9 @@ function parseRoles(pickedRoles: (string | ParsedRole)[]) {
   });
   if (djinnNeeded && !djinnAdded) {
     fabled.push(grimoire.fabled.get("djinn")!);
+  }
+  if (stormcatcherNeeded && !stormcatcherAdded) {
+    fabled.push(grimoire.fabled.get("stormcatcher")!);
   }
   if (bootleggerNedded && !bootleggerAdded) {
     fabled.push(grimoire.fabled.get("bootlegger")!);
@@ -348,6 +351,7 @@ ul.editions {
 
     &:hover {
       color: red;
+      text-shadow: 0 0 2px black;
     }
   }
 }
@@ -378,6 +382,7 @@ ul.editions {
 
     &:hover {
       color: red;
+      text-shadow: 0 0 2px black;
     }
 
     &.active {
@@ -416,6 +421,7 @@ input[type="file"] {
 
     &:hover {
       color: red;
+      text-shadow: 0 0 2px black;
     }
   }
 }

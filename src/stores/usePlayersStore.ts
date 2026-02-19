@@ -447,6 +447,14 @@ export const usePlayersStore = defineStore("players", {
         }
       }
     },
+    hasFeature(role: Role, feature: string) {
+      if (!role.special) return false;
+      if (Array.isArray(role.special)) return role.special.some((sf) => sf.name === feature);
+      return role.special.name === feature;
+    },
+    isFeatureInPlay(feature: string) {
+      return this.players.some((player) => this.hasFeature(player.role, feature));
+    },
     distributeRolesAction() {
       const session = useSessionStore();
       if (session.isPlayerOrSpectator) return;
@@ -455,24 +463,16 @@ export const usePlayersStore = defineStore("players", {
       const popup = t("prompt.sendRoles");
       if (!confirm(popup)) return;
 
-      // Checking all players to see if one of them has a forbidden role
-      let forbiddenRole = "";
+      // Checking if forbidden roles are selected
+      let forbiddenRole = [];
       const players = this.players;
-      for (let i = 0; i < players.length && !forbiddenRole; i++) {
-        const player = players[i];
-        if (player?.role?.forbidden) {
-          forbiddenRole = player.role.name || "";
+      for (const player of players) {
+        if (player && this.hasFeature(player.role, "bag-disabled")) {
+          forbiddenRole.push(player.role.name || "");
         }
       }
-      let confirmedDistribution = forbiddenRole === "";
-      if (!confirmedDistribution) {
-        const forbiddenPopup =
-          t("prompt.sendRolesWithForbidden1") +
-          forbiddenRole +
-          t("prompt.sendRolesWithForbidden2");
-        confirmedDistribution = confirm(forbiddenPopup);
-      }
-      if (confirmedDistribution) {
+
+      if (!forbiddenRole.length || confirm(t('prompt.sendForbiddenRoles').replace("$roles", forbiddenRole.join(", ")))) {
         this.distributeRoles(true);
         setTimeout(() => {
           this.distributeRoles(false);

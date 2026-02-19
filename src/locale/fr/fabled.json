@@ -70,6 +70,10 @@
     "setup": false,
     "name": "Violoniste",
     "team": "fabled",
+    "special": {
+      "type": "ability",
+      "name": "pointing"
+    },
     "ability": "Une fois par partie, le Démon choisit un joueur adverse en secret : tous les joueurs choisissent l'équipe duquel de ces deux joueurs gagne."
   },
   {
@@ -267,6 +271,10 @@
     "setup": true,
     "name": "Pape",
     "team": "loric",
+    "special": {
+      "type": "selection",
+      "name": "good-duplicate"
+    },
     "ability": "Il y a des personnages bons en plusieurs exemplaires. Il se peut qu'ils soient aussi des bluffs."
   },
   {

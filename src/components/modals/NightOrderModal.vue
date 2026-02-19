@@ -42,6 +42,7 @@ const roles = computed(() => grimoire.roles);
 
   &:hover {
     color: red;
+    text-shadow: 0 0 2px black;
   }
 }
 
@@ -234,9 +235,10 @@ ul {
       min-width: 50ch;
       bottom: 10%;
       z-index: 25;
-      background: rgba(0, 0, 0, 0.75);
+      background: var(--background-color);
+      backdrop-filter: blur(3px);
       border-radius: 10px;
-      border: 3px solid black;
+      border: 3px solid var(--border-color);
       filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
       text-align: left;
       pointer-events: none;

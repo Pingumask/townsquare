@@ -557,7 +557,7 @@ export class LiveSession {
     let roles;
     if (edition && !edition.isOfficial) {
       roles = Array.from<Role>(grimoireStore.roles.values()).map((role: Role) =>
-        role.isCustom ? role : { id: role.id }
+        role?.isCustom ? role : { id: role?.id }
       );
     }
     this._sendDirect(playerId, "edition", {

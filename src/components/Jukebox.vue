@@ -18,6 +18,12 @@
   <audio ref="votingBellAudio" preload="auto" :muted="userPreferences.isMuted">
     <source src="../assets/sounds/voting_bell.mp3">
   </audio>
+  <audio ref="votingClock1Audio" preload="auto" :muted="userPreferences.isMuted">
+    <source src="../assets/sounds/voting_clock_1.mp3">
+  </audio>
+  <audio ref="votingClock2Audio" preload="auto" :muted="userPreferences.isMuted">
+    <source src="../assets/sounds/voting_clock_2.mp3">
+  </audio>
   <audio ref="riserAudio" preload="auto" :muted="userPreferences.isMuted">
     <source src="../assets/sounds/riser.mp3">
   </audio>
@@ -59,6 +65,8 @@ const roosterAudio = ref<HTMLAudioElement>();
 const gavelAudio = ref<HTMLAudioElement>();
 const deathAudio = ref<HTMLAudioElement>();
 const votingBellAudio = ref<HTMLAudioElement>();
+const votingClock1Audio = ref<HTMLAudioElement>();
+const votingClock2Audio = ref<HTMLAudioElement>();
 const riserAudio = ref<HTMLAudioElement>();
 const drumRollAudio = ref<HTMLAudioElement>();
 
@@ -69,7 +77,7 @@ const showDeath = ref(false);
 const showDrumRoll = ref(false);
 
 function playOverlapping(audioRef: Ref<HTMLAudioElement | undefined, HTMLAudioElement | undefined>) {
-  if (!audioRef.value) return ;
+  if (!audioRef.value) return;
   const clone = audioRef.value.cloneNode(true) as HTMLAudioElement;
   clone.volume = audioRef.value.volume;
   clone.muted = audioRef.value.muted;
@@ -112,7 +120,24 @@ watch(() => soundboard.votingBellTrigger, () => {
   if (votingBellAudio.value) {
     votingBellAudio.value.volume = soundboard.votingBellVolume;
     votingBellAudio.value.muted = userPreferences.isMuted;
-    playOverlapping(votingBellAudio);
+    votingBellAudio.value.play();
+  }
+});
+
+watch(() => soundboard.votingClockTrigger, () => {
+  let votingClockAudio;
+  if (soundboard.votingClockType === 0) {
+    votingClockAudio = votingClock1Audio;
+    soundboard.votingClockType = 1;
+  }
+  else {
+    votingClockAudio = votingClock2Audio;
+    soundboard.votingClockType = 0;
+  }
+  if (votingClockAudio.value) {
+    votingClockAudio.value.volume = soundboard.votingClockVolume;
+    votingClockAudio.value.muted = userPreferences.isMuted;
+    playOverlapping(votingClockAudio);
   }
 });
 

@@ -217,7 +217,16 @@
       "Borracho"
     ],
     "setup": true,
-    "forbidden": true,
+    "special": [
+      {
+        "type": "selection",
+        "name": "bag-disabled"
+      },
+      {
+        "type": "reveal",
+        "name": "replace-character"
+      }
+    ],
     "ability": "No sabes que eres el Borracho. Crees que eres un personaje Aldeano, pero no lo eres."
   },
   {
@@ -333,6 +342,11 @@
       "3 votos"
     ],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "multiplier",
+      "value": 3
+    },
     "ability": "Cada noche, elige a un jugador (no a ti mismo): su voto cuenta como 3 votos mañana."
   },
   {
@@ -348,6 +362,11 @@
       "Voto negativo"
     ],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "multiplier",
+      "value": -1
+    },
     "ability": "Cada noche, elige a un jugador (no a ti mismo): su voto cuenta negativamente mañana."
   },
   {
@@ -387,6 +406,10 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "need-token"
+    },
     "ability": "Debes usar una ficha de voto para votar. Los muertos pueden elegir darte la suya. Si lo hacen, averiguas su alineación. Estás sobrio y sano."
   },
   {
@@ -530,10 +553,16 @@
     "otherNightReminder": "Si el Filósofo no ha usado su habilidad: el Filósofo muestra una señal de 'no' con la cabeza, o señala un personaje bueno en su hoja. Si eligió un personaje: Intercambia la ficha de personaje fuera de juego con la ficha del Filósofo y añade el recordatorio 'Es el Filósofo'. Si el personaje está en juego, coloca el marcador de borracho junto a ese jugador.",
     "reminders": [
       "Borracho",
-      "Filósofo",
       "Sin habilidad"
     ],
+    "remindersGlobal": [
+      "Filósofo"
+    ],
     "setup": false,
+    "special": {
+      "type": "reveal",
+      "name": "replace-character"
+    },
     "ability": "Una vez por partida, de noche, elige un personaje bueno: ganas esa habilidad. Si ese personaje está en juego, está borracho."
   },
   {
@@ -1098,7 +1127,16 @@
       "Elegido"
     ],
     "setup": false,
-    "forbidden": true,
+    "special": [
+      {
+        "type": "selection",
+        "name": "bag-disabled"
+      },
+      {
+        "type": "reveal",
+        "name": "replace-character"
+      }
+    ],
     "ability": "Crees que eres un Demonio, pero no lo eres. El Demonio sabe quién eres y a quién eliges por la noche."
   },
   {
@@ -1295,6 +1333,10 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "free-dead-vote"
+    },
     "ability": "Solo tú y los muertos podéis votar. No necesitan ficha de voto para hacerlo. No se requiere mayoría del 50%."
   },
   {
@@ -1589,6 +1631,10 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": true,
+    "special": {
+      "type": "selection",
+      "name": "good-duplicate"
+    },
     "ability": "El Narrador puede romper las reglas del juego y, si es ejecutado, el bien gana, incluso si estás muerto. [Sin personajes malvados]"
   },
   {
@@ -1661,7 +1707,10 @@
       "Borracho"
     ],
     "setup": true,
-    "multiple": true,
+    "special": {
+      "type": "selection",
+      "name": "bag-duplicate"
+    },
     "ability": "Cada noche, elige a un jugador: aprendes su alineación. [+0 a +2 Tontos del Pueblo. 1 de los extra está borracho]"
   },
   {
@@ -1721,6 +1770,10 @@
       "Tiene Habilidad"
     ],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "two-hands"
+    },
     "ability": "Si el Demonio te mata, todos los jugadores lo saben. A partir de ahora, puedes nominar dos veces al día y votar dos veces por nominación."
   },
   {
@@ -1992,7 +2045,16 @@
       "Es la Marioneta"
     ],
     "setup": true,
-    "forbidden": true,
+    "special": [
+      {
+        "type": "selection",
+        "name": "bag-disabled"
+      },
+      {
+        "type": "reveal",
+        "name": "replace-character"
+      }
+    ],
     "ability": "Crees que eres un personaje bueno pero no lo eres. El Demonio sabe quién eres. [Eres vecino del Demonio]"
   },
   {
@@ -2006,6 +2068,10 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
+    "special": {
+      "type": "ability",
+      "name": "pointing"
+    },
     "ability": "Si eres ejecutado, todos menos 3 jugadores mueren. Tras una cuenta atrás de 10 a 1, el jugador con más jugadores señalándole, muere."
   },
   {
@@ -2022,6 +2088,10 @@
       "Voto usado"
     ],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "hidden"
+    },
     "ability": "Todos los jugadores mantienen los ojos cerrados al votar y el recuento de votos es secreto. Cada noche, elige si estás borracho hasta el anochecer."
   },
   {
@@ -2128,6 +2198,10 @@
     "otherNightReminder": "Cada vez que despiertes a un jugador malvado por la noche, despierta primero al Espectro. Si el Espectro está borracho o envenenado, dile que no puede abrir los ojos.",
     "reminders": [],
     "setup": false,
+    "special": {
+      "type": "player",
+      "name": "open-eyes"
+    },
     "ability": "Puedes elegir abrir los ojos por la noche. Te despiertas cuando lo hacen otros jugadores malvados."
   },
   {
@@ -2145,7 +2219,10 @@
       "Muerto"
     ],
     "setup": true,
-    "forbidden": true,
+    "special": {
+      "type": "selection",
+      "name": "bag-disabled"
+    },
     "ability": "Cada noche, los Esbirros eligen quién cuida a Lil' Monsta y 'es el Demonio'. Cada noche*, un jugador podría morir. [+1 Esbirro]"
   },
   {
@@ -2197,7 +2274,10 @@
       "A punto de morir"
     ],
     "setup": true,
-    "multiple": true,
+    "special": {
+      "type": "selection",
+      "name": "bag-duplicate"
+    },
     "ability": "Cada noche*, un jugador podría morir. Las ejecuciones fallan si solo votó el mal. Te registras como Esbirro también. [La mayoría de jugadores son Legión]"
   },
   {

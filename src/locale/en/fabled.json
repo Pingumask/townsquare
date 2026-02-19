@@ -70,6 +70,10 @@
     "setup": false,
     "name": "Fiddler",
     "team": "fabled",
+    "special": {
+      "type": "ability",
+      "name": "pointing"
+    },
     "ability": "Once per game, the Demon secretly chooses an opposing player: all players choose which of these 2 players win."
   },
   {
@@ -267,6 +271,10 @@
     "setup": true,
     "name": "Pope",
     "team": "loric",
+    "special": {
+      "type": "selection",
+      "name": "good-duplicate"
+    },
     "ability": "There are duplicate good characters in play. They might also be bluffs."
   },
   {

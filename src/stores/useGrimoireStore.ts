@@ -159,7 +159,7 @@ export const useGrimoireStore = defineStore("grimoire", {
       );
 
       this.roles.forEach((role: Role) => {
-        this.roles.set(role.id, this.rolesJSONbyId.get(role.id) as Role);
+        this.roles.set(role?.id, this.rolesJSONbyId.get(role?.id) as Role);
       });
 
       this.jinxes = new Map<string, Map<string, string>>();
@@ -394,7 +394,7 @@ export const useGrimoireStore = defineStore("grimoire", {
       const votingStore = useVotingStore();
 
       this.gamePhase = gamePhase;
-      if (!sessionStore.isPlayerOrSpectator){
+      if (!sessionStore.isPlayerOrSpectator) {
         socket.send("gamePhase", gamePhase);
       }
       if (gamePhase === "day") {

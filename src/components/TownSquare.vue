@@ -12,12 +12,8 @@
         nominate: nominate > -1,
       }" @trigger="handleTrigger(index, $event)" />
       <div class="animations">
-        <div
-          v-for="anim in animationStore.animations"
-          :key="anim.id"
-          class="animation"
-          :style="getAnimationStyle(anim)"
-        >
+        <div v-for="anim in animationStore.animations" :key="anim.id" class="animation"
+          :style="getAnimationStyle(anim)">
           {{ anim.emoji }}
         </div>
       </div>
@@ -464,9 +460,10 @@ const nominatePlayer = (from: number, to?: Player) => {
     top: 10px;
   }
 
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--background-color);
+  backdrop-filter: blur(3px);
   border-radius: 10px;
-  border: 3px solid black;
+  border: 3px solid var(--border-color);
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
   transform-origin: bottom left;
   transform: scale(1);
@@ -482,6 +479,7 @@ const nominatePlayer = (from: number, to?: Player) => {
 
     &:hover {
       color: red;
+      text-shadow: 0 0 2px black;
     }
   }
 
@@ -634,9 +632,10 @@ const nominatePlayer = (from: number, to?: Player) => {
     width: 350px;
     z-index: 25;
     font-size: 70%;
-    background: rgba(0, 0, 0, 0.5);
+    background: var(--background-color);
+    backdrop-filter: blur(3px);
     border-radius: 10px;
-    border: 3px solid black;
+    border: 3px solid var(--border-color);
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
     text-align: left;
     align-items: center;
@@ -704,7 +703,7 @@ const nominatePlayer = (from: number, to?: Player) => {
     max-width: 40px;
     max-height: 40px;
     border-radius: 50%;
-    border: 3px solid black;
+    border: 3px solid var(--border-color);
     filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.5));
     font-weight: bold;
     opacity: 1;
@@ -769,7 +768,14 @@ const nominatePlayer = (from: number, to?: Player) => {
 }
 
 @keyframes fly {
-  0% { transform: translate(0, 0) scale(1); opacity: 1; }
-  100% { transform: translate(var(--to-x), var(--to-y)) scale(0.5); opacity: 0; }
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--to-x), var(--to-y)) scale(0.5);
+    opacity: 0;
+  }
 }
 </style>

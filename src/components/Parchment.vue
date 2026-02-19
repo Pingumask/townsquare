@@ -1,26 +1,21 @@
 <template>
-  <div v-if="grimoire.ShowCustomTextForParchment" id="win_background" :class="{ show: showWinBackground, hide: hideWinBackground }"></div>
+  <div v-if="grimoire.ShowCustomTextForParchment" id="win_background"
+    :class="{ show: showWinBackground, hide: hideWinBackground }"></div>
   <img id="img_role_1" alt="Winning alignment icon" :src="img1Path" :class="{ show: showRoles, hide: hideContainer }">
-  <img id="img_role_2" alt="Secondary winning alignement icon" :src="img2Path" :class="{ show: showRoles, hide: hideContainer }">
+  <img id="img_role_2" alt="Secondary winning alignement icon" :src="img2Path"
+    :class="{ show: showRoles, hide: hideContainer }">
   <div id="parchment" :class="{ show: showContainer, hide: hideContainer }">
     <div id="win_announce" :class="{ show: showWinAnnounce, hide: hideWinAnnounce }">
       {{ t("postgame.theWinnersAre") }}
     </div>
     <img alt="parchment" src="../assets/parchment.png" :class="{ show: showParchment }">
     <div class="title">
-      <span
-        v-for="(char, i) in letters"
-        :key="i"
-        class="letter"
-        :class="{ show: i < visibleCount }"
-      >
+      <span v-for="(char, i) in letters" :key="i" class="letter" :class="{ show: i < visibleCount }">
         {{ char }}
       </span>
     </div>
   </div>
 </template>
-
-
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from "vue";
@@ -97,11 +92,11 @@ const showContainerForWin = (text: string, winner: string) => {
   }, 200);
   setTimeout(() => {
     showParchment.value = true;
-  }, 200+400);
+  }, 200 + 400);
   setTimeout(() => {
     startText();
     showRoles.value = true;
-  }, 200+400+600);
+  }, 200 + 400 + 600);
   const totalTime =
     200 + 400 + 600 + text.length * letterSpeed + 6000;
   setTimeout(() => {
@@ -152,18 +147,18 @@ onBeforeUnmount(() => {
 });
 
 if (grimoire.ShowCustomTextForParchment) {
-  const text = t('postgame.'+winner)
+  const text = t('postgame.' + winner)
   letters.value = text.split("");
   showContainerForWin(text, winner);
-} else if (gamePhase==="day" && dayCount>0) {
+} else if (gamePhase === "day" && dayCount > 0) {
   const text = `${t("townsquare.gamephase.day")} ${dayCount}`;
   letters.value = text.split("");
   showContainer(text);
-} else if (gamePhase==="firstNight" || gamePhase==="otherNight") {
+} else if (gamePhase === "firstNight" || gamePhase === "otherNight") {
   const text = `${t("townsquare.gamephase.otherNight")} ${dayCount}`;
   letters.value = text.split("");
   showContainer(text);
-} else if (gamePhase==="postgame") {
+} else if (gamePhase === "postgame") {
   const text = t("townsquare.gamephase.postgame");
   letters.value = text.split("");
   showContainer(text);
@@ -264,9 +259,9 @@ if (grimoire.ShowCustomTextForParchment) {
   position: absolute;
   font-family: "Papyrus", sans-serif;
   font-size: 4em;
-  color : black;
+  color: black;
   text-align: center;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   white-space: pre;
 }
 
@@ -306,7 +301,8 @@ if (grimoire.ShowCustomTextForParchment) {
   transform: translateY(0) rotate(-10deg);
 }
 
-#img_role_1.hide, #img_role_2.hide {
+#img_role_1.hide,
+#img_role_2.hide {
   opacity: 0;
 }
 </style>

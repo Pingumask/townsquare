@@ -41,7 +41,7 @@
           !grimoire.isSecretVote ||
           isSpecialVoteWithMessages ||
           !session.isPlayerOrSpectator ||
-          props.player.id == session.playerId
+          props.player.id === session.playerId
         " icon="hand-paper" class="fa fa-hand-paper vote" :title="t('player.handUp')" @click="vote()" />
         <font-awesome-icon v-if="
           grimoire.isSecretVote &&
@@ -52,7 +52,7 @@
         <font-awesome-icon v-if="
           !grimoire.isSecretVote ||
           !session.isPlayerOrSpectator ||
-          props.player.id == session.playerId
+          props.player.id === session.playerId
         " icon="times" class="fa fa-times vote" :title="t('player.handDown')" @click="vote()" />
         <font-awesome-icon v-if="
           grimoire.isSecretVote &&
@@ -76,12 +76,12 @@
 
       <!-- Ghost vote icon -->
       <font-awesome-icon v-if="
-        (props.player.isDead || player.role.id == 'beggar') &&
+        (props.player.isDead || playersStore.hasFeature(player.role, 'need-token')) &&
         props.player.voteToken
       " icon="vote-yea" class="fa fa-vote-yea has-vote" :title="t('player.ghostVote')"
         @click="updatePlayer('voteToken', false)" />
       <font-awesome-icon v-if="
-        (props.player.isDead || player.role.id == 'beggar') &&
+        (props.player.isDead || playersStore.hasFeature(player.role, 'need-token')) &&
         !props.player.voteToken &&
         !session.isPlayerOrSpectator
       " icon="vote-yea" class="fa fa-vote-yea has-vote no-token" :title="t('player.ghostVote')"
@@ -150,7 +150,7 @@
             </li>
             <li v-if="
               props.player.role.id &&
-              (props.player.role.team == 'traveler' ||
+              (props.player.role.team === 'traveler' ||
                 playersMenu.swapAlignment)
             " @click="switchAlignment">
               <font-awesome-icon icon="yin-yang" class="fa fa-yin-yang" />
@@ -570,7 +570,7 @@ picture * {
     width: 100%;
     background: url("../assets/life.png") center center;
     background-size: 100%;
-    border: 3px solid black;
+    border: 3px solid var(--border-color);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     cursor: pointer;
     transition: transform 200ms ease-in-out;
@@ -906,8 +906,9 @@ li.move:not(.from) .player .overlay svg.move {
   cursor: pointer;
   white-space: nowrap;
   width: 120%;
-  background: rgba(0, 0, 0, 0.5);
-  border: 3px solid black;
+  background: var(--background-color);
+  backdrop-filter: blur(3px);
+  border: 3px solid var(--border-color);
   border-radius: 10px;
   top: 5px;
   box-shadow: 0 0 5px black;
@@ -930,6 +931,7 @@ li.move:not(.from) .player .overlay svg.move {
   #townsquare:not(.spectator) &:hover,
   &.active {
     color: red;
+    text-shadow: 0 0 2px black;
   }
 
   &:hover .pronouns {
@@ -943,9 +945,9 @@ li.move:not(.from) .player .overlay svg.move {
     right: 110%;
     max-width: 250px;
     z-index: 25;
-    background: rgba(0, 0, 0, 0.8);
+    background: #000a;
     border-radius: 10px;
-    border: 3px solid black;
+    border: 3px solid var(--border-color);
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
     align-items: center;
     pointer-events: none;
@@ -980,7 +982,8 @@ li.move:not(.from) .player .overlay svg.move {
   text-align: left;
   white-space: nowrap;
   line-height: 1.4;
-  background: rgba(0, 0, 0, 0.9);
+  background: var(--background-color);
+  backdrop-filter: blur(10px);
   padding: 2px 5px;
   border-radius: 10px;
   border: 3px solid #000;
@@ -991,6 +994,7 @@ li.move:not(.from) .player .overlay svg.move {
 
   li:hover {
     color: red;
+    text-shadow: 0 0 2px black;
   }
 
   li.disabled {
@@ -1041,7 +1045,7 @@ li.move:not(.from) .player .overlay svg.move {
   justify-content: center;
   margin: 5px 0 0 -25%;
   border-radius: 50%;
-  border: 3px solid black;
+  border: 3px solid var(--border-color);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   transition: all 200ms;
   cursor: pointer;

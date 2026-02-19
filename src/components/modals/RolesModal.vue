@@ -1,9 +1,5 @@
 <template>
-  <Modal
-    v-if="grimoire.modal === 'roles' && nontravelers >= 5"
-    class="roles"
-    @close="grimoire.toggleModal(null)"
-  >
+  <Modal v-if="grimoire.modal === 'roles' && nontravelers >= 5" class="roles" @close="grimoire.toggleModal(null)">
     <h3>
       {{
         t("modal.roles.titleStart") + nontravelers + t("modal.roles.titleEnd")
@@ -14,50 +10,25 @@
         {{ getTeamRoleCount(teamRoles) }} /
         {{ composition?.[team as keyof GameComposition] }}
       </li>
-      <li
-        v-for="role in teamRoles"
-        :key="role.id"
-        :class="[role.team, role.selected ? 'selected' : '']"
-        @click="role.selected = role.selected ? 0 : 1"
-      >
+      <li v-for="role in teamRoles" :key="role.id" :class="[role.team, role.selected ? 'selected' : '']"
+        @click="role.selected = role.selected ? 0 : 1">
         <Token :role="role" :unchecked="!role.selected" />
-        <font-awesome-icon
-          v-if="role.setup"
-          icon="exclamation-triangle"
-          class="fa fa-exclamation-triangle"
-        />
-        <div v-if="allowMultiple || role.multiple" class="buttons">
-          <font-awesome-icon
-            icon="minus-circle"
-            @click.stop="role.selected--"
-          />
+        <font-awesome-icon v-if="role.setup" icon="exclamation-triangle" class="fa fa-exclamation-triangle" />
+        <div v-if="allowMultiple || playersStore.hasFeature(role, 'bag-duplicate')" class="buttons">
+          <font-awesome-icon icon="minus-circle" @click.stop="role.selected--" />
           <span>{{ role.selected > 1 ? "x" + role.selected : "" }}</span>
-          <font-awesome-icon
-            icon="plus-circle"
-            class="fa fa-plus-circle"
-            @click.stop="role.selected++"
-          />
+          <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="role.selected++" />
         </div>
       </li>
     </ul>
     <ul class="tokens">
-      <li
-        v-for="role in fabledWithSetup"
-        :key="role.id"
-        :class="['fabled', 'selected']"
-      >
+      <li v-for="role in fabledWithSetup" :key="role.id" :class="['fabled', 'selected']">
         <Token :role="role" />
-        <font-awesome-icon
-          icon="exclamation-triangle"
-          class="fa fa-exclamation-triangle"
-        />
+        <font-awesome-icon icon="exclamation-triangle" class="fa fa-exclamation-triangle" />
       </li>
     </ul>
     <div v-if="hasSelectedSetupRoles || fabledWithSetup.length" class="warning">
-      <font-awesome-icon
-        icon="exclamation-triangle"
-        class="fa fa-exclamation-triangle"
-      />
+      <font-awesome-icon icon="exclamation-triangle" class="fa fa-exclamation-triangle" />
       <span>{{ t("modal.roles.warning") }}</span>
     </div>
     <label class="multiple" :class="{ checked: allowMultiple }">
@@ -66,13 +37,9 @@
       {{ t("modal.roles.allowMultiple") }}
     </label>
     <div class="button-group">
-      <button
-        class="button"
-        :class="{
-          disabled: selectedRoles > nontravelers || !selectedRoles,
-        }"
-        @click="assignRoles"
-      >
+      <button class="button" :class="{
+        disabled: selectedRoles > nontravelers || !selectedRoles,
+      }" @click="assignRoles">
         <font-awesome-icon icon="people-arrows" class="fa fa-people-arrows" />
         {{
           t("modal.roles.assignStart") +
@@ -156,10 +123,10 @@ const selectRandomRoles = () => {
   roleSelection.value = {};
   roles.value.forEach((role: Role) => {
     const selectableRole: SelectableRole = { ...role, selected: 0 };
-    if (!roleSelection.value[role.team || "unknown"]) {
-      roleSelection.value[role.team || "unknown"] = [];
+    if (!roleSelection.value[role?.team || "unknown"]) {
+      roleSelection.value[role?.team || "unknown"] = [];
     }
-    roleSelection.value[role.team || "unknown"]?.push(selectableRole);
+    roleSelection.value[role?.team || "unknown"]?.push(selectableRole);
   });
   delete roleSelection.value["traveler"];
   if (composition.value) {
@@ -183,19 +150,17 @@ const assignRoles = () => {
   if (selectedRoles.value <= nontravelers.value && selectedRoles.value) {
     // generate list of selected roles and randomize it
     const roles = Object.values(roleSelection.value)
-      .map((roles: SelectableRole[]) =>
+      .flatMap((roles: SelectableRole[]) =>
         roles
           // duplicate roles selected more than once and filter unselected
           .reduce(
             (a: SelectableRole[], r: SelectableRole) => [
               ...a,
-              ...Array(r.selected).fill(r),
+              ...new Array(r.selected).fill(r),
             ],
             [],
           ),
       )
-      // flatten into a single array
-      .reduce((a: SelectableRole[], b: SelectableRole[]) => [...a, ...b], [])
       .map(
         (a: SelectableRole) => [Math.random(), a] as [number, SelectableRole],
       )
@@ -261,6 +226,7 @@ ul.tokens {
         0 0 10px var(--townsfolk),
         0 0 10px #004cff;
     }
+
     &.outsider {
       box-shadow:
         0 0 10px var(--outsider),
@@ -305,6 +271,7 @@ ul.tokens {
     .fa-exclamation-triangle {
       position: absolute;
       color: red;
+      text-shadow: 0 0 2px black;
       filter: drop-shadow(0 0 3px black) drop-shadow(0 0 3px black);
       top: 5px;
       right: -5px;
@@ -333,6 +300,7 @@ ul.tokens {
         &:hover {
           opacity: 1;
           color: red;
+          text-shadow: 0 0 2px black;
         }
       }
     }
@@ -383,6 +351,7 @@ ul.tokens {
     &.checked,
     &:hover {
       color: red;
+      text-shadow: 0 0 2px black;
     }
 
     svg {
@@ -396,6 +365,7 @@ ul.tokens {
 
   .warning {
     color: red;
+    text-shadow: 0 0 2px black;
     position: absolute;
     bottom: 20px;
     right: 20px;
@@ -413,7 +383,8 @@ ul.tokens {
       right: -20px;
       bottom: 30px;
       width: 420px;
-      background: rgba(0, 0, 0, 0.75);
+      background: var(--background-color);
+      backdrop-filter: blur(3px);
       padding: 5px;
       border-radius: 10px;
       border: 2px solid black;
