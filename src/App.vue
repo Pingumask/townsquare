@@ -5,7 +5,7 @@
   }" :style="{
     backgroundImage: `url('${background}')`,
     backgroundColor: `${backgroundColor}`,
-  }" @keyup="keyup" @keyup.space="space">
+  }" @keyup="keyup">
     <video v-if="background && background.match(/\.(mp4|webm)$/i)" id="background" :src="background" autoplay loop
       tabindex="-1" aria-hidden="true" aria-label="Decorative background video">
       <track kind="captions" src="" default
@@ -148,6 +148,9 @@ function keyup(event: KeyboardEvent) {
       break;
     case "q":
       userPreferences.notes.opened = !userPreferences.notes.opened;
+      break;
+    case " ":
+      space();
       break;
   }
 }

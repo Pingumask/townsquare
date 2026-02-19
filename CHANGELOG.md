@@ -7,6 +7,7 @@
 - Fixes:
   - Sounds during a vote have been changed to be less disturbing
   - Host refreshing the page during a game with custom character does not give a blank screen anymore (but still requires reloading the script. Additional fix needed to fix completely the issue)
+  - Avoid raising hand when pressing space in an input field
 - Localization:
 
 - Maintenance:

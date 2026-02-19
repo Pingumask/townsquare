@@ -452,6 +452,7 @@ const vote = (vote: boolean): boolean => {
 
 const toggleVote = (event: KeyboardEvent) => {
   if (!canVote.value) return;
+  if (event.key !== " ") return;
   const target = event.target as HTMLElement;
   if (['INPUT', 'TEXTAREA'].includes(target.tagName) || target.isContentEditable) return;
   const index = players.value.findIndex((p: Player) => p.id === session.playerId);
