@@ -159,7 +159,7 @@ export const useGrimoireStore = defineStore("grimoire", {
       );
 
       this.roles.forEach((role: Role) => {
-        this.roles.set(role.id, this.rolesJSONbyId.get(role.id) as Role);
+        this.roles.set(role?.id, this.rolesJSONbyId.get(role?.id) as Role);
       });
 
       this.jinxes = new Map<string, Map<string, string>>();

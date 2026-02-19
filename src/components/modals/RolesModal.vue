@@ -123,10 +123,10 @@ const selectRandomRoles = () => {
   roleSelection.value = {};
   roles.value.forEach((role: Role) => {
     const selectableRole: SelectableRole = { ...role, selected: 0 };
-    if (!roleSelection.value[role.team || "unknown"]) {
-      roleSelection.value[role.team || "unknown"] = [];
+    if (!roleSelection.value[role?.team || "unknown"]) {
+      roleSelection.value[role?.team || "unknown"] = [];
     }
-    roleSelection.value[role.team || "unknown"]?.push(selectableRole);
+    roleSelection.value[role?.team || "unknown"]?.push(selectableRole);
   });
   delete roleSelection.value["traveler"];
   if (composition.value) {
