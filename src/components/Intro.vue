@@ -34,8 +34,9 @@ const t = locale.t;
   font-size: clamp(16px, calc(-1.1429rem + 4.2857vw), 28px);
   position: absolute;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.5);
-  border: 3px solid black;
+  background: var(--background-color);
+  backdrop-filter: blur(3px);
+  border: 3px solid var(--border-color);
   border-radius: 10px;
   z-index: 3;
   display: flex;
@@ -52,12 +53,14 @@ const t = locale.t;
     top: 100%;
     margin-top: 2vh;
     padding: 10px;
-    background: rgba(0, 0, 0, 0.5);
-    border: 3px solid black;
+    background: var(--background-color);
+    backdrop-filter: blur(3px);
+    border: 3px solid var(--border-color);
     border-radius: 10px;
 
     &:hover {
       color: red;
+      text-shadow: 0 0 2px black;
     }
 
     img {
@@ -76,7 +79,7 @@ const t = locale.t;
     max-width: 192px;
     border-radius: 50%;
     box-shadow: 0 0 10px black;
-    border: 3px solid black;
+    border: 3px solid var(--border-color);
   }
 
   .footer {

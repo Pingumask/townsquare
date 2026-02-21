@@ -6,6 +6,7 @@ interface PlayersMenuState {
   movePlayer: boolean;
   swapPlayers: boolean;
   removePlayer: boolean;
+  emptySeat: boolean;
   swapAlignment: boolean;
   specialVote: boolean;
 }
@@ -17,6 +18,7 @@ export const usePlayersMenuStore = defineStore("playersMenu", {
     movePlayer: true,
     swapPlayers: true,
     removePlayer: true,
+    emptySeat: true,
     swapAlignment: true,
     specialVote: true,
   }),

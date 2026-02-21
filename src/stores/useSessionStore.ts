@@ -139,6 +139,15 @@ export const useSessionStore = defineStore("session", {
       }
     },
   },
+  getters: {
+    currentPlayerName(): string {
+      const locale = useLocaleStore();
+      const playersStore = usePlayersStore();
+      const t = locale.t;
+      if (!this.isPlayerOrSpectator) return t('chat.host');
+      return playersStore.players[playersStore.currentPlayerIndex]?.name || "_YOU_";
+    }
+  },
   persist: [
     {
       key: "playerId",

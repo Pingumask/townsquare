@@ -11,8 +11,15 @@
         move: move > -1,
         nominate: nominate > -1,
       }" @trigger="handleTrigger(index, $event)" />
+      <div class="animations">
+        <div v-for="anim in animationStore.animations" :key="anim.id" class="animation"
+          :style="getAnimationStyle(anim)">
+          {{ anim.emoji }}
+        </div>
+      </div>
     </ul>
     <Bluffs @open-role-modal="openRoleModal" />
+    <PlayerChat />
     <SideMenu />
     <Npcs />
     <ReminderModal :player-index="selectedPlayer" />
@@ -22,7 +29,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { Bluffs, Npcs, ReminderModal, RoleModal, Seat, SideMenu } from '@/components';
+import { Bluffs, Npcs, PlayerChat, ReminderModal, RoleModal, Seat, SideMenu } from '@/components';
 import {
   useGrimoireStore,
   useLocaleStore,
@@ -31,7 +38,9 @@ import {
   useSessionStore,
   useUserPreferencesStore,
   useVotingStore,
+  useAnimationStore,
 } from "@/stores";
+import type { Animation } from "@/stores/useAnimationStore";
 import type { Player } from "@/types";
 
 const grimoire = useGrimoireStore();
@@ -42,6 +51,7 @@ const playersMenuStore = usePlayersMenuStore();
 const session = useSessionStore();
 const userPreferences = useUserPreferencesStore();
 const votingStore = useVotingStore();
+const animationStore = useAnimationStore();
 
 const players = computed(() => playersStore.players);
 
@@ -123,6 +133,26 @@ const removePlayer = (playerIndex: number) => {
     }
   }
   playersStore.remove(playerIndex);
+};
+
+const getSeatPosition = (index: number, total: number) => {
+  const angle = (index / total) * 2 * Math.PI - Math.PI / 2;
+  const radius = 47.5;
+  const x = radius * Math.cos(angle);
+  const y = radius * Math.sin(angle);
+  return { x, y };
+};
+
+const getAnimationStyle = (anim: Animation) => {
+  const total = players.value.length;
+  const fromPos = getSeatPosition(anim.from, total);
+  const toPos = getSeatPosition(anim.to, total);
+  return {
+    left: `calc(50% + ${fromPos.x}vmin)`,
+    top: `calc(50% + ${fromPos.y}vmin)`,
+    '--to-x': `${toPos.x - fromPos.x}vmin`,
+    '--to-y': `${toPos.y - fromPos.y}vmin`,
+  };
 };
 
 const swapPlayer = (from: number, to?: Player) => {
@@ -242,6 +272,7 @@ const nominatePlayer = (from: number, to?: Player) => {
   height: 95vmin;
   list-style: none;
   margin: 0;
+  position: relative;
 
   >li {
     position: absolute;
@@ -429,9 +460,10 @@ const nominatePlayer = (from: number, to?: Player) => {
     top: 10px;
   }
 
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--background-color);
+  backdrop-filter: blur(3px);
   border-radius: 10px;
-  border: 3px solid black;
+  border: 3px solid var(--border-color);
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
   transform-origin: bottom left;
   transform: scale(1);
@@ -447,6 +479,7 @@ const nominatePlayer = (from: number, to?: Player) => {
 
     &:hover {
       color: red;
+      text-shadow: 0 0 2px black;
     }
   }
 
@@ -599,9 +632,10 @@ const nominatePlayer = (from: number, to?: Player) => {
     width: 350px;
     z-index: 25;
     font-size: 70%;
-    background: rgba(0, 0, 0, 0.5);
+    background: var(--background-color);
+    backdrop-filter: blur(3px);
     border-radius: 10px;
-    border: 3px solid black;
+    border: 3px solid var(--border-color);
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
     text-align: left;
     align-items: center;
@@ -669,7 +703,7 @@ const nominatePlayer = (from: number, to?: Player) => {
     max-width: 40px;
     max-height: 40px;
     border-radius: 50%;
-    border: 3px solid black;
+    border: 3px solid var(--border-color);
     filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.5));
     font-weight: bold;
     opacity: 1;
@@ -715,5 +749,33 @@ const nominatePlayer = (from: number, to?: Player) => {
 
 #townsquare:not(.spectator) .fabled ul li:hover .token:before {
   opacity: 1;
+}
+
+.animations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.animation {
+  position: absolute;
+  font-size: 2em;
+  animation: fly 2s ease-in-out forwards;
+  z-index: 100;
+}
+
+@keyframes fly {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--to-x), var(--to-y)) scale(0.5);
+    opacity: 0;
+  }
 }
 </style>

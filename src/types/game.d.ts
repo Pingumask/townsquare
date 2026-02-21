@@ -36,11 +36,14 @@ interface TimerDurations {
 export interface Edition {
   id: string;
   name: string;
+  version?: string;
   author?: string;
   logo?: string;
   background?: string;
   isOfficial?: boolean;
   roles?: string[];
+  bootlegger?: string[];
+  stormcaught?: string;
 }
 
 // Gradient for UI
@@ -69,4 +72,15 @@ export type Modals =
   | "roles"
   | "voteHistory"
   | "specialVote"
+  | "notes"
   | null;
+
+export interface Position {
+  x: number;
+  y: number;
+}
+
+export interface Sizing {
+  width: number;
+  height: number;
+}

@@ -126,6 +126,7 @@ const t = locale.t;
 
   &:hover {
     color: red;
+    text-shadow: 0 0 2px black;
   }
 }
 
@@ -143,6 +144,7 @@ const t = locale.t;
 
   &:hover {
     color: red;
+    text-shadow: 0 0 2px black;
     cursor: pointer;
   }
 }

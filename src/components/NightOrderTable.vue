@@ -2,6 +2,8 @@
   <ul :class="nightType">
     <li class="headline">
       {{ nightType === 'firstNight' ? t('modal.nightOrder.firstNight') : t('modal.nightOrder.otherNights') }}
+      <font-awesome-icon :icon="preferences.hideOutOfPlay ? 'filter' : 'filter-circle-xmark'"
+        @click="preferences.hideOutOfPlay = !preferences.hideOutOfPlay" />
     </li>
     <li v-for="role in roles" :key="role.id" :class="[role.team]">
       <span v-if="nightType === 'otherNight' && role.id && role.id != 'empty'" class="icon" :class="role.team">
@@ -9,9 +11,11 @@
       </span>
       <span class="name">
         {{ role.name }}
+        <br>
         <span v-if="role.players.length" class="player">
-          <br>
-          <small v-for="(player, index) in role.players" :key="index" :class="{ dead: player.isDead }">
+          <small v-for="(player, index) in role.players" :key="index" :class="{ dead: player.isDead }"
+            :role="chatStore.activeTab === 'host' && !session.isPlayerOrSpectator ? 'button' : ''"
+            @click="chatStore.targetPlayer = player.id">
             {{ player.name + (role.players.length > index + 1 ? "," : "") }}
           </small>
         </span>
@@ -21,7 +25,6 @@
           players.length &&
           players[0]?.role?.id
         " class="player">
-          <br>
           <small />
         </span>
       </span>
@@ -43,7 +46,14 @@ import { computed } from "vue";
 
 import { RoleIcon } from '@/components';
 import type { NightOrderRole, Player, Role } from "@/types";
-import { useGrimoireStore, useLocaleStore, usePlayersStore, useSessionStore } from "@/stores";
+import {
+  useChatStore,
+  useGrimoireStore,
+  useLocaleStore,
+  usePlayersStore,
+  useSessionStore,
+  useUserPreferencesStore
+} from "@/stores";
 
 interface Props {
   nightType: 'firstNight' | 'otherNight';
@@ -51,11 +61,15 @@ interface Props {
 
 const props = defineProps<Props>();
 
+const chatStore = useChatStore();
 const grimoire = useGrimoireStore();
 const locale = useLocaleStore();
 const t = locale.t;
 const playersStore = usePlayersStore();
 const session = useSessionStore();
+const preferences = useUserPreferencesStore();
+
+const displayOutOfPlay = computed(() => preferences.hideOutOfPlay ? 'none' : 'flex');
 
 const edition = computed(() => grimoire.edition);
 const fabled = computed(() => playersStore.fabled);
@@ -168,7 +182,7 @@ const roles = computed(() => {
       {
         id: "minion",
         name: t('modal.nightOrder.minionInfo'),
-        firstNight: 12,
+        firstNight: 13,
         team: "minion",
         players: players.value.filter((p: Player) => p.role.team === "minion"),
         firstNightReminder: t('modal.nightOrder.minionInfoDescription'),
@@ -177,7 +191,7 @@ const roles = computed(() => {
       {
         id: "demon",
         name: t('modal.nightOrder.demonInfo'),
-        firstNight: 18,
+        firstNight: 19,
         team: "demon",
         players: players.value.filter((p: Player) => p.role.team === "demon"),
         firstNightReminder: t('modal.nightOrder.demonInfoDescription'),
@@ -280,6 +294,10 @@ ul {
       }
     }
 
+    &:not(:has(small)) {
+      display: v-bind(displayOutOfPlay);
+    }
+
     .name {
       flex-grow: 1;
       flex-shrink: 0;
@@ -305,9 +323,9 @@ ul {
       bottom: 10%;
       width: 40vw;
       z-index: 25;
-      background: rgba(0, 0, 0, 0.75);
+      background: #000a;
       border-radius: 10px;
-      border: 3px solid black;
+      border: 3px solid var(--border-color);
       filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
       text-align: left;
       pointer-events: none;

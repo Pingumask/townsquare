@@ -1,10 +1,11 @@
 import { defineStore } from "pinia";
-import type { TimerDurations } from "@/types";
+import type { Position, Sizing, TimerDurations } from "@/types";
 
 interface UserPreferencesState {
   orderBubblesAsPlayer: boolean;
   orderBubblesAsHost: boolean;
   hideGrim: boolean;
+  hideOutOfPlay: boolean;
   isMenuOpen: boolean;
   isStatic: boolean;
   isMuted: boolean;
@@ -12,6 +13,15 @@ interface UserPreferencesState {
   isStreamerMode: boolean;
   zoom: number;
   background: string;
+  notes: {
+    content: string;
+    opened: boolean;
+    position: Position;
+    sizing: Sizing;
+  };
+  chat: {
+    position: Position;
+  }
   timerDurations: TimerDurations;
 }
 
@@ -20,6 +30,7 @@ export const useUserPreferencesStore = defineStore("userPreferences", {
     orderBubblesAsPlayer: false,
     orderBubblesAsHost: true,
     hideGrim: false,
+    hideOutOfPlay: false,
     isMenuOpen: false,
     isStatic: false,
     isMuted: false,
@@ -27,6 +38,24 @@ export const useUserPreferencesStore = defineStore("userPreferences", {
     isStreamerMode: false,
     zoom: 0,
     background: "",
+    notes: {
+      content: "",
+      opened: false,
+      position: {
+        x: 10,
+        y: 100,
+      },
+      sizing: {
+        width: 400,
+        height: 300,
+      }
+    },
+    chat: {
+      position: {
+        x: 10,
+        y: 250,
+      }
+    },
     timerDurations: {
       daytime: 6,
       nominations: 2,

@@ -6,9 +6,13 @@
       <font-awesome-icon icon="plus-circle" class="fa fa-plus-circle" @click.stop="toggleSideMenu" />
       <span>
         {{ t(`townsquare.gamephase.${grimoire.gamePhase}`) }}
-        <span v-if="grimoire.gamePhase === 'day' || grimoire.gamePhase === 'otherNight'">
+        <div v-if="grimoire.gamePhase === 'day' || grimoire.gamePhase === 'otherNight'" id="daycounter">
+          <font-awesome-icon v-if="!session.isPlayerOrSpectator && grimoire.dayCount > 1" icon="fa-minus-circle"
+            @click="dayDown()" />
           {{ grimoire.dayCount }}
-        </span>
+          <font-awesome-icon v-if="!session.isPlayerOrSpectator" icon="fa-plus-circle"
+            @click="grimoire.setDayCount(grimoire.dayCount + 1);" />
+        </div>
       </span>
     </h3>
     <div class="content">
@@ -35,7 +39,7 @@
             <font-awesome-icon icon="ranking-star" />
           </button>
         </div>
-        <div v-if="grimoire.gamePhase !== 'pregame' && grimoire.gamePhase !== 'postgame'" class="button-group">
+        <div v-if="grimoire.gamePhase !== 'pregame'" class="button-group">
           <button :title="t('sound.ringing')" @click="soundboard.playSound({ sound: 'ringing' })">
             <font-awesome-icon :icon="['fas', 'bell']" />
           </button>
@@ -44,6 +48,12 @@
           </button>
           <button :title="t('sound.gavel')" @click="soundboard.playSound({ sound: 'gavel' })">
             <font-awesome-icon :icon="['fas', 'gavel']" />
+          </button>
+          <button :title="t('sound.death')" @click="soundboard.playSound({ sound: 'death' })">
+            🪦
+          </button>
+          <button :title="t('sound.drumRoll')" @click="soundboard.playSound({ sound: 'drumRoll' })">
+            🥁
           </button>
         </div>
         <div v-if="grimoire.gamePhase !== 'pregame' && grimoire.gamePhase !== 'postgame'" class="button-group">
@@ -127,10 +137,21 @@
             </button>
           </div>
         </div>
+        <div v-if="grimoire.gamePhase === 'postgame'">
+          <h4>{{ t('postgame.announceWinner') }}</h4>
+          <div class="button-group">
+            <div class="button townsfolk" @click="grimoire.announceWinner('good')">
+              {{ t('postgame.good') }}
+            </div>
+            <div class="button demon" @click="grimoire.announceWinner('evil')">
+              {{ t('postgame.evil') }}
+            </div>
+          </div>
+        </div>
       </div>
       <div v-if="grimoire.gamePhase === 'firstNight' || grimoire.gamePhase === 'otherNight'"
         class="night-order-container">
-        <div v-if="grimoire.gamePhase === 'firstNight'" class="button-group">
+        <div v-if="grimoire.gamePhase === 'firstNight' && !session.isPlayerOrSpectator" class="button-group">
           <button @click="playersStore.distributeRolesAction()">
             {{ t('menu.sendRoles') }}
           </button>
@@ -369,6 +390,14 @@ const stopTimer = () => {
     clearTimeout(timerEnder.value);
   }
 };
+
+const dayDown = () => {
+  grimoire.setDayCount(grimoire.dayCount - 1);
+  if (grimoire.gamePhase === "otherNight" && grimoire.dayCount === 1) {
+    grimoire.setGamePhase("firstNight");
+  }
+}
+
 </script>
 
 <style scoped lang="scss">
@@ -387,7 +416,7 @@ const stopTimer = () => {
     }
 
     &::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.3);
+      background: var(--background-color);
       border-radius: 4px;
     }
 
@@ -401,14 +430,14 @@ const stopTimer = () => {
     }
   }
 
-
   bottom: 10px;
   left: auto;
   right: 10px;
   width: min-content;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--background-color);
+  backdrop-filter: blur(3px);
   border-radius: 10px;
-  border: 3px solid black;
+  border: 3px solid var(--border-color);
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
   transform-origin: bottom left;
   transform: scale(1);
@@ -473,6 +502,23 @@ const stopTimer = () => {
       scale: 0;
     }
   }
+
+  #daycounter {
+    display: inline-block;
+
+    svg {
+      height: 1rem;
+      opacity: 0;
+    }
+
+    &:hover svg {
+      opacity: 1;
+    }
+  }
+}
+
+h4 {
+  text-align: center;
 }
 </style>
 

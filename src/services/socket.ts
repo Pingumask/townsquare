@@ -1,13 +1,17 @@
 import { watch } from "vue";
 import {
+  useAnimationStore,
+  useChatStore,
   useGrimoireStore,
+  useLocaleStore,
   usePlayersStore,
   useSessionStore,
-  useLocaleStore,
   useSoundboardStore,
   useVotingStore,
 } from "@/stores";
 import type {
+  ChatChannel,
+  ChatMessage,
   Edition,
   GamePhase,
   JukeboxSound,
@@ -66,7 +70,7 @@ export class LiveSession {
         } else {
           this.disconnect();
         }
-      },
+      }
     );
 
     watch(
@@ -75,7 +79,7 @@ export class LiveSession {
         if (!this._isPlayerOrSpectator) {
           this.send("locale", newLocale);
         }
-      },
+      }
     );
   }
 
@@ -89,9 +93,9 @@ export class LiveSession {
     this.disconnect();
     this._socket = new WebSocket(
       this._wss +
-        channel +
-        "/" +
-        (this._isPlayerOrSpectator ? sessionStore.playerId : "host"),
+      channel +
+      "/" +
+      (this._isPlayerOrSpectator ? sessionStore.playerId : "host")
     );
     this._socket.addEventListener("message", this._handleMessage.bind(this));
     this._socket.onopen = this._onOpen.bind(this);
@@ -107,13 +111,13 @@ export class LiveSession {
         sessionStore.setReconnecting(true);
         this._reconnectTimer = setTimeout(
           () => this.connect(channel),
-          3 * 1000,
+          3 * 1000
         );
       }
     };
   }
 
-  send(command: SocketCommands, params: unknown) {
+  send(command: SocketCommands, params: unknown = null) {
     if (this._socket?.readyState === 1) {
       this._socket.send(JSON.stringify([command, params]));
     }
@@ -122,7 +126,7 @@ export class LiveSession {
   _sendDirect(
     playerId: string | undefined | null,
     command: SocketCommands,
-    params: unknown,
+    params: unknown
   ) {
     if (playerId) {
       this.send("direct", { [playerId]: [command, params] });
@@ -155,6 +159,7 @@ export class LiveSession {
   }
 
   async _handleMessage({ data }: MessageEvent) {
+    const chatStore = useChatStore();
     const grimoire = useGrimoireStore();
     const localeStore = useLocaleStore();
     const playersStore = usePlayersStore();
@@ -178,12 +183,12 @@ export class LiveSession {
           params as {
             edition: Edition;
             roles?: Array<Role>;
-          },
+          }
         );
         break;
       case "fabled":
         this._updateFabled(
-          params as Array<Role | { id: string; isCustom?: boolean }>,
+          params as Array<Role | { id: string; isCustom?: boolean }>
         );
         break;
       case "gs":
@@ -195,7 +200,7 @@ export class LiveSession {
             index: number;
             property: keyof Player;
             value: unknown;
-          },
+          }
         );
         break;
       case "claim":
@@ -203,7 +208,7 @@ export class LiveSession {
         break;
       case "ping":
         this._handlePing(
-          params as [(number | undefined)?, unknown?] | undefined,
+          params as [(number | undefined)?, unknown?] | undefined
         );
         break;
       case "nomination":
@@ -225,9 +230,16 @@ export class LiveSession {
         if (!this._isPlayerOrSpectator) return;
         votingStore.setMarkedPlayer(params as number);
         break;
+      case "newGame":
+        grimoire.newGame();
+        break;
       case "gamePhase":
         if (!this._isPlayerOrSpectator) return;
         grimoire.setGamePhase(params as GamePhase);
+        break;
+      case "annouceWinner":
+        if (!this._isPlayerOrSpectator) return;
+        grimoire.announceWinner(params as string);
         break;
       case "dayCount":
         if (!this._isPlayerOrSpectator) return;
@@ -241,6 +253,17 @@ export class LiveSession {
       case "isSecretVote":
         if (!this._isPlayerOrSpectator) return;
         grimoire.setSecretVote(params as boolean);
+        break;
+      case "isTextChatAllowed":
+        if (!this._isPlayerOrSpectator) return;
+        grimoire.setAllowTextChat(params as boolean);
+        break;
+      case "isWhisperAllowed":
+        if (!this._isPlayerOrSpectator) return;
+        grimoire.setAllowWhisper(params as boolean);
+        break;
+      case "chatActivity":
+        this._handleChatActivity(params as { from: string; to: string });
         break;
       case "playSound":
         if (!this._isPlayerOrSpectator) return;
@@ -258,6 +281,9 @@ export class LiveSession {
       case "votingSpeed":
         if (!this._isPlayerOrSpectator) return;
         votingStore.setVotingSpeed(params as number);
+        break;
+      case "clearChat":
+        chatStore.clearMessages();
         break;
       case "clearRoles":
         playersStore.clearRoles(true);
@@ -284,11 +310,20 @@ export class LiveSession {
       case "name":
         this._updatePlayerName(params as [number, string]);
         break;
+      case "handRaised":
+        this._updatePlayerHand(params as [number, boolean]);
+        break;
       case "locale":
         localeStore.forceLocale(params as string);
         break;
       case "voteHistory":
         votingStore.setVoteHistory(params as VoteHistoryEntry[]);
+        break;
+      case "chat":
+        this._handleChat(params as ChatMessage);
+        break;
+      case "globalChat":
+        this._handleGlobalChat(params as ChatMessage);
         break;
     }
   }
@@ -374,13 +409,14 @@ export class LiveSession {
         allowSelfNaming: grimoireStore.allowSelfNaming,
         isVoteHistoryAllowed: grimoireStore.isVoteHistoryAllowed,
         isSecretVoteMode: grimoireStore.isSecretVote,
+        isTextChatAllowed: grimoireStore.isTextChatAllowed,
         nomination: votingStore.nomination,
         votingSpeed: votingStore.votingSpeed,
         lockedVote: votingStore.lockedVote,
         isVoteInProgress: votingStore.isVoteInProgress,
         markedPlayer: votingStore.markedPlayer,
         fabled: playersStore.fabled.map((f: Role) =>
-          f.isCustom ? f : { id: f.id },
+          f.isCustom ? f : { id: f.id }
         ),
         ...(votingStore.nomination ? { votes: votingStore.votes } : {}),
         voteHistory,
@@ -404,6 +440,7 @@ export class LiveSession {
       allowSelfNaming,
       isVoteHistoryAllowed,
       isSecretVoteMode,
+      isTextChatAllowed,
       timer,
       nomination,
       votingSpeed,
@@ -429,6 +466,7 @@ export class LiveSession {
       allowSelfNaming?: boolean;
       isVoteHistoryAllowed?: boolean;
       isSecretVoteMode?: boolean;
+      isTextChatAllowed?: boolean;
       timer?: { name?: string; duration?: number };
       nomination: Nomination | null;
       votingSpeed?: number;
@@ -469,7 +507,7 @@ export class LiveSession {
           ) {
             playersStore.update({ player, property, value });
           }
-        },
+        }
       );
       if (player && roleId && player.role.id !== roleId) {
         const role =
@@ -494,6 +532,7 @@ export class LiveSession {
       grimoireStore.setAllowSelfNaming(!!allowSelfNaming);
       grimoireStore.setVoteHistoryAllowed(!!isVoteHistoryAllowed);
       grimoireStore.setSecretVote(!!isSecretVoteMode);
+      grimoireStore.setAllowTextChat(!!isTextChatAllowed);
       votingStore.updateNomination({
         nomination,
         votes: votes || [],
@@ -517,8 +556,8 @@ export class LiveSession {
     const { edition } = grimoireStore;
     let roles;
     if (edition && !edition.isOfficial) {
-      roles = Array.from<Role>(grimoireStore.roles.values()).map(
-        (role: Role) => (role.isCustom ? role : { id: role.id }),
+      roles = Array.from<Role>(grimoireStore.roles.values()).map((role: Role) =>
+        role?.isCustom ? role : { id: role?.id }
       );
     }
     this._sendDirect(playerId, "edition", {
@@ -548,8 +587,8 @@ export class LiveSession {
         });
         alert(
           `This session contains custom characters that can't be found. ` +
-            `Please load them before joining! ` +
-            `Missing roles: ${missing.join(", ")}`,
+          `Please load them before joining! ` +
+          `Missing roles: ${missing.join(", ")}`
         );
         this.disconnect();
       }
@@ -607,6 +646,19 @@ export class LiveSession {
     });
   }
 
+  _updatePlayerHand([index, value]: [number, boolean]) {
+    const playersStore = usePlayersStore();
+    const player = playersStore.players[index];
+    if (!player) return;
+
+    playersStore.update({
+      player,
+      property: "handRaised",
+      value,
+      isFromSocket: true,
+    });
+  }
+
   _cleanupDisconnectedPlayers(now: number) {
     const playersStore = usePlayersStore();
 
@@ -634,7 +686,7 @@ export class LiveSession {
 
   _handlePing([playerIdOrCount = 0, latency]: [
     (number | undefined)?,
-    unknown?,
+    unknown?
   ] = []) {
     const sessionStore = useSessionStore();
 
@@ -650,7 +702,7 @@ export class LiveSession {
           this._pings[playerIdOrCount] = ping;
           const pings = Object.values(this._pings);
           sessionStore.setPing(
-            Math.round(pings.reduce((a, b) => a + b, 0) / pings.length),
+            Math.round(pings.reduce((a, b) => a + b, 0) / pings.length)
           );
         }
       }
@@ -672,7 +724,7 @@ export class LiveSession {
     if (this._isPlayerOrSpectator) return;
     delete this._players[playerId];
     delete this._pings[playerId];
-    const player = playersStore.players.find((p: Player) => p.id === playerId);
+    const player = playersStore.getById(playerId);
     if (player) {
       playersStore.update({
         player,
@@ -688,7 +740,7 @@ export class LiveSession {
     const player = playersStore.players[seatIndex];
     // check if player is already seated
     const oldSeat = playersStore.players.findIndex(
-      (p: Player) => p.id === playerId,
+      (p: Player) => p.id === playerId
     );
     console.log("switched from seat ", oldSeat, "to seat", seatIndex);
     if (oldSeat > -1 && oldSeat !== seatIndex) {
@@ -717,7 +769,7 @@ export class LiveSession {
       (index -
         1 +
         playerCount -
-        (typeof votingStore.nomination?.nominee == "number"
+        (typeof votingStore.nomination?.nominee === "number"
           ? votingStore.nomination.nominee
           : (votingStore.nomination?.nominator as number) || 0)) %
       playerCount;
@@ -734,7 +786,7 @@ export class LiveSession {
     if (seatIndex > 1) {
       const { lockedVote, nomination, votes } = votingStore;
       const index =
-        ((typeof nomination?.nominee == "number"
+        ((typeof nomination?.nominee === "number"
           ? nomination.nominee
           : (nomination?.nominator as number) || 0) +
           lockedVote -
@@ -753,6 +805,58 @@ export class LiveSession {
     votingStore.updateNomination({
       nomination: params,
     });
+  }
+
+  _handleChat(params: ChatMessage) {
+    const chatStore = useChatStore();
+    const playersStore = usePlayersStore();
+    const session = useSessionStore();
+
+    const chatData = params;
+    const senderId = chatData.fromId;
+
+    const leftNeighborId = playersStore.leftNeighbor?.id;
+
+    const rightNeighborId = playersStore.rightNeighbor?.id;
+
+    let messageTab: ChatChannel | null = null;
+    if (leftNeighborId === senderId) {
+      messageTab = "left";
+    } else if (rightNeighborId === senderId) {
+      messageTab = "right";
+    } else if (params.toId === "host" && !session.isPlayerOrSpectator || params.fromId === "host") {
+      messageTab = "host";
+    } else if (!session.isPlayerOrSpectator) {
+      messageTab = "whispers";
+    }
+
+    if (messageTab) {
+      chatStore.receiveMessage(chatData, messageTab);
+    } else {
+      console.warn("[Chat] Message from unknown neighbor:", senderId);
+    }
+  }
+
+  _handleChatActivity(params: { from: string; to: string }) {
+    const playersStore = usePlayersStore();
+    const animationStore = useAnimationStore();
+
+    const fromPlayer = playersStore.getById(params.from);
+    const toPlayer = playersStore.getById(params.to);
+    if (fromPlayer && toPlayer) {
+      const fromIndex = playersStore.players.indexOf(fromPlayer);
+      const toIndex = playersStore.players.indexOf(toPlayer);
+      animationStore.addAnimation({
+        from: fromIndex,
+        to: toIndex,
+        emoji: "✉️",
+      });
+    }
+  }
+
+  _handleGlobalChat(params: ChatMessage) {
+    const chatStore = useChatStore();
+    chatStore.receiveMessage(params, "global");
   }
 }
 

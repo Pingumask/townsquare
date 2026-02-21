@@ -2,7 +2,8 @@ import { defineStore } from "pinia";
 import { useGrimoireStore } from "@/stores";
 import type { FabledJSON, JinxesJSON, LocaleModule, RolesJSON } from "@/types";
 
-const supportedLanguages = new Set(["en", "fr", "es"]);
+// Please keep languages in alphabetical order
+const supportedLanguages = new Set(["en", "es", "fr"]);
 const MASTER_LANGUAGE = "en";
 
 interface LocaleState {
@@ -55,6 +56,7 @@ export const useLocaleStore = defineStore("locale", {
 
       return result ?? key;
     },
+    supportedLanguages: () => Array.from(supportedLanguages),
   },
 
   actions: {
@@ -97,7 +99,7 @@ export const useLocaleStore = defineStore("locale", {
 
       const m1 = import(`@/locale/${MASTER_LANGUAGE}/ui.json`);
 
-      const [mUi] = await Promise.all([m1]);
+      const mUi = await m1;
 
       this.fallbackLocale = mUi as LocaleModule;
 
@@ -105,6 +107,7 @@ export const useLocaleStore = defineStore("locale", {
     },
 
     async forceLocale(locale: string) {
+      if (!Array.from(supportedLanguages).includes(locale)) return
       this.currentLanguage = locale;
       const p1 = await import(`@/locale/${locale}/ui.json`);
       const p2 = await import(`@/locale/${locale}/roles.json`);

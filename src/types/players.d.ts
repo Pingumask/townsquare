@@ -18,6 +18,7 @@ export interface Player {
   isDead: boolean;
   pronouns: string;
   isMarked?: boolean;
+  handRaised: boolean;
 }
 
 export type Alignment = "good" | "evil" | null | undefined;

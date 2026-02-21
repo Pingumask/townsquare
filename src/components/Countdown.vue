@@ -18,7 +18,7 @@ div {
   width: 100%;
   height: 1.4em;
   border: 2px solid black;
-  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
   position: relative;
   z-index: 0;
   margin-top: 0.3em;
@@ -28,7 +28,8 @@ div::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 0, 0, 0.6);
+  background: rgba(255, 0, 0, 0.8);
+  backdrop-filter: blur(3px);
   z-index: 1;
   animation: forwards countdown calc(var(--timer) * 1s) linear;
 }
@@ -39,6 +40,7 @@ div::after {
   text-align: center;
   content: attr(data-text);
   z-index: 2;
+  backdrop-filter: blur(3px);
   background: linear-gradient(180deg,
       rgba(255, 255, 255, 0) 5%,
       rgba(255, 255, 255, 0.5) 15%,

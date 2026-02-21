@@ -70,12 +70,16 @@
     "setup": false,
     "name": "Violinista",
     "team": "fabled",
+    "special": {
+      "type": "ability",
+      "name": "pointing"
+    },
     "ability": "Una vez por partida, el Demonio elige en secreto a un jugador contrario: todos los jugadores eligen cuál de estos 2 jugadores gana."
   },
   {
     "id": "toymaker",
     "firstNightReminder": "",
-    "otherNight": 31,
+    "otherNight": 33,
     "otherNightReminder": "Si es una noche en la que un ataque del Demonio podría terminar la partida, y el Demonio está marcado como \"Noche final: Sin Ataque\", entonces el Demonio no actúa esta noche. (No lo despiertes).",
     "reminders": [
       "Noche final: Sin Ataque"
@@ -199,7 +203,7 @@
   },
   {
     "id": "stormcatcher",
-    "firstNight": 13,
+    "firstNight": 14,
     "firstNightReminder": "Muestra a cada jugador malvado qué jugador está marcado como \"Seguro\".",
     "otherNightReminder": "",
     "reminders": [
@@ -256,5 +260,33 @@
     "name": "Hindu",
     "team": "loric",
     "ability": "Los primeros 4 jugadores en morir son reencarnados inmediatamente como Viajeros del mismo alineamiento."
+  },
+  {
+    "id": "pope",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": true,
+    "name": "Papa",
+    "team": "loric",
+    "special": {
+      "type": "selection",
+      "name": "good-duplicate"
+    },
+    "ability": "Hay personajes buenos duplicados en juego. Podrían ser faroles."
+  },
+  {
+    "id": "ventriloquist",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": true,
+    "name": "Ventrílocuo",
+    "team": "loric",
+    "ability": "Si un jugador está \u201Cloco\u201D como personaje nuevo durante su nominación, es posible que no muera si es ejecutado hoy."
   }
 ]

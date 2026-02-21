@@ -1,3 +1,4 @@
+export * from "./chat";
 export * from "./data";
 export * from "./game";
 export * from "./jukebox";

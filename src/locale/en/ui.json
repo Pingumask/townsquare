@@ -38,6 +38,8 @@
     "allowVoteHistory": "Public vote History",
     "secretVote": "Hidden Vote",
     "selfNaming": "Allow self-naming",
+    "allowTextChat": "Allow Text Chat",
+    "allowWhisper": "Allow Whispering",
     "leave": "Leave Session",
     "addPlayer": "Add Seat",
     "addPlayers": "Add Seats",
@@ -47,6 +49,7 @@
     "assign": "Choose & Assign",
     "addFabled": "Add Fabled or Loric",
     "clearRoles": "Remove Roles",
+    "clearChat": "Clear chat",
     "reference": "Reference Sheet",
     "nightOrder": "Night Order Sheet",
     "gameState": "Game State JSON",
@@ -55,7 +58,9 @@
     "issues": "Report a bug",
     "request": "Request a feature",
     "newGame": "New Game",
-    "endGame": "End Game"
+    "endGame": "End Game",
+    "notes": "Notes",
+    "language": "Language"
   },
   "head": {
     "title": "Blood on the Clocktower Town Square",
@@ -65,8 +70,7 @@
     "background": "Enter custom background URL",
     "createSession": "Enter a channel number / name for your session",
     "sendRoles": "Do you want to distribute assigned characters to all SEATED players?",
-    "sendRolesWithForbidden1": "WARNING\nAt least one of the roles you want to distribute is a forbidden role (",
-    "sendRolesWithForbidden2": ").\nConfirm the distribution?",
+    "sendForbiddenRoles": "WARNING\nAre you sure you want to send these roles ? The following roles are not meant to be distributed:\n$roles",
     "imageOptIn": "Are you sure you want to allow custom images? A malicious script file author might track your IP address this way.",
     "joinSession": "Enter the channel number / name of the session you want to join",
     "leaveSession": "Are you sure you want to leave the active live game?",
@@ -75,13 +79,15 @@
     "randomizeSeatings": "Are you sure you want to randomize seatings?",
     "clearPlayers": "Are you sure you want to remove all players?",
     "clearRoles": "Are you sure you want to remove all player roles?",
+    "clearAllChat": "Also clear chat for players ?",
     "customUrl": "Enter URL to a custom-script?json file",
     "customError": "Error loading custom script",
     "customNote": "Add a custom reminder node",
     "customScriptName": "Customized script name",
     "defaultScriptName": "Custom Script",
-    "newGame": "Are you sure you want to start a new game ? This will clear all roles, reset day count and go back to pregame phase.",
-    "endGame": "Are you sure you want to end the game ? The post game phase will be available in a future update."
+    "newGame": "Are you sure you want to start a new game ? This will clear all roles, all history, reset day count and go back to pregame phase.",
+    "endGame": "Are you sure you want to end the game ? The post game phase will be available in a future update.",
+    "unseatedVote": "Are you sure you want to start the vote ? The following players are not seated:\n"
   },
   "vote": {
     "nominates": "nominates",
@@ -155,6 +161,14 @@
       "otherNight": "Night",
       "postgame": "Post-game"
     }
+  },
+  "postgame": {
+    "announceWinner": "Announce the winners",
+    "goodWarning": "Are you sure you want to declare the good winners of this game?",
+    "evilWarning": "Are you sure you want to declare the evil winners of this game?",
+    "theWinnersAre": "The winners are ...",
+    "good": "The good",
+    "evil": "The evil"
   },
   "towninfo": {
     "addPlayers": "Please add more players!",
@@ -317,11 +331,28 @@
         "debateText": "The debate is open",
         "buttonLabel": "(Custom)"
       }
+    },
+    "notes": {
+      "title": "Notes",
+      "placeholder": "Type your notes here... (they are only visible to you)"
     }
+  },
+  "chat": {
+    "title": "Chat",
+    "type_message": "Type message...",
+    "send": "Send",
+    "cannotSend": "Cannot send to unseated player",
+    "global": "Townsquare",
+    "host": "Storyteller",
+    "players": "Players",
+    "whispers": "Whispers",
+    "to": "to"
   },
   "sound": {
     "rooster": "Rooster",
     "ringing": "Ring Bell",
-    "gavel": "Hit Gavel"
+    "gavel": "Hit Gavel",
+    "death": "Sound the death knell",
+    "drumRoll": "Roll the drum"
   }
 }

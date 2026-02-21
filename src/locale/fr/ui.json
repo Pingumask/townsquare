@@ -38,6 +38,8 @@
     "allowVoteHistory": "Historique Publique",
     "secretVote": "Vote secret",
     "selfNaming": "Auto-Renommage",
+    "allowTextChat": "Autoriser la messagerie",
+    "allowWhisper": "Autoriser chuchottements",
     "leave": "Quitter Session",
     "addPlayer": "Ajouter un Siège",
     "addPlayers": "Ajouter des Sièges",
@@ -47,6 +49,7 @@
     "assign": "Attribuer les Rôles",
     "addFabled": "Mythes & Légendes",
     "clearRoles": "Effacer les Rôles",
+    "clearChat": "Effacer chat",
     "reference": "Référence des Rôles",
     "nightOrder": "Ordre Nocturne",
     "gameState": "Etat JSON du jeu",
@@ -55,7 +58,9 @@
     "issues": "Signaler un bug",
     "request": "Proposer une fonctionalité",
     "newGame": "Nouvelle partie",
-    "endGame": "Fin de Partie"
+    "endGame": "Fin de Partie",
+    "notes": "Bloc-Notes",
+    "language": "Langue"
   },
   "head": {
     "title": "Grimoire Blood on the Clocktower",
@@ -65,8 +70,7 @@
     "background": "Entrez l'URL de l'image de fond",
     "createSession": "Entrez un nom ou numéro de session",
     "sendRoles": "Voulez-vous envoyer les rôles à tous les joueurs ASSIS ?",
-    "sendRolesWithForbidden1": "ATTENTION\nAu moins l'un des rôles que vous êtes sur le point d'envoyer est un rôle interdit (",
-    "sendRolesWithForbidden2": ").\nConfirmer l'envoi ?",
+    "sendForbiddenRoles": "ATTENTION\nÊtes-vous sûr de vouloir envoyer ces rôles ? Les rôles suivants ne sont pas censés être distribués:\n$roles",
     "imageOptIn": "Êtes-vous sûr de vouloir autoriser les images externes ? Un auteur de script mal intentionné pourrait s'en servir pour traquer votre adresse IP.",
     "joinSession": "Entrez le nom ou numéro de la session que vous souhaitez rejoindre",
     "leaveSession": "Êtes-vous sur de vouloir quitter la partie en cours ?",
@@ -75,13 +79,15 @@
     "randomizeSeatings": "Êtes-vous sur de vouloir mélanger les sièges ?",
     "clearPlayers": "Êtes-vous sur de vouloir supprimer tous les joueurs ?",
     "clearRoles": "Êtes-vous sur de vouloir effacer tous les rôles ?",
+    "clearAllChat": "Effacer aussi le chat des joueurs ?",
     "customUrl": "Entrer l'URL du fichier JSON de personnalisation de script",
     "customError": "Erreur lors du chargement du script",
     "customNote": "Ajouter une note personnalisée",
     "customScriptName": "Nom du scénario personnalisé",
     "defaultScriptName": "Scénario personnalisé",
-    "newGame": "Êtes-vous sûr de vouloir démarrer une nouvelle partie ? Cette action effacera tous les rôles, remettra le compteur de jours à zéro et reviendra à la phase de mise en place.",
-    "endGame": "Êtes-vous sûr de vouloir mettre fin à la partie ? La phase de fin de jeu sera disponible dans une future mise à jour."
+    "newGame": "Êtes-vous sûr de vouloir démarrer une nouvelle partie ? Cette action effacera tous les rôles, tous les historiques, remettra le compteur de jours à zéro et reviendra à la phase de mise en place.",
+    "endGame": "Êtes-vous sûr de vouloir mettre fin à la partie ? La phase de fin de jeu sera disponible dans une future mise à jour.",
+    "unseatedVote": "Êtes-vous sûr de vouloir lancer le vote ? Les joueurs suivants ne sont pas assis :\n"
   },
   "vote": {
     "nominates": "accuse",
@@ -155,6 +161,14 @@
       "otherNight": "Nuit",
       "postgame": "Fin de partie"
     }
+  },
+  "postgame": {
+    "announceWinner": "Annoncer les vainqueurs",
+    "goodWarning": "Êtes-vous sûr de vouloir déclarer les bons vainqueurs de cette partie ?",
+    "evilWarning": "Êtes-vous sûr de vouloir déclarer les mauvais vainqueurs de cette partie ?",
+    "theWinnersAre": "Les vainqueurs sont ...",
+    "good": "Les bons",
+    "evil": "Les mauvais"
   },
   "towninfo": {
     "addPlayers": "Appuyez sur [A] pour ajouter plus de joueurs !",
@@ -318,11 +332,28 @@
         "debateText": "Le débat est ouvert",
         "buttonLabel": "(Personnalisé)"
       }
+    },
+    "notes": {
+      "title": "Notes",
+      "placeholder": "Tapez vos notes ici... (elles ne sont visibles que par vous)"
     }
+  },
+  "chat": {
+    "title": "Chat",
+    "type_message": "Tapez votre message...",
+    "send": "Envoyer",
+    "cannotSend": "Impossible d'envoyer un message à un joueur qui n'est pas assis",
+    "global": "Village",
+    "host": "Conteur",
+    "players": "Joueurs",
+    "whispers": "Chuchottements",
+    "to": "à"
   },
   "sound": {
     "rooster": "Chant du Coq",
     "ringing": "Sonner la Cloche",
-    "gavel": "Frapper le Maillet"
+    "gavel": "Frapper le Maillet",
+    "death": "Sonner le Glas",
+    "drumRoll": "Rouler le tambour"
   }
 }

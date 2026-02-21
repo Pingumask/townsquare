@@ -1,7 +1,7 @@
 <template>
   <div id="controls">
     <span v-show="votingStore.voteHistory.length && session.sessionId" class="nomlog-summary"
-      :title="`${votingStore.voteHistory.length} recent ${votingStore.voteHistory.length == 1 ? 'nomination' : 'nominations'}`"
+      :title="`${votingStore.voteHistory.length} recent ${votingStore.voteHistory.length === 1 ? 'nomination' : 'nominations'}`"
       @click="grimoire.toggleModal('voteHistory')">
       <font-awesome-icon icon="book-dead" class="fa fa-book-dead" />
       {{ votingStore.voteHistory.length }}
@@ -111,6 +111,14 @@
                 @click="userPreferences.zoom = Math.min(userPreferences.zoom + 1, 10)" />
             </em>
           </li>
+          <li v-if="!session.isPlayerOrSpectator">
+            {{ t('menu.language') }}
+            <em>
+              <font-awesome-icon icon="chevron-left" class="fa fa-chevron-left" @click="previousLanguage" />
+              {{ locale.currentLanguage.toUpperCase() }}
+              <font-awesome-icon icon="chevron-right" class="fa fa-chevron-right" @click="nextLanguage" />
+            </em>
+          </li>
           <li @click="setBackground()">
             {{ t('menu.background') }}
             <em><font-awesome-icon icon="image" class="fa fa-image" /></em>
@@ -162,6 +170,10 @@
             {{ t('menu.removeSeats') }}
             <em><font-awesome-icon icon="trash-alt" class="fa fa-trash-alt" /></em>
           </li>
+          <li v-if="grimoire.isTextChatAllowed" @click="chatStore.clearMessages(false)">
+            {{ t('menu.clearChat') }}
+            <em><font-awesome-icon icon="trash-alt" class="fa fa-trash-alt" /></em>
+          </li>
           <li v-if="players.length" @click="playersStore.clearRoles(false)">
             {{ t('menu.clearRoles') }}
             <em><font-awesome-icon icon="trash-alt" class="fa fa-trash-alt" /></em>
@@ -182,10 +194,6 @@
             {{ t('menu.sendRoles') }}
             <em><font-awesome-icon icon="theater-masks" class="fa fa-theater-masks" /></em>
           </li>
-          <li @click="grimoire.endGame">
-            {{ t('menu.endGame') }}
-            <em><font-awesome-icon icon="ranking-star" class="fa fa-ranking-star" /></em>
-          </li>
         </template>
 
         <template v-if="tab === 'storytelling'">
@@ -202,6 +210,9 @@
             </template>
             <template v-if="grimoire.gamePhase === 'day'">
               {{ t('menu.nightSwitch') }}
+            </template>
+            <template v-if="grimoire.gamePhase === 'postgame'">
+              {{ t('menu.newGame') }}
             </template>
             <em>[S]</em>
           </li>
@@ -237,6 +248,25 @@
               'fas',
               grimoire.allowSelfNaming ? 'check-square' : 'square',
             ]" /></em>
+          </li>
+          <li @click="grimoire.setAllowTextChat(!grimoire.isTextChatAllowed)">
+            {{ t('menu.allowTextChat') }}
+            <em><font-awesome-icon :icon="[
+              'fas',
+              grimoire.isTextChatAllowed ? 'check-square' : 'square',
+            ]" /></em>
+          </li>
+          <li :class="{ disabled: !grimoire.isTextChatAllowed }"
+            @click="grimoire.setAllowWhisper(!grimoire.isWhisperAllowed)">
+            {{ t('menu.allowWhisper') }}
+            <em><font-awesome-icon :icon="[
+              'fas',
+              grimoire.isWhisperAllowed ? 'check-square' : 'square',
+            ]" /></em>
+          </li>
+          <li v-if="grimoire.gamePhase !== 'postgame'" @click="grimoire.endGame">
+            {{ t('menu.endGame') }}
+            <em><font-awesome-icon icon="ranking-star" class="fa fa-ranking-star" /></em>
           </li>
         </template>
 
@@ -313,6 +343,20 @@
               ]" />
             </em>
           </li>
+          <li @click="playersMenu.emptySeat = !playersMenu.emptySeat">
+            <small>
+              <div>
+                <font-awesome-icon icon="chair" class="fa fa-chair" />
+                {{ t('player.emptySeat') }}
+              </div>
+            </small>
+            <em>
+              <font-awesome-icon :icon="[
+                'fas',
+                playersMenu.emptySeat ? 'check-square' : 'square',
+              ]" />
+            </em>
+          </li>
           <li @click="playersMenu.swapAlignment = !playersMenu.swapAlignment">
             <small>
               <div>
@@ -360,6 +404,14 @@
             {{ t('sound.gavel') }}
             <em>[H]</em>
           </li>
+          <li @click="soundboard.playSound({ sound: 'death' })">
+            {{ t('sound.death') }}
+            <!-- maybe add a shortcut one day -->
+          </li>
+          <li @click="soundboard.playSound({ sound: 'drumRoll' })">
+            {{ t('sound.drumRoll') }}
+            <!-- maybe add a shortcut one day -->
+          </li>
         </template>
 
         <template v-if="tab === 'gameplay'">
@@ -375,12 +427,20 @@
             {{ t('menu.nightOrder') }}
             <em>[N]</em>
           </li>
+          <li @click="grimoire.toggleModal('notes')">
+            {{ t('menu.notes') }}
+            <em>[Q]</em>
+          </li>
           <li :class="{ disabled: !grimoire.isVoteHistoryAllowed && session.isPlayerOrSpectator }"
             @click="grimoire.toggleModal('voteHistory')">
             {{ t('menu.voteHistory') }}<em>[V]</em>
           </li>
           <li v-if="players.length" @click="playersStore.clearRoles(false)">
             {{ t('menu.clearRoles') }}
+            <em><font-awesome-icon icon="trash-alt" class="fa fa-trash-alt" /></em>
+          </li>
+          <li v-if="grimoire.isTextChatAllowed" @click="chatStore.clearMessages(false)">
+            {{ t('menu.clearChat') }}
             <em><font-awesome-icon icon="trash-alt" class="fa fa-trash-alt" /></em>
           </li>
         </template>
@@ -433,6 +493,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import {
+  useChatStore,
   useGrimoireStore,
   useLocaleStore,
   usePlayersStore,
@@ -443,6 +504,7 @@ import {
   useVotingStore,
 } from "@/stores";
 
+const chatStore = useChatStore();
 const grimoire = useGrimoireStore();
 const locale = useLocaleStore();
 const playersStore = usePlayersStore();
@@ -468,6 +530,28 @@ const setBackground = () => {
 const imageOptIn = () => {
   if (userPreferences.isImageOptIn || confirm(t('prompt.imageOptIn'))) {
     userPreferences.isImageOptIn = !userPreferences.isImageOptIn;
+  }
+};
+
+const supportedLangs = locale.supportedLanguages;
+
+const nextLanguage = () => {
+  const currentIndex = supportedLangs.indexOf(locale.currentLanguage);
+  const nextIndex = (currentIndex + 1) % supportedLangs.length;
+  const targetLang = supportedLangs[nextIndex];
+
+  if (targetLang) {
+    locale.forceLocale(targetLang);
+  }
+};
+
+const previousLanguage = () => {
+  const currentIndex = supportedLangs.indexOf(locale.currentLanguage);
+  const prevIndex = (currentIndex - 1 + supportedLangs.length) % supportedLangs.length;
+  const targetLang = supportedLangs[prevIndex];
+
+  if (targetLang) {
+    locale.forceLocale(targetLang);
   }
 };
 </script>
@@ -556,8 +640,9 @@ const imageOptIn = () => {
 
   >svg {
     cursor: pointer;
-    background: rgba(0, 0, 0, 0.5);
-    border: 3px solid black;
+    background: var(--background-color);
+    backdrop-filter: blur(3px);
+    border: 3px solid var(--border-color);
     margin-bottom: -8px;
     border-bottom: 0;
     border-radius: 10px 10px 0 0;
@@ -571,6 +656,7 @@ const imageOptIn = () => {
 
   li:hover a {
     color: red;
+    text-shadow: 0 0 2px black;
   }
 
   ul {
@@ -581,14 +667,15 @@ const imageOptIn = () => {
     flex-direction: column;
     overflow: hidden;
     box-shadow: 0 0 10px black;
-    border: 3px solid black;
+    border: 3px solid var(--border-color);
+    backdrop-filter: blur(10px);
     border-radius: 10px 0 10px 10px;
 
     li {
       padding: 2px 5px;
       color: white;
       text-align: left;
-      background: rgba(0, 0, 0, 0.7);
+      background: var(--background-color);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -609,6 +696,7 @@ const imageOptIn = () => {
 
           &:hover {
             color: red;
+            text-shadow: 0 0 2px black;
           }
 
           &:last-child {
@@ -628,6 +716,7 @@ const imageOptIn = () => {
 
         &:not(.tabs):not(.disabled):hover {
           color: red;
+          text-shadow: 0 0 2px black;
         }
 
         &.disabled {

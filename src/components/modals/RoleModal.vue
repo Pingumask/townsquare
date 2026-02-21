@@ -88,7 +88,6 @@ const availableRoles = computed((): Role[] => {
     reminders: [],
     remindersGlobal: [],
     setup: false,
-    forbidden: false
   } as Role);
   return availableRoles;
 });

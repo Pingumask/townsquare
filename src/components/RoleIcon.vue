@@ -1,7 +1,7 @@
 <template>
   <picture v-if="role.id && role.id != 'empty'" class="role" :class="[player?.alignment, role.team]">
-    <img v-if="role.image" :src="rolePath(role)" :alt="role.id">
-    <InlineSvg v-else :src="rolePath(role)" />
+    <img v-if="role.image" :src="rolePath(role, player?.alignment)" :alt="role.id">
+    <InlineSvg v-else :src="rolePath(role, player?.alignment)" />
   </picture>
 </template>
 
@@ -9,7 +9,7 @@
 import InlineSvg from 'vue-inline-svg';
 import { computed } from 'vue';
 import { getRoleImage } from '@/services/assets';
-import type { Role, Player } from '@/types';
+import type { Alignment, Player, Role } from '@/types';
 
 const props = defineProps<{
   role: Role;
@@ -19,7 +19,7 @@ const props = defineProps<{
 const role = computed(() => props.role);
 const player = computed(() => props.player);
 
-const rolePath = (role: Role) => getRoleImage(role);
+const rolePath = (role: Role, alignment?: Alignment) => getRoleImage(role, alignment);
 </script>
 
 <style scoped lang="scss">
