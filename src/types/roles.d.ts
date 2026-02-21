@@ -37,6 +37,10 @@ export interface ToggleableRole extends Role {
   selected?: boolean;
 }
 
+export interface CustomRole extends Role {
+  team: TeamType|"traveller";
+}
+
 export interface RoleGroup {
   [team: string]: SelectableRole[];
 }
@@ -60,7 +64,6 @@ export type TeamType =
   | "minion"
   | "demon"
   | "traveler"
-  | "traveller"   // This possibility exists to handle the alternate writing
   | "fabled"
   | "loric";
 
