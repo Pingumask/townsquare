@@ -236,7 +236,7 @@ function logoPath(edition: Edition) {
 }
 
 async function launchScript(fileName: string) {
-  await handleURL(`../src/locale/${locale.userLanguage}/scripts/${fileName}`);
+  await handleURL(`/scripts/${fileName}`);
 }
 
 async function handleURL(url: string) {
@@ -276,16 +276,12 @@ function parseRoles(pickedRoles: (string | ParsedRole)[]) {
   let djinnAdded = false;
   let djinnNeeded = false;
   let bootleggerAdded = false;
-  let bootleggerNedded = grimoire.edition ? grimoire.edition.bootlegger : false;
-  let stormcatcherAdded = false;
-  let stormcatcherNeeded = grimoire.edition ? grimoire.edition.stormcaught : false;
+  let bootleggerNedded = false;
   processedRoles.forEach((role: ParsedRole) => {
     if (grimoire.fabled.has(role.id)) {
       fabled.push(grimoire.fabled.get(role.id)!);
       if (role.id === "djinn") {
         djinnAdded = true;
-      } else if (role.id === "stormcatcher") {
-        stormcatcherAdded = true;
       } else if (role.id === "bootlegger") {
         bootleggerAdded = true;
       }
@@ -306,9 +302,6 @@ function parseRoles(pickedRoles: (string | ParsedRole)[]) {
   });
   if (djinnNeeded && !djinnAdded) {
     fabled.push(grimoire.fabled.get("djinn")!);
-  }
-  if (stormcatcherNeeded && !stormcatcherAdded) {
-    fabled.push(grimoire.fabled.get("stormcatcher")!);
   }
   if (bootleggerNedded && !bootleggerAdded) {
     fabled.push(grimoire.fabled.get("bootlegger")!);

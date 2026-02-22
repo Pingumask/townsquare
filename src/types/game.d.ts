@@ -36,14 +36,11 @@ interface TimerDurations {
 export interface Edition {
   id: string;
   name: string;
-  version?: string;
   author?: string;
   logo?: string;
   background?: string;
   isOfficial?: boolean;
   roles?: string[];
-  bootlegger?: string[];
-  stormcaught?: string;
 }
 
 // Gradient for UI

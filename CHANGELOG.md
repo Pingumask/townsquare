@@ -9,6 +9,10 @@
 
 - Maintenance:
 
+## 6.5.2
+- Revert:
+  - Removed additionnal info from custom scripts to resolve a bug with custom scripts loading
+
 ## 6.5.1
 - Fixes:
   - Error in checkSeated that made it impossible to start a vote when everyone was seated

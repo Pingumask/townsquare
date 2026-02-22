@@ -16,12 +16,6 @@
     <div class="edition" :class="[`edition-${role.edition}`, role.team]" />
     <div v-if="role.ability" class="ability">
       {{ role.ability }}
-      <template v-if="role.id === 'bootlegger' && grimoire.edition?.bootlegger">
-        <div v-for="(rule, index) in grimoire.edition.bootlegger" :key="index" class="rule">{{ rule }}</div>
-      </template>
-      <template v-if="role.id === 'stormcatcher' && grimoire.edition?.stormcaught">
-        <div class="rule">{{ grimoire.roles.get(grimoire.edition?.stormcaught)?.name }}</div>
-      </template>
     </div>
   </div>
 </template>
@@ -29,10 +23,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 import { RoleIcon } from "@/components";
-import { useGrimoireStore } from "@/stores";
 import type { Player, Role } from "@/types";
-
-const grimoire = useGrimoireStore();
 
 const el = ref<HTMLDivElement>();
 const isRight = ref<boolean>(false);
@@ -224,6 +215,7 @@ function setRole() {
   }
 
   .ability {
+    display: flex;
     position: absolute;
     padding: 5px 10px;
     left: 120%;
@@ -251,14 +243,6 @@ function setRole() {
       position: absolute;
       margin-right: 2px;
       right: 100%;
-    }
-
-    .rule {
-      margin-top: 1rem;
-
-      &::before {
-        content: '• ';
-      }
     }
   }
 
