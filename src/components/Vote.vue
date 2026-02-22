@@ -343,7 +343,7 @@ const voters = computed(() => {
 const checkSeated = () => {
   const unseated = playersStore.players.filter(p => p.id === "");
   if (unseated.length === 0) return true
-  return !confirm(t('prompt.unseatedVote') + unseated.map(p => p.name).join(", "))
+  return confirm(t('prompt.unseatedVote') + unseated.map(p => p.name).join(", "))
 }
 
 const countdown = () => {
@@ -358,7 +358,7 @@ const countdown = () => {
 };
 
 const start = () => {
-  if (checkSeated()) return
+  if (!checkSeated()) return
   const soundboard = useSoundboardStore();
   votingStore.lockVote(1);
   votingStore.setVoteInProgress(true);

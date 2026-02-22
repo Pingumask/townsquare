@@ -9,6 +9,9 @@
 
 - Maintenance:
 
+## 6.5.1
+- Fixes:
+  - Error in checkSeated that made it impossible to start a vote when everyone was seated
 
 ## 6.5.0
 - Features:
