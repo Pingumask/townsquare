@@ -41,8 +41,7 @@ export const useVotingStore = defineStore("voting", {
     setVoteInProgress(isVoteInProgress: boolean) {
       const session = useSessionStore();
       this.isVoteInProgress = isVoteInProgress;
-      if (!session.isPlayerOrSpectator)
-        socket.send("isVoteInProgress", isVoteInProgress);
+      if (!session.isPlayerOrSpectator) socket.send("isVoteInProgress", isVoteInProgress);
     },
     setMarkedPlayer(markedPlayer: number) {
       const session = useSessionStore();
@@ -163,8 +162,8 @@ export const useVotingStore = defineStore("voting", {
           votesHidden && session.isPlayerOrSpectator
             ? []
             : players
-                .filter((_player, index) => this.votes[index])
-                .map(({ name }) => name),
+              .filter((_player, index) => this.votes[index])
+              .map(({ name }) => name),
         anonymous: votesHidden,
       };
 
@@ -227,7 +226,7 @@ export const useVotingStore = defineStore("voting", {
       if (!session.isPlayerOrSpectator) {
         const players = usePlayersStore().players;
         const index =
-          ((typeof this.nomination?.nominee == "number"
+          ((typeof this.nomination?.nominee === "number"
             ? this.nomination.nominee
             : (this.nomination?.nominator as number) || 0) +
             this.lockedVote -

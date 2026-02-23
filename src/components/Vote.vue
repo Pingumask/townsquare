@@ -14,7 +14,7 @@
       <br>
       <em v-if="
         !grimoire.isSecretVote ||
-        (nominee && nominee.role.team == 'traveler') ||
+        (nominee && nominee.role.team === 'traveler') ||
         !session.isPlayerOrSpectator
       " class="blue">
         {{ voters?.length }} {{ t('vote.votes') }}
@@ -40,7 +40,8 @@
         " class="orange">
           {{ t('vote.secretBallot') }}
         </em>
-        <div v-if="!votingStore.isVoteInProgress && votingStore.lockedVote < 1">
+        <div
+          v-if="(!votingStore.isVoteInProgress && votingStore.lockedVote < 1) || votingStore.lockedVote === players.length + 1">
           {{ t('vote.timePerPlayer') }}
           <font-awesome-icon icon="minus-circle" class="fa fa-minus-circle" @mousedown.prevent="setVotingSpeed(-250)" />
           {{ votingStore.votingSpeed / 1000 }}s
@@ -104,15 +105,12 @@
       <span>2</span>
       <span>1</span>
       <span>{{ t('vote.doVote') }}</span>
-      <audio :autoplay="!userPreferences.isMuted" :muted="userPreferences.isMuted">
-        <source src="../assets/sounds/countdown.mp3">
-      </audio>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onUnmounted, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import { Countdown, Jukebox } from '@/components';
 import { isActiveNomination } from '@/services';
 import {
@@ -120,18 +118,22 @@ import {
   useLocaleStore,
   usePlayersStore,
   useSessionStore,
-  useUserPreferencesStore,
   useVotingStore,
+  useSoundboardStore,
 } from "@/stores";
 import type { Player } from '@/types';
+
+const clockStartVolume = 0.3;
+const clockEndVolume = 0.5;
 
 const grimoire = useGrimoireStore();
 const locale = useLocaleStore();
 const playersStore = usePlayersStore();
 const session = useSessionStore();
-const userPreferences = useUserPreferencesStore();
 const votingStore = useVotingStore();
 const t = locale.t;
+
+let timerForRiser: ReturnType<typeof setTimeout>;
 
 const alive = computed(() => playersStore.alive);
 const players = computed(() => playersStore.players);
@@ -207,7 +209,7 @@ const isFreeVote = computed(() => {
 });
 
 const player = computed(() => {
-  return players.value.find((p: Player) => p.id === session.playerId);
+  return playersStore.getById(session.playerId)
 });
 
 const currentVote = computed(() => {
@@ -276,23 +278,16 @@ const shouldHideNominee = computed(() => {
   return !!nomination.specialVote?.timerText;
 });
 
-const voudonInPlay = computed(() => {
-  for (const player of players.value) {
-    if (player.role.id == "voudon") return !player.isDead;
-  }
-  return false;
-});
-
 const canVote = computed(() => {
   if (!player.value || !isActiveNomination(votingStore.nomination)) return false;
 
   const nomination = votingStore.nomination;
 
   if ( // Dead player without a token or voudon
-    (player.value.isDead || player.value.role.id == "beggar")
+    (player.value.isDead || playersStore.hasFeature(player.value.role, "need-token"))
     && !player.value.voteToken
     && !isFreeVote.value
-    && !voudonInPlay.value
+    && !playersStore.isFeatureInPlay("free-dead-vote")
   ) return false;
 
   const playersCount = players.value.length;
@@ -345,7 +340,16 @@ const voters = computed(() => {
   ).filter((n) => !!n);
 });
 
+const checkSeated = () => {
+  const unseated = playersStore.players.filter(p => p.id === "");
+  if (unseated.length === 0) return true
+  return confirm(t('prompt.unseatedVote') + unseated.map(p => p.name).join(", "))
+}
+
 const countdown = () => {
+  if (checkSeated()) return
+  const soundboard = useSoundboardStore();
+  soundboard.playSound({ sound: "ringing" });
   votingStore.lockVote(0);
   votingStore.setVoteInProgress(true);
   voteTimer.value = setInterval(() => {
@@ -354,34 +358,58 @@ const countdown = () => {
 };
 
 const start = () => {
+  if (!checkSeated()) return
+  const soundboard = useSoundboardStore();
   votingStore.lockVote(1);
   votingStore.setVoteInProgress(true);
   if (voteTimer.value) {
     clearInterval(voteTimer.value);
   }
+  if (players.value.length * votingStore.votingSpeed >= 5000) {
+    timerForRiser = setTimeout(() => {
+      soundboard.playSound({ sound: "riser" });
+    }, players.value.length * votingStore.votingSpeed - 5000);
+  }
   voteTimer.value = setInterval(() => {
     votingStore.lockVote();
     if (votingStore.lockedVote > players.value.length) {
       if (voteTimer.value) {
+        soundboard.playSound({ sound: "votingBell" });
         clearInterval(voteTimer.value);
       }
       votingStore.setVoteInProgress(false);
+    }
+    else if (votingStore.votingSpeed >= 500) {
+      soundboard.changeVolume({ sound: "votingClock" }, clockStartVolume + (clockEndVolume - clockStartVolume) * Math.min((votingStore.lockedVote + 1) / players.value.length, 1));
+      soundboard.playSound({ sound: "votingClock" });
     }
   }, votingStore.votingSpeed);
 };
 
 const pause = () => {
+  const soundboard = useSoundboardStore();
   if (voteTimer.value) {
     clearInterval(voteTimer.value);
+    clearTimeout(timerForRiser);
     voteTimer.value = null;
   } else {
+    if ((players.value.length - votingStore.lockedVote) * votingStore.votingSpeed >= 5000) {
+      timerForRiser = setTimeout(() => {
+        soundboard.playSound({ sound: "riser" });
+      }, (players.value.length) * votingStore.votingSpeed - 5000);
+    }
     voteTimer.value = setInterval(() => {
       votingStore.lockVote();
       if (votingStore.lockedVote > players.value.length) {
         if (voteTimer.value) {
+          soundboard.playSound({ sound: "votingBell" });
           clearInterval(voteTimer.value);
         }
         votingStore.setVoteInProgress(false);
+      }
+      else if (votingStore.votingSpeed >= 500) {
+        soundboard.changeVolume({ sound: "votingClock" }, 0.2 + 0.7 * Math.min((votingStore.lockedVote + 1) / players.value.length, 1));
+        soundboard.playSound({ sound: "votingClock" });
       }
     }, votingStore.votingSpeed);
   }
@@ -422,6 +450,15 @@ const vote = (vote: boolean): boolean => {
   return false;
 };
 
+const toggleVote = (event: KeyboardEvent) => {
+  if (!canVote.value) return;
+  if (event.key !== " ") return;
+  const target = event.target as HTMLElement;
+  if (['INPUT', 'TEXTAREA'].includes(target.tagName) || target.isContentEditable) return;
+  const index = players.value.findIndex((p: Player) => p.id === session.playerId);
+  vote(!votingStore.votes[index]);
+}
+
 const setVotingSpeed = (diff: number) => {
   const speed = Math.round(votingStore.votingSpeed + diff);
   if (speed >= 0) {
@@ -437,10 +474,15 @@ const removeMarked = () => {
   votingStore.setMarkedPlayer(-1);
 };
 
+onMounted(() => {
+  globalThis.addEventListener('keyup', toggleVote);
+})
+
 onUnmounted(() => {
   if (voteTimer.value) {
     clearInterval(voteTimer.value);
   }
+  globalThis.removeEventListener('keyup', toggleVote);
 });
 </script>
 

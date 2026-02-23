@@ -23,6 +23,7 @@ export default [
     rules: {
       // Use TS-specific rules and disable core to avoid false positives in types
       "no-unused-vars": "off",
+      "eqeqeq": ["error", "always"],
       "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/no-unused-vars": ["error", {
         "argsIgnorePattern": "^_",
@@ -48,6 +49,7 @@ export default [
       "@typescript-eslint": tseslint,
     },
     rules: {
+      "eqeqeq": ["error", "always"],
       "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/no-unused-vars": ["error", {
         "argsIgnorePattern": "^_",

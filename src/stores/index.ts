@@ -6,3 +6,5 @@ export { useLocaleStore } from "./useLocaleStore";
 export { useSoundboardStore } from "./useSoundboardStore";
 export { useUserPreferencesStore } from "./useUserPreferencesStore";
 export { useVotingStore } from "./useVotingStore";
+export { useChatStore } from "./useChatStore";
+export { useAnimationStore } from "./useAnimationStore";

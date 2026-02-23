@@ -65,6 +65,7 @@ const NEWPLAYER: Player = {
   voteToken: false,
   isDead: false,
   pronouns: "",
+  handRaised: false,
 };
 
 interface PlayersState {
@@ -162,9 +163,32 @@ export const usePlayersStore = defineStore("players", {
       });
       return nightOrder;
     },
+
+    currentPlayerIndex(): number {
+      const sessionStore = useSessionStore();
+      return this.players.findIndex(p => p.id === sessionStore.playerId);
+    },
+
+    // Left & right are defined looking towards the center of the table, so left neighbor is clockwise
+    leftNeighbor(): Player | undefined {
+      const idx = this.currentPlayerIndex;
+      if (idx === -1) return undefined;
+      const len = this.players.length;
+      return this.players[(idx + 1) % len];
+    },
+
+    rightNeighbor(): Player | undefined {
+      const idx = this.currentPlayerIndex;
+      if (idx === -1) return undefined;
+      const len = this.players.length;
+      return this.players[(idx - 1 + len) % len];
+    },
   },
 
   actions: {
+    getById(id: string): Player | undefined {
+      return this.players.find(p => p.id === id);
+    },
     set(players: Player[] = []) {
       this.players = players;
       const sessionStore = useSessionStore();
@@ -220,6 +244,9 @@ export const usePlayersStore = defineStore("players", {
           break;
         case "pronouns":
           socket.send("pronouns", [index, value]);
+          break;
+        case "handRaised":
+          socket.send("handRaised", [index, value]);
           break;
         case "role":
           if (sessionStore.isPlayerOrSpectator) return;
@@ -420,6 +447,14 @@ export const usePlayersStore = defineStore("players", {
         }
       }
     },
+    hasFeature(role: Role, feature: string) {
+      if (!role.special) return false;
+      if (Array.isArray(role.special)) return role.special.some((sf) => sf.name === feature);
+      return role.special.name === feature;
+    },
+    isFeatureInPlay(feature: string) {
+      return this.players.some((player) => this.hasFeature(player.role, feature));
+    },
     distributeRolesAction() {
       const session = useSessionStore();
       if (session.isPlayerOrSpectator) return;
@@ -428,24 +463,16 @@ export const usePlayersStore = defineStore("players", {
       const popup = t("prompt.sendRoles");
       if (!confirm(popup)) return;
 
-      // Checking all players to see if one of them has a forbidden role
-      let forbiddenRole = "";
+      // Checking if forbidden roles are selected
+      let forbiddenRole = [];
       const players = this.players;
-      for (let i = 0; i < players.length && !forbiddenRole; i++) {
-        const player = players[i];
-        if (player?.role?.forbidden) {
-          forbiddenRole = player.role.name || "";
+      for (const player of players) {
+        if (player && this.hasFeature(player.role, "bag-disabled")) {
+          forbiddenRole.push(player.role.name || "");
         }
       }
-      let confirmedDistribution = forbiddenRole === "";
-      if (!confirmedDistribution) {
-        const forbiddenPopup =
-          t("prompt.sendRolesWithForbidden1") +
-          forbiddenRole +
-          t("prompt.sendRolesWithForbidden2");
-        confirmedDistribution = confirm(forbiddenPopup);
-      }
-      if (confirmedDistribution) {
+
+      if (!forbiddenRole.length || confirm(t('prompt.sendForbiddenRoles').replace("$roles", forbiddenRole.join(", ")))) {
         this.distributeRoles(true);
         setTimeout(() => {
           this.distributeRoles(false);

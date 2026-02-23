@@ -69,4 +69,15 @@ export type Modals =
   | "roles"
   | "voteHistory"
   | "specialVote"
+  | "notes"
   | null;
+
+export interface Position {
+  x: number;
+  y: number;
+}
+
+export interface Sizing {
+  width: number;
+  height: number;
+}

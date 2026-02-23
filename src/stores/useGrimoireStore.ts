@@ -2,13 +2,16 @@ import { defineStore } from "pinia";
 import editionJSONRaw from "@/editions.json";
 import socket from "@/services/socket";
 import {
+  useChatStore,
   useLocaleStore,
   usePlayersStore,
   useSessionStore,
   useSoundboardStore,
+  useUserPreferencesStore,
   useVotingStore,
 } from "@/stores";
 import type {
+  CustomRole,
   Edition,
   EditionsJSON,
   GameComposition,
@@ -43,8 +46,13 @@ interface GrimoireState {
   allowSelfNaming: boolean;
   isVoteHistoryAllowed: boolean;
   isSecretVote: boolean;
+  isTextChatAllowed: boolean;
+  isWhisperAllowed: boolean;
   gamePhase: GamePhase;
   dayCount: number;
+  showParchment: boolean;
+  ShowCustomTextForParchment: boolean;
+  winner: string;
 }
 
 export const useGrimoireStore = defineStore("grimoire", {
@@ -61,11 +69,16 @@ export const useGrimoireStore = defineStore("grimoire", {
     jinxes: new Map<string, Map<string, string>>(),
     rolesJSONbyId: new Map<string, Role>(),
     modal: null,
-    allowSelfNaming: false,
-    isVoteHistoryAllowed: false,
+    allowSelfNaming: true,
+    isVoteHistoryAllowed: true,
     isSecretVote: false,
+    isTextChatAllowed: true,
+    isWhisperAllowed: true,
     gamePhase: "offline",
     dayCount: 0,
+    showParchment: false,
+    ShowCustomTextForParchment: false,
+    winner: "not_decided"
   }),
 
   getters: {
@@ -108,7 +121,7 @@ export const useGrimoireStore = defineStore("grimoire", {
             unknown
           >;
           for (const prop in roleObj) {
-            if (strippedProps.includes(prop as (typeof strippedProps)[number]))
+            if (strippedProps.includes(prop as typeof strippedProps[number]))
               continue;
             const value = roleObj[prop];
             if (customKeys.includes(prop) && value !== customObj[prop]) {
@@ -147,7 +160,7 @@ export const useGrimoireStore = defineStore("grimoire", {
       );
 
       this.roles.forEach((role: Role) => {
-        this.roles.set(role.id, this.rolesJSONbyId.get(role.id) as Role);
+        this.roles.set(role?.id, this.rolesJSONbyId.get(role?.id) as Role);
       });
 
       this.jinxes = new Map<string, Map<string, string>>();
@@ -227,7 +240,7 @@ export const useGrimoireStore = defineStore("grimoire", {
       if (!sessionStore.isPlayerOrSpectator) socket.sendEdition();
     },
 
-    setCustomRoles(roles: Array<Role>) {
+    setCustomRoles(roles: Array<Role|CustomRole>) {
       const customRoleBase: Role = {
         id: "",
         name: "",
@@ -248,6 +261,15 @@ export const useGrimoireStore = defineStore("grimoire", {
 
       const processedRoles = roles
         .map((role) => {
+
+          // Correcting the ID if needed, by removing non-alphabetical characters and putting the rest in lower case
+          role.id = role.id.replaceAll(/[^a-z]/gi, '').toLowerCase();
+
+          // Correcting the Traveller type if needed
+          if(role.team === "traveller") {
+            role.team = "traveler";
+          }
+
           if (Array.isArray(role) && (role as unknown[])[0]) {
             // Handle array format [name, id, ...] if applicable, or just map keys
             const mappedRole: Record<string, unknown> = {};
@@ -355,6 +377,26 @@ export const useGrimoireStore = defineStore("grimoire", {
       }
     },
 
+    setAllowTextChat(isTextChatAllowed: boolean) {
+      const sessionStore = useSessionStore();
+      this.isTextChatAllowed = isTextChatAllowed;
+      if (!sessionStore.isPlayerOrSpectator) {
+        socket.send("isTextChatAllowed", this.isTextChatAllowed);
+      }
+    },
+    setAllowWhisper(isWhisperAllowed: boolean) {
+      if (!this.isTextChatAllowed) return;
+      const chatStore = useChatStore();
+      const session = useSessionStore();
+      this.isWhisperAllowed = isWhisperAllowed;
+      if (chatStore.activeTab === "left" || chatStore.activeTab === "right") {
+        chatStore.activeTab = "global";
+      }
+      if (!session.isPlayerOrSpectator) {
+        socket.send("isWhisperAllowed", this.isWhisperAllowed);
+      }
+    },
+
     setGamePhase(gamePhase: GamePhase) {
       if (this.gamePhase === gamePhase) return; // Avoids triggering things when host refreshes
       const sessionStore = useSessionStore();
@@ -362,8 +404,9 @@ export const useGrimoireStore = defineStore("grimoire", {
       const votingStore = useVotingStore();
 
       this.gamePhase = gamePhase;
-      if (!sessionStore.isPlayerOrSpectator)
+      if (!sessionStore.isPlayerOrSpectator) {
         socket.send("gamePhase", gamePhase);
+      }
       if (gamePhase === "day") {
         soundboard.playSound({ sound: "rooster" });
       } else if (gamePhase === "firstNight") {
@@ -372,24 +415,34 @@ export const useGrimoireStore = defineStore("grimoire", {
       } else if (gamePhase === "otherNight") {
         votingStore.setMarkedPlayer(-1);
         this.setDayCount(this.dayCount + 1);
+      } else if (gamePhase === "pregame") {
+        this.setDayCount(0);
       }
+      this.showParchment = true;
     },
 
     newGame() {
+      const chatStore = useChatStore();
       const locale = useLocaleStore();
       const playersStore = usePlayersStore();
       const session = useSessionStore();
+      const userPreferences = useUserPreferencesStore()
       const votingStore = useVotingStore();
       const t = locale.t;
 
-      if (session.isPlayerOrSpectator) return;
-      if (!confirm(t("prompt.newGame"))) return;
-      playersStore.clearRoles(true);
-      playersStore.randomize();
-      votingStore.setMarkedPlayer(-1);
-      votingStore.clearVoteHistory();
+      if (!session.isPlayerOrSpectator) {
+        if (!confirm(t("prompt.newGame"))) return;
+      }
       this.setGamePhase("pregame");
-      this.setDayCount(0);
+      votingStore.setMarkedPlayer(-1);
+      playersStore.clearRoles(true);
+      votingStore.clearVoteHistory();
+      chatStore.clearMessages(true);
+      userPreferences.notes.content = "";
+      if (!session.isPlayerOrSpectator) {
+        socket.send("newGame");
+        playersStore.randomize();
+      }
     },
 
     endGame() {
@@ -403,6 +456,7 @@ export const useGrimoireStore = defineStore("grimoire", {
     },
 
     setDayCount(dayCount: number) {
+      if (dayCount < 0) return;
       this.dayCount = dayCount;
       const sessionStore = useSessionStore();
       if (!sessionStore.isPlayerOrSpectator) socket.send("dayCount", dayCount);
@@ -421,7 +475,19 @@ export const useGrimoireStore = defineStore("grimoire", {
         this.setGamePhase("day");
       } else if (this.gamePhase === "day") {
         this.setGamePhase("otherNight");
+      } else if (this.gamePhase === "postgame") {
+        this.newGame();
       }
+    },
+
+    announceWinner(winner: string) {
+      const session = useSessionStore();
+      if (!session.isPlayerOrSpectator) {
+        socket.send("annouceWinner", winner);
+      }
+      this.winner = winner;
+      this.ShowCustomTextForParchment = true;
+      this.showParchment = true;
     },
 
     getGameComposition(playerCount: number): GameComposition {

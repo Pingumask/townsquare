@@ -80,7 +80,6 @@ const load = () => {
     const data: GameStateData = JSON.parse(input.value || gamestate.value);
     const { bluffs, edition, roles, fabled, players } = data;
 
-
     if (edition) {
       // If edition is a partial object (only has id), look it up from editions JSON
       const editionObj = edition as Partial<Edition>;

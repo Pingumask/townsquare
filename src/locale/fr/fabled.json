@@ -70,12 +70,16 @@
     "setup": false,
     "name": "Violoniste",
     "team": "fabled",
+    "special": {
+      "type": "ability",
+      "name": "pointing"
+    },
     "ability": "Une fois par partie, le Démon choisit un joueur adverse en secret : tous les joueurs choisissent l'équipe duquel de ces deux joueurs gagne."
   },
   {
     "id": "toymaker",
     "firstNightReminder": "",
-    "otherNight": 31,
+    "otherNight": 33,
     "otherNightReminder": "Si le Démon pourrait terminer la partie cette nuit, mais qu'il a toujours son marqueur 'Nuit sans attaque', il n'agit pas cette nuit (ne le réveillez pas)",
     "reminders": [
       "Nuit sans attaque"
@@ -199,7 +203,7 @@
   },
   {
     "id": "stormcatcher",
-    "firstNight": 13,
+    "firstNight": 14,
     "firstNightReminder": "Réveillez chaque joueur mauvais et indiquez-lui quel joueur est marqué comme \"Protégé\".",
     "otherNightReminder": "",
     "reminders": [
@@ -256,5 +260,33 @@
     "name": "Hindou",
     "team": "loric",
     "ability": "Les 4 premiers joueurs à mourir sont immédiatement réincarnés comme Voyageurs du même alignement."
+  },
+  {
+    "id": "pope",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": true,
+    "name": "Pape",
+    "team": "loric",
+    "special": {
+      "type": "selection",
+      "name": "good-duplicate"
+    },
+    "ability": "Il y a des personnages bons en plusieurs exemplaires. Il se peut qu'ils soient aussi des bluffs."
+  },
+  {
+    "id": "ventriloquist",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": true,
+    "name": "Ventriloque",
+    "team": "loric",
+    "ability": "Si un joueur est persuadé d'être un nouveau personnage durant son accusation, il se peut qu'il ne meure pas si exécuté."
   }
 ]

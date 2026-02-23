@@ -4,7 +4,7 @@
     "name": "Lavandera",
     "edition": "tb",
     "team": "townsfolk",
-    "firstNight": 44,
+    "firstNight": 46,
     "firstNightReminder": "Muestra la ficha de un personaje Aldeano en juego. Señala a dos jugadores, uno de los cuales es ese personaje.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -20,7 +20,7 @@
     "name": "Bibliotecario",
     "edition": "tb",
     "team": "townsfolk",
-    "firstNight": 46,
+    "firstNight": 47,
     "firstNightReminder": "Muestra la ficha de un personaje Forastero en juego. Señala a dos jugadores, uno de los cuales es ese personaje.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -36,7 +36,7 @@
     "name": "Investigador",
     "edition": "tb",
     "team": "townsfolk",
-    "firstNight": 47,
+    "firstNight": 48,
     "firstNightReminder": "Muestra la ficha de un personaje Esbirro en juego. Señala a dos jugadores, uno de los cuales es ese personaje.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -52,7 +52,7 @@
     "name": "Chef",
     "edition": "tb",
     "team": "townsfolk",
-    "firstNight": 48,
+    "firstNight": 49,
     "firstNightReminder": "Muestra la señal con los dedos (0, 1, 2, \u2026) del número de pares de jugadores malvados vecinos.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -65,9 +65,9 @@
     "name": "Empático",
     "edition": "tb",
     "team": "townsfolk",
-    "firstNight": 49,
+    "firstNight": 50,
     "firstNightReminder": "Muestra la señal con los dedos (0, 1, 2) del número de vecinos vivos malvados del Empático.",
-    "otherNight": 66,
+    "otherNight": 70,
     "otherNightReminder": "Muestra la señal con los dedos (0, 1, 2) del número de vecinos malvados.",
     "reminders": [],
     "setup": false,
@@ -78,9 +78,9 @@
     "name": "Pitonisa",
     "edition": "tb",
     "team": "townsfolk",
-    "firstNight": 50,
+    "firstNight": 51,
     "firstNightReminder": "La Pitonisa señala a dos jugadores. Haz la señal con la cabeza (asiente sí, niega no) de si uno de esos jugadores es el Demonio.",
-    "otherNight": 67,
+    "otherNight": 71,
     "otherNightReminder": "La Pitonisa señala a dos jugadores. Haz la señal con la cabeza (asiente 'sí', niega 'no') de si uno de esos jugadores es el Demonio.",
     "reminders": [
       "Pista falsa"
@@ -95,8 +95,8 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 68,
-    "otherNightEdition": 65.5,
+    "otherNight": 72,
+    "otherNightEdition": 69,
     "otherNightReminder": "Si un jugador murió por ejecución hoy: Muestra la ficha de personaje de ese jugador.",
     "reminders": [
       "Muerto hoy"
@@ -111,7 +111,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 17,
+    "otherNight": 18,
     "otherNightReminder": "El jugador protegido anteriormente ya no está protegido. El Monje señala a un jugador que no sea él mismo. Marca a ese jugador como 'Protegido'.",
     "reminders": [
       "A salvo"
@@ -126,7 +126,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 65,
+    "otherNight": 68,
     "otherNightReminder": "Si el Guardián de Cuervos murió esta noche: El Guardián de Cuervos señala a un jugador. Muestra la ficha de personaje de ese jugador.",
     "reminders": [],
     "setup": false,
@@ -193,9 +193,9 @@
     "name": "Mayordomo",
     "edition": "tb",
     "team": "outsider",
-    "firstNight": 51,
+    "firstNight": 52,
     "firstNightReminder": "El Mayordomo señala a un jugador. Marca a ese jugador como 'Amo'.",
-    "otherNight": 81,
+    "otherNight": 85,
     "otherNightReminder": "El Mayordomo señala a un jugador. Marca a ese jugador como 'Amo'.",
     "reminders": [
       "Amo"
@@ -217,7 +217,16 @@
       "Borracho"
     ],
     "setup": true,
-    "forbidden": true,
+    "special": [
+      {
+        "type": "selection",
+        "name": "bag-disabled"
+      },
+      {
+        "type": "reveal",
+        "name": "replace-character"
+      }
+    ],
     "ability": "No sabes que eres el Borracho. Crees que eres un personaje Aldeano, pero no lo eres."
   },
   {
@@ -251,9 +260,9 @@
     "name": "Envenenador",
     "edition": "tb",
     "team": "minion",
-    "firstNight": 27,
+    "firstNight": 28,
     "firstNightReminder": "El Envenenador señala a un jugador. Ese jugador está envenenado.",
-    "otherNight": 10,
+    "otherNight": 11,
     "otherNightReminder": "El jugador previamente envenenado ya no está envenenado. El Envenenador señala a un jugador. Ese jugador está envenenado.",
     "reminders": [
       "Envenenado"
@@ -266,11 +275,11 @@
     "name": "Espía",
     "edition": "tb",
     "team": "minion",
-    "firstNight": 65,
-    "firstNightEdition": 41,
+    "firstNight": 66,
+    "firstNightEdition": 42,
     "firstNightReminder": "Muestra el Grimorio al Espía durante el tiempo que necesite.",
-    "otherNight": 82,
-    "otherNightEdition": 18,
+    "otherNight": 86,
+    "otherNightEdition": 19,
     "otherNightReminder": "Muestra el Grimorio al Espía durante el tiempo que necesite.",
     "reminders": [],
     "setup": false,
@@ -283,7 +292,7 @@
     "team": "minion",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 26,
+    "otherNight": 27,
     "otherNightReminder": "Si la Mujer Escarlata se convirtió en el Demonio hoy: Muestra la carta 'Tú eres', y luego la ficha de Demonio.",
     "reminders": [
       "Demonio"
@@ -311,10 +320,11 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 33,
+    "otherNight": 35,
     "otherNightReminder": "El Diablillo señala a un jugador. Ese jugador muere. Si el Diablillo se eligió a sí mismo: Reemplaza el personaje de 1 Esbirro vivo con una ficha de Diablillo de repuesto. Muestra la carta 'Tú eres', y luego la ficha de Diablillo.",
     "reminders": [
-      "Muerto"
+      "Muerto",
+      "Diablillo"
     ],
     "setup": false,
     "ability": "Cada noche*, elige a un jugador: muere. Si te matas a ti mismo de esta forma, un Esbirro se convierte en el Diablillo."
@@ -324,14 +334,19 @@
     "name": "Burócrata",
     "edition": "tb",
     "team": "traveler",
-    "firstNight": 3,
+    "firstNight": 4,
     "firstNightReminder": "El Burócrata señala a un jugador. Pon el recordatorio '3 votos' del Burócrata junto a la ficha de personaje del jugador elegido.",
-    "otherNight": 3,
+    "otherNight": 4,
     "otherNightReminder": "El Burócrata señala a un jugador. Pon el recordatorio '3 votos' del Burócrata junto a la ficha de personaje del jugador elegido.",
     "reminders": [
       "3 votos"
     ],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "multiplier",
+      "value": 3
+    },
     "ability": "Cada noche, elige a un jugador (no a ti mismo): su voto cuenta como 3 votos mañana."
   },
   {
@@ -339,14 +354,19 @@
     "name": "Ladrón",
     "edition": "tb",
     "team": "traveler",
-    "firstNight": 3,
+    "firstNight": 4,
     "firstNightReminder": "El Ladrón señala a un jugador. Pon el recordatorio 'Voto negativo' del Ladrón junto a la ficha de personaje del jugador elegido.",
-    "otherNight": 3,
+    "otherNight": 4,
     "otherNightReminder": "El Ladrón señala a un jugador. Pon el recordatorio 'Voto negativo' del Ladrón junto a la ficha de personaje del jugador elegido.",
     "reminders": [
       "Voto negativo"
     ],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "multiplier",
+      "value": -1
+    },
     "ability": "Cada noche, elige a un jugador (no a ti mismo): su voto cuenta negativamente mañana."
   },
   {
@@ -386,6 +406,10 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "need-token"
+    },
     "ability": "Debes usar una ficha de voto para votar. Los muertos pueden elegir darte la suya. Si lo hacen, averiguas su alineación. Estás sobrio y sano."
   },
   {
@@ -393,7 +417,7 @@
     "name": "Relojero",
     "edition": "snv",
     "team": "townsfolk",
-    "firstNight": 53,
+    "firstNight": 54,
     "firstNightReminder": "Muestra la señal con la mano del número (1, 2, 3, etc.) de espacios desde el Demonio hasta el Esbirro más cercano.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -406,9 +430,9 @@
     "name": "Soñador",
     "edition": "snv",
     "team": "townsfolk",
-    "firstNight": 54,
+    "firstNight": 55,
     "firstNightReminder": "El Soñador señala a un jugador. Muestra 1 ficha de personaje bueno y 1 de personaje malvado; una de estas es correcta.",
-    "otherNight": 69,
+    "otherNight": 74,
     "otherNightReminder": "El Soñador señala a un jugador. Muestra 1 ficha de personaje bueno y 1 de personaje malvado; una de estas es correcta.",
     "reminders": [],
     "setup": false,
@@ -419,9 +443,9 @@
     "name": "Encantador de Serpientes",
     "edition": "snv",
     "team": "townsfolk",
-    "firstNight": 31,
+    "firstNight": 32,
     "firstNightReminder": "El Encantador de Serpientes señala a un jugador. Si ese jugador es el Demonio: intercambia el personaje y la alineación del Demonio y el Encantador de Serpientes. Despierta a cada jugador para informarles de su nuevo rol y alineación. El nuevo Encantador de Serpientes está envenenado.",
-    "otherNight": 16,
+    "otherNight": 17,
     "otherNightReminder": "El Encantador de Serpientes señala a un jugador. Si ese jugador es el Demonio: intercambia el personaje y la alineación del Demonio y el Encantador de Serpientes. Despierta a cada jugador para informarles de su nuevo rol y alineación. El nuevo Encantador de Serpientes está envenenado.",
     "reminders": [
       "Envenenado"
@@ -434,9 +458,9 @@
     "name": "Matemático",
     "edition": "snv",
     "team": "townsfolk",
-    "firstNight": 70,
+    "firstNight": 71,
     "firstNightReminder": "Muestra la señal con la mano para el número (0, 1, 2, etc.) de jugadores cuya habilidad funcionó mal debido a otras habilidades.",
-    "otherNight": 86,
+    "otherNight": 91,
     "otherNightReminder": "Muestra la señal con la mano para el número (0, 1, 2, etc.) de jugadores cuya habilidad funcionó mal debido a otras habilidades.",
     "reminders": [
       "Anormal"
@@ -451,7 +475,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 70,
+    "otherNight": 75,
     "otherNightReminder": "Asiente 'sí' o niega con la cabeza 'no' sobre si el Demonio votó hoy. Coloca el marcador 'Demonio no votó' (elimina 'Demonio votó', si lo hay).",
     "reminders": [
       "Demonio votó",
@@ -467,7 +491,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 71,
+    "otherNight": 76,
     "otherNightReminder": "Asiente 'sí' o niega con la cabeza 'no' sobre si un Esbirro nominó hoy. Coloca el marcador 'Esbirro no nominó' (elimina 'Esbirro nominó', si lo hay).",
     "reminders": [
       "Esbirros no nominaron",
@@ -483,7 +507,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 72,
+    "otherNight": 77,
     "otherNightReminder": "Muestra la señal con la mano para el número (0, 1, 2, etc.) de jugadores malvados muertos.",
     "reminders": [],
     "setup": false,
@@ -507,9 +531,9 @@
     "name": "Costurera",
     "edition": "snv",
     "team": "townsfolk",
-    "firstNight": 55,
+    "firstNight": 56,
     "firstNightReminder": "La Costurera muestra una señal de 'no' con la cabeza, o señala a otros dos jugadores. Si la Costurera eligió jugadores, asiente 'sí' o niega 'no' sobre si son de la misma alineación.",
-    "otherNight": 73,
+    "otherNight": 78,
     "otherNightReminder": "Si la Costurera aún no ha usado su habilidad: la Costurera muestra una señal de 'no' con la cabeza, o señala a otros dos jugadores. Si la Costurera eligió jugadores, asiente 'sí' o niega 'no' sobre si son de la misma alineación.",
     "reminders": [
       "Sin habilidad"
@@ -522,17 +546,23 @@
     "name": "Filósofo",
     "edition": "snv",
     "team": "townsfolk",
-    "firstNight": 7,
-    "firstNightEdition": 24,
+    "firstNight": 8,
+    "firstNightEdition": 25,
     "firstNightReminder": "El Filósofo muestra una señal de 'no' con la cabeza, o señala un personaje bueno en su hoja. Si eligió un personaje: Intercambia la ficha de personaje fuera de juego con la ficha del Filósofo y añade el recordatorio 'Es el Filósofo'. Si el personaje está en juego, coloca el marcador de borracho junto a ese jugador.",
-    "otherNight": 4,
+    "otherNight": 5,
     "otherNightReminder": "Si el Filósofo no ha usado su habilidad: el Filósofo muestra una señal de 'no' con la cabeza, o señala un personaje bueno en su hoja. Si eligió un personaje: Intercambia la ficha de personaje fuera de juego con la ficha del Filósofo y añade el recordatorio 'Es el Filósofo'. Si el personaje está en juego, coloca el marcador de borracho junto a ese jugador.",
     "reminders": [
       "Borracho",
-      "Filósofo",
       "Sin habilidad"
     ],
+    "remindersGlobal": [
+      "Filósofo"
+    ],
     "setup": false,
+    "special": {
+      "type": "reveal",
+      "name": "replace-character"
+    },
     "ability": "Una vez por partida, de noche, elige un personaje bueno: ganas esa habilidad. Si ese personaje está en juego, está borracho."
   },
   {
@@ -557,7 +587,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 74,
+    "otherNight": 79,
     "otherNightReminder": "Si hoy fue el primer día del Malabarista: Muestra la señal con la mano para el número (0, 1, 2, etc.) de marcadores 'Correcto'. Retira los marcadores.",
     "reminders": [
       "Correcto",
@@ -573,7 +603,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 55,
+    "otherNight": 59,
     "otherNightReminder": "Si el Sabio fue asesinado por un Demonio: Señala a dos jugadores, uno de los cuales es ese Demonio.",
     "reminders": [],
     "setup": false,
@@ -599,7 +629,7 @@
     "team": "outsider",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 54,
+    "otherNight": 57,
     "otherNightReminder": "Elige a un jugador que esté borracho.",
     "reminders": [
       "Borracho"
@@ -614,7 +644,7 @@
     "team": "outsider",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 53,
+    "otherNight": 56,
     "otherNightReminder": "Si el Barbero murió hoy: Despierta al Demonio. Muestra la carta 'Este personaje te seleccionó', luego la ficha del Barbero. El Demonio muestra una señal de 'no' con la cabeza, o señala a 2 jugadores. Si eligió jugadores: Intercambia las fichas de personaje. Despierta a cada jugador. Muestra 'Tú eres', luego su nueva ficha de personaje.",
     "reminders": [
       "Cortes de pelo esta noche"
@@ -640,7 +670,7 @@
     "name": "Gemela Malvada",
     "edition": "snv",
     "team": "minion",
-    "firstNight": 35,
+    "firstNight": 36,
     "firstNightReminder": "Despierta a la Gemela Malvada y a su gemelo. Confirma que se han reconocido mutuamente. Señala a la Gemela Malvada. Muestra su ficha de Gemela Malvada al jugador gemelo. Señala al gemelo. Muestra su ficha de personaje al jugador Gemela Malvada.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -656,9 +686,9 @@
     "name": "Bruja",
     "edition": "snv",
     "team": "minion",
-    "firstNight": 36,
+    "firstNight": 37,
     "firstNightReminder": "La Bruja señala a un jugador. Si ese jugador nomina mañana, muere inmediatamente.",
-    "otherNight": 20,
+    "otherNight": 21,
     "otherNightReminder": "Si hay 4 o más jugadores vivos: La Bruja señala a un jugador. Si ese jugador nomina mañana, muere inmediatamente.",
     "reminders": [
       "Maldito"
@@ -671,9 +701,9 @@
     "name": "Cerenovus",
     "edition": "snv",
     "team": "minion",
-    "firstNight": 37,
+    "firstNight": 38,
     "firstNightReminder": "El Cerenovus señala a un jugador, luego a un personaje en su hoja. Despierta a ese jugador. Muestra la carta 'Este personaje te seleccionó', luego la ficha del Cerenovus. Muestra la ficha del personaje seleccionado. Si el jugador no está loco por ser ese personaje mañana, puede ser ejecutado.",
-    "otherNight": 21,
+    "otherNight": 22,
     "otherNightReminder": "El Cerenovus señala a un jugador, luego a un personaje en su hoja. Despierta a ese jugador. Muestra la carta 'Este personaje te seleccionó', luego la ficha del Cerenovus. Muestra la ficha del personaje seleccionado. Si el jugador no está loco por ser ese personaje mañana, puede ser ejecutado.",
     "reminders": [
       "Loco"
@@ -688,7 +718,7 @@
     "team": "minion",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 22,
+    "otherNight": 23,
     "otherNightReminder": "La Pit-Hag señala a un jugador y un personaje en la hoja. Si este personaje no está en juego, despierta a ese jugador y muéstrale la carta 'Tú eres' y la ficha de personaje relevante. Si el personaje está en juego, no pasa nada.",
     "reminders": [
       "Muerto"
@@ -703,7 +733,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 38,
+    "otherNight": 40,
     "otherNightReminder": "El Fang Gu señala a un jugador. Ese jugador muere. O, si ese jugador era un Forastero y no hay otros Fang Gu en juego: El Fang Gu muere en lugar del jugador elegido. El jugador elegido es ahora un Fang Gu malvado. Despierta al nuevo Fang Gu. Muestra la carta 'Tú eres', luego la ficha de Fang Gu. Muestra la carta 'Tú eres', luego la señal de pulgar abajo 'malvado'.",
     "reminders": [
       "Muerto",
@@ -719,8 +749,8 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 42,
-    "otherNightEdition": 38.5,
+    "otherNight": 45,
+    "otherNightEdition": 41,
     "otherNightReminder": "El Vigormortis señala a un jugador. Ese jugador muere. Si es un Esbirro, mantiene su habilidad y uno de sus vecinos Aldeanos es envenenado.",
     "reminders": [
       "Muerto",
@@ -737,7 +767,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 39,
+    "otherNight": 42,
     "otherNightReminder": "El No Dashii señala a un jugador. Ese jugador muere.",
     "reminders": [
       "Muerto",
@@ -753,7 +783,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 40,
+    "otherNight": 43,
     "otherNightReminder": "El Vortox señala a un jugador. Ese jugador muere.",
     "reminders": [
       "Muerto"
@@ -766,9 +796,9 @@
     "name": "Barista",
     "edition": "snv",
     "team": "traveler",
-    "firstNight": 3,
+    "firstNight": 4,
     "firstNightReminder": "Elige a un jugador, despiértalo y dile qué poder del Barista le está afectando. Trátalo en consecuencia (sobrio/sano/info verdadera o activar su habilidad dos veces).",
-    "otherNight": 3,
+    "otherNight": 4,
     "otherNightReminder": "Elige a un jugador, despiértalo y dile qué poder del Barista le está afectando. Trátalo en consecuencia (sobrio/sano/info verdadera o activar su habilidad dos veces).",
     "reminders": [
       "Sobrio y Sano",
@@ -784,7 +814,7 @@
     "team": "traveler",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 3,
+    "otherNight": 4,
     "otherNightReminder": "La Meretriz señala a cualquier jugador. Luego, duerme a la Meretriz. Despierta al jugador elegido, muéstrale la ficha 'Este personaje te seleccionó', luego la ficha de la Meretriz. Ese jugador asiente con la cabeza 'sí' o niega con la cabeza 'no'. Si asintió, despierta a la Meretriz y muéstrale la ficha de personaje del jugador elegido. Luego, puedes decidir que ambos jugadores mueran.",
     "reminders": [
       "Muerto"
@@ -812,7 +842,7 @@
     "team": "traveler",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 3,
+    "otherNight": 4,
     "otherNightReminder": "El Coleccionista de Huesos niega con la cabeza 'no' o señala a cualquier jugador muerto. Si señaló a un jugador muerto, pon el recordatorio 'Tiene Habilidad' del Coleccionista de Huesos junto a la ficha de personaje del jugador elegido. (Puede que necesiten ser despertados esta noche para usarla).",
     "reminders": [
       "Sin habilidad",
@@ -841,9 +871,9 @@
     "name": "Abuela",
     "edition": "bmr",
     "team": "townsfolk",
-    "firstNight": 52,
+    "firstNight": 53,
     "firstNightReminder": "Muestra la ficha del personaje marcado. Señala al jugador marcado.",
-    "otherNight": 64,
+    "otherNight": 68,
     "otherNightReminder": "Si el nieto de la Abuela fue asesinado por el Demonio esta noche: La Abuela muere.",
     "reminders": [
       "Nieto"
@@ -856,9 +886,9 @@
     "name": "Marinero",
     "edition": "bmr",
     "team": "townsfolk",
-    "firstNight": 20,
+    "firstNight": 21,
     "firstNightReminder": "El Marinero señala a un jugador vivo. O el Marinero, o el jugador elegido, está borracho.",
-    "otherNight": 6,
+    "otherNight": 7,
     "otherNightReminder": "El jugador previamente borracho ya no está borracho. El Marinero señala a un jugador vivo. O el Marinero, o el jugador elegido, está borracho.",
     "reminders": [
       "Borracho"
@@ -871,9 +901,9 @@
     "name": "Sirvienta",
     "edition": "bmr",
     "team": "townsfolk",
-    "firstNight": 69,
+    "firstNight": 70,
     "firstNightReminder": "La Sirvienta señala a dos jugadores. Muestra la señal numérica (0, 1, 2, \u2026) de cuántos de esos jugadores se despiertan esta noche por su habilidad.",
-    "otherNight": 85,
+    "otherNight": 90,
     "otherNightReminder": "La Sirvienta señala a dos jugadores. Muestra la señal numérica (0, 1, 2, \u2026) de cuántos de esos jugadores se despiertan esta noche por su habilidad.",
     "reminders": [],
     "setup": false,
@@ -886,7 +916,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 29,
+    "otherNight": 30,
     "otherNightReminder": "El Exorcista señala a un jugador, diferente al de la noche anterior. Si ese jugador es el Demonio: Despierta al Demonio. Muestra la ficha del Exorcista. Señala al Exorcista. El Demonio no actúa esta noche.",
     "reminders": [
       "Elegido"
@@ -901,7 +931,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 12,
+    "otherNight": 13,
     "otherNightEdition": 9,
     "otherNightReminder": "Los jugadores previamente protegidos y borrachos pierden esos marcadores. El Posadero señala a dos jugadores. Esos jugadores están protegidos. Uno está borracho.",
     "reminders": [
@@ -918,7 +948,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 14,
+    "otherNight": 15,
     "otherNightReminder": "El Tahúr señala a un jugador, y a un personaje en su hoja. Si es incorrecto, el Tahúr muere.",
     "reminders": [
       "Muerto"
@@ -933,8 +963,8 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 51,
-    "otherNightEdition": 60,
+    "otherNight": 54,
+    "otherNightEdition": 64,
     "otherNightReminder": "Si la declaración pública del Chismoso fue cierta: Elige a un jugador no protegido de morir esta noche. Ese jugador muere.",
     "reminders": [
       "Muerto"
@@ -947,9 +977,9 @@
     "name": "Cortesano",
     "edition": "bmr",
     "team": "townsfolk",
-    "firstNight": 29,
+    "firstNight": 30,
     "firstNightReminder": "El Cortesano muestra una señal de 'no' con la cabeza, o señala un personaje en la hoja. Si el Cortesano usó su habilidad: Si ese personaje está en juego, ese jugador está borracho.",
-    "otherNight": 11,
+    "otherNight": 12,
     "otherNightReminder": "Reduce el número restante de días que el jugador marcado está envenenado. Si el Cortesano aún no ha usado su habilidad: El Cortesano muestra una señal de 'no' con la cabeza, o señala un personaje en la hoja. Si el Cortesano usó su habilidad: Si ese personaje está en juego, ese jugador está borracho.",
     "reminders": [
       "Borracho 1",
@@ -967,7 +997,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 57,
+    "otherNight": 61,
     "otherNightReminder": "Si el Profesor no ha usado su habilidad: El Profesor niega con la cabeza 'no', o señala a un jugador. Si ese jugador es un Aldeano, ahora está vivo.",
     "reminders": [
       "Vivo",
@@ -1041,7 +1071,7 @@
     "team": "outsider",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 62,
+    "otherNight": 66,
     "otherNightReminder": "El Manitas podría morir.",
     "reminders": [
       "Muerto"
@@ -1059,7 +1089,7 @@
     "team": "outsider",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 63,
+    "otherNight": 67,
     "otherNightReminder": "Si la Niña de la Luna usó su habilidad para apuntar a un jugador hoy: Si ese jugador es bueno, muere.",
     "reminders": [
       "Muerto"
@@ -1087,9 +1117,9 @@
     "name": "Lunático",
     "edition": "bmr",
     "team": "outsider",
-    "firstNight": 16,
+    "firstNight": 17,
     "firstNightReminder": "Si hay 7 o más jugadores: Muestra al Lunático un número de 'Esbirros' arbitrarios, jugadores igual al número de Esbirros en juego. Muestra 3 fichas de personaje de personajes buenos arbitrarios. Si la ficha recibida por el Lunático es un Demonio que despertaría esta noche: Permite al Lunático hacer las acciones del Demonio. Coloca sus marcadores de 'ataque'. Despierta al Demonio. Muestra la ficha de personaje real del Demonio. Muéstrale al jugador Lunático. Si el Lunático atacó jugadores: Muestra al demonio real cada jugador marcado. Retira cualquier marcador de 'ataque' del Lunático.",
-    "otherNight": 28,
+    "otherNight": 29,
     "otherNightReminder": "Permite al Lunático hacer las acciones del Demonio. Coloca sus marcadores de 'ataque'. Si el Lunático seleccionó jugadores: Despierta al Demonio. Muestra el marcador de 'ataque', luego señala a cada jugador marcado. Retira cualquier marcador de 'ataque' del Lunático.",
     "reminders": [],
     "remindersGlobal": [
@@ -1097,7 +1127,16 @@
       "Elegido"
     ],
     "setup": false,
-    "forbidden": true,
+    "special": [
+      {
+        "type": "selection",
+        "name": "bag-disabled"
+      },
+      {
+        "type": "reveal",
+        "name": "replace-character"
+      }
+    ],
     "ability": "Crees que eres un Demonio, pero no lo eres. El Demonio sabe quién eres y a quién eliges por la noche."
   },
   {
@@ -1105,9 +1144,9 @@
     "name": "Padrino",
     "edition": "bmr",
     "team": "minion",
-    "firstNight": 32,
+    "firstNight": 33,
     "firstNightReminder": "Muestra cada una de las fichas de Forastero en juego.",
-    "otherNight": 50,
+    "otherNight": 53,
     "otherNightReminder": "Si un Forastero murió hoy: El Padrino señala a un jugador. Ese jugador muere.",
     "reminders": [
       "Muerto hoy",
@@ -1121,9 +1160,9 @@
     "name": "Abogado del Diablo",
     "edition": "bmr",
     "team": "minion",
-    "firstNight": 34,
+    "firstNight": 35,
     "firstNightReminder": "El Abogado del Diablo señala a un jugador vivo. Ese jugador sobrevive a la ejecución mañana.",
-    "otherNight": 19,
+    "otherNight": 20,
     "otherNightReminder": "El Abogado del Diablo señala a un jugador vivo, diferente al de la noche anterior. Ese jugador sobrevive a la ejecución mañana.",
     "reminders": [
       "Sobrevive ejecución"
@@ -1138,7 +1177,7 @@
     "team": "minion",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 49,
+    "otherNight": 52,
     "otherNightReminder": "Si el Asesino aún no ha usado su habilidad: El Asesino muestra la señal de 'no' con la cabeza, o señala a un jugador. Ese jugador muere.",
     "reminders": [
       "Muerto",
@@ -1167,7 +1206,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 34,
+    "otherNight": 36,
     "otherNightReminder": "Si nadie murió durante el día: El Zombuul señala a un jugador. Ese jugador muere.",
     "reminders": [
       "Muerto hoy",
@@ -1181,9 +1220,9 @@
     "name": "Pukka",
     "edition": "bmr",
     "team": "demon",
-    "firstNight": 41,
+    "firstNight": 42,
     "firstNightReminder": "El Pukka señala a un jugador. Ese jugador está envenenado.",
-    "otherNight": 35,
+    "otherNight": 37,
     "otherNightReminder": "El Pukka señala a un jugador. Ese jugador está envenenado. El jugador previamente envenenado muere.",
     "reminders": [
       "Envenenado",
@@ -1199,7 +1238,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 36,
+    "otherNight": 38,
     "otherNightReminder": "Un jugador que el Shabaloth eligió la noche anterior podría ser resucitado. El Shabaloth señala a dos jugadores. Esos jugadores mueren.",
     "reminders": [
       "Muerto",
@@ -1215,7 +1254,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 37,
+    "otherNight": 39,
     "otherNightReminder": "Si el Po no eligió a nadie la noche anterior: El Po señala a tres jugadores. De lo contrario: El Po muestra la señal de 'no' con la cabeza, o señala a un jugador. Los jugadores elegidos mueren.",
     "reminders": [
       "Muerto",
@@ -1229,9 +1268,9 @@
     "name": "Aprendiz",
     "edition": "bmr",
     "team": "traveler",
-    "firstNight": 3,
+    "firstNight": 4,
     "firstNightReminder": "Muestra al Aprendiz la carta 'Tú eres', luego una ficha de Aldeano o Esbirro. En el Grimorio, reemplaza la ficha de Aprendiz con esa ficha de personaje, y pon el recordatorio 'Es el Aprendiz' junto a esa ficha de personaje.",
-    "otherNight": 3,
+    "otherNight": 4,
     "otherNightReminder": "Si el Aprendiz acaba de llegar, muéstrale la carta 'Tú eres', luego una ficha de Aldeano o Esbirro. En el Grimorio, reemplaza la ficha de Aprendiz con esa ficha de personaje, y pon el recordatorio 'Es el Aprendiz' junto a esa ficha de personaje.",
     "reminders": [
       "Es el Aprendiz"
@@ -1294,6 +1333,10 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "free-dead-vote"
+    },
     "ability": "Solo tú y los muertos podéis votar. No necesitan ficha de voto para hacerlo. No se requiere mayoría del 50%."
   },
   {
@@ -1301,7 +1344,7 @@
     "name": "Noble",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 58,
+    "firstNight": 59,
     "firstNightReminder": "Señala a 3 jugadores incluyendo un jugador malvado, sin ningún orden en particular.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1316,9 +1359,9 @@
     "name": "Cazarrecompensas",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 62,
+    "firstNight": 63,
     "firstNightReminder": "Señala a 1 jugador malvado. Despierta al aldeano que es malvado y muéstrale la carta 'Tú eres' y el pulgar abajo de signo de malvado.",
-    "otherNight": 78,
+    "otherNight": 83,
     "otherNightReminder": "Si el jugador malvado conocido ha muerto, señala a otro jugador malvado.",
     "reminders": [
       "Conoce"
@@ -1331,7 +1374,7 @@
     "name": "Duendecillo",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 42,
+    "firstNight": 43,
     "firstNightReminder": "Muestra al Duendecillo 1 ficha de personaje Aldeano en juego.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1347,9 +1390,9 @@
     "name": "General",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 68,
+    "firstNight": 69,
     "firstNightReminder": "Muestra al General pulgar arriba para el bien ganando, pulgar abajo para el mal ganando o pulgar al lado para ninguno.",
-    "otherNight": 84,
+    "otherNight": 89,
     "otherNightReminder": "Muestra al General pulgar arriba para el bien ganando, pulgar abajo para el mal ganando o pulgar al lado para ninguno.",
     "reminders": [],
     "setup": false,
@@ -1360,9 +1403,9 @@
     "name": "Predicador",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 23,
+    "firstNight": 24,
     "firstNightReminder": "El Predicador elige a un jugador. Si elige a un Esbirro, despierta al Esbirro y muéstrale la carta 'Este personaje te seleccionó' y luego la ficha del Predicador.",
-    "otherNight": 8,
+    "otherNight": 9,
     "otherNightReminder": "El Predicador elige a un jugador. Si elige a un Esbirro, despierta al Esbirro y muéstrale la carta 'Este personaje te seleccionó' y luego la ficha del Predicador.",
     "reminders": [
       "Sin habilidad"
@@ -1375,9 +1418,9 @@
     "name": "Rey",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 19,
+    "firstNight": 20,
     "firstNightReminder": "Despierta al Demonio, muéstrale la carta 'Este personaje te seleccionó', muestra la ficha del Rey y señala al jugador Rey.",
-    "otherNight": 77,
+    "otherNight": 82,
     "otherNightReminder": "Si hay al menos tantos muertos como vivos, muestra al Rey una ficha de personaje de un jugador vivo.",
     "reminders": [],
     "setup": false,
@@ -1388,9 +1431,9 @@
     "name": "Aeronauta",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 59,
+    "firstNight": 60,
     "firstNightReminder": "Elige un tipo de personaje. Señala a un jugador cuyo personaje sea de ese tipo. Coloca el recordatorio 'Visto' del Aeronauta junto a ese personaje.",
-    "otherNight": 75,
+    "otherNight": 80,
     "otherNightReminder": "Elige un tipo de personaje diferente al de la noche anterior. Señala a un jugador cuyo personaje sea de ese tipo, si lo hay. Coloca el recordatorio 'Visto' del Aeronauta junto a ese personaje. Retira el recordatorio anterior.",
     "reminders": [
       "Visto Aldeano",
@@ -1406,9 +1449,9 @@
     "name": "Líder de culto",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 64,
+    "firstNight": 65,
     "firstNightReminder": "Si el Líder de culto cambió de alineación, muéstrale la señal de pulgar arriba para bueno o la señal de pulgar abajo para malvado según corresponda.",
-    "otherNight": 80,
+    "otherNight": 85,
     "otherNightReminder": "Si el Líder de culto cambió de alineación, muéstrale la señal de pulgar arriba para bueno o la señal de pulgar abajo para malvado según corresponda.",
     "reminders": [],
     "setup": false,
@@ -1421,7 +1464,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 30,
+    "otherNight": 31,
     "otherNightReminder": "El Licántropo señala a un jugador vivo: si es bueno, muere y nadie puede ser asesinado por el Demonio esta noche.",
     "reminders": [
       "Faux Paw",
@@ -1435,9 +1478,9 @@
     "name": "Amnésico",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 44,
+    "firstNight": 45,
     "firstNightReminder": "Decide la habilidad completa del Amnésico. Si la habilidad del Amnésico hace que se despierte esta noche: Despierta al Amnésico y ejecuta su habilidad.",
-    "otherNight": 60,
+    "otherNight": 64,
     "otherNightReminder": "Si la habilidad del Amnésico hace que se despierte esta noche: Despierta al Amnésico y ejecuta su habilidad.",
     "reminders": [
       "?"
@@ -1450,9 +1493,9 @@
     "name": "Sereno",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 63,
+    "firstNight": 64,
     "firstNightReminder": "El Sereno puede señalar a un jugador. Despierta a ese jugador, muestra la carta 'Este personaje te seleccionó' y la ficha del Sereno, luego señala al jugador Sereno.",
-    "otherNight": 79,
+    "otherNight": 84,
     "otherNightReminder": "El Sereno puede señalar a un jugador. Despierta a ese jugador, muestra la carta 'Este personaje te seleccionó' y la ficha del Sereno, luego señala al jugador Sereno.",
     "reminders": [
       "Sin habilidad"
@@ -1465,9 +1508,9 @@
     "name": "Ingeniero",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 22,
+    "firstNight": 23,
     "firstNightReminder": "El Ingeniero muestra una señal de 'no' con la cabeza, o señala a un Demonio o señala el número relevante de Esbirros. Si el Ingeniero eligió personajes, reemplaza el Demonio o los Esbirros con las elecciones, luego despierta a los jugadores relevantes y muéstrales la carta 'Tú eres' y las fichas de personaje relevantes.",
-    "otherNight": 7,
+    "otherNight": 8,
     "otherNightReminder": "El Ingeniero muestra una señal de 'no' con la cabeza, o señala a un Demonio o señala el número relevante de Esbirros. Si el Ingeniero eligió personajes, reemplaza el Demonio o los Esbirros con las elecciones, luego despierta a los jugadores relevantes y muéstrales la carta 'Tú eres' y las fichas de personaje relevantes.",
     "reminders": [
       "Cambiado",
@@ -1496,9 +1539,9 @@
     "name": "Cazador",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 43,
+    "firstNight": 44,
     "firstNightReminder": "El Cazador niega con la cabeza 'no' o señala a un jugador. Si señala a la Damisela, despierta a ese jugador, muestra la carta 'Tú eres' y una ficha de personaje que no esté en juego.",
-    "otherNight": 59,
+    "otherNight": 63,
     "otherNightReminder": "El Cazador niega con la cabeza 'no' o señala a un jugador. Si señala a la Damisela, despierta a ese jugador, muestra la carta 'Tú eres' y una ficha de personaje que no esté en juego.",
     "reminders": [
       "Sin habilidad"
@@ -1511,7 +1554,7 @@
     "name": "Alquimista",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 8,
+    "firstNight": 9,
     "firstNightReminder": "Muestra al Alquimista una ficha de Esbirro.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1529,7 +1572,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 61,
+    "otherNight": 65,
     "otherNightReminder": "Si un Granjero murió esta noche, elige otro jugador bueno y hazlo el Granjero. Despierta a este jugador, muéstrale la carta 'Tú eres' y la ficha de personaje Granjero.",
     "reminders": [],
     "setup": false,
@@ -1540,7 +1583,7 @@
     "name": "Mago",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 11,
+    "firstNight": 12,
     "firstNightReminder": "A los Esbirros, muestra al Mago como otro Demonio. Al Demonio, muestra al Mago como otro Esbirro.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1555,7 +1598,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 58,
+    "otherNight": 62,
     "otherNightReminder": "Si el Rey fue asesinado por el Demonio, despierta al Niño del Coro y señala al jugador Demonio.",
     "reminders": [],
     "setup": true,
@@ -1566,12 +1609,13 @@
     "name": "Cultivador de opio",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 9,
+    "firstNight": 10,
     "firstNightReminder": "No informes al Demonio/Esbirros de quiénes son entre sí.",
-    "otherNight": 5,
+    "otherNight": 6,
     "otherNightReminder": "Si el Cultivador de Opio ha muerto, muestra a los Esbirros/Demonio quiénes son entre sí.",
     "reminders": [
-      "Malvados despiertan"
+      "Malvados despiertan",
+      "No se conocen"
     ],
     "setup": false,
     "ability": "Los Esbirros y Demonios no se conocen entre sí. Si mueres, aprenden quiénes son esa noche."
@@ -1587,6 +1631,10 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": true,
+    "special": {
+      "type": "selection",
+      "name": "good-duplicate"
+    },
     "ability": "El Narrador puede romper las reglas del juego y, si es ejecutado, el bien gana, incluso si estás muerto. [Sin personajes malvados]"
   },
   {
@@ -1610,7 +1658,7 @@
     "name": "Administrador",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 56,
+    "firstNight": 57,
     "firstNightReminder": "Señala a un jugador bueno.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1625,7 +1673,7 @@
     "name": "Shugenja",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 60,
+    "firstNight": 61,
     "firstNightReminder": "Despierta al Shugenja; señala horizontalmente en la dirección del jugador malvado más cercano. Si los dos jugadores malvados más cercanos son equidistantes, señala con el dedo horizontalmente en cualquier dirección.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1638,9 +1686,9 @@
     "name": "Suma sacerdotisa",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 67,
+    "firstNight": 68,
     "firstNightReminder": "Señala a un jugador.",
-    "otherNight": 83,
+    "otherNight": 88,
     "otherNightReminder": "Señala a un jugador.",
     "reminders": [],
     "setup": false,
@@ -1651,15 +1699,18 @@
     "name": "Tonto del pueblo",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 61,
+    "firstNight": 62,
     "firstNightReminder": "El Tonto del Pueblo señala a un jugador; da un pulgar hacia arriba si ese jugador es bueno o un pulgar hacia abajo si ese jugador es malvado.",
-    "otherNight": 76,
+    "otherNight": 81,
     "otherNightReminder": "El Tonto del Pueblo señala a un jugador; da un pulgar hacia arriba si ese jugador es bueno o un pulgar hacia abajo si ese jugador es malvado.",
     "reminders": [
       "Borracho"
     ],
     "setup": true,
-    "multiple": true,
+    "special": {
+      "type": "selection",
+      "name": "bag-duplicate"
+    },
     "ability": "Cada noche, elige a un jugador: aprendes su alineación. [+0 a +2 Tontos del Pueblo. 1 de los extra está borracho]"
   },
   {
@@ -1667,7 +1718,7 @@
     "name": "Caballero",
     "edition": "",
     "team": "townsfolk",
-    "firstNight": 57,
+    "firstNight": 58,
     "firstNightReminder": "Señala a dos jugadores que no sean el Demonio.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1697,7 +1748,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 15,
+    "otherNight": 16,
     "otherNightReminder": "El Acróbata elige a un jugador: marca a este jugador con el recordatorio 'Elegido'. Si este jugador está o se vuelve borracho o envenenado esta noche, el Acróbata muere.",
     "reminders": [
       "Elegido",
@@ -1713,12 +1764,16 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 56,
+    "otherNight": 60,
     "otherNightReminder": "Anuncia que el Banshee ha muerto. Marca al Banshee con su recordatorio.",
     "reminders": [
       "Tiene Habilidad"
     ],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "two-hands"
+    },
     "ability": "Si el Demonio te mata, todos los jugadores lo saben. A partir de ahora, puedes nominar dos veces al día y votar dos veces por nominación."
   },
   {
@@ -1728,7 +1783,7 @@
     "team": "townsfolk",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 31,
+    "otherNight": 32,
     "otherNightReminder": "Si hoy fue el primer día de la Princesa, y si nominó y ejecutó a un jugador, el Demonio no puede matar (despierta al Demonio de todos modos).",
     "reminders": [
       "No mata"
@@ -1741,7 +1796,7 @@
     "name": "Soplón",
     "edition": "",
     "team": "outsider",
-    "firstNight": 14,
+    "firstNight": 15,
     "firstNightReminder": "Después de la información de los Esbirros, despierta a cada Esbirro y muéstrales tres fichas de personajes que no estén en juego. Estas pueden ser iguales o diferentes entre sí y a las mostradas al Demonio.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1783,7 +1838,7 @@
     "name": "Damisela",
     "edition": "",
     "team": "outsider",
-    "firstNight": 15,
+    "firstNight": 16,
     "firstNightReminder": "Dile a cada Esbirro que la Damisela está en juego.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1828,8 +1883,8 @@
     "team": "outsider",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 0,
-    "otherNightReminder": "",
+    "otherNight": 58,
+    "otherNightReminder": "Si el Doctor de la Plaga moría, el Narrador obtenía una habilidad de Esbirro. Si aún no lo has hecho, hazlo ahora.",
     "reminders": [
       "Habilidad del Narrador"
     ],
@@ -1843,7 +1898,7 @@
     "team": "outsider",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 52,
+    "otherNight": 55,
     "otherNightReminder": "Si el Sombrerero murió hoy: Despierta a los Esbirros y al Demonio. Muéstrales la ficha de información 'Este personaje te seleccionó', luego la ficha del Sombrerero. Cada jugador niega con la cabeza 'no' o señala otro personaje del mismo tipo que su personaje actual. Si un segundo jugador acabara con el mismo personaje que otro jugador, niega con la cabeza 'no' y haz un gesto para que elijan de nuevo. Duérmelos. Cambia a cada jugador al personaje que eligieron.",
     "reminders": [
       "Fiesta del té esta noche"
@@ -1869,7 +1924,7 @@
     "name": "Ogro",
     "edition": "",
     "team": "outsider",
-    "firstNight": 66,
+    "firstNight": 67,
     "firstNightReminder": "El Ogro señala a un jugador (no a sí mismo) y se vuelve de su alineación.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1901,7 +1956,7 @@
     "name": "Viuda",
     "edition": "",
     "team": "minion",
-    "firstNight": 28,
+    "firstNight": 29,
     "firstNightReminder": "Muestra el Grimorio a la Viuda durante el tiempo que necesite. La Viuda señala a un jugador. Ese jugador está envenenado. Despierta a un jugador bueno. Muestra la carta 'Estos personajes están en juego', luego la ficha de personaje de la Viuda.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1919,9 +1974,9 @@
     "name": "Fearmonger",
     "edition": "",
     "team": "minion",
-    "firstNight": 38,
+    "firstNight": 39,
     "firstNightReminder": "El Fearmonger señala a un jugador. Coloca la ficha de Miedo junto a ese jugador y anuncia que un nuevo jugador ha sido seleccionado con la habilidad del Fearmonger.",
-    "otherNight": 23,
+    "otherNight": 24,
     "otherNightReminder": "El Fearmonger señala a un jugador. Si es diferente al de la noche anterior, coloca la ficha de Miedo junto a ese jugador y anuncia que un nuevo jugador ha sido seleccionado con la habilidad del Fearmonger.",
     "reminders": [
       "Miedo"
@@ -1965,9 +2020,9 @@
     "name": "Mezepheles",
     "edition": "",
     "team": "minion",
-    "firstNight": 40,
+    "firstNight": 41,
     "firstNightReminder": "Muestra al Mezepheles su palabra secreta.",
-    "otherNight": 25,
+    "otherNight": 26,
     "otherNightReminder": "Despierta al 1er jugador bueno que dijo la palabra secreta del Mezepheles y muéstrale la carta 'Tú eres' y la señal de pulgar abajo de malvado.",
     "reminders": [
       "Se vuelve malvado",
@@ -1981,7 +2036,7 @@
     "name": "Marioneta",
     "edition": "",
     "team": "minion",
-    "firstNight": 21,
+    "firstNight": 22,
     "firstNightReminder": "Selecciona uno de los jugadores buenos junto al Demonio y coloca el recordatorio 'Es la Marioneta'. Despierta al Demonio y muéstrale la Marioneta.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -1990,7 +2045,16 @@
       "Es la Marioneta"
     ],
     "setup": true,
-    "forbidden": true,
+    "special": [
+      {
+        "type": "selection",
+        "name": "bag-disabled"
+      },
+      {
+        "type": "reveal",
+        "name": "replace-character"
+      }
+    ],
     "ability": "Crees que eres un personaje bueno pero no lo eres. El Demonio sabe quién eres. [Eres vecino del Demonio]"
   },
   {
@@ -2004,6 +2068,10 @@
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
+    "special": {
+      "type": "ability",
+      "name": "pointing"
+    },
     "ability": "Si eres ejecutado, todos menos 3 jugadores mueren. Tras una cuenta atrás de 10 a 1, el jugador con más jugadores señalándole, muere."
   },
   {
@@ -2011,15 +2079,19 @@
     "name": "Organillero",
     "edition": "",
     "team": "minion",
-    "firstNight": 33,
+    "firstNight": 34,
     "firstNightReminder": "Despierta al Organillero: elige si está borracho o no.",
-    "otherNight": 18,
+    "otherNight": 19,
     "otherNightReminder": "Despierta al Organillero: elige si está borracho o no.",
     "reminders": [
       "Borracho",
       "Voto usado"
     ],
     "setup": false,
+    "special": {
+      "type": "vote",
+      "name": "hidden"
+    },
     "ability": "Todos los jugadores mantienen los ojos cerrados al votar y el recuento de votos es secreto. Cada noche, elige si estás borracho hasta el anochecer."
   },
   {
@@ -2027,9 +2099,9 @@
     "name": "Invocador",
     "edition": "",
     "team": "minion",
-    "firstNight": 17,
+    "firstNight": 18,
     "firstNightReminder": "Muestra la carta 'Estos personajes no están en juego'. Muestra 3 fichas de personajes buenos que no estén en juego.",
-    "otherNight": 27,
+    "otherNight": 28,
     "otherNightReminder": "Si es la 3ª noche, despierta al Invocador. Señala a un jugador y a un Demonio en la hoja de personajes - ese jugador se convierte en ese Demonio.",
     "reminders": [
       "Noche 1",
@@ -2057,9 +2129,9 @@
     "name": "Arpía",
     "edition": "",
     "team": "minion",
-    "firstNight": 39,
+    "firstNight": 40,
     "firstNightReminder": "Despierta a la Arpía; señala a un jugador, luego a otro. Despierta al 1er jugador que la Arpía señaló, muéstrale la carta 'Este personaje te ha seleccionado', muéstrale la ficha de la Arpía, luego señala al 2do jugador que la Arpía señaló.",
-    "otherNight": 24,
+    "otherNight": 25,
     "otherNightReminder": "Despierta a la Arpía; señala a un jugador, luego a otro. Despierta al 1er jugador que la Arpía señaló, muéstrale la carta 'Este personaje te ha seleccionado', muéstrale la ficha de la Arpía, luego señala al 2do jugador que la Arpía señaló.",
     "reminders": [
       "Loco",
@@ -2073,9 +2145,9 @@
     "name": "Xaan",
     "edition": "",
     "team": "minion",
-    "firstNight": 26,
+    "firstNight": 27,
     "firstNightReminder": "Coloca el marcador 'Noche 1' del Xaan. Si la partida comenzó con 1 Forastero, coloca el marcador 'X' en todos los Aldeanos: están envenenados.",
-    "otherNight": 9,
+    "otherNight": 10,
     "otherNightReminder": "Si los Aldeanos fueron envenenados, retira el marcador 'X'. Si no, edita el marcador del Xaan; luego, si la noche coincide con el número inicial de Forasteros, coloca el marcador 'X' en todos los Aldeanos: están envenenados.",
     "reminders": [
       "Noche 1",
@@ -2092,7 +2164,7 @@
     "name": "Rata de laboratorio",
     "edition": "",
     "team": "minion",
-    "firstNight": 6,
+    "firstNight": 7,
     "firstNightReminder": "Despierta al Rata de Laboratorio y muéstrale la ficha de la habilidad que tiene el Demonio. Pon al Rata de Laboratorio a dormir. Despierta al Demonio, muestra la ficha del Rata de Laboratorio, luego muestra la ficha de la habilidad buena que tiene el Demonio.",
     "otherNight": 0,
     "otherNightReminder": "",
@@ -2105,9 +2177,9 @@
     "name": "Hechicero",
     "edition": "",
     "team": "minion",
-    "firstNight": 30,
+    "firstNight": 31,
     "firstNightReminder": "Ejecuta la habilidad del Hechicero si corresponde.",
-    "otherNight": 13,
+    "otherNight": 14,
     "otherNightReminder": "Ejecuta la habilidad del Hechicero si corresponde.",
     "reminders": [
       "?"
@@ -2120,12 +2192,16 @@
     "name": "Espectro",
     "edition": "",
     "team": "minion",
-    "firstNight": 2.5,
+    "firstNight": 3,
     "firstNightReminder": "Cada vez que despiertes a un jugador malvado por la noche, despierta primero al Espectro. Si el Espectro está borracho o envenenado, dile que no puede abrir los ojos.",
-    "otherNight": 2.5,
+    "otherNight": 3,
     "otherNightReminder": "Cada vez que despiertes a un jugador malvado por la noche, despierta primero al Espectro. Si el Espectro está borracho o envenenado, dile que no puede abrir los ojos.",
     "reminders": [],
     "setup": false,
+    "special": {
+      "type": "player",
+      "name": "open-eyes"
+    },
     "ability": "Puedes elegir abrir los ojos por la noche. Te despiertas cuando lo hacen otros jugadores malvados."
   },
   {
@@ -2133,9 +2209,9 @@
     "name": "Lil' Monsta",
     "edition": "",
     "team": "demon",
-    "firstNight": 24,
+    "firstNight": 25,
     "firstNightReminder": "Despierta a todos los Esbirros juntos, permíteles votar señalando a quién quieren que cuide a Lil' Monsta.",
-    "otherNight": 46,
+    "otherNight": 49,
     "otherNightReminder": "Despierta a todos los Esbirros juntos, permíteles votar señalando a quién quieren que cuide a Lil' Monsta. Puedes elegir un jugador, ese jugador muere.",
     "reminders": [],
     "remindersGlobal": [
@@ -2143,7 +2219,10 @@
       "Muerto"
     ],
     "setup": true,
-    "forbidden": true,
+    "special": {
+      "type": "selection",
+      "name": "bag-disabled"
+    },
     "ability": "Cada noche, los Esbirros eligen quién cuida a Lil' Monsta y 'es el Demonio'. Cada noche*, un jugador podría morir. [+1 Esbirro]"
   },
   {
@@ -2151,9 +2230,9 @@
     "name": "Lleech",
     "edition": "",
     "team": "demon",
-    "firstNight": 25,
+    "firstNight": 26,
     "firstNightReminder": "El Lleech señala a un jugador. Coloca la ficha de recordatorio Envenenado.",
-    "otherNight": 45,
+    "otherNight": 48,
     "otherNightReminder": "El Lleech señala a un jugador. Ese jugador muere.",
     "reminders": [
       "Muerto",
@@ -2169,7 +2248,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 44,
+    "otherNight": 47,
     "otherNightReminder": "El Al-Hadikhia puede elegir 3 jugadores. Si lo hace, anuncia el primer jugador, despiértalo para que asienta sí para vivir o niegue con la cabeza no para morir, mata o resucita en consecuencia, luego duérmelo y anuncia el siguiente jugador. Si los 3 están vivos después de esto, los 3 mueren.",
     "reminders": [
       "1",
@@ -2188,14 +2267,17 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 32,
+    "otherNight": 34,
     "otherNightReminder": "Elige a un jugador, ese jugador muere.",
     "reminders": [
       "Muerto",
       "A punto de morir"
     ],
     "setup": true,
-    "multiple": true,
+    "special": {
+      "type": "selection",
+      "name": "bag-duplicate"
+    },
     "ability": "Cada noche*, un jugador podría morir. Las ejecuciones fallan si solo votó el mal. Te registras como Esbirro también. [La mayoría de jugadores son Legión]"
   },
   {
@@ -2227,9 +2309,13 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 0,
-    "otherNightReminder": "",
-    "reminders": [],
+    "otherNight": 92,
+    "otherNightReminder": "Cambia el recordatorio de Día. Si es la noche 3, puedes despertar a los esbirros. Muestra lacarta 'TÚ ERES' y Riot.",
+    "reminders": [
+      "Día 1",
+      "Día 2",
+      "Día 3"
+    ],
     "setup": false,
     "ability": "En el día 3, los Esbirros se vuelven Riot y los nominados mueren pero nominan a un jugador vivo inmediatamente. Esto debe ocurrir."
   },
@@ -2238,9 +2324,9 @@
     "name": "Yaggababble",
     "edition": "",
     "team": "demon",
-    "firstNight": 10,
+    "firstNight": 11,
     "firstNightReminder": "Muestra al Yaggababble su frase secreta.",
-    "otherNight": 47,
+    "otherNight": 50,
     "otherNightReminder": "Elige un número de jugadores hasta el número total de veces que el Yaggababble dijo su frase secreta públicamente, esos jugadores mueren.",
     "reminders": [
       "Muerto"
@@ -2253,9 +2339,9 @@
     "name": "Kazali",
     "edition": "",
     "team": "demon",
-    "firstNight": 5,
+    "firstNight": 6,
     "firstNightReminder": "El Kazali señala a un jugador y a un Esbirro en la hoja de personajes. Hace esto para tantos Esbirros como deban estar en juego. Cambia las fichas de esos jugadores a las fichas de Esbirro elegidas en el Grim. Despierta a esos jugadores, muéstrales la carta 'Tú Eres', los Esbirros en los que se han convertido, y un pulgar abajo.",
-    "otherNight": 48,
+    "otherNight": 51,
     "otherNightReminder": "El Kazali señala a un jugador. Ese jugador muere.",
     "reminders": [
       "Muerto"
@@ -2270,7 +2356,7 @@
     "team": "demon",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 43,
+    "otherNight": 46,
     "otherNightReminder": "El Ojo señala a un personaje en la hoja; si está en juego, ese jugador muere. Si no está en juego, el Narrador elige quién muere en su lugar.",
     "reminders": [
       "Muerto"
@@ -2283,9 +2369,9 @@
     "name": "Señor de Typhon",
     "edition": "",
     "team": "demon",
-    "firstNight": 4,
+    "firstNight": 5,
     "firstNightReminder": "Despierta a los jugadores a ambos lados del Demonio. Muéstrales la carta 'Tú Eres', la ficha del Esbirro que son ahora, y un pulgar abajo para indicar que son malvados.",
-    "otherNight": 41,
+    "otherNight": 44,
     "otherNightReminder": "El Señor de Typhon señala a un jugador. Ese jugador muere.",
     "reminders": [
       "Muerto"
@@ -2328,7 +2414,7 @@
     "team": "traveler",
     "firstNight": 0,
     "firstNightReminder": "",
-    "otherNight": 3,
+    "otherNight": 4,
     "otherNightReminder": "En cualquier momento durante la noche, cambia el personaje de un jugador no marcado como \"No yo\". Despierta a este jugador para decirle su nuevo rol.",
     "reminders": [
       "No yo"

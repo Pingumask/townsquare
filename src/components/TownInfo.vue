@@ -88,18 +88,16 @@ const edition = computed(() => grimoire.edition);
 const players = computed(() => playersStore.players);
 
 const markedStoryteller = computed(() => {
-  return typeof votingStore.markedPlayer == 'string' && !(session.isPlayerOrSpectator && grimoire.isSecretVote)
+  return typeof votingStore.markedPlayer === 'string' && !(session.isPlayerOrSpectator && grimoire.isSecretVote)
 });
 
 const logoUrl = computed(() => {
   if (edition.value?.logo && !edition.value.logo.includes('.')) {
     return new URL(`../assets/logos/${edition.value.logo}.png`, import.meta.url).href;
   }
-
   if (edition.value?.logo && userPreferences.isImageOptIn) {
     return edition.value.logo;
   }
-
   return new URL('../assets/logos/custom.png', import.meta.url).href;
 });
 

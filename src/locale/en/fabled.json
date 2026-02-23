@@ -70,12 +70,16 @@
     "setup": false,
     "name": "Fiddler",
     "team": "fabled",
+    "special": {
+      "type": "ability",
+      "name": "pointing"
+    },
     "ability": "Once per game, the Demon secretly chooses an opposing player: all players choose which of these 2 players win."
   },
   {
     "id": "toymaker",
     "firstNightReminder": "",
-    "otherNight": 31,
+    "otherNight": 33,
     "otherNightReminder": "If it is a night when a Demon attack could end the game, and the Demon is marked “Final night: No Attack,” then the Demon does not act tonight. (Do not wake them.)",
     "reminders": [
       "Final Night: No Attack"
@@ -199,7 +203,7 @@
   },
   {
     "id": "stormcatcher",
-    "firstNight": 13,
+    "firstNight": 14,
     "firstNightReminder": "Show each evil player which player is marked as \"Safe\".",
     "otherNightReminder": "",
     "reminders": [
@@ -256,5 +260,33 @@
     "name": "Hindu",
     "team": "loric",
     "ability": "The first 4 players to die are immediately reincarnated as Travellers of the same alignment."
+  },
+  {
+    "id": "pope",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": true,
+    "name": "Pope",
+    "team": "loric",
+    "special": {
+      "type": "selection",
+      "name": "good-duplicate"
+    },
+    "ability": "There are duplicate good characters in play. They might also be bluffs."
+  },
+  {
+    "id": "ventriloquist",
+    "firstNight": 0,
+    "firstNightReminder": "",
+    "otherNight": 0,
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": true,
+    "name": "Ventriloquist",
+    "team": "loric",
+    "ability": "If a player is mad as a fresh character during their nomination, they might not die if executed today."
   }
 ]

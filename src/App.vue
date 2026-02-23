@@ -2,6 +2,7 @@
   <div id="app" tabindex="-1" :class="{
     night: (grimoire.gamePhase === 'firstNight' || grimoire.gamePhase === 'otherNight'),
     static: userPreferences.isStatic,
+    streamer: userPreferences.isStreamerMode,
   }" :style="{
     backgroundImage: `url('${background}')`,
     backgroundColor: `${backgroundColor}`,
@@ -16,7 +17,9 @@
     <Intro v-if="!players.length" />
     <TownInfo v-if="players.length && !votingStore.nomination" />
     <Vote v-if="votingStore.nomination" />
+    <Parchment v-if="grimoire.showParchment" />
 
+    <Notes />
     <TownSquare />
     <Menu />
     <EditionModal />
@@ -47,12 +50,14 @@ import {
   Gradients,
   Intro,
   Menu,
+  Notes,
   TownInfo,
   Vote,
   EditionModal,
   FabledModal,
   GameStateModal,
   NightOrderModal,
+  Parchment,
   ReferenceModal,
   RolesModal,
   SpecialVoteModal,
@@ -141,7 +146,26 @@ function keyup(event: KeyboardEvent) {
       break;
     case "escape":
       grimoire.toggleModal(null);
+      break;
+    case "q":
+      userPreferences.notes.opened = !userPreferences.notes.opened;
+      break;
+    case " ":
+      space();
+      break;
   }
+}
+
+function space() {
+  if (!session.isPlayerOrSpectator) return;
+  const player = playersStore.players[playersStore.currentPlayerIndex];
+  if (!player) return;
+  if (votingStore.nomination) return;
+  playersStore.update({
+    player: player,
+    property: "handRaised",
+    value: !player.handRaised,
+  });
 }
 </script>
 
@@ -170,8 +194,7 @@ function keyup(event: KeyboardEvent) {
 
 html,
 body {
-  font-size: clamp(0.8em, 2.5vmin, 1.2em);
-  line-height: 1.4;
+  font-size: clamp(0.8rem, 2.4vmin, 1.1rem);
   background: url("assets/background.jpg") center center;
   background-size: cover;
   color: white;
@@ -223,6 +246,13 @@ ul {
   align-items: center;
   align-content: center;
   justify-content: center;
+  --border-color: #111;
+  --background-color: #000a;
+
+  &.streamer {
+    --border-color: #333;
+    --background-color: #2228;
+  }
 
   // disable all animations
   &.static *,
@@ -230,6 +260,13 @@ ul {
   &.static *:before {
     transition: none !important;
     animation: none !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition: none !important;
+      animation: none !important;
+    }
   }
 }
 
@@ -278,7 +315,8 @@ ul {
 }
 
 button,
-.button {
+.button,
+select {
   font-family: "Roboto Condensed", sans-serif;
   font-size: 1.2rem;
   padding: 0;
@@ -300,8 +338,9 @@ button,
   transition: all 200ms;
   white-space: nowrap;
 
-  &:hover {
+  &:not(select):hover {
     color: red;
+    text-shadow: 0 0 2px black;
   }
 
   &[disabled],
@@ -347,6 +386,26 @@ button,
       inset 0 1px 1px #9c0000,
       0 0 10px #000;
   }
+}
+
+select {
+  appearance: base-select;
+
+  background-color: #4e4e4e;
+  color: white;
+
+  option:hover {
+    color: red;
+    text-shadow: 0 0 2px black;
+  }
+}
+
+input,
+textarea {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.1em;
 }
 
 /* video background */
@@ -402,5 +461,9 @@ video#background {
 
 #app.night {
   filter: grayscale(15%) saturate(85%);
+}
+
+[role=button] {
+  cursor: pointer;
 }
 </style>
